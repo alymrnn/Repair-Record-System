@@ -119,6 +119,7 @@
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             required>
                         <input type="hidden" id="na_quantity" name="na_quantity">
+                        <span id="quantityMcError" class="error-message" style="display:none; color:#CA3F3F;">Quantity field is required.</span>
 
                     </div>
                     <div class="col-sm-3">
@@ -242,7 +243,7 @@
                 <div class="col-sm-2">
                     <!-- add record -->
                     <button class="btn btn-block" onclick="add_defect_mancost_record()"
-                        style="color:#fff;height:34px;border-radius:.25rem;background: #425B2C;font-size:15px;font-weight:normal;">Save
+                        style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;">Save
                         Record/s</button>
                     <!-- Note: Add an alert notification to inform the repair person that once the record is saved and added, it can’t be edited or deleted.  -->
                 </div>

@@ -23,7 +23,7 @@
   <!-- Main content -->
   <section class="content">
     <div class="col-md-12">
-      <div class="card card-light" style="background: #eaeaea; border-top: 2px solid #425B2C;">
+      <div class="card card-light" style="background: #eaeaea; border-top: 2px solid #2D7AC0;">
         <div class="card-header">
           <h3 class="card-title"><img src="../../dist/img/settings.png" style="height:28px;">&ensp;Records Monitoring
             Table</h3>
@@ -90,7 +90,7 @@
                         <label></label>
                         <button class="btn btn-block d-flex justify-content-left" id="search_btn"
                           onclick="search_qc_harness()"
-                          style="color:#fff;height:34px;border-radius:.25rem;background: #425B2C;font-size:15px;font-weight:normal;"><img
+                          style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"><img
                             src="../../dist/img/search.png" style="height:19px;">&nbsp;&nbsp;Search</button>
                       </div>
                     </div>
@@ -245,7 +245,7 @@
                         <label></label>
                         <button class="btn btn-block d-flex justify-content-left" id="search_btn"
                           onclick="search_admin_mancost_only()"
-                          style="color:#fff;height:34px;border-radius:.25rem;background: #425B2C;font-size:15px;font-weight:normal;"><img
+                          style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"><img
                             src="../../dist/img/search.png" style="height:19px;">&nbsp;&nbsp;Search</button>
                       </div>
                       <div class="col-sm-3">

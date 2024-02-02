@@ -4,6 +4,52 @@ include '../../conn.php';
 $method = $_POST['method'];
 
 //fetch data
+// if ($method == 'account_list') {
+//     $c = 0;
+
+//     // Assuming items per page is 10, you can adjust this based on your needs
+//     $itemsPerPage = 5;
+
+//     // Retrieve the current page from the POST data
+//     $currentPage = isset($_POST['page']) ? intval($_POST['page']) : 1;
+
+//     // Calculate the offset based on the current page and items per page
+//     $offset = ($currentPage - 1) * $itemsPerPage;
+
+//     // Fetch data with pagination
+//     $query = "SELECT * FROM m_accounts LIMIT :offset, :itemsPerPage";
+//     $stmt = $conn->prepare($query);
+//     $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+//     $stmt->bindParam(':itemsPerPage', $itemsPerPage, PDO::PARAM_INT);
+//     $stmt->execute();
+
+//     if ($stmt->rowCount() > 0) {
+//         while ($l = $stmt->fetch(PDO::FETCH_ASSOC)) {
+//             $c++;
+//             echo '<tr style="cursor:pointer;" class="modal-trigger" data-toggle="modal" data-target="#update_account" onclick="get_account_details(&quot;' . $l['id'] . '~!~' . $l['emp_no'] . '~!~' . $l['full_name'] . '~!~' . $l['department'] . '~!~' . $l['section'] . '~!~' . $l['role'] . '&quot;)">';
+//             // '~!~'.$l['repair_station'].
+//             echo '<td style="text-align:center;">' . $c . '</td>';
+//             echo '<td style="text-align:center;">' . $l['emp_no'] . '</td>';
+//             echo '<td style="text-align:center;">' . $l['full_name'] . '</td>';
+//             echo '<td style="text-align:center;">' . $l['department'] . '</td>';
+//             echo '<td style="text-align:center;">' . $l['section'] . '</td>';
+//             echo '<td style="text-align:center;">' . $l['role'] . '</td>';
+//             // echo '<td style="text-align:center;">'.$l['repair_station'].'</td>';
+//             echo '<td style="text-align:center;">' . $l['date_updated'] . '</td>';
+//             echo '</tr>';
+//         }
+//     } else {
+//         echo '<tr>';
+//         echo '<td colspan="10" style="text-align:center; color:red;">No Record Found</td>';
+//         echo '</tr>';
+//     }
+// }
+
+
+
+
+
+
 if ($method == 'account_list') {
     $c = 0;
 

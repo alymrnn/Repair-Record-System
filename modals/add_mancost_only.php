@@ -183,7 +183,7 @@
                     <button class="btn btn-block" onclick="clear_dr_mc_fields()" style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;">Clear</button>
                 </div>
                 <div class="col-sm-2">
-                    <button class="btn btn-block" onclick="add_mancost2_record()" style="color:#fff;height:34px;border-radius:.25rem;background: #425B2C;font-size:15px;font-weight:normal;">Add Record</button>
+                    <button class="btn btn-block" onclick="add_mancost2_record()" style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;">Add Record</button>
                     <!-- Note: Add an alert notification to inform the repair person that once the record is saved and added, it can’t be edited or deleted.  -->
                 </div>
             </div>

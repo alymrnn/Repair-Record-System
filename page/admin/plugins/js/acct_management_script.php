@@ -1,9 +1,52 @@
 <script type="text/javascript">
-    $(document).ready(function() {
-        load_accounts();
+    // let currentPage = 1;
+
+    // $(document).ready(function () {
+    //     load_accounts(currentPage);
+    // });
+
+    $(document).ready(function () {
+        load_accounts(1);
     });
 
-    // fetch data
+
+    // const get_next_page = () => {
+    //     // Increment the current page
+    //     currentPage++;
+    //     console.log("Button clicked! Current page: " + currentPage);
+
+    //     load_accounts(currentPage);
+    // }
+
+    // const load_accounts = (page) => {
+    //     // You may want to pass the page number to the server for pagination
+    //     $.ajax({
+    //         url: '../../process/admin/acct_management/acct_management_p.php',
+    //         type: 'POST',
+    //         cache: false,
+    //         data: {
+    //             method: 'account_list',
+    //             page: page // Add this line to send the current page number to the server
+    //         },
+    //         success: function (response) {
+    //             // Assuming your server returns the HTML for the table rows
+    //             // Update the table with the new data
+    //             $('#list_of_accounts').append(response); // Use append to add rows to the existing ones
+    //             $('#spinner').fadeOut();
+    //         }
+    //     });
+    // }
+
+
+
+
+
+
+
+
+
+
+
     const load_accounts = () => {
         $.ajax({
             url: '../../process/admin/acct_management/acct_management_p.php',
@@ -12,7 +55,7 @@
             data: {
                 method: 'account_list'
             },
-            success: function(response) {
+            success: function (response) {
                 $('#list_of_accounts').html(response);
                 $('#spinner').fadeOut();
             }
@@ -77,7 +120,7 @@
                 showConfirmButton: false,
                 timer: 2500
             });
-        } 
+        }
         // else if (repair_station == '') {
         //     Swal.fire({
         //         icon: 'info',
@@ -102,7 +145,7 @@
                     user_type: user_type
                     // repair_station: repair_station
                 },
-                success: function(response) {
+                success: function (response) {
                     if (response == 'success') {
                         Swal.fire({
                             icon: 'success',
@@ -191,7 +234,7 @@
                 role: role
                 // repair_station: repair_station
             },
-            success: function(response) {
+            success: function (response) {
                 if (response == 'success') {
                     Swal.fire({
                         icon: 'success',
@@ -241,7 +284,7 @@
                 method: 'delete_account',
                 id: id
             },
-            success: function(response) {
+            success: function (response) {
                 if (response == 'success') {
                     Swal.fire({
                         icon: 'info',
@@ -280,7 +323,7 @@
                     emp_no_search: emp_no_search,
                     full_name_search: full_name_search
                 },
-                success: function(response) {
+                success: function (response) {
                     $('#list_of_accounts').html(response);
 
                     // display total count based on searched data

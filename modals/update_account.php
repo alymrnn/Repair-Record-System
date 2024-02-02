@@ -1,11 +1,11 @@
 <div class="modal fade bd-example-modal-xl" id="update_account" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content" style="background:#e9e9e9;">
-            <div class="modal-header" style="background:#E5A55B;">
-                <h5 class="modal-title" id="exampleModalLabel" style="font-weight: normal;color: #000;">
+            <div class="modal-header" style="background:#004e89;">
+                <h5 class="modal-title" id="exampleModalLabel" style="font-weight: normal;color: #fff;">
                     Update Account Details
                 </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff;">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -86,7 +86,7 @@
                     <button class="btn btn-block" onclick="delete_account()" style="color:#fff;height:34px;border-radius:.25rem;background: #CA3F3F;font-size:15px;font-weight:normal;">Delete Account</button>
                 </div>
                 <div class="col-sm-3">
-                    <button class="btn btn-block" onclick="update_account()" style="color:#fff;height:34px;border-radius:.25rem;background: #425B2C;font-size:15px;font-weight:normal;">Update Account</button>
+                <button class="btn btn-block" onclick="register_account()" style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;">Add Account</button>
                 </div>
             </div>
             <!-- end -->

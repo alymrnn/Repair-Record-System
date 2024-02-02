@@ -122,7 +122,7 @@ if (isset($_SESSION['emp_no'])) {
     </div> -->
 
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background: #425B2C;">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background: #2D7AC0;">
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">

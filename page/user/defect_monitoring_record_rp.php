@@ -75,7 +75,7 @@
               <label style="font-weight:normal;margin:0;padding:0;color:#eaeaea;font-size:10px">Search</label>
               <button class="btn btn-block d-flex justify-content-left" id="search_record_btn"
                 onclick="search_keyword()"
-                style="color:#fff;height:34px;border-radius:.25rem;background: #425B2C;font-size:15px;font-weight:normal;"><img
+                style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"><img
                   src="../../dist/img/search.png" style="height:19px;">&nbsp;&nbsp;Search</button>
             </div>
             <div class="col-sm-2">

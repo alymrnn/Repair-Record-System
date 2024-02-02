@@ -2,7 +2,7 @@
     aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content" style="background:#e9e9e9;">
-            <div class="modal-header" style="background:#425B2C;">
+            <div class="modal-header" style="background:#004e89;">
                 <h5 class="modal-title" id="exampleModalLabel" style="font-weight: normal;color: #fff;">Verify Defect
                     Record & Mancost Monitoring</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -183,7 +183,7 @@
                 </div>
                 <div class="col-sm-2">
                     <button class="btn btn-block" onclick="update_mancost2_record()"
-                        style="color:#fff;height:34px;border-radius:.25rem;background: #425B2C;font-size:15px;font-weight:normal;">Verify
+                        style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;">Verify
                         Record</button>
                 </div>
             </div>

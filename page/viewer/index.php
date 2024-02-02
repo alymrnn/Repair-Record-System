@@ -180,13 +180,13 @@ include('plugins/navbar/index_navbar.php');
                         <!-- search button -->
                         <button class="btn btn-block d-flex justify-content-left" id="search_btn"
                           onclick="viewer_defect_search_keyword()"
-                          style="color:#fff;height:34px;border-radius:.25rem;background: #425B2C;font-size:15px;font-weight:normal;"><img
+                          style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"><img
                             src="../../dist/img/search.png" style="height:19px;">&nbsp;&nbsp;Search</button>
                       </div>
                       <div class="col-sm-1">
                         <!-- export button -->
                         <button class="btn btn-block d-flex justify-content-left" id="export_record_viewer" onclick="export_record_viewer()"
-                          style="color:#fff;height:34px;border-radius:.25rem;background: #334C69;font-size:15px;font-weight:normal;"><img
+                          style="color:#fff;height:34px;border-radius:.25rem;background: #0267c1;font-size:15px;font-weight:normal;"><img
                             src="../../dist/img/export.png" style="height:19px;">&nbsp;&nbsp;Export</button>
                       </div>
                     </div>
@@ -275,7 +275,7 @@ include('plugins/navbar/index_navbar.php');
                         <!-- search button -->
                         <button class="btn btn-block d-flex justify-content-left" id="search_btn"
                           onclick="viewer_mancost_search_keyword()"
-                          style="color:#fff;height:34px;border-radius:.25rem;background: #425B2C;font-size:15px;font-weight:normal;"><img
+                          style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"><img
                             src="../../dist/img/search.png" style="height:19px;">&nbsp;&nbsp;Search</button>
                       </div>
                     </div>

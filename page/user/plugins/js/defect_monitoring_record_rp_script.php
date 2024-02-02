@@ -1612,6 +1612,12 @@
         document.getElementById("partsRemovedMcError").style.display = 'none';
     });
 
+    document.getElementById("quantity_mc").addEventListener("input", function () {
+        var quantity_mc = this;
+        parts_removed_mc.classList.remove('highlight');
+        document.getElementById("QuantityMcError").style.display = 'none';
+    });
+
     document.getElementById("portion_treatment").addEventListener("input", function () {
         var portion_treatment = this;
         portion_treatment.classList.remove('highlight');
@@ -1640,6 +1646,8 @@
         var partsRemovedMcError = document.getElementById("partsRemovedMcError");
 
         var quantity_mc = document.getElementById("quantity_mc");
+        var quantityMcError = document.getElementById("quantityMcError");
+
         var unit_cost_mc = document.getElementById("unit_cost_mc");
         var material_cost_mc = document.getElementById("material_cost_mc");
         var manhour_cost_mc = document.getElementById("manhour_cost_mc");
@@ -1660,6 +1668,8 @@
         occurrenceProcessMcError.style.display = 'none';
         parts_removed_mc.classList.remove('highlight');
         partsRemovedMcError.style.display = 'none';
+        quantity_mc.classList.remove('highlight');
+        quantityMcError.style.display = 'none';
         portion_treatment.classList.remove('highlight');
         portionTreatmentMcError.style.display = 'none';
 
@@ -1682,6 +1692,10 @@
         if (parts_removed_mc.value.trim() === '') {
             parts_removed_mc.classList.add('highlight');
             partsRemovedMcError.style.display = 'block';
+        }
+        if (quantity_mc.value.trim() === '') {
+            quantity_mc.classList.add('highlight');
+            quantityMcError.style.display = 'block';
         }
         if (portion_treatment.value.trim() === '') {
             portion_treatment.classList.add('highlight');

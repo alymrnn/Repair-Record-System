@@ -387,7 +387,7 @@
                 <div class="col-sm-2">
                     <!-- next button -->
                     <button class="btn btn-block" onclick="go_to_mc_form()" id="btnGoToMcForm"
-                        style="color:#fff;height:34px;border-radius:.25rem;background: #425B2C;font-size:15px;font-weight:normal;">Next</button>
+                        style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;">Next</button>
                     <!-- Note: Add an alert notification to inform the repair person that once the record is saved and added, it can’t be edited or deleted.  -->
                 </div>
             </div>
