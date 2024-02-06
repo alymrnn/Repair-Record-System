@@ -23,7 +23,7 @@
   <!-- Main content -->
   <section class="content">
     <div class="col-md-12">
-      <div class="card card-light" style="background: #eaeaea; border-top: 2px solid #0069B0;">
+      <div class="card card-light" style="background: #fff; border-top: 2px solid #0069B0;">
         <div class="card-header">
           <h3 class="card-title"><img src="../../dist/img/settings.png" style="height:28px;">&ensp;Defect Record and
             Mancost Monitoring Table</h3>
@@ -65,14 +65,14 @@
             </div>
             <div class="col-sm-2">
               <!-- search keyword input -->
-              <label style="font-weight:normal;margin:0;padding:0;color:#eaeaea;font-size:10px">Search</label>
+              <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">Search</label>
               <input type="text" id="drm_keyword" class="form-control" placeholder="Enter Keyword" autocomplete="off"
                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
                 class="pl-3">
             </div>
             <div class="col-sm-2">
               <!-- search button -->
-              <label style="font-weight:normal;margin:0;padding:0;color:#eaeaea;font-size:10px">Search</label>
+              <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">Search</label>
               <button class="btn btn-block d-flex justify-content-left" id="search_record_btn"
                 onclick="search_keyword()"
                 style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"><img
@@ -80,7 +80,7 @@
             </div>
             <div class="col-sm-2">
               <!-- add defect record and mancost monitoring button -->
-              <label style="font-weight:normal;margin:0;padding:0;color:#eaeaea;font-size:10px">Defect Record and
+              <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">Defect Record and
                 Mancost Monitoring</label>
               <button class="btn btn-block d-flex justify-content-left" data-toggle="modal"
                 data-target="#add_defect_mancost"
@@ -104,6 +104,14 @@
             <table class="table col-12 table-head-fixed text-nowrap table-hover" id="defect_table"
               style="background: #F9F9F9;"></table>
           </div>
+
+          <!-- <div class="d-flex justify-content-sm-end">
+            <div class="dataTables_info" id="rp_table_info" role="status" aria-live="polite"></div>
+          </div>
+          <div class="d-flex justify-content-sm-center mt-2">
+            <button type="button" class="btn" style="background: #032b43; color: #fff;" id="btnNextPageRp"
+              onclick="rp_get_next_page()">Load more</button>
+          </div> -->
         </div>
 
         <!-- pagination -->

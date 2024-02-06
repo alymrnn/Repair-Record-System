@@ -11,6 +11,16 @@
                 </button>
             </div>
             <div class="modal-body">
+                <div class="row justify-content-end mt-2">
+                    <p style="font-size: 18px"><i>Check N/A if White Tag and Defect Only:</i></p>&ensp;
+
+                    <label style="display: inline-block;font-size: 18px">
+                        <input type="radio" id="r_white_tag_defect" name="na_white_tag_defect" value="Defect and Mancost"
+                            style="vertical-align: middle;">
+                        N/A
+                    </label>&emsp;
+
+                </div>
                 <!-- form label -->
                 <label style="font-weight: normal;color: #000;font-size:25px"><b>Manpower and Material Cost
                         Monitoring</b></label>
@@ -119,7 +129,8 @@
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             required>
                         <input type="hidden" id="na_quantity" name="na_quantity">
-                        <span id="quantityMcError" class="error-message" style="display:none; color:#CA3F3F;">Quantity field is required.</span>
+                        <span id="quantityMcError" class="error-message" style="display:none; color:#CA3F3F;">Quantity
+                            field is required.</span>
 
                     </div>
                     <div class="col-sm-3">

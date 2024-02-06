@@ -74,8 +74,8 @@
           </div>
 
           <!-- table -->
-          <div class="card-body table-responsive m-0 p-0" style="max-height: 500px;">
-            <table class="table col-12 mt-3 table-head-fixed text-nowrap table-hover" id=""
+          <div id="list_of_accounts_res" class="card-body table-responsive m-0 p-0" style="max-height: 500px;">
+            <table class="table col-12 mt-3 table-head-fixed text-nowrap table-hover" id="account_table"
               style="background: #F9F9F9;">
               <thead style="text-align: center;">
                 <!-- table switching content -->

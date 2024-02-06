@@ -1,66 +1,191 @@
 <script type="text/javascript">
-    // let currentPage = 1;
-
-    // $(document).ready(function () {
-    //     load_accounts(currentPage);
-    // });
-
     $(document).ready(function () {
-        load_accounts(1);
+        search_account(1);
     });
 
+    document.getElementById("emp_no_search").addEventListener("keyup", e => {
+        search_account(1);
+    });
 
-    // const get_next_page = () => {
-    //     // Increment the current page
-    //     currentPage++;
-    //     console.log("Button clicked! Current page: " + currentPage);
+    document.getElementById("full_name_search").addEventListener("keyup", e => {
+        search_account(1);
+    });
 
-    //     load_accounts(currentPage);
-    // }
+    // Table Responsive Scroll Event for Load More
+    document.getElementById("list_of_accounts_res").addEventListener("scroll", function () {
+        var scrollTop = document.getElementById("list_of_accounts_res").scrollTop;
+        var scrollHeight = document.getElementById("list_of_accounts_res").scrollHeight;
+        var offsetHeight = document.getElementById("list_of_accounts_res").offsetHeight;
 
-    // const load_accounts = (page) => {
-    //     // You may want to pass the page number to the server for pagination
-    //     $.ajax({
-    //         url: '../../process/admin/acct_management/acct_management_p.php',
-    //         type: 'POST',
-    //         cache: false,
-    //         data: {
-    //             method: 'account_list',
-    //             page: page // Add this line to send the current page number to the server
-    //         },
-    //         success: function (response) {
-    //             // Assuming your server returns the HTML for the table rows
-    //             // Update the table with the new data
-    //             $('#list_of_accounts').append(response); // Use append to add rows to the existing ones
-    //             $('#spinner').fadeOut();
-    //         }
-    //     });
-    // }
+        //check if the scroll reached the bottom
+        if ((offsetHeight + scrollTop + 1) >= scrollHeight) {
+            get_next_page();
+        }
+    });
 
+    const get_next_page = () => {
+        var current_page = parseInt(sessionStorage.getItem('account_table_pagination'));
+        let total = sessionStorage.getItem('count_rows');
+        var last_page = parseInt(sessionStorage.getItem('last_page'));
+        var next_page = current_page + 1;
+        if (next_page <= last_page && total > 0) {
+            search_account(next_page);
+        }
+    }
 
+    const count_account = () => {
+        var emp_no_search = sessionStorage.getItem('emp_no_search');
+        var full_name_search = sessionStorage.getItem('full_name_search');
 
-
-
-
-
-
-
-
-
-    const load_accounts = () => {
         $.ajax({
             url: '../../process/admin/acct_management/acct_management_p.php',
             type: 'POST',
             cache: false,
             data: {
-                method: 'account_list'
+                method: 'count_account_list',
+                emp_no_search: emp_no_search,
+                full_name_search: full_name_search
             },
             success: function (response) {
-                $('#list_of_accounts').html(response);
-                $('#spinner').fadeOut();
+                sessionStorage.setItem('count_rows', response);
+                var count = `Total: ${response}`;
+                $('#account_table_info').html(count);
+
+                if (response > 0) {
+                    load_account_last_page();
+                } else {
+                    document.getElementById("btnNextPage").style.display = "none";
+                    document.getElementById("btnNextPage").setAttribute('disabled', true);
+                }
             }
         });
     }
+
+    const load_account_last_page = () => {
+        var emp_no_search = sessionStorage.getItem('emp_no_search');
+        var full_name_search = sessionStorage.getItem('full_name_search');
+        var current_page = sessionStorage.getItem('account_table_pagination');
+
+        $.ajax({
+            url: '../../process/admin/acct_management/acct_management_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'account_list_last_page',
+                emp_no_search: emp_no_search,
+                full_name_search: full_name_search
+            },
+            success: function (response) {
+                sessionStorage.setItem('last_page', response);
+                let total = sessionStorage.getItem('count_rows');
+                var next_page = current_page + 1;
+
+                if (next_page > response || total < 1) {
+                    document.getElementById("btnNextPage").style.display = "none";
+                    document.getElementById("btnNextPage").setAttribute('disabled', true);
+                } else {
+                    document.getElementById("btnNextPage").style.display = "block";
+                    document.getElementById("btnNextPage").removeAttribute('disabled');
+                }
+            }
+        });
+    }
+
+    // search account
+    const search_account = current_page => {
+        var emp_no_search = document.getElementById('emp_no_search').value;
+        var full_name_search = document.getElementById('full_name_search').value;
+
+        var emp_no_search_1 = sessionStorage.getItem('emp_no_search');
+        var full_name_search_1 = sessionStorage.getItem('full_name_search');
+
+        if (current_page > 1) {
+            switch (true) {
+                case emp_no_search !== emp_no_search_1:
+                case full_name_search !== full_name_search_1:
+                    emp_no_search = emp_no_search_1;
+                    full_name_search = full_name_search_1;
+                    break;
+                default:
+            }
+        } else {
+            sessionStorage.setItem('emp_no_search', emp_no_search);
+            sessionStorage.setItem('full_name_search', full_name_search);
+        }
+        $.ajax({
+            url: '../../process/admin/acct_management/acct_management_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'search_account_list',
+                emp_no_search: emp_no_search,
+                full_name_search: full_name_search,
+                current_page: current_page
+            },
+            beforeSend: () => {
+                var loading = `<tr id="loading"><td colspan="6" style="text-align:center;"><div class="spinner-border text-dark role="status"><span class="sr-only">Loading...</span></div></td></tr>`;
+                if (current_page == 1) {
+                    document.getElementById("list_of_accounts").innerHTML = loading;
+                } else {
+                    $('#account_table tbody').append(loading);
+                }
+            },
+            success: function (response) {
+                $('#loading').remove();
+                if (current_page == 1) {
+                    $('#account_table tbody').html(response);
+                } else {
+                    $('#account_table tbody').append(response);
+                }
+                sessionStorage.setItem('account_table_pagination', current_page);
+                count_account();
+            }
+        });
+
+        // if ((emp_no_search != '' || emp_no_search == '') && (full_name_search != '' || full_name_search == '')) {
+        //     $.ajax({
+        //         url: '../../process/admin/acct_management/acct_management_p.php',
+        //         type: 'POST',
+        //         cache: false,
+        //         data: {
+        //             method: 'search_account_list',
+        //             emp_no_search: emp_no_search,
+        //             full_name_search: full_name_search
+        //         },
+        //         success: function (response) {
+        //             $('#list_of_accounts').html(response);
+
+        //             // display total count based on searched data
+        //             // let table_rows = parseInt(document.getElementById("list_of_accounts").childNodes.length);
+        //             // $('#count_view_accounts').html("Count: " + table_rows);
+        //             $('#spinner').fadeOut();
+        //         }
+        //     });
+        // } else {
+        //     Swal.fire({
+        //         icon: 'info',
+        //         title: 'Empty Fields',
+        //         text: 'Fill-out input search field/s',
+        //         showConfirmButton: false,
+        //         timer: 1000
+        //     });
+        // }
+    }
+
+    // const load_accounts = () => {
+    //     $.ajax({
+    //         url: '../../process/admin/acct_management/acct_management_p.php',
+    //         type: 'POST',
+    //         cache: false,
+    //         data: {
+    //             method: 'account_list'
+    //         },
+    //         success: function (response) {
+    //             $('#list_of_accounts').html(response);
+    //             $('#spinner').fadeOut();
+    //         }
+    //     });
+    // }
 
     // add account
     const register_account = () => {
@@ -306,40 +431,5 @@
                 }
             }
         });
-    }
-
-    // search account
-    const search_account = () => {
-        var emp_no_search = document.getElementById('emp_no_search').value;
-        var full_name_search = document.getElementById('full_name_search').value;
-
-        if ((emp_no_search != '' || emp_no_search == '') && (full_name_search != '' || full_name_search == '')) {
-            $.ajax({
-                url: '../../process/admin/acct_management/acct_management_p.php',
-                type: 'POST',
-                cache: false,
-                data: {
-                    method: 'search_account_list',
-                    emp_no_search: emp_no_search,
-                    full_name_search: full_name_search
-                },
-                success: function (response) {
-                    $('#list_of_accounts').html(response);
-
-                    // display total count based on searched data
-                    // let table_rows = parseInt(document.getElementById("list_of_accounts").childNodes.length);
-                    // $('#count_view_accounts').html("Count: " + table_rows);
-                    $('#spinner').fadeOut();
-                }
-            });
-        } else {
-            Swal.fire({
-                icon: 'info',
-                title: 'Empty Fields',
-                text: 'Fill-out input search field/s',
-                showConfirmButton: false,
-                timer: 1000
-            });
-        }
     }
 </script>

@@ -381,6 +381,27 @@
         console.log(result);
     }
 
+    // $(document).on('change', "input[name='na_white_tag_defect']", function () {
+    //     $("#repair_start_mc, #repair_end_mc, #time_consumed_mc, #defect_category_mc, #occurrence_process_mc, #manhour_cost_mc, #parts_removed_mc, #quantity_mc, #unit_cost_mc, #material_cost_mc, #portion_treatment").prop('disabled', true);
+
+    //     var isNA = ($(this).val() === "N/A");
+
+    //     // List out repair-related field IDs and disable or enable them based on the N/A radio button
+    //     var repairFieldIds = ["repair_start_mc", "na_repair_start", "repair_end_mc", "na_repair_end", "time_consumed_mc", "na_time_consumed", "manhour_cost_mc", "na_manhour_cost", "quantity_mc", "na_quantity", "unit_cost_mc", "na_unit_cost", "material_cost_mc", "na_material_cost", "defect_category_mc", "occurrence_process_mc", "parts_removed_mc", "portion_treatment"];
+
+    //     $.each(repairFieldIds, function (index, fieldId) {
+    //         var $field = $("#" + fieldId);
+    //         $field.prop('disabled', isNA);
+
+    //         // Check if the field is disabled, and if yes, set value to 'N/A' and background color to gray
+    //         if (isNA && !$field.prop('disabled')) {
+    //             $field.val('N/A').css('background-color', '#D3D3D3');
+    //         } else {
+    //             $field.val('').css('background-color', '#FFF');
+    //         }
+    //     });
+    // });
+
     $(document).ready(function () {
         // Disable all input fields by default
         $("#line_no, #line_category_dr, #date_detected, #na_date_detected, #issue_tag, #repairing_date, #car_maker, #product_name, #lot_no, #serial_no, #discovery_process_dr, #discovery_id_no_dr, #discovery_person, #occurrence_process_dr, #occurrence_shift_dr, #occurrence_id_no_dr, #occurrence_person, #outflow_process_dr, #outflow_shift_dr, #outflow_id_no_dr, #outflow_person, #defect_category_dr, #sequence_no, #defect_cause_dr, #repair_person_dr, #detail_content_defect, #treatment_content_defect, #repair_start_mc, #repair_end_mc, #time_consumed_mc, #defect_category_mc, #occurrence_process_mc, #manhour_cost_mc, #parts_removed_mc, #quantity_mc, #unit_cost_mc, #material_cost_mc, #portion_treatment").prop('disabled', true);
@@ -491,8 +512,7 @@
                 $("#parts_removed_mc").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
                 $("#portion_treatment").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
             }
-            else {
-                // If 'Defect & Mancost' or 'White Tag', enable the date input, disable the text input, and clear their values
+            else if ($(this).val() === "Defect & Mancost") {
                 $("#line_no").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#line_category_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#date_detected").prop('type', 'date').prop('disabled', false).val('').css('background-color', '#FFF');
@@ -540,8 +560,91 @@
                 $("#parts_removed_mc").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#portion_treatment").prop('disabled', false).val('').css('background-color', '#FFF');
             }
+            else {
+                // If 'White Tag', enable the date input, disable the text input, and clear their values
+                $("#line_no").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#line_category_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#date_detected").prop('type', 'date').prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#na_date_detected").prop('disabled', true).val('').css('background-color', '#FFF');
+                $("#issue_tag").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#repairing_date").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#car_maker").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#product_name").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#lot_no").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#serial_no").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#discovery_process_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#discovery_id_no_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#discovery_person").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#occurrence_process_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#occurrence_shift_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#occurrence_id_no_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#occurrence_person").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#outflow_process_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#outflow_shift_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#outflow_id_no_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#outflow_person").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#defect_category_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#sequence_no").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#defect_cause_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#repair_person_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#detail_content_defect").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#treatment_content_defect").prop('disabled', false).val('').css('background-color', '#FFF');
+
+                $("#repair_start_mc").prop('type', 'time').prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#na_repair_start").prop('disabled', true).val('').css('background-color', '#FFF');
+                $("#repair_end_mc").prop('type', 'time').prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#na_repair_end").prop('disabled', true).val('').css('background-color', '#FFF');
+                $("#time_consumed_mc").prop('type', 'int').prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#na_time_consumed").prop('disabled', true).val('').css('background-color', '#FFF');
+                $("#manhour_cost_mc").prop('type', 'float').prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#na_manhour_cost").prop('disabled', true).val('').css('background-color', '#FFF');
+                $("#quantity_mc").prop('type', 'int').prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#na_quantity").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#unit_cost_mc").prop('type', 'float').prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#na_unit_cost").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#material_cost_mc").prop('type', 'float').prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#na_material_cost").prop('disabled', true).val('').css('background-color', '#FFF');
+                $("#defect_category_mc").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#occurrence_process_mc").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#parts_removed_mc").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#portion_treatment").prop('disabled', false).val('').css('background-color', '#FFF');
+
+                $("input[name='na_white_tag_defect']").change(function () {
+                    console.log("N/A radio button changed");
+
+                    var isNA = $(this).is(":checked");
+
+                    // List out repair-related field IDs and disable or enable them based on the N/A radio button
+                    var repairFieldIds = ["repair_start_mc", "na_repair_start", "repair_end_mc", "na_repair_end", "time_consumed_mc", "na_time_consumed", "manhour_cost_mc", "na_manhour_cost", "quantity_mc", "na_quantity", "unit_cost_mc", "na_unit_cost", "material_cost_mc", "na_material_cost", "defect_category_mc", "occurrence_process_mc", "parts_removed_mc", "portion_treatment"];
+
+                    $.each(repairFieldIds, function (index, fieldId) {
+                        var $field = $("#" + fieldId);
+                        $field.prop('disabled', isNA);
+
+                        // Set value to 'N/A' and background color to gray if the field is disabled
+                        if (isNA) {
+                            if ($field.attr('type') === 'time') {
+                                // Convert to text input temporarily
+                                $field.attr('type', 'text');
+                            }
+                            $field.val('N/A').css('background-color', '#D3D3D3');
+                        } else {
+                            // Convert back to time input
+                            if ($field.attr('type') === 'text') {
+                                $field.attr('type', 'time');
+                            }
+                            $field.val('').css('background-color', '#FFF');
+                        }
+                    });
+                });
+            }
         });
     });
+
+
+
+
+
 
     // ISSUE TAG NUMBER FUNCTION, INCREMENTS DEPENDING ON THE LINE NUMBER
     $(document).on('input', '#line_no', function () {
@@ -1615,7 +1718,7 @@
     document.getElementById("quantity_mc").addEventListener("input", function () {
         var quantity_mc = this;
         parts_removed_mc.classList.remove('highlight');
-        document.getElementById("QuantityMcError").style.display = 'none';
+        document.getElementById("quantityMcError").style.display = 'none';
     });
 
     document.getElementById("portion_treatment").addEventListener("input", function () {

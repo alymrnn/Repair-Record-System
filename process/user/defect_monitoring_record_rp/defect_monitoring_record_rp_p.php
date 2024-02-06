@@ -626,6 +626,10 @@ if ($method == 'add_defect_mancost_record') {
     // ============================================================
     $repair_start_mc = trim($_POST['repair_start_mc']);
     $repair_end_mc = trim($_POST['repair_end_mc']);
+
+    // $repair_start_mc = ($repair_start_mc === 'N/A') ? null : $repair_start_mc;
+    // $repair_end_mc = ($repair_end_mc === 'N/A') ? null : $repair_end_mc;
+
     $time_consumed_mc = trim($_POST['time_consumed_mc']);
     $defect_category_mc = trim($_POST['defect_category_mc']);
     $occurrence_process_mc = trim($_POST['occurrence_process_mc']);
@@ -910,7 +914,8 @@ if ($method == 'search_keyword') {
 // get issue tag
 
 if ($method == 'get_issue_tag') {
-    $line_no = $_POST['line_no'];
+    // $line_no = $_POST['line_no'];
+    $line_no = filter_var($_POST['line_no'], FILTER_SANITIZE_STRING);
     $padded_line_no = str_pad($line_no, 4, '0', STR_PAD_LEFT);
 
     // Check if the month has changed
@@ -948,7 +953,7 @@ if ($method == 'get_issue_tag') {
         $issue_no = ($existing_issue_no !== false) ? ($existing_issue_no + 1) : 1;
     }
     echo $issue_no;
-    exit();
+    die();
 }
 
 // fetch unit cost thru part name
