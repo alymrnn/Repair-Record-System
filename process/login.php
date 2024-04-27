@@ -12,7 +12,7 @@
         } else if (empty($password)) {
             echo '<script>alert("Please enter your Password")</script>';
         } else {
-            $check = "SELECT full_name, department, section, repair_station, role FROM m_accounts WHERE BINARY emp_no = '$emp_no' AND BINARY password = '$password'";
+            $check = "SELECT full_name, department, section, role FROM m_accounts WHERE BINARY emp_no = '$emp_no' AND BINARY password = '$password'";
             $stmt = $conn->prepare($check);
             $stmt->execute();
             if ($stmt->rowCount() > 0) {
@@ -20,17 +20,15 @@
                     $full_name = $l['full_name'];
                     $department = $l['department'];
                     $section = $l['$section'];
-                    $repair_station = $l['repair_station'];
                     $role = $l['role'];
                     $_SESSION['full_name'] = $full_name;
                     $_SESSION['department'] = $department;
                     $_SESSION['section'] = $section;
-                    $_SESSION['repair_station'] = $repair_station;
                     $_SESSION['role'] = $role;
-                    if ($role == 'admin') {
-                        header('location: page/admin/defect_monitoring_record.php');
-                    } elseif ($role == 'user') {
-                        header ('location: page/user/defect_monitoring_record_rp.php');
+                    if ($role == 'QC') {
+                        header('location: page/qc/defect_monitoring_record.php');
+                    } elseif ($role == 'PD') {
+                        header ('location: page/pd/defect_monitoring_record_rp.php');
                     }
                 }
             } else {

@@ -1,11 +1,11 @@
 <?php require 'process/login.php';
 
 if (isset($_SESSION['emp_no'])) {
-    if ($_SESSION['role'] == 'admin') {
-        header('location: page/admin/defect_monitoring_record.php');
+    if ($_SESSION['role'] == 'QC') {
+        header('location: page/qc/defect_monitoring_record.php');
         exit;
-    } elseif ($_SESSION['role'] == 'user') {
-        header('location: page/user/defect_monitoring_record_rp.php');
+    } elseif ($_SESSION['role'] == 'PD') {
+        header('location: page/pd/defect_monitoring_record_rp.php');
         exit;
     }
 }
@@ -36,49 +36,53 @@ if (isset($_SESSION['emp_no'])) {
     }
 </style>
 
-<body class="hold-transition login-page"> 
+<body class="hold-transition login-page">
     <div class="login-box">
         <!-- /.login-logo -->
-        <div class="card" style="border-radius: 5px;border: 2px solid #000;background: #F4F4F4;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); height:530px; width:400px">
+        <div class="card"
+            style="border-radius: 5px;border: 2px solid #000;background: #F4F4F4;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); height:530px; width:400px">
             <div class="card-body login-card-body" style="border-radius: 5px; background:#eaeaea">
                 <div class="login-logo mt-3">
                     <img class="pb-1" src="dist/img/tool-box.png" style="height:130px;">
-                    <h2 class="pb-2" style="color: #000;font-size: 27px;font-style: normal;font-weight: 600;line-height: normal;">Repair Record System</h2>
+                    <h2 class="pb-2"
+                        style="color: #000;font-size: 27px;font-style: normal;font-weight: 600;line-height: normal;">
+                        Repair Record System</h2>
                 </div>
-                <p class="login-box-msg px-4 pb-3" style="padding:0 0 0 0;text-align:left;color: #000;font-size: 16px;font-style: normal;font-weight: 400;line-height: normal;">Login to start your session</p>
+                <p class="login-box-msg px-4 pb-3"
+                    style="padding:0 0 0 0;text-align:left;color: #000;font-size: 16px;font-style: normal;font-weight: 400;line-height: normal;">
+                    Login to start your session</p>
 
                 <form class="px-3" method="POST" id="login_form">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="emp_no" name="emp_no" placeholder="Employee ID" autocomplete="off" style="border-radius: 5px;border: 2px solid #000;background: #eaeaea;" required>
+                        <input type="text" class="form-control" id="emp_no" name="emp_no" placeholder="Employee ID"
+                            autocomplete="off" style="border-radius: 5px;border: 2px solid #000;background: #eaeaea;"
+                            required>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" autocomplete="off" style="border-radius: 5px;border: 2px solid #000;background: #eaeaea;" required>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                            autocomplete="off" style="border-radius: 5px;border: 2px solid #000;background: #eaeaea;"
+                            required>
                     </div>
                     <!-- /.col -->
                     <div class="input-group mb-3">
-                        <button type="submit" class="login-btn btn btn-block" name="login_btn" value="login" style="border-radius: 5px;background: #E89F4C;color: #000;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);">Login</button>
+                        <button type="submit" class="login-btn btn btn-block" name="login_btn" value="login"
+                            style="border-radius: 5px;background: #E89F4C;color: #000;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);">Login</button>
                     </div>
                     <!-- /.col -->
 
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-block btn-sm" name="login_btn" value="login" style="border-radius: 5px;background: #3E3E3E;width:190px;color: #FFF;">Work Instruction</button>
+                        <a href="#"><button type="submit" class="btn btn-block btn-sm" name="login_btn" value="login"
+                                style="border-radius: 5px;background: #3E3E3E;width:190px;color: #FFF;">Work
+                                Instruction</button></a>
                     </div>
 
-                    <a href="page/viewer/" class="pt-4 d-flex justify-content-center" style="color: #0069B0;text-decoration-line: underline;font-size: 14px;">Return to Home Page</a>
+                    <a href="page/viewer/" class="pt-4 d-flex justify-content-center"
+                        style="color: #0069B0;text-decoration-line: underline;font-size: 14px;">Return to Home Page</a>
             </div>
-
-            </form>
-
         </div>
     </div>
     </div>
 </body>
-
-
-
-
-
-
 
 <!-- jQuery -->
 <script src="plugins/jquery/dist/jquery.min.js"></script>

@@ -19,6 +19,7 @@ $server_time = date('H:i:s');
 try {
     $conn = new PDO ("mysql:host=$servername;dbname=repair_record_system",$username,$password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // $conn->setAttribute(PDO::ATTR_TIMEOUT, TIMEOUT_SECONDS);
 } catch (PDOException $e) {
     echo 'NO CONNECTION' .$e->getMessage();
 }
