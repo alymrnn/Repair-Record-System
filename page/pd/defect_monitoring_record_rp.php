@@ -64,27 +64,26 @@
             </div>
             <div class="col-sm-2">
               <!-- search keyword input -->
-              <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">Search</label>
+              <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
               <input type="text" id="drm_keyword" class="form-control" placeholder="Enter Keyword" autocomplete="off"
                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
                 class="pl-3">
             </div>
             <div class="col-sm-2">
               <!-- search button -->
-              <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">Search</label>
+              <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
               <button class="btn btn-block d-flex justify-content-left" id="search_record_btn"
                 onclick="search_keyword()"
                 style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"><img
-                  src="../../dist/img/search.png" style="height:19px;">&nbsp;&nbsp;Search</button>
+                  src="../../dist/img/search.png" style="height:19px;">&nbsp;Search</button>
             </div>
             <div class="col-sm-2">
               <!-- add defect record and mancost monitoring button -->
-              <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">Defect Record and
-                Mancost Monitoring</label>
+              <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
               <button class="btn btn-block d-flex justify-content-left" data-toggle="modal"
                 data-target="#add_defect_mancost"
                 style="color:#fff;height:34px;border-radius:.25rem;background: #0069B0;font-size:15px;font-weight:normal;"><img
-                  src="../../dist/img/add.png" style="height:19px;">&nbsp;&nbsp;Add Defect & Mancost</button>
+                  src="../../dist/img/add.png" style="height:19px;">&nbsp;Add Defect & Mancost</button>
             </div>
           </div>
           <!-- /.row end -->

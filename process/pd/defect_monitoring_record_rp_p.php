@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../../conn.php';
+include '../conn.php';
 
 $method = $_POST['method'];
 

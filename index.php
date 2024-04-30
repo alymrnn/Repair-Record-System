@@ -7,6 +7,9 @@ if (isset($_SESSION['emp_no'])) {
     } elseif ($_SESSION['role'] == 'PD') {
         header('location: page/pd/defect_monitoring_record_rp.php');
         exit;
+    } elseif ($_SESSION['role'] == 'IT') {
+        header('location: page/it/barcode_m.php');
+        exit;
     }
 }
 ?>
@@ -34,6 +37,15 @@ if (isset($_SESSION['emp_no'])) {
         background-image: url('dist/img/splat-bg.svg');
         background-size: cover;
     }
+
+    @font-face {
+        font-family: 'Poppins';
+        src: url('dist/font/poppins/Poppins-Regular.ttf') format('truetype');
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
 </style>
 
 <body class="hold-transition login-page">
@@ -45,22 +57,24 @@ if (isset($_SESSION['emp_no'])) {
                 <div class="login-logo mt-3">
                     <img class="pb-1" src="dist/img/tool-box.png" style="height:130px;">
                     <h2 class="pb-2"
-                        style="color: #000;font-size: 27px;font-style: normal;font-weight: 600;line-height: normal;">
+                        style="color: #000;font-size: 25px;font-style: normal;font-weight: 600;line-height: normal;">
                         Repair Record System</h2>
                 </div>
                 <p class="login-box-msg px-4 pb-3"
-                    style="padding:0 0 0 0;text-align:left;color: #000;font-size: 16px;font-style: normal;font-weight: 400;line-height: normal;">
+                    style="padding:0 0 0 0;text-align:left;color: #000;font-size: 15px;font-style: normal;font-weight: 400;line-height: normal;">
                     Login to start your session</p>
 
                 <form class="px-3" method="POST" id="login_form">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" id="emp_no" name="emp_no" placeholder="Employee ID"
-                            autocomplete="off" style="border-radius: 5px;border: 2px solid #000;background: #eaeaea;"
+                            autocomplete="off"
+                            style="font-size: 14px;border-radius: 5px;border: 2px solid #000;background: #eaeaea;"
                             required>
                     </div>
                     <div class="input-group mb-3">
                         <input type="password" class="form-control" id="password" name="password" placeholder="Password"
-                            autocomplete="off" style="border-radius: 5px;border: 2px solid #000;background: #eaeaea;"
+                            autocomplete="off"
+                            style="font-size: 14px;border-radius: 5px;border: 2px solid #000;background: #eaeaea;"
                             required>
                     </div>
                     <!-- /.col -->

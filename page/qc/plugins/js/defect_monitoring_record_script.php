@@ -15,7 +15,7 @@
     // fetch record type option
     const fetch_opt_search_ad_record_type = () => {
         $.ajax({
-            url: '../../process/qc/defect_monitoring_record/defect_monitoring_record_p.php',
+            url: '../../process/qc/defect_monitoring_record_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -30,7 +30,7 @@
     // fetch defect category defect record
     const fetch_opt_search_ad_defect_category = () => {
         $.ajax({
-            url: '../../process/qc/defect_monitoring_record/defect_monitoring_record_p.php',
+            url: '../../process/qc/defect_monitoring_record_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -45,7 +45,7 @@
     // fetch discovery process defect record
     const fetch_opt_search_ad_discovery_process = () => {
         $.ajax({
-            url: '../../process/qc/defect_monitoring_record/defect_monitoring_record_p.php',
+            url: '../../process/qc/defect_monitoring_record_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -60,7 +60,7 @@
     // fetch occurrence process defect record
     const fetch_opt_search_ad_occurrence_process = () => {
         $.ajax({
-            url: '../../process/qc/defect_monitoring_record/defect_monitoring_record_p.php',
+            url: '../../process/qc/defect_monitoring_record_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -75,7 +75,7 @@
     // fetch outflow process defect record
     const fetch_opt_search_ad_outflow_process = () => {
         $.ajax({
-            url: '../../process/qc/defect_monitoring_record/defect_monitoring_record_p.php',
+            url: '../../process/qc/defect_monitoring_record_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -90,7 +90,7 @@
     // fetch defect category mancost monitoring
     const fetch_opt_search_ad_defect_category_mc = () => {
         $.ajax({
-            url: '../../process/qc/defect_monitoring_record/defect_monitoring_record_p.php',
+            url: '../../process/qc/defect_monitoring_record_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -105,7 +105,7 @@
     // fetch occurrence process mancost monitoring
     const fetch_opt_search_ad_occurrence_process_mc = () => {
         $.ajax({
-            url: '../../process/qc/defect_monitoring_record/defect_monitoring_record_p.php',
+            url: '../../process/qc/defect_monitoring_record_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -120,7 +120,7 @@
     // fetch repaired portion treatment mancost monitoring
     const fetch_opt_search_ad_portion_treatment_mc = () => {
         $.ajax({
-            url: '../../process/qc/defect_monitoring_record/defect_monitoring_record_p.php',
+            url: '../../process/qc/defect_monitoring_record_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -136,7 +136,7 @@
     // fetch defect record table
     const load_admin_defect_table = () => {
         $.ajax({
-            url: '../../process/qc/defect_monitoring_record/defect_monitoring_record_p.php',
+            url: '../../process/qc/defect_monitoring_record_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -162,7 +162,7 @@
         var admin_defect_id = string[1];
 
         $.ajax({
-            url: '../../process/qc/defect_monitoring_record/defect_monitoring_record_p.php',
+            url: '../../process/qc/defect_monitoring_record_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -185,7 +185,7 @@
     // fetch mancost only
     const load_admin_mancost_record = () => {
         $.ajax({
-            url: '../../process/qc/defect_monitoring_record/defect_monitoring_record_p.php',
+            url: '../../process/qc/defect_monitoring_record_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -210,7 +210,7 @@
         var date_to_dr_search = document.getElementById('search_ad_date_to').value.trim();
 
         $.ajax({
-            url: '../../process/qc/defect_monitoring_record/defect_monitoring_record_p.php',
+            url: '../../process/qc/defect_monitoring_record_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -238,7 +238,7 @@
         var serial_no_search = document.getElementById('search_ad_serial_no').value.trim();
 
         $.ajax({
-            url: '../../process/qc/defect_monitoring_record/defect_monitoring_record_p.php',
+            url: '../../process/qc/defect_monitoring_record_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -267,7 +267,7 @@
         var date_to_mc_search = document.getElementById('search_ad_date_to_mc').value.trim();
 
         $.ajax({
-            url: '../../process/qc/defect_monitoring_record/defect_monitoring_record_p.php',
+            url: '../../process/qc/defect_monitoring_record_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -370,7 +370,7 @@
             verified_by.value.trim() !== '' && remarks.value.trim() !== '') {
 
             $.ajax({
-                url: '../../process/qc/defect_monitoring_record/defect_monitoring_record_p.php',
+                url: '../../process/qc/defect_monitoring_record_p.php',
                 type: 'POST',
                 cache: false,
                 data: {
@@ -456,7 +456,7 @@
         var admin_defect_id = document.getElementById('admin_defect_id').value;
 
         $.ajax({
-            url: '../../process/qc/defect_monitoring_record/defect_monitoring_record_p.php',
+            url: '../../process/qc/defect_monitoring_record_p.php',
             type: 'POST',
             cache: false,
             data: {

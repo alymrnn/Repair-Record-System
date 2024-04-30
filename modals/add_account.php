@@ -2,7 +2,7 @@
     aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content" style="background:#e9e9e9;">
-            <div class="modal-header" style="background:#004e89;">
+            <div class="modal-header" style="background:#343a40;">
                 <h5 class="modal-title" id="exampleModalLabel" style="font-weight: normal;color: #fff;">
                     Add New Account
                 </h5>
@@ -53,6 +53,7 @@
                             <option value="">Select User Type</option>
                             <option value="PD">PD</option>
                             <option value="QC">QC</option>
+                            <option value="IT">IT</option>
                         </select>
                     </div>
                     <div class="col-3">

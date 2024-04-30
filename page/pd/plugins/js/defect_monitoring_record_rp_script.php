@@ -68,7 +68,7 @@
     //     var date_to = sessionStorage.getItem('date_to_search_defect');
 
     //     $.ajax({
-    //         url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+    //         url: '../../process/pd/defect_monitoring_record_rp_p.php',
     //         type: 'POST',
     //         cache: false,
     //         data: {
@@ -101,7 +101,7 @@
     //     var current_page = sessionStorage.getItem('rp_table_pagination');
 
     //     $.ajax({
-    //         url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+    //         url: '../../process/pd/defect_monitoring_record_rp_p.php',
     //         type: 'POST',
     //         cache: false,
     //         data: {
@@ -131,7 +131,7 @@
     // fetch record type option
     const fetch_opt_record_type_dr = () => {
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -146,7 +146,7 @@
     // fetch line category mancost option
     const fetch_opt_category_dr = () => {
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -161,7 +161,7 @@
     // fetch car maker mancost option
     const fetch_opt_car_maker_dr = () => {
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -176,7 +176,7 @@
     // fetch option discovery process
     const fetch_opt_discovery_process = () => {
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -191,7 +191,7 @@
     // fetch option occurrence process
     const fetch_opt_occurrence_process = () => {
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -206,7 +206,7 @@
     // fetch option occurrence shift
     const fetch_opt_occurrence_shift = () => {
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -221,7 +221,7 @@
     // fetch option outflow process
     const fetch_opt_outflow_process = () => {
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -236,7 +236,7 @@
     // fetch option outflow shift
     const fetch_opt_outflow_shift = () => {
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -251,7 +251,7 @@
     // fetch option defect category ng content
     const fetch_opt_defect_category = () => {
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -266,7 +266,7 @@
     // fetch option cause of defect
     const fetch_opt_defect_cause = () => {
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -281,7 +281,7 @@
     // fetch option repair person
     const fetch_opt_repair_person = () => {
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -296,7 +296,7 @@
     // fetch option defect category mancost
     const fetch_opt_defect_category_mc = () => {
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -311,7 +311,7 @@
     // fetch option occurrence process mancost
     const fetch_opt_occurrence_process_mc = () => {
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -326,7 +326,7 @@
     // fetch option portion treatment
     const fetch_opt_portion_treatment = () => {
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -341,7 +341,7 @@
     // fetch option defect category mancost only
     const fetch_opt_defect_category_mc_only = () => {
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -356,7 +356,7 @@
     // fetch option occurrence process mancost only
     const fetch_opt_occurrence_process_mc_only = () => {
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -371,7 +371,7 @@
     // fetch option portion treatment mancost only
     const fetch_opt_portion_treatment_mc_only = () => {
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -388,7 +388,7 @@
     //fetch defect record table
     const load_defect_table = () => {
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -414,7 +414,7 @@
         var defect_id = string[1];
 
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -444,7 +444,7 @@
         var date_to = document.getElementById("date_to_search_defect").value.trim();
 
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -492,7 +492,7 @@
     //         sessionStorage.setItem('date_to_search_defect', date_to);
     //     }
     //     $.ajax({
-    //         url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+    //         url: '../../process/pd/defect_monitoring_record_rp_p.php',
     //         type: 'POST',
     //         cache: false,
     //         data: {
@@ -1106,7 +1106,7 @@
     //     }
 
     //     $.ajax({
-    //         url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+    //         url: '../../process/pd/defect_monitoring_record_rp_p.php',
     //         type: 'POST',
     //         cache: false,
     //         data: {
@@ -1134,7 +1134,7 @@
         }
 
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -1258,7 +1258,7 @@
         console.log(defect_id);
 
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -1717,7 +1717,7 @@
             });
 
             $.ajax({
-                url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+                url: '../../process/pd/defect_monitoring_record_rp_p.php',
                 type: 'POST',
                 cache: false,
                 data: {
@@ -1831,7 +1831,7 @@
     // fetch added mancost table
     const load_added_mancost = () => {
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -1855,7 +1855,7 @@
         var id = event.target.dataset.id;
 
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -2011,7 +2011,7 @@
             ];
 
             $.ajax({
-                url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+                url: '../../process/pd/defect_monitoring_record_rp_p.php',
                 type: 'POST',
                 cache: false,
                 data: {
@@ -2085,7 +2085,7 @@
         // Check if the input is not empty
         if (partsRemovedInput.trim() !== '') {
             $.ajax({
-                url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+                url: '../../process/pd/defect_monitoring_record_rp_p.php',
                 type: 'POST',
                 cache: false,
                 dataType: 'json',
@@ -2120,7 +2120,7 @@
 
         // Perform AJAX request to fetch matching part names
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             dataType: 'json',
@@ -2165,7 +2165,7 @@
     // Fetch unit price based on part name
     function fetchUnitPrice(partsRemoved) {
         $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp/defect_monitoring_record_rp_p.php',
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             dataType: 'json',

@@ -8,6 +8,9 @@ if (isset($_SESSION['emp_no'])) {
 } else if ($_SESSION['role'] == 'PD') {
   header('location: ../../page/pd/qr_scanning.php');
   exit;
+} else if ($_SESSION['role'] == 'IT') {
+  header('location: ../../page/it/barcode_m.php');
+  exit;
 }
 ?>
 <!DOCTYPE html>
@@ -30,8 +33,13 @@ if (isset($_SESSION['emp_no'])) {
   <!-- Sweet Alert -->
   <link rel="stylesheet" href="../../plugins/sweetalert2/dist/sweetalert2.min.css">
   <style>
-    .highlight {
-      border: 1px solid red;
+    @font-face {
+      font-family: 'Poppins';
+      src: url('../../dist/font/poppins/Poppins-Regular.ttf') format('truetype');
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
     }
 
     .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {

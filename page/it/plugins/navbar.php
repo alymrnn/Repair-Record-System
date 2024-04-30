@@ -1,25 +1,6 @@
 <?php
-// SESSION
+//SESSION
 include '../../process/login.php';
-include '../../process/conn.php';
-
-// query for deleting the 'add' status when refreshed
-function delete_added_record($record_added_by, $conn)
-{
-    try {
-        $query = "DELETE FROM t_mancost_monitoring_f WHERE record_added_by = ? AND status = 'Added'";
-        $stmt = $conn->prepare($query);
-        $params = array($record_added_by);
-        $stmt->execute($params);
-
-        // Log success or any relevant information
-        error_log('Records deleted successfully.');
-
-    } catch (Exception $e) {
-        // Log the error
-        error_log('Error deleting records: ' . $e->getMessage());
-    }
-}
 
 if (isset($_SESSION['emp_no'])) {
     header('location:../../');
@@ -27,14 +8,12 @@ if (isset($_SESSION['emp_no'])) {
 } else if ($_SESSION['role'] == 'QC') {
     header('location: ../../page/pd/defect_monitoring_record.php');
     exit;
-} else if ($_SESSION['role'] == 'IT') {
-    header('location: ../../page/it/barcode_m.php');
+} else if ($_SESSION['role'] == 'PD') {
+    header('location: ../../page/pd/qr_scanning.php');
     exit;
 }
 
-delete_added_record($_SESSION['full_name'], $conn);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -148,15 +127,15 @@ delete_added_record($_SESSION['full_name'], $conn);
 
         <!-- Preloader -->
         <!-- <div class="preloader flex-column justify-content-center align-items-center" style="background: #00375C;">
-            <img class="animation__shake" src="../../dist/img/tool-box.png" alt="logo" height="100" width="100">
-        </div> -->
+      <img class="animation__shake" src="../../dist/img/tool-box.png" alt="logo" height="100" width="100">
+    </div> -->
 
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background: #00375C;">
+        <nav class="main-header navbar navbar-expand navbar-white" style="background: #343a40;">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button" style="color: white;"><i
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button" style="color: #fff;"><i
                             class="fas fa-bars"></i></a>
                 </li>
             </ul>
@@ -164,7 +143,7 @@ delete_added_record($_SESSION['full_name'], $conn);
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="fullscreen" href="#" role="button" style="color: white;">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button" style="color: #fff;">
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
                 </li>

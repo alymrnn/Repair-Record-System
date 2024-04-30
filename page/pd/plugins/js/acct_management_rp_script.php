@@ -38,7 +38,7 @@
         var full_name_search = sessionStorage.getItem('full_name_search');
 
         $.ajax({
-            url: '../../process/pd/acct_management_rp/acct_management_rp_p.php',
+            url: '../../process/pd/acct_management_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -67,7 +67,7 @@
         var current_page = sessionStorage.getItem('account_table_pagination');
 
         $.ajax({
-            url: '../../process/pd/acct_management_rp/acct_management_rp_p.php',
+            url: '../../process/pd/acct_management_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -113,7 +113,7 @@
             sessionStorage.setItem('full_name_search', full_name_search);
         }
         $.ajax({
-            url: '../../process/pd/acct_management_rp/acct_management_rp_p.php',
+            url: '../../process/pd/acct_management_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -197,7 +197,7 @@
         }
         else {
             $.ajax({
-                url: '../../process/pd/acct_management_rp/acct_management_rp_p.php',
+                url: '../../process/pd/acct_management_rp_p.php',
                 type: 'POST',
                 cache: false,
                 data: {
@@ -277,7 +277,7 @@
         var role = document.getElementById('user_type_update').value;
 
         $.ajax({
-            url: '../../process/pd/acct_management_rp/acct_management_rp_p.php',
+            url: '../../process/pd/acct_management_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -322,7 +322,7 @@
     const delete_account = () => {
         var id = document.getElementById('id_account_update').value;
         $.ajax({
-            url: '../../process/pd/acct_management_rp/acct_management_rp_p.php',
+            url: '../../process/pd/acct_management_rp_p.php',
             type: 'POST',
             cache: false,
             data: {

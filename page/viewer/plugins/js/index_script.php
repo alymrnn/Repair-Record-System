@@ -13,7 +13,7 @@
     // fetch defect category defect record
     const fetch_opt_search_v_defect_category = () => {
         $.ajax({
-            url: '../../process/viewer/index/index_p.php',
+            url: '../../process/viewer/index_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -28,7 +28,7 @@
     // fetch discovery process defect record
     const fetch_opt_search_v_discovery_process = () => {
         $.ajax({
-            url: '../../process/viewer/index/index_p.php',
+            url: '../../process/viewer/index_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -43,7 +43,7 @@
     // fetch occurrence process defect record
     const fetch_opt_search_v_occurrence_process = () => {
         $.ajax({
-            url: '../../process/viewer/index/index_p.php',
+            url: '../../process/viewer/index_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -58,7 +58,7 @@
     // fetch outflow process defect record
     const fetch_opt_search_v_outflow_process = () => {
         $.ajax({
-            url: '../../process/viewer/index/index_p.php',
+            url: '../../process/viewer/index_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -73,7 +73,7 @@
     // fetch car maker defect record
     const fetch_opt_search_v_car_maker = () => {
         $.ajax({
-            url: '../../process/viewer/index/index_p.php',
+            url: '../../process/viewer/index_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -88,7 +88,7 @@
     // fetch record type defect record
     const fetch_opt_search_v_record_type = () => {
         $.ajax({
-            url: '../../process/viewer/index/index_p.php',
+            url: '../../process/viewer/index_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -103,7 +103,7 @@
     // fetch viewer defect table
     const load_viewer_defect_table = () => {
         $.ajax({
-            url: '../../process/viewer/index/index_p.php',
+            url: '../../process/viewer/index_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -129,7 +129,7 @@
         var viewer_defect_id = string[1];
 
         $.ajax({
-            url: '../../process/viewer/index/index_p.php',
+            url: '../../process/viewer/index_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -152,7 +152,7 @@
     // fetch mancost monitoring only
     const load_viewer_mancost_only = () => {
         $.ajax({
-            url: '../../process/viewer/index/index_p.php',
+            url: '../../process/viewer/index_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -192,7 +192,7 @@
         // }
 
         $.ajax({
-            url: '../../process/viewer/index/index_p.php',
+            url: '../../process/viewer/index_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -228,7 +228,7 @@
         var date_to = document.getElementById("date_to_search_v_mancost").value.trim();
 
         $.ajax({
-            url: '../../process/viewer/index/index_p.php',
+            url: '../../process/viewer/index_p.php',
             type: 'POST',
             cache: false,
             data: {

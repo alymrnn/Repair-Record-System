@@ -8,6 +8,9 @@ if (isset($_SESSION['emp_no'])) {
 } else if ($_SESSION['role'] == 'QC') {
   header('location: ../../page/pd/defect_monitoring_record.php');
   exit;
+} else if ($_SESSION['role'] == 'IT') {
+  header('location: ../../page/it/barcode_m.php');
+  exit;
 }
 ?>
 <!DOCTYPE html>
@@ -30,8 +33,13 @@ if (isset($_SESSION['emp_no'])) {
   <!-- Sweet Alert -->
   <link rel="stylesheet" href="../../plugins/sweetalert2/dist/sweetalert2.min.css">
   <style>
-    .highlight {
-      border: 1px solid red;
+    @font-face {
+      font-family: 'Poppins';
+      src: url('../../dist/font/poppins/Poppins-Regular.ttf') format('truetype');
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
     }
 
     .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
@@ -126,7 +134,8 @@ if (isset($_SESSION['emp_no'])) {
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button" style="color: white;"><i class="fas fa-bars"></i></a>
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button" style="color: white;"><i
+              class="fas fa-bars"></i></a>
         </li>
       </ul>
 

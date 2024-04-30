@@ -29,6 +29,8 @@
                         header('location: page/qc/defect_monitoring_record.php');
                     } elseif ($role == 'PD') {
                         header ('location: page/pd/defect_monitoring_record_rp.php');
+                    } elseif ($role == 'IT') {
+                        header('location: page/it/barcode_m.php');
                     }
                 }
             } else {

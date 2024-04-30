@@ -2,7 +2,7 @@
   <!-- Brand Logo -->
   <a href="defect_monitoring_record.php" class="brand-link">
     <img src="../../dist/img/tool-box.png" alt="Logo" class="brand-image" style="opacity: .8;">
-    <span class="brand-text" style="font-size:17px;color:black">Repair Record System</span>
+    <span class="brand-text" style="font-size:15px;color:black">Repair Record System</span>
   </a>
 
   <!-- Sidebar -->
@@ -14,7 +14,7 @@
       </div>
       <div class="info">
         <a href="defect_monitoring_record.php" class="d-block"
-          style="font-size:16px; color:black"><?= htmlspecialchars($_SESSION['full_name']); ?></a>
+          style="font-size:15px; color:black"><?= htmlspecialchars($_SESSION['full_name']); ?></a>
       </div>
     </div>
 
@@ -29,7 +29,7 @@
         <li class="nav-item">
           <a href="defect_monitoring_record.php" class="nav-link">
             <img src="../../dist/img/files.png" style="height:25px;">
-            <p class="pl-1" style="font-size:16px; color:black">
+            <p style="font-size:15px; color:black">
               Defect Record Monitoring
             </p>
           </a>
@@ -37,7 +37,7 @@
         <li class="nav-item">
           <a href="acct_management.php" class="nav-link active">
             <img src="../../dist/img/user-sidebar.png" style="height:25px;">
-            <p class="pl-1" style="font-size:16px; color:black">
+            <p style="font-size:15px; color:black">
               Account Management
             </p>
           </a>
