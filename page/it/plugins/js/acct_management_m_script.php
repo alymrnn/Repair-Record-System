@@ -256,8 +256,6 @@
         var section = string[4];
         var role = string[5];
 
-        console.log(role);
-
         document.getElementById('id_account_update').value = id;
         document.getElementById('emp_no_update').value = emp_no;
         document.getElementById('full_name_update').value = full_name;

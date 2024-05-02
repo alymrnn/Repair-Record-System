@@ -10,6 +10,8 @@
 include '../../modals/logout_modal.php';
 include '../../modals/add_account.php';
 include '../../modals/update_account.php';
+include '../../modals/add_car_settings.php';
+include '../../modals/update_car_settings.php';
 ?>
 
 <!-- jQuery -->

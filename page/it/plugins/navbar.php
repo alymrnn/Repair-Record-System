@@ -9,7 +9,7 @@ if (isset($_SESSION['emp_no'])) {
     header('location: ../../page/pd/defect_monitoring_record.php');
     exit;
 } else if ($_SESSION['role'] == 'PD') {
-    header('location: ../../page/pd/qr_scanning.php');
+    header('location: ../../page/pd/defect_monitoring_record_rp.php');
     exit;
 }
 
