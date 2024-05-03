@@ -37,27 +37,27 @@
         <!-- /.card-header -->
         <div class="card-body">
           <div class="row">
-            <div class="col-sm-3">
+            <div class="col-12 col-sm-3">
               <!-- search employee id -->
               <input type="text" name="emp_no_search" id="emp_no_search" class="form-control" placeholder="Employee ID"
                 autocomplete="off"
                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
                 class="pl-3">
             </div>
-            <div class="col-sm-3">
+            <div class="col-12 col-sm-3">
               <!-- search full name -->
               <input type="text" name="full_name_search" id="full_name_search" class="form-control"
                 placeholder="Full Name" autocomplete="off"
                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
                 class="pl-3">
             </div>
-            <div class="col-sm-3">
+            <div class="col-12 col-sm-3">
               <!-- search button -->
               <button class="btn btn-block d-flex justify-content-left" id="search_btn" onclick="search_account()"
                 style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"><img
                   src="../../dist/img/search.png" style="height:19px;">&nbsp;&nbsp;Search</button>
             </div>
-            <div class="col-sm-3">
+            <div class="col-12 col-sm-3">
               <!-- add account button -->
               <a class="btn btn-block d-flex justify-content-left" data-toggle="modal" data-target="#add_account"
                 style="color:#fff;height:34px;border-radius:.25rem;background: #2f6690;font-size:15px;font-weight:normal;"><img

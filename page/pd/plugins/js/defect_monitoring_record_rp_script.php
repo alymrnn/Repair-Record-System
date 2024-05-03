@@ -2,7 +2,6 @@
     $(document).ready(function () {
         load_defect_table();
         load_added_mancost();
-        // search_keyword();
         fetch_opt_record_type_dr();
         fetch_opt_category_dr();
         fetch_opt_car_maker_dr();
@@ -23,111 +22,6 @@
         fetch_opt_portion_treatment_mc_only();
     });
 
-    // document.getElementById("search_record_type").addEventListener("keyup", e => {
-    //     search_keyword(1);
-    // });
-
-    // document.getElementById("drm_keyword").addEventListener("keyup", e => {
-    //     search_keyword(1);
-    // });
-
-    // document.getElementById("date_from_search_defect").addEventListener("keyup", e => {
-    //     search_keyword(1);
-    // });
-
-    // document.getElementById("date_to_search_defect").addEventListener("keyup", e => {
-    //     search_keyword(1);
-    // });
-
-    // // Table Responsive Scroll Event for Load More
-    // document.getElementById("list_of_rp_record_res").addEventListener("scroll", function () {
-    //     var scrollTop = document.getElementById("list_of_rp_record_res").scrollTop;
-    //     var scrollHeight = document.getElementById("list_of_rp_record_res").scrollHeight;
-    //     var offsetHeight = document.getElementById("list_of_rp_record_res").offsetHeight;
-
-    //     //check if the scroll reached the bottom
-    //     if ((offsetHeight + scrollTop + 1) >= scrollHeight) {
-    //         rp_get_next_page();
-    //     }
-    // });
-
-    // const rp_get_next_page = () => {
-    //     var current_page = parseInt(sessionStorage.getItem('rp_table_pagination'));
-    //     let total = sessionStorage.getItem('count_rows');
-    //     var last_page = parseInt(sessionStorage.getItem('last_page'));
-    //     var next_page = current_page + 1;
-    //     if (next_page <= last_page && total > 0) {
-    //         search_keyword(next_page);
-    //     }
-    // }
-
-    // const count_record_rp = () => {
-    //     var record_type = sessionStorage.getItem('search_record_type');
-    //     var drm_keyword = sessionStorage.getItem('drm_keyword');
-    //     var date_from = sessionStorage.getItem('date_from_search_defect');
-    //     var date_to = sessionStorage.getItem('date_to_search_defect');
-
-    //     $.ajax({
-    //         url: '../../process/pd/defect_monitoring_record_rp_p.php',
-    //         type: 'POST',
-    //         cache: false,
-    //         data: {
-    //             method: 'count_record_rp_list',
-    //             record_type: record_type,
-    //             drm_keyword: drm_keyword,
-    //             date_from: date_from,
-    //             date_to: date_to
-    //         },
-    //         success: function (response) {
-    //             sessionStorage.setItem('count_rows', response);
-    //             var count = `Total: ${response}`;
-    //             $('#rp_table_info').html(count);
-
-    //             if (response > 0) {
-    //                 load_record_rp_last_page();
-    //             } else {
-    //                 document.getElementById("btnNextPageRp").style.display = "none";
-    //                 document.getElementById("btnNextPageRp").setAttribute('disabled', true);
-    //             }
-    //         }
-    //     });
-    // }
-
-    // const load_record_rp_last_page = () => {
-    //     var record_type = sessionStorage.getItem('search_record_type');
-    //     var drm_keyword = sessionStorage.getItem('drm_keyword');
-    //     var date_from = sessionStorage.getItem('date_from_search_defect');
-    //     var date_to = sessionStorage.getItem('date_to_search_defect');
-    //     var current_page = sessionStorage.getItem('rp_table_pagination');
-
-    //     $.ajax({
-    //         url: '../../process/pd/defect_monitoring_record_rp_p.php',
-    //         type: 'POST',
-    //         cache: false,
-    //         data: {
-    //             method: 'record_rp_list_last_page',
-    //             record_type: record_type,
-    //             drm_keyword: drm_keyword,
-    //             date_from: date_from,
-    //             date_to: date_to
-    //         },
-    //         success: function (response) {
-    //             sessionStorage.setItem('last_page', response);
-    //             let total = sessionStorage.getItem('count_rows');
-    //             var next_page = current_page + 1;
-
-    //             if (next_page > response || total < 1) {
-    //                 document.getElementById("btnNextPageRp").style.display = "none";
-    //                 document.getElementById("btnNextPageRp").setAttribute('disabled', true);
-    //             } else {
-    //                 document.getElementById("btnNextPageRp").style.display = "block";
-    //                 document.getElementById("btnNextPageRp").removeAttribute('disabled');
-    //             }
-    //         }
-    //     });
-    // }
-
-    // ==================================================================
     // fetch record type option
     const fetch_opt_record_type_dr = () => {
         $.ajax({
@@ -385,54 +279,335 @@
 
     // ==================================================================
 
-    //fetch defect record table
-    const load_defect_table = () => {
+    document.getElementById("t_table_res").addEventListener("scroll", function () {
+        var scrollTop = document.getElementById("t_table_res").scrollTop;
+        var scrollHeight = document.getElementById("t_table_res").scrollHeight;
+        var offsetHeight = document.getElementById("t_table_res").offsetHeight;
+
+        //check if the scroll reached the bottom
+        if ((offsetHeight + scrollTop + 1) >= scrollHeight) {
+            get_next_page();
+        }
+    });
+
+    const get_next_page = () => {
+        var current_table = parseInt(sessionStorage.getItem('t_table_number'));
+        var current_page = parseInt(sessionStorage.getItem('t_table_pagination'));
+        let total = sessionStorage.getItem('count_rows');
+        var last_page = parseInt(sessionStorage.getItem('last_page'));
+        var next_page = current_page + 1;
+        if (next_page <= last_page && total > 0) {
+            switch (current_table) {
+                case 1:
+                    load_defect_table_data(next_page);
+                    break;
+                case 2:
+                    load_mancost_table_data(next_page);
+                    break;
+                default:
+            }
+        }
+    }
+
+    const load_defect_table_data_last_page = () => {
+        var current_page = parseInt(sessionStorage.getItem('t_table_pagination'));
         $.ajax({
             url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
-                method: 'load_defect_table'
-            },
-            beforeSend: () => {
-                var loading = `<tr id="loading"><td colspan="10" style="text-align:center;"><div class="spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div></td></tr>`;
-                document.getElementById("defect_table").innerHTML = loading;
+                method: 'load_defect_table_data_last_page'
             },
             success: function (response) {
-                $('#loading').remove();
-                $('#defect_table').html(response);
-                $('#defect_id').html('');
-                $('#t_defect_breadcrumb').hide();
+                sessionStorage.setItem('last_page', response);
+                let total = sessionStorage.getItem('count_rows');
+                var next_page = current_page + 1;
+                if (next_page > response || total < 1) {
+                    document.getElementById("btnNextPage").style.display = "none";
+                    document.getElementById("btnNextPage").setAttribute('disabled', true);
+                } else {
+                    document.getElementById("btnNextPage").style.display = "block";
+                    document.getElementById("btnNextPage").removeAttribute('disabled');
+                }
             }
         });
     }
 
-    // fetch manpower and material cost monitoring
+    const load_defect_table = () => {
+        load_defect_table_t1();
+        setTimeout(() => {
+            load_defect_table_data(1);
+        }, 500);
+    }
+
+    const load_defect_table_t1 = () => {
+        sessionStorage.setItem('t_table_number', 1);
+        document.getElementById("defect_table").innerHTML = `
+            <thead style="text-align: center;">
+                <tr>
+                    <th>#</th>
+                    <th>Line No.</th>
+                    <th>Category</th>
+                    <th>Date Detected</th>
+                    <th>Issue No. Tag</th>
+                    <th>Repairing Date</th>
+                    <th>Car Maker</th>
+                    <th>Product Name</th>
+                    <th>Lot No.</th>
+                    <th>Serial No.</th>
+                    <th>Discovery Process</th>
+                    <th>Discovery ID Number</th>
+                    <th>Discovery Person</th>
+                    <th>Occurrence Process</th>
+                    <th>Occurrence Shift</th>
+                    <th>Occurrence ID Number</th>
+                    <th>Occurrence Person</th>
+                    <th>Outflow Process</th>
+                    <th>Outflow Shift</th>
+                    <th>Outflow ID Number</th>
+                    <th>Outflow Person</th>
+                    <th>Defect Category</th>
+                    <th>Sequence Number</th>
+                    <th>Cause of Defect</th>
+                    <th>Detail in Content of Defect</th>
+                    <th>Treatment Content of Defect</th>
+                    <th>Dis-assembled/Dis-inserted by:</th>
+                </tr>
+            </thead>
+            <tbody class="mb-0" id="defect_table_data" style="background: #F9F9F9;">
+        `;
+    }
+
+    const load_defect_table_data = current_page => {
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'load_defect_table_data',
+                current_page: current_page
+            },
+            beforeSend: () => {
+                var loading = `<tr id="loading"><td colspan="6" style="text-align:center;"><div class="spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div></td></tr>`;
+                if (current_page == 1) {
+                    document.getElementById("defect_table_data").innerHTML = loading;
+                } else {
+                    $('#defect_table tbody').append(loading);
+                }
+            },
+            success: function (response) {
+                $('#loading').remove();
+                if (current_page == 1) {
+                    $('#defect_table tbody').html(response);
+                } else {
+                    $('#defect_table tbody').append(response);
+                }
+                sessionStorage.setItem('t_table_pagination', current_page);
+                $('#defect_id').html('');
+                $('#t_defect_breadcrumb').hide();
+                count_defect_table_data();
+            }
+        });
+    }
+
+    const count_defect_table_data = () => {
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'count_defect_table_data'
+            },
+            success: function (response) {
+                sessionStorage.setItem('count_rows', response);
+                var count = `Total Record: ${response}`;
+                $('#defect_table_info').html(count);
+
+                if (response > 0) {
+                    load_defect_table_data_last_page();
+                } else {
+                    document.getElementById("btnNextPage").style.display = "none";
+                    document.getElementById("btnNextPage").setAttribute('disabled', true);
+                }
+            }
+        });
+    }
+
+    const load_mancost_table_data_last_page = () => { 
+        var defect_id = sessionStorage.getItem('load_defect_id');
+        var current_page = parseInt(sessionStorage.getItem('t_table_pagination'));
+
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'load_mancost_table_data_last_page',
+                defect_id: defect_id
+            },
+            success: function (response) {
+                sessionStorage.setItem('last_page', response);
+                let total = sessionStorage.getItem('count_rows');
+                var next_page = current_page + 1;
+                if (next_page > response || total < 1) {
+                    document.getElementById("btnNextPage").style.display = "none";
+                    document.getElementById("btnNextPage").setAttribute('disabled', true);
+                } else {
+                    document.getElementById("btnNextPage").style.display = "block";
+                    document.getElementById("btnNextPage").removeAttribute('disabled');
+                }
+            }
+        });
+    }
+
+    const count_mancost_table_data = () => {
+        var defect_id = sessionStorage.getItem('load_defect_id');
+
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'count_mancost_table_data',
+                defect_id: defect_id
+            },
+            success: function (response) {
+                sessionStorage.setItem('count_rows', response);
+                var count = `Total Record: ${response}`;
+                $('#defect_table_info').html(count);
+
+                if (response > 0) {
+                    load_mancost_table_data_last_page();
+                } else {
+                    document.getElementById("btnNextPage").style.display = "none";
+                    document.getElementById("btnNextPage").setAttribute('disabled', true);
+                }
+            }
+        });
+    }
+
     const load_mancost_table = param => {
         var string = param.split('~!~');
         var id = string[0];
         var defect_id = string[1];
 
+        sessionStorage.setItem('load_defect_id', defect_id);
+
+        load_mancost_table_t2();
+        setTimeout(() => {
+            load_mancost_table_data(1);
+        }, 500);
+    }
+
+    const load_mancost_table_t2 = () => {
+        sessionStorage.setItem('t_table_number', 2);
+        document.getElementById("defect_table").innerHTML = `
+            <thead style="text-align: center;">
+                <tr>
+                    <th>#</th>
+                    <th>Car Maker</th>
+                    <th>Line No.</th>
+                    <th>Category</th>
+                    <th>Repair Start</th>
+                    <th>Repair End</th>
+                    <th>Time Consumed</th>
+                    <th>Defect Category</th>
+                    <th>Occurrence Process</th>
+                    <th>Parts Removed</th>
+                    <th>Quantity</th>
+                    <th>Unit Cost ( ¥ )</th>
+                    <th>Material Cost ( ¥ )</th>
+                    <th>Manhour Cost ( ¥ )</th>
+                    <th>Repaired Portion Treatment</th>
+                </tr>
+            </thead>
+            <tbody class="mb-0" id="mancost_table_data" style="background: #F9F9F9;">
+        `;
+    }
+
+    const load_mancost_table_data = current_page => {
+        var defect_id = sessionStorage.getItem('load_defect_id');
+
         $.ajax({
             url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
-                method: 'load_mancost_table',
-                defect_id: defect_id
+                method: 'load_mancost_table_data',
+                defect_id: defect_id,
+                current_page: current_page
             },
             beforeSend: () => {
-                var loading = `<tr id="loading"><td colspan="10" style="text-align:center;"><div class="spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div></td></tr>`;
-                document.getElementById("defect_table").innerHTML = loading;
+                var loading = `<tr id="loading"><td colspan="6" style="text-align:center;"><div class="spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div></td></tr>`;
+                if (current_page == 1) {
+                    document.getElementById("mancost_table_data").innerHTML = loading;
+                } else {
+                    $('#defect_table tbody').append(loading);
+                }
             },
             success: function (response) {
                 $('#loading').remove();
-                $('#defect_table').html(response);
+                if (current_page == 1) {
+                    $('#defect_table tbody').html(response);
+                } else {
+                    $('#defect_table tbody').append(response);
+                }
+                sessionStorage.setItem('t_table_pagination', current_page);
                 $('#defect_id').html("Mancost Monitoring");
                 $('#t_defect_breadcrumb').show();
+                count_mancost_table_data();
             }
         });
     }
+
+    // //fetch defect record table
+    // const load_defect_table = () => {
+    //     $.ajax({
+    //         url: '../../process/pd/defect_monitoring_record_rp_p.php',
+    //         type: 'POST',
+    //         cache: false,
+    //         data: {
+    //             method: 'load_defect_table'
+    //         },
+    //         beforeSend: () => {
+    //             var loading = `<tr id="loading"><td colspan="10" style="text-align:center;"><div class="spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div></td></tr>`;
+    //             document.getElementById("defect_table").innerHTML = loading;
+    //         },
+    //         success: function (response) {
+    //             $('#loading').remove();
+    //             $('#defect_table').html(response);
+    //             $('#defect_id').html('');
+    //             $('#t_defect_breadcrumb').hide();
+    //         }
+    //     });
+    // }
+
+    // // fetch manpower and material cost monitoring
+    // const load_mancost_table = param => {
+    //     var string = param.split('~!~');
+    //     var id = string[0];
+    //     var defect_id = string[1];
+
+    //     $.ajax({
+    //         url: '../../process/pd/defect_monitoring_record_rp_p.php',
+    //         type: 'POST',
+    //         cache: false,
+    //         data: {
+    //             method: 'load_mancost_table',
+    //             defect_id: defect_id
+    //         },
+    //         beforeSend: () => {
+    //             var loading = `<tr id="loading"><td colspan="10" style="text-align:center;"><div class="spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div></td></tr>`;
+    //             document.getElementById("defect_table").innerHTML = loading;
+    //         },
+    //         success: function (response) {
+    //             $('#loading').remove();
+    //             $('#defect_table').html(response);
+    //             $('#defect_id').html("Mancost Monitoring");
+    //             $('#t_defect_breadcrumb').show();
+    //         }
+    //     });
+    // }
 
     //search keyword in record
     const search_keyword = () => {
@@ -460,73 +635,6 @@
             }
         });
     }
-
-    // const search_keyword = current_page => {
-    //     var record_type = document.getElementById("search_record_type").value;
-    //     var drm_keyword = document.getElementById("drm_keyword").value;
-    //     var date_from = document.getElementById("date_from_search_defect").value;
-    //     var date_to = document.getElementById("date_to_search_defect").value;
-
-    //     var record_type_1 = sessionStorage.getItem("search_record_type");
-    //     var drm_keyword_1 = sessionStorage.getItem("drm_keyword");
-    //     var date_from_1 = sessionStorage.getItem("date_from_search_defect");
-    //     var date_to_1 = sessionStorage.getItem("date_to_search_defect");
-
-    //     if (current_page > 1) {
-    //         switch (true) {
-    //             case record_type !== record_type_1:
-    //             case drm_keyword !== drm_keyword_1:
-    //             case date_from !== date_from_1:
-    //             case date_to !== date_to_1:
-    //                 record_type = record_type_1;
-    //                 drm_keyword = drm_keyword_1;
-    //                 date_from = date_from_1;
-    //                 date_to = date_to_1;
-    //                 break;
-    //             default:
-    //         }
-    //     } else {
-    //         sessionStorage.setItem('search_record_type', record_type);
-    //         sessionStorage.setItem('drm_keyword', drm_keyword);
-    //         sessionStorage.setItem('date_from_search_defect', date_from);
-    //         sessionStorage.setItem('date_to_search_defect', date_to);
-    //     }
-    //     $.ajax({
-    //         url: '../../process/pd/defect_monitoring_record_rp_p.php',
-    //         type: 'POST',
-    //         cache: false,
-    //         data: {
-    //             method: 'search_keyword',
-    //             record_type: record_type,
-    //             drm_keyword: drm_keyword,
-    //             date_from: date_from,
-    //             date_to: date_to,
-    //             current_page: current_page
-    //         },
-    //         beforeSend: () => {
-    //             var loading = `<tr id="loading"><td colspan="10" style="text-align:center;"><div class="spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div></td></tr>`;
-    //             if (current_page == 1) {
-    //                 document.getElementById("defect_table").innerHTML = loading;
-    //             } else {
-    //                 $('#defect_table tbody').append(loading);
-    //             }
-    //         },
-    //         success: function (response) {
-    //             $('#loading').remove();
-    //             if (current_page == 1) {
-    //                 $('#defect_table tbody').html(response);
-    //                 $('#defect_id').html('');
-    //                 $('#t_defect_breadcrumb').hide();
-    //             } else {
-    //                 $('#defect_table tbody').append(response);
-    //                 $('#defect_id').html('');
-    //                 $('#t_defect_breadcrumb').hide();
-    //             }
-    //             sessionStorage.setItem('rp_table_pagination', current_page);
-    //             count_record_rp();
-    //         }
-    //     });
-    // }
 
     const time_difference = () => {
         var repair_start = document.getElementById('repair_start_mc').value;

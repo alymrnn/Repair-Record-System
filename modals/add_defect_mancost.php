@@ -333,7 +333,7 @@
                     </div>
                     <div class="col-sm-3">
                         <!-- repair person -->
-                        <label style="font-weight: normal;color: #000;">Dis-assembled by: (Repair Person)</label>
+                        <label style="font-weight: normal;color: #000;">Dis-assembled by:</label>
                         <label style="color:#CA3F3F">*</label>
                         <input list="repairPersonDrList" placeholder="Select the repair person" name="repair_person_dr"
                             id="repair_person_dr" autocomplete="off"
