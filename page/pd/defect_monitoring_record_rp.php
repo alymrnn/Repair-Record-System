@@ -28,7 +28,7 @@
           <h3 class="card-title"><img src="../../dist/img/settings.png" style="height:28px;">&ensp;Defect Record and
             Mancost Monitoring Table</h3>
           <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+            <!-- <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button> -->
             <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
                 class="fas fa-expand"></i></button>
           </div>

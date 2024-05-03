@@ -1,6 +1,6 @@
 <script type="text/javascript">
     $(document).ready(function () {
-        load_admin_defect_table();
+        load_qc_defect_table();
         fetch_opt_search_ad_record_type();
         fetch_opt_search_ad_defect_category();
         fetch_opt_search_ad_discovery_process();
@@ -9,7 +9,6 @@
         fetch_opt_search_ad_defect_category_mc();
         fetch_opt_search_ad_occurrence_process_mc();
         fetch_opt_search_ad_portion_treatment_mc();
-        load_admin_mancost_record();
     });
 
     // fetch record type option
@@ -133,70 +132,336 @@
     }
 
     // ================================================================
-    // fetch defect record table
-    const load_admin_defect_table = () => {
+
+    document.getElementById("t_qc_table_res").addEventListener("scroll", function () {
+        var scrollTop = document.getElementById("t_qc_table_res").scrollTop;
+        var scrollHeight = document.getElementById("t_qc_table_res").scrollHeight;
+        var offsetHeight = document.getElementById("t_qc_table_res").offsetHeight;
+
+        //check if the scroll reached the bottom
+        if ((offsetHeight + scrollTop + 1) >= scrollHeight) {
+            get_next_page();
+        }
+    });
+
+    const get_next_page = () => {
+        var current_table = parseInt(sessionStorage.getItem('t_table_number'));
+        var current_page = parseInt(sessionStorage.getItem('t_table_pagination'));
+        let total = sessionStorage.getItem('count_rows');
+        var last_page = parseInt(sessionStorage.getItem('last_page'));
+        var next_page = current_page + 1;
+        if (next_page <= last_page && total > 0) {
+            switch (current_table) {
+                case 1:
+                    load_qc_defect_table_data(next_page);
+                    break;
+                case 2:
+                    load_qc_mancost_table_data(next_page);
+                    break;
+                default:
+            }
+        }
+    }
+
+    const load_qc_defect_table_data_last_page = () => {
+        var current_page = parseInt(sessionStorage.getItem('t_table_pagination'));
         $.ajax({
             url: '../../process/qc/defect_monitoring_record_p.php',
             type: 'POST',
             cache: false,
             data: {
-                method: 'load_admin_defect_table'
-            },
-            beforeSend: () => {
-                var loading = `<tr id="loading"><td colspan="10" style="text-align:center;"><div class="spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div></td></tr>`;
-                document.getElementById("admin_defect_table").innerHTML = loading;
+                method: 'load_qc_defect_table_data_last_page'
             },
             success: function (response) {
-                $('#loading').remove();
-                $('#admin_defect_table').html(response);
-                $('#admin_defect_id').html('');
-                $('#t_admin_defect_breadcrumb').hide();
+                sessionStorage.setItem('last_page', response);
+                let total = sessionStorage.getItem('count_rows');
+                var next_page = current_page + 1;
+                if (next_page > response || total < 1) {
+                    document.getElementById("btnNextPage").style.display = "none";
+                    document.getElementById("btnNextPage").setAttribute('disabled', true);
+                } else {
+                    document.getElementById("btnNextPage").style.display = "block";
+                    document.getElementById("btnNextPage").removeAttribute('disabled');
+                }
             }
         });
     }
 
-    // fetch manpower and material cost monitoring
-    const load_admin_mancost_table = (param) => {
+    const load_qc_defect_table = () => {
+        load_qc_defect_table_t1();
+        setTimeout(() => {
+            load_qc_defect_table_data(1);
+        }, 500);
+    }
+
+    const load_qc_defect_table_t1 = () => {
+        sessionStorage.setItem('t_table_number', 1);
+        document.getElementById("qc_defect_table").innerHTML = `
+            <thead style="text-align: center;">
+                <tr>
+                    <th>#</th>
+                    <th>Line No.</th>
+                    <th>Category</th>
+                    <th>Date Detected</th>
+                    <th>Issue No. Tag</th>
+                    <th>Repairing Date</th>
+                    <th>Car Maker</th>
+                    <th>Product Name</th>
+                    <th>Lot No.</th>
+                    <th>Serial No.</th>
+                    <th>Discovery Process</th>
+                    <th>Discovery ID Number</th>
+                    <th>Discovery Person</th>
+                    <th>Occurrence Process</th>
+                    <th>Occurrence Shift</th>
+                    <th>Occurrence ID Number</th>
+                    <th>Occurrence Person</th>
+                    <th>Outflow Process</th>
+                    <th>Outflow Shift</th>
+                    <th>Outflow ID Number</th>
+                    <th>Outflow Person</th>
+                    <th>Defect Category</th>
+                    <th>Sequence Number</th>
+                    <th>Cause of Defect</th>
+                    <th>Detail in Content of Defect</th>
+                    <th>Treatment Content of Defect</th>
+                    <th>Dis-assembled/Dis-inserted by:</th>
+                </tr>
+            </thead>
+            <tbody class="mb-0" id="qc_defect_table_data" style="background: #F9F9F9;">
+        `;
+    }
+
+    const load_qc_defect_table_data = current_page => {
+        $.ajax({
+            url: '../../process/qc/defect_monitoring_record_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'load_qc_defect_table_data',
+                current_page: current_page
+            },
+            beforeSend: () => {
+                var loading = `<tr id="loading"><td colspan="6" style="text-align:center;"><div class="spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div></td></tr>`;
+                if (current_page == 1) {
+                    document.getElementById("qc_defect_table_data").innerHTML = loading;
+                } else {
+                    $('#qc_defect_table tbody').append(loading);
+                }
+            },
+            success: function (response) {
+                $('#loading').remove();
+                if (current_page == 1) {
+                    $('#qc_defect_table tbody').html(response);
+                } else {
+                    $('#qc_defect_table tbody').append(response);
+                }
+                sessionStorage.setItem('t_table_pagination', current_page);
+                $('#qc_defect_id').html('');
+                $('#t_qc_defect_breadcrumb').hide();
+                count_qc_defect_table_data();
+            }
+        });
+    }
+
+    const count_qc_defect_table_data = () => {
+        $.ajax({
+            url: '../../process/qc/defect_monitoring_record_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'count_qc_defect_table_data'
+            },
+            success: function (response) {
+                sessionStorage.setItem('count_rows', response);
+                var count = `Total Record: ${response}`;
+                $('#qc_defect_table_info').html(count);
+
+                if (response > 0) {
+                    load_qc_defect_table_data_last_page();
+                } else {
+                    document.getElementById("btnNextPage").style.display = "none";
+                    document.getElementById("btnNextPage").setAttribute('disabled', true);
+                }
+            }
+        });
+    }
+
+    const load_qc_mancost_table_data_last_page = () => { 
+        var qc_defect_id = sessionStorage.getItem('load_qc_defect_id');
+        var current_page = parseInt(sessionStorage.getItem('t_table_pagination'));
+
+        $.ajax({
+            url: '../../process/qc/defect_monitoring_record_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'load_mancost_table_data_last_page',
+                qc_defect_id: qc_defect_id
+            },
+            success: function (response) {
+                sessionStorage.setItem('last_page', response);
+                let total = sessionStorage.getItem('count_rows');
+                var next_page = current_page + 1;
+                if (next_page > response || total < 1) {
+                    document.getElementById("btnNextPage").style.display = "none";
+                    document.getElementById("btnNextPage").setAttribute('disabled', true);
+                } else {
+                    document.getElementById("btnNextPage").style.display = "block";
+                    document.getElementById("btnNextPage").removeAttribute('disabled');
+                }
+            }
+        });
+    }
+
+    const count_qc_mancost_table_data = () => {
+        var qc_defect_id = sessionStorage.getItem('load_qc_defect_id');
+
+        $.ajax({
+            url: '../../process/qc/defect_monitoring_record_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'count_mancost_table_data',
+                qc_defect_id: qc_defect_id
+            },
+            success: function (response) {
+                sessionStorage.setItem('count_rows', response);
+                var count = `Total Record: ${response}`;
+                $('#qc_defect_table_info').html(count);
+
+                if (response > 0) {
+                    load_qc_mancost_table_data_last_page();
+                } else {
+                    document.getElementById("btnNextPage").style.display = "none";
+                    document.getElementById("btnNextPage").setAttribute('disabled', true);
+                }
+            }
+        });
+    }
+
+    const load_qc_mancost_table = param => {
         var string = param.split('~!~');
         var id = string[0];
-        var admin_defect_id = string[1];
+        var qc_defect_id = string[1];
+
+        sessionStorage.setItem('load_qc_defect_id', qc_defect_id);
+
+        load_qc_mancost_table_t2();
+        setTimeout(() => {
+            load_qc_mancost_table_data(1);
+        }, 500);
+    }
+
+    const load_qc_mancost_table_t2 = () => {
+        sessionStorage.setItem('t_table_number', 2);
+        document.getElementById("qc_defect_table").innerHTML = `
+            <thead style="text-align: center;">
+                <tr>
+                    <th>#</th>
+                    <th>Car Maker</th>
+                    <th>Line No.</th>
+                    <th>Category</th>
+                    <th>Repair Start</th>
+                    <th>Repair End</th>
+                    <th>Time Consumed</th>
+                    <th>Defect Category</th>
+                    <th>Occurrence Process</th>
+                    <th>Parts Removed</th>
+                    <th>Quantity</th>
+                    <th>Unit Cost ( ¥ )</th>
+                    <th>Material Cost ( ¥ )</th>
+                    <th>Manhour Cost ( ¥ )</th>
+                    <th>Repaired Portion Treatment</th>
+                </tr>
+            </thead>
+            <tbody class="mb-0" id="qc_mancost_table_data" style="background: #F9F9F9;">
+        `;
+    }
+
+    const load_qc_mancost_table_data = current_page => {
+        var qc_defect_id = sessionStorage.getItem('load_qc_defect_id');
 
         $.ajax({
             url: '../../process/qc/defect_monitoring_record_p.php',
             type: 'POST',
             cache: false,
             data: {
-                method: 'load_admin_mancost_table',
-                admin_defect_id: admin_defect_id
+                method: 'load_qc_mancost_table_data',
+                qc_defect_id: qc_defect_id,
+                current_page: current_page
             },
             beforeSend: () => {
-                var loading = `<tr id="loading"><td colspan="10" style="text-align:center;"><div class="spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div></td></tr>`;
-                document.getElementById("admin_defect_table").innerHTML = loading;
+                var loading = `<tr id="loading"><td colspan="6" style="text-align:center;"><div class="spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div></td></tr>`;
+                if (current_page == 1) {
+                    document.getElementById("qc_mancost_table_data").innerHTML = loading;
+                } else {
+                    $('#qc_defect_table tbody').append(loading);
+                }
             },
             success: function (response) {
                 $('#loading').remove();
-                $('#admin_defect_table').html(response);
-                $('#admin_defect_id').html("Mancost Monitoring");
-                $('#t_admin_defect_breadcrumb').show();
-            }
-        })
-    }
-
-    // fetch mancost only
-    const load_admin_mancost_record = () => {
-        $.ajax({
-            url: '../../process/qc/defect_monitoring_record_p.php',
-            type: 'POST',
-            cache: false,
-            data: {
-                method: 'load_admin_mancost_record'
-            },
-            success: function (response) {
-                $('#list_of_admin_mancost_record').html(response);
-                $('#spinner').fadeOut();
+                if (current_page == 1) {
+                    $('#qc_defect_table tbody').html(response);
+                } else {
+                    $('#qc_defect_table tbody').append(response);
+                }
+                sessionStorage.setItem('t_table_pagination', current_page);
+                $('#qc_defect_id').html("Mancost Monitoring");
+                $('#t_qc_defect_breadcrumb').show();
+                count_qc_mancost_table_data();
             }
         });
     }
+
+    // fetch defect record table
+    // const load_admin_defect_table = () => {
+    //     $.ajax({
+    //         url: '../../process/qc/defect_monitoring_record_p.php',
+    //         type: 'POST',
+    //         cache: false,
+    //         data: {
+    //             method: 'load_admin_defect_table'
+    //         },
+    //         beforeSend: () => {
+    //             var loading = `<tr id="loading"><td colspan="10" style="text-align:center;"><div class="spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div></td></tr>`;
+    //             document.getElementById("admin_defect_table").innerHTML = loading;
+    //         },
+    //         success: function (response) {
+    //             $('#loading').remove();
+    //             $('#admin_defect_table').html(response);
+    //             $('#admin_defect_id').html('');
+    //             $('#t_admin_defect_breadcrumb').hide();
+    //         }
+    //     });
+    // }
+
+    // fetch manpower and material cost monitoring
+    // const load_admin_mancost_table = (param) => {
+    //     var string = param.split('~!~');
+    //     var id = string[0];
+    //     var admin_defect_id = string[1];
+
+    //     $.ajax({
+    //         url: '../../process/qc/defect_monitoring_record_p.php',
+    //         type: 'POST',
+    //         cache: false,
+    //         data: {
+    //             method: 'load_admin_mancost_table',
+    //             admin_defect_id: admin_defect_id
+    //         },
+    //         beforeSend: () => {
+    //             var loading = `<tr id="loading"><td colspan="10" style="text-align:center;"><div class="spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div></td></tr>`;
+    //             document.getElementById("admin_defect_table").innerHTML = loading;
+    //         },
+    //         success: function (response) {
+    //             $('#loading').remove();
+    //             $('#admin_defect_table').html(response);
+    //             $('#admin_defect_id').html("Mancost Monitoring");
+    //             $('#t_admin_defect_breadcrumb').show();
+    //         }
+    //     })
+    // }
 
     // search defect category
     const search_admin_defect_record = () => {
@@ -224,7 +489,7 @@
                 date_to_dr_search: date_to_dr_search
             },
             success: function (response) {
-                $('#admin_defect_table').html(response);
+                $('#qc_defect_table').html(response);
                 $('#spinner').fadeOut;
             }
         });
@@ -249,7 +514,7 @@
                 serial_no_search: serial_no_search
             },
             success: function (response) {
-                $('#admin_defect_table').html(response);
+                $('#qc_defect_table').html(response);
                 $('#spinner').fadeOut;
             }
         });
@@ -464,7 +729,7 @@
                 status_search: status_search,
                 admin_defect_id: admin_defect_id
             }, success: function (response) {
-                $('#admin_defect_table').html(response);
+                $('#qc_defect_table').html(response);
                 $('#spinner').fadeOut();
             }
         })

@@ -90,8 +90,11 @@ if (isset($_SESSION['emp_no'])) {
                                 Instruction</button></a>
                     </div>
 
-                    <a href="page/viewer/" class="pt-4 d-flex justify-content-center"
-                        style="color: #0069B0;text-decoration-line: underline;font-size: 14px;">Return to Home Page</a>
+                    <!-- <a href="page/viewer/" class="pt-4 d-flex justify-content-center"
+                        style="color: #0069B0;text-decoration-line: underline;font-size: 14px;">Return to Home Page</a> -->
+
+                    <a href="page/viewer/" class="nav-link mt-2 d-flex justify-content-center"
+                        style="font-size: 15px;">Viewer Page</a>
             </div>
         </div>
     </div>
