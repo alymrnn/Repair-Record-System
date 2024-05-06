@@ -377,7 +377,9 @@
                 <div class="col-sm-2">
                     <!-- cancel button -->
                     <button class="btn btn-block" data-dismiss="modal"
-                        style="color:#fff;height:34px;border-radius:.25rem;background: #CA3F3F;font-size:15px;font-weight:normal;">Cancel</button>
+                        style="color:#fff;height:34px;border-radius:.25rem;background: #CA3F3F;font-size:15px;font-weight:normal;"
+                        onmouseover="this.style.backgroundColor='#AC3737'; this.style.color='#FFF';"
+                        onmouseout="this.style.backgroundColor='#CA3F3F'; this.style.color='#FFF';">Cancel</button>
                 </div>
                 <div class="col-sm-2">
                     <!-- clear button -->

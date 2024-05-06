@@ -159,14 +159,18 @@ include ('plugins/navbar/index_navbar.php');
                   <!-- search button -->
                   <button class="btn btn-block d-flex justify-content-left" id="search_btn"
                     onclick="viewer_defect_search_keyword()"
-                    style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"><img
-                      src="../../dist/img/search.png" style="height:19px;">&nbsp;&nbsp;Search</button>
+                    style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"
+                    onmouseover="this.style.backgroundColor='#1B5541'; this.style.color='#FFF';"
+                    onmouseout="this.style.backgroundColor='#226F54'; this.style.color='#FFF';">
+                    <img src="../../dist/img/search.png" style="height:19px;">&nbsp;&nbsp;Search</button>
                 </div>
-                <div class="col-12 col-sm-4 col-md-2 mb-2">
+                <div class=" col-12 col-sm-4 col-md-2 mb-2">
                   <!-- export button -->
                   <button class="btn btn-block d-flex justify-content-left" id="export_record_viewer"
                     onclick="export_record_viewer()"
-                    style="color:#fff;height:34px;border-radius:.25rem;background: #0267c1;font-size:15px;font-weight:normal;"><img
+                    style="color:#fff;height:34px;border-radius:.25rem;background: #0267c1;font-size:15px;font-weight:normal;"
+                    onmouseover="this.style.backgroundColor='#024E92'; this.style.color='#FFF';"
+                    onmouseout="this.style.backgroundColor='#0267c1'; this.style.color='#FFF';"><img
                       src="../../dist/img/export.png" style="height:19px;">&nbsp;&nbsp;Export</button>
                 </div>
               </div>
@@ -219,7 +223,9 @@ include ('plugins/navbar/index_navbar.php');
               </div>
               <div class="d-flex justify-content-sm-center">
                 <button type="button" class="btn bg-gray-dark" id="btnNextPage" style="display:none;"
-                  onclick="get_next_page()">Load more</button>
+                  onclick="get_next_page()" onclick="get_next_page()"
+                  onmouseover="this.style.backgroundColor='#032031'; this.style.color='#FFF';"
+                  onmouseout="this.style.backgroundColor='#032b43'; this.style.color='#FFF';">Load more</button>
               </div>
               <!-- /.end -->
 

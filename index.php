@@ -80,13 +80,17 @@ if (isset($_SESSION['emp_no'])) {
                     <!-- /.col -->
                     <div class="input-group mb-3">
                         <button type="submit" class="login-btn btn btn-block" name="login_btn" value="login"
-                            style="border-radius: 5px;background: #E89F4C;color: #000;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);">Login</button>
+                            style="border-radius: 5px;background: #E89F4C;color: #000;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);"
+                            onmouseover="this.style.backgroundColor='#EA922E'; this.style.color='#000';"
+                            onmouseout="this.style.backgroundColor='#E89F4C'; this.style.color='#000';">Login</button>
                     </div>
                     <!-- /.col -->
 
                     <div class="d-flex justify-content-center">
                         <a href="#"><button type="submit" class="btn btn-block btn-sm" name="login_btn" value="login"
-                                style="border-radius: 5px;background: #3E3E3E;width:190px;color: #FFF;">Work
+                                style="border-radius: 5px;background: #3E3E3E;width:190px;color: #FFF;"
+                                onmouseover="this.style.backgroundColor='#242424'; this.style.color='#FFF';"
+                                onmouseout="this.style.backgroundColor='#3E3E3E'; this.style.color='#FFF';">Work
                                 Instruction</button></a>
                     </div>
 

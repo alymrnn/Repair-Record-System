@@ -66,11 +66,15 @@
                 <div class="col-12">
                     <div class="float-left">
                         <button class="btn btn-block" onclick="delete_account()"
-                            style="color:#fff;height:34px;border-radius:.25rem;background: #CA3F3F;font-size:15px;font-weight:normal;">Delete Account</button>
+                            style="color:#fff;height:34px;border-radius:.25rem;background: #CA3F3F;font-size:15px;font-weight:normal;"
+                            onmouseover="this.style.backgroundColor='#AC3737'; this.style.color='#FFF';"
+                            onmouseout="this.style.backgroundColor='#CA3F3F'; this.style.color='#FFF';">Delete
+                            Account</button>
                     </div>
                     <div class="float-right">
                         <button class="btn btn-block" onclick="update_account()"
-                            style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;">Update Account</button>
+                            style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;">Update
+                            Account</button>
                     </div>
                 </div>
             </div>

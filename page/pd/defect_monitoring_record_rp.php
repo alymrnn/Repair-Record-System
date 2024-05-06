@@ -69,7 +69,9 @@
               <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
               <button class="btn btn-block d-flex justify-content-left" id="search_record_btn"
                 onclick="search_keyword()"
-                style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"><img
+                style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"
+                onmouseover="this.style.backgroundColor='#1B5541'; this.style.color='#FFF';"
+                onmouseout="this.style.backgroundColor='#226F54'; this.style.color='#FFF';"><img
                   src="../../dist/img/search.png" style="height:19px;">&nbsp;Search</button>
             </div>
             <div class="col-12 col-sm-2">
@@ -77,7 +79,9 @@
               <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
               <button class="btn btn-block d-flex justify-content-left" data-toggle="modal"
                 data-target="#add_defect_mancost"
-                style="color:#fff;height:34px;border-radius:.25rem;background: #0069B0;font-size:15px;font-weight:normal;"><img
+                style="color:#fff;height:34px;border-radius:.25rem;background: #0069B0;font-size:15px;font-weight:normal;"
+                onmouseover="this.style.backgroundColor='#024E92'; this.style.color='#FFF';"
+                onmouseout="this.style.backgroundColor='#0267c1'; this.style.color='#FFF';"><img
                   src="../../dist/img/add.png" style="height:19px;">&nbsp;Add Record</button>
             </div>
           </div>
@@ -103,7 +107,9 @@
           </div>
           <div class="d-flex justify-content-sm-center">
             <button type="button" class="btn bg-gray-dark" id="btnNextPage" style="display:none;"
-              onclick="get_next_page()">Load more</button>
+              onclick="get_next_page()" onclick="get_next_page()"
+              onmouseover="this.style.backgroundColor='#032031'; this.style.color='#FFF';"
+              onmouseout="this.style.backgroundColor='#032b43'; this.style.color='#FFF';">Load more</button>
           </div>
           <!-- /.end -->
         </div>

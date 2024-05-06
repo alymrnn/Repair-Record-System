@@ -65,11 +65,15 @@
                 <div class="col-12">
                     <div class="float-left">
                         <button class="btn btn-block" data-dismiss="modal"
-                            style="color:#fff;height:34px;width:180px;border-radius:.25rem;background: #CA3F3F;font-size:15px;font-weight:normal;">Cancel</button>
+                            style="color:#fff;height:34px;width:180px;border-radius:.25rem;background: #CA3F3F;font-size:15px;font-weight:normal;"
+                            onmouseover="this.style.backgroundColor='#AC3737'; this.style.color='#FFF';"
+                            onmouseout="this.style.backgroundColor='#CA3F3F'; this.style.color='#FFF';">Cancel</button>
                     </div>
                     <div class="float-right">
                         <button class="btn btn-block" onclick="register_account()"
-                            style="color:#fff;height:34px;width:180px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;">Add
+                            style="color:#fff;height:34px;width:180px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"
+                            onmouseover="this.style.backgroundColor='#1C5944'; this.style.color='#FFF';"
+                            onmouseout="this.style.backgroundColor='#226F54'; this.style.color='#FFF';">Add
                             Account</button>
                     </div>
                 </div>

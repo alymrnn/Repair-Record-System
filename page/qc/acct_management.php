@@ -54,13 +54,17 @@
             <div class="col-sm-3">
               <!-- search button -->
               <button class="btn btn-block d-flex justify-content-left" id="search_btn" onclick="search_account()"
-                style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"><img
+                style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"
+                onmouseover="this.style.backgroundColor='#1B5541'; this.style.color='#FFF';"
+                onmouseout="this.style.backgroundColor='#226F54'; this.style.color='#FFF';"><img
                   src="../../dist/img/search.png" style="height:19px;">&nbsp;&nbsp;Search</button>
             </div>
             <div class="col-sm-3">
               <!-- add account button -->
               <a class="btn btn-block d-flex justify-content-left" data-toggle="modal" data-target="#add_account"
-                style="color:#fff;height:34px;border-radius:.25rem;background: #2f6690;font-size:15px;font-weight:normal;"><img
+                style="color:#fff;height:34px;border-radius:.25rem;background: #0267c1;font-size:15px;font-weight:normal;"
+                onmouseover="this.style.backgroundColor='#024E92'; this.style.color='#FFF';"
+                onmouseout="this.style.backgroundColor='#0267c1'; this.style.color='#FFF';"><img
                   src="../../dist/img/user-account.png" style="height:22px;">&nbsp;&nbsp;Add Account</a>
 
             </div>
@@ -104,7 +108,10 @@
             <div class="dataTables_info" id="account_table_info" role="status" aria-live="polite"></div>
           </div>
           <div class="d-flex justify-content-sm-center">
-            <button type="button" class="btn" style="background: #032b43; color: #fff;" id="btnNextPage" onclick="get_next_page()">Load more</button>
+            <button type="button" class="btn" style="background: #032b43; color: #fff;" id="btnNextPage"
+              onclick="get_next_page()" onclick="get_next_page()"
+              onmouseover="this.style.backgroundColor='#032031'; this.style.color='#FFF';"
+              onmouseout="this.style.backgroundColor='#032b43'; this.style.color='#FFF';">Load more</button>
           </div>
         </div>
       </div>

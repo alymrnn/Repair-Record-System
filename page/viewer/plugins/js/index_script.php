@@ -263,7 +263,7 @@
             type: 'POST',
             cache: false,
             data: {
-                method: 'load_mancost_table_data_last_page',
+                method: 'load_viewer_mancost_table_data_last_page',
                 viewer_defect_id: viewer_defect_id
             },
             success: function (response) {
@@ -289,7 +289,7 @@
             type: 'POST',
             cache: false,
             data: {
-                method: 'count_mancost_table_data',
+                method: 'count_viewer_mancost_table_data',
                 viewer_defect_id: viewer_defect_id
             },
             success: function (response) {

@@ -40,7 +40,7 @@
             <!-- /.card header -->
             <div class="card-body">
               <div class="row mt-2">
-              <div class="col-sm-4 col-md-3">
+                <div class="col-sm-4 col-md-3">
                   <!-- record type -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Record Type</label>
                   <select name="search_ad_record_type" id="search_ad_record_type" autocomplete="off"
@@ -76,7 +76,9 @@
                   <!-- search button -->
                   <label></label>
                   <button class="btn btn-block d-flex justify-content-left" id="search_btn" onclick="search_qc()"
-                    style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"><img
+                    style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"
+                    onmouseover="this.style.backgroundColor='#1B5541'; this.style.color='#FFF';"
+                    onmouseout="this.style.backgroundColor='#226F54'; this.style.color='#FFF';"><img
                       src="../../dist/img/search.png" style="height:19px;">&nbsp;&nbsp;Search</button>
                 </div>
               </div>
@@ -131,7 +133,9 @@
               </div>
               <div class="d-flex justify-content-sm-center">
                 <button type="button" class="btn bg-gray-dark" id="btnNextPage" style="display:none;"
-                  onclick="get_next_page()">Load more</button>
+                  onclick="get_next_page()" onclick="get_next_page()"
+                  onmouseover="this.style.backgroundColor='#032031'; this.style.color='#FFF';"
+                  onmouseout="this.style.backgroundColor='#032b43'; this.style.color='#FFF';">Load more</button>
               </div>
               <!-- /.end -->
 

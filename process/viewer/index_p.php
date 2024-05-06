@@ -96,7 +96,8 @@ if ($method == 'fetch_opt_search_v_record_type') {
 
 function count_viewer_defect_table_data($conn)
 {
-    $query = "SELECT count(id) AS total FROM t_defect_record_f";
+    // $query = "SELECT count(id) AS total FROM t_defect_record_f";
+    $query = "SELECT count(id) AS total FROM t_defect_record_f WHERE (BINARY qc_status = 'Verified' OR BINARY record_type = 'White Tag')";
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
@@ -151,8 +152,8 @@ if ($method == 'load_viewer_defect_table_data') {
     $c = $page_first_result;
 
     // $query = "SELECT * FROM t_defect_record_f ORDER BY repairing_date DESC LIMIT " . $page_first_result . ", " . $results_per_page;
-    $query = "SELECT * FROM t_defect_record_f LIMIT " . $page_first_result . ", " . $results_per_page;
-
+    // $query = "SELECT * FROM t_defect_record_f LIMIT " . $page_first_result . ", " . $results_per_page;
+    $query = "SELECT * FROM t_defect_record_f WHERE (BINARY qc_status = 'Verified' OR BINARY record_type = 'White Tag') LIMIT " . $page_first_result . ", " . $results_per_page;
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
@@ -228,6 +229,9 @@ if ($method == 'load_viewer_mancost_table_data') {
 
     $c = 0;
 
+    $row_class_arr = array('modal-trigger', 'modal-trigger bg-success', 'modal-trigger bg-danger', 'modal-trigger bg-secondary');
+    $row_class = $row_class_arr[0];
+
     $results_per_page = 50;
 
     //determine the sql LIMIT starting number for the results on the displaying page
@@ -237,7 +241,7 @@ if ($method == 'load_viewer_mancost_table_data') {
 
     // $query = "SELECT * FROM t_mancost_monitoring_f WHERE defect_id = '$defect_id' LIMIT " . $page_first_result . ", " . $results_per_page;
 
-    $query = "SELECT t_defect_record_f.car_maker, t_defect_record_f.line_no, t_defect_record_f.category, t_mancost_monitoring_f.repair_start, t_mancost_monitoring_f.repair_end, t_mancost_monitoring_f.time_consumed, t_mancost_monitoring_f.defect_category, t_mancost_monitoring_f.occurrence_process, t_mancost_monitoring_f.parts_removed, t_mancost_monitoring_f.quantity, t_mancost_monitoring_f.unit_cost, t_mancost_monitoring_f.material_cost, t_mancost_monitoring_f.manhour_cost, t_mancost_monitoring_f.repaired_portion_treatment FROM t_defect_record_f LEFT JOIN t_mancost_monitoring_f ON t_defect_record_f.defect_id = t_mancost_monitoring_f.defect_id WHERE t_defect_record_f.defect_id = '$viewer_defect_id' LIMIT " . $page_first_result . ", " . $results_per_page;
+    $query = "SELECT t_mancost_monitoring_f.id, t_defect_record_f.defect_id, t_defect_record_f.car_maker, t_defect_record_f.line_no, t_defect_record_f.category,t_defect_record_f.repairing_date, t_mancost_monitoring_f.repair_start, t_mancost_monitoring_f.repair_end, t_mancost_monitoring_f.time_consumed, t_mancost_monitoring_f.defect_category, t_mancost_monitoring_f.occurrence_process, t_mancost_monitoring_f.parts_removed, t_mancost_monitoring_f.quantity, t_mancost_monitoring_f.unit_cost, t_mancost_monitoring_f.material_cost, t_mancost_monitoring_f.manhour_cost, t_mancost_monitoring_f.repaired_portion_treatment, t_mancost_monitoring_f.qc_verification, t_mancost_monitoring_f.checking_date_sign, t_mancost_monitoring_f.verified_by, t_mancost_monitoring_f.remarks, t_mancost_monitoring_f.record_added_by FROM t_defect_record_f LEFT JOIN t_mancost_monitoring_f ON t_defect_record_f.defect_id = t_mancost_monitoring_f.defect_id WHERE t_defect_record_f.defect_id = '$viewer_defect_id'";
 
     // 1st Approach using SQL Server DB when using Select Query
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
@@ -245,7 +249,18 @@ if ($method == 'load_viewer_mancost_table_data') {
     if ($stmt->rowCount() > 0) {
         foreach ($stmt->fetchALL() as $row) {
             $c++;
-            echo '<tr style="text-align: center;">';
+
+            if ($row['qc_verification'] == 'N/A') {
+                $row_class = $row_class_arr[3];
+            } else if ($row['qc_verification'] == 'NO GOOD') {
+                $row_class = $row_class_arr[2];
+            } else if ($row['qc_verification'] == 'GOOD') {
+                $row_class = $row_class_arr[1];
+            } else {
+                $row_class = $row_class_arr[0];
+            }
+
+            echo '<tr style="cursor:pointer;" class="' . $row_class . '">';
             echo '<td style="text-align:center;">' . $c . '</td>';
             echo '<td style="text-align:center;">' . $row['car_maker'] . '</td>';
             echo '<td style="text-align:center;">' . $row['line_no'] . '</td>';

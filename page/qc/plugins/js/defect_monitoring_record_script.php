@@ -296,7 +296,7 @@
             type: 'POST',
             cache: false,
             data: {
-                method: 'load_mancost_table_data_last_page',
+                method: 'load_qc_mancost_table_data_last_page',
                 qc_defect_id: qc_defect_id
             },
             success: function (response) {
@@ -322,7 +322,7 @@
             type: 'POST',
             cache: false,
             data: {
-                method: 'count_mancost_table_data',
+                method: 'count_qc_mancost_table_data',
                 qc_defect_id: qc_defect_id
             },
             success: function (response) {
@@ -373,6 +373,11 @@
                     <th>Material Cost ( ¥ )</th>
                     <th>Manhour Cost ( ¥ )</th>
                     <th>Repaired Portion Treatment</th>
+                    <th>QC Verification</th>
+                    <th>Checking Date</th>
+                    <th>Verified By</th>
+                    <th>Remarks</th>
+                    <th>Record Added By</th>
                 </tr>
             </thead>
             <tbody class="mb-0" id="qc_mancost_table_data" style="background: #F9F9F9;">
@@ -553,7 +558,7 @@
     }
 
     // get data of row for qc verification
-    function get_update_defect_mancost_qc(id, car_maker_mc, line_no_mc, repairing_date_mc, repair_start_mc, repair_end_mc, time_consumed_mc, defect_category_mc, occurrence_process_mc, parts_removed_mc, quantity_mc, unit_cost_mc, material_cost_mc, manhour_cost_mc, portion_treatment_mc, defect_id) {
+    function get_update_defect_mancost_qc(id, car_maker_mc, line_no_mc, repairing_date_mc, repair_start_mc, repair_end_mc, time_consumed_mc, defect_category_mc, occurrence_process_mc, parts_removed_mc, quantity_mc, unit_cost_mc, material_cost_mc, manhour_cost_mc, portion_treatment_mc, qc_veri_mc_update, checking_date_mc_update, verified_by_mc_update, remarks_mc_update, defect_id) {
 
         // populate the modal
         // db id
@@ -574,18 +579,18 @@
         $('#manhour_cost_mc_update').val(manhour_cost_mc).prop('disabled', true);
         $('#portion_treatment_mc_update').val(portion_treatment_mc).prop('disabled', true);
 
-        // $('#qc_veri_mc_update').val(qc_veri_mc_update);
-        // $('#checking_date_mc_update').val(checking_date_mc_update);
-        // $('#verified_by_mc_update').val(verified_by_mc_update);
-        // $('#remarks_mc_update').val(remarks_mc_update);
+        $('#qc_veri_mc_update').val(qc_veri_mc_update);
+        $('#checking_date_mc_update').val(checking_date_mc_update);
+        $('#verified_by_mc_update').val(verified_by_mc_update);
+        $('#remarks_mc_update').val(remarks_mc_update);
 
         // defect unique id 
         $('#admin_defect_id_1').val(defect_id).prop('hidden', true);
 
-        console.log('showing modal ey');
-        console.log($('#update_defect_mancost_id').val());
-        console.log($('#car_maker_mc_update').val());
-        console.log($('#admin_defect_id_1').val());
+        // console.log('showing modal ey');
+        // console.log($('#update_defect_mancost_id').val());
+        // console.log($('#car_maker_mc_update').val());
+        // console.log($('#admin_defect_id_1').val());
 
         $('#update_defect_mancost_qc').modal('show');
     }
@@ -607,7 +612,7 @@
 
         var admin_defect_id = document.getElementById('admin_defect_id_1').value;
 
-        console.log('Updating with unique id:', admin_defect_id);
+        // console.log('Updating with unique id:', admin_defect_id);
 
         // Check all fields for emptiness
         if (qc_verification.value.trim() === '') {
@@ -648,14 +653,12 @@
                     admin_defect_id: admin_defect_id
                 },
                 success: function (response) {
-                    console.log('Server response:', response);
+                    // console.log('Server response:', response);
 
                     if (response == 'success') {
-                        // Show "Verified Successfully" alert
                         Swal.fire({
                             icon: 'success',
                             title: 'Verified Successfully',
-                            text: 'Success',
                             showConfirmButton: false,
                             timer: 1500
                         });
@@ -668,7 +671,8 @@
                         $('#admin_defect_id').val('');
 
                         // Load updated table
-                        load_admin_mancost_table($('#update_defect_mancost_id').val() + '~!~' + $('#admin_defect_id_1').val());
+                        // load_admin_mancost_table($('#update_defect_mancost_id').val() + '~!~' + $('#admin_defect_id_1').val());
+                        load_qc_mancost_table($('#update_defect_mancost_id').val() + '~!~' + $('#admin_defect_id_1').val());
 
                         // Hide the modal
                         $('#update_defect_mancost_qc').modal('hide');
@@ -677,7 +681,6 @@
                         Swal.fire({
                             icon: 'error',
                             title: 'Error',
-                            text: 'Error',
                             showConfirmButton: false,
                             timer: 1000
                         });

@@ -103,7 +103,9 @@
             <div class="dataTables_info" id="account_table_info" role="status" aria-live="polite"></div>
           </div>
           <div class="d-flex justify-content-sm-center">
-            <button type="button" class="btn" style="background: #032b43; color: #fff;" id="btnNextPage" onclick="get_next_page()">Load more</button>
+            <button type="button" class="btn" style="background: #032b43; color: #fff;" id="btnNextPage"
+              onclick="get_next_page()" onmouseover="this.style.backgroundColor='#032031'; this.style.color='#FFF';"
+              onmouseout="this.style.backgroundColor='#032b43'; this.style.color='#FFF';">Load more</button>
           </div>
         </div>
       </div>
