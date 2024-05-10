@@ -483,31 +483,6 @@
         });
     }
 
-    // search keyword in mancost monitoring only
-    const viewer_mancost_search_keyword = () => {
-        var v_mancost_keyword = document.getElementById("v_mancost_keyword").value.trim();
-
-        // date search
-        var date_from = document.getElementById("date_from_search_v_mancost").value.trim();
-        var date_to = document.getElementById("date_to_search_v_mancost").value.trim();
-
-        $.ajax({
-            url: '../../process/viewer/index_p.php',
-            type: 'POST',
-            cache: false,
-            data: {
-                method: 'viewer_mancost_search_keyword',
-                v_mancost_keyword: v_mancost_keyword,
-                date_from: date_from,
-                date_to: date_to
-            },
-            success: function (response) {
-                $('#list_of_mancost_record_viewer').html(response);
-                $('#spinner').fadeOut();
-            }
-        });
-    }
-
     // export CSV
     const export_record_viewer = () => {
         var defect_category = document.getElementById("search_v_defect_category").value.trim();

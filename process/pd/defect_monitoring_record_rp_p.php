@@ -4,202 +4,6 @@ include '../conn.php';
 
 $method = $_POST['method'];
 
-// function count_record_rp_list($search_arr, $conn)
-// {
-//     $date_from = $search_arr['date_from'] ?? '';
-//     $date_to = $search_arr['date_to'] ?? '';
-//     $drm_keyword = $search_arr['drm_keyword'] ?? '';
-//     $record_type = $search_arr['record_type'] ?? '';
-
-//     $conditions = [];
-//     if (!empty($date_from) && !empty($date_to)) {
-//         $conditions[] = "repairing_date BETWEEN '$date_from' AND '$date_to'";
-//     }
-
-//     if (!empty($drm_keyword)) {
-//         $drm_keyword = '%' . $drm_keyword . '%';
-//         $conditions[] = "`car_maker` LIKE ? OR `line_no` LIKE ? OR `issue_no_tag` LIKE ? OR `discovery_process` LIKE ? OR `discovery_id_num` LIKE ? OR `discovery_person` LIKE ? OR `occurrence_process` LIKE ? OR `occurrence_shift` LIKE ? OR `occurrence_id_num` LIKE ? OR `occurrence_person` LIKE ? OR `outflow_process` LIKE ? OR `outflow_shift` LIKE ? OR `outflow_id_num` LIKE ? OR `outflow_person` LIKE ? OR `defect_category` LIKE ? OR `sequence_num` LIKE ? OR `defect_cause` LIKE ? OR `defect_detail_content` LIKE ? OR `defect_treatment_content` LIKE ? OR `dis_assembled_by` LIKE ?";
-//     }
-
-//     if (!empty($record_type) && $record_type !== '%') {
-//         $conditions[] = "record_type LIKE ?";
-//     }
-
-//     $query = "SELECT count(id) AS total FROM t_defect_record_f";
-//     if (!empty($conditions)) {
-//         $query .= " WHERE " . implode(" AND ", $conditions);
-//     }
-
-//     $stmt = $conn->prepare($query);
-
-//     // Binding parameters for conditions
-//     // if (!empty($drm_keyword) || !empty($record_type)) {
-//     //     $param_types = str_repeat('s', count($conditions));
-//     //     $stmt->bind_param($param_types, ...array_values($conditions));
-//     // }
-
-//     $stmt->execute();
-
-//     if ($stmt->rowCount() > 0) {
-//         foreach ($stmt->fetchAll() as $row) {
-//             $total = $row['total'];
-//         }
-//     } else {
-//         $total = 0;
-//     }
-
-//     return $total;
-// }
-
-// if ($method == 'count_record_rp_list') {
-//     $record_type = $_POST['record_type'];
-//     $drm_keyword = $_POST['drm_keyword'];
-//     $date_from = $_POST['date_from'];
-//     $date_to = $_POST['date_to'];
-
-//     $search_arr = array(
-//         "search_record_type" => $record_type,
-//         "drm_keyword" => $drm_keyword,
-//         "date_from_search_defect" => $date_from,
-//         "date_to_search_defect" => $date_to
-//     );
-//     echo count_record_rp_list($search_arr, $conn);
-// }
-
-// if ($method == 'rp_record_list') {
-//     $current_page = intval($_POST['current_page']);
-//     $c = 0;
-
-//     echo '<thead style="text-align: center;">
-//             <tr>
-//                 <th>#</th>
-//                 <th>Line No.</th>
-//                 <th>Category</th>
-//                 <th>Date Detected</th>
-//                 <th>Issue No. Tag</th>
-//                 <th>Repairing Date</th>
-//                 <th>Car Maker</th>
-//                 <th>Product Name</th>
-//                 <th>Lot No.</th>
-//                 <th>Serial No.</th>
-//                 <th>Discovery Process</th>
-//                 <th>Discovery ID Number</th>
-//                 <th>Discovery Person</th>
-//                 <th>Occurrence Process</th>
-//                 <th>Occurrence Shift</th>
-//                 <th>Occurrence ID Number</th>
-//                 <th>Occurrence Person</th>
-//                 <th>Outflow Process</th>
-//                 <th>Outflow Shift</th>
-//                 <th>Outflow ID Number</th>
-//                 <th>Outflow Person</th>
-//                 <th>Defect Category</th>
-//                 <th>Sequence Number</th>
-//                 <th>Cause of Defect</th>
-//                 <th>Detail in Content of Defect</th>
-//                 <th>Treatment Content of Defect</th>
-//                 <th>Dis-assembled/Dis-inserted by:</th>
-//             </tr>
-//         </thead>
-//         <tbody class="mb-0" id="defect_table_data" style="background: #F9F9F9;">';
-
-//     $results_per_page = 10;
-
-//     $page_per_result = ($current_page - 1) * $results_per_page;
-
-//     $c = $page_first_result;
-
-//     $query = "SELECT * FROM t_defect_record_f LIMIT " . $page_first_result . ", " . $results_per_page;
-//     $stmt = $conn->prepare($query);
-//     $stmt->execute();
-
-//     if ($stmt->rowCount() > 0) {
-//         foreach ($stmt->fetchALL() as $l) {
-//             $c++;
-//             echo '<tr style="cursor:pointer;" class="modal-trigger" onclick="load_mancost_table(&quot;' . $l['id'] . '~!~' . $l['defect_id'] . '&quot;)">';
-//             echo '<td style="text-align:center;">' . $c . '</td>';
-//             echo '<td style="text-align:center;">' . $l['line_no'] . '</td>';
-//             echo '<td style="text-align:center;">' . $l['category'] . '</td>';
-//             echo '<td style="text-align:center;">' . $l['date_detected'] . '</td>';
-//             echo '<td style="text-align:center;">' . $l['issue_no_tag'] . '</td>';
-//             echo '<td style="text-align:center;">' . $l['repairing_date'] . '</td>';
-//             echo '<td style="text-align:center;">' . $l['car_maker'] . '</td>';
-//             echo '<td style="text-align:center;">' . $l['product_name'] . '</td>';
-//             echo '<td style="text-align:center;">' . $l['lot_no'] . '</td>';
-//             echo '<td style="text-align:center;">' . $l['serial_no'] . '</td>';
-//             echo '<td style="text-align:center;">' . $l['discovery_process'] . '</td>';
-//             echo '<td style="text-align:center;">' . $l['discovery_id_num'] . '</td>';
-//             echo '<td style="text-align:center;">' . $l['discovery_person'] . '</td>';
-//             echo '<td style="text-align:center;">' . $l['occurrence_process'] . '</td>';
-//             echo '<td style="text-align:center;">' . $l['occurrence_shift'] . '</td>';
-//             echo '<td style="text-align:center;">' . $l['occurrence_id_num'] . '</td>';
-//             echo '<td style="text-align:center;">' . $l['occurrence_person'] . '</td>';
-//             echo '<td style="text-align:center;">' . $l['outflow_process'] . '</td>';
-//             echo '<td style="text-align:center;">' . $l['outflow_shift'] . '</td>';
-//             echo '<td style="text-align:center;">' . $l['outflow_id_num'] . '</td>';
-//             echo '<td style="text-align:center;">' . $l['outflow_person'] . '</td>';
-//             echo '<td style="text-align:center;">' . $l['defect_category'] . '</td>';
-//             echo '<td style="text-align:center;">' . $l['sequence_num'] . '</td>';
-//             echo '<td style="text-align:center;">' . $l['defect_cause'] . '</td>';
-//             echo '<td style="text-align:left;">' . $l['defect_detail_content'] . '</td>';
-//             echo '<td style="text-align:left;">' . $l['defect_treatment_content'] . '</td>';
-//             echo '<td style="text-align:center;">' . $l['dis_assembled_by'] . '</td>';
-//             echo '</tr>';
-//         }
-//     } else {
-//         echo '<tr>';
-//         echo '<td colspan="10" style="text-align:center; color:red;">No Record Found</td>';
-//         echo '</tr>';
-//     }
-//     echo '</tbody>';
-// }
-
-// if ($method == 'rp_record_list_pagination') {
-//     $record_type = $_POST['record_type'];
-//     $drm_keyword = $_POST['drm_keyword'];
-//     $date_from = $_POST['date_from'];
-//     $date_to = $_POST['date_to'];
-
-//     $search_arr = array(
-//         "search_record_type" => $record_type,
-//         "drm_keyword" => $drm_keyword,
-//         "date_from_search_defect" => $date_from,
-//         "date_to_search_defect" => $date_to
-//     );
-
-//     $results_per_page = 10;
-//     $number_of_result = intval(count_record_rp_list($search_arr, $conn));
-
-//     //determine the total number of pages available
-//     $number_of_page = ceil($number_of_result / $results_per_page);
-
-//     for ($page = 1; $page <= $number_of_page; $page++) {
-//         echo '<option value="' . $page . '">' . $page . '</option>';
-//     }
-// }
-
-// if ($method == 'record_rp_list_last_page') {
-//     $record_type = $_POST['record_type'];
-//     $drm_keyword = $_POST['drm_keyword'];
-//     $date_from = $_POST['date_from'];
-//     $date_to = $_POST['date_to'];
-
-//     $search_arr = array(
-//         "search_record_type" => $record_type,
-//         "drm_keyword" => $drm_keyword,
-//         "date_from_search_defect" => $date_from,
-//         "date_to_search_defect" => $date_to
-//     );
-
-//     $results_per_page = 10;
-//     $number_of_result = intval(count_record_rp_list($search_arr, $conn));
-
-//     //determine the total number of pages available
-//     $number_of_page = ceil($number_of_result / $results_per_page);
-
-//     echo $number_of_page;
-// }
-// ==================================================================
 // fetch option record type
 if ($method == 'fetch_opt_record_type_dr') {
     $query = "SELECT `record_name` FROM `m_record_type` ORDER BY record_name ASC";
@@ -467,9 +271,6 @@ if ($method == 'fetch_opt_portion_treatment_mc_only') {
         echo '<option>Select the portion treatment</option>';
     }
 }
-
-
-
 
 // ==================================================================
 // generate random id for unique defect ID
@@ -819,6 +620,33 @@ if ($method == 'load_mancost_table_data') {
 //     }
 //     echo '</tbody>';
 // }
+
+// function fetch_qr_setting($conn)
+// {
+//     $query = "SELECT product_name_start, product_name_length, lot_no_start, lot_no_length, serial_no_start, serial_no_length FROM m_car_maker";
+//     $stmt = $conn->query($query);
+
+//     $setting = array();
+
+//     if ($stmt->rowCount() > 0) {
+//         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+//             $setting[] = $row; // Append each row data to the $setting array
+//         }
+//     } else {
+//         echo "0 results";
+//     }
+//     // Set the connection to null to close it
+//     $conn = null;
+
+//     return $setting;
+// }
+
+// $qr_setting = fetch_qr_setting($conn);
+
+// echo "<script>";
+// echo "var qr_setting = " . json_encode($qr_setting) . ";";
+// echo "</script>";
+
 
 // search keyword in record
 if ($method == 'search_keyword') {

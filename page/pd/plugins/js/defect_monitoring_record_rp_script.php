@@ -433,7 +433,7 @@
         });
     }
 
-    const load_mancost_table_data_last_page = () => { 
+    const load_mancost_table_data_last_page = () => {
         var defect_id = sessionStorage.getItem('load_defect_id');
         var current_page = parseInt(sessionStorage.getItem('t_table_pagination'));
 
@@ -1111,6 +1111,7 @@
                 document.getElementById('product_name').value = qrCode.substring(10, 35);
                 document.getElementById('lot_no').value = qrCode.substring(35, 41);
                 document.getElementById('serial_no').value = qrCode.substring(41, 50);
+
                 document.getElementById('qr_scan').value = '';
             } else if (qrCode.length > 0) {
                 console.error('Invalid QR code length:', qrCode.length);
@@ -1129,6 +1130,62 @@
             }
         });
     }
+
+    // function handleSuzukiScan() {
+    //     console.log('Suzuki is selected');
+    //     document.getElementById('qr_scan').addEventListener('keyup', function (e) {
+    //         var qrCode = this.value;
+    //         var exactLength = qrCode.length;
+
+    //         console.log('Exact Length:', exactLength);
+
+    //         if (exactLength >= 50) {
+    //             e.preventDefault();
+
+    //             var setting = qr_setting;
+
+    //             if (setting) {
+    //                 var product_start = setting.product_name_start;
+    //                 var product_length = setting.product_name_length;
+    //                 var lot_start = setting.lot_no_start;
+    //                 var lot_length = setting.lot_no_length;
+    //                 var serial_start = setting.serial_no_start;
+    //                 var serial_length = setting.serial_no_length;
+
+    //                 document.getElementById('product_name').value = qrCode.substring(product_start, product_start + product_length);
+    //                 document.getElementById('lot_no').value = qrCode.substring(lot_start, lot_start + lot_length);
+    //                 document.getElementById('serial_no').value = qrCode.substring(serial_start, serial_start + serial_length);
+    //             } else {
+    //                 console.error('QR setting is not defined or invalid');
+    //                 // You can display an error message to the user here
+    //             }
+
+    //             document.getElementById('qr_scan').value = '';
+    //         } else if (exactLength > 0) {
+    //             console.error('Invalid QR code length:', exactLength);
+
+    //             Swal.fire({
+    //                 icon: 'error',
+    //                 title: 'Invalid QR Code',
+    //                 text: 'Invalid',
+    //                 showConfirmButton: false,
+    //                 timer: 1000
+    //             }).then(function () {
+    //                 setTimeout(function () {
+    //                     document.getElementById('qr_scan').value = '';
+    //                 }, 500);
+    //             });
+    //         }
+    //     });
+    // }
+
+
+    // product_name_start
+    // product_name_length
+    // lot_no_start
+    // lot_no_length
+    // serial_no_start
+    // serial_no_length
 
     // function handleSuzukiScan() {
     //     console.log('suzuki is selected');

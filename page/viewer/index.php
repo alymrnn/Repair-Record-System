@@ -126,7 +126,7 @@ include ('plugins/navbar/index_navbar.php');
                 </div>
               </div>
               <br>
-              <div class="row mt-2">
+              <div class="row mt-2 mb-1">
                 <div class="col-12 col-sm-4 col-md-2 mb-2">
                   <!-- record type -->
                   <select name="search_v_record_type" id="search_v_record_type" autocomplete="off"
@@ -174,7 +174,11 @@ include ('plugins/navbar/index_navbar.php');
                       src="../../dist/img/export.png" style="height:19px;">&nbsp;&nbsp;Export</button>
                 </div>
               </div>
-              <br>
+
+              <p class="p-2" style="background: #FFFAD1; border-left: 3px solid #E89F4C">
+                <i>Note:</i>
+                The record/s displayed in the table below reflects <b>today's date</b> <i>(based on the "repairing date" column)</i>. Utilize the search function to view past records.
+              </p>
 
               <div class="row" id="t_viewer_defect_breadcrumb">
                 <div class="col-12">
@@ -213,7 +217,7 @@ include ('plugins/navbar/index_navbar.php');
 
               <!-- table with load more -->
               <div id="t_viewer_table_res" class="table-responsive"
-                style="height: 350px; overflow: auto; display:inline-block;">
+                style="height: 300px; overflow: auto; display:inline-block;">
                 <table id="viewer_defect_table" class="table table-sm table-head-fixed text-nowrap table-hover">
                 </table>
               </div>

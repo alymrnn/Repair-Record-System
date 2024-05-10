@@ -97,7 +97,7 @@ if ($method == 'fetch_opt_search_v_record_type') {
 function count_viewer_defect_table_data($conn)
 {
     // $query = "SELECT count(id) AS total FROM t_defect_record_f";
-    $query = "SELECT count(id) AS total FROM t_defect_record_f WHERE (BINARY qc_status = 'Verified' OR BINARY record_type = 'White Tag')";
+    $query = "SELECT count(id) AS total FROM t_defect_record_f WHERE (BINARY qc_status = 'Verified' OR BINARY record_type = 'White Tag') AND DATE(repairing_date) = CURDATE()";
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
@@ -153,7 +153,10 @@ if ($method == 'load_viewer_defect_table_data') {
 
     // $query = "SELECT * FROM t_defect_record_f ORDER BY repairing_date DESC LIMIT " . $page_first_result . ", " . $results_per_page;
     // $query = "SELECT * FROM t_defect_record_f LIMIT " . $page_first_result . ", " . $results_per_page;
-    $query = "SELECT * FROM t_defect_record_f WHERE (BINARY qc_status = 'Verified' OR BINARY record_type = 'White Tag') LIMIT " . $page_first_result . ", " . $results_per_page;
+
+    $query = "SELECT * FROM t_defect_record_f WHERE (BINARY qc_status = 'Verified' OR BINARY record_type = 'White Tag') AND DATE(repairing_date) = CURDATE() LIMIT " . $page_first_result . ", " . $results_per_page;
+
+    // $query = "SELECT * FROM t_defect_record_f WHERE (BINARY qc_status = 'Verified' OR BINARY record_type = 'White Tag') LIMIT " . $page_first_result . ", " . $results_per_page;
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
@@ -492,6 +495,7 @@ if ($method == 'viewer_defect_search_keyword') {
             <tr>
             <th>#</th>
             <th>Line No.</th>
+            <th>Category</th>
             <th>Date Detected</th>
             <th>Issue No. Tag</th>
             <th>Repairing Date</th>
@@ -581,15 +585,13 @@ if ($method == 'viewer_defect_search_keyword') {
     $stmt = $conn->prepare($query);
     $stmt->execute([$defect_category, $discovery_process, $occurrence_process, $outflow_process, $car_maker, $line_no, $product_name, $lot_no, $serial_no, $record_type]);
 
-    // $params = [$defect_category, $discovery_process, $occurrence_process, $outflow_process, $car_maker, $line_no, $product_name, $lot_no, $serial_no, $record_type];
-    // $stmt->execute($params);
-
     if ($stmt->rowCount() > 0) {
         foreach ($stmt->fetchAll() as $row) {
             $c++;
             echo '<tr style="cursor:pointer;" class="modal-trigger" onclick="load_viewer_mancost_table(&quot;' . $row['id'] . '~!~' . $row['defect_id'] . '&quot;)">';
             echo '<td style="text-align:center;">' . $c . '</td>';
             echo '<td style="text-align:center;">' . $row['line_no'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['category'] . '</td>';
             echo '<td style="text-align:center;">' . $row['date_detected'] . '</td>';
             echo '<td style="text-align:center;">' . $row['issue_no_tag'] . '</td>';
             echo '<td style="text-align:center;">' . $row['repairing_date'] . '</td>';
