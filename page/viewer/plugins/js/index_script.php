@@ -561,7 +561,7 @@
         var product_name = document.getElementById("search_v_product_name").value.trim();
         var lot_no = document.getElementById("search_v_lot_no").value.trim();
         var serial_no = document.getElementById("search_v_serial_no").value.trim();
-        var v_defect_keyword = document.getElementById("v_defect_keyword").value.trim();
+        // var v_defect_keyword = document.getElementById("v_defect_keyword").value.trim();
 
         var record_type = document.getElementById("search_v_record_type").value.trim();
 
@@ -579,7 +579,7 @@
             "&product_name=" + product_name +
             "&lot_no=" + lot_no +
             "&serial_no=" + serial_no +
-            "&v_defect_keyword=" + v_defect_keyword +
+            // "&v_defect_keyword=" + v_defect_keyword +
             "&record_type=" + record_type +
             "&date_from=" + date_from +
             "&date_to=" + date_to,

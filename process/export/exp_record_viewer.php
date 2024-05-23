@@ -12,7 +12,7 @@ $product_name = $_GET['product_name'];
 $lot_no = $_GET['lot_no'];
 $serial_no = $_GET['serial_no'];
 $record_type = $_GET['record_type'];
-$v_defect_keyword = $_GET['v_defect_keyword'];
+// $v_defect_keyword = $_GET['v_defect_keyword'];
 $date_from = $_GET['date_from'];
 $date_to = $_GET['date_to'];
 
