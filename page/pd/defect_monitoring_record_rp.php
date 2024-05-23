@@ -107,7 +107,7 @@
               <!-- search button -->
               <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
               <button class="btn btn-block d-flex justify-content-left" id="search_record_btn"
-                onclick="search_keyword()"
+                onclick="load_defect_table(1)"
                 style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"
                 onmouseover="this.style.backgroundColor='#1B5541'; this.style.color='#FFF';"
                 onmouseout="this.style.backgroundColor='#226F54'; this.style.color='#FFF';"><i class="fas fa-search"
