@@ -2,7 +2,7 @@
 //SESSION
 include '../../process/login.php';
 
-if (isset($_SESSION['emp_no'])) {
+if (!isset($_SESSION['emp_no'])) {
     header('location:../../');
     exit;
 } else if ($_SESSION['role'] == 'QC') {
