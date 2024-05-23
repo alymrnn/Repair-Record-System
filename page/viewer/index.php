@@ -183,7 +183,7 @@ include ('plugins/navbar/index_navbar.php');
                     onmouseout="this.style.backgroundColor='#0267c1'; this.style.color='#FFF';"><i
                       class="fas fa-download" style="margin-top: 2px;"></i>&nbsp;&nbsp;Export</button>
                 </div>
-                <div class="col-12 col-sm-4 col-md-2 mb-2">
+                <div class="col-12 col-sm-4 col-md-1 mb-2">
                   <!-- delete button -->
                   <button class="btn btn-block d-flex justify-content-left" id="search_btn"
                     onclick="clear_search_input()"
@@ -191,6 +191,15 @@ include ('plugins/navbar/index_navbar.php');
                     onmouseover="this.style.backgroundColor='#2D2D2D'; this.style.color='#FFF';"
                     onmouseout="this.style.backgroundColor='#474747'; this.style.color='#FFF';">
                     <i class="fas fa-trash" style="margin-top: 2px;"></i>&nbsp;&nbsp;Clear All</button>
+                </div>
+                <div class="col-12 col-sm-4 col-md-1 mb-2">
+                  <!-- delete button -->
+                  <button class="btn btn-block d-flex justify-content-left" id="search_btn"
+                    onclick="refresh_page()"
+                    style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;"
+                    onmouseover="this.style.backgroundColor='#2D2D2D'; this.style.color='#FFF';"
+                    onmouseout="this.style.backgroundColor='#474747'; this.style.color='#FFF';">
+                    <i class="fas fa-sync-alt" style="margin-top: 2px;"></i>&nbsp;&nbsp;Refresh</button>
                 </div>
               </div>
               <br>

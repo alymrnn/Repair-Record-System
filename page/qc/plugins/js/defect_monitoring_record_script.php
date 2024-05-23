@@ -754,4 +754,8 @@
 
         load_qc_defect_table(1);
     }
+
+    function refresh_page() {
+        location.reload();
+    }
 </script>

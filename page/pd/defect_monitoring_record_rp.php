@@ -64,7 +64,7 @@
                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
                 class="pl-3">
             </div>
-            <div class="col-12 col-sm-4 col-md-2 mb-2">
+            <div class="col-12 col-sm-4 col-md-1 mb-2">
               <!-- delete button -->
               <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
               <button class="btn btn-block d-flex justify-content-left" id="search_btn" onclick="clear_search_input()"
@@ -72,6 +72,15 @@
                 onmouseover="this.style.backgroundColor='#2D2D2D'; this.style.color='#FFF';"
                 onmouseout="this.style.backgroundColor='#474747'; this.style.color='#FFF';">
                 <i class="fas fa-trash" style="margin-top: 2px;"></i>&nbsp;&nbsp;Clear All</button>
+            </div>
+            <div class="col-12 col-sm-4 col-md-1 mb-2">
+              <!-- delete button -->
+              <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
+              <button class="btn btn-block d-flex justify-content-left" id="search_btn" onclick="refresh_page()"
+                style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;"
+                onmouseover="this.style.backgroundColor='#2D2D2D'; this.style.color='#FFF';"
+                onmouseout="this.style.backgroundColor='#474747'; this.style.color='#FFF';">
+                <i class="fas fa-sync-alt" style="margin-top: 2px;"></i>&nbsp;&nbsp;Refresh</button>
             </div>
           </div>
           <div class="row mb-4">
