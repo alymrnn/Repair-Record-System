@@ -488,12 +488,12 @@ if ($method == 'load_defect_table_data') {
         $conditions[] = "serial_no LIKE '$serial_no%'";
     }
 
-    $query .= " ORDER BY repairing_date DESC";
-
     // Combine conditions with the main query
     if (!empty($conditions)) {
         $query .= " WHERE " . implode(" AND ", $conditions);
     }
+
+    $query .= " ORDER BY repairing_date DESC";
 
     // Add limit to the query
     $query .= " LIMIT " . $page_first_result . ", " . $results_per_page;

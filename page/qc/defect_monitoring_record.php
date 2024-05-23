@@ -40,7 +40,7 @@
             <!-- /.card header -->
             <div class="card-body">
               <div class="row">
-                <div class="col-12 col-sm-6 col-md-6">
+                <div class="col-12 col-sm-6 col-md-4">
                   <!-- qr scan -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Scan here</label>
                   <input type="text" id="qr_scan_qc" class="form-control pl-3" autocomplete="off"
@@ -68,6 +68,16 @@
                     autocomplete="off"
                     style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
                     class="pl-3">
+                </div>
+                <div class="col-12 col-sm-4 col-md-2 mb-2">
+                  <!-- delete button -->
+                  <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
+                  <button class="btn btn-block d-flex justify-content-left" id="search_btn"
+                    onclick="clear_search_input()"
+                    style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;"
+                    onmouseover="this.style.backgroundColor='#2D2D2D'; this.style.color='#FFF';"
+                    onmouseout="this.style.backgroundColor='#474747'; this.style.color='#FFF';">
+                    <i class="fas fa-trash" style="margin-top: 2px;"></i>&nbsp;&nbsp;Clear All</button>
                 </div>
               </div>
               <div class="row mt-2">

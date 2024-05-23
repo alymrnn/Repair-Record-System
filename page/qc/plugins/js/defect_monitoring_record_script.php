@@ -743,4 +743,15 @@
         document.getElementById("remarks_mc_update").value = '';
     }
 
+    const clear_search_input = () => {
+        document.getElementById("search_ad_product_name").value = '';
+        document.getElementById("search_ad_lot_no").value = '';
+        document.getElementById("search_ad_serial_no").value = '';
+        document.getElementById("search_ad_record_type").value = '';
+        document.getElementById("search_ad_line_no").value = '';
+        document.getElementById("search_ad_date_from").value = '';
+        document.getElementById("search_ad_date_to").value = '';
+
+        load_qc_defect_table(1);
+    }
 </script>

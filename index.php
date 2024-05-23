@@ -75,34 +75,30 @@ if (isset($_SESSION['emp_no'])) {
 
 <body class="hold-transition login-page">
     <div class="login-box">
-        <!-- /.login-logo -->
         <div class="container d-flex justify-content-center align-items-center min-vh-100">
             <div class="card shadow-sm" style="border-radius: 10px;background: #F4F4F4; max-width: 100%; width: 400px;">
                 <div class="card-body login-card-body" style="border-radius: 5px; background:#eaeaea">
                     <div class="login-logo mt-3 text-center">
-                        <img class="pb-1" src="dist/img/tool-box.png" style="height: 130px;" alt="Tool Box">
-                        <h2 class="pb-2" style="color: #000; font-size: 25px; font-weight: 600;">Repair Record System
+                        <img class="pb-1" src="dist/img/tool-box.png" style="height: 120px;" alt="Tool Box">
+                        <h2 class="pb-2" style="color: #000; font-size: 25px; font-weight: 600;">REPAIR RECORD<br>SYSTEM
                         </h2>
                     </div>
-                    <p class="login-box-msg px-4 pb-3 text-left" style="color: #000; font-size: 15px;">
-                        Login to start your session
-                    </p>
 
                     <form class="px-3" method="POST" id="login_form">
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" id="emp_no" name="emp_no" placeholder="Employee ID"
                                 autocomplete="off" required
                                 style="font-size: 14px; border-radius: 3px; border: 1px solid #474747; background: #eaeaea;"
-                                onfocus="changeBorderColor(this, '#E89F4C')"
-                                oninput="changeBorderColor(this, '#E89F4C')"
+                                onfocus="changeBorderColor(this, '#C97719')"
+                                oninput="changeBorderColor(this, '#C97719')"
                                 onblur="changeBorderColor(this, '#474747')">
                         </div>
                         <div class="input-group mb-3">
                             <input type="password" class="form-control" id="password" name="password"
                                 placeholder="Password" autocomplete="off" required
                                 style="font-size: 14px; border-radius: 3px; border: 1px solid #474747; background: #eaeaea;"
-                                onfocus="changeBorderColor(this, '#E89F4C')"
-                                oninput="changeBorderColor(this, '#E89F4C')"
+                                onfocus="changeBorderColor(this, '#C97719')"
+                                oninput="changeBorderColor(this, '#C97719')"
                                 onblur="changeBorderColor(this, '#474747')">
                         </div>
                         <div class="input-group mb-3">
@@ -130,7 +126,7 @@ if (isset($_SESSION['emp_no'])) {
 
 <script>
     function changeBorderColor(element, color) {
-        element.style.borderColor = color;  // Change the border color of the input field
+        element.style.borderColor = color;
     }
 </script>
 

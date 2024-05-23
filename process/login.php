@@ -39,7 +39,6 @@ if (isset($_POST['login_btn'])) {
 }
 
 if (isset($_POST['Logout'])) {
-    session_unset();
     session_destroy();
     header('location: ../../');
 }

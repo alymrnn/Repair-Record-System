@@ -2531,4 +2531,16 @@
         // Set the result in the 'material_cost' field
         $("#material_cost_mc").val(resultWithSymbol);
     };
+
+    const clear_search_input = () => {
+        document.getElementById("search_product_name").value = '';
+        document.getElementById("search_lot_no").value = '';
+        document.getElementById("search_serial_no").value = '';
+        document.getElementById("search_record_type").value = '';
+        document.getElementById("drm_keyword").value = '';
+        document.getElementById("date_from_search_defect").value = '';
+        document.getElementById("date_to_search_defect").value = '';
+
+        load_defect_table(1);
+    }
 </script>
