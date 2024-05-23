@@ -35,6 +35,36 @@
         </div>
         <!-- /.card header -->
         <div class="card-body">
+          <div class="row mt-2">
+            <div class="col-12 col-sm-6 col-md-6 mb-2">
+              <!-- qr scan -->
+              <label style="font-weight:normal;margin:0;padding:0;color:#000;">Scan here</label>
+              <input type="text" id="qr_scan_pd" class="form-control pl-3" autocomplete="off"
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;">
+            </div>
+            <div class="col-12 col-sm-6 col-md-2 mb-2">
+              <!-- product name -->
+              <label style="font-weight:normal;margin:0;padding:0;color:#000;">Product Name</label>
+              <input type="text" id="search_product_name" class="form-control" placeholder="Product Name"
+                autocomplete="off"
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                class="pl-3">
+            </div>
+            <div class="col-12 col-sm-6 col-md-2 mb-2">
+              <!-- lot  no -->
+              <label style="font-weight:normal;margin:0;padding:0;color:#000;">Lot No.</label>
+              <input type="text" id="search_lot_no" class="form-control" placeholder="Lot No." autocomplete="off"
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                class="pl-3">
+            </div>
+            <div class="col-12 col-sm-6 col-md-2 mb-2">
+              <!-- serial no -->
+              <label style="font-weight:normal;margin:0;padding:0;color:#000;">Serial No.</label>
+              <input type="text" id="search_serial_no" class="form-control" placeholder="Serial No." autocomplete="off"
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                class="pl-3">
+            </div>
+          </div>
           <div class="row mb-4">
             <div class="col-12 col-sm-2">
               <!-- record type -->
@@ -44,6 +74,13 @@
                 class="pl-1" required>
                 <option></option>
               </select>
+            </div>
+            <div class="col-12 col-sm-2">
+              <!-- search keyword input -->
+              <label style="font-weight:normal;margin:0;padding:0;font-size:15px">Line No.</label>
+              <input type="text" id="drm_keyword" class="form-control" placeholder="Enter line no." autocomplete="off"
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                class="pl-3">
             </div>
             <div class="col-12 col-sm-2">
               <!-- date from -->
@@ -58,21 +95,14 @@
                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px;">
             </div>
             <div class="col-12 col-sm-2">
-              <!-- search keyword input -->
-              <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
-              <input type="text" id="drm_keyword" class="form-control" placeholder="Enter Keyword" autocomplete="off"
-                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
-                class="pl-3">
-            </div>
-            <div class="col-12 col-sm-2">
               <!-- search button -->
               <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
               <button class="btn btn-block d-flex justify-content-left" id="search_record_btn"
                 onclick="search_keyword()"
                 style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"
                 onmouseover="this.style.backgroundColor='#1B5541'; this.style.color='#FFF';"
-                onmouseout="this.style.backgroundColor='#226F54'; this.style.color='#FFF';"><img
-                  src="../../dist/img/search.png" style="height:19px;">&nbsp;Search</button>
+                onmouseout="this.style.backgroundColor='#226F54'; this.style.color='#FFF';"><i class="fas fa-search"
+                  style="margin-top: 2px;"></i>&nbsp;&nbsp;Search</button>
             </div>
             <div class="col-12 col-sm-2">
               <!-- add defect record and mancost monitoring button -->
@@ -81,8 +111,8 @@
                 data-target="#add_defect_mancost"
                 style="color:#fff;height:34px;border-radius:.25rem;background: #0069B0;font-size:15px;font-weight:normal;"
                 onmouseover="this.style.backgroundColor='#024E92'; this.style.color='#FFF';"
-                onmouseout="this.style.backgroundColor='#0267c1'; this.style.color='#FFF';"><img
-                  src="../../dist/img/add.png" style="height:19px;">&nbsp;Add Record</button>
+                onmouseout="this.style.backgroundColor='#0267c1'; this.style.color='#FFF';"><i
+                  class="fas fa-plus-circle" style="margin-top: 2px;"></i>&nbsp;&nbsp;Add Record</button>
             </div>
           </div>
           <!-- /.row end -->
@@ -116,10 +146,6 @@
       </div>
     </div>
   </section>
-
-  <!-- return to top button -->
-  <!-- <button id="back-to-top" type="button" class="return-to-top"><i class="nav-icon-top nav-icon fas fa-caret-square-up"></i></button> -->
-
 </div>
 
 <?php include 'plugins/footer.php'; ?>

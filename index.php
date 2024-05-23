@@ -29,6 +29,8 @@ if (isset($_SESSION['emp_no'])) {
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <!-- Sweet Alert -->
+    <link rel="stylesheet" href="plugins/sweetalert2/dist/sweetalert2.min.css">
 </head>
 
 <style type="text/css">
@@ -46,64 +48,91 @@ if (isset($_SESSION['emp_no'])) {
     body {
         font-family: 'Poppins', sans-serif;
     }
+
+    @media (max-width: 576px) {
+        .card {
+            width: 90%;
+            margin: 10px;
+        }
+
+        .login-card-body {
+            padding: 20px;
+        }
+
+        .login-logo img {
+            height: 100px;
+        }
+
+        .login-logo h2 {
+            font-size: 20px;
+        }
+
+        .login-box-msg {
+            font-size: 14px;
+        }
+    }
 </style>
 
 <body class="hold-transition login-page">
     <div class="login-box">
         <!-- /.login-logo -->
-        <div class="card"
-            style="border-radius: 5px;border: 2px solid #000;background: #F4F4F4;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); height:530px; width:400px">
-            <div class="card-body login-card-body" style="border-radius: 5px; background:#eaeaea">
-                <div class="login-logo mt-3">
-                    <img class="pb-1" src="dist/img/tool-box.png" style="height:130px;">
-                    <h2 class="pb-2"
-                        style="color: #000;font-size: 25px;font-style: normal;font-weight: 600;line-height: normal;">
-                        Repair Record System</h2>
+        <div class="container d-flex justify-content-center align-items-center min-vh-100">
+            <div class="card shadow-sm" style="border-radius: 10px;background: #F4F4F4; max-width: 100%; width: 400px;">
+                <div class="card-body login-card-body" style="border-radius: 5px; background:#eaeaea">
+                    <div class="login-logo mt-3 text-center">
+                        <img class="pb-1" src="dist/img/tool-box.png" style="height: 130px;" alt="Tool Box">
+                        <h2 class="pb-2" style="color: #000; font-size: 25px; font-weight: 600;">Repair Record System
+                        </h2>
+                    </div>
+                    <p class="login-box-msg px-4 pb-3 text-left" style="color: #000; font-size: 15px;">
+                        Login to start your session
+                    </p>
+
+                    <form class="px-3" method="POST" id="login_form">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="emp_no" name="emp_no" placeholder="Employee ID"
+                                autocomplete="off" required
+                                style="font-size: 14px; border-radius: 3px; border: 1px solid #474747; background: #eaeaea;"
+                                onfocus="changeBorderColor(this, '#E89F4C')"
+                                oninput="changeBorderColor(this, '#E89F4C')"
+                                onblur="changeBorderColor(this, '#474747')">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="password" class="form-control" id="password" name="password"
+                                placeholder="Password" autocomplete="off" required
+                                style="font-size: 14px; border-radius: 3px; border: 1px solid #474747; background: #eaeaea;"
+                                onfocus="changeBorderColor(this, '#E89F4C')"
+                                oninput="changeBorderColor(this, '#E89F4C')"
+                                onblur="changeBorderColor(this, '#474747')">
+                        </div>
+                        <div class="input-group mb-3">
+                            <button type="submit" class="login-btn btn btn-block" name="login_btn" value="login"
+                                style="border-radius: 20px; background: #E89F4C; color: #000;"
+                                onmouseover="this.style.backgroundColor='#EA922E'; this.style.color='#000';"
+                                onmouseout="this.style.backgroundColor='#E89F4C'; this.style.color='#000';">LOGIN
+                            </button>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <a href="#"><button type="button" class="btn btn-block btn-sm"
+                                    style="border-radius: 3px; background: #3E3E3E; width: 190px; color: #FFF;"
+                                    onmouseover="this.style.backgroundColor='#242424'; this.style.color='#FFF';"
+                                    onmouseout="this.style.backgroundColor='#3E3E3E'; this.style.color='#FFF';">Work
+                                    Instruction</button></a>
+                        </div>
+                        <a href="page/viewer/" class="nav-link mt-2 d-flex justify-content-center"
+                            style="font-size: 15px;">Viewer Page</a>
+                    </form>
                 </div>
-                <p class="login-box-msg px-4 pb-3"
-                    style="padding:0 0 0 0;text-align:left;color: #000;font-size: 15px;font-style: normal;font-weight: 400;line-height: normal;">
-                    Login to start your session</p>
-
-                <form class="px-3" method="POST" id="login_form">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="emp_no" name="emp_no" placeholder="Employee ID"
-                            autocomplete="off"
-                            style="font-size: 14px;border-radius: 5px;border: 2px solid #000;background: #eaeaea;"
-                            required>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password"
-                            autocomplete="off"
-                            style="font-size: 14px;border-radius: 5px;border: 2px solid #000;background: #eaeaea;"
-                            required>
-                    </div>
-                    <!-- /.col -->
-                    <div class="input-group mb-3">
-                        <button type="submit" class="login-btn btn btn-block" name="login_btn" value="login"
-                            style="border-radius: 5px;background: #E89F4C;color: #000;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);"
-                            onmouseover="this.style.backgroundColor='#EA922E'; this.style.color='#000';"
-                            onmouseout="this.style.backgroundColor='#E89F4C'; this.style.color='#000';">Login</button>
-                    </div>
-                    <!-- /.col -->
-
-                    <div class="d-flex justify-content-center">
-                        <a href="#"><button type="submit" class="btn btn-block btn-sm" name="login_btn" value="login"
-                                style="border-radius: 5px;background: #3E3E3E;width:190px;color: #FFF;"
-                                onmouseover="this.style.backgroundColor='#242424'; this.style.color='#FFF';"
-                                onmouseout="this.style.backgroundColor='#3E3E3E'; this.style.color='#FFF';">Work
-                                Instruction</button></a>
-                    </div>
-
-                    <!-- <a href="page/viewer/" class="pt-4 d-flex justify-content-center"
-                        style="color: #0069B0;text-decoration-line: underline;font-size: 14px;">Return to Home Page</a> -->
-
-                    <a href="page/viewer/" class="nav-link mt-2 d-flex justify-content-center"
-                        style="font-size: 15px;">Viewer Page</a>
             </div>
         </div>
     </div>
-    </div>
 </body>
+
+<script>
+    function changeBorderColor(element, color) {
+        element.style.borderColor = color;  // Change the border color of the input field
+    }
+</script>
 
 <!-- jQuery -->
 <script src="plugins/jquery/dist/jquery.min.js"></script>

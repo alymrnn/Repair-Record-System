@@ -23,7 +23,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="col-md-12">
-            <div class="card card-light" style="background: #f8f9fa; border-top: 2px solid #1b263b;">
+            <div class="card card-light" style="background: #fff; border-top: 2px solid #1b263b;">
                 <div class="card-header">
                     <h3 class="card-title"><img src="../../dist/img/qr-code2.png" style="height:28px;">&ensp;QR Settings
                         Masterlist Table</h3>
@@ -38,17 +38,15 @@
                 <!-- /.card-header -->
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-12 col-sm-10">
-                        </div>
                         <div class="col-12 col-sm-2">
                             <!-- add qr setting button -->
                             <a class="btn btn-block d-flex justify-content-left" data-toggle="modal"
                                 data-target="#add_car_settings"
-                                style="color:#fff;height:34px;border-radius:.25rem;background: #f06543;font-size:15px;font-weight:normal;"><img
-                                    src="../../dist/img/car.png" style="height:22px;">&nbsp;Add QR Settings</a>
+                                style="color:#fff;height:34px;border-radius:.25rem;background: #f06543;font-size:15px;font-weight:normal;"><i
+                                    class="fas fa-car" style="margin-top: 2px;"></i>&nbsp;&nbsp;Add QR Settings</a>
                         </div>
+                        <div class="col-12 col-sm-10"></div>
                     </div>
-
 
                     <!-- table -->
                     <div id="" class="card-body table-responsive m-0 p-0" style="max-height: 500px;">

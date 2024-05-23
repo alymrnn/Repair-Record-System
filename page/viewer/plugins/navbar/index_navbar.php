@@ -37,7 +37,7 @@
 <nav class="main-header navbar navbar-expand-md border-bottom-0" style="background:#292929;">
   <a href="" class="navbar-brand ml-2">
     <img src="../../dist/img/tool-box.png" alt="Repair Record System Logo" class="brand-image" style="opacity: .8">
-    <span class="brand-text font-weight-normal text-light" style="color: white;">Repair Record System </span>
+    <span class="brand-text font-weight-normal text-light" style="color: white;">REPAIR RECORD SYSTEM</span>
   </a>
 
   <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse"
@@ -61,7 +61,7 @@
         style="border-radius: 3px;background: #E89F4C;color: #000;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); width:100px;"
         onmouseover="this.style.backgroundColor='#EA922E'; this.style.color='#000';"
         onmouseout="this.style.backgroundColor='#E89F4C'; this.style.color='#000';">
-        Login</a>
+        LOGIN</a>
     </li>
   </ul>
 </nav>

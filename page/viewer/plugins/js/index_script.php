@@ -1,12 +1,64 @@
 <script type="text/javascript">
     $(document).ready(function () {
-        load_viewer_defect_table();
+        load_viewer_defect_table(1);
         fetch_opt_search_v_defect_category();
         fetch_opt_search_v_discovery_process();
         fetch_opt_search_v_occurrence_process();
         fetch_opt_search_v_outflow_process();
         fetch_opt_search_v_car_maker();
         fetch_opt_search_v_record_type();
+    });
+
+    document.getElementById("search_v_discovery_process").addEventListener("change", e => {
+        load_viewer_defect_table(1);
+    });
+
+    document.getElementById("search_v_occurrence_process").addEventListener("change", e => {
+        load_viewer_defect_table(1);
+    });
+
+    document.getElementById("search_v_outflow_process").addEventListener("change", e => {
+        load_viewer_defect_table(1);
+    });
+
+    document.getElementById("search_v_defect_category").addEventListener("change", e => {
+        load_viewer_defect_table(1);
+    });
+
+    document.getElementById("search_v_car_maker").addEventListener("change", e => {
+        load_viewer_defect_table(1);
+    });
+
+    document.getElementById("search_v_line_no").addEventListener("keyup", e => {
+        load_viewer_defect_table(1);
+    });
+
+    document.getElementById("search_v_product_name").addEventListener("keyup", e => {
+        load_viewer_defect_table(1);
+    });
+
+    document.getElementById("search_v_lot_no").addEventListener("keyup", e => {
+        load_viewer_defect_table(1);
+    });
+
+    document.getElementById("search_v_serial_no").addEventListener("keyup", e => {
+        load_viewer_defect_table(1);
+    });
+
+    document.getElementById("search_v_record_type").addEventListener("change", e => {
+        load_viewer_defect_table(1);
+    });
+
+    document.getElementById("search_v_defect_cause").addEventListener("change", e => {
+        load_viewer_defect_table(1);
+    });
+
+    document.getElementById("date_from_search_v_defect").addEventListener("change", e => {
+        load_viewer_defect_table(1);
+    });
+
+    document.getElementById("date_to_search_v_defect").addEventListener("change", e => {
+        load_viewer_defect_table(1);
     });
 
     // fetch defect category defect record
@@ -130,14 +182,77 @@
         }
     }
 
+    document.getElementById('qr_scan').addEventListener('input', function (e) {
+        var qrCode = this.value;
+        console.log("QR Code Scanned:", qrCode);
+
+        if (qrCode.length === 50) {
+            const productNameField = document.getElementById('search_v_product_name');
+            const lotNoField = document.getElementById('search_v_lot_no');
+            const serialNoField = document.getElementById('search_v_serial_no');
+
+            if (productNameField && lotNoField && serialNoField) {
+                productNameField.value = qrCode.substring(10, 35);
+                lotNoField.value = qrCode.substring(35, 41);
+                serialNoField.value = qrCode.substring(41, 50);
+
+                console.log("Product Name Set:", productNameField.value);
+                console.log("Lot No Set:", lotNoField.value);
+                console.log("Serial No Set:", serialNoField.value);
+
+                load_viewer_defect_table_data(1);
+            } else {
+                console.error("One or more elements were not found in the DOM.");
+            }
+
+            this.value = '';
+        } else if (qrCode.length > 50) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid QR Code',
+                text: 'Invalid',
+                showConfirmButton: false,
+                timer: 1000
+            });
+            this.value = '';
+        }
+    });
+
     const load_viewer_defect_table_data_last_page = () => {
         var current_page = parseInt(sessionStorage.getItem('t_table_pagination'));
+        var defect_category = document.getElementById("search_v_defect_category").value.trim();
+        var discovery_process = document.getElementById("search_v_discovery_process").value.trim();
+        var occurrence_process = document.getElementById("search_v_occurrence_process").value.trim();
+        var outflow_process = document.getElementById("search_v_outflow_process").value.trim();
+        var car_maker = document.getElementById("search_v_car_maker").value.trim();
+        var line_no = document.getElementById("search_v_line_no").value.trim();
+        var product_name = document.getElementById("search_v_product_name").value.trim();
+        var lot_no = document.getElementById("search_v_lot_no").value.trim();
+        var serial_no = document.getElementById("search_v_serial_no").value.trim();
+        var record_type = document.getElementById("search_v_record_type").value.trim();
+        var defect_cause = document.getElementById("search_v_defect_cause").value.trim()
+        var date_from = document.getElementById("date_from_search_v_defect").value.trim();
+        var date_to = document.getElementById("date_to_search_v_defect").value.trim();
+
         $.ajax({
             url: '../../process/viewer/index_p.php',
             type: 'POST',
             cache: false,
             data: {
-                method: 'load_viewer_defect_table_data_last_page'
+                method: 'load_viewer_defect_table_data_last_page',
+                defect_category: defect_category,
+                discovery_process: discovery_process,
+                occurrence_process: occurrence_process,
+                outflow_process: outflow_process,
+                car_maker: car_maker,
+                line_no: line_no,
+                product_name: product_name,
+                lot_no: lot_no,
+                serial_no: serial_no,
+                record_type: record_type,
+                defect_cause: defect_cause,
+                date_from: date_from,
+                date_to: date_to
             },
             success: function (response) {
                 sessionStorage.setItem('last_page', response);
@@ -200,13 +315,40 @@
     }
 
     const load_viewer_defect_table_data = current_page => {
+        var defect_category = document.getElementById("search_v_defect_category").value.trim();
+        var discovery_process = document.getElementById("search_v_discovery_process").value.trim();
+        var occurrence_process = document.getElementById("search_v_occurrence_process").value.trim();
+        var outflow_process = document.getElementById("search_v_outflow_process").value.trim();
+        var car_maker = document.getElementById("search_v_car_maker").value.trim();
+        var line_no = document.getElementById("search_v_line_no").value.trim();
+        var product_name = document.getElementById("search_v_product_name").value.trim();
+        var lot_no = document.getElementById("search_v_lot_no").value.trim();
+        var serial_no = document.getElementById("search_v_serial_no").value.trim();
+        var record_type = document.getElementById("search_v_record_type").value.trim();
+        var defect_cause = document.getElementById("search_v_defect_cause").value.trim()
+        var date_from = document.getElementById("date_from_search_v_defect").value.trim();
+        var date_to = document.getElementById("date_to_search_v_defect").value.trim();
+
         $.ajax({
             url: '../../process/viewer/index_p.php',
             type: 'POST',
             cache: false,
             data: {
                 method: 'load_viewer_defect_table_data',
-                current_page: current_page
+                current_page: current_page,
+                defect_category: defect_category,
+                discovery_process: discovery_process,
+                occurrence_process: occurrence_process,
+                outflow_process: outflow_process,
+                car_maker: car_maker,
+                line_no: line_no,
+                product_name: product_name,
+                lot_no: lot_no,
+                serial_no: serial_no,
+                record_type: record_type,
+                defect_cause: defect_cause,
+                date_from: date_from,
+                date_to: date_to
             },
             beforeSend: () => {
                 var loading = `<tr id="loading"><td colspan="6" style="text-align:center;"><div class="spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div></td></tr>`;
@@ -232,12 +374,39 @@
     }
 
     const count_viewer_defect_table_data = () => {
+        var defect_category = document.getElementById("search_v_defect_category").value.trim();
+        var discovery_process = document.getElementById("search_v_discovery_process").value.trim();
+        var occurrence_process = document.getElementById("search_v_occurrence_process").value.trim();
+        var outflow_process = document.getElementById("search_v_outflow_process").value.trim();
+        var car_maker = document.getElementById("search_v_car_maker").value.trim();
+        var line_no = document.getElementById("search_v_line_no").value.trim();
+        var product_name = document.getElementById("search_v_product_name").value.trim();
+        var lot_no = document.getElementById("search_v_lot_no").value.trim();
+        var serial_no = document.getElementById("search_v_serial_no").value.trim();
+        var record_type = document.getElementById("search_v_record_type").value.trim();
+        var defect_cause = document.getElementById("search_v_defect_cause").value.trim()
+        var date_from = document.getElementById("date_from_search_v_defect").value.trim();
+        var date_to = document.getElementById("date_to_search_v_defect").value.trim();
+
         $.ajax({
             url: '../../process/viewer/index_p.php',
             type: 'POST',
             cache: false,
             data: {
-                method: 'count_viewer_defect_table_data'
+                method: 'count_viewer_defect_table_data',
+                defect_category: defect_category,
+                discovery_process: discovery_process,
+                occurrence_process: occurrence_process,
+                outflow_process: outflow_process,
+                car_maker: car_maker,
+                line_no: line_no,
+                product_name: product_name,
+                lot_no: lot_no,
+                serial_no: serial_no,
+                record_type: record_type,
+                defect_cause: defect_cause,
+                date_from: date_from,
+                date_to: date_to
             },
             success: function (response) {
                 sessionStorage.setItem('count_rows', response);
@@ -254,7 +423,7 @@
         });
     }
 
-    const load_viewer_mancost_table_data_last_page = () => { 
+    const load_viewer_mancost_table_data_last_page = () => {
         var viewer_defect_id = sessionStorage.getItem('load_viewer_defect_id');
         var current_page = parseInt(sessionStorage.getItem('t_table_pagination'));
 
@@ -381,108 +550,6 @@
         });
     }
 
-
-
-
-
-
-
-    // // fetch viewer defect table
-    // const load_viewer_defect_table = () => {
-    //     $.ajax({
-    //         url: '../../process/viewer/index_p.php',
-    //         type: 'POST',
-    //         cache: false,
-    //         data: {
-    //             method: 'load_viewer_defect_table'
-    //         },
-    //         beforeSend: () => {
-    //             var loading = `<tr id="loading"><td colspan="10" style="text-align:center;"><div class="spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div></td></tr>`;
-    //             document.getElementById("viewer_defect_table").innerHTML = loading;
-    //         },
-    //         success: function (response) {
-    //             $('#loading').remove();
-    //             $('#viewer_defect_table').html(response);
-    //             $('#viewer_defect_id').html('');
-    //             $('#t_viewer_defect_breadcrumb').hide();
-    //         }
-    //     });
-    // }
-
-    // // fetch viewer mancost table
-    // const load_viewer_mancost_table = param => {
-    //     var string = param.split('~!~');
-    //     var id = string[0];
-    //     var viewer_defect_id = string[1];
-
-    //     $.ajax({
-    //         url: '../../process/viewer/index_p.php',
-    //         type: 'POST',
-    //         cache: false,
-    //         data: {
-    //             method: 'load_viewer_mancost_table',
-    //             viewer_defect_id: viewer_defect_id
-    //         },
-    //         beforeSend: () => {
-    //             var loading = `<tr id="loading"><td colspan="10" style="text-align:center;"><div class="spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div></td></tr>`;
-    //             document.getElementById("viewer_defect_table").innerHTML = loading;
-    //         },
-    //         success: function (response) {
-    //             $('#loading').remove();
-    //             $('#viewer_defect_table').html(response);
-    //             $('#viewer_defect_id').html("Mancost Monitoring");
-    //             $('#t_viewer_defect_breadcrumb').show();
-    //         }
-    //     });
-    // }
-
-    // search keyword in defect record and mancost
-    const viewer_defect_search_keyword = () => {
-        var defect_category = document.getElementById("search_v_defect_category").value.trim();
-        var discovery_process = document.getElementById("search_v_discovery_process").value.trim();
-        var occurrence_process = document.getElementById("search_v_occurrence_process").value.trim();
-        var outflow_process = document.getElementById("search_v_outflow_process").value.trim();
-        var car_maker = document.getElementById("search_v_car_maker").value.trim();
-        var line_no = document.getElementById("search_v_line_no").value.trim();
-        var product_name = document.getElementById("search_v_product_name").value.trim();
-        var lot_no = document.getElementById("search_v_lot_no").value.trim();
-        var serial_no = document.getElementById("search_v_serial_no").value.trim();
-        var record_type = document.getElementById("search_v_record_type").value.trim();
-
-        var v_defect_keyword = document.getElementById("v_defect_keyword").value.trim();
-
-        // date search
-        var date_from = document.getElementById("date_from_search_v_defect").value.trim();
-        var date_to = document.getElementById("date_to_search_v_defect").value.trim();
-
-        $.ajax({
-            url: '../../process/viewer/index_p.php',
-            type: 'POST',
-            cache: false,
-            data: {
-                method: 'viewer_defect_search_keyword',
-                defect_category: defect_category,
-                discovery_process: discovery_process,
-                occurrence_process: occurrence_process,
-                outflow_process: outflow_process,
-                car_maker: car_maker,
-                line_no: line_no,
-                product_name: product_name,
-                lot_no: lot_no,
-                serial_no: serial_no,
-                record_type: record_type,
-
-                v_defect_keyword: v_defect_keyword,
-                date_from: date_from,
-                date_to: date_to
-            },
-            success: function (response) {
-                $('#viewer_defect_table').html(response);
-                $('#spinner').fadeOut;
-            }
-        });
-    }
-
     // export CSV
     const export_record_viewer = () => {
         var defect_category = document.getElementById("search_v_defect_category").value.trim();
@@ -518,6 +585,24 @@
             "&date_to=" + date_to,
             '_blank'
         );
+    }
+
+    const clear_search_input = () => {
+        document.getElementById("search_v_line_no").value = '';
+        document.getElementById("search_v_product_name").value = '';
+        document.getElementById("search_v_lot_no").value = '';
+        document.getElementById("search_v_serial_no").value = '';
+        document.getElementById("search_v_car_maker").value = '';
+        document.getElementById("search_v_discovery_process").value = '';
+        document.getElementById("search_v_occurrence_process").value = '';
+        document.getElementById("search_v_outflow_process").value = '';
+        document.getElementById("search_v_defect_category").value = '';
+        document.getElementById("search_v_defect_cause").value = '';
+        document.getElementById("search_v_record_type").value = '';
+        document.getElementById("date_from_search_v_defect").value = '';
+        document.getElementById("date_to_search_v_defect").value = '';
+
+        load_viewer_defect_table(1);
     }
 
 </script>

@@ -18,6 +18,9 @@
   <link rel="preload" href="../../dist/css/adminlte.min.css" as="style" onload="this.rel='stylesheet'">
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 
+  <!-- Sweet Alert -->
+  <link rel="stylesheet" href="../../plugins/sweetalert2/dist/sweetalert2.min.css">
+
   <noscript>
     <link rel="stylesheet" href="../../dist/css/font.min.css">
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">

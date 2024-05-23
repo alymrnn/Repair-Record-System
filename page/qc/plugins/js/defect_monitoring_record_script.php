@@ -1,6 +1,6 @@
 <script type="text/javascript">
     $(document).ready(function () {
-        load_qc_defect_table();
+        load_qc_defect_table(1);
         fetch_opt_search_ad_record_type();
         fetch_opt_search_ad_defect_category();
         fetch_opt_search_ad_discovery_process();
@@ -9,6 +9,34 @@
         fetch_opt_search_ad_defect_category_mc();
         fetch_opt_search_ad_occurrence_process_mc();
         fetch_opt_search_ad_portion_treatment_mc();
+    });
+
+    document.getElementById("search_ad_record_type").addEventListener("change", e => {
+        load_qc_defect_table(1);
+    });
+
+    document.getElementById("search_ad_line_no").addEventListener("keyup", e => {
+        load_qc_defect_table(1);
+    });
+
+    document.getElementById("search_ad_product_name").addEventListener("keyup", e => {
+        load_qc_defect_table(1);
+    });
+
+    document.getElementById("search_ad_lot_no").addEventListener("keyup", e => {
+        load_qc_defect_table(1);
+    });
+
+    document.getElementById("search_ad_serial_no").addEventListener("keyup", e => {
+        load_qc_defect_table(1);
+    });
+
+    document.getElementById("search_ad_date_from").addEventListener("change", e => {
+        load_qc_defect_table(1);
+    });
+
+    document.getElementById("search_ad_date_to").addEventListener("change", e => {
+        load_qc_defect_table(1);
     });
 
     // fetch record type option
@@ -163,14 +191,67 @@
         }
     }
 
+    document.getElementById('qr_scan_qc').addEventListener('input', function (e) {
+        var qrCode = this.value;
+        console.log("QR Code Scanned:", qrCode);
+
+        if (qrCode.length === 50) {
+            const productNameField = document.getElementById('search_ad_product_name');
+            const lotNoField = document.getElementById('search_ad_lot_no');
+            const serialNoField = document.getElementById('search_ad_serial_no');
+
+            if (productNameField && lotNoField && serialNoField) {
+                productNameField.value = qrCode.substring(10, 35);
+                lotNoField.value = qrCode.substring(35, 41);
+                serialNoField.value = qrCode.substring(41, 50);
+
+                console.log("Product Name Set:", productNameField.value);
+                console.log("Lot No Set:", lotNoField.value);
+                console.log("Serial No Set:", serialNoField.value);
+
+                load_qc_defect_table(1);
+            } else {
+                console.error("One or more elements were not found in the DOM.");
+            }
+
+            this.value = '';
+        } else if (qrCode.length > 50) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid QR Code',
+                text: 'Invalid',
+                showConfirmButton: false,
+                timer: 1000
+            });
+            this.value = '';
+        }
+    });
+
     const load_qc_defect_table_data_last_page = () => {
         var current_page = parseInt(sessionStorage.getItem('t_table_pagination'));
+
+        var record_type_search = document.getElementById('search_ad_record_type').value.trim();
+        var line_no_search = document.getElementById('search_ad_line_no').value.trim();
+        var product_name_search = document.getElementById('search_ad_product_name').value.trim();
+        var lot_no_search = document.getElementById('search_ad_lot_no').value.trim();
+        var serial_no_search = document.getElementById('search_ad_serial_no').value.trim();
+
+        var date_from_search = document.getElementById('search_ad_date_from').value.trim();
+        var date_to_search = document.getElementById('search_ad_date_to').value.trim();
+
         $.ajax({
             url: '../../process/qc/defect_monitoring_record_p.php',
             type: 'POST',
             cache: false,
             data: {
-                method: 'load_qc_defect_table_data_last_page'
+                method: 'load_qc_defect_table_data_last_page',
+                record_type_search: record_type_search,
+                line_no_search: line_no_search,
+                product_name_search: product_name_search,
+                lot_no_search: lot_no_search,
+                serial_no_search: serial_no_search,
+                date_from_search: date_from_search,
+                date_to_search: date_to_search
             },
             success: function (response) {
                 sessionStorage.setItem('last_page', response);
@@ -233,13 +314,28 @@
     }
 
     const load_qc_defect_table_data = current_page => {
+        var record_type_search = document.getElementById('search_ad_record_type').value.trim();
+        var line_no_search = document.getElementById('search_ad_line_no').value.trim();
+        var product_name_search = document.getElementById('search_ad_product_name').value.trim();
+        var lot_no_search = document.getElementById('search_ad_lot_no').value.trim();
+        var serial_no_search = document.getElementById('search_ad_serial_no').value.trim();
+        var date_from_search = document.getElementById('search_ad_date_from').value.trim();
+        var date_to_search = document.getElementById('search_ad_date_to').value.trim();
+
         $.ajax({
             url: '../../process/qc/defect_monitoring_record_p.php',
             type: 'POST',
             cache: false,
             data: {
                 method: 'load_qc_defect_table_data',
-                current_page: current_page
+                current_page: current_page,
+                record_type_search: record_type_search,
+                line_no_search: line_no_search,
+                product_name_search: product_name_search,
+                lot_no_search: lot_no_search,
+                serial_no_search: serial_no_search,
+                date_from_search: date_from_search,
+                date_to_search: date_to_search
             },
             beforeSend: () => {
                 var loading = `<tr id="loading"><td colspan="6" style="text-align:center;"><div class="spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div></td></tr>`;
@@ -265,12 +361,27 @@
     }
 
     const count_qc_defect_table_data = () => {
+        var record_type_search = document.getElementById('search_ad_record_type').value.trim();
+        var line_no_search = document.getElementById('search_ad_line_no').value.trim();
+        var product_name_search = document.getElementById('search_ad_product_name').value.trim();
+        var lot_no_search = document.getElementById('search_ad_lot_no').value.trim();
+        var serial_no_search = document.getElementById('search_ad_serial_no').value.trim();
+        var date_from_search = document.getElementById('search_ad_date_from').value.trim();
+        var date_to_search = document.getElementById('search_ad_date_to').value.trim();
+
         $.ajax({
             url: '../../process/qc/defect_monitoring_record_p.php',
             type: 'POST',
             cache: false,
             data: {
-                method: 'count_qc_defect_table_data'
+                method: 'count_qc_defect_table_data',
+                record_type_search: record_type_search,
+                line_no_search: line_no_search,
+                product_name_search: product_name_search,
+                lot_no_search: lot_no_search,
+                serial_no_search: serial_no_search,
+                date_from_search: date_from_search,
+                date_to_search: date_to_search
             },
             success: function (response) {
                 sessionStorage.setItem('count_rows', response);
@@ -287,7 +398,7 @@
         });
     }
 
-    const load_qc_mancost_table_data_last_page = () => { 
+    const load_qc_mancost_table_data_last_page = () => {
         var qc_defect_id = sessionStorage.getItem('load_qc_defect_id');
         var current_page = parseInt(sessionStorage.getItem('t_table_pagination'));
 
@@ -419,143 +530,30 @@
         });
     }
 
-    // fetch defect record table
-    // const load_admin_defect_table = () => {
+    // search product name, line no, and serial no
+    // const search_qc = () => {
+    //     var record_type_search = document.getElementById('search_ad_record_type').value.trim();
+    //     var product_name_search = document.getElementById('search_ad_product_name').value.trim();
+    //     var lot_no_search = document.getElementById('search_ad_lot_no').value.trim();
+    //     var serial_no_search = document.getElementById('search_ad_serial_no').value.trim();
+
     //     $.ajax({
     //         url: '../../process/qc/defect_monitoring_record_p.php',
     //         type: 'POST',
     //         cache: false,
     //         data: {
-    //             method: 'load_admin_defect_table'
-    //         },
-    //         beforeSend: () => {
-    //             var loading = `<tr id="loading"><td colspan="10" style="text-align:center;"><div class="spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div></td></tr>`;
-    //             document.getElementById("admin_defect_table").innerHTML = loading;
+    //             method: 'search_qc',
+    //             record_type_search: record_type_search,
+    //             product_name_search: product_name_search,
+    //             lot_no_search: lot_no_search,
+    //             serial_no_search: serial_no_search
     //         },
     //         success: function (response) {
-    //             $('#loading').remove();
-    //             $('#admin_defect_table').html(response);
-    //             $('#admin_defect_id').html('');
-    //             $('#t_admin_defect_breadcrumb').hide();
+    //             $('#qc_defect_table').html(response);
+    //             $('#spinner').fadeOut;
     //         }
     //     });
     // }
-
-    // fetch manpower and material cost monitoring
-    // const load_admin_mancost_table = (param) => {
-    //     var string = param.split('~!~');
-    //     var id = string[0];
-    //     var admin_defect_id = string[1];
-
-    //     $.ajax({
-    //         url: '../../process/qc/defect_monitoring_record_p.php',
-    //         type: 'POST',
-    //         cache: false,
-    //         data: {
-    //             method: 'load_admin_mancost_table',
-    //             admin_defect_id: admin_defect_id
-    //         },
-    //         beforeSend: () => {
-    //             var loading = `<tr id="loading"><td colspan="10" style="text-align:center;"><div class="spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div></td></tr>`;
-    //             document.getElementById("admin_defect_table").innerHTML = loading;
-    //         },
-    //         success: function (response) {
-    //             $('#loading').remove();
-    //             $('#admin_defect_table').html(response);
-    //             $('#admin_defect_id').html("Mancost Monitoring");
-    //             $('#t_admin_defect_breadcrumb').show();
-    //         }
-    //     })
-    // }
-
-    // search defect category
-    const search_admin_defect_record = () => {
-        var line_no_dr_search = document.getElementById('search_ad_line_no').value.trim();
-        var defect_category_dr_search = document.getElementById('search_ad_defect_category').value.trim();
-        var discovery_process_dr_search = document.getElementById('search_ad_discovery_process').value.trim();
-        var occurrence_process_dr_search = document.getElementById('search_ad_occurrence_process').value.trim();
-        var outflow_process_dr_search = document.getElementById('search_ad_outflow_process').value.trim();
-
-        var date_from_dr_search = document.getElementById('search_ad_date_from').value.trim();
-        var date_to_dr_search = document.getElementById('search_ad_date_to').value.trim();
-
-        $.ajax({
-            url: '../../process/qc/defect_monitoring_record_p.php',
-            type: 'POST',
-            cache: false,
-            data: {
-                method: 'search_admin_defect_record',
-                line_no_dr_search: line_no_dr_search,
-                defect_category_dr_search: defect_category_dr_search,
-                discovery_process_dr_search: discovery_process_dr_search,
-                occurrence_process_dr_search: occurrence_process_dr_search,
-                outflow_process_dr_search: outflow_process_dr_search,
-                date_from_dr_search: date_from_dr_search,
-                date_to_dr_search: date_to_dr_search
-            },
-            success: function (response) {
-                $('#qc_defect_table').html(response);
-                $('#spinner').fadeOut;
-            }
-        });
-    }
-
-    // search product name, line no, and serial no
-    const search_qc = () => {
-        var record_type_search = document.getElementById('search_ad_record_type').value.trim();
-        var product_name_search = document.getElementById('search_ad_product_name').value.trim();
-        var lot_no_search = document.getElementById('search_ad_lot_no').value.trim();
-        var serial_no_search = document.getElementById('search_ad_serial_no').value.trim();
-
-        $.ajax({
-            url: '../../process/qc/defect_monitoring_record_p.php',
-            type: 'POST',
-            cache: false,
-            data: {
-                method: 'search_qc',
-                record_type_search: record_type_search,
-                product_name_search: product_name_search,
-                lot_no_search: lot_no_search,
-                serial_no_search: serial_no_search
-            },
-            success: function (response) {
-                $('#qc_defect_table').html(response);
-                $('#spinner').fadeOut;
-            }
-        });
-    }
-
-    // search mancost monitoring only
-    const search_admin_mancost_only = () => {
-        var line_no_mc_search = document.getElementById('search_ad_line_no_mc').value.trim();
-        var defect_category_mc_search = document.getElementById('search_ad_defect_category_mc').value.trim();
-        var occurrence_process_mc_search = document.getElementById('search_ad_occurrence_process_mc').value.trim();
-        var parts_removed_mc_search = document.getElementById('search_ad_parts_removed_mc').value.trim();
-        var portion_treatment_mc_search = document.getElementById('search_ad_portion_treatment_mc').value.trim();
-
-        var date_from_mc_search = document.getElementById('search_ad_date_from_mc').value.trim();
-        var date_to_mc_search = document.getElementById('search_ad_date_to_mc').value.trim();
-
-        $.ajax({
-            url: '../../process/qc/defect_monitoring_record_p.php',
-            type: 'POST',
-            cache: false,
-            data: {
-                method: 'search_admin_mancost_only',
-                line_no_mc_search: line_no_mc_search,
-                defect_category_mc_search: defect_category_mc_search,
-                occurrence_process_mc_search: occurrence_process_mc_search,
-                parts_removed_mc_search: parts_removed_mc_search,
-                portion_treatment_mc_search: portion_treatment_mc_search,
-                date_from_mc_search: date_from_mc_search,
-                date_to_mc_search: date_to_mc_search
-            },
-            success: function (response) {
-                $('#list_of_admin_mancost_record').html(response);
-                $('#spinner').fadeOut;
-            }
-        });
-    }
 
     // get data of row for qc verification
     function get_update_defect_mancost_qc(id, car_maker_mc, line_no_mc, repairing_date_mc, repair_start_mc, repair_end_mc, time_consumed_mc, defect_category_mc, occurrence_process_mc, parts_removed_mc, quantity_mc, unit_cost_mc, material_cost_mc, manhour_cost_mc, portion_treatment_mc, qc_veri_mc_update, checking_date_mc_update, verified_by_mc_update, remarks_mc_update, defect_id) {

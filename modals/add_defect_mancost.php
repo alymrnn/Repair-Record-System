@@ -106,15 +106,20 @@
                         <!-- car maker -->
                         <label style="font-weight: normal;color: #000;">Car Maker</label>
                         <label style="color:#CA3F3F">*</label>
-                        <!-- <input type="text" id="car_maker" oninput="handleCarMakerChange(this)" class="form-control pl-3"
-                            autocomplete="off"
-                            style="color: #525252; font-size: 15px; border-radius: .25rem; background: #FFF; height: 34px; width: 100%;" readonly> -->
 
                         <input list="carMakerList" placeholder="Select the car maker" name="car_maker" id="car_maker"
                             onchange="handleCarMakerChange(this)" autocomplete="off"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required>
-                        <datalist id="carMakerList"></datalist>
+                        <datalist id="carMakerList">
+                            <!-- <option value="Honda"></option>
+                            <option value="Mazda"></option>
+                            <option value="Nissan"></option>
+                            <option value="Subaru"></option>
+                            <option value="Suzuki"></option>
+                            <option value="Toyota"></option>
+                            <option value="Daihatsu"></option> -->
+                        </datalist>
                         <span id="carMakerError" class="error-message" style="display:none; color:#CA3F3F;">Car Maker
                             field is required.</span>
                     </div>

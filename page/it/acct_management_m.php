@@ -23,7 +23,7 @@
   <!-- Main content -->
   <section class="content">
     <div class="col-md-12">
-      <div class="card card-light" style="background: #f8f9fa; border-top: 2px solid #1b263b;">
+      <div class="card card-light" style="background: #fff; border-top: 2px solid #1b263b;">
         <div class="card-header">
           <h3 class="card-title"><img src="../../dist/img/acct-user.png" style="height:28px;">&ensp;Account Management
             Table</h3>
@@ -54,14 +54,14 @@
             <div class="col-sm-3">
               <!-- search button -->
               <button class="btn btn-block d-flex justify-content-left" id="search_btn" onclick="search_account()"
-                style="color:#fff;height:34px;border-radius:.25rem;background: #f06543;font-size:15px;font-weight:normal;"><img
-                  src="../../dist/img/search.png" style="height:19px;">&nbsp;&nbsp;Search</button>
+                style="color:#fff;height:34px;border-radius:.25rem;background: #f06543;font-size:15px;font-weight:normal;"><i
+                  class="fas fa-search" style="margin-top: 2px;"></i>&nbsp;&nbsp;Search</button>
             </div>
             <div class="col-sm-3">
               <!-- add account button -->
               <a class="btn btn-block d-flex justify-content-left" data-toggle="modal" data-target="#add_account"
-                style="color:#fff;height:34px;border-radius:.25rem;background: #1b263b;font-size:15px;font-weight:normal;"><img
-                  src="../../dist/img/user-account.png" style="height:22px;">&nbsp;&nbsp;Add Account</a>
+                style="color:#fff;height:34px;border-radius:.25rem;background: #1b263b;font-size:15px;font-weight:normal;"><i
+                  class="fas fa-plus-circle" style="margin-top: 2px;"></i>&nbsp;&nbsp;Add Account</a>
 
             </div>
           </div>
