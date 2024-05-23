@@ -1239,6 +1239,8 @@
     //     });
     // }
 
+    // ============================================================================
+    // WORKING SCAN IN LIVE
     // function handleSuzukiScan() {
     //     console.log('suzuki is selected');
     //     document.getElementById('qr_scan').addEventListener('keyup', function (e) {
@@ -1247,23 +1249,19 @@
     //             var qrCode = this.value;
     //             if (qrCode.length === 50) {
     //                 document.getElementById('product_name').value = qrCode.substring(10, 35);
-    //                 document.getElementById('lot_no').value = qrCode.substring(35, 44);
-    //                 document.getElementById('serial_no').value = qrCode.substring(44, 50);
+    //                 document.getElementById('lot_no').value = qrCode.substring(35, 41);
+    //                 document.getElementById('serial_no').value = qrCode.substring(41, 50);
     //                 // Clear the qr_scan input field after processing
     //                 this.value = '';
     //             }
     //             else {
-    //                 // Invalid QR code
-    //                 Swal.fire({
-    //                     icon: 'error',
-    //                     title: 'Invalid QR Code',
-    //                     showConfirmButton: false,
-    //                     timer: 1000
-    //                 });
+
     //             }
     //         }
     //     });
     // }
+    // ============================================================================
+
 
     function handleToyotaScan() {
         console.log('toyota is selected');

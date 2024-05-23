@@ -77,7 +77,7 @@ if (isset($_SESSION['emp_no'])) {
     <div class="login-box">
         <div class="container d-flex justify-content-center align-items-center min-vh-100">
             <div class="card shadow-sm" style="border-radius: 10px;background: #F4F4F4; max-width: 100%; width: 400px;">
-                <div class="card-body login-card-body" style="border-radius: 5px; background:#eaeaea">
+                <div class="card-body login-card-body" style="border-radius: 10px; background:#eaeaea">
                     <div class="login-logo mt-3 text-center">
                         <img class="pb-1" src="dist/img/tool-box.png" style="height: 120px;" alt="Tool Box">
                         <h2 class="pb-2" style="color: #000; font-size: 25px; font-weight: 600;">REPAIR RECORD<br>SYSTEM

@@ -11,7 +11,7 @@ if (isset($_POST['login_btn'])) {
     } else if (empty($password)) {
         echo '<script>alert("Please enter your Password")</script>';
     } else {
-        $check = "SELECT full_name, department, section, role FROM m_accounts WHERE BINARY emp_no = '$emp_no' AND BINARY password = '$password'";
+        $check = "SELECT full_name, department, section, emp_no, role FROM m_accounts WHERE BINARY emp_no = '$emp_no' AND BINARY password = '$password'";
         $stmt = $conn->prepare($check);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
@@ -20,6 +20,8 @@ if (isset($_POST['login_btn'])) {
                 $department = $row['department'];
                 $section = $row['$section'];
                 $role = $row['role'];
+                $emp_no = $row['emp_no'];
+                $_SESSION['emp_no'] = $emp_no;
                 $_SESSION['full_name'] = $full_name;
                 $_SESSION['department'] = $department;
                 $_SESSION['section'] = $section;
@@ -39,8 +41,7 @@ if (isset($_POST['login_btn'])) {
 }
 
 if (isset($_POST['Logout'])) {
-    session_destroy();
-    header('location: ../../');
+    session_unset();
+    header('location: ../../index.php');
 }
-
 ?>

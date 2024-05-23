@@ -1,4 +1,4 @@
-<footer class="main-footer" style="background:#f8f9fa; color:#000;">
+<footer class="main-footer" style="background:#f8f9fa; color:#000; font-size: 14px;">
     Copyright &copy; 2023. Allyssa Kate Maranan. All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
         Version 1.0.1
