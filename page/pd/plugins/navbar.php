@@ -1,18 +1,40 @@
 <?php
-//SESSION
+// SESSION
 include '../../process/login.php';
+include '../../process/conn.php';
 
-if (isset($_SESSION['emp_no'])) {
+// query for deleting the 'add' status when refreshed
+function delete_added_record($record_added_by, $conn)
+{
+  try {
+    $query = "DELETE FROM t_mancost_monitoring_f WHERE record_added_by = ? AND status = 'Added'";
+    $stmt = $conn->prepare($query);
+    $params = array($record_added_by);
+    $stmt->execute($params);
+
+    // Log success or any relevant information
+    error_log('Records deleted successfully.');
+
+  } catch (Exception $e) {
+    // Log the error
+    error_log('Error deleting records: ' . $e->getMessage());
+  }
+}
+
+if (!isset($_SESSION['emp_no'])) {
   header('location:../../');
   exit;
 } else if ($_SESSION['role'] == 'QC') {
-  header('location: ../../page/pd/defect_monitoring_record.php');
+  header('location: ../../page/qc/defect_monitoring_record.php');
   exit;
 } else if ($_SESSION['role'] == 'IT') {
   header('location: ../../page/it/barcode_m.php');
   exit;
 }
+
+delete_added_record($_SESSION['full_name'], $conn);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -126,8 +148,8 @@ if (isset($_SESSION['emp_no'])) {
 
     <!-- Preloader -->
     <!-- <div class="preloader flex-column justify-content-center align-items-center" style="background: #00375C;">
-      <img class="animation__shake" src="../../dist/img/tool-box.png" alt="logo" height="100" width="100">
-    </div> -->
+            <img class="animation__shake" src="../../dist/img/tool-box.png" alt="logo" height="100" width="100">
+        </div> -->
 
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background: #00375C;">

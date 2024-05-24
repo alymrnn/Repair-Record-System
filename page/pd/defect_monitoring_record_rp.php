@@ -1,4 +1,4 @@
-<?php include 'plugins/defect_monitoring_record_rp_navbar.php'; ?>
+<?php include 'plugins/navbar.php'; ?>
 <?php include 'plugins/sidebar/defect_monitoring_record_rp_bar.php'; ?>
 
 <div class="content-wrapper" style="background: #FFF;">
