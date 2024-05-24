@@ -139,7 +139,7 @@
           <div class="row" id="t_defect_breadcrumb">
             <div class="col-12">
               <ol class="breadcrumb m-0 p-0">
-                <li class="breadcrumb-item"><a href="#" onclick="load_defect_table()">Return</a></li>
+                <li class="breadcrumb-item"><a href="#" onclick="load_defect_table()"><i class="fas fa-angle-left"></i>&nbsp;Return</a></li>
                 <li class="breadcrumb-item active" id="defect_id"></li>
               </ol>
             </div>

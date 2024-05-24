@@ -45,18 +45,12 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse order-3" id="navbarCollapse">
-    <!-- Left navbar links -->
-    <!-- <ul class="navbar-nav">
-      <li class="nav-item">
-        <a href="" class="nav-link active"><i class="fas fa-home"></i> Homepage</a>
-      </li>
-    </ul> -->
-  </div>
-
   <!-- Right navbar links -->
   <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-    <li class="nav-item mr-2">
+    <li class="nav-item mr-4 pt-3">
+      <p style="color: #fff; font-size: 15px;"><i class="far fa-clock"></i>&nbsp;&nbsp;<span id="time"></span></p>
+    </li>
+    <li class="nav-item mr-2 mt-2">
       <a href="/repair_record_system/" class="nav-link btn btn-block"
         style="border-radius: 3px;background: #E89F4C;color: #000;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); width:100px;"
         onmouseover="this.style.backgroundColor='#EA922E'; this.style.color='#000';"
@@ -66,3 +60,17 @@
   </ul>
 </nav>
 <!-- /.navbar -->
+
+<script>
+  var datetime = new Date();
+  console.log(datetime);
+  document.getElementById("time").textContent = datetime;
+
+  function refreshTime() {
+    const timeDisplay = document.getElementById("time");
+    const dateString = new Date().toLocaleString();
+    const formattedString = dateString.replace(", ", " | ");
+    timeDisplay.textContent = formattedString;
+  }
+  setInterval(refreshTime, 1000);
+</script>

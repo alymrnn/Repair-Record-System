@@ -26,18 +26,18 @@
         <li class="nav-item">
           <p class="nav-link">QC</p>
         </li>
-        <li class="nav-item">
+        <li class="nav-item mb-1">
           <a href="defect_monitoring_record.php" class="nav-link active">
             <img src="../../dist/img/files.png" style="height:25px;">
-            <p style="font-size:15px; color:black">
+            <p style="font-size:14px; color:black">
               Defect Record Monitoring
             </p>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item mb-1">
           <a href="acct_management.php" class="nav-link">
             <img src="../../dist/img/user-sidebar.png" style="height:25px;">
-            <p style="font-size:15px; color:black">
+            <p style="font-size:14px; color:black">
               Account Management
             </p>
           </a>

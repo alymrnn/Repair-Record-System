@@ -239,7 +239,7 @@ include ('plugins/navbar/index_navbar.php');
                     </div>
                   </div>
                   <ol class="breadcrumb m-0 p-0">
-                    <li class="breadcrumb-item"><a href="#" onclick="load_viewer_defect_table()">Return</a></li>
+                    <li class="breadcrumb-item"><a href="#" onclick="load_viewer_defect_table()"><i class="fas fa-angle-left"></i>&nbsp;Return</a></li>
                     <li class="breadcrumb-item active" id="viewer_defect_id"></li>
                   </ol>
                 </div>

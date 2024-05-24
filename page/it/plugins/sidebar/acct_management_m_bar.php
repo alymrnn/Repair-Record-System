@@ -24,18 +24,18 @@
                 <li class="nav-item">
                     <p class="nav-link">IT</p>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item mb-1">
                     <a href="barcode_m.php" class="nav-link">
                         <img src="../../dist/img/qr-code2.png" style="height:25px;">
-                        <p style="font-size:15px; color:black">
+                        <p style="font-size:14px; color:black">
                             QR Settings Masterlist
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item mb-1">
                     <a href="acct_management_m.php" class="nav-link active">
                         <img src="../../dist/img/user-sidebar.png" style="height:25px;">
-                        <p style="font-size:15px; color:black">
+                        <p style="font-size:14px; color:black">
                             Account Management
                         </p>
                     </a>
