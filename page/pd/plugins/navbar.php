@@ -118,7 +118,6 @@ delete_added_record($_SESSION['full_name'], $conn);
       position: fixed;
       right: 15px;
       bottom: 15px;
-      /* border: 3px solid #332D2D; */
       border: none;
       background: none;
       border-radius: 15%;
@@ -131,9 +130,7 @@ delete_added_record($_SESSION['full_name'], $conn);
     }
 
     .return-to-top:hover {
-      /* border: 3px solid #3B71CA; */
       border: none;
-      /* background: #3B71CA; */
     }
 
     .nav-icon-top:hover {
@@ -171,5 +168,4 @@ delete_added_record($_SESSION['full_name'], $conn);
       </ul>
     </nav>
     <!-- /.navbar -->
-
 </html>

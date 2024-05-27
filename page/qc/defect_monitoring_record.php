@@ -44,21 +44,21 @@
                   <!-- qr scan -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Scan here</label>
                   <input type="text" id="qr_scan_qc" class="form-control pl-3" autocomplete="off"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;">
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;">
                 </div>
                 <div class="col-sm-4 col-md-2">
                   <!-- product name -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Product Name</label>
                   <input type="text" id="search_ad_product_name" class="form-control" placeholder="Product Name"
                     autocomplete="off"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
                     class="pl-3">
                 </div>
                 <div class="col-sm-4 col-md-2">
                   <!-- lot no -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Lot No.</label>
                   <input type="text" id="search_ad_lot_no" class="form-control" placeholder="Lot No." autocomplete="off"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
                     class="pl-3">
                 </div>
                 <div class="col-sm-4 col-md-2">
@@ -66,7 +66,7 @@
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Serial No.</label>
                   <input type="text" id="search_ad_serial_no" class="form-control" placeholder="Serial No."
                     autocomplete="off"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
                     class="pl-3">
                 </div>
                 <div class="col-12 col-sm-4 col-md-1 mb-2">
@@ -95,7 +95,7 @@
                   <!-- record type -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Record Type</label>
                   <select name="search_ad_record_type" id="search_ad_record_type" autocomplete="off"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
                     class="pl-1" required>
                     <option></option>
                   </select>
@@ -105,7 +105,7 @@
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Line No.</label>
                   <input type="text" id="search_ad_line_no" class="form-control" placeholder="Line No."
                     autocomplete="off"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
                     class="pl-3">
                 </div>
                 <!-- date -->
@@ -113,13 +113,13 @@
                   <!-- date from -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date From</label>
                   <input type="date" name="date_from" class="form-control" id="search_ad_date_from"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px;">
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px;">
                 </div>
                 <div class="col-12 col-sm-3">
                   <!-- date to -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date To</label>
                   <input type="date" name="date_to" class="form-control" id="search_ad_date_to"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px;">
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px;">
                 </div>
                 <div class="col-sm-4 col-md-2">
                   <!-- search button -->

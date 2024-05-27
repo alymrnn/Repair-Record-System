@@ -40,28 +40,28 @@
               <!-- qr scan -->
               <label style="font-weight:normal;margin:0;padding:0;color:#000;">Scan here</label>
               <input type="text" id="qr_scan_pd" class="form-control pl-3" autocomplete="off"
-                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;">
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;">
             </div>
             <div class="col-12 col-sm-6 col-md-2 mb-2">
               <!-- product name -->
               <label style="font-weight:normal;margin:0;padding:0;color:#000;">Product Name</label>
               <input type="text" id="search_product_name" class="form-control" placeholder="Product Name"
                 autocomplete="off"
-                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;"
                 class="pl-3">
             </div>
             <div class="col-12 col-sm-6 col-md-2 mb-2">
               <!-- lot  no -->
               <label style="font-weight:normal;margin:0;padding:0;color:#000;">Lot No.</label>
               <input type="text" id="search_lot_no" class="form-control" placeholder="Lot No." autocomplete="off"
-                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;"
                 class="pl-3">
             </div>
             <div class="col-12 col-sm-6 col-md-2 mb-2">
               <!-- serial no -->
               <label style="font-weight:normal;margin:0;padding:0;color:#000;">Serial No.</label>
               <input type="text" id="search_serial_no" class="form-control" placeholder="Serial No." autocomplete="off"
-                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;"
                 class="pl-3">
             </div>
             <div class="col-12 col-sm-4 col-md-1 mb-2">
@@ -88,7 +88,7 @@
               <!-- record type -->
               <label style="font-weight:normal;margin:0;padding:0;color:#000;">Record Type</label>
               <select name="search_record_type" id="search_record_type" autocomplete="off"
-                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;"
                 class="pl-1" required>
                 <option></option>
               </select>
@@ -96,21 +96,21 @@
             <div class="col-12 col-sm-2">
               <!-- search keyword input -->
               <label style="font-weight:normal;margin:0;padding:0;font-size:15px">Line No.</label>
-              <input type="text" id="drm_keyword" class="form-control" placeholder="Enter line no." autocomplete="off"
-                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+              <input type="text" id="drm_keyword" class="form-control" placeholder="Line no." autocomplete="off"
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;"
                 class="pl-3">
             </div>
             <div class="col-12 col-sm-2">
               <!-- date from -->
               <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date From</label>
               <input type="date" name="date_from" class="form-control" id="date_from_search_defect"
-                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px;">
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px;">
             </div>
             <div class="col-12 col-sm-2">
               <!-- date to -->
               <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date To</label>
               <input type="date" name="date_to" class="form-control" id="date_to_search_defect"
-                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px;">
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px;">
             </div>
             <div class="col-12 col-sm-2">
               <!-- search button -->

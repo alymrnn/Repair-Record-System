@@ -1,7 +1,7 @@
 <div class="modal fade bd-example-modal-xl" id="add_defect_mancost" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLable" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content" style="background:#e9e9e9;">
+        <div class="modal-content" style="background:#f9f9f9;">
             <div class="modal-header" style="background: #0069B0;">
                 <h5 class="modal-title" id="exampleModalLabel" style="font-weight: normal;color: #fff;">
                     Add Defect Record & Mancost Monitoring
@@ -112,13 +112,6 @@
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required>
                         <datalist id="carMakerList">
-                            <!-- <option value="Honda"></option>
-                            <option value="Mazda"></option>
-                            <option value="Nissan"></option>
-                            <option value="Subaru"></option>
-                            <option value="Suzuki"></option>
-                            <option value="Toyota"></option>
-                            <option value="Daihatsu"></option> -->
                         </datalist>
                         <span id="carMakerError" class="error-message" style="display:none; color:#CA3F3F;">Car Maker
                             field is required.</span>
@@ -377,7 +370,7 @@
                 <br>
                 <!-- /.end -->
             </div>
-            <div class="modal-footer" style="background:#c2c2c2;">
+            <div class="modal-footer" style="background:#e9e9e9;">
                 <!-- add record -->
                 <div class="col-sm-2">
                     <!-- cancel button -->

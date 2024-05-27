@@ -529,32 +529,6 @@
             }
         });
     }
-
-    // search product name, line no, and serial no
-    // const search_qc = () => {
-    //     var record_type_search = document.getElementById('search_ad_record_type').value.trim();
-    //     var product_name_search = document.getElementById('search_ad_product_name').value.trim();
-    //     var lot_no_search = document.getElementById('search_ad_lot_no').value.trim();
-    //     var serial_no_search = document.getElementById('search_ad_serial_no').value.trim();
-
-    //     $.ajax({
-    //         url: '../../process/qc/defect_monitoring_record_p.php',
-    //         type: 'POST',
-    //         cache: false,
-    //         data: {
-    //             method: 'search_qc',
-    //             record_type_search: record_type_search,
-    //             product_name_search: product_name_search,
-    //             lot_no_search: lot_no_search,
-    //             serial_no_search: serial_no_search
-    //         },
-    //         success: function (response) {
-    //             $('#qc_defect_table').html(response);
-    //             $('#spinner').fadeOut;
-    //         }
-    //     });
-    // }
-
     // get data of row for qc verification
     function get_update_defect_mancost_qc(id, car_maker_mc, line_no_mc, repairing_date_mc, repair_start_mc, repair_end_mc, time_consumed_mc, defect_category_mc, occurrence_process_mc, parts_removed_mc, quantity_mc, unit_cost_mc, material_cost_mc, manhour_cost_mc, portion_treatment_mc, qc_veri_mc_update, checking_date_mc_update, verified_by_mc_update, remarks_mc_update, defect_id) {
 

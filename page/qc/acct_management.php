@@ -41,14 +41,14 @@
               <!-- search employee id -->
               <input type="text" name="emp_no_search" id="emp_no_search" class="form-control" placeholder="Employee ID"
                 autocomplete="off"
-                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
                 class="pl-3">
             </div>
             <div class="col-sm-3">
               <!-- search full name -->
               <input type="text" name="full_name_search" id="full_name_search" class="form-control"
                 placeholder="Full Name" autocomplete="off"
-                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
                 class="pl-3">
             </div>
             <div class="col-sm-3">

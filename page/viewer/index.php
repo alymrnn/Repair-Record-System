@@ -45,28 +45,28 @@ include ('plugins/navbar/index_navbar.php');
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Line No.</label>
                   <input type="text" id="search_v_line_no" class="form-control" placeholder="Line No."
                     autocomplete="off"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
                     class="pl-3">
                 </div>
                 <div class="col-12 col-sm-6 col-md-4 mb-2">
                   <!-- qr scan -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Scan here</label>
                   <input type="text" id="qr_scan" class="form-control pl-3" autocomplete="off"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;">
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;">
                 </div>
                 <div class="col-12 col-sm-6 col-md-2 mb-2">
                   <!-- product name -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Product Name</label>
                   <input type="text" id="search_v_product_name" class="form-control" placeholder="Product Name"
                     autocomplete="off"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
                     class="pl-3">
                 </div>
                 <div class="col-12 col-sm-6 col-md-2 mb-2">
                   <!-- lot  no -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Lot No.</label>
                   <input type="text" id="search_v_lot_no" class="form-control" placeholder="Lot No." autocomplete="off"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
                     class="pl-3">
                 </div>
                 <div class="col-12 col-sm-6 col-md-2 mb-2">
@@ -74,7 +74,7 @@ include ('plugins/navbar/index_navbar.php');
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Serial No.</label>
                   <input type="text" id="search_v_serial_no" class="form-control" placeholder="Serial No."
                     autocomplete="off"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
                     class="pl-3">
                 </div>
               </div>
@@ -83,7 +83,7 @@ include ('plugins/navbar/index_navbar.php');
                   <!-- car maker -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Car Maker</label>
                   <select name="search_v_car_maker" id="search_v_car_maker" autocomplete="off"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
                     class="pl-1" required>
                     <option>Car Maker</option>
                     <option></option>
@@ -93,7 +93,7 @@ include ('plugins/navbar/index_navbar.php');
                   <!-- discovery process -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Discovery Process</label>
                   <select name="search_v_discovery_process" id="search_v_discovery_process" autocomplete="off"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
                     class="pl-1" required>
                     <option>Discovery Process</option>
                     <option></option>
@@ -103,7 +103,7 @@ include ('plugins/navbar/index_navbar.php');
                   <!-- occurrence process -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Occurrence Process</label>
                   <select name="search_v_occurrence_process" id="search_v_occurrence_process" autocomplete="off"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
                     class="pl-1" required>
                     <option>Occurrence Process</option>
                     <option></option>
@@ -113,7 +113,7 @@ include ('plugins/navbar/index_navbar.php');
                   <!-- outflow process -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Outflow Process</label>
                   <select name="search_v_outflow_process" id="search_v_outflow_process" autocomplete="off"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
                     class="pl-1" required>
                     <option>Outflow Process</option>
                     <option></option>
@@ -123,7 +123,7 @@ include ('plugins/navbar/index_navbar.php');
                   <!-- defect category NG content -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Defect Category</label>
                   <select name="search_v_defect_category" id="search_v_defect_category" autocomplete="off"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
                     class="pl-1" required>
                     <option>Defect Category</option>
                     <option></option>
@@ -133,7 +133,7 @@ include ('plugins/navbar/index_navbar.php');
                   <!-- cause of defect -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Cause of Defect</label>
                   <select name="search_v_defect_cause" id="search_v_defect_cause" autocomplete="off"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
                     class="pl-1" required>
                     <option value="">Select cause of defect</option>
                     <option value="Jig">Jig</option>
@@ -147,7 +147,7 @@ include ('plugins/navbar/index_navbar.php');
                 <div class="col-12 col-sm-4 col-md-2 mb-2">
                   <!-- record type -->
                   <select name="search_v_record_type" id="search_v_record_type" autocomplete="off"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;"
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
                     class="pl-1" required>
                     <option>Record Type</option>
                     <option></option>
@@ -157,13 +157,13 @@ include ('plugins/navbar/index_navbar.php');
                   <!-- date from -->
                   <input name="date_from" class="form-control" id="date_from_search_v_defect" placeholder="Date From"
                     onfocus="(this.type='date')" onblur="(this.type='text')"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px;">
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px;">
                 </div>
                 <div class="col-12 col-sm-4 col-md-2 mb-2">
                   <!-- date to -->
                   <input type="text" name="date_to" class="form-control" id="date_to_search_v_defect"
                     placeholder="Date To" onfocus="(this.type='date')" onblur="(this.type='text')"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px;">
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px;">
                 </div>
                 <div class="col-12 col-sm-4 col-md-2 mb-2">
                   <!-- search button -->

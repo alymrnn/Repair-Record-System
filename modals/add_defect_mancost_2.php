@@ -1,7 +1,7 @@
 <div class="modal fade bd-example-modal-xl" id="add_defect_mancost_2" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLable" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
-        <div class="modal-content" style="background:#e9e9e9;">
+        <div class="modal-content" style="background:#f9f9f9;">
             <div class="modal-header" style="background: #0069B0;">
                 <h5 class="modal-title" id="exampleModalLabel" style="font-weight: normal;color: #fff;">
                     Add Defect Record & Mancost Monitoring
@@ -242,7 +242,7 @@
                 </div>
                 <!-- /.row end -->
             </div>
-            <div class="modal-footer" style="background:#c2c2c2;">
+            <div class="modal-footer" style="background:#e9e9e9;">
                 <!-- <div class="col-sm-2">
                     back button
                     <button class="btn btn-block" style="color:#fff;height:34px;border-radius:.25rem;background: #0F4B73;font-size:15px;font-weight:normal;" data-dismiss="modal" onclick="setTimeout(() => {$('#add_defect_mancost').modal('show');}, 400);">Back</button>

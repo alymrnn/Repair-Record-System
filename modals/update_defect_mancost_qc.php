@@ -1,7 +1,7 @@
 <div class="modal fade bd-example-modal-xl" id="update_defect_mancost_qc" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content" style="background:#e9e9e9;">
+        <div class="modal-content" style="background:#f9f9f9;">
             <div class="modal-header" style="background:#004e89;">
                 <h5 class="modal-title" id="exampleModalLabel" style="font-weight: normal;color: #fff;">Verify Defect
                     Record & Mancost Monitoring</h5>
@@ -19,18 +19,18 @@
                         <!-- car maker -->
                         <label style="font-weight: normal;color: #000;">Car Maker</label>
                         <input id="car_maker_mc_update" autocomplete="off"
-                            style="border:1px solid #959595; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style="border:1px solid #E3E3E3; color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
                             class="pl-2">
                     </div>
                     <div class="col-sm-4">
                         <!-- line no. -->
                         <label style="font-weight: normal;color: #000;">Line No.</label>
                         <input type="text" id="line_no_mc_update" class="form-control pl-3" autocomplete="off"
-                            style="border:1px solid #959595; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                            style="border:1px solid #E3E3E3; color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-4">
                         <label style="font-weight: normal;color: #000;">Repairing Date</label>
-                        <input type="date" id="repairing_date_mc_update" class="form-control pl-3" autocomplete="off" style="border:1px solid #959595; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                        <input type="date" id="repairing_date_mc_update" class="form-control pl-3" autocomplete="off" style="border:1px solid #E3E3E3; color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;">
                     </div>
                 </div>
                 <br>
@@ -40,20 +40,20 @@
                         <!-- repair start -->
                         <label style="font-weight: normal;color: #000;">Repair Start</label>
                         <input type="time" id="repair_start_mc_update" oninput="time_difference()"
-                            class="form-control pl-3" autocomplete="off" style="border:1px solid #959595; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                            class="form-control pl-3" autocomplete="off" style="border:1px solid #E3E3E3; color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-4">
                         <!-- repair end -->
                         <label style="font-weight: normal;color: #000;">Repair End</label>
                         <input type="time" id="repair_end_mc_update" oninput="time_difference()"
                             class="form-control pl-3" autocomplete="off"
-                            style="border:1px solid #959595; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                            style="border:1px solid #E3E3E3; color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-4">
                         <!-- time consumed -->
                         <label style="font-weight: normal;color: #000;">Time Consumed (in minute/s)</label>
                         <input type="int" id="time_consumed_mc_update" class="form-control pl-3" autocomplete="off"
-                            style="border:1px solid #959595; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style="border:1px solid #E3E3E3; color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
                             disabled>
                     </div>
                 </div>
@@ -64,28 +64,28 @@
                         <!-- defect category mancost -->
                         <label style="font-weight: normal;color: #000;">Defect Category</label>
                         <input id="defect_category_mc_update" autocomplete="off"
-                            style="border:1px solid #959595; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style="border:1px solid #E3E3E3; color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
                             class="pl-2" >
                     </div>
                     <div class="col-sm-3">
                         <!-- occurrence process mancost -->
                         <label style="font-weight: normal;color: #000;">Occurrence Process</label>
                         <input id="occurrence_process_mc_update" autocomplete="off"
-                            style="border:1px solid #959595; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style="border:1px solid #E3E3E3; color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
                             class="pl-2">
                     </div>
                     <div class="col-sm-3">
                         <!-- parts removed -->
                         <label style="font-weight: normal;color: #000;">Parts Removed</label>
                         <input type="text" id="parts_removed_mc_update" class="form-control pl-3" autocomplete="off"
-                            style="border:1px solid #959595; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                            style="border:1px solid #E3E3E3; color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-3">
                         <!-- quantity -->
                         <label style="font-weight: normal;color: #000;">Quantity</label>
                         <input type="int" id="quantity_mc_update" oninput="qty_cost_product()" class="form-control pl-3"
                             autocomplete="off"
-                            style="border:1px solid #959595; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                            style="border:1px solid #E3E3E3; color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;">
                     </div>
                 </div>
                 <br>
@@ -96,25 +96,25 @@
                         <label style="font-weight: normal;color: #000;">Unit Cost ( ¥ )</label>
                         <input type="float" id="unit_cost_mc_update" oninput="qty_cost_product()"
                             class="form-control pl-3" autocomplete="off"
-                            style="border:1px solid #959595; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                            style="border:1px solid #E3E3E3; color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-3">
                         <!-- material cost -->
                         <label style="font-weight: normal;color: #000;">Material Cost ( ¥ )</label>
                         <input type="float" id="material_cost_mc_update" class="form-control pl-3" autocomplete="off"
-                            style="border:1px solid #959595; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                            style="border:1px solid #E3E3E3; color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-3">
                         <!-- manhour cost -->
                         <label style="font-weight: normal;color: #000;">Manhour Cost ( ¥ )</label>
                         <input type="float" id="manhour_cost_mc_update" class="form-control pl-3" autocomplete="off"
-                            style="border:1px solid #959595; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                            style="border:1px solid #E3E3E3; color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-3">
                         <!-- repaired portion treatment -->
                         <label style="font-weight: normal;color: #000;">Repaired Portion Treatment</label>
                         <input id="portion_treatment_mc_update" autocomplete="off"
-                            style="border:1px solid #959595; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style="border:1px solid #E3E3E3; color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
                             class="pl-2">
                     </div>
                 </div>
@@ -175,7 +175,7 @@
                 <br>
                 <!-- /.end -->
             </div>
-            <div class="modal-footer" style="background:#c2c2c2;">
+            <div class="modal-footer" style="background:#e9e9e9;">
                 <div class="col-sm-2">
                     <!-- clear button -->
                     <button class="btn btn-block" onclick="clear_verify_list()"

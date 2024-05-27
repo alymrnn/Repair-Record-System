@@ -36,7 +36,7 @@
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand-md border-bottom-0" style="background:#292929;">
   <a href="" class="navbar-brand ml-2">
-    <img src="../../dist/img/tool-box.png" alt="Repair Record System Logo" class="brand-image" style="opacity: .8">
+    <img src="../../dist/img/tool-box.png" alt="Repair Record System Logo" class="brand-image">
     <span class="brand-text font-weight-normal text-light" style="color: white;">REPAIR RECORD SYSTEM</span>
   </a>
 

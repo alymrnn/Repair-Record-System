@@ -2439,7 +2439,6 @@
     function autocompleteParts(inputText) {
         console.log("Autocomplete triggered with input:", inputText);
 
-        // Perform AJAX request to fetch matching part names
         $.ajax({
             url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
@@ -2451,7 +2450,6 @@
             },
             success: function (response) {
                 if (!response.error) {
-                    // Update the datalist with the fetched part names
                     updateDatalist(response.part_names);
                 }
             },
@@ -2463,25 +2461,12 @@
 
     // Function to update datalist with part names
     function updateDatalist(partNames) {
-        // Clear existing options in datalist
         $("#partsRemovedMcList").empty();
 
-        // Add new options to datalist
         partNames.forEach(function (partName) {
             $("#partsRemovedMcList").append(`<option value="${partName}">`);
         });
     }
-
-    // Event listener for 'change' event on the parts_removed field
-    $("#parts_removed_mc").on("change", function () {
-        var selectedPart = $(this).val();
-
-        // Check if the selected part is not empty
-        if (selectedPart.trim() !== '') {
-            // Fetch unit price based on the selected part name
-            fetchUnitPrice(selectedPart);
-        }
-    });
 
     // Fetch unit price based on part name
     function fetchUnitPrice(partsRemoved) {
@@ -2517,16 +2502,13 @@
         console.log("Parsed Quantity Input:", qtyInput);
         console.log("Parsed Cost Input:", costInput);
 
-        // Calculate the result
         var result = qtyInput * costInput;
         result = result.toFixed(2); // keep up to two decimals
 
         console.log("Result:", result);
 
-        // Add yen symbol to the result
         var resultWithSymbol = result;
 
-        // Set the result in the 'material_cost' field
         $("#material_cost_mc").val(resultWithSymbol);
     };
 
