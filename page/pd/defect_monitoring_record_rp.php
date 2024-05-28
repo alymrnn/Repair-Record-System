@@ -65,7 +65,7 @@
                 class="pl-3">
             </div>
             <div class="col-12 col-sm-4 col-md-1 mb-2">
-              <!-- delete button -->
+              <!-- clear button -->
               <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
               <button class="btn btn-block d-flex justify-content-left" id="search_btn" onclick="clear_search_input()"
                 style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;"
@@ -74,7 +74,7 @@
                 <i class="fas fa-trash" style="margin-top: 2px;"></i>&nbsp;&nbsp;Clear All</button>
             </div>
             <div class="col-12 col-sm-4 col-md-1 mb-2">
-              <!-- delete button -->
+              <!-- refresh button -->
               <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
               <button class="btn btn-block d-flex justify-content-left" id="search_btn" onclick="refresh_page()"
                 style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;"
@@ -83,7 +83,7 @@
                 <i class="fas fa-sync-alt" style="margin-top: 2px;"></i>&nbsp;&nbsp;Refresh</button>
             </div>
           </div>
-          <div class="row mb-4">
+          <div class="row">
             <div class="col-12 col-sm-2">
               <!-- record type -->
               <label style="font-weight:normal;margin:0;padding:0;color:#000;">Record Type</label>
@@ -96,7 +96,7 @@
             <div class="col-12 col-sm-2">
               <!-- search keyword input -->
               <label style="font-weight:normal;margin:0;padding:0;font-size:15px">Line No.</label>
-              <input type="text" id="drm_keyword" class="form-control" placeholder="Line no." autocomplete="off"
+              <input type="text" id="line_no_rp" class="form-control" placeholder="Line no." autocomplete="off"
                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;"
                 class="pl-3">
             </div>
@@ -133,19 +133,40 @@
                   class="fas fa-plus-circle" style="margin-top: 2px;"></i>&nbsp;&nbsp;Add Record</button>
             </div>
           </div>
+          <div class="row mb-4">
+            <div class="col-12 col-sm-2">
+              <!-- export defect record button -->
+              <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
+              <button class="btn btn-block d-flex justify-content-left" id="export_defect_record" onclick="export_defect_record()"
+                style="color:#fff;height:34px;border-radius:.25rem;background: #646C75;font-size:15px;font-weight:normal;"
+                onmouseover="this.style.backgroundColor='#4A5056'; this.style.color='#FFF';"
+                onmouseout="this.style.backgroundColor='#646C75'; this.style.color='#FFF';"><i class="fas fa-download"
+                  style="margin-top: 2px;"></i>&nbsp;&nbsp;Export Defect Record</button>
+            </div>
+            <div class="col-12 col-sm-2">
+              <!-- export mancost monitoring record button -->
+              <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
+              <button class="btn btn-block d-flex justify-content-left" id="export_mancost_record" onclick="export_mancost_record()"
+                style="color:#fff;height:34px;border-radius:.25rem;background: #646C75;font-size:15px;font-weight:normal;"
+                onmouseover="this.style.backgroundColor='#4A5056'; this.style.color='#FFF';"
+                onmouseout="this.style.backgroundColor='#646C75'; this.style.color='#FFF';"><i class="fas fa-download"
+                  style="margin-top: 2px;"></i>&nbsp;&nbsp;Export Mancost Record</button>
+            </div>
+          </div>
           <!-- /.row end -->
 
           <!-- table -->
           <div class="row" id="t_defect_breadcrumb">
             <div class="col-12">
               <ol class="breadcrumb m-0 p-0">
-                <li class="breadcrumb-item"><a href="#" onclick="load_defect_table()"><i class="fas fa-angle-left"></i>&nbsp;Return</a></li>
+                <li class="breadcrumb-item"><a href="#" onclick="load_defect_table()"><i
+                      class="fas fa-angle-left"></i>&nbsp;Return</a></li>
                 <li class="breadcrumb-item active" id="defect_id"></li>
               </ol>
             </div>
           </div>
           <!-- table with load more -->
-          <div id="t_table_res" class="table-responsive" style="height: 500px; overflow: auto; display:inline-block;">
+          <div id="t_table_res" class="table-responsive" style="height: 400px; overflow: auto; display:inline-block;">
             <table id="defect_table" class="table table-sm table-head-fixed text-nowrap table-hover">
             </table>
           </div>

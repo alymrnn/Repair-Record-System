@@ -346,25 +346,28 @@
                 <!-- /.end -->
                 <div class="row">
                     <div class="col-sm-6">
-                        <!-- detail in content of defect -->
+                        <!-- Detail in content of defect -->
                         <label style="font-weight: normal;color: #000;">Detail in Content of Defect</label>
                         <label style="color:#CA3F3F">*</label>
-                        <textarea type="text" id="detail_content_defect" class="textarea form-control pl-3"
-                            autocomplete="off"
+                        <textarea id="detail_content_defect" class="textarea form-control pl-3" maxlength="255"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:65px; width:100%;"
-                            required></textarea>
-                        <span id="detailDefectError" class="error-message" style="display:none; color:#CA3F3F;">Detail
-                            in Content Defect field is required.</span>
+                            onkeyup="count_detail_content_defect_char()" required></textarea>
+                        <span id="detailDefectError" class="error-message" style="display:none; color:#CA3F3F;">
+                            Detail in Content of Defect field is required.</span>
+                        <span id="detail_content_defect_count" style="color: #525252;font-size: 12px;"></span>
                     </div>
+
                     <div class="col-sm-6">
                         <!-- treatment content of defect -->
                         <label style="font-weight: normal;color: #000;">Treatment Content of Defect</label>
                         <label style="color:#CA3F3F">*</label>
-                        <textarea type="text" id="treatment_content_defect" class="form-control pl-3" autocomplete="off"
+                        <textarea type="text" id="treatment_content_defect" class="textarea form-control pl-3"
+                            maxlength="255"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:65px; width:100%;"
-                            required></textarea>
-                        <span id="treatmentDefectError" class="error-message"
-                            style="display:none; color:#CA3F3F;">Treatment Content of Defect field is required.</span>
+                            onkeyup="count_treatment_content_defect_char()" required></textarea>
+                        <span id="treatmentDefectError" class="error-message" style="display:none; color:#CA3F3F;">
+                            Treatment Content of Defect field is required.</span>
+                        <span id="treatment_content_defect_count" style="color: #525252;font-size: 12px;"></span>
                     </div>
                 </div>
                 <br>

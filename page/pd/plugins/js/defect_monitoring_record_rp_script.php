@@ -20,6 +20,8 @@
         fetch_opt_defect_category_mc_only();
         fetch_opt_occurrence_process_mc_only();
         fetch_opt_portion_treatment_mc_only();
+        count_detail_content_defect_char();
+        count_treatment_content_defect_char();
     });
 
     document.getElementById("search_product_name").addEventListener("keyup", e => {
@@ -46,7 +48,7 @@
         load_defect_table(1);
     });
 
-    document.getElementById("drm_keyword").addEventListener("keyup", e => {
+    document.getElementById("line_no_rp").addEventListener("keyup", e => {
         load_defect_table(1);
     });
 
@@ -380,7 +382,7 @@
         var lot_no = document.getElementById("search_lot_no").value.trim();
         var serial_no = document.getElementById("search_serial_no").value.trim();
         var record_type = document.getElementById("search_record_type").value.trim();
-        var drm_keyword = document.getElementById("drm_keyword").value.trim();
+        var line_no_rp = document.getElementById("line_no_rp").value.trim();
         var date_from = document.getElementById("date_from_search_defect").value.trim();
         var date_to = document.getElementById("date_to_search_defect").value.trim();
 
@@ -394,7 +396,7 @@
                 lot_no: lot_no,
                 serial_no: serial_no,
                 record_type: record_type,
-                drm_keyword: drm_keyword,
+                line_no_rp: line_no_rp,
                 date_from: date_from,
                 date_to: date_to
             },
@@ -463,7 +465,7 @@
         var lot_no = document.getElementById("search_lot_no").value.trim();
         var serial_no = document.getElementById("search_serial_no").value.trim();
         var record_type = document.getElementById("search_record_type").value.trim();
-        var drm_keyword = document.getElementById("drm_keyword").value.trim();
+        var line_no_rp = document.getElementById("line_no_rp").value.trim();
         var date_from = document.getElementById("date_from_search_defect").value.trim();
         var date_to = document.getElementById("date_to_search_defect").value.trim();
 
@@ -479,7 +481,7 @@
                 lot_no: lot_no,
                 serial_no: serial_no,
                 record_type: record_type,
-                drm_keyword: drm_keyword,
+                line_no_rp: line_no_rp,
                 date_from: date_from,
                 date_to: date_to
             },
@@ -512,7 +514,7 @@
         var serial_no = document.getElementById("search_serial_no").value.trim();
 
         var record_type = document.getElementById("search_record_type").value.trim();
-        var drm_keyword = document.getElementById("drm_keyword").value.trim();
+        var line_no_rp = document.getElementById("line_no_rp").value.trim();
         var date_from = document.getElementById("date_from_search_defect").value.trim();
         var date_to = document.getElementById("date_to_search_defect").value.trim();
 
@@ -526,7 +528,7 @@
                 lot_no: lot_no,
                 serial_no: serial_no,
                 record_type: record_type,
-                drm_keyword: drm_keyword,
+                line_no_rp: line_no_rp,
                 date_from: date_from,
                 date_to: date_to
             },
@@ -668,33 +670,6 @@
                 $('#defect_id').html("Mancost Monitoring");
                 $('#t_defect_breadcrumb').show();
                 count_mancost_table_data();
-            }
-        });
-    }
-
-    //search keyword in record
-    const search_keyword = () => {
-        var record_type = document.getElementById("search_record_type").value.trim();
-        var drm_keyword = document.getElementById("drm_keyword").value.trim();
-
-        // date search
-        var date_from = document.getElementById("date_from_search_defect").value.trim();
-        var date_to = document.getElementById("date_to_search_defect").value.trim();
-
-        $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp_p.php',
-            type: 'POST',
-            cache: false,
-            data: {
-                method: 'search_keyword',
-                record_type: record_type,
-                drm_keyword: drm_keyword,
-                date_from: date_from,
-                date_to: date_to
-            },
-            success: function (response) {
-                $('#defect_table').html(response);
-                $('#spinner').fadeOut();
             }
         });
     }
@@ -2146,6 +2121,9 @@
         document.getElementById("material_cost_mc").value = '';
         document.getElementById("manhour_cost_mc").value = '';
         document.getElementById("portion_treatment").value = '';
+
+        count_detail_content_defect_char(); 
+        count_treatment_content_defect_char();
     }
 
     // ADDING OF MULTIPLE MANCOST WITH ONE DEFECT ID
@@ -2159,14 +2137,8 @@
                 method: 'load_added_mancost'
             },
             success: function (response) {
-                // Clear the table content before appending new records
                 $('#list_of_added_mancost').empty();
-                // console.log("Table cleared");
-
-
-                // Append the new records to the table
                 $('#list_of_added_mancost').html(response);
-                // $('#spinner').fadeOut();
             }
         });
     }
@@ -2512,12 +2484,72 @@
         $("#material_cost_mc").val(resultWithSymbol);
     };
 
+    const count_detail_content_defect_char = () => {
+        var max_length = document.getElementById("detail_content_defect").getAttribute("maxlength");
+        var comment_length = document.getElementById("detail_content_defect").value.length;
+        var detailDefectError = `${comment_length} / ${max_length}`;
+        document.getElementById("detail_content_defect_count").innerHTML = detailDefectError;
+    }
+
+    const count_treatment_content_defect_char = () => {
+        var max_length = document.getElementById("treatment_content_defect").getAttribute("maxlength");
+        var comment_length = document.getElementById("treatment_content_defect").value.length;
+        var treatmentDefectError = `${comment_length} / ${max_length}`;
+        document.getElementById("treatment_content_defect_count").innerHTML = treatmentDefectError;
+    }
+
+    // export defect record CSV
+    const export_defect_record = () => {
+        var product_name = document.getElementById("search_product_name").value.trim();
+        var lot_no = document.getElementById("search_lot_no").value.trim();
+        var serial_no = document.getElementById("search_serial_no").value.trim();
+
+        var record_type = document.getElementById("search_record_type").value.trim();
+        var line_no = document.getElementById("line_no_rp").value.trim();
+        var date_from = document.getElementById("date_from_search_defect").value.trim();
+        var date_to = document.getElementById("date_to_search_defect").value.trim();
+
+        window.open(
+            '../../process/export/exp_defect_record.php?product_name=' + product_name +
+            "&lot_no=" + lot_no +
+            "&serial_no=" + serial_no +
+            "&record_type=" + record_type +
+            "&line_no=" + line_no +
+            "&date_from=" + date_from +
+            "&date_to=" + date_to,
+            '_blank'
+        );
+    }
+
+    // export mancost record CSV
+    const export_mancost_record = () => {
+        var product_name = document.getElementById("search_product_name").value.trim();
+        var lot_no = document.getElementById("search_lot_no").value.trim();
+        var serial_no = document.getElementById("search_serial_no").value.trim();
+
+        var record_type = document.getElementById("search_record_type").value.trim();
+        var line_no = document.getElementById("line_no_rp").value.trim();
+        var date_from = document.getElementById("date_from_search_defect").value.trim();
+        var date_to = document.getElementById("date_to_search_defect").value.trim();
+
+        window.open(
+            '../../process/export/exp_mancost_record.php?product_name=' + product_name +
+            "&lot_no=" + lot_no +
+            "&serial_no=" + serial_no +
+            "&record_type=" + record_type +
+            "&line_no=" + line_no +
+            "&date_from=" + date_from +
+            "&date_to=" + date_to,
+            '_blank'
+        );
+    }
+
     const clear_search_input = () => {
         document.getElementById("search_product_name").value = '';
         document.getElementById("search_lot_no").value = '';
         document.getElementById("search_serial_no").value = '';
         document.getElementById("search_record_type").value = '';
-        document.getElementById("drm_keyword").value = '';
+        document.getElementById("line_no_rp").value = '';
         document.getElementById("date_from_search_defect").value = '';
         document.getElementById("date_to_search_defect").value = '';
 

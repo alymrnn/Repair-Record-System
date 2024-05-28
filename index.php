@@ -80,7 +80,7 @@ if (isset($_SESSION['emp_no'])) {
                 <div class="card-body login-card-body" style="border-radius: 10px; background:#eaeaea">
                     <div class="login-logo mt-3 text-center">
                         <img class="pb-1" src="dist/img/tool-box.png" style="height: 120px;" alt="Tool Box">
-                        <h2 class="pb-2" style="color: #000; font-size: 25px; font-weight: 600;">REPAIR RECORD<br>SYSTEM
+                        <h2 class="pb-2 text-bold" style="color: #313131; font-size: 25px;">REPAIR RECORD<br>SYSTEM
                         </h2>
                     </div>
 
@@ -88,18 +88,19 @@ if (isset($_SESSION['emp_no'])) {
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" id="emp_no" name="emp_no" placeholder="Employee ID"
                                 autocomplete="off" required
-                                style="font-size: 14px; border-radius: 3px; border: 1px solid #474747; background: #eaeaea;"
+                                style="font-size: 14px; border-radius: 3px; border: 1px solid #888888; background: #eaeaea;"
                                 onfocus="changeBorderColor(this, '#C97719')"
                                 oninput="changeBorderColor(this, '#C97719')"
-                                onblur="changeBorderColor(this, '#474747')">
+                                onblur="changeBorderColor(this, '#888888')">
                         </div>
                         <div class="input-group mb-3">
                             <input type="password" class="form-control" id="password" name="password"
                                 placeholder="Password" autocomplete="off" required
-                                style="font-size: 14px; border-radius: 3px; border: 1px solid #474747; background: #eaeaea;"
+                                style="font-size: 14px; border-radius: 3px; border: 1px solid #888888; background: #eaeaea;"
                                 onfocus="changeBorderColor(this, '#C97719')"
                                 oninput="changeBorderColor(this, '#C97719')"
-                                onblur="changeBorderColor(this, '#474747')">
+                                onblur="changeBorderColor(this, '#888888')">
+                            <i class="pt-1" style="font-size: 13px;">Scan QR Code or Type your ID Number</i>
                         </div>
                         <div class="input-group mb-3">
                             <button type="submit" class="login-btn btn btn-block" name="login_btn" value="login"
