@@ -766,7 +766,7 @@
                 $("#issue_tag").prop('disabled', false).val('');
                 $("#repairing_date").prop('disabled', false).val('');
                 $("#defect_category_dr").prop('disabled', false).val('');
-                $("#car_maker").prop('disabled', false).val('');
+                // $("#car_maker").prop('disabled', false).val('');
                 $("#product_name").prop('disabled', false).val('');
                 $("#lot_no").prop('disabled', false).val('');
                 $("#serial_no").prop('disabled', false).val('');
@@ -816,7 +816,7 @@
                 $("#na_date_detected").prop('disabled', true).val('').css('background-color', '#FFF');
                 $("#issue_tag").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#repairing_date").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#car_maker").prop('disabled', false).val('').css('background-color', '#FFF');
+                // $("#car_maker").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#product_name").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#lot_no").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#serial_no").prop('disabled', false).val('').css('background-color', '#FFF');
@@ -864,7 +864,7 @@
                 $("#na_date_detected").prop('disabled', true).val('').css('background-color', '#FFF');
                 $("#issue_tag").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#repairing_date").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#car_maker").prop('disabled', false).val('').css('background-color', '#FFF');
+                // $("#car_maker").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#product_name").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#lot_no").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#serial_no").prop('disabled', false).val('').css('background-color', '#FFF');
@@ -913,7 +913,7 @@
                 $("#na_date_detected").prop('disabled', true).val('').css('background-color', '#FFF');
                 $("#issue_tag").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#repairing_date").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#car_maker").prop('disabled', false).val('').css('background-color', '#FFF');
+                // $("#car_maker").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#product_name").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#lot_no").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#serial_no").prop('disabled', false).val('').css('background-color', '#FFF');
@@ -1035,32 +1035,9 @@
         }
     }
 
-    function handleHondaScan() {
-        console.log('honda is selected');
-        document.getElementById('qr_scan').addEventListener('keydown', function (e) {
-            if (e.which === 13) {
-                e.preventDefault();
-                var qrCode = this.value;
-                if (qrCode.length === 41) {
-                    document.getElementById('product_name').value = qrCode.substring(1, 22);
-                    document.getElementById('lot_no').value = qrCode.substring(26, 33);
-                    document.getElementById('serial_no').value = qrCode.substring(32, 38);
-                } else {
-                    // alert('Invalid QR code');
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Invalid QR Code',
-                        text: 'Invalid',
-                        showConfirmButton: false,
-                        timer: 1000
-                    });
-                } document.getElementById('qr_scan').value = '';
-            }
-        });
-    }
-
-    function handleMazdaScan() {
-        console.log('mazda is selected');
+    // ============================================================================
+    // WORKING SCAN IN LIVE
+    function handleSuzukiScan() {
         document.getElementById('qr_scan').addEventListener('keyup', function (e) {
             if (e.which === 13) {
                 e.preventDefault();
@@ -1073,98 +1050,162 @@
                     this.value = '';
                 }
                 else {
-                    // Invalid QR code
-                    // Swal.fire({
-                    //     icon: 'error',
-                    //     title: 'Invalid QR Code',
-                    //     showConfirmButton: false,
-                    //     timer: 1000
-                    // });
+
                 }
             }
         });
     }
 
-    function handleNissanScan() {
-        console.log('nissan is selected');
-        document.getElementById('qr_scan').addEventListener('keydown', function (e) {
-            if (e.which === 13) {
-                e.preventDefault();
-                var qrCode = this.value;
-                if (qrCode.length === 41) {
-                    document.getElementById('product_name').value = qrCode.substring(1, 22);
-                    document.getElementById('lot_no').value = qrCode.substring(26, 33);
-                    document.getElementById('serial_no').value = qrCode.substring(32, 38);
-                } else {
-                    // alert('Invalid QR code');
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Invalid QR Code',
-                        text: 'Invalid',
-                        showConfirmButton: false,
-                        timer: 1000
-                    });
-                } document.getElementById('qr_scan').value = '';
-            }
-        });
-    }
-
-    function handleSubaruScan() {
-        console.log('subaru is selected');
-        document.getElementById('qr_scan').addEventListener('keydown', function (e) {
-            if (e.which === 13) {
-                e.preventDefault();
-                var qrCode = this.value;
-                if (qrCode.length === 41) {
-                    document.getElementById('product_name').value = qrCode.substring(1, 22);
-                    document.getElementById('lot_no').value = qrCode.substring(26, 33);
-                    document.getElementById('serial_no').value = qrCode.substring(32, 38);
-                } else {
-                    // alert('Invalid QR code');
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Invalid QR Code',
-                        text: 'Invalid',
-                        showConfirmButton: false,
-                        timer: 1000
-                    });
-                } document.getElementById('qr_scan').value = '';
-            }
-        });
-    }
-
-    function handleSuzukiScan() {
+    function handleMazdaScan() {
         document.getElementById('qr_scan').addEventListener('keyup', function (e) {
-            var qrCode = this.value;
-            var exactLength = qrCode.length;
-
-            if (qrCode.trim().length > 0 && qrCode.length >= 50) {
+            if (e.which === 13) {
                 e.preventDefault();
-                qrCode = qrCode.trim();
-                var millisecond = new Date().getMilliseconds(); // Get current milliseconds
+                var qrCode = this.value;
+                if (qrCode.length === 50) {
+                    document.getElementById('product_name').value = qrCode.substring(10, 35);
+                    document.getElementById('lot_no').value = qrCode.substring(35, 41);
+                    document.getElementById('serial_no').value = qrCode.substring(41, 50);
+                    // Clear the qr_scan input field after processing
+                    this.value = '';
+                }
+                else {
 
-                document.getElementById('product_name').value = qrCode.substring(10, 35);
-                document.getElementById('lot_no').value = qrCode.substring(35, 41);
-                document.getElementById('serial_no').value = qrCode.substring(41, 50);
-
-                document.getElementById('qr_scan').value = '';
-            } else if (qrCode.length > 0) {
-                console.error('Invalid QR code length:', qrCode.length);
-
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Invalid QR Code',
-                    text: 'Invalid',
-                    showConfirmButton: false,
-                    timer: 1000
-                }).then(function () {
-                    setTimeout(function () {
-                        document.getElementById('qr_scan').value = '';
-                    }, 500);
-                });
+                }
             }
         });
     }
+    // ============================================================================
+
+    // function handleHondaScan() {
+    //     console.log('honda is selected');
+    //     document.getElementById('qr_scan').addEventListener('keydown', function (e) {
+    //         if (e.which === 13) {
+    //             e.preventDefault();
+    //             var qrCode = this.value;
+    //             if (qrCode.length === 41) {
+    //                 document.getElementById('product_name').value = qrCode.substring(1, 22);
+    //                 document.getElementById('lot_no').value = qrCode.substring(26, 33);
+    //                 document.getElementById('serial_no').value = qrCode.substring(32, 38);
+    //             } else {
+    //                 // alert('Invalid QR code');
+    //                 Swal.fire({
+    //                     icon: 'error',
+    //                     title: 'Invalid QR Code',
+    //                     text: 'Invalid',
+    //                     showConfirmButton: false,
+    //                     timer: 1000
+    //                 });
+    //             } document.getElementById('qr_scan').value = '';
+    //         }
+    //     });
+    // }
+
+    // function handleMazdaScan() {
+    //     console.log('mazda is selected');
+    //     document.getElementById('qr_scan').addEventListener('keyup', function (e) {
+    //         if (e.which === 13) {
+    //             e.preventDefault();
+    //             var qrCode = this.value;
+    //             if (qrCode.length === 50) {
+    //                 document.getElementById('product_name').value = qrCode.substring(10, 35);
+    //                 document.getElementById('lot_no').value = qrCode.substring(35, 41);
+    //                 document.getElementById('serial_no').value = qrCode.substring(41, 50);
+    //                 // Clear the qr_scan input field after processing
+    //                 this.value = '';
+    //             }
+    //             else {
+    //                 // Invalid QR code
+    //                 // Swal.fire({
+    //                 //     icon: 'error',
+    //                 //     title: 'Invalid QR Code',
+    //                 //     showConfirmButton: false,
+    //                 //     timer: 1000
+    //                 // });
+    //             }
+    //         }
+    //     });
+    // }
+
+    // function handleNissanScan() {
+    //     console.log('nissan is selected');
+    //     document.getElementById('qr_scan').addEventListener('keydown', function (e) {
+    //         if (e.which === 13) {
+    //             e.preventDefault();
+    //             var qrCode = this.value;
+    //             if (qrCode.length === 41) {
+    //                 document.getElementById('product_name').value = qrCode.substring(1, 22);
+    //                 document.getElementById('lot_no').value = qrCode.substring(26, 33);
+    //                 document.getElementById('serial_no').value = qrCode.substring(32, 38);
+    //             } else {
+    //                 // alert('Invalid QR code');
+    //                 Swal.fire({
+    //                     icon: 'error',
+    //                     title: 'Invalid QR Code',
+    //                     text: 'Invalid',
+    //                     showConfirmButton: false,
+    //                     timer: 1000
+    //                 });
+    //             } document.getElementById('qr_scan').value = '';
+    //         }
+    //     });
+    // }
+
+    // function handleSubaruScan() {
+    //     console.log('subaru is selected');
+    //     document.getElementById('qr_scan').addEventListener('keydown', function (e) {
+    //         if (e.which === 13) {
+    //             e.preventDefault();
+    //             var qrCode = this.value;
+    //             if (qrCode.length === 41) {
+    //                 document.getElementById('product_name').value = qrCode.substring(1, 22);
+    //                 document.getElementById('lot_no').value = qrCode.substring(26, 33);
+    //                 document.getElementById('serial_no').value = qrCode.substring(32, 38);
+    //             } else {
+    //                 // alert('Invalid QR code');
+    //                 Swal.fire({
+    //                     icon: 'error',
+    //                     title: 'Invalid QR Code',
+    //                     text: 'Invalid',
+    //                     showConfirmButton: false,
+    //                     timer: 1000
+    //                 });
+    //             } document.getElementById('qr_scan').value = '';
+    //         }
+    //     });
+    // }
+
+    // function handleSuzukiScan() {
+    //     document.getElementById('qr_scan').addEventListener('keyup', function (e) {
+    //         var qrCode = this.value;
+    //         var exactLength = qrCode.length;
+
+    //         if (qrCode.trim().length > 0 && qrCode.length >= 50) {
+    //             e.preventDefault();
+    //             qrCode = qrCode.trim();
+    //             var millisecond = new Date().getMilliseconds(); // Get current milliseconds
+
+    //             document.getElementById('product_name').value = qrCode.substring(10, 35);
+    //             document.getElementById('lot_no').value = qrCode.substring(35, 41);
+    //             document.getElementById('serial_no').value = qrCode.substring(41, 50);
+
+    //             document.getElementById('qr_scan').value = '';
+    //         } else if (qrCode.length > 0) {
+    //             console.error('Invalid QR code length:', qrCode.length);
+
+    //             Swal.fire({
+    //                 icon: 'error',
+    //                 title: 'Invalid QR Code',
+    //                 text: 'Invalid',
+    //                 showConfirmButton: false,
+    //                 timer: 1000
+    //             }).then(function () {
+    //                 setTimeout(function () {
+    //                     document.getElementById('qr_scan').value = '';
+    //                 }, 500);
+    //             });
+    //         }
+    //     });
+    // }
 
     // function handleSuzukiScan() {
     //     console.log('Suzuki is selected');
@@ -1214,77 +1255,53 @@
     //     });
     // }
 
-    // ============================================================================
-    // WORKING SCAN IN LIVE
-    // function handleSuzukiScan() {
-    //     console.log('suzuki is selected');
-    //     document.getElementById('qr_scan').addEventListener('keyup', function (e) {
+    // function handleToyotaScan() {
+    //     console.log('toyota is selected');
+    //     document.getElementById('qr_scan').addEventListener('keydown', function (e) {
     //         if (e.which === 13) {
     //             e.preventDefault();
     //             var qrCode = this.value;
-    //             if (qrCode.length === 50) {
-    //                 document.getElementById('product_name').value = qrCode.substring(10, 35);
-    //                 document.getElementById('lot_no').value = qrCode.substring(35, 41);
-    //                 document.getElementById('serial_no').value = qrCode.substring(41, 50);
-    //                 // Clear the qr_scan input field after processing
-    //                 this.value = '';
-    //             }
-    //             else {
-
-    //             }
+    //             if (qrCode.length === 41) {
+    //                 document.getElementById('product_name').value = qrCode.substring(1, 22);
+    //                 document.getElementById('lot_no').value = qrCode.substring(26, 33);
+    //                 document.getElementById('serial_no').value = qrCode.substring(32, 38);
+    //             } else {
+    //                 // alert('Invalid QR code');
+    //                 Swal.fire({
+    //                     icon: 'error',
+    //                     title: 'Invalid QR Code',
+    //                     text: 'Invalid',
+    //                     showConfirmButton: false,
+    //                     timer: 1000
+    //                 });
+    //             } document.getElementById('qr_scan').value = '';
     //         }
     //     });
     // }
-    // ============================================================================
 
-
-    function handleToyotaScan() {
-        console.log('toyota is selected');
-        document.getElementById('qr_scan').addEventListener('keydown', function (e) {
-            if (e.which === 13) {
-                e.preventDefault();
-                var qrCode = this.value;
-                if (qrCode.length === 41) {
-                    document.getElementById('product_name').value = qrCode.substring(1, 22);
-                    document.getElementById('lot_no').value = qrCode.substring(26, 33);
-                    document.getElementById('serial_no').value = qrCode.substring(32, 38);
-                } else {
-                    // alert('Invalid QR code');
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Invalid QR Code',
-                        text: 'Invalid',
-                        showConfirmButton: false,
-                        timer: 1000
-                    });
-                } document.getElementById('qr_scan').value = '';
-            }
-        });
-    }
-
-    function handleDaihatsuScan() {
-        console.log('daihatsu is selected');
-        document.getElementById('qr_scan').addEventListener('keydown', function (e) {
-            if (e.which === 13) {
-                e.preventDefault();
-                var qrCode = this.value;
-                if (qrCode.length === 41) {
-                    document.getElementById('product_name').value = qrCode.substring(1, 22);
-                    document.getElementById('lot_no').value = qrCode.substring(26, 33);
-                    document.getElementById('serial_no').value = qrCode.substring(32, 38);
-                } else {
-                    // alert('Invalid QR code');
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Invalid QR Code',
-                        text: 'Invalid',
-                        showConfirmButton: false,
-                        timer: 1000
-                    });
-                } document.getElementById('qr_scan').value = '';
-            }
-        });
-    }
+    // function handleDaihatsuScan() {
+    //     console.log('daihatsu is selected');
+    //     document.getElementById('qr_scan').addEventListener('keydown', function (e) {
+    //         if (e.which === 13) {
+    //             e.preventDefault();
+    //             var qrCode = this.value;
+    //             if (qrCode.length === 41) {
+    //                 document.getElementById('product_name').value = qrCode.substring(1, 22);
+    //                 document.getElementById('lot_no').value = qrCode.substring(26, 33);
+    //                 document.getElementById('serial_no').value = qrCode.substring(32, 38);
+    //             } else {
+    //                 // alert('Invalid QR code');
+    //                 Swal.fire({
+    //                     icon: 'error',
+    //                     title: 'Invalid QR Code',
+    //                     text: 'Invalid',
+    //                     showConfirmButton: false,
+    //                     timer: 1000
+    //                 });
+    //             } document.getElementById('qr_scan').value = '';
+    //         }
+    //     });
+    // }
 
 
 
@@ -1420,10 +1437,48 @@
     //     handle_qr_scan();
     // });
 
+    function handle_line_no_change(line_no) {
+        update_car_maker(line_no);
+        update_issue_tag(line_no);
+    }
+
+    function update_car_maker(line_no) {
+        var car_maker_input = document.getElementById("car_maker");
+
+        if (line_no.trim().startsWith('1')) {
+            car_maker_input.value = 'Mazda';
+            handleCarMakerChange(car_maker_input);
+        } else if (line_no.trim().startsWith('2')) {
+            car_maker_input.value = 'Daihatsu';
+            handleCarMakerChange(car_maker_input);
+        } else if (line_no.trim().startsWith('3')) {
+            car_maker_input.value = 'Honda';
+            handleCarMakerChange(car_maker_input);
+        } else if (line_no.trim().startsWith('4')) {
+            car_maker_input.value = 'Toyota';
+            handleCarMakerChange(car_maker_input);
+        } else if (line_no.trim().startsWith('5')) {
+            car_maker_input.value = 'Suzuki';
+            handleCarMakerChange(car_maker_input);
+        } else if (line_no.trim().startsWith('6')) {
+            car_maker_input.value = 'Nissan';
+            handleCarMakerChange(car_maker_input);
+        } else if (line_no.trim().startsWith('7')) {
+            car_maker_input.value = 'Subaru';
+            handleCarMakerChange(car_maker_input);
+        } else {
+            car_maker_input.value = '';
+            handleCarMakerChange(car_maker_input);
+        }
+    }
+
+    document.getElementById("line_no").addEventListener("input", function () {
+        handle_line_no_change(this.value);
+    });
+
     function update_issue_tag(line_no) {
         var issue_tag_input = document.getElementById("issue_tag");
 
-        // Clear the issue tag field if the line number is empty
         if (line_no.trim() === '') {
             issue_tag_input.value = '';
             return;
@@ -1444,7 +1499,6 @@
                 // issue_tag_input.value = response; // Update the issue tag input field
             },
             error: function () {
-                // Handle error if necessary
                 console.error('Failed to get the issue tag');
             }
         });
@@ -2122,7 +2176,7 @@
         document.getElementById("manhour_cost_mc").value = '';
         document.getElementById("portion_treatment").value = '';
 
-        count_detail_content_defect_char(); 
+        count_detail_content_defect_char();
         count_treatment_content_defect_char();
     }
 

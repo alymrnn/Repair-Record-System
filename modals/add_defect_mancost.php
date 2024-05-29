@@ -26,11 +26,11 @@
                         Defect Only
                     </label>&emsp;
 
-                    <label style="display: inline-block;font-size: 18px">
+                    <!-- <label style="display: inline-block;font-size: 18px">
                         <input type="radio" id="r_mancost_only" name="record_type" value="Mancost Only"
                             style="vertical-align: middle;">
                         Mancost Only
-                    </label>&emsp;
+                    </label>&emsp; -->
 
                     <label style="display: inline-block;font-size: 18px">
                         <input type="radio" id="r_white_tag" name="record_type" value="White Tag"
@@ -106,13 +106,16 @@
                         <!-- car maker -->
                         <label style="font-weight: normal;color: #000;">Car Maker</label>
                         <label style="color:#CA3F3F">*</label>
-
-                        <input list="carMakerList" placeholder="Select the car maker" name="car_maker" id="car_maker"
+                        <!-- <input list="carMakerList" placeholder="Select the car maker" name="car_maker" id="car_maker"
                             onchange="handleCarMakerChange(this)" autocomplete="off"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
-                            class="pl-2" required>
-                        <datalist id="carMakerList">
-                        </datalist>
+                            class="pl-2" required> -->
+                        <!-- <datalist id="carMakerList">
+                        </datalist> -->
+
+                        <input name="car_maker" id="car_maker" onchange="handleCarMakerChange(this)"
+                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="pl-2" disabled>
                         <span id="carMakerError" class="error-message" style="display:none; color:#CA3F3F;">Car Maker
                             field is required.</span>
                     </div>
