@@ -100,7 +100,7 @@ if (isset($_SESSION['emp_no'])) {
                                 onfocus="changeBorderColor(this, '#C97719')"
                                 oninput="changeBorderColor(this, '#C97719')"
                                 onblur="changeBorderColor(this, '#888888')">
-                            <i class="pt-1" style="font-size: 13px;">Scan QR Code or Type your ID Number</i>
+                            <!-- <i class="pt-1" style="font-size: 13px;">Scan QR Code or Type your ID Number</i> -->
                         </div>
                         <div class="input-group mb-3">
                             <button type="submit" class="login-btn btn btn-block" name="login_btn" value="login"

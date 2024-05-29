@@ -339,9 +339,9 @@
         }
     }
 
-    document.getElementById('qr_scan_pd').addEventListener('input', function (e) {
+    document.getElementById('qr_scan_pd').addEventListener('keyup', function (e) {
         var qrCode = this.value;
-        console.log("QR Code Scanned:", qrCode);
+        // console.log("QR Code Scanned:", qrCode);
 
         if (qrCode.length === 50) {
             const productNameField = document.getElementById('search_product_name');
@@ -353,26 +353,27 @@
                 lotNoField.value = qrCode.substring(35, 41);
                 serialNoField.value = qrCode.substring(41, 50);
 
-                console.log("Product Name Set:", productNameField.value);
-                console.log("Lot No Set:", lotNoField.value);
-                console.log("Serial No Set:", serialNoField.value);
+                // console.log("Product Name Set:", productNameField.value);
+                // console.log("Lot No Set:", lotNoField.value);
+                // console.log("Serial No Set:", serialNoField.value);
 
                 load_defect_table(1);
             } else {
-                console.error("One or more elements were not found in the DOM.");
+                // console.error("One or more elements were not found in the DOM.");
             }
 
             this.value = '';
-        } else if (qrCode.length > 50) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Invalid QR Code',
-                text: 'Invalid',
-                showConfirmButton: false,
-                timer: 1000
-            });
-            this.value = '';
-        }
+        } 
+        // else if (qrCode.length > 50) {
+        //     Swal.fire({
+        //         icon: 'error',
+        //         title: 'Invalid QR Code',
+        //         text: 'Invalid',
+        //         showConfirmButton: false,
+        //         timer: 1000
+        //     });
+        //     this.value = '';
+        // }
     });
 
     const load_defect_table_data_last_page = () => {
