@@ -114,122 +114,76 @@ function count_viewer_defect_table_data($conn, $defect_category, $discovery_proc
 {
     $query = "SELECT count(id) AS total FROM t_defect_record_f";
     $conditions = [];
+    $params = [];
 
     if (!empty($date_from) && !empty($date_to)) {
-        $conditions[] = "repairing_date BETWEEN '$date_from' AND '$date_to'";
+        $conditions[] = "repairing_date BETWEEN ? AND ?";
+        $params[] = $date_from;
+        $params[] = $date_to;
     }
 
     if (!empty($defect_category)) {
         $conditions[] = "defect_category LIKE ?";
+        $params[] = '%' . $defect_category . '%';
     }
 
     if (!empty($discovery_process)) {
         $conditions[] = "discovery_process LIKE ?";
+        $params[] = '%' . $discovery_process . '%';
     }
 
     if (!empty($occurrence_process)) {
         $conditions[] = "occurrence_process LIKE ?";
+        $params[] = '%' . $occurrence_process . '%';
     }
 
     if (!empty($outflow_process)) {
         $conditions[] = "outflow_process LIKE ?";
+        $params[] = '%' . $outflow_process . '%';
     }
 
     if (!empty($car_maker)) {
         $conditions[] = "car_maker LIKE ?";
+        $params[] = '%' . $car_maker . '%';
     }
 
     if (!empty($line_no)) {
         $conditions[] = "line_no LIKE ?";
+        $params[] = '%' . $line_no . '%';
     }
 
     if (!empty($product_name)) {
         $conditions[] = "product_name LIKE ?";
+        $params[] = '%' . $product_name . '%';
     }
 
     if (!empty($lot_no)) {
         $conditions[] = "lot_no LIKE ?";
+        $params[] = '%' . $lot_no . '%';
     }
 
     if (!empty($serial_no)) {
         $conditions[] = "serial_no LIKE ?";
+        $params[] = '%' . $serial_no . '%';
     }
 
     if (!empty($record_type)) {
         $conditions[] = "record_type LIKE ?";
+        $params[] = '%' . $record_type . '%';
     }
 
     if (!empty($defect_cause)) {
         $conditions[] = "defect_cause LIKE ?";
+        $params[] = '%' . $defect_cause . '%';
     }
 
     $conditions[] = "(qc_status = 'Verified' OR BINARY record_type = 'White Tag')";
-    // $conditions[] = "DATE(date_detected) = CURDATE()";
 
     if (!empty($conditions)) {
         $query .= " WHERE " . implode(" AND ", $conditions);
     }
 
     $stmt = $conn->prepare($query);
-
-    $params = [];
-
-    if (!empty($date_from) && !empty($date_to)) {
-        $params[] = $date_from;
-        $params[] = $date_to;
-    }
-
-    if (!empty($defect_category)) {
-        $params[] = '%' . $defect_category . '%';
-    }
-
-    if (!empty($discovery_process)) {
-        $params[] = '%' . $discovery_process . '%';
-    }
-
-    if (!empty($occurrence_process)) {
-        $params[] = '%' . $occurrence_process . '%';
-    }
-
-    if (!empty($outflow_process)) {
-        $params[] = '%' . $outflow_process . '%';
-    }
-
-    if (!empty($car_maker)) {
-        $params[] = '%' . $car_maker . '%';
-    }
-
-    if (!empty($line_no)) {
-        $params[] = '%' . $line_no . '%';
-    }
-
-    if (!empty($product_name)) {
-        $params[] = '%' . $product_name . '%';
-    }
-
-    if (!empty($lot_no)) {
-        $params[] = '%' . $lot_no . '%';
-    }
-
-    if (!empty($serial_no)) {
-        $params[] = '%' . $serial_no . '%';
-    }
-
-    if (!empty($record_type)) {
-        $params[] = '%' . $record_type . '%';
-    }
-
-    if (!empty($defect_cause)) {
-        $params[] = '%' . $defect_cause . '%';
-    }
-
-    if (!empty($date_from)) {
-        $params[] = '%' . $date_from . '%';
-    }
-
-    if (!empty($date_to)) {
-        $params[] = '%' . $date_to . '%';
-    }
 
     $stmt->execute($params);
 
@@ -400,8 +354,9 @@ if ($method == 'load_viewer_defect_table_data') {
         $query .= " WHERE " . implode(" AND ", $conditions);
     }
 
-    $query .= " ORDER BY repairing_date DESC";
-
+    // $query .= " ORDER BY repairing_date DESC";
+    $query .= " ORDER BY record_added_defect_datetime DESC";
+    
     $query .= " LIMIT " . $page_first_result . ", " . $results_per_page;
 
     // Prepare and execute the query

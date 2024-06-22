@@ -43,7 +43,10 @@
                             <a class="btn btn-block d-flex justify-content-left" data-toggle="modal"
                                 data-target="#add_car_settings"
                                 style="color:#fff;height:34px;border-radius:.25rem;background: #f06543;font-size:15px;font-weight:normal;"><i
-                                    class="fas fa-car" style="margin-top: 2px;"></i>&nbsp;&nbsp;Add QR Settings</a>
+                                    class="fas fa-car" style="margin-top: 2px;"
+                                    onmouseover="this.style.backgroundColor='#BA482C'; this.style.color='#FFF';"
+                                    onmouseout="this.style.backgroundColor='#f06543'; this.style.color='#FFF';"></i>&nbsp;&nbsp;Add
+                                QR Settings</a>
                         </div>
                         <div class="col-12 col-sm-10"></div>
                     </div>

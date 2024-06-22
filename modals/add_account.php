@@ -1,9 +1,9 @@
 <div class="modal fade bd-example-modal-xl" id="add_account" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content" style="background:#e9e9e9;">
+        <div class="modal-content" style="background:#f9f9f9;">
             <div class="modal-header" style="background:#343a40;">
-                <h5 class="modal-title" id="exampleModalLabel" style="font-weight: normal;color: #fff;">
+                <h5 class="modal-title" id="exampleModalLabel" style="font-weight: normal;color: #fff;"><i class="fas fa-plus-circle"></i>&nbsp;
                     Add New Account
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff;">
@@ -61,7 +61,7 @@
                 </div>
             </div>
 
-            <div class="modal-footer" style="background:#c2c2c2;">
+            <div class="modal-footer" style="background:#e9e9e9;">
                 <div class="col-12">
                     <div class="float-left">
                         <button class="btn btn-block" data-dismiss="modal"

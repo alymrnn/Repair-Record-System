@@ -142,7 +142,7 @@
                     <div class="card bg-light">
                       <div class="card-header">
                         <h4 class="card-title w-100">
-                          <a class="d-block w-100 text-black" data-toggle="collapse" href="#collapseDefectLegend">
+                          <a class="d-block w-100 text-black" data-toggle="collapse" href="#collapseDefectLegend" style="font-size: 15px;">
                             Defect Record and Mancost Monitoring Legend
                           </a>
                         </h4>

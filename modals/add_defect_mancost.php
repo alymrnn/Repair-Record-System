@@ -3,7 +3,8 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content" style="background:#f9f9f9;">
             <div class="modal-header" style="background: #0069B0;">
-                <h5 class="modal-title" id="exampleModalLabel" style="font-weight: normal;color: #fff;">
+                <h5 class="modal-title" id="exampleModalLabel" style="font-weight: normal;color: #fff;"><i
+                        class="fas fa-plus-circle"></i>&nbsp;
                     Add Defect Record & Mancost Monitoring
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -388,12 +389,16 @@
                 <div class="col-sm-2">
                     <!-- clear button -->
                     <button class="btn btn-block" onclick="clear_dr_mc_fields()"
-                        style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;">Clear</button>
+                        style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;"
+                        onmouseover="this.style.backgroundColor='#272727'; this.style.color='#FFF';"
+                        onmouseout="this.style.backgroundColor='#474747'; this.style.color='#FFF';">Clear</button>
                 </div>
                 <div class="col-sm-2">
                     <!-- next button -->
                     <button class="btn btn-block" onclick="go_to_mc_form()" id="btnGoToMcForm"
-                        style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;">Next</button>
+                        style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"
+                        onmouseover="this.style.backgroundColor='#164837'; this.style.color='#FFF';"
+                        onmouseout="this.style.backgroundColor='#226F54'; this.style.color='#FFF';">Next</button>
                     <!-- Note: Add an alert notification to inform the repair person that once the record is saved and added, it can’t be edited or deleted.  -->
                 </div>
             </div>

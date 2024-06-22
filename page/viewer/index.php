@@ -184,7 +184,7 @@ include ('plugins/navbar/index_navbar.php');
                       class="fas fa-download" style="margin-top: 2px;"></i>&nbsp;&nbsp;Export</button>
                 </div>
                 <div class="col-12 col-sm-4 col-md-1 mb-2">
-                  <!-- delete button -->
+                  <!-- clear all button -->
                   <button class="btn btn-block d-flex justify-content-left" id="search_btn"
                     onclick="clear_search_input()"
                     style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;"
@@ -193,7 +193,7 @@ include ('plugins/navbar/index_navbar.php');
                     <i class="fas fa-trash" style="margin-top: 2px;"></i>&nbsp;&nbsp;Clear All</button>
                 </div>
                 <div class="col-12 col-sm-4 col-md-1 mb-2">
-                  <!-- delete button -->
+                  <!-- refresh button -->
                   <button class="btn btn-block d-flex justify-content-left" id="search_btn"
                     onclick="refresh_page()"
                     style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;"
@@ -216,7 +216,7 @@ include ('plugins/navbar/index_navbar.php');
                     <div class="card bg-light">
                       <div class="card-header">
                         <h4 class="card-title w-100">
-                          <a class="d-block w-100 text-black" data-toggle="collapse" href="#collapseDefectLegend">
+                          <a class="d-block w-100 text-black" data-toggle="collapse" href="#collapseDefectLegend" style="font-size: 15px;">
                             Defect Record and Mancost Monitoring Legend
                           </a>
                         </h4>

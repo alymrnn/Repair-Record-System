@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
         <div class="modal-content" style="background:#f9f9f9;">
             <div class="modal-header" style="background: #0069B0;">
-                <h5 class="modal-title" id="exampleModalLabel" style="font-weight: normal;color: #fff;">
+                <h5 class="modal-title" id="exampleModalLabel" style="font-weight: normal;color: #fff;"><i class="fas fa-plus-circle"></i>&nbsp;
                     Add Defect Record & Mancost Monitoring
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -15,8 +15,8 @@
                     <p style="font-size: 18px"><i>Check N/A if White Tag and Defect Only:</i></p>&ensp;
 
                     <label style="display: inline-block;font-size: 18px">
-                        <input type="radio" id="r_white_tag_defect" name="na_white_tag_defect" value="Defect and Mancost"
-                            style="vertical-align: middle;">
+                        <input type="radio" id="r_white_tag_defect" name="na_white_tag_defect"
+                            value="Defect and Mancost" style="vertical-align: middle;">
                         N/A
                     </label>&emsp;
 
@@ -166,43 +166,23 @@
                     </div>
                 </div>
                 <!-- /.end -->
-                <!-- ENTRY COLUMN FOR PROCESS RESPONSIBLE PERSON -->
-                <!-- <label></label> -->
-                <div class="row">
-
-                    <!-- <div class="col-sm-3">
-                        <label style="font-weight: normal;color: #000;">Re-Checking (in Process)</label>
-                        <label style="color:#CA3F3F">*</label>
-                        <input type="text" id="re_checking_mc" class="form-control pl-3" autocomplete="off" style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;" required>
-                        <span id="reCheckingMcError" class="error-message" style="display:none; color:#CA3F3F;">Re-checking field is required.</span>
-                    </div>
-                    <div class="col-sm-3">
-                        <label style="font-weight: normal;color: #000;">QC Verification</label>
-                        <label style="color:#CA3F3F">*</label>
-                        <input type="text" id="qc_verification_mc" class="form-control pl-3" autocomplete="off" style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;" required>
-                        <span id="qcVerificationMcError" class="error-message" style="display:none; color:#CA3F3F;">QC Verification field is required.</span>
-                    </div>
-                    <div class="col-sm-3">
-                        <label style="font-weight: normal;color: #000;">Checking Date (Sign)</label>
-                        <label style="color:#CA3F3F">*</label>
-                        <input type="text" id="checking_date_mc" class="form-control pl-3" autocomplete="off" style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;" required>
-                        <span id="checkingDateMcError" class="error-message" style="display:none; color:#CA3F3F;">Checking Date field is required.</span>
-                    </div> -->
-                </div>
-                <!-- /.end -->
-
+         
                 <div class="row mt-3">
                     <div class="col-sm-4"></div>
                     <div class="col-sm-4"></div>
                     <div class="col-sm-2">
                         <!-- clear button -->
                         <button class="btn btn-block" onclick="clear_dr_mc_fields()"
-                            style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;">Clear</button>
+                            style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;"
+                            onmouseover="this.style.backgroundColor='#272727'; this.style.color='#FFF';"
+                            onmouseout="this.style.backgroundColor='#474747'; this.style.color='#FFF';">Clear</button>
                     </div>
                     <div class="col-sm-2">
                         <!-- add record -->
                         <button class="btn btn-block" onclick="add_multiple_mancost()"
-                            style="color:#fff;height:34px;border-radius:.25rem;background: #0069B0;font-size:15px;font-weight:normal;">Add
+                            style="color:#fff;height:34px;border-radius:.25rem;background: #0069B0;font-size:15px;font-weight:normal;"
+                            onmouseover="this.style.backgroundColor='#004574'; this.style.color='#FFF';"
+                            onmouseout="this.style.backgroundColor='#0069B0'; this.style.color='#FFF';">Add
                             Record</button>
                     </div>
                 </div>
@@ -243,18 +223,12 @@
                 <!-- /.row end -->
             </div>
             <div class="modal-footer" style="background:#e9e9e9;">
-                <!-- <div class="col-sm-2">
-                    back button
-                    <button class="btn btn-block" style="color:#fff;height:34px;border-radius:.25rem;background: #0F4B73;font-size:15px;font-weight:normal;" data-dismiss="modal" onclick="setTimeout(() => {$('#add_defect_mancost').modal('show');}, 400);">Back</button>
-                </div> -->
-                <!-- <div class="col-sm-2">
-                    clear button
-                    <button class="btn btn-block" onclick="clear_dr_mc_fields()" style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;">Clear</button>
-                </div> -->
                 <div class="col-sm-2">
                     <!-- add record -->
                     <button class="btn btn-block" onclick="add_defect_mancost_record()"
-                        style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;">Save
+                        style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"
+                        onmouseover="this.style.backgroundColor='#164837'; this.style.color='#FFF';"
+                        onmouseout="this.style.backgroundColor='#226F54'; this.style.color='#FFF';">Save
                         Record/s</button>
                     <!-- Note: Add an alert notification to inform the repair person that once the record is saved and added, it can’t be edited or deleted.  -->
                 </div>

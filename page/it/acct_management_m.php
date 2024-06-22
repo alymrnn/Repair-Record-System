@@ -55,13 +55,17 @@
               <!-- search button -->
               <button class="btn btn-block d-flex justify-content-left" id="search_btn" onclick="search_account()"
                 style="color:#fff;height:34px;border-radius:.25rem;background: #f06543;font-size:15px;font-weight:normal;"><i
-                  class="fas fa-search" style="margin-top: 2px;"></i>&nbsp;&nbsp;Search</button>
+                  class="fas fa-search" style="margin-top: 2px;"
+                  onmouseover="this.style.backgroundColor='#BA482C'; this.style.color='#FFF';"
+                  onmouseout="this.style.backgroundColor='#f06543'; this.style.color='#FFF';"></i>&nbsp;&nbsp;Search</button>
             </div>
             <div class="col-sm-3">
               <!-- add account button -->
-              <a class="btn btn-block d-flex justify-content-left" data-toggle="modal" data-target="#add_account"
-                style="color:#fff;height:34px;border-radius:.25rem;background: #1b263b;font-size:15px;font-weight:normal;"><i
-                  class="fas fa-plus-circle" style="margin-top: 2px;"></i>&nbsp;&nbsp;Add Account</a>
+              <button class="btn btn-block d-flex justify-content-left" data-toggle="modal" data-target="#add_account"
+                style="color:#fff;height:34px;border-radius:.25rem;background: #1b263b;font-size:15px;font-weight:normal;"
+                onmouseover="this.style.backgroundColor='#121927'; this.style.color='#FFF';"
+                onmouseout="this.style.backgroundColor='#1b263b'; this.style.color='#FFF';"><i
+                  class="fas fa-plus-circle" style="margin-top: 2px;"></i>&nbsp;&nbsp;Add Account</button>
 
             </div>
           </div>
@@ -78,7 +82,6 @@
             <table class="table col-12 mt-3 table-head-fixed text-nowrap table-hover" id="account_table"
               style="background: #F9F9F9;">
               <thead style="text-align: center;">
-                <!-- table switching content -->
                 <th>#</th>
                 <th>Employee ID</th>
                 <th>Full Name</th>

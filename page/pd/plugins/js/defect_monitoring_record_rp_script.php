@@ -363,7 +363,7 @@
             }
 
             this.value = '';
-        } 
+        }
         // else if (qrCode.length > 50) {
         //     Swal.fire({
         //         icon: 'error',
@@ -1038,6 +1038,7 @@
 
     // ============================================================================
     // WORKING SCAN IN LIVE
+    // IMPLEMENTED IN PRODUCTION
     function handleSuzukiScan() {
         document.getElementById('qr_scan').addEventListener('keyup', function (e) {
             if (e.which === 13) {
@@ -1047,7 +1048,7 @@
                     document.getElementById('product_name').value = qrCode.substring(10, 35);
                     document.getElementById('lot_no').value = qrCode.substring(35, 41);
                     document.getElementById('serial_no').value = qrCode.substring(41, 50);
-                    // Clear the qr_scan input field after processing
+
                     this.value = '';
                 }
                 else {
@@ -1066,7 +1067,7 @@
                     document.getElementById('product_name').value = qrCode.substring(10, 35);
                     document.getElementById('lot_no').value = qrCode.substring(35, 41);
                     document.getElementById('serial_no').value = qrCode.substring(41, 50);
-                    // Clear the qr_scan input field after processing
+
                     this.value = '';
                 }
                 else {
@@ -1075,6 +1076,103 @@
             }
         });
     }
+
+    // NOT YET IMPLEMENTED IN PRODUCTION
+    function handleDaihatsuScan() {
+        document.getElementById('qr_scan').addEventListener('keyup', function (e) {
+            if (e.which === 13) {
+                e.preventDefault();
+                var qrCode = this.value;
+                if (qrCode.length === 50) {
+                    document.getElementById('product_name').value = qrCode.substring(10, 35);
+                    document.getElementById('lot_no').value = qrCode.substring(35, 41);
+                    document.getElementById('serial_no').value = qrCode.substring(41, 50);
+
+                    this.value = '';
+                }
+                else {
+
+                }
+            }
+        });
+    }
+
+    function handleHondaScan() {
+        document.getElementById('qr_scan').addEventListener('keyup', function (e) {
+            if (e.which === 13) {
+                e.preventDefault();
+                var qrCode = this.value;
+                if (qrCode.length === 50) {
+                    document.getElementById('product_name').value = qrCode.substring(10, 35);
+                    document.getElementById('lot_no').value = qrCode.substring(35, 41);
+                    document.getElementById('serial_no').value = qrCode.substring(41, 50);
+
+                    this.value = '';
+                }
+                else {
+
+                }
+            }
+        });
+    }
+
+    function handleNissanScan() {
+        document.getElementById('qr_scan').addEventListener('keyup', function (e) {
+            if (e.which === 13) {
+                e.preventDefault();
+                var qrCode = this.value;
+                if (qrCode.length === 50) {
+                    document.getElementById('product_name').value = qrCode.substring(10, 35);
+                    document.getElementById('lot_no').value = qrCode.substring(35, 41);
+                    document.getElementById('serial_no').value = qrCode.substring(41, 50);
+
+                    this.value = '';
+                }
+                else {
+
+                }
+            }
+        });
+    }
+
+    function handleSubaruScan() {
+        document.getElementById('qr_scan').addEventListener('keyup', function (e) {
+            if (e.which === 13) {
+                e.preventDefault();
+                var qrCode = this.value;
+                if (qrCode.length === 50) {
+                    document.getElementById('product_name').value = qrCode.substring(10, 35);
+                    document.getElementById('lot_no').value = qrCode.substring(35, 41);
+                    document.getElementById('serial_no').value = qrCode.substring(41, 50);
+
+                    this.value = '';
+                }
+                else {
+
+                }
+            }
+        });
+    }
+
+    function handleToyotaScan() {
+        document.getElementById('qr_scan').addEventListener('keyup', function (e) {
+            if (e.which === 13) {
+                e.preventDefault();
+                var qrCode = this.value;
+                if (qrCode.length === 50) {
+                    document.getElementById('product_name').value = qrCode.substring(10, 35);
+                    document.getElementById('lot_no').value = qrCode.substring(35, 41);
+                    document.getElementById('serial_no').value = qrCode.substring(41, 50);
+
+                    this.value = '';
+                }
+                else {
+
+                }
+            }
+        });
+    }
+
     // ============================================================================
 
     // function handleHondaScan() {
@@ -1477,6 +1575,10 @@
         handle_line_no_change(this.value);
     });
 
+    document.getElementById("line_no").addEventListener("input", function () {
+        update_issue_tag(this.value);
+    });
+
     function update_issue_tag(line_no) {
         var issue_tag_input = document.getElementById("issue_tag");
 
@@ -1494,28 +1596,43 @@
                 line_no: line_no
             },
             success: function (response) {
-                var nextIssueNo = parseInt(response);
-                issue_tag_input.value = nextIssueNo;
-
-                // issue_tag_input.value = response; // Update the issue tag input field
+                console.log('Response:', response);
+                try {
+                    var result = JSON.parse(response);
+                    if (result.error) {
+                        console.error('Error generating issue tag');
+                        issue_tag_input.value = 'Error';
+                    } else {
+                        var nextIssueNo = parseInt(result.issue_no, 10);
+                        if (!isNaN(nextIssueNo)) {
+                            issue_tag_input.value = nextIssueNo;
+                        } else {
+                            console.error('Invalid issue number');
+                            issue_tag_input.value = 'Error';
+                        }
+                    }
+                } catch (e) {
+                    console.error('Failed to parse response', e);
+                    issue_tag_input.value = 'Error';
+                }
             },
             error: function () {
                 console.error('Failed to get the issue tag');
+                issue_tag_input.value = 'Error';
             }
         });
     }
 
-    function get_issue_tag_no(line_no) {
-        // Simulate the issue tag incrementation on the client side
-        if (!getIssueTag.counter) {
-            getIssueTag.counter = 1;
-        } else {
-            getIssueTag.counter++;
-        }
-        return getIssueTag.counter;
-    }
 
-    // Function to clear input fields
+    // function get_issue_tag_no(line_no) {
+    //     if (!getIssueTag.counter) {
+    //         getIssueTag.counter = 1;
+    //     } else {
+    //         getIssueTag.counter++;
+    //     }
+    //     return getIssueTag.counter;
+    // }
+
     function clearInputFields() {
         var inputFieldIds = ['issue_tag', 'car_maker'];
         for (var i = 0; i < inputFieldIds.length; i++) {
@@ -1560,7 +1677,6 @@
     // add defect record and mancost
     const add_defect_mancost_record = () => {
         $('#list_of_added_mancost').empty();
-        // console.log("Table cleared");
 
         var record_type = $("input[name='record_type']:checked").val();
 
@@ -1591,7 +1707,7 @@
         var repair_person_dr = document.getElementById("repair_person_dr").value.trim();
         var detail_content_defect = document.getElementById("detail_content_defect").value.trim();
         var treatment_content_defect = document.getElementById("treatment_content_defect").value.trim();
-        // ==================================================================================================
+
         var repair_start_mc = document.getElementById("repair_start_mc").value.trim();
         var repair_end_mc = document.getElementById("repair_end_mc").value.trim();
         var time_consumed_mc = document.getElementById("time_consumed_mc").value;
@@ -1605,8 +1721,6 @@
         var portion_treatment = document.getElementById("portion_treatment").value.trim();
 
         var defect_id = document.getElementById('defect_id_no').value;
-
-        console.log(defect_id);
 
         $.ajax({
             url: '../../process/pd/defect_monitoring_record_rp_p.php',
@@ -1641,7 +1755,7 @@
                 repair_person_dr: repair_person_dr,
                 detail_content_defect: detail_content_defect,
                 treatment_content_defect: treatment_content_defect,
-                // ======================================================
+
                 repair_start_mc: repair_start_mc,
                 repair_end_mc: repair_end_mc,
                 time_consumed_mc: time_consumed_mc,
@@ -1667,6 +1781,7 @@
                         showConfirmButton: false,
                         timer: 1500
                     });
+
                     $('#record_type').val('');
                     $('#line_no').val('');
                     $('#line_category_dr').val('');
@@ -1694,7 +1809,7 @@
                     $('#repair_person_dr').val('');
                     $('#detail_content_defect').val('');
                     $('#treatment_content_defect').val('');
-                    // ===============================================================
+
                     $('#repair_start_mc').val('');
                     $('#repair_end_mc').val('');
                     $('#time_consumed_mc').val('');
@@ -1714,9 +1829,9 @@
 
                     $('#add_defect_mancost_2').modal('hide');
 
-                    setTimeout(function () {
-                        location.reload();
-                    }, 500);
+                    // setTimeout(function () {
+                    //     location.reload();
+                    // }, 500);
                 }
                 else {
                     console.error("Unexpected response from the server:", response);

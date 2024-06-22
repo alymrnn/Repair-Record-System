@@ -133,11 +133,12 @@
                   class="fas fa-plus-circle" style="margin-top: 2px;"></i>&nbsp;&nbsp;Add Record</button>
             </div>
           </div>
-          <div class="row mb-4">
+          <div class="row mb-3">
             <div class="col-12 col-sm-2">
               <!-- export defect record button -->
               <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
-              <button class="btn btn-block d-flex justify-content-left" id="export_defect_record" onclick="export_defect_record()"
+              <button class="btn btn-block d-flex justify-content-left" id="export_defect_record"
+                onclick="export_defect_record()"
                 style="color:#fff;height:34px;border-radius:.25rem;background: #646C75;font-size:15px;font-weight:normal;"
                 onmouseover="this.style.backgroundColor='#4A5056'; this.style.color='#FFF';"
                 onmouseout="this.style.backgroundColor='#646C75'; this.style.color='#FFF';"><i class="fas fa-download"
@@ -146,11 +147,19 @@
             <div class="col-12 col-sm-2">
               <!-- export mancost monitoring record button -->
               <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
-              <button class="btn btn-block d-flex justify-content-left" id="export_mancost_record" onclick="export_mancost_record()"
+              <button class="btn btn-block d-flex justify-content-left" id="export_mancost_record"
+                onclick="export_mancost_record()"
                 style="color:#fff;height:34px;border-radius:.25rem;background: #646C75;font-size:15px;font-weight:normal;"
                 onmouseover="this.style.backgroundColor='#4A5056'; this.style.color='#FFF';"
                 onmouseout="this.style.backgroundColor='#646C75'; this.style.color='#FFF';"><i class="fas fa-download"
                   style="margin-top: 2px;"></i>&nbsp;&nbsp;Export Mancost Record</button>
+            </div>
+            <div class="col-12 col-sm-4">
+              <label></label>
+              <p class="p-1" style="background: #FFFAD1; border-left: 3px solid #E89F4C;">
+                <i>Note:</i>
+                The records searched by date are based on the 'repairing date' column.
+              </p>
             </div>
           </div>
           <!-- /.row end -->

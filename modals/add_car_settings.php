@@ -1,9 +1,9 @@
 <div class="modal fade bd-example-modal-xl" id="add_car_settings" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog" role="document">
-        <div class="modal-content" style="background:#e9e9e9;">
+        <div class="modal-content" style="background:#f9f9f9;">
             <div class="modal-header" style="background:#343a40;">
-                <h5 class="modal-title" id="exampleModalLabel" style="font-weight: normal;color: #fff;">
+                <h5 class="modal-title" id="exampleModalLabel" style="font-weight: normal;color: #fff;"><i class="fas fa-plus-circle"></i>&nbsp;
                     Add New Car Maker QR Settings
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff;">
@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-            <div class="modal-footer" style="background:#c2c2c2;">
+            <div class="modal-footer" style="background:#e9e9e9;">
                 <div class="col-12">
                     <div class="float-left">
                         <button class="btn btn-block" data-dismiss="modal"
@@ -66,7 +66,9 @@
                     </div>
                     <div class="float-right">
                         <button class="btn btn-block" onclick="register_setting()"
-                            style="color:#fff;height:34px;width:150px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;">Add
+                            style="color:#fff;height:34px;width:150px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"
+                            onmouseover="this.style.backgroundColor='#164B39'; this.style.color='#FFF';"
+                            onmouseout="this.style.backgroundColor='#226F54'; this.style.color='#FFF';">Add
                             Settings</button>
                     </div>
                 </div>

@@ -493,7 +493,9 @@ if ($method == 'load_defect_table_data') {
         $query .= " WHERE " . implode(" AND ", $conditions);
     }
 
-    $query .= " ORDER BY repairing_date DESC";
+    // $query .= " ORDER BY repairing_date DESC";
+    // $query .= " ORDER BY record_added_defect_datetime DESC";
+    $query .= " ORDER BY record_added_defect_datetime DESC";
 
     // Add limit to the query
     $query .= " LIMIT " . $page_first_result . ", " . $results_per_page;
@@ -800,11 +802,9 @@ if ($method == 'go_to_mc_form') {
 // add defect mancost record
 if ($method == 'add_defect_mancost_record') {
     $record_type = trim($_POST['record_type']);
-
     $line_no = trim($_POST['line_no']);
     $line_category_dr = trim($_POST['line_category_dr']);
     $padded_line_no = str_pad($line_no, 4, '0', STR_PAD_LEFT);
-
     $date_detected = trim($_POST['date_detected']);
     $repairing_date = trim($_POST['repairing_date']);
     $car_maker = trim($_POST['car_maker']);
@@ -828,13 +828,8 @@ if ($method == 'add_defect_mancost_record') {
     $detail_content_defect = trim($_POST['detail_content_defect']);
     $treatment_content_defect = trim($_POST['treatment_content_defect']);
     $repair_person_dr = trim($_POST['repair_person_dr']);
-    // ============================================================
     $repair_start_mc = trim($_POST['repair_start_mc']);
     $repair_end_mc = trim($_POST['repair_end_mc']);
-
-    // $repair_start_mc = ($repair_start_mc === 'N/A') ? null : $repair_start_mc;
-    // $repair_end_mc = ($repair_end_mc === 'N/A') ? null : $repair_end_mc;
-
     $time_consumed_mc = trim($_POST['time_consumed_mc']);
     $defect_category_mc = trim($_POST['defect_category_mc']);
     $occurrence_process_mc = trim($_POST['occurrence_process_mc']);
@@ -844,19 +839,18 @@ if ($method == 'add_defect_mancost_record') {
     $material_cost_mc = trim($_POST['material_cost_mc']);
     $manhour_cost_mc = trim($_POST['manhour_cost_mc']);
     $portion_treatment = trim($_POST['portion_treatment']);
-
     $defect_id = $_POST['defect_id'];
-
     $status = 'Saved';
     $record_added_by = $_SESSION['full_name'];
-
     $qc_status = 'Saved';
 
     $error = 0;
     $message = "";
 
-    $check = "SELECT defect_id FROM t_defect_record_f WHERE defect_id = '$defect_id'";
+    // Check if defect ID already exists
+    $check = "SELECT defect_id FROM t_defect_record_f WHERE defect_id = :defect_id";
     $stmt = $conn->prepare($check);
+    $stmt->bindParam(':defect_id', $defect_id, PDO::PARAM_STR);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -864,35 +858,117 @@ if ($method == 'add_defect_mancost_record') {
         $error = 1;
         $message = 'Defect ID already exists.';
     } else {
-        $stmt = NULL;
-
-        // Check the number of existing records with the same line number
-        // $check_existing = "SELECT MAX(issue_no_tag) FROM t_defect_record_f WHERE line_no = '$padded_line_no'";
-        $check_existing = "SELECT MAX(CAST(issue_no_tag AS SIGNED)) FROM t_defect_record_f WHERE line_no = '$padded_line_no' AND MONTH(repairing_date) = MONTH(CURDATE())";
+        // Check the number of existing records with the same line number for the current month and year
+        $check_existing = "
+            SELECT MAX(CAST(issue_no_tag AS SIGNED)) 
+            FROM t_defect_record_f 
+            WHERE line_no = :line_no 
+              AND MONTH(record_added_defect_datetime) = MONTH(CURDATE())
+              AND YEAR(record_added_defect_datetime) = YEAR(CURDATE())
+        ";
         $stmt_existing = $conn->prepare($check_existing);
+        $stmt_existing->bindParam(':line_no', $padded_line_no, PDO::PARAM_STR);
         $stmt_existing->execute();
         $existing_issue_no = $stmt_existing->fetchColumn();
 
         // Increment the issue number based on the existing maximum issue number
         $issue_no = ($existing_issue_no !== false) ? ($existing_issue_no + 1) : 1;
 
-        $query = "INSERT INTO t_defect_record_f (`defect_id`,`line_no`,`category`,`date_detected`,`issue_no_tag`,`repairing_date`,`car_maker`,`product_name`,`lot_no`,`serial_no`,`discovery_process`,`discovery_id_num`,`discovery_person`,`occurrence_process`,`occurrence_shift`,`occurrence_id_num`,`occurrence_person`,`outflow_process`,`outflow_shift`,`outflow_id_num`,`outflow_person`,`defect_category`,`sequence_num`,`defect_cause`,`defect_detail_content`,`defect_treatment_content`,`dis_assembled_by`,`qc_status`,`record_type`) VALUES ('$defect_id','$padded_line_no','$line_category_dr','$date_detected','$issue_no','$repairing_date','$car_maker','$product_name','$lot_no','$serial_no','$discovery_process_dr','$discovery_id_no_dr','$discovery_person','$occurrence_process_dr','$occurrence_shift_dr','$occurrence_id_no_dr','$occurrence_person','$outflow_process_dr','$outflow_shift_dr','$outflow_id_no_dr','$outflow_person','$defect_category_dr','$sequence_no','$defect_cause_dr','$detail_content_defect','$treatment_content_defect','$repair_person_dr','$qc_status','$record_type')";
+        // Insert into t_defect_record_f
+        $query = "
+            INSERT INTO t_defect_record_f (
+                defect_id, line_no, category, date_detected, issue_no_tag, repairing_date, car_maker, product_name, 
+                lot_no, serial_no, discovery_process, discovery_id_num, discovery_person, occurrence_process, 
+                occurrence_shift, occurrence_id_num, occurrence_person, outflow_process, outflow_shift, 
+                outflow_id_num, outflow_person, defect_category, sequence_num, defect_cause, defect_detail_content, 
+                defect_treatment_content, dis_assembled_by, qc_status, record_type, record_added_defect_datetime
+            ) VALUES (
+                :defect_id, :line_no, :category, :date_detected, :issue_no_tag, :repairing_date, 
+                :car_maker, :product_name, :lot_no, :serial_no, :discovery_process, :discovery_id_num, 
+                :discovery_person, :occurrence_process, :occurrence_shift, :occurrence_id_num, 
+                :occurrence_person, :outflow_process, :outflow_shift, :outflow_id_num, :outflow_person, 
+                :defect_category, :sequence_num, :defect_cause, :defect_detail_content, :defect_treatment_content, 
+                :dis_assembled_by, :qc_status, :record_type, NOW()
+            )
+        ";
         $stmt = $conn->prepare($query);
+        $stmt->bindParam(':defect_id', $defect_id, PDO::PARAM_STR);
+        $stmt->bindParam(':line_no', $padded_line_no, PDO::PARAM_STR);
+        $stmt->bindParam(':category', $line_category_dr, PDO::PARAM_STR);
+        $stmt->bindParam(':date_detected', $date_detected, PDO::PARAM_STR);
+        $stmt->bindParam(':issue_no_tag', $issue_no, PDO::PARAM_INT);
+        $stmt->bindParam(':repairing_date', $repairing_date, PDO::PARAM_STR);
+        $stmt->bindParam(':car_maker', $car_maker, PDO::PARAM_STR);
+        $stmt->bindParam(':product_name', $product_name, PDO::PARAM_STR);
+        $stmt->bindParam(':lot_no', $lot_no, PDO::PARAM_STR);
+        $stmt->bindParam(':serial_no', $serial_no, PDO::PARAM_STR);
+        $stmt->bindParam(':discovery_process', $discovery_process_dr, PDO::PARAM_STR);
+        $stmt->bindParam(':discovery_id_num', $discovery_id_no_dr, PDO::PARAM_STR);
+        $stmt->bindParam(':discovery_person', $discovery_person, PDO::PARAM_STR);
+        $stmt->bindParam(':occurrence_process', $occurrence_process_dr, PDO::PARAM_STR);
+        $stmt->bindParam(':occurrence_shift', $occurrence_shift_dr, PDO::PARAM_STR);
+        $stmt->bindParam(':occurrence_id_num', $occurrence_id_no_dr, PDO::PARAM_STR);
+        $stmt->bindParam(':occurrence_person', $occurrence_person, PDO::PARAM_STR);
+        $stmt->bindParam(':outflow_process', $outflow_process_dr, PDO::PARAM_STR);
+        $stmt->bindParam(':outflow_shift', $outflow_shift_dr, PDO::PARAM_STR);
+        $stmt->bindParam(':outflow_id_num', $outflow_id_no_dr, PDO::PARAM_STR);
+        $stmt->bindParam(':outflow_person', $outflow_person, PDO::PARAM_STR);
+        $stmt->bindParam(':defect_category', $defect_category_dr, PDO::PARAM_STR);
+        $stmt->bindParam(':sequence_num', $sequence_no, PDO::PARAM_STR);
+        $stmt->bindParam(':defect_cause', $defect_cause_dr, PDO::PARAM_STR);
+        $stmt->bindParam(':defect_detail_content', $detail_content_defect, PDO::PARAM_STR);
+        $stmt->bindParam(':defect_treatment_content', $treatment_content_defect, PDO::PARAM_STR);
+        $stmt->bindParam(':dis_assembled_by', $repair_person_dr, PDO::PARAM_STR);
+        $stmt->bindParam(':qc_status', $qc_status, PDO::PARAM_STR);
+        $stmt->bindParam(':record_type', $record_type, PDO::PARAM_STR);
 
         if (!$stmt->execute()) {
             $message = 'error';
             $error = 1;
         }
 
-        $check1 = "UPDATE t_mancost_monitoring_f SET status = '$status' WHERE defect_id = '$defect_id' AND record_added_by = '" . $_SESSION['full_name'] . "'";
+        // Check if update is needed in t_mancost_monitoring_f
+        $check1 = "
+            UPDATE t_mancost_monitoring_f 
+            SET status = :status 
+            WHERE defect_id = :defect_id AND record_added_by = :record_added_by
+        ";
         $stmt1 = $conn->prepare($check1);
+        $stmt1->bindParam(':status', $status, PDO::PARAM_STR);
+        $stmt1->bindParam(':defect_id', $defect_id, PDO::PARAM_STR);
+        $stmt1->bindParam(':record_added_by', $record_added_by, PDO::PARAM_STR);
         $stmt1->execute();
-        if ($stmt1->rowCount() > 0) {
 
+        if ($stmt1->rowCount() > 0) {
+            // Update was successful
         } else {
-            $stmt1 = NULL;
-            $query1 = "INSERT INTO t_mancost_monitoring_f (`defect_id`,`repair_start`,`repair_end`,`time_consumed`,`defect_category`,`occurrence_process`,`parts_removed`,`quantity`,`unit_cost`,`material_cost`,`manhour_cost`,`repaired_portion_treatment`,`status`,`record_added_by`) VALUES ('$defect_id','$repair_start_mc','$repair_end_mc','$time_consumed_mc','$defect_category_mc','$occurrence_process_mc','$parts_removed_mc','$quantity_mc','$unit_cost_mc','$material_cost_mc','$manhour_cost_mc','$portion_treatment','$status','$record_added_by')";
+            // Insert into t_mancost_monitoring_f
+            $query1 = "
+                INSERT INTO t_mancost_monitoring_f (
+                    defect_id, repair_start, repair_end, time_consumed, defect_category, occurrence_process, 
+                    parts_removed, quantity, unit_cost, material_cost, manhour_cost, repaired_portion_treatment, 
+                    status, record_added_by
+                ) VALUES (
+                    :defect_id, :repair_start, :repair_end, :time_consumed, :defect_category, 
+                    :occurrence_process, :parts_removed, :quantity, :unit_cost, :material_cost, 
+                    :manhour_cost, :portion_treatment, :status, :record_added_by
+                )
+            ";
             $stmt1 = $conn->prepare($query1);
+            $stmt1->bindParam(':defect_id', $defect_id, PDO::PARAM_STR);
+            $stmt1->bindParam(':repair_start', $repair_start_mc, PDO::PARAM_STR);
+            $stmt1->bindParam(':repair_end', $repair_end_mc, PDO::PARAM_STR);
+            $stmt1->bindParam(':time_consumed', $time_consumed_mc, PDO::PARAM_STR);
+            $stmt1->bindParam(':defect_category', $defect_category_mc, PDO::PARAM_STR);
+            $stmt1->bindParam(':occurrence_process', $occurrence_process_mc, PDO::PARAM_STR);
+            $stmt1->bindParam(':parts_removed', $parts_removed_mc, PDO::PARAM_STR);
+            $stmt1->bindParam(':quantity', $quantity_mc, PDO::PARAM_STR);
+            $stmt1->bindParam(':unit_cost', $unit_cost_mc, PDO::PARAM_STR);
+            $stmt1->bindParam(':material_cost', $material_cost_mc, PDO::PARAM_STR);
+            $stmt1->bindParam(':manhour_cost', $manhour_cost_mc, PDO::PARAM_STR);
+            $stmt1->bindParam(':portion_treatment', $portion_treatment, PDO::PARAM_STR);
+            $stmt1->bindParam(':status', $status, PDO::PARAM_STR);
+            $stmt1->bindParam(':record_added_by', $record_added_by, PDO::PARAM_STR);
 
             if (!$stmt1->execute()) {
                 $message = 'error';
@@ -901,12 +977,259 @@ if ($method == 'add_defect_mancost_record') {
         }
     }
 
+    // Return result
     if ($error > 0) {
         echo $message;
     } else {
         echo 'success';
     }
 }
+
+// if ($method == 'add_defect_mancost_record') {
+//     $record_type = trim($_POST['record_type']);
+
+//     $line_no = trim($_POST['line_no']);
+//     $line_category_dr = trim($_POST['line_category_dr']);
+//     $padded_line_no = str_pad($line_no, 4, '0', STR_PAD_LEFT);
+
+//     $date_detected = trim($_POST['date_detected']);
+//     $repairing_date = trim($_POST['repairing_date']);
+//     $car_maker = trim($_POST['car_maker']);
+//     $product_name = trim($_POST['product_name']);
+//     $lot_no = trim($_POST['lot_no']);
+//     $serial_no = trim($_POST['serial_no']);
+//     $discovery_process_dr = trim($_POST['discovery_process_dr']);
+//     $discovery_id_no_dr = trim($_POST['discovery_id_no_dr']);
+//     $discovery_person = trim($_POST['discovery_person']);
+//     $occurrence_process_dr = trim($_POST['occurrence_process_dr']);
+//     $occurrence_shift_dr = trim($_POST['occurrence_shift_dr']);
+//     $occurrence_id_no_dr = trim($_POST['occurrence_id_no_dr']);
+//     $occurrence_person = trim($_POST['occurrence_person']);
+//     $outflow_process_dr = trim($_POST['outflow_process_dr']);
+//     $outflow_shift_dr = trim($_POST['outflow_shift_dr']);
+//     $outflow_id_no_dr = trim($_POST['outflow_id_no_dr']);
+//     $outflow_person = trim($_POST['outflow_person']);
+//     $defect_category_dr = trim($_POST['defect_category_dr']);
+//     $sequence_no = trim($_POST['sequence_no']);
+//     $defect_cause_dr = trim($_POST['defect_cause_dr']);
+//     $detail_content_defect = trim($_POST['detail_content_defect']);
+//     $treatment_content_defect = trim($_POST['treatment_content_defect']);
+//     $repair_person_dr = trim($_POST['repair_person_dr']);
+
+//     $repair_start_mc = trim($_POST['repair_start_mc']);
+//     $repair_end_mc = trim($_POST['repair_end_mc']);
+
+//     $time_consumed_mc = trim($_POST['time_consumed_mc']);
+//     $defect_category_mc = trim($_POST['defect_category_mc']);
+//     $occurrence_process_mc = trim($_POST['occurrence_process_mc']);
+//     $parts_removed_mc = trim($_POST['parts_removed_mc']);
+//     $quantity_mc = trim($_POST['quantity_mc']);
+//     $unit_cost_mc = trim($_POST['unit_cost_mc']);
+//     $material_cost_mc = trim($_POST['material_cost_mc']);
+//     $manhour_cost_mc = trim($_POST['manhour_cost_mc']);
+//     $portion_treatment = trim($_POST['portion_treatment']);
+
+//     $defect_id = $_POST['defect_id'];
+
+//     $status = 'Saved';
+//     $record_added_by = $_SESSION['full_name'];
+
+//     $qc_status = 'Saved';
+
+//     $error = 0;
+//     $message = "";
+
+//     $check = "SELECT defect_id FROM t_defect_record_f WHERE defect_id = '$defect_id'";
+//     $stmt = $conn->prepare($check);
+//     $stmt->execute();
+//     $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+//     if ($result) {
+//         $error = 1;
+//         $message = 'Defect ID already exists.';
+//     } else {
+//         $stmt = NULL;
+
+//         // Check the number of existing records with the same line number for the current month and year
+//         $check_existing = "
+//             SELECT MAX(CAST(issue_no_tag AS SIGNED)) 
+//             FROM t_defect_record_f 
+//             WHERE line_no = '$padded_line_no' 
+//               AND MONTH(record_added_defect_datetime) = MONTH(CURDATE())
+//               AND YEAR(record_added_defect_datetime) = YEAR(CURDATE())
+//         ";
+//         $stmt_existing = $conn->prepare($check_existing);
+//         $stmt_existing->execute();
+//         $existing_issue_no = $stmt_existing->fetchColumn();
+
+//         // Increment the issue number based on the existing maximum issue number
+//         $issue_no = ($existing_issue_no !== false) ? ($existing_issue_no + 1) : 1;
+
+//         $query = "
+//             INSERT INTO t_defect_record_f (
+//                 defect_id, line_no, category, date_detected, issue_no_tag, repairing_date, car_maker, product_name, 
+//                 lot_no, serial_no, discovery_process, discovery_id_num, discovery_person, occurrence_process, 
+//                 occurrence_shift, occurrence_id_num, occurrence_person, outflow_process, outflow_shift, 
+//                 outflow_id_num, outflow_person, defect_category, sequence_num, defect_cause, defect_detail_content, 
+//                 defect_treatment_content, dis_assembled_by, qc_status, record_type, record_added_defect_datetime
+//             ) VALUES (
+//                 '$defect_id', '$padded_line_no', '$line_category_dr', '$date_detected', '$issue_no', '$repairing_date', 
+//                 '$car_maker', '$product_name', '$lot_no', '$serial_no', '$discovery_process_dr', '$discovery_id_no_dr', 
+//                 '$discovery_person', '$occurrence_process_dr', '$occurrence_shift_dr', '$occurrence_id_no_dr', 
+//                 '$occurrence_person', '$outflow_process_dr', '$outflow_shift_dr', '$outflow_id_no_dr', '$outflow_person', 
+//                 '$defect_category_dr', '$sequence_no', '$defect_cause_dr', '$detail_content_defect', '$treatment_content_defect', 
+//                 '$repair_person_dr', '$qc_status', '$record_type', NOW()
+//             )
+//         ";
+//         $stmt = $conn->prepare($query);
+
+//         if (!$stmt->execute()) {
+//             $message = 'error';
+//             $error = 1;
+//         }
+
+//         $check1 = "
+//             UPDATE t_mancost_monitoring_f 
+//             SET status = '$status' 
+//             WHERE defect_id = '$defect_id' AND record_added_by = '$record_added_by'
+//         ";
+//         $stmt1 = $conn->prepare($check1);
+//         $stmt1->execute();
+//         if ($stmt1->rowCount() > 0) {
+//             // Update was successful
+//         } else {
+//             $stmt1 = NULL;
+//             $query1 = "
+//                 INSERT INTO t_mancost_monitoring_f (
+//                     defect_id, repair_start, repair_end, time_consumed, defect_category, occurrence_process, 
+//                     parts_removed, quantity, unit_cost, material_cost, manhour_cost, repaired_portion_treatment, 
+//                     status, record_added_by
+//                 ) VALUES (
+//                     '$defect_id', '$repair_start_mc', '$repair_end_mc', '$time_consumed_mc', '$defect_category_mc', 
+//                     '$occurrence_process_mc', '$parts_removed_mc', '$quantity_mc', '$unit_cost_mc', '$material_cost_mc', 
+//                     '$manhour_cost_mc', '$portion_treatment', '$status', '$record_added_by'
+//                 )
+//             ";
+//             $stmt1 = $conn->prepare($query1);
+
+//             if (!$stmt1->execute()) {
+//                 $message = 'error';
+//                 $error = 1;
+//             }
+//         }
+//     }
+
+//     if ($error > 0) {
+//         echo $message;
+//     } else {
+//         echo 'success';
+//     }
+// }
+
+
+// if ($method == 'add_defect_mancost_record') {
+//     $record_type = trim($_POST['record_type']);
+
+//     $line_no = trim($_POST['line_no']);
+//     $line_category_dr = trim($_POST['line_category_dr']);
+//     $padded_line_no = str_pad($line_no, 4, '0', STR_PAD_LEFT);
+
+//     $date_detected = trim($_POST['date_detected']);
+//     $repairing_date = trim($_POST['repairing_date']);
+//     $car_maker = trim($_POST['car_maker']);
+//     $product_name = trim($_POST['product_name']);
+//     $lot_no = trim($_POST['lot_no']);
+//     $serial_no = trim($_POST['serial_no']);
+//     $discovery_process_dr = trim($_POST['discovery_process_dr']);
+//     $discovery_id_no_dr = trim($_POST['discovery_id_no_dr']);
+//     $discovery_person = trim($_POST['discovery_person']);
+//     $occurrence_process_dr = trim($_POST['occurrence_process_dr']);
+//     $occurrence_shift_dr = trim($_POST['occurrence_shift_dr']);
+//     $occurrence_id_no_dr = trim($_POST['occurrence_id_no_dr']);
+//     $occurrence_person = trim($_POST['occurrence_person']);
+//     $outflow_process_dr = trim($_POST['outflow_process_dr']);
+//     $outflow_shift_dr = trim($_POST['outflow_shift_dr']);
+//     $outflow_id_no_dr = trim($_POST['outflow_id_no_dr']);
+//     $outflow_person = trim($_POST['outflow_person']);
+//     $defect_category_dr = trim($_POST['defect_category_dr']);
+//     $sequence_no = trim($_POST['sequence_no']);
+//     $defect_cause_dr = trim($_POST['defect_cause_dr']);
+//     $detail_content_defect = trim($_POST['detail_content_defect']);
+//     $treatment_content_defect = trim($_POST['treatment_content_defect']);
+//     $repair_person_dr = trim($_POST['repair_person_dr']);
+//     // ============================================================
+//     $repair_start_mc = trim($_POST['repair_start_mc']);
+//     $repair_end_mc = trim($_POST['repair_end_mc']);
+
+//     $time_consumed_mc = trim($_POST['time_consumed_mc']);
+//     $defect_category_mc = trim($_POST['defect_category_mc']);
+//     $occurrence_process_mc = trim($_POST['occurrence_process_mc']);
+//     $parts_removed_mc = trim($_POST['parts_removed_mc']);
+//     $quantity_mc = trim($_POST['quantity_mc']);
+//     $unit_cost_mc = trim($_POST['unit_cost_mc']);
+//     $material_cost_mc = trim($_POST['material_cost_mc']);
+//     $manhour_cost_mc = trim($_POST['manhour_cost_mc']);
+//     $portion_treatment = trim($_POST['portion_treatment']);
+
+//     $defect_id = $_POST['defect_id'];
+
+//     $status = 'Saved';
+//     $record_added_by = $_SESSION['full_name'];
+
+//     $qc_status = 'Saved';
+
+//     $error = 0;
+//     $message = "";
+
+//     $check = "SELECT defect_id FROM t_defect_record_f WHERE defect_id = '$defect_id'";
+//     $stmt = $conn->prepare($check);
+//     $stmt->execute();
+//     $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+//     if ($result) {
+//         $error = 1;
+//         $message = 'Defect ID already exists.';
+//     } else {
+//         $stmt = NULL;
+
+//         $check_existing = "SELECT MAX(CAST(issue_no_tag AS SIGNED)) FROM t_defect_record_f WHERE line_no = '$padded_line_no' AND MONTH(record_added_defect_datetime) = MONTH(CURDATE())";
+//         $stmt_existing = $conn->prepare($check_existing);
+//         $stmt_existing->execute();
+//         $existing_issue_no = $stmt_existing->fetchColumn();
+
+//         $issue_no = ($existing_issue_no !== false) ? ($existing_issue_no + 1) : 1;
+
+//         $query = "INSERT INTO t_defect_record_f (`defect_id`,`line_no`,`category`,`date_detected`,`issue_no_tag`,`repairing_date`,`car_maker`,`product_name`,`lot_no`,`serial_no`,`discovery_process`,`discovery_id_num`,`discovery_person`,`occurrence_process`,`occurrence_shift`,`occurrence_id_num`,`occurrence_person`,`outflow_process`,`outflow_shift`,`outflow_id_num`,`outflow_person`,`defect_category`,`sequence_num`,`defect_cause`,`defect_detail_content`,`defect_treatment_content`,`dis_assembled_by`,`qc_status`,`record_type`) VALUES ('$defect_id','$padded_line_no','$line_category_dr','$date_detected','$issue_no','$repairing_date','$car_maker','$product_name','$lot_no','$serial_no','$discovery_process_dr','$discovery_id_no_dr','$discovery_person','$occurrence_process_dr','$occurrence_shift_dr','$occurrence_id_no_dr','$occurrence_person','$outflow_process_dr','$outflow_shift_dr','$outflow_id_no_dr','$outflow_person','$defect_category_dr','$sequence_no','$defect_cause_dr','$detail_content_defect','$treatment_content_defect','$repair_person_dr','$qc_status','$record_type')";
+//         $stmt = $conn->prepare($query);
+
+//         if (!$stmt->execute()) {
+//             $message = 'error';
+//             $error = 1;
+//         }
+
+//         $check1 = "UPDATE t_mancost_monitoring_f SET status = '$status' WHERE defect_id = '$defect_id' AND record_added_by = '" . $_SESSION['full_name'] . "'";
+//         $stmt1 = $conn->prepare($check1);
+//         $stmt1->execute();
+//         if ($stmt1->rowCount() > 0) {
+
+//         } else {
+//             $stmt1 = NULL;
+//             $query1 = "INSERT INTO t_mancost_monitoring_f (`defect_id`,`repair_start`,`repair_end`,`time_consumed`,`defect_category`,`occurrence_process`,`parts_removed`,`quantity`,`unit_cost`,`material_cost`,`manhour_cost`,`repaired_portion_treatment`,`status`,`record_added_by`) VALUES ('$defect_id','$repair_start_mc','$repair_end_mc','$time_consumed_mc','$defect_category_mc','$occurrence_process_mc','$parts_removed_mc','$quantity_mc','$unit_cost_mc','$material_cost_mc','$manhour_cost_mc','$portion_treatment','$status','$record_added_by')";
+//             $stmt1 = $conn->prepare($query1);
+
+//             if (!$stmt1->execute()) {
+//                 $message = 'error';
+//                 $error = 1;
+//             }
+//         }
+//     }
+
+//     if ($error > 0) {
+//         echo $message;
+//     } else {
+//         echo 'success';
+//     }
+// }
 
 // ADDING OF MULTIPLE MANCOST WITH ONE DEFECT ID
 // fetch added mancost table
@@ -957,7 +1280,7 @@ if ($method == 'delete_added_btn') {
 }
 
 if ($method == 'add_multiple_mancost') {
-    $records = $_POST['records'];  // Assuming 'records' is an array of records
+    $records = $_POST['records'];
 
     $status = 'Added';
     $record_added_by = $_SESSION['full_name'];
@@ -986,7 +1309,7 @@ if ($method == 'add_multiple_mancost') {
         if (!$stmt->execute()) {
             $message = 'error';
             $error = 1;
-            break;  // Stop further processing if there's an error
+            break;
         }
     }
 
@@ -1002,44 +1325,71 @@ if ($method == 'get_issue_tag') {
     $line_no = filter_var($_POST['line_no'], FILTER_SANITIZE_STRING);
     $padded_line_no = str_pad($line_no, 4, '0', STR_PAD_LEFT);
 
-    // Check if the month has changed
-    $check_month_change = "SELECT MAX(date_detected) FROM t_defect_record_f WHERE line_no = ?";
-    $stmt_month_change = $conn->prepare($check_month_change);
-    $stmt_month_change->execute([$padded_line_no]);
-    $latest_date_detected = $stmt_month_change->fetchColumn();
+    try {
+        // Begin a transaction
+        $conn->beginTransaction();
 
-    // Get the current date
-    $current_date = date('Y-m-d');
+        // Check if there are any records for the current month and year for the given line number
+        $check_records_query = "SELECT COUNT(*) FROM t_defect_record_f WHERE line_no = ? AND MONTH(record_added_defect_datetime) = MONTH(CURDATE()) AND YEAR(record_added_defect_datetime) = YEAR(CURDATE())";
+        $stmt_check_records = $conn->prepare($check_records_query);
+        $stmt_check_records->execute([$padded_line_no]);
+        $total_records = $stmt_check_records->fetchColumn();
 
-    // Check if the month has changed using MySQL
-    $check_month_change_query = "SELECT LAST_DAY(?) != LAST_DAY(?) AS month_changed";
-    $stmt_month_change_query = $conn->prepare($check_month_change_query);
-    $stmt_month_change_query->execute([$latest_date_detected, $current_date]);
-    $month_changed = $stmt_month_change_query->fetchColumn();
+        // Reset issue number to 1 if there are no records or if the month has changed
+        if ($total_records == 0 || $total_records === false) {
+            $issue_no = 1;
+        } else {
+            // Increment the count of records by 1 to get the next issue tag number
+            $issue_no = $total_records + 1;
+        }
 
-    // Reset the issue number if the month has changed
-    if ($month_changed) {
-        $issue_no = 1;
-    } else {
-        // Increment the issue number based on the existing maximum issue number
-        $check_existing = "SELECT MAX(CAST(issue_no_tag AS SIGNED)) FROM t_defect_record_f WHERE line_no = ? AND MONTH(repairing_date) = MONTH(CURDATE())";
-        $stmt_existing = $conn->prepare($check_existing);
-        $stmt_existing->execute([$padded_line_no]);
-        $existing_issue_no = $stmt_existing->fetchColumn();
+        // Commit the transaction
+        $conn->commit();
 
-        $issue_no = ($existing_issue_no !== false) ? ($existing_issue_no + 1) : 1;
+        // Debugging output
+        error_log("Line No: $padded_line_no, Total Records: $total_records, Next Issue No: $issue_no");
+
+        echo json_encode(['issue_no' => $issue_no]);  // Return JSON response
+    } catch (Exception $e) {
+        // Rollback the transaction in case of error
+        $conn->rollBack();
+        error_log("Error: " . $e->getMessage());
+        echo json_encode(['error' => 'error']);  // Return JSON error response
     }
-
-    echo $issue_no;
     exit();
 }
 
+// if ($method == 'get_issue_tag') {
+//     $line_no = filter_var($_POST['line_no'], FILTER_SANITIZE_STRING);
+//     $padded_line_no = str_pad($line_no, 4, '0', STR_PAD_LEFT);
+
+//     try {
+//         $conn->beginTransaction();
+
+//         $count_records_query = "SELECT COUNT(*) FROM t_defect_record_f WHERE line_no = ? AND MONTH(record_added_defect_datetime) = MONTH(CURDATE()) AND YEAR(record_added_defect_datetime) = YEAR(CURDATE())";
+//         $stmt_count_records = $conn->prepare($count_records_query);
+//         $stmt_count_records->execute([$padded_line_no]);
+//         $total_records = $stmt_count_records->fetchColumn();
+
+//         $issue_no = $total_records + 1;
+
+//         $conn->commit();
+
+//         error_log("Line No: $padded_line_no, Total Records: $total_records, Next Issue No: $issue_no");
+
+//         echo $issue_no;
+//     } catch (Exception $e) {
+//         $conn->rollBack();
+//         error_log("Error: " . $e->getMessage());
+//         echo 'error';
+//     }
+//     exit();
+// }
+
 // fetch unit cost thru part name
-// Autocomplete and Fetch Unit Price
 if ($method == 'autocomplete_parts') {
     $inputText = $_POST['input_text'];
 
-    // Query to fetch part names based on the provided input text
     $query = "SELECT DISTINCT parts_name FROM m_pricelist WHERE parts_name LIKE :input_text LIMIT 10";
 
     $stmt = $conn->prepare($query);
@@ -1048,13 +1398,11 @@ if ($method == 'autocomplete_parts') {
 
     $partNames = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
-    // Return the result as JSON
     echo json_encode(['part_names' => $partNames]);
     exit;
 } elseif ($method == 'fetch_unit_price') {
     $parts_removed = $_POST['parts_removed'];
 
-    // Query to fetch unit price based on the provided parts_removed
     $query = "SELECT unit_price FROM m_pricelist WHERE parts_name = :parts_removed LIMIT 1";
 
     $stmt = $conn->prepare($query);
@@ -1063,14 +1411,11 @@ if ($method == 'autocomplete_parts') {
 
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Check if any row was returned
     if ($result) {
         $unit_price = $result['unit_price'];
 
-        // Return the result as JSON
         echo json_encode(['unit_price' => $unit_price]);
     } else {
-        // No matching record found
         echo json_encode(['error' => 'No matching record found']);
     }
     exit;

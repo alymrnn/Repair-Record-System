@@ -159,8 +159,6 @@
         });
     }
 
-    // ================================================================
-
     document.getElementById("t_qc_table_res").addEventListener("scroll", function () {
         var scrollTop = document.getElementById("t_qc_table_res").scrollTop;
         var scrollHeight = document.getElementById("t_qc_table_res").scrollHeight;
@@ -529,16 +527,76 @@
             }
         });
     }
-    // get data of row for qc verification
-    function get_update_defect_mancost_qc(id, car_maker_mc, line_no_mc, repairing_date_mc, repair_start_mc, repair_end_mc, time_consumed_mc, defect_category_mc, occurrence_process_mc, parts_removed_mc, quantity_mc, unit_cost_mc, material_cost_mc, manhour_cost_mc, portion_treatment_mc, qc_veri_mc_update, checking_date_mc_update, verified_by_mc_update, remarks_mc_update, defect_id) {
 
-        // populate the modal
-        // db id
+    // get data of row for qc verification
+    // FOR OLD QC VERIFICATION
+    // function get_update_defect_mancost_qc(id, car_maker_mc, line_no_mc, repairing_date_mc, repair_start_mc, repair_end_mc, time_consumed_mc, defect_category_mc, occurrence_process_mc, parts_removed_mc, quantity_mc, unit_cost_mc, material_cost_mc, manhour_cost_mc, portion_treatment_mc, qc_veri_mc_update, checking_date_mc_update, verified_by_mc_update, remarks_mc_update, defect_id) {
+    //     $('#update_defect_mancost_id').val(id).prop('hidden', true);
+
+    //     $('#car_maker_mc_update').val(car_maker_mc).prop('disabled', true);
+    //     $('#line_no_mc_update').val(line_no_mc).prop('disabled', true);
+    //     $('#repairing_date_mc_update').val(repairing_date_mc).prop('disabled', true);
+    //     $('#repair_start_mc_update').val(repair_start_mc).prop('disabled', true);
+    //     $('#repair_end_mc_update').val(repair_end_mc).prop('disabled', true);
+    //     $('#time_consumed_mc_update').val(time_consumed_mc).prop('disabled', true);
+    //     $('#defect_category_mc_update').val(defect_category_mc).prop('disabled', true);
+    //     $('#occurrence_process_mc_update').val(occurrence_process_mc).prop('disabled', true);
+    //     $('#parts_removed_mc_update').val(parts_removed_mc).prop('disabled', true);
+    //     $('#quantity_mc_update').val(quantity_mc).prop('disabled', true);
+    //     $('#unit_cost_mc_update').val(unit_cost_mc).prop('disabled', true);
+    //     $('#material_cost_mc_update').val(material_cost_mc).prop('disabled', true);
+    //     $('#manhour_cost_mc_update').val(manhour_cost_mc).prop('disabled', true);
+    //     $('#portion_treatment_mc_update').val(portion_treatment_mc).prop('disabled', true);
+
+    //     $('#qc_veri_mc_update').val(qc_veri_mc_update);
+    //     $('#checking_date_mc_update').val(checking_date_mc_update);
+    //     $('#verified_by_mc_update').val(verified_by_mc_update);
+    //     $('#remarks_mc_update').val(remarks_mc_update);
+
+    //     // defect unique id 
+    //     $('#admin_defect_id_1').val(defect_id).prop('hidden', true);
+    //     $('#update_defect_mancost_qc').modal('show');
+    // }
+
+    // FOR NEW QC VERIFICATION
+    function get_update_defect_mancost_qc(id, car_maker_mc, line_no_mc, line_category_mc, date_detected_mc,
+        issue_tag_mc, product_name_mc, lot_no_mc, serial_no_mc, discovery_process_mc,
+        discovery_id_no_mc, discovery_person_mc, occurrence_process_dr, occurrence_shift_dr, occurrence_id_no_mc,
+        occurrence_person_mc, outflow_process_mc, outflow_shift_mc, outflow_id_no_mc, outflow_person_mc,
+        defect_category_mc, sequence_no_mc, defect_cause_mc, repair_person_mc, detail_content_defect_mc,
+        treatment_content_defect_mc, repairing_date_mc, repair_start_mc, repair_end_mc, time_consumed_mc,
+        defect_category_mc, occurrence_process_mc, parts_removed_mc, quantity_mc, unit_cost_mc,
+        material_cost_mc, manhour_cost_mc, portion_treatment_mc, qc_veri_mc_update, checking_date_mc_update,
+        verified_by_mc_update, remarks_mc_update, defect_id) {
         $('#update_defect_mancost_id').val(id).prop('hidden', true);
 
-        $('#car_maker_mc_update').val(car_maker_mc).prop('disabled', true);
-        $('#line_no_mc_update').val(line_no_mc).prop('disabled', true);
-        $('#repairing_date_mc_update').val(repairing_date_mc).prop('disabled', true);
+        $('#car_maker_mc_update').val(car_maker_mc);
+        $('#line_no_mc_update').val(line_no_mc);
+        $('#line_category_mc_update').val(line_category_mc);
+        $('#date_detected_mc_update').val(date_detected_mc);
+        $('#issue_tag_mc_update').val(issue_tag_mc);
+        $('#product_name_mc_update').val(product_name_mc);
+        $('#lot_no_mc_update').val(lot_no_mc);
+        $('#serial_no_mc_update').val(serial_no_mc);
+        $('#discovery_process_mc_update').val(discovery_process_mc);
+        $('#discovery_id_no_mc_update').val(discovery_id_no_mc);
+        $('#discovery_person_mc_update').val(discovery_person_mc);
+        $('#occurrence_process_dr_update').val(occurrence_process_dr);
+        $('#occurrence_shift_dr_update').val(occurrence_shift_dr);
+        $('#occurrence_id_no_mc_update').val(occurrence_id_no_mc);
+        $('#occurrence_person_mc_update').val(occurrence_person_mc);
+        $('#outflow_process_mc_update').val(outflow_process_mc);
+        $('#outflow_shift_mc_update').val(outflow_shift_mc);
+        $('#outflow_id_no_mc_update').val(outflow_id_no_mc);
+        $('#outflow_person_mc_update').val(outflow_person_mc);
+        $('#defect_category_mc_update2').val(defect_category_mc);
+        $('#sequence_no_mc_update').val(sequence_no_mc);
+        $('#defect_cause_mc_update').val(defect_cause_mc);
+        $('#repair_person_mc_update').val(repair_person_mc);
+        $('#detail_content_defect_mc_update').val(detail_content_defect_mc);
+        $('#treatment_content_defect_mc_update').val(treatment_content_defect_mc);
+
+        $('#repairing_date_mc_update').val(repairing_date_mc);
         $('#repair_start_mc_update').val(repair_start_mc).prop('disabled', true);
         $('#repair_end_mc_update').val(repair_end_mc).prop('disabled', true);
         $('#time_consumed_mc_update').val(time_consumed_mc).prop('disabled', true);
@@ -558,17 +616,123 @@
 
         // defect unique id 
         $('#admin_defect_id_1').val(defect_id).prop('hidden', true);
-
-        // console.log('showing modal ey');
-        // console.log($('#update_defect_mancost_id').val());
-        // console.log($('#car_maker_mc_update').val());
-        // console.log($('#admin_defect_id_1').val());
-
         $('#update_defect_mancost_qc').modal('show');
     }
 
+    // FOR OLD QC VERIFICATION
+    // const update_mancost2_record = () => {
+    //     var id = document.getElementById('update_defect_mancost_id').value;
+
+    //     var qc_verification = document.getElementById('qc_veri_mc_update');
+    //     var qcVeriMcError = document.getElementById('qcVeriMcError');
+
+    //     var checking_date = document.getElementById('checking_date_mc_update');
+    //     var checkingDateMcError = document.getElementById('checkingDateMcError');
+
+    //     var verified_by = document.getElementById('verified_by_mc_update');
+    //     var verifiedByMcError = document.getElementById('verifiedByMcError');
+
+    //     var remarks = document.getElementById('remarks_mc_update');
+    //     var remarksMcError = document.getElementById('remarksMcError');
+
+    //     var admin_defect_id = document.getElementById('admin_defect_id_1').value;
+
+    //     // console.log('Updating with unique id:', admin_defect_id);
+
+    //     if (qc_verification.value.trim() === '') {
+    //         qc_verification.classList.add('highlight');
+    //         qcVeriMcError.style.display = 'block';
+    //     }
+
+    //     if (checking_date.value.trim() === '') {
+    //         checking_date.classList.add('highlight');
+    //         checkingDateMcError.style.display = 'block';
+    //     }
+
+    //     if (verified_by.value.trim() === '') {
+    //         verified_by.classList.add('highlight');
+    //         verifiedByMcError.style.display = 'block';
+    //     }
+
+    //     if (remarks.value.trim() === '') {
+    //         remarks.classList.add('highlight');
+    //         remarksMcError.style.display = 'block';
+    //     }
+
+    //     if (qc_verification.value.trim() !== '' && checking_date.value.trim() !== '' &&
+    //         verified_by.value.trim() !== '' && remarks.value.trim() !== '') {
+
+    //         $.ajax({
+    //             url: '../../process/qc/defect_monitoring_record_p.php',
+    //             type: 'POST',
+    //             cache: false,
+    //             data: {
+    //                 method: 'update_mancost2_record',
+    //                 id: id,
+    //                 qc_verification: qc_verification.value,
+    //                 checking_date: checking_date.value,
+    //                 verified_by: verified_by.value,
+    //                 remarks: remarks.value,
+    //                 admin_defect_id: admin_defect_id
+    //             },
+    //             success: function (response) {
+    //                 // console.log('Server response:', response);
+
+    //                 if (response == 'success') {
+    //                     Swal.fire({
+    //                         icon: 'success',
+    //                         title: 'Verified Successfully',
+    //                         showConfirmButton: false,
+    //                         timer: 1500
+    //                     });
+
+    //                     $('#qc_veri_mc_update').val('');
+    //                     $('#checking_date_mc_update').val('');
+    //                     $('#verified_by_mc_update').val('');
+    //                     $('#remarks_mc_update').val('');
+    //                     $('#admin_defect_id').val('');
+
+    //                     // Load updated table
+    //                     // load_admin_mancost_table($('#update_defect_mancost_id').val() + '~!~' + $('#admin_defect_id_1').val());
+    //                     load_qc_mancost_table($('#update_defect_mancost_id').val() + '~!~' + $('#admin_defect_id_1').val());
+
+    //                     // Hide the modal
+    //                     $('#update_defect_mancost_qc').modal('hide');
+    //                 } else {
+    //                     // Show error alert
+    //                     Swal.fire({
+    //                         icon: 'error',
+    //                         title: 'Error',
+    //                         showConfirmButton: false,
+    //                         timer: 1000
+    //                     });
+    //                 }
+    //             },
+    //             error: function (xhr, status, error) {
+    //                 console.error('AJAX error:', status, error);
+    //             }
+    //         });
+    //     }
+    // }
+
+    // FOR NEW QC VERIFICATION
     const update_mancost2_record = () => {
         var id = document.getElementById('update_defect_mancost_id').value;
+
+        var line_no = document.getElementById('line_no_mc_update');
+        var date_detected = document.getElementById('date_detected_mc_update');
+        var issue_tag = document.getElementById('issue_tag_mc_update');
+        var product_name = document.getElementById('product_name_mc_update');
+        var lot_no = document.getElementById('lot_no_mc_update');
+        var serial_no = document.getElementById('serial_no_mc_update');
+        var discovery_process = document.getElementById('discovery_process_mc_update');
+        var occurrence_process_dr = document.getElementById('occurrence_process_dr_update');
+        var outflow_process = document.getElementById('outflow_process_mc_update');
+        var outflow_id_no = document.getElementById('outflow_id_no_mc_update');
+        var outflow_person = document.getElementById('outflow_person_mc_update');
+        var defect_category_2 = document.getElementById('defect_category_mc_update2');
+        var repair_person = document.getElementById('repair_person_mc_update');
+        var treatment_content_defect = document.getElementById('treatment_content_defect_mc_update');
 
         var qc_verification = document.getElementById('qc_veri_mc_update');
         var qcVeriMcError = document.getElementById('qcVeriMcError');
@@ -586,7 +750,6 @@
 
         // console.log('Updating with unique id:', admin_defect_id);
 
-        // Check all fields for emptiness
         if (qc_verification.value.trim() === '') {
             qc_verification.classList.add('highlight');
             qcVeriMcError.style.display = 'block';
@@ -607,7 +770,6 @@
             remarksMcError.style.display = 'block';
         }
 
-        // Only proceed with the AJAX request if all fields are non-empty
         if (qc_verification.value.trim() !== '' && checking_date.value.trim() !== '' &&
             verified_by.value.trim() !== '' && remarks.value.trim() !== '') {
 
@@ -618,6 +780,31 @@
                 data: {
                     method: 'update_mancost2_record',
                     id: id,
+                    car_maker:car_maker.value,
+                    line_no: line_no.value,
+                    line_category: line_category.value,
+                    date_detected: date_detected.value,
+                    issue_tag: issue_tag.value,
+                    product_name: product_name.value,
+                    lot_no: lot_no.value,
+                    serial_no: serial_no.value,
+                    discovery_process: discovery_process.value,
+                    discovery_id_no: discovery_id_no.value,
+                    discovery_person: discovery_person.value,
+                    occurrence_process_dr: occurrence_process_dr.value,
+                    occurrence_shift_dr: occurrence_shift_dr.value,
+                    occurrence_id_no: occurrence_id_no.value,
+                    occurrence_person: occurrence_person.value,
+                    outflow_process: outflow_process.value,
+                    outflow_shift: outflow_shift.value,
+                    outflow_id_no: outflow_id_no.value,
+                    outflow_person: outflow_person.value,
+                    defect_category_2: defect_category_2.value,
+                    sequence_no: sequence_no.value,
+                    defect_cause: defect_cause.value,
+                    repair_person: repair_person.value,
+                    detail_content_defect: detail_content_defect.value,
+                    treatment_content_defect: treatment_content_defect.value,
                     qc_verification: qc_verification.value,
                     checking_date: checking_date.value,
                     verified_by: verified_by.value,
@@ -635,21 +822,43 @@
                             timer: 1500
                         });
 
-                        // Clear input fields
+                        $('#car_maker_mc_update').val('');
+                        $('#line_no_mc_update').val('');
+                        $('#line_category_mc_update').val('');
+                        $('#date_detected_mc_update').val('');
+                        $('#issue_tag_mc_update').val('');
+                        $('#product_name_mc_update').val('');
+                        $('#lot_no_mc_update').val('');
+                        $('#serial_no_mc_update').val('');
+                        $('#discovery_process_mc_update').val('');
+                        $('#discovery_id_no_mc_update').val('');
+                        $('#discovery_person_mc_update').val('');
+                        $('#occurrence_process_mc_update').val('');
+                        $('#occurrence_process_mc_update').val('');
+                        $('#occurrence_shift_dr_update').val('');
+                        $('#occurrence_id_no_mc_update').val('');
+                        $('#occurrence_person_mc_update').val('');
+                        $('#outflow_process_mc_update').val('');
+                        $('#outflow_shift_mc_update').val('');
+                        $('#outflow_id_no_mc_update').val('');
+                        $('#outflow_person_mc_update').val('');
+                        $('#defect_category_mc_update').val('');
+                        $('#sequence_no_mc_update').val('');
+                        $('#defect_cause_mc_update').val('');
+                        $('#repair_person_mc_update').val('');
+                        $('#detail_content_defect_mc_update').val('');
+                        $('#treatment_content_defect_mc_update').val('');
                         $('#qc_veri_mc_update').val('');
                         $('#checking_date_mc_update').val('');
                         $('#verified_by_mc_update').val('');
                         $('#remarks_mc_update').val('');
                         $('#admin_defect_id').val('');
 
-                        // Load updated table
                         // load_admin_mancost_table($('#update_defect_mancost_id').val() + '~!~' + $('#admin_defect_id_1').val());
                         load_qc_mancost_table($('#update_defect_mancost_id').val() + '~!~' + $('#admin_defect_id_1').val());
 
-                        // Hide the modal
                         $('#update_defect_mancost_qc').modal('hide');
                     } else {
-                        // Show error alert
                         Swal.fire({
                             icon: 'error',
                             title: 'Error',
