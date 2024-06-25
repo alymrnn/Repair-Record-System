@@ -196,8 +196,7 @@
                         <!-- sequence number -->
                         <label style="font-weight: normal;color: #000;">Sequence Number</label>
                         <input type="text" id="sequence_no_mc_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
-                            disabled>
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-3">
                         <!-- cause of defect -->

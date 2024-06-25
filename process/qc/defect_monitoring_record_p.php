@@ -543,10 +543,10 @@ if ($method == 'load_qc_mancost_table_data') {
 // FOR NEW QC VERIFICATION
 if ($method == 'update_mancost2_record') {
     $id = $_POST['id'];
-
+    $car_maker = $_POST['car_maker'];
     $line_no = $_POST['line_no'];
     $date_detected = $_POST['date_detected'];
-    $issue_tag = $_POST['issue_tag'];
+    $issue_no_tag = $_POST['issue_no_tag'];
     $product_name = $_POST['product_name'];
     $lot_no = $_POST['lot_no'];
     $serial_no = $_POST['serial_no'];
@@ -556,70 +556,106 @@ if ($method == 'update_mancost2_record') {
     $outflow_id_no = $_POST['outflow_id_no'];
     $outflow_person = $_POST['outflow_person'];
     $defect_category_2 = $_POST['defect_category_2'];
+    $sequence_no = $_POST['sequence_no'];
     $repair_person = $_POST['repair_person'];
     $treatment_content_defect = $_POST['treatment_content_defect'];
-
     $qc_verification = $_POST['qc_verification'];
     $checking_date = $_POST['checking_date'];
     $verified_by = $_POST['verified_by'];
     $remarks = $_POST['remarks'];
-
     $admin_defect_id = $_POST['admin_defect_id'];
 
     $status = 'Verified';
     $record_updated_by = $_SESSION['full_name'];
-
     $qc_status = 'Verified';
 
-    $error = 0;
-    $message = "";
-
+    // Check if the defect record exists
     $check_query = "SELECT defect_id FROM t_defect_record_f WHERE defect_id = :admin_defect_id";
     $stmt_check = $conn->prepare($check_query);
     $stmt_check->bindParam(':admin_defect_id', $admin_defect_id);
     $stmt_check->execute();
 
     if ($stmt_check->rowCount() > 0) {
-        $update_query = "UPDATE t_mancost_monitoring_f SET qc_verification = :qc_verification, checking_date_sign = :checking_date_sign, verified_by = :verified_by, remarks = :remarks, status = :status, record_updated_by = :record_updated_by WHERE defect_id = :defect_id AND id = :id";
+        // Update t_defect_record_f table
+        $update_defect_query = "UPDATE t_defect_record_f SET 
+            car_maker = :car_maker, 
+            line_no = :line_no,
+            date_detected = :date_detected, 
+            issue_no_tag = :issue_no_tag, 
+            product_name = :product_name, 
+            lot_no = :lot_no, 
+            serial_no = :serial_no,
+            discovery_process = :discovery_process, 
+            occurrence_process = :occurrence_process, 
+            outflow_process = :outflow_process, 
+            outflow_id_num = :outflow_id_no, 
+            defect_category = :defect_category,
+            sequence_num = :sequence_no,
+            dis_assembled_by = :repair_person, 
+            defect_treatment_content = :treatment_content_defect
+            WHERE defect_id = :admin_defect_id";
 
-        $stmt_update = $conn->prepare($update_query);
-        $stmt_update->bindParam(':qc_verification', $qc_verification);
-        $stmt_update->bindParam(':checking_date_sign', $checking_date);
-        $stmt_update->bindParam(':verified_by', $verified_by);
-        $stmt_update->bindParam(':remarks', $remarks);
-        $stmt_update->bindParam(':status', $status);
-        $stmt_update->bindParam(':record_updated_by', $record_updated_by);
-        $stmt_update->bindParam(':defect_id', $admin_defect_id);
-        $stmt_update->bindParam(':id', $id);
-        $stmt_update->execute();
+        $stmt_update_defect = $conn->prepare($update_defect_query);
+        $stmt_update_defect->bindParam(':car_maker', $car_maker);
+        $stmt_update_defect->bindParam(':line_no', $line_no);
+        $stmt_update_defect->bindParam(':date_detected', $date_detected);
+        $stmt_update_defect->bindParam(':issue_no_tag', $issue_no_tag);
+        $stmt_update_defect->bindParam(':product_name', $product_name);
+        $stmt_update_defect->bindParam(':lot_no', $lot_no);
+        $stmt_update_defect->bindParam(':serial_no', $serial_no);
+        $stmt_update_defect->bindParam(':discovery_process', $discovery_process);
+        $stmt_update_defect->bindParam(':occurrence_process', $occurrence_process_dr);
+        $stmt_update_defect->bindParam(':outflow_process', $outflow_process);
+        $stmt_update_defect->bindParam(':outflow_id_no', $outflow_id_no);
+        $stmt_update_defect->bindParam(':defect_category', $defect_category_2);
+        $stmt_update_defect->bindParam(':sequence_no', $sequence_no);
+        $stmt_update_defect->bindParam(':repair_person', $repair_person);
+        $stmt_update_defect->bindParam(':treatment_content_defect', $treatment_content_defect);
+        $stmt_update_defect->bindParam(':admin_defect_id', $admin_defect_id);
+        $stmt_update_defect->execute();
 
-        if ($stmt_update->rowCount() > 0) {
+        // Update t_mancost_monitoring_f table
+        $update_mancost_query = "UPDATE t_mancost_monitoring_f SET 
+            qc_verification = :qc_verification, 
+            checking_date_sign = :checking_date, 
+            verified_by = :verified_by, 
+            remarks = :remarks, 
+            status = :status, 
+            record_updated_by = :record_updated_by 
+            WHERE defect_id = :admin_defect_id AND id = :id";
 
+        $stmt_update_mancost = $conn->prepare($update_mancost_query);
+        $stmt_update_mancost->bindParam(':qc_verification', $qc_verification);
+        $stmt_update_mancost->bindParam(':checking_date', $checking_date);
+        $stmt_update_mancost->bindParam(':verified_by', $verified_by);
+        $stmt_update_mancost->bindParam(':remarks', $remarks);
+        $stmt_update_mancost->bindParam(':status', $status);
+        $stmt_update_mancost->bindParam(':record_updated_by', $record_updated_by);
+        $stmt_update_mancost->bindParam(':admin_defect_id', $admin_defect_id);
+        $stmt_update_mancost->bindParam(':id', $id);
+        $stmt_update_mancost->execute();
+
+        // Output success if updates were successful
+        if ($stmt_update_defect->rowCount() > 0 && $stmt_update_mancost->rowCount() > 0) {
+            // Check if all t_mancost_monitoring_f records are verified
             $verify_query = "SELECT defect_id FROM t_mancost_monitoring_f WHERE defect_id = :admin_defect_id AND qc_verification IS NULL";
             $stmt_verify = $conn->prepare($verify_query);
             $stmt_verify->bindParam(':admin_defect_id', $admin_defect_id);
             $stmt_verify->execute();
 
             if ($stmt_verify->rowCount() < 1) {
-                $verified_query = "UPDATE t_defect_record_f SET qc_status = :qc_status WHERE defect_id = :defect_id";
-
+                // Update qc_status in t_defect_record_f if all t_mancost_monitoring_f records are verified
+                $verified_query = "UPDATE t_defect_record_f SET qc_status = :qc_status WHERE defect_id = :admin_defect_id";
                 $stmt_verified = $conn->prepare($verified_query);
                 $stmt_verified->bindParam(':qc_status', $qc_status);
-                $stmt_verified->bindParam(':defect_id', $admin_defect_id);
+                $stmt_verified->bindParam(':admin_defect_id', $admin_defect_id);
                 $stmt_verified->execute();
             }
-            echo 'success';
-        } else {
-            $error++;
-            $message = "Error updating data in t_mancost_monitoring_f";
+
+            echo 'success'; // This output is crucial for AJAX success function to work
         }
-    } else {
-        $error++;
-        $message = "Sample ID does not exist in t_defect_record_f";
-    }
-    if ($error > 0) {
-        echo $message;
     }
 }
+
 
 $conn = NULL;
