@@ -69,21 +69,10 @@
                     style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
                     class="pl-3">
                 </div>
-                <div class="col-12 col-sm-4 col-md-1 mb-2">
+                <div class="col-12 col-sm-4 col-md-2 mb-2">
                   <!-- delete button -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
-                  <button class="btn btn-block d-flex justify-content-left" id="search_btn"
-                    onclick="clear_search_input()"
-                    style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;"
-                    onmouseover="this.style.backgroundColor='#2D2D2D'; this.style.color='#FFF';"
-                    onmouseout="this.style.backgroundColor='#474747'; this.style.color='#FFF';">
-                    <i class="fas fa-trash" style="margin-top: 2px;"></i>&nbsp;&nbsp;Clear All</button>
-                </div>
-                <div class="col-12 col-sm-4 col-md-1 mb-2">
-                  <!-- delete button -->
-                  <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
-                  <button class="btn btn-block d-flex justify-content-left" id="search_btn"
-                    onclick="refresh_page()"
+                  <button class="btn btn-block d-flex justify-content-left" id="search_btn" onclick="refresh_page()"
                     style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;"
                     onmouseover="this.style.backgroundColor='#2D2D2D'; this.style.color='#FFF';"
                     onmouseout="this.style.backgroundColor='#474747'; this.style.color='#FFF';">
@@ -109,17 +98,27 @@
                     class="pl-3">
                 </div>
                 <!-- date -->
-                <div class="col-12 col-sm-3">
+                <div class="col-12 col-sm-2">
                   <!-- date from -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date From</label>
                   <input type="date" name="date_from" class="form-control" id="search_ad_date_from"
                     style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px;">
                 </div>
-                <div class="col-12 col-sm-3">
+                <div class="col-12 col-sm-2">
                   <!-- date to -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date To</label>
                   <input type="date" name="date_to" class="form-control" id="search_ad_date_to"
                     style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px;">
+                </div>
+                <div class="col-12 col-sm-4 col-md-2 mb-2">
+                  <!-- delete button -->
+                  <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
+                  <button class="btn btn-block d-flex justify-content-left" id="search_btn"
+                    onclick="clear_search_input()"
+                    style="color:#fff;height:34px;border-radius:.25rem;background: #2D2D2D;font-size:15px;font-weight:normal;"
+                    onmouseover="this.style.backgroundColor='#0D0D0D'; this.style.color='#FFF';"
+                    onmouseout="this.style.backgroundColor='#2D2D2D'; this.style.color='#FFF';">
+                    <i class="fas fa-trash" style="margin-top: 2px;"></i>&nbsp;&nbsp;Clear All</button>
                 </div>
                 <div class="col-sm-4 col-md-2">
                   <!-- search button -->
@@ -142,7 +141,8 @@
                     <div class="card bg-light">
                       <div class="card-header">
                         <h4 class="card-title w-100">
-                          <a class="d-block w-100 text-black" data-toggle="collapse" href="#collapseDefectLegend" style="font-size: 15px;">
+                          <a class="d-block w-100 text-black" data-toggle="collapse" href="#collapseDefectLegend"
+                            style="font-size: 15px;">
                             Defect Record and Mancost Monitoring Legend
                           </a>
                         </h4>
@@ -165,7 +165,8 @@
                     </div>
                   </div>
                   <ol class="breadcrumb m-0 p-0">
-                    <li class="breadcrumb-item"><a href="#" onclick="load_qc_defect_table()"><i class="fas fa-angle-left"></i>&nbsp;Return</a></li>
+                    <li class="breadcrumb-item"><a href="#" onclick="load_qc_defect_table()"><i
+                          class="fas fa-angle-left"></i>&nbsp;Return</a></li>
                     <li class="breadcrumb-item active" id="qc_defect_id"></li>
                   </ol>
                 </div>

@@ -519,7 +519,7 @@ if ($method == 'load_defect_table_data') {
             echo '<td style="text-align:center;">' . $row['discovery_process'] . '</td>';
             echo '<td style="text-align:center;">' . $row['discovery_id_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['discovery_person'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['occurrence_process'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['occurrence_process_dr'] . '</td>';
             echo '<td style="text-align:center;">' . $row['occurrence_shift'] . '</td>';
             echo '<td style="text-align:center;">' . $row['occurrence_id_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['occurrence_person'] . '</td>';
@@ -527,7 +527,7 @@ if ($method == 'load_defect_table_data') {
             echo '<td style="text-align:center;">' . $row['outflow_shift'] . '</td>';
             echo '<td style="text-align:center;">' . $row['outflow_id_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['outflow_person'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['defect_category'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['defect_category_dr'] . '</td>';
             echo '<td style="text-align:center;">' . $row['sequence_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['defect_cause'] . '</td>';
             echo '<td style="text-align:left;">' . $row['defect_detail_content'] . '</td>';
@@ -587,7 +587,7 @@ if ($method == 'load_mancost_table_data') {
 
     // $query = "SELECT * FROM t_mancost_monitoring_f WHERE defect_id = '$defect_id' LIMIT " . $page_first_result . ", " . $results_per_page;
 
-    $query = "SELECT t_defect_record_f.car_maker, t_defect_record_f.line_no, t_defect_record_f.category, t_mancost_monitoring_f.repair_start, t_mancost_monitoring_f.repair_end, t_mancost_monitoring_f.time_consumed, t_mancost_monitoring_f.defect_category, t_mancost_monitoring_f.occurrence_process, t_mancost_monitoring_f.parts_removed, t_mancost_monitoring_f.quantity, t_mancost_monitoring_f.unit_cost, t_mancost_monitoring_f.material_cost, t_mancost_monitoring_f.manhour_cost, t_mancost_monitoring_f.repaired_portion_treatment FROM t_defect_record_f LEFT JOIN t_mancost_monitoring_f ON t_defect_record_f.defect_id = t_mancost_monitoring_f.defect_id WHERE t_defect_record_f.defect_id = '$defect_id' LIMIT " . $page_first_result . ", " . $results_per_page;
+    $query = "SELECT t_defect_record_f.car_maker, t_defect_record_f.line_no, t_defect_record_f.category, t_mancost_monitoring_f.repair_start, t_mancost_monitoring_f.repair_end, t_mancost_monitoring_f.time_consumed, t_mancost_monitoring_f.defect_category_mc, t_mancost_monitoring_f.occurrence_process_mc, t_mancost_monitoring_f.parts_removed, t_mancost_monitoring_f.quantity, t_mancost_monitoring_f.unit_cost, t_mancost_monitoring_f.material_cost, t_mancost_monitoring_f.manhour_cost, t_mancost_monitoring_f.repaired_portion_treatment FROM t_defect_record_f LEFT JOIN t_mancost_monitoring_f ON t_defect_record_f.defect_id = t_mancost_monitoring_f.defect_id WHERE t_defect_record_f.defect_id = '$defect_id' LIMIT " . $page_first_result . ", " . $results_per_page;
 
     // 1st Approach using SQL Server DB when using Select Query
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
@@ -603,8 +603,8 @@ if ($method == 'load_mancost_table_data') {
             echo '<td style="text-align:center;">' . $row['repair_start'] . '</td>';
             echo '<td style="text-align:center;">' . $row['repair_end'] . '</td>';
             echo '<td style="text-align:center;">' . $row['time_consumed'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['defect_category'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['occurrence_process'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['defect_category_mc'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['occurrence_process_mc'] . '</td>';
             echo '<td style="text-align:center;">' . $row['parts_removed'] . '</td>';
             echo '<td style="text-align:center;">' . $row['quantity'] . '</td>';
             echo '<td style="text-align:center;">' . $row['unit_cost'] . '</td>';

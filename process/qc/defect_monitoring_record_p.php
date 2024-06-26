@@ -5,6 +5,76 @@ include '../conn.php';
 
 $method = $_POST['method'];
 
+if ($method == 'fetch_opt_update_discovery_process') {
+    $query = "SELECT `discovery_process` FROM `m_dr_discovery_p` ORDER BY discovery_process ASC";
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
+    if ($stmt->rowCount() > 0) {
+        echo '<option value="" disabled>Select discovery process</option>';
+        foreach ($stmt->fetchALL() as $row) {
+            echo '<option>' . htmlspecialchars($row['discovery_process']) . '</option>';
+        }
+    } else {
+        echo '<option value="">Select discovery process</option>';
+    }
+}
+
+if ($method == 'fetch_opt_update_occurrence_process') {
+    $query = "SELECT `occurrence_process` FROM `m_dr_occurrence_p` ORDER BY occurrence_process ASC";
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
+    if ($stmt->rowCount() > 0) {
+        echo '<option value="" disabled>Select occurrence process</option>';
+        foreach ($stmt->fetchALL() as $row) {
+            echo '<option>' . htmlspecialchars($row['occurrence_process']) . '</option>';
+        }
+    } else {
+        echo '<option value="">Select occurrence process</option>';
+    }
+}
+
+if ($method == 'fetch_opt_update_outflow_process') {
+    $query = "SELECT `outflow_process` FROM `m_dr_outflow_p` ORDER BY outflow_process ASC";
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
+    if ($stmt->rowCount() > 0) {
+        echo '<option value="" disabled>Select outflow process</option>';
+        foreach ($stmt->fetchALL() as $row) {
+            echo '<option>' . htmlspecialchars($row['outflow_process']) . '</option>';
+        }
+    } else {
+        echo '<option value="">Select outflow process</option>';
+    }
+}
+
+if ($method == 'fetch_opt_update_defect_category') {
+    $query = "SELECT `defect_category_ng_content` FROM `m_dr_defect_c` ORDER BY defect_category_ng_content ASC";
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
+    if ($stmt->rowCount() > 0) {
+        echo '<option value="" disabled>Select defect category</option>';
+        foreach ($stmt->fetchALL() as $row) {
+            echo '<option>' . htmlspecialchars($row['defect_category_ng_content']) . '</option>';
+        }
+    } else {
+        echo '<option value="">Select defect category</option>';
+    }
+}
+
+if ($method == 'fetch_opt_update_repair_person') {
+    $query = "SELECT `rp_name` FROM `m_repair_person` ORDER BY rp_name ASC";
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
+    if ($stmt->rowCount() > 0) {
+        echo '<option value="" disabled>Select repair person</option>';
+        foreach ($stmt->fetchALL() as $row) {
+            echo '<option>' . htmlspecialchars($row['rp_name']) . '</option>';
+        }
+    } else {
+        echo '<option value="">Select repair person</option>';
+    }
+}
+
 // fetch record type
 if ($method == 'fetch_opt_search_ad_record_type') {
     $query = "SELECT `record_name` FROM `m_record_type` ORDER BY record_name ASC";
@@ -323,7 +393,7 @@ if ($method == 'load_qc_defect_table_data') {
             echo '<td style="text-align:center;">' . $row['discovery_process'] . '</td>';
             echo '<td style="text-align:center;">' . $row['discovery_id_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['discovery_person'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['occurrence_process'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['occurrence_process_dr'] . '</td>';
             echo '<td style="text-align:center;">' . $row['occurrence_shift'] . '</td>';
             echo '<td style="text-align:center;">' . $row['occurrence_id_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['occurrence_person'] . '</td>';
@@ -331,7 +401,7 @@ if ($method == 'load_qc_defect_table_data') {
             echo '<td style="text-align:center;">' . $row['outflow_shift'] . '</td>';
             echo '<td style="text-align:center;">' . $row['outflow_id_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['outflow_person'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['defect_category'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['defect_category_dr'] . '</td>';
             echo '<td style="text-align:center;">' . $row['sequence_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['defect_cause'] . '</td>';
             echo '<td style="text-align:left;">' . $row['defect_detail_content'] . '</td>';
@@ -398,11 +468,11 @@ if ($method == 'load_qc_mancost_table_data') {
     $query = "SELECT m.id, d.defect_id, 
             d.car_maker, d.line_no, d.category, d.date_detected, d.issue_no_tag,
             d.product_name, d.lot_no, d.serial_no, d.discovery_process, d.discovery_id_num,
-            d.discovery_person, d.occurrence_process, d.occurrence_shift, d.occurrence_id_num, d.occurrence_person,
-            d.outflow_process, d.outflow_shift, d.outflow_id_num, d.outflow_person, d.defect_category,
+            d.discovery_person, d.occurrence_process_dr, d.occurrence_shift, d.occurrence_id_num, d.occurrence_person,
+            d.outflow_process, d.outflow_shift, d.outflow_id_num, d.outflow_person, d.defect_category_dr,
             d.sequence_num, d.defect_cause, d.defect_detail_content, d.defect_treatment_content, d.dis_assembled_by,
-            d.repairing_date, m.repair_start, m.repair_end, m.time_consumed, m.defect_category, 
-            m.occurrence_process, m.parts_removed, m.quantity, m.unit_cost, m.material_cost, 
+            d.repairing_date, m.repair_start, m.repair_end, m.time_consumed, m.defect_category_mc, 
+            m.occurrence_process_mc, m.parts_removed, m.quantity, m.unit_cost, m.material_cost, 
             m.manhour_cost, m.repaired_portion_treatment, m.qc_verification, m.checking_date_sign, m.verified_by, 
             m.remarks, m.record_added_by 
             FROM 
@@ -433,11 +503,11 @@ if ($method == 'load_qc_mancost_table_data') {
             echo '<tr style="cursor:pointer;" class="' . $row_class . ' modal_trigger" onclick="get_update_defect_mancost_qc(\'' . $row['id'] . '\',
             \'' . $row['car_maker'] . '\',\'' . $row['line_no'] . '\', \'' . $row['category'] . '\', \'' . $row['date_detected'] . '\', \'' . $row['issue_no_tag'] . '\', 
             \'' . $row['product_name'] . '\', \'' . $row['lot_no'] . '\', \'' . $row['serial_no'] . '\', \'' . $row['discovery_process'] . '\', \'' . $row['discovery_id_num'] . '\', 
-            \'' . $row['discovery_person'] . '\', \'' . $row['occurrence_process'] . '\', \'' . $row['occurrence_shift'] . '\', \'' . $row['occurrence_id_num'] . '\', \'' . $row['occurrence_person'] . '\', 
-            \'' . $row['outflow_process'] . '\', \'' . $row['outflow_shift'] . '\', \'' . $row['outflow_id_num'] . '\', \'' . $row['outflow_person'] . '\', \'' . $row['defect_category'] . '\', 
+            \'' . $row['discovery_person'] . '\', \'' . $row['occurrence_process_dr'] . '\', \'' . $row['occurrence_shift'] . '\', \'' . $row['occurrence_id_num'] . '\', \'' . $row['occurrence_person'] . '\', 
+            \'' . $row['outflow_process'] . '\', \'' . $row['outflow_shift'] . '\', \'' . $row['outflow_id_num'] . '\', \'' . $row['outflow_person'] . '\', \'' . $row['defect_category_dr'] . '\', 
             \'' . $row['sequence_num'] . '\', \'' . $row['defect_cause'] . '\', \'' . $row['dis_assembled_by'] . '\', \'' . $row['defect_detail_content'] . '\', \'' . $row['defect_treatment_content'] . '\',  
-            \'' . $row['repairing_date'] . '\',\'' . $row['repair_start'] . '\',\'' . $row['repair_end'] . '\',\'' . $row['time_consumed'] . '\',\'' . $row['defect_category'] . '\',
-            \'' . $row['occurrence_process'] . '\',\'' . $row['parts_removed'] . '\',\'' . $row['quantity'] . '\',\'' . $row['unit_cost'] . '\',\'' . $row['material_cost'] . '\',
+            \'' . $row['repairing_date'] . '\',\'' . $row['repair_start'] . '\',\'' . $row['repair_end'] . '\',\'' . $row['time_consumed'] . '\',\'' . $row['defect_category_mc'] . '\',
+            \'' . $row['occurrence_process_mc'] . '\',\'' . $row['parts_removed'] . '\',\'' . $row['quantity'] . '\',\'' . $row['unit_cost'] . '\',\'' . $row['material_cost'] . '\',
             \'' . $row['manhour_cost'] . '\',\'' . $row['repaired_portion_treatment'] . '\',\'' . $row['qc_verification'] . '\',\'' . $row['checking_date_sign'] . '\',\'' . $row['verified_by'] . '\',
             \'' . $row['remarks'] . '\',\'' . $row['defect_id'] . '\')">';
 
@@ -448,8 +518,8 @@ if ($method == 'load_qc_mancost_table_data') {
             echo '<td style="text-align:center;">' . $row['repair_start'] . '</td>';
             echo '<td style="text-align:center;">' . $row['repair_end'] . '</td>';
             echo '<td style="text-align:center;">' . $row['time_consumed'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['defect_category'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['occurrence_process'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['defect_category_mc'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['occurrence_process_mc'] . '</td>';
             echo '<td style="text-align:center;">' . $row['parts_removed'] . '</td>';
             echo '<td style="text-align:center;">' . $row['quantity'] . '</td>';
             echo '<td style="text-align:center;">' . $row['unit_cost'] . '</td>';
@@ -586,10 +656,10 @@ if ($method == 'update_mancost2_record') {
             lot_no = :lot_no, 
             serial_no = :serial_no,
             discovery_process = :discovery_process, 
-            occurrence_process = :occurrence_process, 
+            occurrence_process_dr = :occurrence_process_dr, 
             outflow_process = :outflow_process, 
             outflow_id_num = :outflow_id_no, 
-            defect_category = :defect_category,
+            defect_category_dr = :defect_category_dr,
             sequence_num = :sequence_no,
             dis_assembled_by = :repair_person, 
             defect_treatment_content = :treatment_content_defect
@@ -604,10 +674,10 @@ if ($method == 'update_mancost2_record') {
         $stmt_update_defect->bindParam(':lot_no', $lot_no);
         $stmt_update_defect->bindParam(':serial_no', $serial_no);
         $stmt_update_defect->bindParam(':discovery_process', $discovery_process);
-        $stmt_update_defect->bindParam(':occurrence_process', $occurrence_process_dr);
+        $stmt_update_defect->bindParam(':occurrence_process_dr', $occurrence_process_dr);
         $stmt_update_defect->bindParam(':outflow_process', $outflow_process);
         $stmt_update_defect->bindParam(':outflow_id_no', $outflow_id_no);
-        $stmt_update_defect->bindParam(':defect_category', $defect_category_2);
+        $stmt_update_defect->bindParam(':defect_category_dr', $defect_category_2);
         $stmt_update_defect->bindParam(':sequence_no', $sequence_no);
         $stmt_update_defect->bindParam(':repair_person', $repair_person);
         $stmt_update_defect->bindParam(':treatment_content_defect', $treatment_content_defect);
@@ -652,7 +722,7 @@ if ($method == 'update_mancost2_record') {
                 $stmt_verified->execute();
             }
 
-            echo 'success'; // This output is crucial for AJAX success function to work
+            echo 'success';
         }
     }
 }

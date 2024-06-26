@@ -9,6 +9,12 @@
         fetch_opt_search_ad_defect_category_mc();
         fetch_opt_search_ad_occurrence_process_mc();
         fetch_opt_search_ad_portion_treatment_mc();
+
+        fetch_opt_update_discovery_process();
+        fetch_opt_update_occurrence_process();
+        fetch_opt_update_outflow_process();
+        fetch_opt_update_defect_category();
+        fetch_opt_update_repair_person();
     });
 
     document.getElementById("search_ad_record_type").addEventListener("change", e => {
@@ -38,6 +44,111 @@
     document.getElementById("search_ad_date_to").addEventListener("change", e => {
         load_qc_defect_table(1);
     });
+
+    // fetch for update discovery process
+    const fetch_opt_update_discovery_process = (get_value = '') => {
+        $.ajax({
+            url: '../../process/qc/defect_monitoring_record_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_opt_update_discovery_process',
+            },
+            success: function (response) {
+                $('#discovery_process_mc_update').html(response);
+                if (get_value) {
+                    $('#discovery_process_mc_update').val(get_value);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('AJAX error:', status, error);
+            }
+        });
+    };
+
+    // fetch for update occurrence process
+    const fetch_opt_update_occurrence_process = (get_value = '') => {
+        $.ajax({
+            url: '../../process/qc/defect_monitoring_record_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_opt_update_occurrence_process',
+            },
+            success: function (response) {
+                $('#occurrence_process_dr_update').html(response);
+                if (get_value) {
+                    $('#occurrence_process_dr_update').val(get_value);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('AJAX error:', status, error);
+            }
+        });
+    };
+
+    // fetch for update outflow process
+    const fetch_opt_update_outflow_process = (get_value = '') => {
+        $.ajax({
+            url: '../../process/qc/defect_monitoring_record_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_opt_update_outflow_process',
+            },
+            success: function (response) {
+                $('#outflow_process_mc_update').html(response);
+                if (get_value) {
+                    $('#outflow_process_mc_update').val(get_value);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('AJAX error:', status, error);
+            }
+        });
+    };
+
+     // fetch for update defect category
+     const fetch_opt_update_defect_category = (get_value = '') => {
+        $.ajax({
+            url: '../../process/qc/defect_monitoring_record_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_opt_update_defect_category',
+            },
+            success: function (response) {
+                $('#defect_category_mc_update2').html(response);
+                if (get_value) {
+                    $('#defect_category_mc_update2').val(get_value);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('AJAX error:', status, error);
+            }
+        });
+    };
+
+    // fetch for update repair person
+    const fetch_opt_update_repair_person = (get_value = '') => {
+        $.ajax({
+            url: '../../process/qc/defect_monitoring_record_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_opt_update_repair_person',
+            },
+            success: function (response) {
+                $('#repair_person_mc_update').html(response);
+                if (get_value) {
+                    $('#repair_person_mc_update').val(get_value);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('AJAX error:', status, error);
+            }
+        });
+    };
 
     // fetch record type option
     const fetch_opt_search_ad_record_type = () => {
@@ -563,11 +674,12 @@
         issue_no_tag_mc, product_name_mc, lot_no_mc, serial_no_mc, discovery_process_mc,
         discovery_id_no_mc, discovery_person_mc, occurrence_process_dr, occurrence_shift_dr, occurrence_id_no_mc,
         occurrence_person_mc, outflow_process_mc, outflow_shift_mc, outflow_id_no_mc, outflow_person_mc,
-        defect_category_mc, sequence_no_mc, defect_cause_mc, repair_person_mc, detail_content_defect_mc,
+        defect_category_mc2, sequence_no_mc, defect_cause_mc, repair_person_mc, detail_content_defect_mc,
         treatment_content_defect_mc, repairing_date_mc, repair_start_mc, repair_end_mc, time_consumed_mc,
         defect_category_mc, occurrence_process_mc, parts_removed_mc, quantity_mc, unit_cost_mc,
         material_cost_mc, manhour_cost_mc, portion_treatment_mc, qc_veri_mc_update, checking_date_mc_update,
         verified_by_mc_update, remarks_mc_update, defect_id) {
+
         $('#update_defect_mancost_id').val(id).prop('hidden', true);
 
         $('#car_maker_mc_update').val(car_maker_mc);
@@ -589,7 +701,7 @@
         $('#outflow_shift_mc_update').val(outflow_shift_mc);
         $('#outflow_id_no_mc_update').val(outflow_id_no_mc);
         $('#outflow_person_mc_update').val(outflow_person_mc);
-        $('#defect_category_mc_update2').val(defect_category_mc);
+        $('#defect_category_mc_update2').val(defect_category_mc2);
         $('#sequence_no_mc_update').val(sequence_no_mc);
         $('#defect_cause_mc_update').val(defect_cause_mc);
         $('#repair_person_mc_update').val(repair_person_mc);
@@ -782,7 +894,7 @@
                 data: {
                     method: 'update_mancost2_record',
                     id: id,
-                    car_maker:car_maker.value,
+                    car_maker: car_maker.value,
                     line_no: line_no.value,
                     date_detected: date_detected.value,
                     issue_no_tag: issue_no_tag.value,
@@ -823,7 +935,7 @@
                         $('#lot_no_mc_update').val('');
                         $('#serial_no_mc_update').val('');
                         $('#discovery_process_mc_update').val('');
-                        $('#occurrence_process_mc_update').val('');
+                        $('#occurrence_process_dr_update').val('');
                         $('#outflow_process_mc_update').val('');
                         $('#outflow_id_no_mc_update').val('');
                         $('#outflow_person_mc_update').val('');

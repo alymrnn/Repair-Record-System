@@ -3,7 +3,8 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content" style="background:#f9f9f9;">
             <div class="modal-header" style="background:#004e89;">
-                <h5 class="modal-title" id="exampleModalLabel" style="font-weight: normal;color: #fff;"><i class="fas fa-check-circle"></i>&nbsp;Verify Defect
+                <h5 class="modal-title" id="exampleModalLabel" style="font-weight: normal;color: #fff;"><i
+                        class="fas fa-check-circle"></i>&nbsp;Verify Defect
                     Record & Mancost Monitoring</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" style="color: #fff;">&times;</span>
@@ -94,10 +95,11 @@
                     <div class="col-sm-4">
                         <!-- discovery process -->
                         <label style="font-weight: normal;color: #000;">Discovery Process</label>
-                        <input list="discoveryProcessDrList" name="discovery_process_dr" id="discovery_process_mc_update"
+                        <select name="discovery_process_dr" id="discovery_process_mc_update"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2">
-                        <datalist id="discoveryProcessDrList"></datalist>
+                            <option value="" disabled>Select discovery process</option>
+                        </select>
                     </div>
                     <div class="col-sm-4">
                         <!-- discovery id number -->
@@ -120,16 +122,17 @@
                     <div class="col-sm-3">
                         <!-- occurrence process -->
                         <label style="font-weight: normal;color: #000;">Occurrence Process</label>
-                        <input list="occurrenceProcessDrList" name="occurrence_process_mc_update"
-                            id="occurrence_process_dr_update"
+                        <select name="occurrence_process_dr_update" id="occurrence_process_dr_update"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2">
-                        <datalist id="occurrenceProcessDrList"></datalist>
+                            <option value="" disabled>Select occurrence process</option>
+                        </select>
                     </div>
                     <div class="col-sm-3">
                         <!-- occurrence shift -->
                         <label style="font-weight: normal;color: #000;">Occurrence Shift</label>
-                        <input list="occurrenceShiftDrList" name="occurrence_shift_mc_update" id="occurrence_shift_dr_update"
+                        <input list="occurrenceShiftDrList" name="occurrence_shift_mc_update"
+                            id="occurrence_shift_dr_update"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
                             class="pl-2" disabled>
                         <datalist id="occurrenceShiftDrList"></datalist>
@@ -155,10 +158,11 @@
                     <div class="col-sm-3">
                         <!-- outflow process -->
                         <label style="font-weight: normal;color: #000;">Outflow Process</label>
-                        <input list="outflowProcessDrList" name="outflow_process_dr" id="outflow_process_mc_update"
+                        <select name="outflow_process_mc_update" id="outflow_process_mc_update"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2">
-                        <datalist id="outflowProcessDrList"></datalist>
+                            <option value="" disabled>Select occurrence process</option>
+                        </select>
                     </div>
                     <div class="col-sm-3">
                         <!-- outflow shift -->
@@ -187,10 +191,11 @@
                     <div class="col-sm-3">
                         <!-- defect category -->
                         <label style="font-weight: normal;color: #000;">Defect Category</label>
-                        <input list="defectCategoryDrList" name="defect_category_dr" id="defect_category_mc_update2"
+                        <select name="defect_category_mc_update2" id="defect_category_mc_update2"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2">
-                        <datalist id="defectCategoryDrList"></datalist>
+                            <option value="" disabled>Select defect category</option>
+                        </select>
                     </div>
                     <div class="col-sm-3">
                         <!-- sequence number -->
@@ -209,10 +214,11 @@
                     <div class="col-sm-3">
                         <!-- repair person -->
                         <label style="font-weight: normal;color: #000;">Dis-assembled by:</label>
-                        <input list="repairPersonDrList" name="repair_person_dr" id="repair_person_mc_update"
+                        <select name="repair_person_mc_update" id="repair_person_mc_update"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2">
-                        <datalist id="repairPersonDrList"></datalist>
+                            <option value="" disabled>Select repair person</option>
+                        </select>
                     </div>
                 </div>
                 <br>
@@ -243,15 +249,15 @@
                     <div class="col-sm-4">
                         <!-- repair start -->
                         <label style="font-weight: normal;color: #000;">Repair Start</label>
-                        <input type="time" id="repair_start_mc_update" oninput="time_difference()"
-                            class="form-control" autocomplete="off"
+                        <input type="time" id="repair_start_mc_update" oninput="time_difference()" class="form-control"
+                            autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-4">
                         <!-- repair end -->
                         <label style="font-weight: normal;color: #000;">Repair End</label>
-                        <input type="time" id="repair_end_mc_update" oninput="time_difference()"
-                            class="form-control" autocomplete="off"
+                        <input type="time" id="repair_end_mc_update" oninput="time_difference()" class="form-control"
+                            autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-4">
@@ -299,8 +305,8 @@
                     <div class="col-sm-3">
                         <!-- unit cost -->
                         <label style="font-weight: normal;color: #000;">Unit Cost ( ¥ )</label>
-                        <input type="float" id="unit_cost_mc_update" oninput="qty_cost_product()"
-                            class="form-control" autocomplete="off"
+                        <input type="float" id="unit_cost_mc_update" oninput="qty_cost_product()" class="form-control"
+                            autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-3">
@@ -332,8 +338,8 @@
                         <!-- re checking in process -->
                         <label style="font-weight: normal;color: #000;">QC Verification</label>
                         <label style="color:#CA3F3F">*</label>
-                        <input list="qc_veri_list_mc" id="qc_veri_mc_update" class="form-control"
-                            autocomplete="off" placeholder="Select Status"
+                        <input list="qc_veri_list_mc" id="qc_veri_mc_update" class="form-control" autocomplete="off"
+                            placeholder="Select Status"
                             style="color: #525252;font-size: 15px;border-radius: .25rem; background: #FFF;height:34px; width:100%;"
                             required>
                         <datalist id="qc_veri_list_mc">

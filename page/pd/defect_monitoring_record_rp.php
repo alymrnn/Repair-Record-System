@@ -64,24 +64,17 @@
                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;"
                 class="pl-3">
             </div>
-            <div class="col-12 col-sm-4 col-md-1 mb-2">
-              <!-- clear button -->
+            <div class="col-12 col-sm-2">
+              <!-- search button -->
               <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
-              <button class="btn btn-block d-flex justify-content-left" id="search_btn" onclick="clear_search_input()"
-                style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;"
-                onmouseover="this.style.backgroundColor='#2D2D2D'; this.style.color='#FFF';"
-                onmouseout="this.style.backgroundColor='#474747'; this.style.color='#FFF';">
-                <i class="fas fa-trash" style="margin-top: 2px;"></i>&nbsp;&nbsp;Clear All</button>
+              <button class="btn btn-block d-flex justify-content-left" id="search_record_btn"
+                onclick="load_defect_table(1)"
+                style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"
+                onmouseover="this.style.backgroundColor='#1B5541'; this.style.color='#FFF';"
+                onmouseout="this.style.backgroundColor='#226F54'; this.style.color='#FFF';"><i class="fas fa-search"
+                  style="margin-top: 2px;"></i>&nbsp;&nbsp;Search</button>
             </div>
-            <div class="col-12 col-sm-4 col-md-1 mb-2">
-              <!-- refresh button -->
-              <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
-              <button class="btn btn-block d-flex justify-content-left" id="search_btn" onclick="refresh_page()"
-                style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;"
-                onmouseover="this.style.backgroundColor='#2D2D2D'; this.style.color='#FFF';"
-                onmouseout="this.style.backgroundColor='#474747'; this.style.color='#FFF';">
-                <i class="fas fa-sync-alt" style="margin-top: 2px;"></i>&nbsp;&nbsp;Refresh</button>
-            </div>
+
           </div>
           <div class="row">
             <div class="col-12 col-sm-2">
@@ -100,38 +93,28 @@
                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;"
                 class="pl-3">
             </div>
-            <div class="col-12 col-sm-2">
+            <div class="col-12 col-sm-3">
               <!-- date from -->
               <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date From</label>
               <input type="date" name="date_from" class="form-control" id="date_from_search_defect"
                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px;">
             </div>
-            <div class="col-12 col-sm-2">
+            <div class="col-12 col-sm-3">
               <!-- date to -->
               <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date To</label>
               <input type="date" name="date_to" class="form-control" id="date_to_search_defect"
                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px;">
             </div>
-            <div class="col-12 col-sm-2">
-              <!-- search button -->
+            <div class="col-12 col-sm-4 col-md-2">
+              <!-- clear button -->
               <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
-              <button class="btn btn-block d-flex justify-content-left" id="search_record_btn"
-                onclick="load_defect_table(1)"
-                style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"
-                onmouseover="this.style.backgroundColor='#1B5541'; this.style.color='#FFF';"
-                onmouseout="this.style.backgroundColor='#226F54'; this.style.color='#FFF';"><i class="fas fa-search"
-                  style="margin-top: 2px;"></i>&nbsp;&nbsp;Search</button>
+              <button class="btn btn-block d-flex justify-content-left" id="search_btn" onclick="clear_search_input()"
+                style="color:#fff;height:34px;border-radius:.25rem;background: #2D2D2D;font-size:15px;font-weight:normal;"
+                onmouseover="this.style.backgroundColor='#0D0D0D'; this.style.color='#FFF';"
+                onmouseout="this.style.backgroundColor='#2D2D2D'; this.style.color='#FFF';">
+                <i class="fas fa-trash" style="margin-top: 2px;"></i>&nbsp;&nbsp;Clear All</button>
             </div>
-            <div class="col-12 col-sm-2">
-              <!-- add defect record and mancost monitoring button -->
-              <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
-              <button class="btn btn-block d-flex justify-content-left" data-toggle="modal"
-                data-target="#add_defect_mancost"
-                style="color:#fff;height:34px;border-radius:.25rem;background: #0069B0;font-size:15px;font-weight:normal;"
-                onmouseover="this.style.backgroundColor='#024E92'; this.style.color='#FFF';"
-                onmouseout="this.style.backgroundColor='#0267c1'; this.style.color='#FFF';"><i
-                  class="fas fa-plus-circle" style="margin-top: 2px;"></i>&nbsp;&nbsp;Add Record</button>
-            </div>
+
           </div>
           <div class="row mb-3">
             <div class="col-12 col-sm-2">
@@ -156,10 +139,30 @@
             </div>
             <div class="col-12 col-sm-4">
               <label></label>
-              <p class="p-1" style="background: #FFFAD1; border-left: 3px solid #E89F4C;">
+              <p class="p-1" style="background: #FFFAD1; border-left: 3px solid #E89F4C; font-size: 14px;">
                 <i>Note:</i>
                 The records searched by date are based on the 'repairing date' column.
               </p>
+            </div>
+
+            <div class="col-12 col-sm-4 col-md-2 mb-2">
+              <!-- refresh button -->
+              <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
+              <button class="btn btn-block d-flex justify-content-left" id="search_btn" onclick="refresh_page()"
+                style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;"
+                onmouseover="this.style.backgroundColor='#2D2D2D'; this.style.color='#FFF';"
+                onmouseout="this.style.backgroundColor='#474747'; this.style.color='#FFF';">
+                <i class="fas fa-sync-alt" style="margin-top: 2px;"></i>&nbsp;&nbsp;Refresh</button>
+            </div>
+            <div class="col-12 col-sm-2">
+              <!-- add defect record and mancost monitoring button -->
+              <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
+              <button class="btn btn-block d-flex justify-content-left" data-toggle="modal"
+                data-target="#add_defect_mancost"
+                style="color:#fff;height:34px;border-radius:.25rem;background: #0069B0;font-size:15px;font-weight:normal;"
+                onmouseover="this.style.backgroundColor='#024E92'; this.style.color='#FFF';"
+                onmouseout="this.style.backgroundColor='#0267c1'; this.style.color='#FFF';"><i
+                  class="fas fa-plus-circle" style="margin-top: 2px;"></i>&nbsp;&nbsp;Add Record</button>
             </div>
           </div>
           <!-- /.row end -->
