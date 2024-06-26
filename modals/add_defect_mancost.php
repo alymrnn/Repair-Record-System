@@ -138,7 +138,7 @@
                         <label style="font-weight: normal;color: #000;">Product Name</label>
                         <label style="color:#CA3F3F">*</label>
                         <input type="text" id="product_name" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #F1F1F1;height:34px; width:100%;"
                             readonly>
                         <span id="productNameError" class="error-message" style="display:none; color:#CA3F3F;">Product
                             Name field is required.</span>
@@ -149,7 +149,7 @@
                         <label style="font-weight: normal;color: #000;">Lot No.</label>
                         <label style="color:#CA3F3F">*</label>
                         <input type="text" id="lot_no" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #F1F1F1;height:34px; width:100%;"
                             readonly>
                         <span id="lotNumberError" class="error-message" style="display:none; color:#CA3F3F;">Lot Number
                             field is required.</span>
@@ -159,7 +159,7 @@
                         <label style="font-weight: normal;color: #000;">Serial No.</label>
                         <label style="color:#CA3F3F">*</label>
                         <input type="text" id="serial_no" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #F1F1F1;height:34px; width:100%;"
                             readonly>
                         <span id="serialNumberError" class="error-message" style="display:none; color:#CA3F3F;">Serial
                             Number field is required.</span>

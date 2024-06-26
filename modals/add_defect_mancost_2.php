@@ -58,7 +58,7 @@
                         <!-- time consumed -->
                         <label style="font-weight: normal;color: #000;">Time Consumed (in minute/s)</label>
                         <input type="int" id="time_consumed_mc" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #F1F1F1;height:34px; width:100%;"
                             readonly>
                         <input type="hidden" id="na_time_consumed" name="na_time_consumed">
 
@@ -99,7 +99,7 @@
                         <!-- manhour cost -->
                         <label style="font-weight: normal;color: #000;">Manhour Cost ( ¥ )</label>
                         <input type="float" id="manhour_cost_mc" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #F1F1F1;height:34px; width:100%;"
                             readonly>
                         <input type="hidden" id="na_manhour_cost" name="na_manhour_cost">
 
@@ -138,7 +138,7 @@
                         <label style="font-weight: normal;color: #000;">Unit Cost ( ¥ )</label>
                         <label style="color:#CA3F3F">*</label>
                         <input type="float" id="unit_cost_mc" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #F1F1F1;height:34px; width:100%;"
                             readonly>
                         <input type="hidden" id="na_unit_cost" name="na_unit_cost">
 
@@ -147,7 +147,7 @@
                         <!-- material cost -->
                         <label style="font-weight: normal;color: #000;">Material Cost ( ¥ )</label>
                         <input type="float" id="material_cost_mc" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #F1F1F1;height:34px; width:100%;"
                             readonly>
                         <input type="hidden" id="na_material_cost" name="na_material_cost">
 
