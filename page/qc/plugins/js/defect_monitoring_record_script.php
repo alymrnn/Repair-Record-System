@@ -108,8 +108,8 @@
         });
     };
 
-     // fetch for update defect category
-     const fetch_opt_update_defect_category = (get_value = '') => {
+    // fetch for update defect category
+    const fetch_opt_update_defect_category = (get_value = '') => {
         $.ajax({
             url: '../../process/qc/defect_monitoring_record_p.php',
             type: 'POST',
@@ -413,6 +413,8 @@
                     <th>Defect Category</th>
                     <th>Sequence Number</th>
                     <th>Cause of Defect</th>
+                    <th>Good Measurement</th>
+                    <th>NG Measurement</th>
                     <th>Detail in Content of Defect</th>
                     <th>Treatment Content of Defect</th>
                     <th>Dis-assembled/Dis-inserted by:</th>
@@ -588,6 +590,9 @@
                     <th>Defect Category</th>
                     <th>Occurrence Process</th>
                     <th>Parts Removed</th>
+                    <th>Wire Type</th>
+                    <th>Wire Size</th>
+                    <th>Connector Cavity</th>
                     <th>Quantity</th>
                     <th>Unit Cost ( ¥ )</th>
                     <th>Material Cost ( ¥ )</th>
@@ -674,9 +679,11 @@
         issue_no_tag_mc, product_name_mc, lot_no_mc, serial_no_mc, discovery_process_mc,
         discovery_id_no_mc, discovery_person_mc, occurrence_process_dr, occurrence_shift_dr, occurrence_id_no_mc,
         occurrence_person_mc, outflow_process_mc, outflow_shift_mc, outflow_id_no_mc, outflow_person_mc,
-        defect_category_mc2, sequence_no_mc, defect_cause_mc, repair_person_mc, detail_content_defect_mc,
+        defect_category_mc2, sequence_no_mc, defect_cause_mc, good_measurement_mc, ng_measurement_mc,
+        repair_person_mc, detail_content_defect_mc,
         treatment_content_defect_mc, repairing_date_mc, repair_start_mc, repair_end_mc, time_consumed_mc,
-        defect_category_mc, occurrence_process_mc, parts_removed_mc, quantity_mc, unit_cost_mc,
+        defect_category_mc, occurrence_process_mc, parts_removed_mc, wire_type_mc, wire_size_mc, connector_cavity_mc,
+        quantity_mc, unit_cost_mc,
         material_cost_mc, manhour_cost_mc, portion_treatment_mc, qc_veri_mc_update, checking_date_mc_update,
         verified_by_mc_update, remarks_mc_update, defect_id) {
 
@@ -704,6 +711,8 @@
         $('#defect_category_mc_update2').val(defect_category_mc2);
         $('#sequence_no_mc_update').val(sequence_no_mc);
         $('#defect_cause_mc_update').val(defect_cause_mc);
+        $('#good_measurement_mc_update').val(good_measurement_mc);
+        $('#ng_measurement_mc_update').val(ng_measurement_mc);
         $('#repair_person_mc_update').val(repair_person_mc);
         $('#detail_content_defect_mc_update').val(detail_content_defect_mc);
         $('#treatment_content_defect_mc_update').val(treatment_content_defect_mc);
@@ -715,6 +724,9 @@
         $('#defect_category_mc_update').val(defect_category_mc).prop('disabled', true);
         $('#occurrence_process_mc_update').val(occurrence_process_mc).prop('disabled', true);
         $('#parts_removed_mc_update').val(parts_removed_mc).prop('disabled', true);
+        $('#wire_type_mc_update').val(wire_type_mc).prop('disabled', true);
+        $('#wire_size_mc_update').val(wire_size_mc).prop('disabled', true);
+        $('#connector_cavity_mc_update').val(connector_cavity_mc).prop('disabled', true);
         $('#quantity_mc_update').val(quantity_mc).prop('disabled', true);
         $('#unit_cost_mc_update').val(unit_cost_mc).prop('disabled', true);
         $('#material_cost_mc_update').val(material_cost_mc).prop('disabled', true);

@@ -70,13 +70,14 @@
                     class="pl-3">
                 </div>
                 <div class="col-12 col-sm-4 col-md-2 mb-2">
-                  <!-- delete button -->
+                  <!-- clear button -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
-                  <button class="btn btn-block d-flex justify-content-left" id="search_btn" onclick="refresh_page()"
-                    style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;"
-                    onmouseover="this.style.backgroundColor='#2D2D2D'; this.style.color='#FFF';"
-                    onmouseout="this.style.backgroundColor='#474747'; this.style.color='#FFF';">
-                    <i class="fas fa-sync-alt" style="margin-top: 2px;"></i>&nbsp;&nbsp;Refresh</button>
+                  <button class="btn btn-block d-flex justify-content-left" id="search_btn"
+                    onclick="clear_search_input()"
+                    style="color:#fff;height:34px;border-radius:.25rem;background: #2D2D2D;font-size:15px;font-weight:normal;"
+                    onmouseover="this.style.backgroundColor='#0D0D0D'; this.style.color='#FFF';"
+                    onmouseout="this.style.backgroundColor='#2D2D2D'; this.style.color='#FFF';">
+                    <i class="fas fa-trash" style="margin-top: 2px;"></i>&nbsp;&nbsp;Clear All</button>
                 </div>
               </div>
               <div class="row mt-2">
@@ -111,14 +112,13 @@
                     style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px;">
                 </div>
                 <div class="col-12 col-sm-4 col-md-2 mb-2">
-                  <!-- delete button -->
+                  <!-- refresh button -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
-                  <button class="btn btn-block d-flex justify-content-left" id="search_btn"
-                    onclick="clear_search_input()"
-                    style="color:#fff;height:34px;border-radius:.25rem;background: #2D2D2D;font-size:15px;font-weight:normal;"
-                    onmouseover="this.style.backgroundColor='#0D0D0D'; this.style.color='#FFF';"
-                    onmouseout="this.style.backgroundColor='#2D2D2D'; this.style.color='#FFF';">
-                    <i class="fas fa-trash" style="margin-top: 2px;"></i>&nbsp;&nbsp;Clear All</button>
+                  <button class="btn btn-block d-flex justify-content-left" id="search_btn" onclick="refresh_page()"
+                    style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;"
+                    onmouseover="this.style.backgroundColor='#2D2D2D'; this.style.color='#FFF';"
+                    onmouseout="this.style.backgroundColor='#474747'; this.style.color='#FFF';">
+                    <i class="fas fa-sync-alt" style="margin-top: 2px;"></i>&nbsp;&nbsp;Refresh</button>
                 </div>
                 <div class="col-sm-4 col-md-2">
                   <!-- search button -->
