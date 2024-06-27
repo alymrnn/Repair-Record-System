@@ -85,7 +85,7 @@
                         <label style="font-weight: normal;color: #000;">Issue No. of Tag</label>
                         <label style="color:#CA3F3F">*</label>
                         <input type="text" id="issue_tag" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #F1F1F1;height:34px; width:100%;"
                             readonly>
                         <span id="issueTagError" class="error-message" style="display:none; color:#CA3F3F;">Issue No. of
                             Tag field is required.</span>
@@ -115,7 +115,7 @@
                         </datalist> -->
 
                         <input name="car_maker" id="car_maker" onchange="handleCarMakerChange(this)"
-                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #F1F1F1;height:34px; width:100%;"
                             class="pl-2" disabled>
                         <span id="carMakerError" class="error-message" style="display:none; color:#CA3F3F;">Car Maker
                             field is required.</span>
@@ -348,6 +348,28 @@
                 </div>
                 <br>
                 <!-- /.end -->
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <!-- good measurement -->
+                        <label style="font-weight: normal;color: #000;">Good Measurement</label>
+                        <label style="color:#CA3F3F">*</label>
+                        <input type="text" id="good_measurement_dr" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            required>
+                        <span id="goodMeasurementError" class="error-message" style="display:none; color:#CA3F3F;">Good
+                            Measurement field is required.</span>
+                    </div>
+                    <div class="col-sm-6">
+                        <!-- ng measurement -->
+                        <label style="font-weight: normal;color: #000;">NG Measurement</label>
+                        <label style="color:#CA3F3F">*</label>
+                        <input type="text" id="ng_measurement_dr" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            required>
+                        <span id="noGoodMeasurementError" class="error-message" style="display:none; color:#CA3F3F;">NG
+                            Measurement field is required.</span>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-sm-6">
                         <!-- Detail in content of defect -->

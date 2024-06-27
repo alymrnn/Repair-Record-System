@@ -3,7 +3,8 @@
     <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
         <div class="modal-content" style="background:#f9f9f9;">
             <div class="modal-header" style="background: #0069B0;">
-                <h5 class="modal-title" id="exampleModalLabel" style="font-weight: normal;color: #fff;"><i class="fas fa-plus-circle"></i>&nbsp;
+                <h5 class="modal-title" id="exampleModalLabel" style="font-weight: normal;color: #fff;"><i
+                        class="fas fa-plus-circle"></i>&nbsp;
                     Add Defect Record & Mancost Monitoring
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -24,8 +25,8 @@
                 <!-- form label -->
                 <label style="font-weight: normal;color: #000;font-size:25px"><b>Manpower and Material Cost
                         Monitoring</b></label>
-                <div class="row">
-                    <div class="col-sm-4">
+                <div class="row mb-2">
+                    <div class="col-sm-3">
                         <!-- defect id hidden -->
                         <input type="hidden" id="defect_id_no" class="form-control">
 
@@ -41,7 +42,7 @@
                         <span id="repairStartMcError" class="error-message" style="display:none; color:#CA3F3F;">Repair
                             Start field is required.</span>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <!-- repair end -->
                         <label style="font-weight: normal;color: #000;">Repair End</label>
                         <label style="color:#CA3F3F">*</label>
@@ -54,43 +55,13 @@
                         <span id="repairEndMcError" class="error-message" style="display:none; color:#CA3F3F;">Repair
                             End field is required.</span>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <!-- time consumed -->
                         <label style="font-weight: normal;color: #000;">Time Consumed (in minute/s)</label>
                         <input type="int" id="time_consumed_mc" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #F1F1F1;height:34px; width:100%;"
                             readonly>
                         <input type="hidden" id="na_time_consumed" name="na_time_consumed">
-
-                    </div>
-                </div>
-                <!-- <br> -->
-                <!-- /.end -->
-                <div class="row">
-                    <div class="col-sm-3">
-                        <!-- defect category mancost -->
-                        <label style="font-weight: normal;color: #000;">Defect Category</label>
-                        <label style="color:#CA3F3F">*</label>
-                        <input list="defectCategoryMcList" placeholder="Select the defect category"
-                            name="defect_category_mc" id="defect_category_mc" autocomplete="off"
-                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
-                            class="pl-2" required>
-                        <datalist id="defectCategoryMcList"></datalist>
-                        <span id="defectCategoryMcError" class="error-message"
-                            style="display:none; color:#CA3F3F;">Defect Category field is required.</span>
-
-                    </div>
-                    <div class="col-sm-3">
-                        <!-- occurrence process mancost -->
-                        <label style="font-weight: normal;color: #000;">Occurrence Process</label>
-                        <label style="color:#CA3F3F">*</label>
-                        <input list="occurrenceProcessMcList" placeholder="Select the occurrence process"
-                            name="occurrence_process_mc" id="occurrence_process_mc" autocomplete="off"
-                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
-                            class="pl-2" required>
-                        <datalist id="occurrenceProcessMcList"></datalist>
-                        <span id="occurrenceProcessMcError" class="error-message"
-                            style="display:none; color:#CA3F3F;">Occurrence Process field is required.</span>
                     </div>
                     <div class="col-sm-3">
                         <!-- salary cost -->
@@ -104,7 +75,36 @@
                         <input type="hidden" id="na_manhour_cost" name="na_manhour_cost">
 
                     </div>
-                    <div class="col-sm-3">
+                </div>
+                <!-- <br> -->
+                <!-- /.end -->
+                <div class="row mb-2">
+                    <div class="col-sm-4">
+                        <!-- defect category mancost -->
+                        <label style="font-weight: normal;color: #000;">Defect Category</label>
+                        <label style="color:#CA3F3F">*</label>
+                        <input list="defectCategoryMcList" placeholder="Select the defect category"
+                            name="defect_category_mc" id="defect_category_mc" autocomplete="off"
+                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="pl-2" required>
+                        <datalist id="defectCategoryMcList"></datalist>
+                        <span id="defectCategoryMcError" class="error-message"
+                            style="display:none; color:#CA3F3F;">Defect Category field is required.</span>
+
+                    </div>
+                    <div class="col-sm-4">
+                        <!-- occurrence process mancost -->
+                        <label style="font-weight: normal;color: #000;">Occurrence Process</label>
+                        <label style="color:#CA3F3F">*</label>
+                        <input list="occurrenceProcessMcList" placeholder="Select the occurrence process"
+                            name="occurrence_process_mc" id="occurrence_process_mc" autocomplete="off"
+                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="pl-2" required>
+                        <datalist id="occurrenceProcessMcList"></datalist>
+                        <span id="occurrenceProcessMcError" class="error-message"
+                            style="display:none; color:#CA3F3F;">Occurrence Process field is required.</span>
+                    </div>
+                    <div class="col-sm-4">
                         <!-- parts removed -->
                         <label style="font-weight: normal;color: #000;">Parts Removed</label>
                         <label style="color:#CA3F3F">*</label>
@@ -113,13 +113,45 @@
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             required list="partsRemovedMcList">
                         <datalist id="partsRemovedMcList"></datalist>
-                        <span id="partsRemovedMcError" class="error-message" style="display:none; color:#CA3F3F;">Parts
-                            Removed field is required.</span>
+                        <span id="partsRemovedMcError" class="error-message" style="display:none; color:#CA3F3F;">Parts Removed 
+                            field is required.</span>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-sm-4">
+                        <!-- type -->
+                        <label style="font-weight: normal;color: #000;">Wire Type</label>
+                        <label style="color:#CA3F3F">*</label>
+                        <input type="text" id="wire_type_mc" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            required>
+                        <span id="wireTypeMcError" class="error-message" style="display:none; color:#CA3F3F;">Wire Type field
+                            is required.</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <!-- wire size -->
+                        <label style="font-weight: normal;color: #000;">Wire Size</label>
+                        <label style="color:#CA3F3F">*</label>
+                        <input type="text" id="wire_size_mc" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            required>
+                        <span id="wireSizeMcError" class="error-message" style="display:none; color:#CA3F3F;">Wire Size field
+                            is required.</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <!-- connector cavity -->
+                        <label style="font-weight: normal;color: #000;">Connector Cavity</label>
+                        <label style="color:#CA3F3F">*</label>
+                        <input type="text" id="connector_cavity_mc" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            required>
+                        <span id="connectorCavityMcError" class="error-message" style="display:none; color:#CA3F3F;">Connector Cavity field
+                            is required.</span>
                     </div>
                 </div>
                 <!-- <br> -->
                 <!-- /.end -->
-                <div class="row">
+                <div class="row mb-2">
                     <div class="col-sm-3">
                         <!-- quantity -->
                         <label style="font-weight: normal;color: #000;">Quantity</label>
@@ -166,7 +198,7 @@
                     </div>
                 </div>
                 <!-- /.end -->
-         
+
                 <div class="row mt-3">
                     <div class="col-sm-4"></div>
                     <div class="col-sm-4"></div>
@@ -202,6 +234,9 @@
                             <th>Defect Category</th>
                             <th>Occurrence Process</th>
                             <th>Parts Removed</th>
+                            <th>Wire Type</th>
+                            <th>Wire Size</th>
+                            <th>Connector Cavity</th>
                             <th>Quantity</th>
                             <th>Unit Cost</th>
                             <th>Material Cost</th>
