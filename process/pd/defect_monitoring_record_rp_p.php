@@ -574,6 +574,57 @@ if ($method == 'count_mancost_table_data') {
     exit;
 }
 
+// if ($method == 'load_mancost_table_data') {
+//     $defect_id = $_POST['defect_id'];
+//     $current_page = intval($_POST['current_page']);
+
+//     $c = 0;
+
+//     $results_per_page = 50;
+
+//     $page_first_result = ($current_page - 1) * $results_per_page;
+
+//     $c = $page_first_result;
+
+//     // $query = "SELECT * FROM t_mancost_monitoring_f WHERE defect_id = '$defect_id' LIMIT " . $page_first_result . ", " . $results_per_page;
+
+//     $query = "SELECT t_defect_record_f.car_maker, t_defect_record_f.line_no, t_defect_record_f.category, t_mancost_monitoring_f.repair_start, t_mancost_monitoring_f.repair_end, t_mancost_monitoring_f.time_consumed, t_mancost_monitoring_f.defect_category_mc, t_mancost_monitoring_f.occurrence_process_mc, t_mancost_monitoring_f.parts_removed, t_mancost_monitoring_f.wire_size, t_mancost_monitoring_f.wire_type, t_mancost_monitoring_f.connector_cavity,t_mancost_monitoring_f.quantity, t_mancost_monitoring_f.unit_cost, t_mancost_monitoring_f.material_cost, t_mancost_monitoring_f.manhour_cost, t_mancost_monitoring_f.repaired_portion_treatment FROM t_defect_record_f LEFT JOIN t_mancost_monitoring_f ON t_defect_record_f.defect_id = t_mancost_monitoring_f.defect_id WHERE t_defect_record_f.defect_id = '$defect_id' LIMIT " . $page_first_result . ", " . $results_per_page;
+
+//     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+//     $stmt->execute();
+//     if ($stmt->rowCount() > 0) {
+//         foreach ($stmt->fetchALL() as $row) {
+//             $c++;
+
+//             echo '<tr style="cursor:pointer; text-align:center;">';
+//             echo '<td style="text-align:center;">' . $c . '</td>';
+//             echo '<td style="text-align:center;">' . $row['car_maker'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['line_no'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['category'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['repair_start'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['repair_end'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['time_consumed'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['defect_category_mc'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['occurrence_process_mc'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['parts_removed'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['wire_size'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['wire_type'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['connector_cavity'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['quantity'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['unit_cost'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['material_cost'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['manhour_cost'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['repaired_portion_treatment'] . '</td>';
+//             echo '</tr>';
+//         }
+//     } else {
+//         echo '<tr>';
+//         echo '<td colspan="12" style="text-align:center; color:red;">No Result</td>';
+//         echo '</tr>';
+//     }
+//     exit;
+// }
+
 if ($method == 'load_mancost_table_data') {
     $defect_id = $_POST['defect_id'];
     $current_page = intval($_POST['current_page']);
@@ -581,23 +632,47 @@ if ($method == 'load_mancost_table_data') {
     $c = 0;
 
     $results_per_page = 50;
-
-    //determine the sql LIMIT starting number for the results on the displaying page
     $page_first_result = ($current_page - 1) * $results_per_page;
 
     $c = $page_first_result;
 
-    // $query = "SELECT * FROM t_mancost_monitoring_f WHERE defect_id = '$defect_id' LIMIT " . $page_first_result . ", " . $results_per_page;
+    $query = "SELECT m.id, d.defect_id, 
+        d.car_maker, d.line_no, d.category, d.date_detected, d.issue_no_tag,
+        d.product_name, d.lot_no, d.serial_no, d.discovery_process, d.discovery_id_num,
+        d.discovery_person, d.occurrence_process_dr, d.occurrence_shift, d.occurrence_id_num, d.occurrence_person,
+        d.outflow_process, d.outflow_shift, d.outflow_id_num, d.outflow_person, d.defect_category_dr,
+        d.sequence_num, d.defect_cause, d.good_measurement, d.ng_measurement,
+        d.defect_detail_content, d.defect_treatment_content, d.dis_assembled_by,
+        d.repairing_date, 
+        m.repair_start, m.repair_end, m.time_consumed, m.defect_category_mc, 
+        m.occurrence_process_mc, m.parts_removed, m.wire_type, m.wire_size, m.connector_cavity,
+        m.quantity, m.unit_cost, m.material_cost, 
+        m.manhour_cost, m.repaired_portion_treatment
+        FROM 
+            t_defect_record_f AS d 
+        LEFT JOIN 
+            t_mancost_monitoring_f AS m 
+        ON 
+            d.defect_id = m.defect_id 
+        WHERE 
+            d.defect_id = '$defect_id'";
 
-    $query = "SELECT t_defect_record_f.car_maker, t_defect_record_f.line_no, t_defect_record_f.category, t_mancost_monitoring_f.repair_start, t_mancost_monitoring_f.repair_end, t_mancost_monitoring_f.time_consumed, t_mancost_monitoring_f.defect_category_mc, t_mancost_monitoring_f.occurrence_process_mc, t_mancost_monitoring_f.parts_removed, t_mancost_monitoring_f.wire_size, t_mancost_monitoring_f.wire_type, t_mancost_monitoring_f.connector_cavity,t_mancost_monitoring_f.quantity, t_mancost_monitoring_f.unit_cost, t_mancost_monitoring_f.material_cost, t_mancost_monitoring_f.manhour_cost, t_mancost_monitoring_f.repaired_portion_treatment FROM t_defect_record_f LEFT JOIN t_mancost_monitoring_f ON t_defect_record_f.defect_id = t_mancost_monitoring_f.defect_id WHERE t_defect_record_f.defect_id = '$defect_id' LIMIT " . $page_first_result . ", " . $results_per_page;
-
-    // 1st Approach using SQL Server DB when using Select Query
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->execute();
+
     if ($stmt->rowCount() > 0) {
-        foreach ($stmt->fetchALL() as $row) {
+        foreach ($stmt->fetchAll() as $row) {
             $c++;
-            echo '<tr style="text-align: center;">';
+
+            echo '<tr style="cursor:pointer; text-align:center;" class="modal-trigger" onclick="get_update_defect_mancost_pd(\'' . $row['id'] . '~!~' . $row['car_maker'] . '~!~' . $row['line_no'] . '~!~' . $row['category'] . '~!~' . $row['date_detected'] . '~!~' . $row['issue_no_tag'] . '~!~' . $row['product_name'] . '~!~' . $row['lot_no'] . '~!~' . $row['serial_no'] . '~!~' .
+            $row['discovery_process'] . '~!~' . $row['discovery_id_num'] . '~!~' . $row['discovery_person'] . '~!~' . $row['occurrence_process_dr'] . '~!~' . $row['occurrence_shift'] . '~!~' .
+            $row['occurrence_id_num'] . '~!~' . $row['occurrence_person'] . '~!~' . $row['outflow_process'] . '~!~' . $row['outflow_shift'] . '~!~' . $row['outflow_id_num'] . '~!~' .
+            $row['outflow_person'] . '~!~' . $row['defect_category_dr'] . '~!~' . $row['sequence_num'] . '~!~' . $row['defect_cause'] . '~!~' . $row['good_measurement'] . '~!~' .
+            $row['ng_measurement'] . '~!~' . $row['dis_assembled_by'] . '~!~' . $row['defect_detail_content'] . '~!~' . $row['defect_treatment_content'] . '~!~' . $row['repairing_date'] . '~!~' .
+            $row['repair_start'] . '~!~' . $row['repair_end'] . '~!~' . $row['time_consumed'] . '~!~' . $row['defect_category_mc'] . '~!~' . $row['occurrence_process_mc'] . '~!~' .
+            $row['parts_removed'] . '~!~' . $row['wire_type'] . '~!~' . $row['wire_size'] . '~!~' . $row['connector_cavity'] . '~!~' . $row['quantity'] . '~!~' .
+            $row['unit_cost'] . '~!~' . $row['material_cost'] . '~!~' . $row['manhour_cost'] . '~!~' . $row['repaired_portion_treatment'] . '~!~' . $row['defect_id'] . '\')">';
+
             echo '<td style="text-align:center;">' . $c . '</td>';
             echo '<td style="text-align:center;">' . $row['car_maker'] . '</td>';
             echo '<td style="text-align:center;">' . $row['line_no'] . '</td>';
@@ -608,8 +683,8 @@ if ($method == 'load_mancost_table_data') {
             echo '<td style="text-align:center;">' . $row['defect_category_mc'] . '</td>';
             echo '<td style="text-align:center;">' . $row['occurrence_process_mc'] . '</td>';
             echo '<td style="text-align:center;">' . $row['parts_removed'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['wire_size'] . '</td>';
             echo '<td style="text-align:center;">' . $row['wire_type'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['wire_size'] . '</td>';
             echo '<td style="text-align:center;">' . $row['connector_cavity'] . '</td>';
             echo '<td style="text-align:center;">' . $row['quantity'] . '</td>';
             echo '<td style="text-align:center;">' . $row['unit_cost'] . '</td>';
@@ -620,7 +695,7 @@ if ($method == 'load_mancost_table_data') {
         }
     } else {
         echo '<tr>';
-        echo '<td colspan="12" style="text-align:center; color:red;">No Result</td>';
+        echo '<td colspan="18" style="text-align:center; color:red;">No Result</td>';
         echo '</tr>';
     }
     exit;

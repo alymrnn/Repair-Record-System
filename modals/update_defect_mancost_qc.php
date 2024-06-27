@@ -27,7 +27,7 @@
                     <div class="col-sm-2">
                         <label style="font-weight: normal;color: #000;">Category</label>
                         <input list="categoryList" name="category_dr" id="line_category_mc_update"
-                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
+                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
                             class="pl-2" disabled>
                         <datalist id="categoryList"></datalist>
                     </div>
@@ -60,7 +60,7 @@
                         <label style="font-weight: normal;color: #000;">Car Maker</label>
                         <input list="carMakerList" placeholder="Select the car maker" name="car_maker"
                             id="car_maker_mc_update" onchange="handleCarMakerChange(this)" autocomplete="off"
-                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
+                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
                             class="pl-2">
                         <datalist id="carMakerList">
                         </datalist>
@@ -113,14 +113,14 @@
                         <!-- discovery id number -->
                         <label style="font-weight: normal;color: #000;">ID Number <i>(Discovery)</i></label>
                         <input type="text" id="discovery_id_no_mc_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
                             disabled>
                     </div>
                     <div class="col-sm-4">
                         <!-- discovery person -->
                         <label style="font-weight: normal;color: #000;">Discovery Person</label>
                         <input type="text" id="discovery_person_mc_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
                             disabled>
                     </div>
                 </div>
@@ -142,7 +142,7 @@
                         <label style="font-weight: normal;color: #000;">Occurrence Shift</label>
                         <input list="occurrenceShiftDrList" name="occurrence_shift_mc_update"
                             id="occurrence_shift_dr_update"
-                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
+                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
                             class="pl-2" disabled>
                         <datalist id="occurrenceShiftDrList"></datalist>
                     </div>
@@ -150,14 +150,14 @@
                         <!-- occurrence id number -->
                         <label style="font-weight: normal;color: #000;">ID Number <i>(Occurrence)</i></label>
                         <input type="text" id="occurrence_id_no_mc_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
                             disabled>
                     </div>
                     <div class="col-sm-3">
                         <!-- occurrence person -->
                         <label style="font-weight: normal;color: #000;">Occurrence Person</label>
                         <input type="text" id="occurrence_person_mc_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
                             disabled>
                     </div>
                 </div>
@@ -178,7 +178,7 @@
                         <!-- outflow shift -->
                         <label style="font-weight: normal;color: #000;">Outflow Shift</label>
                         <input list="outflowShiftDrList" name="outflow_shift_dr" id="outflow_shift_mc_update"
-                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
+                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
                             class="pl-2" disabled>
                         <datalist id="outflowShiftDrList"></datalist>
                     </div>
@@ -221,7 +221,7 @@
                         <!-- cause of defect -->
                         <label style="font-weight: normal;color: #000;">Cause of Defect</label>
                         <input list="defectCauseDrList" name="defect_cause_dr" id="defect_cause_mc_update"
-                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
+                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
                             class="pl-2" disabled>
                         <datalist id="defectCauseDrList"></datalist>
                     </div>
@@ -243,14 +243,14 @@
                         <!-- good measurement -->
                         <label style="font-weight: normal;color: #000;">Good Measurement</label>
                         <input type="text" id="good_measurement_mc_update" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
                             disabled>
                     </div>
                     <div class="col-sm-6">
                         <!-- ng measurement -->
                         <label style="font-weight: normal;color: #000;">NG Measurement</label>
                         <input type="text" id="ng_measurement_mc_update" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
                             disabled>
                     </div>
                 </div>
@@ -260,7 +260,7 @@
                         <label style="font-weight: normal;color: #000;">Detail in Content of Defect</label>
                         <textarea type="text" id="detail_content_defect_mc_update" class="textarea form-control"
                             autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:65px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:65px; width:100%;"
                             readonly></textarea>
                     </div>
                     <div class="col-sm-6">
@@ -283,20 +283,20 @@
                         <label style="font-weight: normal;color: #000;">Repair Start</label>
                         <input type="time" id="repair_start_mc_update" oninput="time_difference()" class="form-control"
                             autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;">
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-4">
                         <!-- repair end -->
                         <label style="font-weight: normal;color: #000;">Repair End</label>
                         <input type="time" id="repair_end_mc_update" oninput="time_difference()" class="form-control"
                             autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;">
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-4">
                         <!-- time consumed -->
                         <label style="font-weight: normal;color: #000;">Time Consumed (in minute/s)</label>
                         <input type="int" id="time_consumed_mc_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
                             disabled>
                     </div>
                 </div>
@@ -307,28 +307,28 @@
                         <!-- defect category mancost -->
                         <label style="font-weight: normal;color: #000;">Defect Category</label>
                         <input id="defect_category_mc_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
                             class="pl-2">
                     </div>
                     <div class="col-sm-3">
                         <!-- occurrence process mancost -->
                         <label style="font-weight: normal;color: #000;">Occurrence Process</label>
                         <input id="occurrence_process_mc_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
                             class="pl-2">
                     </div>
                     <div class="col-sm-3">
                         <!-- parts removed -->
                         <label style="font-weight: normal;color: #000;">Parts Removed</label>
                         <input type="text" id="parts_removed_mc_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;">
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-3">
                         <!-- quantity -->
                         <label style="font-weight: normal;color: #000;">Quantity</label>
                         <input type="int" id="quantity_mc_update" oninput="qty_cost_product()" class="form-control"
                             autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;">
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;">
                     </div>
                 </div>
                 <br>
@@ -338,21 +338,21 @@
                         <!-- wire type -->
                         <label style="font-weight: normal;color: #000;">Wire Type</label>
                         <input type="text" id="wire_type_mc_update" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
                             disabled>
                     </div>
                     <div class="col-sm-4">
                         <!-- wire size -->
                         <label style="font-weight: normal;color: #000;">Wire Size</label>
                         <input type="text" id="wire_size_mc_update" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
                             disabled>
                     </div>
                     <div class="col-sm-4">
                         <!-- connector cavity -->
                         <label style="font-weight: normal;color: #000;">Connector Cavity</label>
                         <input type="text" id="connector_cavity_mc_update" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
                             disabled>
                     </div>
                 </div>
@@ -363,25 +363,25 @@
                         <label style="font-weight: normal;color: #000;">Unit Cost ( ¥ )</label>
                         <input type="float" id="unit_cost_mc_update" oninput="qty_cost_product()" class="form-control"
                             autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;">
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-3">
                         <!-- material cost -->
                         <label style="font-weight: normal;color: #000;">Material Cost ( ¥ )</label>
                         <input type="float" id="material_cost_mc_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;">
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-3">
                         <!-- manhour cost -->
                         <label style="font-weight: normal;color: #000;">Manhour Cost ( ¥ )</label>
                         <input type="float" id="manhour_cost_mc_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;">
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-3">
                         <!-- repaired portion treatment -->
                         <label style="font-weight: normal;color: #000;">Repaired Portion Treatment</label>
                         <input id="portion_treatment_mc_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
                             class="pl-2">
                     </div>
                 </div>

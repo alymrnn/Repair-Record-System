@@ -2314,6 +2314,123 @@
         return false;
     };
 
+    // function get_update_defect_mancost_pd(id, car_maker_pd, line_no_pd, line_category_pd, date_detected_pd,
+    //     issue_no_tag_pd, product_name_pd, lot_no_pd, serial_no_pd, discovery_process_pd,
+    //     discovery_id_no_pd, discovery_person_pd, occurrence_process_pd_dr, occurrence_shift_pd, occurrence_id_no_pd,
+    //     occurrence_person_pd, outflow_process_pd, outflow_shift_pd, outflow_id_no_pd, outflow_person_pd,
+    //     defect_category_pd_dr, sequence_no_pd, defect_cause_pd, good_measurement_pd, ng_measurement_pd,
+    //     repair_person_pd, detail_content_defect_pd, treatment_content_defect_pd,
+    //     repairing_date_pd, repair_start_pd, repair_end_pd, time_consumed_pd, defect_category_pd_mc,
+    //     occurrence_process_pd_mc, parts_removed_pd, wire_type_pd, wire_size_pd, connector_cavity_pd,
+    //     quantity_pd, unit_cost_pd, material_cost_pd, manhour_cost_pd, portion_treatment_pd, defect_id) {
+
+    //     $('#update_defect_mancost_pd_id').val(id).prop('hidden', true);
+
+    //     $('#car_maker_pd_update').val(car_maker_pd).prop('disabled', true).css('background', '#EEE');
+    //     $('#line_no_pd_update').val(line_no_pd);
+    //     $('#line_category_pd_update').val(line_category_pd).prop('disabled', true).css('background', '#EEE');
+    //     $('#date_detected_pd_update').val(date_detected_pd).prop('disabled', true).css('background', '#EEE');
+    //     $('#issue_tag_pd_update').val(issue_no_tag_pd).prop('disabled', true).css('background', '#EEE');
+    //     $('#product_name_pd_update').val(product_name_pd).prop('disabled', true).css('background', '#EEE');
+    //     $('#lot_no_pd_update').val(lot_no_pd).prop('disabled', true).css('background', '#EEE');
+    //     $('#serial_no_pd_update').val(serial_no_pd);
+    //     $('#discovery_process_pd_update').val(discovery_process_pd).prop('disabled', true).css('background', '#EEE');
+    //     $('#discovery_id_no_pd_update').val(discovery_id_no_pd).prop('disabled', true).css('background', '#EEE');
+    //     $('#discovery_person_pd_update').val(discovery_person_pd).prop('disabled', true).css('background', '#EEE');
+    //     $('#occurrence_process_pd_dr_update').val(occurrence_process_pd_dr).prop('disabled', true).css('background', '#EEE');
+    //     $('#occurrence_shift_pd_update').val(occurrence_shift_pd).prop('disabled', true).css('background', '#EEE');
+    //     $('#occurrence_id_no_pd_update').val(occurrence_id_no_pd).prop('disabled', true).css('background', '#EEE');
+    //     $('#occurrence_person_pd_update').val(occurrence_person_pd).prop('disabled', true).css('background', '#EEE');
+    //     $('#outflow_process_pd_update').val(outflow_process_pd).prop('disabled', true).css('background', '#EEE');
+    //     $('#outflow_shift_pd_update').val(outflow_shift_pd).prop('disabled', true).css('background', '#EEE');
+    //     $('#outflow_id_no_pd_update').val(outflow_id_no_pd).prop('disabled', true).css('background', '#EEE');
+    //     $('#outflow_person_pd_update').val(outflow_person_pd).prop('disabled', true).css('background', '#EEE');
+    //     $('#defect_category_pd_dr_update').val(defect_category_pd_dr).prop('disabled', true).css('background', '#EEE');
+    //     $('#sequence_no_pd_update').val(sequence_no_pd).prop('disabled', true).css('background', '#EEE');
+    //     $('#defect_cause_pd_update').val(defect_cause_pd).prop('disabled', true).css('background', '#EEE');
+    //     $('#good_measurement_pd_update').val(good_measurement_pd);
+    //     $('#ng_measurement_pd_update').val(ng_measurement_pd);
+    //     $('#repair_person_pd_update').val(repair_person_pd).prop('disabled', true).css('background', '#EEE');
+    //     $('#detail_content_defect_pd_update').val(detail_content_defect_pd).prop('disabled', true).css('background', '#EEE');
+    //     $('#treatment_content_defect_pd_update').val(treatment_content_defect_pd);
+    //     $('#repairing_date_pd_update').val(repairing_date_pd).prop('disabled', true).css('background', '#EEE');
+
+    //     $('#repair_start_pd_update').val(repair_start_pd).prop('disabled', true).css('background', '#EEE');
+    //     $('#repair_end_pd_update').val(repair_end_pd).prop('disabled', true).css('background', '#EEE');
+    //     $('#time_consumed_pd_update').val(time_consumed_pd).prop('disabled', true).css('background', '#EEE');
+    //     $('#defect_category_pd_mc_update').val(defect_category_pd_mc).prop('disabled', true).css('background', '#EEE');
+    //     $('#occurrence_process_pd_mc_update').val(occurrence_process_pd_mc).prop('disabled', true).css('background', '#EEE');
+    //     $('#parts_removed_pd_update').val(parts_removed_pd);
+    //     $('#wire_type_pd_update').val(wire_type_pd);
+    //     $('#wire_size_pd_update').val(wire_size_pd);
+    //     $('#connector_cavity_pd_update').val(connector_cavity_pd);
+    //     $('#quantity_pd_update').val(quantity_pd);
+    //     $('#unit_cost_pd_update').val(unit_cost_pd);
+    //     $('#material_cost_pd_update').val(material_cost_pd);
+    //     $('#manhour_cost_pd_update').val(manhour_cost_pd).prop('disabled', true).css('background', '#EEE');
+    //     $('#portion_treatment_pd_update').val(portion_treatment_pd).prop('disabled', true).css('background', '#EEE');
+
+    //     // defect unique id 
+    //     $('#admin_defect_id_2').val(defect_id).prop('hidden', true);
+    //     $('#update_defect_mancost_pd').modal('show');
+    // }
+
+    function get_update_defect_mancost_pd(dataString) {
+        const data = dataString.split('~!~');
+
+        $('#update_defect_mancost_pd_id').val(data[0]).prop('hidden', true);
+
+        $('#car_maker_pd_update').val(data[1]).prop('disabled', true).css('background', '#EEE');
+        $('#line_no_pd_update').val(data[2]);
+        $('#line_category_pd_update').val(data[3]).prop('disabled', true).css('background', '#EEE');
+        $('#date_detected_pd_update').val(data[4]).prop('disabled', true).css('background', '#EEE');
+        $('#issue_tag_pd_update').val(data[5]).prop('disabled', true).css('background', '#EEE');
+        $('#product_name_pd_update').val(data[6]).prop('disabled', true).css('background', '#EEE');
+        $('#lot_no_pd_update').val(data[7]).prop('disabled', true).css('background', '#EEE');
+        $('#serial_no_pd_update').val(data[8]);
+        $('#discovery_process_pd_update').val(data[9]).prop('disabled', true).css('background', '#EEE');
+        $('#discovery_id_no_pd_update').val(data[10]).prop('disabled', true).css('background', '#EEE');
+        $('#discovery_person_pd_update').val(data[11]).prop('disabled', true).css('background', '#EEE');
+        $('#occurrence_process_pd_dr_update').val(data[12]).prop('disabled', true).css('background', '#EEE');
+        $('#occurrence_shift_pd_update').val(data[13]).prop('disabled', true).css('background', '#EEE');
+        $('#occurrence_id_no_pd_update').val(data[14]).prop('disabled', true).css('background', '#EEE');
+        $('#occurrence_person_pd_update').val(data[15]).prop('disabled', true).css('background', '#EEE');
+        $('#outflow_process_pd_update').val(data[16]).prop('disabled', true).css('background', '#EEE');
+        $('#outflow_shift_pd_update').val(data[17]).prop('disabled', true).css('background', '#EEE');
+        $('#outflow_id_no_pd_update').val(data[18]).prop('disabled', true).css('background', '#EEE');
+        $('#outflow_person_pd_update').val(data[19]).prop('disabled', true).css('background', '#EEE');
+        $('#defect_category_pd_dr_update').val(data[20]).prop('disabled', true).css('background', '#EEE');
+        $('#sequence_no_pd_update').val(data[21]).prop('disabled', true).css('background', '#EEE');
+        $('#defect_cause_pd_update').val(data[22]).prop('disabled', true).css('background', '#EEE');
+        $('#good_measurement_pd_update').val(data[23]);
+        $('#ng_measurement_pd_update').val(data[24]);
+        $('#repair_person_pd_update').val(data[25]).prop('disabled', true).css('background', '#EEE');        
+        $('#detail_content_defect_pd_update').val(data[26]).prop('disabled', true).css('background', '#EEE');
+        $('#treatment_content_defect_pd_update').val(data[27]);
+        $('#repairing_date_pd_update').val(data[28]).prop('disabled', true).css('background', '#EEE');
+
+        $('#repair_start_pd_update').val(data[29]).prop('disabled', true).css('background', '#EEE');
+        $('#repair_end_pd_update').val(data[30]).prop('disabled', true).css('background', '#EEE');
+        $('#time_consumed_pd_update').val(data[31]).prop('disabled', true).css('background', '#EEE');
+        $('#defect_category_pd_mc_update').val(data[32]).prop('disabled', true).css('background', '#EEE');
+        $('#occurrence_process_pd_mc_update').val(data[33]).prop('disabled', true).css('background', '#EEE');
+        $('#parts_removed_pd_update').val(data[34]);
+        $('#wire_type_pd_update').val(data[35]);
+        $('#wire_size_pd_update').val(data[36]);
+        $('#connector_cavity_pd_update').val(data[37]);
+        $('#quantity_pd_update').val(data[38]);
+        $('#unit_cost_pd_update').val(data[39]);
+        $('#material_cost_pd_update').val(data[40]);
+        $('#manhour_cost_pd_update').val(data[41]).prop('disabled', true).css('background', '#EEE');
+        $('#portion_treatment_pd_update').val(data[42]).prop('disabled', true).css('background', '#EEE');
+
+        // defect unique id 
+        $('#admin_defect_id_2').val(data[43]).prop('hidden', true);
+        $('#update_defect_mancost_pd').modal('show');
+    }
+
+
+
     // clear defect record fields
     const clear_dr_mc_fields = () => {
         // defect record fields
