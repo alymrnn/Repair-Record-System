@@ -1643,7 +1643,6 @@
         });
     }
 
-
     // function get_issue_tag_no(line_no) {
     //     if (!getIssueTag.counter) {
     //         getIssueTag.counter = 1;
@@ -2384,7 +2383,7 @@
         $('#line_no_pd_update').val(data[2]);
         $('#line_category_pd_update').val(data[3]).prop('disabled', true).css('background', '#EEE');
         $('#date_detected_pd_update').val(data[4]).prop('disabled', true).css('background', '#EEE');
-        $('#issue_tag_pd_update').val(data[5]).prop('disabled', true).css('background', '#EEE');
+        $('#issue_tag_pd_update').val(data[5]);
         $('#product_name_pd_update').val(data[6]).prop('disabled', true).css('background', '#EEE');
         $('#lot_no_pd_update').val(data[7]).prop('disabled', true).css('background', '#EEE');
         $('#serial_no_pd_update').val(data[8]);
@@ -2404,7 +2403,7 @@
         $('#defect_cause_pd_update').val(data[22]).prop('disabled', true).css('background', '#EEE');
         $('#good_measurement_pd_update').val(data[23]);
         $('#ng_measurement_pd_update').val(data[24]);
-        $('#repair_person_pd_update').val(data[25]).prop('disabled', true).css('background', '#EEE');        
+        $('#repair_person_pd_update').val(data[25]).prop('disabled', true).css('background', '#EEE');
         $('#detail_content_defect_pd_update').val(data[26]).prop('disabled', true).css('background', '#EEE');
         $('#treatment_content_defect_pd_update').val(data[27]);
         $('#repairing_date_pd_update').val(data[28]).prop('disabled', true).css('background', '#EEE');
@@ -2429,7 +2428,101 @@
         $('#update_defect_mancost_pd').modal('show');
     }
 
+    const update_pd_record = () => {
+        var id = document.getElementById('update_defect_mancost_pd_id').value;
 
+        var line_no = document.getElementById('line_no_pd_update').value;
+        var issue_tag = document.getElementById('issue_tag_pd_update').value;
+        var serial_no = document.getElementById('serial_no_pd_update').value;
+        var good_measurement = document.getElementById('good_measurement_pd_update').value;
+        var ng_measurement = document.getElementById('ng_measurement_pd_update').value;
+
+        var defect_treatment_content = document.getElementById('treatment_content_defect_pd_update').value;
+        var parts_removed = document.getElementById('parts_removed_pd_update').value;
+        var wire_type = document.getElementById('wire_type_pd_update').value;
+        var wire_size = document.getElementById('wire_size_pd_update').value;
+        var connector_cavity = document.getElementById('connector_cavity_pd_update').value;
+        var quantity = document.getElementById('quantity_pd_update').value;
+        var unit_cost = document.getElementById('unit_cost_pd_update').value;
+        var material_cost = document.getElementById('material_cost_pd_update').value;
+
+        var pd_defect_id = document.getElementById('admin_defect_id_2').value;
+
+        // var mancost_id = document.getElementById('mancost_id_pd_update').value;
+
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'update_pd_record',
+                id: id,
+                line_no: line_no,
+                issue_tag: issue_tag,
+                serial_no: serial_no,
+                good_measurement: good_measurement,
+                ng_measurement: ng_measurement,
+                defect_treatment_content: defect_treatment_content,
+                parts_removed: parts_removed,
+                wire_type: wire_type,
+                wire_size: wire_size,
+                connector_cavity: connector_cavity,
+                quantity: quantity,
+                unit_cost: unit_cost,
+                material_cost: material_cost,
+                pd_defect_id: pd_defect_id,
+                // mancost_id: mancost_id 
+            },
+            success: function (response) {
+                if (response == 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Updated Successfully',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    $('#update_defect_mancost_pd_id').val('');
+                    $('#line_no_pd_update').val('');
+                    $('#issue_tag_pd_update').val('');
+                    $('#serial_no_pd_update').val('');
+                    $('#good_measurement_pd_update').val('');
+                    $('#ng_measurement_pd_update').val('');
+                    $('#treatment_content_defect_pd_update').val('');
+                    $('#parts_removed_pd_update').val('');
+                    $('#wire_type_pd_update').val('');
+                    $('#wire_size_pd_update').val('');
+                    $('#connector_cavity_pd_update').val('');
+                    $('#quantity_pd_update').val('');
+                    $('#unit_cost_pd_update').val('');
+                    $('#material_cost_pd_update').val('');
+                    $('#admin_defect_id_2').val('');
+
+                    // $('#mancost_id_pd_update').val('');
+
+                    // load_mancost_table($('#update_defect_mancost_pd_id').val() + '~!~' + $('#admin_defect_id_2').val());
+
+                    // $('#update_defect_mancost_pd').modal('hide');
+
+                    // Reload table
+                    load_mancost_table(id + '~!~' + pd_defect_id);
+
+                    // Hide modal
+                    $('#update_defect_mancost_pd').modal('hide');
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('AJAX error:', status, error);
+            }
+        });
+    }
 
     // clear defect record fields
     const clear_dr_mc_fields = () => {
@@ -2782,7 +2875,6 @@
         }
     });
 
-
     // fetch unit cost thru part name
     function fetchUnitCost() {
         var partsRemovedInput = $("#parts_removed_mc").val();
@@ -2800,8 +2892,6 @@
                 },
                 success: function (response) {
                     if (!response.error) {
-                        console.log("Fetched unit price:", response.unit_price);
-
                         // Update the 'unit_cost' field with the fetched unit price
                         $("#unit_cost_mc").val(response.unit_price);
 
@@ -2821,8 +2911,6 @@
 
     // Autocomplete function
     function autocompleteParts(inputText) {
-        console.log("Autocomplete triggered with input:", inputText);
-
         $.ajax({
             url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
@@ -2865,8 +2953,6 @@
             },
             success: function (response) {
                 if (!response.error) {
-                    console.log("Fetched unit price:", response.unit_price);
-
                     // Update the 'unit_cost' field with the fetched unit price
                     $("#unit_cost_mc").val(response.unit_price);
                 }
@@ -2883,13 +2969,8 @@
         var qtyInput = parseFloat(quantity) || 0;
         var costInput = parseFloat(unitPrice) || 0;
 
-        console.log("Parsed Quantity Input:", qtyInput);
-        console.log("Parsed Cost Input:", costInput);
-
         var result = qtyInput * costInput;
         result = result.toFixed(2); // keep up to two decimals
-
-        console.log("Result:", result);
 
         var resultWithSymbol = result;
 
@@ -2970,5 +3051,214 @@
 
     function refresh_page() {
         location.reload();
+    }
+
+    // FOR PD EDIT UPDATE DEFECT MANCOST================================================================
+    function get_update_handle_line_no_change(line_no) {
+        // get_update_car_maker(line_no);
+        get_update_issue_tag(line_no);
+    }
+
+    // function get_update_car_maker(line_no) {
+    //     var car_maker_input_update = document.getElementById("car_maker_pd_update");
+
+    //     if (line_no.trim().startsWith('1')) {
+    //         car_maker_input_update.value = 'Mazda';
+    //         handleCarMakerChange(car_maker_input_update);
+    //     } else if (line_no.trim().startsWith('2')) {
+    //         car_maker_input_update.value = 'Daihatsu';
+    //         handleCarMakerChange(car_maker_input_update);
+    //     } else if (line_no.trim().startsWith('3')) {
+    //         car_maker_input_update.value = 'Honda';
+    //         handleCarMakerChange(car_maker_input_update);
+    //     } else if (line_no.trim().startsWith('4')) {
+    //         car_maker_input_update.value = 'Toyota';
+    //         handleCarMakerChange(car_maker_input_update);
+    //     } else if (line_no.trim().startsWith('5')) {
+    //         car_maker_input_update.value = 'Suzuki';
+    //         handleCarMakerChange(car_maker_input_update);
+    //     } else if (line_no.trim().startsWith('6')) {
+    //         car_maker_input_update.value = 'Nissan';
+    //         handleCarMakerChange(car_maker_input_update);
+    //     } else if (line_no.trim().startsWith('7')) {
+    //         car_maker_input_update.value = 'Subaru';
+    //         handleCarMakerChange(car_maker_input_update);
+    //     } else {
+    //         car_maker_input_update.value = '';
+    //         handleCarMakerChange(car_maker_input_update);
+    //     }
+    // }
+
+    // document.getElementById("line_no_pd_update").addEventListener("input", function () {
+    //     get_update_handle_line_no_change(this.value);
+    // });
+
+    document.getElementById("line_no_pd_update").addEventListener("input", function () {
+        get_update_issue_tag(this.value);
+    });
+
+    function get_update_issue_tag(line_no) {
+        var get_issue_tag_input = document.getElementById("issue_tag_pd_update");
+
+        if (line_no.trim() === '') {
+            get_issue_tag_input.value = '';
+            return;
+        }
+
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'get_update_issue_tag',
+                line_no: line_no
+            },
+            success: function (response) {
+                try {
+                    var result = JSON.parse(response);
+                    if (result.error) {
+                        console.error('Error generating issue tag');
+                        get_issue_tag_input.value = 'Error';
+                    } else {
+                        var nextIssueNo = parseInt(result.issue_no, 10);
+                        if (!isNaN(nextIssueNo)) {
+                            get_issue_tag_input.value = nextIssueNo;
+                        } else {
+                            console.error('Invalid issue number');
+                            get_issue_tag_input.value = 'Error';
+                        }
+                    }
+                } catch (e) {
+                    console.error('Failed to parse response', e);
+                    get_issue_tag_input.value = 'Error';
+                }
+            },
+            error: function () {
+                console.error('Failed to get the issue tag');
+                get_issue_tag_input.value = 'Error';
+            }
+        });
+    }
+
+    // ============================================================MANCOST EDIT
+    $("#parts_removed_pd_update").on("input", function () {
+        var inputText = $(this).val().toUpperCase().trim();
+
+        if (inputText.length >= 3) {
+            autocompletePartsUpdate(inputText);
+        } else if (inputText.length === 0) {
+            $("#unit_cost_pd_update").val('');
+            $("#material_cost_pd_update").val('');
+        }
+    });
+
+    function fetchUnitCostUpdate() {
+        var partsRemovedInput = $("#parts_removed_pd_update").val();
+
+        if (partsRemovedInput.trim() !== '') {
+            $.ajax({
+                url: '../../process/pd/defect_monitoring_record_rp_p.php',
+                type: 'POST',
+                cache: false,
+                dataType: 'json',
+                data: {
+                    method: 'fetch_unit_price_update',
+                    parts_removed: partsRemovedInput
+                },
+                success: function (response) {
+                    if (!response.error) {
+                        $("#unit_cost_pd_update").val(response.unit_price);
+
+                        var quantityValue = $("#quantity_pd_update").val();
+
+                        computeMaterialCostUpdate(response.unit_price, quantityValue);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX Error:", error);
+                }
+            });
+        } else {
+            $("#unit_cost_pd_update").val('');
+            $("#material_cost_pd_update").val('');
+        }
+    }
+
+    function autocompletePartsUpdate(inputText) {
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
+            type: 'POST',
+            cache: false,
+            dataType: 'json',
+            data: {
+                method: 'autocomplete_parts_update',
+                input_text: inputText
+            },
+            success: function (response) {
+                if (!response.error) {
+                    fetchDatalistUpdate(response.part_names);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("AJAX Error:", error);
+            }
+        });
+    }
+
+    function fetchDatalistUpdate(partNames) {
+        $("#partsRemovedMcListUpdate").empty();
+
+        partNames.forEach(function (partName) {
+            $("#partsRemovedMcListUpdate").append(`<option value="${partName}">`);
+        });
+    }
+
+    function fetchUnitPriceUpdate(partsRemoved) {
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
+            type: 'POST',
+            cache: false,
+            dataType: 'json',
+            data: {
+                method: 'fetch_unit_price_update',
+                parts_removed: partsRemoved
+            },
+            success: function (response) {
+                if (!response.error) {
+                    $("#unit_cost_pd_update").val(response.unit_price);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("AJAX Error:", error);
+            }
+        });
+    }
+
+    const computeMaterialCostUpdate = (unitPrice, quantity) => {
+        var qtyInput = parseFloat(quantity) || 0;
+        var costInput = parseFloat(unitPrice) || 0;
+
+        var result = qtyInput * costInput;
+        result = result.toFixed(2);
+
+        var resultWithSymbol = result;
+
+        $("#material_cost_pd_update").val(resultWithSymbol);
+    };
+
+    const qty_cost_product_update = () => {
+        var quantity = document.getElementById('quantity_pd_update').value;
+        var unit_cost = document.getElementById('unit_cost_pd_update').value;
+
+        var quantity_input = parseFloat(quantity);
+        if (isNaN(quantity_input)) quantity_input = 0;
+
+        var unit_cost_input = parseFloat(unit_cost);
+        if (isNaN(unit_cost_input)) unit_cost_input = 0;
+
+        var result = quantity_input * unit_cost_input;
+        result = result.toFixed(2); // two decimal places
+
+        document.getElementById("material_cost_pd_update").value = result;
     }
 </script>

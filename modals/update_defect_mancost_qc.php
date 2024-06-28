@@ -446,11 +446,15 @@
                 <div class="col-sm-2">
                     <!-- clear button -->
                     <button class="btn btn-block" onclick="clear_verify_list()"
-                        style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;">Clear</button>
+                        style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;"
+                        onmouseover="this.style.backgroundColor='#333'; this.style.color='#fff';"
+                        onmouseout="this.style.backgroundColor='#474747'; this.style.color='#fff';">Clear</button>
                 </div>
                 <div class="col-sm-2">
                     <button class="btn btn-block" onclick="update_mancost2_record()"
-                        style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;">Verify
+                        style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"
+                        onmouseover="this.style.backgroundColor='#19533F'; this.style.color='#fff';"
+                        onmouseout="this.style.backgroundColor='#226F54'; this.style.color='#fff';">Verify
                         Record</button>
                 </div>
             </div>

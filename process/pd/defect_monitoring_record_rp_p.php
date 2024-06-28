@@ -665,13 +665,13 @@ if ($method == 'load_mancost_table_data') {
             $c++;
 
             echo '<tr style="cursor:pointer; text-align:center;" class="modal-trigger" onclick="get_update_defect_mancost_pd(\'' . $row['id'] . '~!~' . $row['car_maker'] . '~!~' . $row['line_no'] . '~!~' . $row['category'] . '~!~' . $row['date_detected'] . '~!~' . $row['issue_no_tag'] . '~!~' . $row['product_name'] . '~!~' . $row['lot_no'] . '~!~' . $row['serial_no'] . '~!~' .
-            $row['discovery_process'] . '~!~' . $row['discovery_id_num'] . '~!~' . $row['discovery_person'] . '~!~' . $row['occurrence_process_dr'] . '~!~' . $row['occurrence_shift'] . '~!~' .
-            $row['occurrence_id_num'] . '~!~' . $row['occurrence_person'] . '~!~' . $row['outflow_process'] . '~!~' . $row['outflow_shift'] . '~!~' . $row['outflow_id_num'] . '~!~' .
-            $row['outflow_person'] . '~!~' . $row['defect_category_dr'] . '~!~' . $row['sequence_num'] . '~!~' . $row['defect_cause'] . '~!~' . $row['good_measurement'] . '~!~' .
-            $row['ng_measurement'] . '~!~' . $row['dis_assembled_by'] . '~!~' . $row['defect_detail_content'] . '~!~' . $row['defect_treatment_content'] . '~!~' . $row['repairing_date'] . '~!~' .
-            $row['repair_start'] . '~!~' . $row['repair_end'] . '~!~' . $row['time_consumed'] . '~!~' . $row['defect_category_mc'] . '~!~' . $row['occurrence_process_mc'] . '~!~' .
-            $row['parts_removed'] . '~!~' . $row['wire_type'] . '~!~' . $row['wire_size'] . '~!~' . $row['connector_cavity'] . '~!~' . $row['quantity'] . '~!~' .
-            $row['unit_cost'] . '~!~' . $row['material_cost'] . '~!~' . $row['manhour_cost'] . '~!~' . $row['repaired_portion_treatment'] . '~!~' . $row['defect_id'] . '\')">';
+                $row['discovery_process'] . '~!~' . $row['discovery_id_num'] . '~!~' . $row['discovery_person'] . '~!~' . $row['occurrence_process_dr'] . '~!~' . $row['occurrence_shift'] . '~!~' .
+                $row['occurrence_id_num'] . '~!~' . $row['occurrence_person'] . '~!~' . $row['outflow_process'] . '~!~' . $row['outflow_shift'] . '~!~' . $row['outflow_id_num'] . '~!~' .
+                $row['outflow_person'] . '~!~' . $row['defect_category_dr'] . '~!~' . $row['sequence_num'] . '~!~' . $row['defect_cause'] . '~!~' . $row['good_measurement'] . '~!~' .
+                $row['ng_measurement'] . '~!~' . $row['dis_assembled_by'] . '~!~' . $row['defect_detail_content'] . '~!~' . $row['defect_treatment_content'] . '~!~' . $row['repairing_date'] . '~!~' .
+                $row['repair_start'] . '~!~' . $row['repair_end'] . '~!~' . $row['time_consumed'] . '~!~' . $row['defect_category_mc'] . '~!~' . $row['occurrence_process_mc'] . '~!~' .
+                $row['parts_removed'] . '~!~' . $row['wire_type'] . '~!~' . $row['wire_size'] . '~!~' . $row['connector_cavity'] . '~!~' . $row['quantity'] . '~!~' .
+                $row['unit_cost'] . '~!~' . $row['material_cost'] . '~!~' . $row['manhour_cost'] . '~!~' . $row['repaired_portion_treatment'] . '~!~' . $row['defect_id'] . '\')">';
 
             echo '<td style="text-align:center;">' . $c . '</td>';
             echo '<td style="text-align:center;">' . $row['car_maker'] . '</td>';
@@ -1492,6 +1492,140 @@ if ($method == 'autocomplete_parts') {
     echo json_encode(['part_names' => $partNames]);
     exit;
 } elseif ($method == 'fetch_unit_price') {
+    $parts_removed = $_POST['parts_removed'];
+
+    $query = "SELECT unit_price FROM m_pricelist WHERE parts_name = :parts_removed LIMIT 1";
+
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(':parts_removed', $parts_removed);
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($result) {
+        $unit_price = $result['unit_price'];
+
+        echo json_encode(['unit_price' => $unit_price]);
+    } else {
+        echo json_encode(['error' => 'No matching record found']);
+    }
+    exit;
+}
+
+if ($method == 'update_pd_record') {
+    $mancost_id = $_POST['id'];
+    $line_no = $_POST['line_no'];
+    $issue_no_tag = $_POST['issue_tag'];
+    $serial_no = $_POST['serial_no'];
+    $good_measurement = $_POST['good_measurement'];
+    $ng_measurement = $_POST['ng_measurement'];
+    $defect_treatment_content = $_POST['defect_treatment_content'];
+    $parts_removed = $_POST['parts_removed'];
+    $wire_type = $_POST['wire_type'];
+    $wire_size = $_POST['wire_size'];
+    $connector_cavity = $_POST['connector_cavity'];
+    $quantity = $_POST['quantity'];
+    $unit_cost = $_POST['unit_cost'];
+    $material_cost = $_POST['material_cost'];
+    $defect_id = $_POST['pd_defect_id'];
+
+    // Fetch the existing line number for comparison
+    $query = "SELECT line_no, issue_no_tag FROM t_defect_record_f WHERE defect_id = :defect_id";
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(':defect_id', $pd_defect_id);
+    $stmt->execute();
+    $existingRecord = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $query = "UPDATE t_defect_record_f AS d 
+              INNER JOIN t_mancost_monitoring_f AS m 
+              ON d.defect_id = m.defect_id 
+              SET d.line_no = :line_no, 
+                  d.issue_no_tag = :issue_no_tag, 
+                  d.serial_no = :serial_no, 
+                  d.good_measurement = :good_measurement, 
+                  d.ng_measurement = :ng_measurement, 
+                  d.defect_treatment_content = :defect_treatment_content, 
+                  m.parts_removed = :parts_removed, 
+                  m.wire_type = :wire_type, 
+                  m.wire_size = :wire_size, 
+                  m.connector_cavity = :connector_cavity, 
+                  m.quantity = :quantity, 
+                  m.unit_cost = :unit_cost, 
+                  m.material_cost = :material_cost 
+              WHERE d.defect_id = :defect_id AND m.id = :mancost_id";
+
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(':line_no', $line_no);
+    $stmt->bindParam(':issue_no_tag', $issue_no_tag);
+    $stmt->bindParam(':serial_no', $serial_no);
+    $stmt->bindParam(':good_measurement', $good_measurement);
+    $stmt->bindParam(':ng_measurement', $ng_measurement);
+    $stmt->bindParam(':defect_treatment_content', $defect_treatment_content);
+    $stmt->bindParam(':parts_removed', $parts_removed);
+    $stmt->bindParam(':wire_type', $wire_type);
+    $stmt->bindParam(':wire_size', $wire_size);
+    $stmt->bindParam(':connector_cavity', $connector_cavity);
+    $stmt->bindParam(':quantity', $quantity);
+    $stmt->bindParam(':unit_cost', $unit_cost);
+    $stmt->bindParam(':material_cost', $material_cost);
+    $stmt->bindParam(':defect_id', $defect_id);
+
+    $stmt->bindParam(':mancost_id', $mancost_id);
+
+    if ($stmt->execute()) {
+        echo "success";
+    } else {
+        echo "Update failed: " . implode(", ", $stmt->errorInfo());
+    }
+}
+
+// FOR PD EDIT UPDATE DEFECT MANCOST
+if ($method == 'get_update_issue_tag') {
+    $line_no = filter_var($_POST['line_no'], FILTER_SANITIZE_STRING);
+    $padded_line_no = str_pad($line_no, 4, '0', STR_PAD_LEFT);
+
+    try {
+        $conn->beginTransaction();
+
+        $check_records_query = "SELECT COUNT(*) FROM t_defect_record_f WHERE line_no = ? AND MONTH(record_added_defect_datetime) = MONTH(CURDATE()) AND YEAR(record_added_defect_datetime) = YEAR(CURDATE())";
+        $stmt_check_records = $conn->prepare($check_records_query);
+        $stmt_check_records->execute([$padded_line_no]);
+        $total_records = $stmt_check_records->fetchColumn();
+
+        if ($total_records == 0 || $total_records === false) {
+            $issue_no = 1;
+        } else {
+            $issue_no = $total_records + 1;
+        }
+
+        $conn->commit();
+
+        error_log("Line No: $padded_line_no, Total Records: $total_records, Next Issue No: $issue_no");
+
+        echo json_encode(['issue_no' => $issue_no]); 
+    } catch (Exception $e) {
+        $conn->rollBack();
+        error_log("Error: " . $e->getMessage());
+        echo json_encode(['error' => 'error']); 
+    }
+    exit();
+}
+
+// FOR MANCOST EDIT
+if ($method == 'autocomplete_parts_update') {
+    $inputText = $_POST['input_text'];
+
+    $query = "SELECT DISTINCT parts_name FROM m_pricelist WHERE parts_name LIKE :input_text LIMIT 10";
+
+    $stmt = $conn->prepare($query);
+    $stmt->bindValue(':input_text', '%' . $inputText . '%');
+    $stmt->execute();
+
+    $partNames = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+    echo json_encode(['part_names' => $partNames]);
+    exit;
+} elseif ($method == 'fetch_unit_price_update') {
     $parts_removed = $_POST['parts_removed'];
 
     $query = "SELECT unit_price FROM m_pricelist WHERE parts_name = :parts_removed LIMIT 1";

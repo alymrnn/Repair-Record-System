@@ -42,7 +42,8 @@
                         <!-- issue no of tag -->
                         <label style="font-weight: normal;color: #000;">Issue No. of Tag</label>
                         <input type="text" id="issue_tag_pd_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            disabled>
                     </div>
                     <div class="col-sm-3">
                         <!-- repairing date -->
@@ -283,8 +284,12 @@
                         <!-- parts removed -->
                         <label style="font-weight: normal;color: #000;">Parts Removed</label>
                         <label style="color:#EA9515">*</label>
-                        <input type="text" id="parts_removed_pd_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+
+                        <input type="text" id="parts_removed_pd_update" oninput="fetchUnitCostUpdate()"
+                            class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            required list="partsRemovedMcListUpdate">
+                        <datalist id="partsRemovedMcListUpdate"></datalist>
                     </div>
                 </div>
                 <br>
@@ -318,24 +323,24 @@
                         <!-- quantity -->
                         <label style="font-weight: normal;color: #000;">Quantity</label>
                         <label style="color:#EA9515">*</label>
-                        <input type="int" id="quantity_pd_update" oninput="qty_cost_product()" class="form-control"
-                            autocomplete="off"
+                        <input type="int" id="quantity_pd_update" oninput="qty_cost_product_update()"
+                            class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-3">
                         <!-- unit cost -->
                         <label style="font-weight: normal;color: #000;">Unit Cost ( ¥ )</label>
-                        <label style="color:#EA9515">*</label>
-                        <input type="float" id="unit_cost_pd_update" oninput="qty_cost_product()" class="form-control"
-                            autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                        <input type="float" id="unit_cost_pd_update" oninput="qty_cost_product_update()"
+                            class="form-control" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            disabled>
                     </div>
                     <div class="col-sm-3">
                         <!-- material cost -->
                         <label style="font-weight: normal;color: #000;">Material Cost ( ¥ )</label>
-                        <label style="color:#EA9515">*</label>
                         <input type="float" id="material_cost_pd_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            disabled>
                     </div>
                     <div class="col-sm-3">
                         <!-- repaired portion treatment -->
@@ -345,19 +350,19 @@
                             class="pl-2">
                     </div>
                     <input type="hidden" id="admin_defect_id_2">
+                    <!-- <input type="hidden" id="mancost_id_pd_update"> -->
                 </div>
                 <br>
             </div>
             <div class="modal-footer" style="background:#e9e9e9;">
                 <div class="col-sm-2">
-                    <!-- clear button -->
-                    <button class="btn btn-block" onclick="clear_verify_list()"
-                        style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;">Clear</button>
-                </div>
-                <div class="col-sm-2">
-                    <button class="btn btn-block" onclick="update_mancost2_record()"
-                        style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;">Save
-                        Record</button>
+                    <!-- update button -->
+                    <button class="btn btn-block" onclick="update_pd_record()"
+                        style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"
+                        onmouseover="this.style.backgroundColor='#19533F'; this.style.color='#fff';"
+                        onmouseout="this.style.backgroundColor='#226F54'; this.style.color='#fff';">
+                        Update Record
+                    </button>
                 </div>
             </div>
             <!-- /.end -->

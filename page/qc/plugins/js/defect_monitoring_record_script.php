@@ -929,7 +929,6 @@
                     admin_defect_id: admin_defect_id
                 },
                 success: function (response) {
-
                     if (response == 'success') {
                         Swal.fire({
                             icon: 'success',
@@ -959,7 +958,7 @@
                         $('#checking_date_mc_update').val('');
                         $('#verified_by_mc_update').val('');
                         $('#remarks_mc_update').val('');
-                        $('#admin_defect_id').val('');
+                        $('#admin_defect_id_1').val('');
 
                         // load_admin_mancost_table($('#update_defect_mancost_id').val() + '~!~' + $('#admin_defect_id_1').val());
                         load_qc_mancost_table($('#update_defect_mancost_id').val() + '~!~' + $('#admin_defect_id_1').val());
