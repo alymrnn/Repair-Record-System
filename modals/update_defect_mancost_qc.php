@@ -56,19 +56,18 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-2">
-                        <!-- car maker -->
                         <label style="font-weight: normal;color: #000;">Car Maker</label>
                         <input list="carMakerList" placeholder="Select the car maker" name="car_maker"
-                            id="car_maker_mc_update" onchange="handleCarMakerChange(this)" autocomplete="off"
+                            id="car_maker_mc_update" onchange="handleCarMakerChangeUpdate(this)" autocomplete="off"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
-                            class="pl-2">
+                            class="pl-2" disabled>
                         <datalist id="carMakerList">
                         </datalist>
                     </div>
                     <div class="col-sm-10">
                         <!-- qr scanning -->
                         <label style="font-weight: normal;color: #000;">Scan QR-Code</label>
-                        <input type="text" id="qr_scan" class="form-control" autocomplete="off"
+                        <input type="text" id="qr_scan_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
                 </div>

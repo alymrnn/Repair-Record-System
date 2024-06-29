@@ -733,6 +733,7 @@ if ($method == 'update_mancost2_record') {
                 $stmt_verified->execute();
             }
             echo 'success';
+            exit;
         }
     }
 }

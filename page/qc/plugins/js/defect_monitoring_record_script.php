@@ -929,7 +929,8 @@
                     admin_defect_id: admin_defect_id
                 },
                 success: function (response) {
-                    if (response == 'success') {
+                    console.log('Response:', response); 
+                    if (response === 'success') {
                         Swal.fire({
                             icon: 'success',
                             title: 'Verified Successfully',
@@ -960,7 +961,6 @@
                         $('#remarks_mc_update').val('');
                         $('#admin_defect_id_1').val('');
 
-                        // load_admin_mancost_table($('#update_defect_mancost_id').val() + '~!~' + $('#admin_defect_id_1').val());
                         load_qc_mancost_table($('#update_defect_mancost_id').val() + '~!~' + $('#admin_defect_id_1').val());
 
                         $('#update_defect_mancost_qc').modal('hide');
@@ -1046,4 +1046,33 @@
     function refresh_page() {
         location.reload();
     }
+
+    document.getElementById('qr_scan_update').addEventListener('input', function (e) {
+        // e.preventDefault(); // Prevent form submission
+
+        var qrCode = this.value;
+
+        if (qrCode.length === 50) {
+            const productNameField = document.getElementById('product_name_mc_update');
+            const lotNoField = document.getElementById('lot_no_mc_update');
+            const serialNoField = document.getElementById('serial_no_mc_update');
+
+            if (productNameField && lotNoField && serialNoField) {
+                productNameField.value = qrCode.substring(10, 35);
+                lotNoField.value = qrCode.substring(35, 41);
+                serialNoField.value = qrCode.substring(41, 50);
+            }
+
+            this.value = '';
+        } else if (qrCode.length > 50) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid QR Code',
+                text: 'Invalid',
+                showConfirmButton: false,
+                timer: 1000
+            });
+            this.value = '';
+        }
+    });
 </script>
