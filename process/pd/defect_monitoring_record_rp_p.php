@@ -25,8 +25,10 @@ if ($method == 'fetch_opt_category_dr') {
     $stmt = $conn->prepare($query);
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
+        echo '<option value="" disabled selected>Select category</option>';
         foreach ($stmt->fetchAll() as $row) {
-            echo '<option value="' . htmlspecialchars($row['category']) . '"></option>';
+            $category = htmlspecialchars($row['category']);
+            echo '<option value="' . $category . '">' . $category . '</option>';
         }
     } else {
         echo '<option value="">Select the category</option>';
@@ -53,7 +55,7 @@ if ($method == 'fetch_opt_discovery_process') {
     $stmt = $conn->prepare($query);
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="">Select the discovery process</option>';
+        echo '<option value="" disabled selected>Select the discovery process</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['discovery_process']) . '</option>';
         }
@@ -83,7 +85,7 @@ if ($method == 'fetch_opt_occurrence_process') {
     $stmt = $conn->prepare($query);
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="">Select the occurrence process</option>';
+        echo '<option value="" disabled selected>Select the occurrence process</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['occurrence_process']) . '</option>';
         }
@@ -98,7 +100,7 @@ if ($method == 'fetch_opt_occurrence_shift') {
     $stmt = $conn->prepare($query);
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="">Select the occurrence shift</option>';
+        echo '<option value="" disabled selected>Select the occurrence shift</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['shift']) . '</option>';
         }
@@ -113,7 +115,7 @@ if ($method == 'fetch_opt_outflow_process') {
     $stmt = $conn->prepare($query);
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="">Select the outflow process</option>';
+        echo '<option value="" disabled selected>Select the outflow process</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['outflow_process']) . '</option>';
         }
@@ -128,7 +130,7 @@ if ($method == 'fetch_opt_outflow_shift') {
     $stmt = $conn->prepare($query);
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="">Select the outflow shift</option>';
+        echo '<option value="" disabled selected>Select the outflow shift</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['shift']) . '</option>';
         }
@@ -143,7 +145,7 @@ if ($method == 'fetch_opt_defect_category') {
     $stmt = $conn->prepare($query);
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="">Select the defect category</option>';
+        echo '<option value="" disabled selected>Select the defect category</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['defect_category_ng_content']) . '</option>';
         }
@@ -158,7 +160,7 @@ if ($method == 'fetch_opt_defect_cause') {
     $stmt = $conn->prepare($query);
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="">Select the cause of defect</option>';
+        echo '<option value="" disabled selected>Select the cause of defect</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['defect_cause']) . '</option>';
         }
@@ -173,7 +175,7 @@ if ($method == 'fetch_opt_repair_person') {
     $stmt = $conn->prepare($query);
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="">Select the repair person</option>';
+        echo '<option value="" disabled selected>Select the repair person</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['rp_name']) . '</option>';
         }
@@ -188,7 +190,7 @@ if ($method == 'fetch_opt_defect_category_mc') {
     $stmt = $conn->prepare($query);
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="">Select the defect category</option>';
+        echo '<option value="" disabled selected>Select the defect category</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['defect_equivalent']) . '</option>';
         }
@@ -203,7 +205,7 @@ if ($method == 'fetch_opt_occurrence_process_mc') {
     $stmt = $conn->prepare($query);
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="">Select the occurrence process</option>';
+        echo '<option value="" disabled selected>Select the occurrence process</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['occurrence_equivalent']) . '</option>';
         }
@@ -218,7 +220,7 @@ if ($method == 'fetch_opt_portion_treatment') {
     $stmt = $conn->prepare($query);
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="">Select the repaired portion treatment</option>';
+        echo '<option value="" disabled selected>Select the repaired portion treatment</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['portion_treatment']) . '</option>';
         }
@@ -1592,21 +1594,21 @@ if ($method == 'get_update_issue_tag') {
         $stmt_check_records->execute([$padded_line_no]);
         $total_records = $stmt_check_records->fetchColumn();
 
-        if ($total_records == 0 || $total_records === false) {
-            $issue_no = 1;
-        } else {
-            $issue_no = $total_records + 1;
+        if ($total_records === false) {
+            $total_records = 0;
         }
+
+        $issue_no = $total_records + 1;
 
         $conn->commit();
 
         error_log("Line No: $padded_line_no, Total Records: $total_records, Next Issue No: $issue_no");
 
-        echo json_encode(['issue_no' => $issue_no]); 
+        echo json_encode(['issue_no' => $issue_no]);
     } catch (Exception $e) {
         $conn->rollBack();
         error_log("Error: " . $e->getMessage());
-        echo json_encode(['error' => 'error']); 
+        echo json_encode(['error' => 'error']);
     }
     exit();
 }

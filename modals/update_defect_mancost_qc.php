@@ -393,7 +393,7 @@
                         <!-- re checking in process -->
                         <label style="font-weight: normal;color: #000;">QC Verification</label>
                         <label style="color:#CA3F3F">*</label>
-                        <input list="qc_veri_list_mc" id="qc_veri_mc_update" class="form-control" autocomplete="off"
+                        <!-- <input list="qc_veri_list_mc" id="qc_veri_mc_update" class="form-control" autocomplete="off"
                             placeholder="Select Status"
                             style="color: #525252;font-size: 15px;border-radius: .25rem; background: #FFF;height:34px; width:100%;"
                             required>
@@ -402,7 +402,16 @@
                             <option value="GOOD"></option>
                             <option value="NO GOOD"></option>
                             <option value="N/A"></option>
-                        </datalist>
+                        </datalist> -->
+
+                        <select id="qc_veri_mc_update" class="form-control"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem; background: #FFF;height:34px; width:100%;"
+                            required>
+                            <option value="" selected disabled>Select verification</option>
+                            <option value="GOOD">GOOD</option>
+                            <option value="NO GOOD">NO GOOD</option>
+                            <option value="N/A">N/A</option>
+                        </select>
                         <span id="qcVeriMcError" class="error-message" style="display:none; color:#CA3F3F;">QC
                             Verification field is required.</span>
                     </div>

@@ -77,7 +77,8 @@
                 method: 'fetch_opt_category_dr',
             },
             success: function (response) {
-                $('#categoryList').html(response);
+                // $('#categoryList').html(response);
+                $('#line_category_dr').html(response);
             }
         });
     }
@@ -107,7 +108,7 @@
                 method: 'fetch_opt_discovery_process',
             },
             success: function (response) {
-                $('#discoveryProcessDrList').html(response);
+                $('#discovery_process_dr').html(response);
             }
         });
     }
@@ -122,7 +123,8 @@
                 method: 'fetch_opt_occurrence_process',
             },
             success: function (response) {
-                $('#occurrenceProcessDrList').html(response);
+                // $('#occurrenceProcessDrList').html(response);
+                $('#occurrence_process_dr').html(response);
             }
         });
     }
@@ -138,6 +140,7 @@
             },
             success: function (response) {
                 $('#occurrenceShiftDrList').html(response);
+                $('#occurrence_shift_dr').html(response);
             }
         });
     }
@@ -152,7 +155,8 @@
                 method: 'fetch_opt_outflow_process',
             },
             success: function (response) {
-                $('#outflowProcessDrList').html(response);
+                // $('#outflowProcessDrList').html(response);
+                $('#outflow_process_dr').html(response);
             }
         });
     }
@@ -167,7 +171,8 @@
                 method: 'fetch_opt_outflow_shift',
             },
             success: function (response) {
-                $('#outflowShiftDrList').html(response);
+                // $('#outflowShiftDrList').html(response);
+                $('#outflow_shift_dr').html(response);
             }
         });
     }
@@ -182,7 +187,8 @@
                 method: 'fetch_opt_defect_category',
             },
             success: function (response) {
-                $('#defectCategoryDrList').html(response);
+                // $('#defectCategoryDrList').html(response);
+                $('#defect_category_dr').html(response);
             }
         });
     }
@@ -197,7 +203,8 @@
                 method: 'fetch_opt_defect_cause',
             },
             success: function (response) {
-                $('#defectCauseDrList').html(response);
+                // $('#defectCauseDrList').html(response);
+                $('#defect_cause_dr').html(response);
             }
         });
     }
@@ -212,7 +219,8 @@
                 method: 'fetch_opt_repair_person',
             },
             success: function (response) {
-                $('#repairPersonDrList').html(response);
+                // $('#repairPersonDrList').html(response);
+                $('#repair_person_dr').html(response);
             }
         });
     }
@@ -227,7 +235,8 @@
                 method: 'fetch_opt_defect_category_mc',
             },
             success: function (response) {
-                $('#defectCategoryMcList').html(response);
+                // $('#defectCategoryMcList').html(response);
+                $('#defect_category_mc').html(response);
             }
         });
     }
@@ -242,7 +251,8 @@
                 method: 'fetch_opt_occurrence_process_mc',
             },
             success: function (response) {
-                $('#occurrenceProcessMcList').html(response);
+                // $('#occurrenceProcessMcList').html(response);
+                $('#occurrence_process_mc').html(response);
             }
         });
     }
@@ -257,7 +267,8 @@
                 method: 'fetch_opt_portion_treatment',
             },
             success: function (response) {
-                $('#portionTreatmentMcList').html(response);
+                // $('#portionTreatmentMcList').html(response);
+                $('#portion_treatment').html(response);
             }
         });
     }
@@ -706,8 +717,8 @@
         document.getElementById("salary_cost_mc").value = salaryCost;
         document.getElementById("manhour_cost_mc").value = manhourCost;
 
-        console.log("Time Consumed (Integer):", diffInMinutes);
-        console.log("Manhour Cost:", manhourCost);
+        // console.log("Time Consumed (Integer):", diffInMinutes);
+        // console.log("Manhour Cost:", manhourCost);
     }
 
 
@@ -727,9 +738,9 @@
 
         document.getElementById("material_cost_mc").value = result;
 
-        console.log(quantity);
-        console.log(unit_cost);
-        console.log(result);
+        // console.log(quantity);
+        // console.log(unit_cost);
+        // console.log(result);
     }
 
     // $(document).on('change', "input[name='na_white_tag_defect']", function () {
@@ -976,7 +987,7 @@
                 $("#portion_treatment").prop('disabled', false).val('').css('background-color', '#FFF');
 
                 $("input[name='na_white_tag_defect']").change(function () {
-                    console.log("N/A radio button changed");
+                    // console.log("N/A radio button changed");
 
                     var isNA = $(this).is(":checked");
 
@@ -1616,7 +1627,7 @@
                 line_no: line_no
             },
             success: function (response) {
-                console.log('Response:', response);
+                // console.log('Response:', response);
                 try {
                     var result = JSON.parse(response);
                     if (result.error) {
@@ -1801,7 +1812,7 @@
                 defect_id: defect_id
             },
             success: function (response) {
-                console.log("Response from server:", response);
+                // console.log("Response from server:", response);
                 response = response.trim();
 
                 if (response == 'success') {
@@ -2298,16 +2309,16 @@
                                     $('#add_defect_mancost_2').modal('show');
                                 }, 300);
                             } else {
-                                console.log(response);
+                                // console.log(response);
                             }
                         } catch (e) {
-                            console.log(response);
+                            // console.log(response);
                         }
                     }, 300);
                 }
             })
                 .fail((jqXHR, textStatus, errorThrown) => {
-                    console.log(jqXHR);
+                    // console.log(jqXHR);
                 });
         }
         return false;
@@ -2417,7 +2428,7 @@
         $('#wire_type_pd_update').val(data[35]);
         $('#wire_size_pd_update').val(data[36]);
         $('#connector_cavity_pd_update').val(data[37]);
-        $('#quantity_pd_update').val(data[38]);
+        $('#quantity_pd_update').val(data[38]).prop('disabled', true).css('background', '#EEE');
         $('#unit_cost_pd_update').val(data[39]);
         $('#material_cost_pd_update').val(data[40]);
         $('#manhour_cost_pd_update').val(data[41]).prop('disabled', true).css('background', '#EEE');
@@ -3054,11 +3065,6 @@
     }
 
     // FOR PD EDIT UPDATE DEFECT MANCOST================================================================
-    function get_update_handle_line_no_change(line_no) {
-        // get_update_car_maker(line_no);
-        get_update_issue_tag(line_no);
-    }
-
     // function get_update_car_maker(line_no) {
     //     var car_maker_input_update = document.getElementById("car_maker_pd_update");
 

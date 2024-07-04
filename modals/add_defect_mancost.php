@@ -60,11 +60,17 @@
                     <div class="col-sm-2">
                         <label style="font-weight: normal;color: #000;">Category</label>
                         <label style="color:#CA3F3F">*</label>
-                        <input list="categoryList" placeholder="Select category" name="category_dr"
+                        <!-- <input list="categoryList" placeholder="Select category" name="category_dr"
                             id="line_category_dr" autocomplete="off"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required>
-                        <datalist id="categoryList"></datalist>
+                        <datalist id="categoryList"></datalist> -->
+
+                        <select name="line_category_dr" id="line_category_dr" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
+                            class="pl-2" required>
+                            <option value="" disabled selected>Select the category</option>
+                        </select>
                         <span id="lineCategoryError" class="error-message" style="display:none; color:#CA3F3F;">Category
                             field is required.</span>
                     </div>
@@ -171,11 +177,18 @@
                         <!-- discovery process -->
                         <label style="font-weight: normal;color: #000;">Discovery Process</label>
                         <label style="color:#CA3F3F">*</label>
-                        <input list="discoveryProcessDrList" placeholder="Select the discovery process"
+                        <!-- <input list="discoveryProcessDrList" placeholder="Select the discovery process"
                             name="discovery_process_dr" id="discovery_process_dr" autocomplete="off"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="pl-2" required> -->
+
+                        <!-- <datalist id="discoveryProcessDrList"></datalist> -->
+
+                        <select name="discovery_process_dr" id="discovery_process_dr" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required>
-                        <datalist id="discoveryProcessDrList"></datalist>
+                            <option value="" disabled selected>Select the discovery process</option>
+                        </select>
                         <span id="discoveryProcessError" class="error-message"
                             style="display:none; color:#CA3F3F;">Discovery Process field is required.</span>
                     </div>
@@ -207,11 +220,17 @@
                         <!-- occurrence process -->
                         <label style="font-weight: normal;color: #000;">Occurrence Process</label>
                         <label style="color:#CA3F3F">*</label>
-                        <input list="occurrenceProcessDrList" placeholder="Select the occurrence process"
+                        <!-- <input list="occurrenceProcessDrList" placeholder="Select the occurrence process"
                             name="occurrence_process_dr" id="occurrence_process_dr" autocomplete="off"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required>
-                        <datalist id="occurrenceProcessDrList"></datalist>
+                        <datalist id="occurrenceProcessDrList"></datalist> -->
+
+                        <select name="occurrence_process_dr" id="occurrence_process_dr" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
+                            class="pl-2" required>
+                            <option value="" disabled selected>Select the occurrence process</option>
+                        </select>
                         <span id="occurrenceProcessError" class="error-message"
                             style="display:none; color:#CA3F3F;">Occurrence Process field is required.</span>
                     </div>
@@ -219,11 +238,17 @@
                         <!-- occurrence shift -->
                         <label style="font-weight: normal;color: #000;">Occurrence Shift</label>
                         <label style="color:#CA3F3F">*</label>
-                        <input list="occurrenceShiftDrList" placeholder="Select the occurrence shift"
+                        <!-- <input list="occurrenceShiftDrList" placeholder="Select the occurrence shift"
                             name="occurrence_shift_dr" id="occurrence_shift_dr" autocomplete="off"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required>
-                        <datalist id="occurrenceShiftDrList"></datalist>
+                        <datalist id="occurrenceShiftDrList"></datalist> -->
+
+                        <select name="occurrence_shift_dr" id="occurrence_shift_dr" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
+                            class="pl-2" required>
+                            <option value="" disabled selected>Select the occurrence shift</option>
+                        </select>
                         <span id="occurrenceShiftError" class="error-message"
                             style="display:none; color:#CA3F3F;">Occurrence Shift field is required.</span>
                     </div>
@@ -255,11 +280,17 @@
                         <!-- outflow process -->
                         <label style="font-weight: normal;color: #000;">Outflow Process</label>
                         <label style="color:#CA3F3F">*</label>
-                        <input list="outflowProcessDrList" placeholder="Select the outflow process"
+                        <!-- <input list="outflowProcessDrList" placeholder="Select the outflow process"
                             name="outflow_process_dr" id="outflow_process_dr" autocomplete="off"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required>
-                        <datalist id="outflowProcessDrList"></datalist>
+                        <datalist id="outflowProcessDrList"></datalist> -->
+
+                        <select name="outflow_process_dr" id="outflow_process_dr" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
+                            class="pl-2" required>
+                            <option value="" disabled selected>Select the outflow process</option>
+                        </select>
                         <span id="outflowProcessError" class="error-message"
                             style="display:none; color:#CA3F3F;">Outflow Process field is required.</span>
                     </div>
@@ -267,11 +298,17 @@
                         <!-- outflow shift -->
                         <label style="font-weight: normal;color: #000;">Outflow Shift</label>
                         <label style="color:#CA3F3F">*</label>
-                        <input list="outflowShiftDrList" placeholder="Select the outflow shift" name="outflow_shift_dr"
+                        <!-- <input list="outflowShiftDrList" placeholder="Select the outflow shift" name="outflow_shift_dr"
                             id="outflow_shift_dr" autocomplete="off"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required>
-                        <datalist id="outflowShiftDrList"></datalist>
+                        <datalist id="outflowShiftDrList"></datalist> -->
+
+                        <select name="outflow_shift_dr" id="outflow_shift_dr" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
+                            class="pl-2" required>
+                            <option value="" disabled selected>Select the outflow shift</option>
+                        </select>
                         <span id="outflowShiftError" class="error-message" style="display:none; color:#CA3F3F;">Outflow
                             Shift field is required.</span>
                     </div>
@@ -303,11 +340,17 @@
                         <!-- defect category -->
                         <label style="font-weight: normal;color: #000;">Defect Category</label>
                         <label style="color:#CA3F3F">*</label>
-                        <input list="defectCategoryDrList" placeholder="Select the defect category"
+                        <!-- <input list="defectCategoryDrList" placeholder="Select the defect category"
                             name="defect_category_dr" id="defect_category_dr" autocomplete="off"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required>
-                        <datalist id="defectCategoryDrList"></datalist>
+                        <datalist id="defectCategoryDrList"></datalist> -->
+
+                        <select name="defect_category_dr" id="defect_category_dr" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
+                            class="pl-2" required>
+                            <option value="" disabled selected>Select the defect category</option>
+                        </select>
                         <span id="defectCategoryError" class="error-message" style="display:none; color:#CA3F3F;">Defect
                             Category field is required.</span>
                     </div>
@@ -325,11 +368,17 @@
                         <!-- cause of defect -->
                         <label style="font-weight: normal;color: #000;">Cause of Defect</label>
                         <label style="color:#CA3F3F">*</label>
-                        <input list="defectCauseDrList" placeholder="Select the cause of defect" name="defect_cause_dr"
+                        <!-- <input list="defectCauseDrList" placeholder="Select the cause of defect" name="defect_cause_dr"
                             id="defect_cause_dr" autocomplete="off"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required>
-                        <datalist id="defectCauseDrList"></datalist>
+                        <datalist id="defectCauseDrList"></datalist> -->
+                        
+                        <select name="defect_cause_dr" id="defect_cause_dr" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
+                            class="pl-2" required>
+                            <option value="" disabled selected>Select the cause of defect</option>
+                        </select>
                         <span id="defectCauseError" class="error-message" style="display:none; color:#CA3F3F;">Cause of
                             Defect field is required.</span>
                     </div>
@@ -337,11 +386,17 @@
                         <!-- repair person -->
                         <label style="font-weight: normal;color: #000;">Dis-assembled by:</label>
                         <label style="color:#CA3F3F">*</label>
-                        <input list="repairPersonDrList" placeholder="Select the repair person" name="repair_person_dr"
+                        <!-- <input list="repairPersonDrList" placeholder="Select the repair person" name="repair_person_dr"
                             id="repair_person_dr" autocomplete="off"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required>
-                        <datalist id="repairPersonDrList"></datalist>
+                        <datalist id="repairPersonDrList"></datalist> -->
+
+                        <select name="repair_person_dr" id="repair_person_dr" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
+                            class="pl-2" required>
+                            <option value="" disabled selected>Select the repair person</option>
+                        </select>
                         <span id="repairPersonError" class="error-message" style="display:none; color:#CA3F3F;">Repair
                             Person field is required.</span>
                     </div>

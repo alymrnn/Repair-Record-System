@@ -83,11 +83,17 @@
                         <!-- defect category mancost -->
                         <label style="font-weight: normal;color: #000;">Defect Category</label>
                         <label style="color:#CA3F3F">*</label>
-                        <input list="defectCategoryMcList" placeholder="Select the defect category"
+                        <!-- <input list="defectCategoryMcList" placeholder="Select the defect category"
                             name="defect_category_mc" id="defect_category_mc" autocomplete="off"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required>
-                        <datalist id="defectCategoryMcList"></datalist>
+                        <datalist id="defectCategoryMcList"></datalist> -->
+
+                        <select name="defect_category_mc" id="defect_category_mc" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
+                            class="pl-2" required>
+                            <option value="" disabled selected>Select the defect category</option>
+                        </select>
                         <span id="defectCategoryMcError" class="error-message"
                             style="display:none; color:#CA3F3F;">Defect Category field is required.</span>
 
@@ -96,11 +102,17 @@
                         <!-- occurrence process mancost -->
                         <label style="font-weight: normal;color: #000;">Occurrence Process</label>
                         <label style="color:#CA3F3F">*</label>
-                        <input list="occurrenceProcessMcList" placeholder="Select the occurrence process"
+                        <!-- <input list="occurrenceProcessMcList" placeholder="Select the occurrence process"
                             name="occurrence_process_mc" id="occurrence_process_mc" autocomplete="off"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required>
-                        <datalist id="occurrenceProcessMcList"></datalist>
+                        <datalist id="occurrenceProcessMcList"></datalist> -->
+
+                        <select name="occurrence_process_mc" id="occurrence_process_mc" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
+                            class="pl-2" required>
+                            <option value="" disabled selected>Select the occurrence process</option>
+                        </select>
                         <span id="occurrenceProcessMcError" class="error-message"
                             style="display:none; color:#CA3F3F;">Occurrence Process field is required.</span>
                     </div>
@@ -188,11 +200,17 @@
                         <!-- repaired portion treatment -->
                         <label style="font-weight: normal;color: #000;">Repaired Portion Treatment</label>
                         <label style="color:#CA3F3F">*</label>
-                        <input list="portionTreatmentMcList" placeholder="Select the repaired portion treatment"
+                        <!-- <input list="portionTreatmentMcList" placeholder="Select the repaired portion treatment"
                             name="portion_treatment" id="portion_treatment" autocomplete="off"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required>
-                        <datalist id="portionTreatmentMcList"></datalist>
+                        <datalist id="portionTreatmentMcList"></datalist> -->
+
+                        <select name="portion_treatment" id="portion_treatment" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
+                            class="pl-2" required>
+                            <option value="" disabled selected>Select the repaired portion treatment</option>
+                        </select>
                         <span id="portionTreatmentMcError" class="error-message"
                             style="display:none; color:#CA3F3F;">Repaired Portion Treatment field is required.</span>
                     </div>

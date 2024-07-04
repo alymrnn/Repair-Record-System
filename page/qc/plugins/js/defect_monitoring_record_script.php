@@ -302,7 +302,7 @@
 
     document.getElementById('qr_scan_qc').addEventListener('input', function (e) {
         var qrCode = this.value;
-        console.log("QR Code Scanned:", qrCode);
+        // console.log("QR Code Scanned:", qrCode);
 
         if (qrCode.length === 50) {
             const productNameField = document.getElementById('search_ad_product_name');
@@ -314,9 +314,9 @@
                 lotNoField.value = qrCode.substring(35, 41);
                 serialNoField.value = qrCode.substring(41, 50);
 
-                console.log("Product Name Set:", productNameField.value);
-                console.log("Lot No Set:", lotNoField.value);
-                console.log("Serial No Set:", serialNoField.value);
+                // console.log("Product Name Set:", productNameField.value);
+                // console.log("Lot No Set:", lotNoField.value);
+                // console.log("Serial No Set:", serialNoField.value);
 
                 load_qc_defect_table(1);
             } else {
@@ -929,7 +929,7 @@
                     admin_defect_id: admin_defect_id
                 },
                 success: function (response) {
-                    console.log('Response:', response); 
+                    // console.log('Response:', response); 
                     if (response === 'success') {
                         Swal.fire({
                             icon: 'success',
