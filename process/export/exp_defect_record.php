@@ -42,15 +42,22 @@ $headers = array(
     'Outflow ID No.',
     'Outflow Person',
     'Defect Category',
-    'Sequence Number',
+    'Sequence No',
+    'Assy Board No',
     'Cause of Defect',
+    'Good Measurement',
+    'NG Measurement',
+    'Wire Type',
+    'Wire Size',
+    'Connector Cavity',
     'Detail in Content of Defect',
     'Treatment Content of Defect',
+    'Harness Status after Repair',
     'Dis-assembled/Dis-inserted by',
 );
 fputcsv($f, $headers, $delimiter);
 
-$query = "SELECT line_no, category, date_detected, issue_no_tag, repairing_date, car_maker, product_name, lot_no, serial_no, discovery_process, discovery_id_num, discovery_person, occurrence_process, occurrence_shift, occurrence_id_num, occurrence_person, outflow_process, outflow_shift, outflow_id_num, outflow_person, defect_category, sequence_num, defect_cause, defect_detail_content, defect_treatment_content, dis_assembled_by FROM t_defect_record_f WHERE 1=1";
+$query = "SELECT line_no, category, date_detected, issue_no_tag, repairing_date, car_maker, product_name, lot_no, serial_no, discovery_process, discovery_id_num, discovery_person, occurrence_process_dr, occurrence_shift, occurrence_id_num, occurrence_person, outflow_process, outflow_shift, outflow_id_num, outflow_person, defect_category_dr, sequence_num, assy_board_no, defect_cause, defect_detail_content, defect_treatment_content, harness_status, dis_assembled_by, good_measurement, ng_measurement, wire_type, wire_size, connector_cavity FROM t_defect_record_f WHERE 1=1 ORDER BY record_added_defect_datetime ASC";
 
 $conditions = [];
 $params = [];
@@ -109,7 +116,7 @@ if ($stmt->rowCount() > 0) {
             $row['discovery_process'],
             $row['discovery_id_num'],
             $row['discovery_person'],
-            $row['occurrence_process'],
+            $row['occurrence_process_dr'],
             $row['occurrence_shift'],
             $row['occurrence_id_num'],
             $row['occurrence_person'],
@@ -117,12 +124,19 @@ if ($stmt->rowCount() > 0) {
             $row['outflow_shift'],
             $row['outflow_id_num'],
             $row['outflow_person'],
-            $row['defect_category'],
+            $row['defect_category_dr'],
             $row['sequence_num'],
+            $row['assy_board_no'],
             $row['defect_cause'],
+            $row['good_measurement'],
+            $row['ng_measurement'],
+            $row['wire_type'],
+            $row['wire_size'],
+            $row['connector_cavity'],
             $row['defect_detail_content'],
             $row['defect_treatment_content'],
-            $row['dis_assembled_by'],
+            $row['harness_status'],
+            $row['dis_assembled_by']
         );
         fputcsv($f, $lineData, $delimiter);
     }

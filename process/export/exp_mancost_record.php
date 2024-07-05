@@ -38,23 +38,24 @@ $headers = array(
 fputcsv($f, $headers, $delimiter);
 
 $query = "SELECT
-    t_defect_record_f.id,
-    t_defect_record_f.line_no,
-    t_defect_record_f.repairing_date,
-    t_mancost_monitoring_f.repair_start,
-    t_mancost_monitoring_f.repair_end,
-    t_mancost_monitoring_f.time_consumed,
-    t_mancost_monitoring_f.defect_category,
-    t_mancost_monitoring_f.occurrence_process,
-    t_mancost_monitoring_f.parts_removed,
-    t_mancost_monitoring_f.quantity,
-    t_mancost_monitoring_f.unit_cost,
-    t_mancost_monitoring_f.material_cost,
-    t_mancost_monitoring_f.manhour_cost,
-    t_mancost_monitoring_f.repaired_portion_treatment
-FROM t_defect_record_f
-LEFT JOIN t_mancost_monitoring_f ON t_defect_record_f.defect_id = t_mancost_monitoring_f.defect_id
-WHERE 1=1";
+                t_defect_record_f.id,
+                t_defect_record_f.line_no,
+                t_defect_record_f.repairing_date,
+                t_mancost_monitoring_f.repair_start,
+                t_mancost_monitoring_f.repair_end,
+                t_mancost_monitoring_f.time_consumed,
+                t_mancost_monitoring_f.defect_category_mc,
+                t_mancost_monitoring_f.occurrence_process_mc,
+                t_mancost_monitoring_f.parts_removed,
+                t_mancost_monitoring_f.quantity,
+                t_mancost_monitoring_f.unit_cost,
+                t_mancost_monitoring_f.material_cost,
+                t_mancost_monitoring_f.manhour_cost,
+                t_mancost_monitoring_f.repaired_portion_treatment
+        FROM t_defect_record_f
+        LEFT JOIN t_mancost_monitoring_f ON t_defect_record_f.defect_id = t_mancost_monitoring_f.defect_id
+        WHERE 1=1
+        ORDER BY t_mancost_monitoring_f.record_added_mancost_datetime ASC";
 
 $conditions = [];
 $params = [];
@@ -106,8 +107,8 @@ if ($stmt->rowCount() > 0) {
             $row['repair_start'],
             $row['repair_end'],
             $row['time_consumed'],
-            $row['defect_category'],
-            $row['occurrence_process'],
+            $row['defect_category_mc'],
+            $row['occurrence_process_mc'],
             $row['parts_removed'],
             $row['quantity'],
             $row['unit_cost'],
