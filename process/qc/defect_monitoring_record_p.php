@@ -404,11 +404,16 @@ if ($method == 'load_qc_defect_table_data') {
             echo '<td style="text-align:center;">' . $row['outflow_person'] . '</td>';
             echo '<td style="text-align:center;">' . $row['defect_category_dr'] . '</td>';
             echo '<td style="text-align:center;">' . $row['sequence_num'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['assy_board_no'] . '</td>';
             echo '<td style="text-align:center;">' . $row['defect_cause'] . '</td>';
             echo '<td style="text-align:left;">' . $row['good_measurement'] . '</td>';
             echo '<td style="text-align:left;">' . $row['ng_measurement'] . '</td>';
+            echo '<td style="text-align:left;">' . $row['wire_type'] . '</td>';
+            echo '<td style="text-align:left;">' . $row['wire_size'] . '</td>';
+            echo '<td style="text-align:left;">' . $row['connector_cavity'] . '</td>';
             echo '<td style="text-align:left;">' . $row['defect_detail_content'] . '</td>';
             echo '<td style="text-align:left;">' . $row['defect_treatment_content'] . '</td>';
+            echo '<td style="text-align:left;">' . $row['harness_status'] . '</td>';
             echo '<td style="text-align:center;">' . $row['dis_assembled_by'] . '</td>';
             echo '</tr>';
         }
@@ -473,11 +478,11 @@ if ($method == 'load_qc_mancost_table_data') {
             d.product_name, d.lot_no, d.serial_no, d.discovery_process, d.discovery_id_num,
             d.discovery_person, d.occurrence_process_dr, d.occurrence_shift, d.occurrence_id_num, d.occurrence_person,
             d.outflow_process, d.outflow_shift, d.outflow_id_num, d.outflow_person, d.defect_category_dr,
-            d.sequence_num, d.defect_cause, d.good_measurement, d.ng_measurement,
-            d.defect_detail_content, d.defect_treatment_content, d.dis_assembled_by,
-            d.repairing_date, 
+            d.sequence_num, d.assy_board_no, d.defect_cause, d.good_measurement, d.ng_measurement, 
+            d.wire_type, d.wire_size, d.connector_cavity, d.defect_detail_content, d.defect_treatment_content, 
+            d.harness_status, d.dis_assembled_by, d.repairing_date, 
             m.repair_start, m.repair_end, m.time_consumed, m.defect_category_mc, 
-            m.occurrence_process_mc, m.parts_removed, m.wire_type, m.wire_size, m.connector_cavity,
+            m.occurrence_process_mc, m.parts_removed, 
             m.quantity, m.unit_cost, m.material_cost, 
             m.manhour_cost, m.repaired_portion_treatment, m.qc_verification, m.checking_date_sign, m.verified_by, 
             m.remarks, m.record_added_by 
@@ -511,10 +516,12 @@ if ($method == 'load_qc_mancost_table_data') {
             \'' . $row['product_name'] . '\', \'' . $row['lot_no'] . '\', \'' . $row['serial_no'] . '\', \'' . $row['discovery_process'] . '\', \'' . $row['discovery_id_num'] . '\', 
             \'' . $row['discovery_person'] . '\', \'' . $row['occurrence_process_dr'] . '\', \'' . $row['occurrence_shift'] . '\', \'' . $row['occurrence_id_num'] . '\', \'' . $row['occurrence_person'] . '\', 
             \'' . $row['outflow_process'] . '\', \'' . $row['outflow_shift'] . '\', \'' . $row['outflow_id_num'] . '\', \'' . $row['outflow_person'] . '\', \'' . $row['defect_category_dr'] . '\', 
-            \'' . $row['sequence_num'] . '\', \'' . $row['defect_cause'] . '\', \'' . $row['good_measurement'] . '\', \'' . $row['ng_measurement'] . '\',
-            \'' . $row['dis_assembled_by'] . '\', \'' . $row['defect_detail_content'] . '\', \'' . $row['defect_treatment_content'] . '\',  
+            \'' . $row['sequence_num'] . '\', \'' . $row['assy_board_no'] . '\',
+            \'' . $row['defect_cause'] . '\', \'' . $row['good_measurement'] . '\', \'' . $row['ng_measurement'] . '\',
+            \'' . $row['wire_type'] . '\', \'' . $row['wire_size'] . '\', \'' . $row['connector_cavity'] . '\',
+            \'' . $row['dis_assembled_by'] . '\', \'' . $row['defect_detail_content'] . '\', \'' . $row['defect_treatment_content'] . '\', \'' . $row['harness_status'] . '\', 
             \'' . $row['repairing_date'] . '\',\'' . $row['repair_start'] . '\',\'' . $row['repair_end'] . '\',\'' . $row['time_consumed'] . '\',\'' . $row['defect_category_mc'] . '\',
-            \'' . $row['occurrence_process_mc'] . '\',\'' . $row['parts_removed'] . '\',\'' . $row['wire_type'] . '\',\'' . $row['wire_size'] . '\',\'' . $row['connector_cavity'] . '\',
+            \'' . $row['occurrence_process_mc'] . '\',\'' . $row['parts_removed'] . '\',
             \'' . $row['quantity'] . '\',\'' . $row['unit_cost'] . '\',\'' . $row['material_cost'] . '\',
             \'' . $row['manhour_cost'] . '\',\'' . $row['repaired_portion_treatment'] . '\',\'' . $row['qc_verification'] . '\',\'' . $row['checking_date_sign'] . '\',\'' . $row['verified_by'] . '\',
             \'' . $row['remarks'] . '\',\'' . $row['defect_id'] . '\')">';
@@ -529,9 +536,6 @@ if ($method == 'load_qc_mancost_table_data') {
             echo '<td style="text-align:center;">' . $row['defect_category_mc'] . '</td>';
             echo '<td style="text-align:center;">' . $row['occurrence_process_mc'] . '</td>';
             echo '<td style="text-align:center;">' . $row['parts_removed'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['wire_type'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['wire_size'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['connector_cavity'] . '</td>';
             echo '<td style="text-align:center;">' . $row['quantity'] . '</td>';
             echo '<td style="text-align:center;">' . $row['unit_cost'] . '</td>';
             echo '<td style="text-align:center;">' . $row['material_cost'] . '</td>';

@@ -219,10 +219,9 @@
                     <div class="col-sm-2">
                         <!-- assy board number -->
                         <label style="font-weight: normal;color: #000;">Assy Board Number</label>
-                        <label style="color:#CA3F3F">*</label>
                         <input type="text" id="assy_board_no_mc_update" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
-                            required>
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
+                            disabled>
                     </div>
                     <div class="col-sm-2">
                         <!-- cause of defect -->
@@ -305,12 +304,9 @@
                     <div class="col-sm-4">
                         <!-- harness status after repair -->
                         <label style="font-weight: normal;color: #000;">Harness Status after Repair</label>
-                        <label style="color:#CA3F3F">*</label>
-                        <select name="harness_status_mc_update" id="harness_status_mc_update" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
-                            class="pl-2" required>
-                            <option value="" disabled selected>Select the harness status</option>
-                        </select>
+                        <input type="text" id="harness_status_mc_update" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
+                            disabled>
                     </div>
                 </div>
                 <br>
