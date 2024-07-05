@@ -17,9 +17,7 @@
         fetch_opt_defect_category_mc();
         fetch_opt_occurrence_process_mc();
         fetch_opt_portion_treatment();
-        fetch_opt_defect_category_mc_only();
-        fetch_opt_occurrence_process_mc_only();
-        fetch_opt_portion_treatment_mc_only();
+        fetch_opt_harness_status();
         count_detail_content_defect_char();
         count_treatment_content_defect_char();
     });
@@ -273,47 +271,18 @@
         });
     }
 
-    // fetch option defect category mancost only
-    const fetch_opt_defect_category_mc_only = () => {
+    // fetch option harness status
+    const fetch_opt_harness_status = () => {
         $.ajax({
             url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
             cache: false,
             data: {
-                method: 'fetch_opt_defect_category_mc_only',
+                method: 'fetch_opt_harness_status',
             },
             success: function (response) {
-                $('#defect_category_mc_only').html(response);
-            }
-        });
-    }
-
-    // fetch option occurrence process mancost only
-    const fetch_opt_occurrence_process_mc_only = () => {
-        $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp_p.php',
-            type: 'POST',
-            cache: false,
-            data: {
-                method: 'fetch_opt_occurrence_process_mc_only',
-            },
-            success: function (response) {
-                $('#occurrence_process_mc_only').html(response);
-            }
-        });
-    }
-
-    // fetch option portion treatment mancost only
-    const fetch_opt_portion_treatment_mc_only = () => {
-        $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp_p.php',
-            type: 'POST',
-            cache: false,
-            data: {
-                method: 'fetch_opt_portion_treatment_mc_only',
-            },
-            success: function (response) {
-                $('#portion_treatment_mc_only').html(response);
+                // $('#portionTreatmentMcList').html(response);
+                $('#harness_status_dr').html(response);
             }
         });
     }
@@ -461,12 +430,17 @@
                     <th>Outflow ID Number</th>
                     <th>Outflow Person</th>
                     <th>Defect Category</th>
-                    <th>Sequence Number</th>
+                    <th>Sequence No.</th>
+                    <th>Assy Board No.</th>
                     <th>Cause of Defect</th>
                     <th>Good Measurement</th>
                     <th>NG Measurement</th>
+                    <th>Wire Size</th>
+                    <th>Wire Type</th>
+                    <th>Connector Cavity</th>
                     <th>Detail in Content of Defect</th>
                     <th>Treatment Content of Defect</th>
+                    <th>Harness Status after Repair</th>
                     <th>Dis-assembled/Dis-inserted by:</th>
                 </tr>
             </thead>
@@ -642,9 +616,6 @@
                     <th>Defect Category</th>
                     <th>Occurrence Process</th>
                     <th>Parts Removed</th>
-                    <th>Wire Type</th>
-                    <th>Wire Size</th>
-                    <th>Connector Cavity</th>
                     <th>Quantity</th>
                     <th>Unit Cost ( ¥ )</th>
                     <th>Material Cost ( ¥ )</th>
@@ -764,9 +735,11 @@
     //     });
     // });
 
+    let current_date = new Date().toISOString().slice(0, 10);
+
     $(document).ready(function () {
         // Disable all input fields by default
-        $("#line_no, #line_category_dr, #date_detected, #na_date_detected, #issue_tag, #repairing_date, #car_maker, #product_name, #lot_no, #serial_no, #discovery_process_dr, #discovery_id_no_dr, #discovery_person, #occurrence_process_dr, #occurrence_shift_dr, #occurrence_id_no_dr, #occurrence_person, #outflow_process_dr, #outflow_shift_dr, #outflow_id_no_dr, #outflow_person, #defect_category_dr, #sequence_no, #defect_cause_dr, #repair_person_dr, #detail_content_defect, #treatment_content_defect, #repair_start_mc, #repair_end_mc, #time_consumed_mc, #defect_category_mc, #occurrence_process_mc, #manhour_cost_mc, #parts_removed_mc, #wire_size_mc, #wire_type_mc, #connector_cavity_mc, #quantity_mc, #unit_cost_mc, #material_cost_mc, #portion_treatment").prop('disabled', true);
+        $("#line_no, #line_category_dr, #date_detected, #na_date_detected, #issue_tag, #repairing_date, #car_maker, #product_name, #lot_no, #serial_no, #discovery_process_dr, #discovery_id_no_dr, #discovery_person, #occurrence_process_dr, #occurrence_shift_dr, #occurrence_id_no_dr, #occurrence_person, #outflow_process_dr, #outflow_shift_dr, #outflow_id_no_dr, #outflow_person, #defect_category_dr, #sequence_no, #assy_board_no_dr, #good_measurement_dr, #ng_measurement_dr, #wire_type_dr, #wire_size_dr, #connector_cavity_dr, #harness_status_dr, #defect_cause_dr, #repair_person_dr, #detail_content_defect, #treatment_content_defect, #repair_start_mc, #repair_end_mc, #time_consumed_mc, #defect_category_mc, #occurrence_process_mc, #manhour_cost_mc, #parts_removed_mc, #quantity_mc, #unit_cost_mc, #material_cost_mc, #portion_treatment").prop('disabled', true);
 
         // add change event listener to radio buttons
         $("input[name='record_type']").change(function () {
@@ -832,7 +805,7 @@
                 $("#date_detected").prop('type', 'date').prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#na_date_detected").prop('disabled', true).val('').css('background-color', '#FFF');
                 $("#issue_tag").prop('disabled', false).val('').css('background-color', '#F1F1F1');
-                $("#repairing_date").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#repairing_date").prop('disabled', false).val(current_date).css('background-color', '#FFF');
                 // $("#car_maker").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#product_name").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#lot_no").prop('disabled', false).val('').css('background-color', '#F1F1F1');
@@ -850,12 +823,19 @@
                 $("#outflow_person").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#defect_category_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#sequence_no").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#assy_board_no_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#defect_cause_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#good_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#ng_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#repair_person_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#good_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#ng_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#wire_type_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#wire_size_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#connector_cavity_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#detail_content_defect").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#treatment_content_defect").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#harness_status_dr").prop('disabled', false).val('').css('background-color', '#FFF');
 
                 $("#repair_start_mc").prop('type', 'text').prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
                 $("#na_repair_start").prop('disabled', false).val('N/A').css('background-color', '#D3D3D3');
@@ -874,9 +854,6 @@
                 $("#defect_category_mc").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
                 $("#occurrence_process_mc").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
                 $("#parts_removed_mc").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
-                $("#wire_size_mc").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
-                $("#wire_type_mc").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
-                $("#connector_cavity_mc").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
                 $("#portion_treatment").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
             }
             else if ($(this).val() === "Defect & Mancost") {
@@ -885,7 +862,7 @@
                 $("#date_detected").prop('type', 'date').prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#na_date_detected").prop('disabled', true).val('').css('background-color', '#FFF');
                 $("#issue_tag").prop('disabled', false).val('').css('background-color', '#F1F1F1');
-                $("#repairing_date").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#repairing_date").prop('disabled', false).val(current_date).css('background-color', '#FFF');
                 // $("#car_maker").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#product_name").prop('disabled', false).val('').css('background-color', '#FF1F1F1FF');
                 $("#lot_no").prop('disabled', false).val('').css('background-color', '#F1F1F1');
@@ -903,12 +880,19 @@
                 $("#outflow_person").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#defect_category_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#sequence_no").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#assy_board_no_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#defect_cause_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#good_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#ng_measurement_dr_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#ng_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#repair_person_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#good_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#ng_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#wire_type_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#wire_size_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#connector_cavity_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#detail_content_defect").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#treatment_content_defect").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#harness_status_dr").prop('disabled', false).val('').css('background-color', '#FFF');
 
                 $("#repair_start_mc").prop('type', 'time').prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#na_repair_start").prop('disabled', true).val('').css('background-color', '#FFF');
@@ -927,9 +911,6 @@
                 $("#defect_category_mc").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#occurrence_process_mc").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#parts_removed_mc").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#wire_size_mc").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#wire_type_mc").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#connector_cavity_mc").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#portion_treatment").prop('disabled', false).val('').css('background-color', '#FFF');
             }
             else {
@@ -939,7 +920,7 @@
                 $("#date_detected").prop('type', 'date').prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#na_date_detected").prop('disabled', true).val('').css('background-color', '#FFF');
                 $("#issue_tag").prop('disabled', false).val('').css('background-color', '#F1F1F1');
-                $("#repairing_date").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#repairing_date").prop('disabled', false).val(current_date).css('background-color', '#FFF');
                 // $("#car_maker").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#product_name").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#lot_no").prop('disabled', false).val('').css('background-color', '#F1F1F1');
@@ -957,12 +938,19 @@
                 $("#outflow_person").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#defect_category_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#sequence_no").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#assy_board_no_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#defect_cause_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#good_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#ng_measurement_dr_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#ng_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#repair_person_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#good_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#ng_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#wire_type_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#wire_size_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#connector_cavity_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#detail_content_defect").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#treatment_content_defect").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#harness_status_dr").prop('disabled', false).val('').css('background-color', '#FFF');
 
                 $("#repair_start_mc").prop('type', 'time').prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#na_repair_start").prop('disabled', true).val('').css('background-color', '#FFF');
@@ -981,9 +969,6 @@
                 $("#defect_category_mc").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#occurrence_process_mc").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#parts_removed_mc").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#wire_size_mc").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#wire_type_mc").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#connector_cavity_mc").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#portion_treatment").prop('disabled', false).val('').css('background-color', '#FFF');
 
                 $("input[name='na_white_tag_defect']").change(function () {
@@ -992,7 +977,7 @@
                     var isNA = $(this).is(":checked");
 
                     // List out repair-related field IDs and disable or enable them based on the N/A radio button
-                    var repairFieldIds = ["repair_start_mc", "na_repair_start", "repair_end_mc", "na_repair_end", "time_consumed_mc", "na_time_consumed", "manhour_cost_mc", "na_manhour_cost", "quantity_mc", "na_quantity", "unit_cost_mc", "na_unit_cost", "material_cost_mc", "na_material_cost", "defect_category_mc", "occurrence_process_mc", "parts_removed_mc", "wire_size_mc", "wire_type_mc", "connector_cavity_mc", "portion_treatment"];
+                    var repairFieldIds = ["repair_start_mc", "na_repair_start", "repair_end_mc", "na_repair_end", "time_consumed_mc", "na_time_consumed", "manhour_cost_mc", "na_manhour_cost", "quantity_mc", "na_quantity", "unit_cost_mc", "na_unit_cost", "material_cost_mc", "na_material_cost", "defect_category_mc", "occurrence_process_mc", "parts_removed_mc", "portion_treatment"];
 
                     $.each(repairFieldIds, function (index, fieldId) {
                         var $field = $("#" + fieldId);
@@ -1698,12 +1683,19 @@
         $("#outflow_person").prop('disabled', true).val('').css('background-color', '#FFF');
         $("#defect_category_dr").prop('disabled', true).val('').css('background-color', '#FFF');
         $("#sequence_no").prop('disabled', true).val('').css('background-color', '#FFF');
-        $("#defect_cause_dr").prop('disabled', true).val('').css('background-color', '#FFF');
-        $("#good_measurement_dr").prop('disabled', true).val('').css('background-color', '#FFF');
-        $("#ng_measurement_dr").prop('disabled', true).val('').css('background-color', '#FFF');
-        $("#repair_person_dr").prop('disabled', true).val('').css('background-color', '#FFF');
-        $("#detail_content_defect").prop('disabled', true).val('').css('background-color', '#FFF');
-        $("#treatment_content_defect").prop('disabled', true).val('').css('background-color', '#FFF');
+        $("#assy_board_no_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#defect_cause_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#good_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#ng_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#repair_person_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#good_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#ng_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#wire_type_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#wire_size_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#connector_cavity_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#detail_content_defect").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#treatment_content_defect").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#harness_status_dr").prop('disabled', false).val('').css('background-color', '#FFF');
     }
 
     // add defect record and mancost
@@ -1735,12 +1727,17 @@
         var outflow_person = document.getElementById("outflow_person").value.trim();
         var defect_category_dr = document.getElementById("defect_category_dr").value.trim();
         var sequence_no = document.getElementById("sequence_no").value.trim();
+        var assy_board_no_dr = document.getElementById("assy_board_no_dr").value.trim();
         var defect_cause_dr = document.getElementById("defect_cause_dr").value.trim();
         var good_measurement_dr = document.getElementById("good_measurement_dr").value.trim();
         var ng_measurement_dr = document.getElementById("ng_measurement_dr").value.trim();
+        var wire_type_dr = document.getElementById("wire_type_dr").value.trim();
+        var wire_size_dr = document.getElementById("wire_size_dr").value.trim();
+        var connector_cavity_dr = document.getElementById("connector_cavity_dr").value.trim();
         var repair_person_dr = document.getElementById("repair_person_dr").value.trim();
         var detail_content_defect = document.getElementById("detail_content_defect").value.trim();
         var treatment_content_defect = document.getElementById("treatment_content_defect").value.trim();
+        var harness_status_dr = document.getElementById("harness_status_dr").value.trim();
 
         var repair_start_mc = document.getElementById("repair_start_mc").value.trim();
         var repair_end_mc = document.getElementById("repair_end_mc").value.trim();
@@ -1748,9 +1745,6 @@
         var defect_category_mc = document.getElementById("defect_category_mc").value.trim();
         var occurrence_process_mc = document.getElementById("occurrence_process_mc").value.trim();
         var parts_removed_mc = document.getElementById("parts_removed_mc").value.trim();
-        var wire_size_mc = document.getElementById("wire_size_mc").value.trim();
-        var wire_type_mc = document.getElementById("wire_type_mc").value.trim();
-        var connector_cavity_mc = document.getElementById("connector_cavity_mc").value.trim();
         var quantity_mc = document.getElementById("quantity_mc").value.trim();
         var unit_cost_mc = document.getElementById("unit_cost_mc").value.trim();
         var material_cost_mc = document.getElementById("material_cost_mc").value;
@@ -1788,12 +1782,17 @@
                 outflow_person: outflow_person,
                 defect_category_dr: defect_category_dr,
                 sequence_no: sequence_no,
+                assy_board_no_dr: assy_board_no_dr,
                 defect_cause_dr: defect_cause_dr,
                 good_measurement_dr: good_measurement_dr,
                 ng_measurement_dr: ng_measurement_dr,
+                wire_type_dr: wire_type_dr,
+                wire_size_dr: wire_size_dr,
+                connector_cavity_dr: connector_cavity_dr,
                 repair_person_dr: repair_person_dr,
                 detail_content_defect: detail_content_defect,
                 treatment_content_defect: treatment_content_defect,
+                harness_status_dr: harness_status_dr,
 
                 repair_start_mc: repair_start_mc,
                 repair_end_mc: repair_end_mc,
@@ -1801,9 +1800,6 @@
                 defect_category_mc: defect_category_mc,
                 occurrence_process_mc: occurrence_process_mc,
                 parts_removed_mc: parts_removed_mc,
-                wire_size_mc: wire_size_mc,
-                wire_type_mc: wire_type_mc,
-                connector_cavity_mc: connector_cavity_mc,
                 quantity_mc: quantity_mc,
                 unit_cost_mc: unit_cost_mc,
                 material_cost_mc: material_cost_mc,
@@ -1847,12 +1843,17 @@
                     $('#outflow_person').val('');
                     $('#defect_category_dr').val('');
                     $('#sequence_no').val('');
+                    $('#assy_board_no_dr').val('');
                     $('#defect_cause_dr').val('');
                     $('#good_measurement_dr').val('');
                     $('#ng_measurement_dr').val('');
+                    $('#wire_type_dr').val('');
+                    $('#wire_size_dr').val('');
+                    $('#connector_cavity_dr').val('');
                     $('#repair_person_dr').val('');
                     $('#detail_content_defect').val('');
                     $('#treatment_content_defect').val('');
+                    $('#harness_status_dr').val('');
 
                     $('#repair_start_mc').val('');
                     $('#repair_end_mc').val('');
@@ -1860,9 +1861,6 @@
                     $('#defect_category_mc').val('');
                     $('#occurrence_process_mc').val('');
                     $('#parts_removed_mc').val('');
-                    $('#wire_size_mc').val('');
-                    $('#wire_type_mc').val('');
-                    $('#connector_cavity_mc').val('');
                     $('#quantity_mc').val('');
                     $('#unit_cost_mc').val('');
                     $('#material_cost_mc').val('');
@@ -2031,6 +2029,13 @@
         sequence_no.classList.remove('highlight');
         document.getElementById("sequenceNumberError").style.display = 'none';
     })
+
+    document.getElementById("assy_board_no_dr").addEventListener("input", function () {
+        var assy_board_no_dr = this;
+        assy_board_no_dr.classList.remove('highlight');
+        document.getElementById("assyBoardNumberError").style.display = 'none';
+    })
+
     document.getElementById("defect_cause_dr").addEventListener("input", function () {
         var defect_cause_dr = this;
         defect_cause_dr.classList.remove('highlight');
@@ -2049,20 +2054,46 @@
         document.getElementById("noGoodMeasurementError").style.display = 'none';
     })
 
+    document.getElementById("wire_type_dr").addEventListener("input", function () {
+        var wire_type_dr = this;
+        wire_type_dr.classList.remove('highlight');
+        document.getElementById("wireTypeDrError").style.display = 'none';
+    })
+
+    document.getElementById("wire_size_dr").addEventListener("input", function () {
+        var wire_size_dr = this;
+        wire_size_dr.classList.remove('highlight');
+        document.getElementById("wireSizeDrError").style.display = 'none';
+    })
+
+    document.getElementById("connector_cavity_dr").addEventListener("input", function () {
+        var connector_cavity_dr = this;
+        connector_cavity_dr.classList.remove('highlight');
+        document.getElementById("connectorCavityDrError").style.display = 'none';
+    })
+
     document.getElementById("repair_person_dr").addEventListener("input", function () {
         var repair_person_dr = this;
         repair_person_dr.classList.remove('highlight');
         document.getElementById("repairPersonError").style.display = 'none';
     })
+
     document.getElementById("detail_content_defect").addEventListener("input", function () {
         var detail_content_defect = this;
         detail_content_defect.classList.remove('highlight');
         document.getElementById("detailDefectError").style.display = 'none';
     })
+
     document.getElementById("treatment_content_defect").addEventListener("input", function () {
         var treatment_content_defect = this;
         treatment_content_defect.classList.remove('highlight');
         document.getElementById("treatmentDefectError").style.display = 'none';
+    })
+
+    document.getElementById("harness_status_dr").addEventListener("input", function () {
+        var harness_status_dr = this;
+        harness_status_dr.classList.remove('highlight');
+        document.getElementById("harnessStatusError").style.display = 'none';
     })
 
     // ------------------------------------------------------------------------
@@ -2133,6 +2164,9 @@
         var sequence_no = document.getElementById("sequence_no");
         var sequenceNumberError = document.getElementById("sequenceNumberError");
 
+        var assy_board_no_dr = document.getElementById("assy_board_no_dr");
+        var assyBoardNumberError = document.getElementById("assyBoardNumberError");
+
         var defect_cause_dr = document.getElementById("defect_cause_dr");
         var defectCauseError = document.getElementById("defectCauseError");
 
@@ -2142,6 +2176,15 @@
         var ng_measurement_dr = document.getElementById("ng_measurement_dr");
         var noGoodMeasurementError = document.getElementById("noGoodMeasurementError");
 
+        var wire_type_dr = document.getElementById("wire_type_dr");
+        var wireTypeDrError = document.getElementById("wireTypeDrError");
+
+        var wire_size_dr = document.getElementById("wire_size_dr");
+        var wireSizeDrError = document.getElementById("wireSizeDrError");
+
+        var connector_cavity_dr = document.getElementById("connector_cavity_dr");
+        var connectorCavityDrError = document.getElementById("connectorCavityDrError");
+
         var repair_person_dr = document.getElementById("repair_person_dr");
         var repairPersonError = document.getElementById("repairPersonError");
 
@@ -2150,6 +2193,9 @@
 
         var treatment_content_defect = document.getElementById("treatment_content_defect");
         var treatmentDefectError = document.getElementById("treatmentDefectError");
+
+        var harness_status_dr = document.getElementById("harness_status_dr");
+        var harnessStatusError = document.getElementById("harnessStatusError");
 
         var defect_id = document.getElementById("defect_id_no");
 
@@ -2165,7 +2211,6 @@
             date_detected.classList.add('highlight');
             dateDetectedError.style.display = 'block';
         }
-
         if (repairing_date.value === '') {
             repairing_date.classList.add('highlight');
             repairingDateError.style.display = 'block';
@@ -2222,6 +2267,10 @@
             sequence_no.classList.add('highlight');
             sequenceNumberError.style.display = 'block';
         }
+        if (assy_board_no_dr.value === '') {
+            assy_board_no_dr.classList.add('highlight');
+            assyBoardNumberError.style.display = 'block';
+        }
         if (defect_cause_dr.value === '') {
             defect_cause_dr.classList.add('highlight');
             defectCauseError.style.display = 'block';
@@ -2234,6 +2283,18 @@
             ng_measurement_dr.classList.add('highlight');
             noGoodMeasurementError.style.display = 'block';
         }
+        if (wire_type_dr.value === '') {
+            wire_type_dr.classList.add('highlight');
+            wireTypeDrError.style.display = 'block';
+        }
+        if (wire_size_dr.value === '') {
+            wire_size_dr.classList.add('highlight');
+            wireSizeDrError.style.display = 'block';
+        }
+        if (connector_cavity_dr.value === '') {
+            connector_cavity_dr.classList.add('highlight');
+            connectorCavityDrError.style.display = 'block';
+        }
         if (repair_person_dr.value === '') {
             repair_person_dr.classList.add('highlight');
             repairPersonError.style.display = 'block';
@@ -2245,6 +2306,10 @@
         if (treatment_content_defect.value === '') {
             treatment_content_defect.classList.add('highlight');
             treatmentDefectError.style.display = 'block';
+        }
+        if (harness_status_dr.value === '') {
+            harness_status_dr.classList.add('highlight');
+            harnessStatusError.style.display = 'block';
         } else {
             const loadingAlert = Swal.fire({
                 icon: 'info',
@@ -2284,12 +2349,17 @@
                     outflow_person: outflow_person.value,
                     defect_category_dr: defect_category_dr.value,
                     sequence_no: sequence_no.value,
+                    assy_board_no_dr: assy_board_no_dr.value,
                     defect_cause_dr: defect_cause_dr.value,
                     good_measurement_dr: good_measurement_dr.value,
                     ng_measurement_dr: ng_measurement_dr.value,
+                    wire_type_dr: wire_type_dr.value,
+                    wire_size_dr: wire_size_dr.value,
+                    connector_cavity_dr: connector_cavity_dr.value,
                     repair_person_dr: repair_person_dr.value,
                     detail_content_defect: detail_content_defect.value,
                     treatment_content_defect: treatment_content_defect.value,
+                    harness_status_dr: harness_status_dr.value,
                     defect_id: defect_id.value
                 },
                 success: response => {
@@ -2411,31 +2481,32 @@
         $('#outflow_person_pd_update').val(data[19]).prop('disabled', true).css('background', '#EEE');
         $('#defect_category_pd_dr_update').val(data[20]).prop('disabled', true).css('background', '#EEE');
         $('#sequence_no_pd_update').val(data[21]).prop('disabled', true).css('background', '#EEE');
-        $('#defect_cause_pd_update').val(data[22]).prop('disabled', true).css('background', '#EEE');
-        $('#good_measurement_pd_update').val(data[23]);
-        $('#ng_measurement_pd_update').val(data[24]);
-        $('#repair_person_pd_update').val(data[25]).prop('disabled', true).css('background', '#EEE');
-        $('#detail_content_defect_pd_update').val(data[26]).prop('disabled', true).css('background', '#EEE');
-        $('#treatment_content_defect_pd_update').val(data[27]);
-        $('#repairing_date_pd_update').val(data[28]).prop('disabled', true).css('background', '#EEE');
-
-        $('#repair_start_pd_update').val(data[29]).prop('disabled', true).css('background', '#EEE');
-        $('#repair_end_pd_update').val(data[30]).prop('disabled', true).css('background', '#EEE');
-        $('#time_consumed_pd_update').val(data[31]).prop('disabled', true).css('background', '#EEE');
-        $('#defect_category_pd_mc_update').val(data[32]).prop('disabled', true).css('background', '#EEE');
-        $('#occurrence_process_pd_mc_update').val(data[33]).prop('disabled', true).css('background', '#EEE');
-        $('#parts_removed_pd_update').val(data[34]);
-        $('#wire_type_pd_update').val(data[35]);
-        $('#wire_size_pd_update').val(data[36]);
-        $('#connector_cavity_pd_update').val(data[37]);
-        $('#quantity_pd_update').val(data[38]).prop('disabled', true).css('background', '#EEE');
-        $('#unit_cost_pd_update').val(data[39]);
-        $('#material_cost_pd_update').val(data[40]);
-        $('#manhour_cost_pd_update').val(data[41]).prop('disabled', true).css('background', '#EEE');
-        $('#portion_treatment_pd_update').val(data[42]).prop('disabled', true).css('background', '#EEE');
+        $('#assy_board_no_pd_update').val(data[22]).prop('disabled', true).css('background', '#EEE');
+        $('#defect_cause_pd_update').val(data[23]).prop('disabled', true).css('background', '#EEE');
+        $('#good_measurement_pd_update').val(data[24]);
+        $('#ng_measurement_pd_update').val(data[25]);
+        $('#wire_type_pd_update').val(data[26]);
+        $('#wire_size_pd_update').val(data[27]);
+        $('#connector_cavity_pd_update').val(data[28]);
+        $('#repair_person_pd_update').val(data[29]).prop('disabled', true).css('background', '#EEE');
+        $('#detail_content_defect_pd_update').val(data[30]).prop('disabled', true).css('background', '#EEE');
+        $('#treatment_content_defect_pd_update').val(data[31]);
+        $('#harness_status_pd_update').val(data[32]).prop('disabled', true).css('background', '#EEE');
+        $('#repairing_date_pd_update').val(data[33]).prop('disabled', true).css('background', '#EEE');
+        $('#repair_start_pd_update').val(data[34]).prop('disabled', true).css('background', '#EEE');
+        $('#repair_end_pd_update').val(data[35]).prop('disabled', true).css('background', '#EEE');
+        $('#time_consumed_pd_update').val(data[36]).prop('disabled', true).css('background', '#EEE');
+        $('#defect_category_pd_mc_update').val(data[37]).prop('disabled', true).css('background', '#EEE');
+        $('#occurrence_process_pd_mc_update').val(data[38]).prop('disabled', true).css('background', '#EEE');
+        $('#parts_removed_pd_update').val(data[39]);
+        $('#quantity_pd_update').val(data[40]).prop('disabled', true).css('background', '#EEE');
+        $('#unit_cost_pd_update').val(data[41]);
+        $('#material_cost_pd_update').val(data[42]);
+        $('#manhour_cost_pd_update').val(data[43]).prop('disabled', true).css('background', '#EEE');
+        $('#portion_treatment_pd_update').val(data[44]).prop('disabled', true).css('background', '#EEE');
 
         // defect unique id 
-        $('#admin_defect_id_2').val(data[43]).prop('hidden', true);
+        $('#admin_defect_id_2').val(data[45]).prop('hidden', true);
         $('#update_defect_mancost_pd').modal('show');
     }
 
@@ -2447,12 +2518,11 @@
         var serial_no = document.getElementById('serial_no_pd_update').value;
         var good_measurement = document.getElementById('good_measurement_pd_update').value;
         var ng_measurement = document.getElementById('ng_measurement_pd_update').value;
-
-        var defect_treatment_content = document.getElementById('treatment_content_defect_pd_update').value;
-        var parts_removed = document.getElementById('parts_removed_pd_update').value;
         var wire_type = document.getElementById('wire_type_pd_update').value;
         var wire_size = document.getElementById('wire_size_pd_update').value;
         var connector_cavity = document.getElementById('connector_cavity_pd_update').value;
+        var defect_treatment_content = document.getElementById('treatment_content_defect_pd_update').value;
+        var parts_removed = document.getElementById('parts_removed_pd_update').value;
         var quantity = document.getElementById('quantity_pd_update').value;
         var unit_cost = document.getElementById('unit_cost_pd_update').value;
         var material_cost = document.getElementById('material_cost_pd_update').value;
@@ -2473,11 +2543,11 @@
                 serial_no: serial_no,
                 good_measurement: good_measurement,
                 ng_measurement: ng_measurement,
-                defect_treatment_content: defect_treatment_content,
-                parts_removed: parts_removed,
                 wire_type: wire_type,
                 wire_size: wire_size,
                 connector_cavity: connector_cavity,
+                defect_treatment_content: defect_treatment_content,
+                parts_removed: parts_removed,
                 quantity: quantity,
                 unit_cost: unit_cost,
                 material_cost: material_cost,
@@ -2499,11 +2569,11 @@
                     $('#serial_no_pd_update').val('');
                     $('#good_measurement_pd_update').val('');
                     $('#ng_measurement_pd_update').val('');
-                    $('#treatment_content_defect_pd_update').val('');
-                    $('#parts_removed_pd_update').val('');
                     $('#wire_type_pd_update').val('');
                     $('#wire_size_pd_update').val('');
                     $('#connector_cavity_pd_update').val('');
+                    $('#treatment_content_defect_pd_update').val('');
+                    $('#parts_removed_pd_update').val('');
                     $('#quantity_pd_update').val('');
                     $('#unit_cost_pd_update').val('');
                     $('#material_cost_pd_update').val('');
@@ -2542,7 +2612,7 @@
         document.getElementById("line_category_dr").value = '';
         document.getElementById("date_detected").value = '';
         document.getElementById("issue_tag").value = '';
-        document.getElementById("repairing_date").value = '';
+        // document.getElementById("repairing_date").value = '';
         document.getElementById("car_maker").value = '';
         // document.getElementById("qr_scan").value = '';
         document.getElementById("product_name").value = '';
@@ -2561,12 +2631,17 @@
         document.getElementById("outflow_person").value = '';
         document.getElementById("defect_category_dr").value = '';
         document.getElementById("sequence_no").value = '';
+        document.getElementById("assy_board_no_dr").value = '';
         document.getElementById("defect_cause_dr").value = '';
         document.getElementById("good_measurement_dr").value = '';
         document.getElementById("ng_measurement_dr").value = '';
+        document.getElementById("wire_size_dr").value = '';
+        document.getElementById("wire_type_dr").value = '';
+        document.getElementById("connector_cavity_dr").value = '';
         document.getElementById("repair_person_dr").value = '';
         document.getElementById("detail_content_defect").value = '';
         document.getElementById("treatment_content_defect").value = '';
+        document.getElementById("harness_status_dr").value = '';
 
         // mancost fields
         document.getElementById("repair_start_mc").value = '';
@@ -2575,9 +2650,6 @@
         document.getElementById("defect_category_mc").value = '';
         document.getElementById("occurrence_process_mc").value = '';
         document.getElementById("parts_removed_mc").value = '';
-        document.getElementById("wire_size_mc").value = '';
-        document.getElementById("wire_type_mc").value = '';
-        document.getElementById("connector_cavity_mc").value = '';
         document.getElementById("quantity_mc").value = '';
         document.getElementById("unit_cost_mc").value = '';
         document.getElementById("material_cost_mc").value = '';
@@ -2657,24 +2729,6 @@
         document.getElementById("partsRemovedMcError").style.display = 'none';
     });
 
-    document.getElementById("wire_size_mc").addEventListener("input", function () {
-        var wire_size_mc = this;
-        wire_size_mc.classList.remove('highlight');
-        document.getElementById("wireSizeMcError").style.display = 'none';
-    });
-
-    document.getElementById("wire_type_mc").addEventListener("input", function () {
-        var wire_type_mc = this;
-        wire_type_mc.classList.remove('highlight');
-        document.getElementById("wireTypeMcError").style.display = 'none';
-    });
-
-    document.getElementById("connector_cavity_mc").addEventListener("input", function () {
-        var connector_cavity_mc = this;
-        connector_cavity_mc.classList.remove('highlight');
-        document.getElementById("connectorCavityMcError").style.display = 'none';
-    });
-
     document.getElementById("quantity_mc").addEventListener("input", function () {
         var quantity_mc = this;
         parts_removed_mc.classList.remove('highlight');
@@ -2708,15 +2762,6 @@
         var parts_removed_mc = document.getElementById("parts_removed_mc");
         var partsRemovedMcError = document.getElementById("partsRemovedMcError");
 
-        var wire_size_mc = document.getElementById("wire_size_mc");
-        var wireSizeMcError = document.getElementById("wireSizeMcError");
-
-        var wire_type_mc = document.getElementById("wire_type_mc");
-        var wireTypeMcError = document.getElementById("wireTypeMcError");
-
-        var connector_cavity_mc = document.getElementById("connector_cavity_mc");
-        var connectorCavityMcError = document.getElementById("connectorCavityMcError");
-
         var quantity_mc = document.getElementById("quantity_mc");
         var quantityMcError = document.getElementById("quantityMcError");
 
@@ -2740,12 +2785,6 @@
         occurrenceProcessMcError.style.display = 'none';
         parts_removed_mc.classList.remove('highlight');
         partsRemovedMcError.style.display = 'none';
-        wire_size_mc.classList.remove('highlight');
-        wireSizeMcError.style.display = 'none';
-        wire_type_mc.classList.remove('highlight');
-        wireTypeMcError.style.display = 'none';
-        connector_cavity_mc.classList.remove('highlight');
-        connectorCavityMcError.style.display = 'none';
         quantity_mc.classList.remove('highlight');
         quantityMcError.style.display = 'none';
         portion_treatment.classList.remove('highlight');
@@ -2771,18 +2810,6 @@
             parts_removed_mc.classList.add('highlight');
             partsRemovedMcError.style.display = 'block';
         }
-        if (wire_size_mc.value.trim() === '') {
-            wire_size_mc.classList.add('highlight');
-            wireSizeMcError.style.display = 'block';
-        }
-        if (wire_type_mc.value.trim() === '') {
-            wire_type_mc.classList.add('highlight');
-            wireTypeMcError.style.display = 'block';
-        }
-        if (connector_cavity_mc.value.trim() === '') {
-            connector_cavity_mc.classList.add('highlight');
-            connectorCavityMcError.style.display = 'block';
-        }
         if (quantity_mc.value.trim() === '') {
             quantity_mc.classList.add('highlight');
             quantityMcError.style.display = 'block';
@@ -2801,9 +2828,6 @@
                     defect_category_mc: defect_category_mc.value,
                     occurrence_process_mc: occurrence_process_mc.value,
                     parts_removed_mc: parts_removed_mc.value,
-                    wire_size_mc: wire_size_mc.value,
-                    wire_type_mc: wire_type_mc.value,
-                    connector_cavity_mc: connector_cavity_mc.value,
                     quantity_mc: quantity_mc.value,
                     unit_cost_mc: unit_cost_mc.value,
                     material_cost_mc: material_cost_mc.value,
@@ -2839,17 +2863,11 @@
                             'defect_category_mc': defect_category_mc.value,
                             'occurrence_process_mc': occurrence_process_mc.value,
                             'parts_removed_mc': parts_removed_mc.value,
-                            'wire_size_mc': wire_size_mc.value,
-                            'wire_type_mc': wire_type_mc.value,
-                            'connector_cavity_mc': connector_cavity_mc.value,
                             'manhour_cost_mc': manhour_cost_mc.value,
                         };
 
                         // Clear specific fields
                         $('#parts_removed_mc').val('');
-                        $('#wire_size_mc').val('');
-                        $('#wire_type_mc').val('');
-                        $('#connector_cavity_mc').val('');
                         $('#quantity_mc').val('');
                         $('#unit_cost_mc').val('');
                         $('#material_cost_mc').val('');

@@ -93,13 +93,13 @@
                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;"
                 class="pl-3">
             </div>
-            <div class="col-12 col-sm-3">
+            <div class="col-12 col-sm-2">
               <!-- date from -->
               <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date From</label>
               <input type="date" name="date_from" class="form-control" id="date_from_search_defect"
                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px;">
             </div>
-            <div class="col-12 col-sm-3">
+            <div class="col-12 col-sm-2">
               <!-- date to -->
               <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date To</label>
               <input type="date" name="date_to" class="form-control" id="date_to_search_defect"
@@ -114,7 +114,15 @@
                 onmouseout="this.style.backgroundColor='#2D2D2D'; this.style.color='#FFF';">
                 <i class="fas fa-trash" style="margin-top: 2px;"></i>&nbsp;&nbsp;Clear All</button>
             </div>
-
+            <div class="col-12 col-sm-4 col-md-2 mb-2">
+              <!-- refresh button -->
+              <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
+              <button class="btn btn-block d-flex justify-content-left" id="search_btn" onclick="refresh_page()"
+                style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;"
+                onmouseover="this.style.backgroundColor='#2D2D2D'; this.style.color='#FFF';"
+                onmouseout="this.style.backgroundColor='#474747'; this.style.color='#FFF';">
+                <i class="fas fa-sync-alt" style="margin-top: 2px;"></i>&nbsp;&nbsp;Refresh</button>
+            </div>
           </div>
           <div class="row mb-3">
             <div class="col-12 col-sm-2">
@@ -146,13 +154,14 @@
             </div>
 
             <div class="col-12 col-sm-4 col-md-2 mb-2">
-              <!-- refresh button -->
+              <!-- add mancost only button -->
               <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
-              <button class="btn btn-block d-flex justify-content-left" id="search_btn" onclick="refresh_page()"
-                style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;"
-                onmouseover="this.style.backgroundColor='#2D2D2D'; this.style.color='#FFF';"
-                onmouseout="this.style.backgroundColor='#474747'; this.style.color='#FFF';">
-                <i class="fas fa-sync-alt" style="margin-top: 2px;"></i>&nbsp;&nbsp;Refresh</button>
+              <button class="btn btn-block d-flex justify-content-left" data-toggle="modal"
+                data-target="#"
+                style="color:#fff;height:34px;border-radius:.25rem;background: #004B7E;font-size:15px;font-weight:normal;"
+                onmouseover="this.style.backgroundColor='#003356'; this.style.color='#FFF';"
+                onmouseout="this.style.backgroundColor='#004B7E'; this.style.color='#FFF';"><i
+                  class="fas fa-plus-circle" style="margin-top: 2px;"></i>&nbsp;&nbsp;Add Mancost Only</button>
             </div>
             <div class="col-12 col-sm-2">
               <!-- add defect record and mancost monitoring button -->

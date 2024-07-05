@@ -129,38 +129,6 @@
                             field is required.</span>
                     </div>
                 </div>
-                <div class="row mb-2">
-                    <div class="col-sm-4">
-                        <!-- type -->
-                        <label style="font-weight: normal;color: #000;">Wire Type</label>
-                        <label style="color:#CA3F3F">*</label>
-                        <input type="text" id="wire_type_mc" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
-                            required>
-                        <span id="wireTypeMcError" class="error-message" style="display:none; color:#CA3F3F;">Wire Type field
-                            is required.</span>
-                    </div>
-                    <div class="col-sm-4">
-                        <!-- wire size -->
-                        <label style="font-weight: normal;color: #000;">Wire Size</label>
-                        <label style="color:#CA3F3F">*</label>
-                        <input type="text" id="wire_size_mc" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
-                            required>
-                        <span id="wireSizeMcError" class="error-message" style="display:none; color:#CA3F3F;">Wire Size field
-                            is required.</span>
-                    </div>
-                    <div class="col-sm-4">
-                        <!-- connector cavity -->
-                        <label style="font-weight: normal;color: #000;">Connector Cavity</label>
-                        <label style="color:#CA3F3F">*</label>
-                        <input type="text" id="connector_cavity_mc" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
-                            required>
-                        <span id="connectorCavityMcError" class="error-message" style="display:none; color:#CA3F3F;">Connector Cavity field
-                            is required.</span>
-                    </div>
-                </div>
                 <!-- <br> -->
                 <!-- /.end -->
                 <div class="row mb-2">
@@ -252,9 +220,6 @@
                             <th>Defect Category</th>
                             <th>Occurrence Process</th>
                             <th>Parts Removed</th>
-                            <th>Wire Type</th>
-                            <th>Wire Size</th>
-                            <th>Connector Cavity</th>
                             <th>Quantity</th>
                             <th>Unit Cost</th>
                             <th>Material Cost</th>

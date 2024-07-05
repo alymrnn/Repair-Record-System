@@ -209,14 +209,22 @@
                             <option value="" disabled>Select defect category</option>
                         </select>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <!-- sequence number -->
                         <label style="font-weight: normal;color: #000;">Sequence Number</label>
                         <label style="color:#EA9515">*</label>
                         <input type="text" id="sequence_no_mc_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
+                        <!-- assy board number -->
+                        <label style="font-weight: normal;color: #000;">Assy Board Number</label>
+                        <label style="color:#CA3F3F">*</label>
+                        <input type="text" id="assy_board_no_mc_update" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            required>
+                    </div>
+                    <div class="col-sm-2">
                         <!-- cause of defect -->
                         <label style="font-weight: normal;color: #000;">Cause of Defect</label>
                         <input list="defectCauseDrList" name="defect_cause_dr" id="defect_cause_mc_update"
@@ -254,7 +262,31 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
+                        <!-- wire type -->
+                        <label style="font-weight: normal;color: #000;">Wire Type</label>
+                        <input type="text" id="wire_type_mc_update" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
+                            disabled>
+                    </div>
+                    <div class="col-sm-4">
+                        <!-- wire size -->
+                        <label style="font-weight: normal;color: #000;">Wire Size</label>
+                        <input type="text" id="wire_size_mc_update" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
+                            disabled>
+                    </div>
+                    <div class="col-sm-4">
+                        <!-- connector cavity -->
+                        <label style="font-weight: normal;color: #000;">Connector Cavity</label>
+                        <input type="text" id="connector_cavity_mc_update" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
+                            disabled>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-4">
                         <!-- detail in content of defect -->
                         <label style="font-weight: normal;color: #000;">Detail in Content of Defect</label>
                         <textarea type="text" id="detail_content_defect_mc_update" class="textarea form-control"
@@ -262,13 +294,23 @@
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:65px; width:100%;"
                             readonly></textarea>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <!-- treatment content of defect -->
                         <label style="font-weight: normal;color: #000;">Treatment Content of Defect</label>
                         <label style="color:#EA9515">*</label>
                         <textarea type="text" id="treatment_content_defect_mc_update" class="form-control"
                             autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:65px; width:100%;"></textarea>
+                    </div>
+                    <div class="col-sm-4">
+                        <!-- harness status after repair -->
+                        <label style="font-weight: normal;color: #000;">Harness Status after Repair</label>
+                        <label style="color:#CA3F3F">*</label>
+                        <select name="harness_status_mc_update" id="harness_status_mc_update" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
+                            class="pl-2" required>
+                            <option value="" disabled selected>Select the harness status</option>
+                        </select>
                     </div>
                 </div>
                 <br>
@@ -332,30 +374,6 @@
                 </div>
                 <br>
                 <!-- /.end -->
-                <div class="row">
-                    <div class="col-sm-4">
-                        <!-- wire type -->
-                        <label style="font-weight: normal;color: #000;">Wire Type</label>
-                        <input type="text" id="wire_type_mc_update" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
-                            disabled>
-                    </div>
-                    <div class="col-sm-4">
-                        <!-- wire size -->
-                        <label style="font-weight: normal;color: #000;">Wire Size</label>
-                        <input type="text" id="wire_size_mc_update" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
-                            disabled>
-                    </div>
-                    <div class="col-sm-4">
-                        <!-- connector cavity -->
-                        <label style="font-weight: normal;color: #000;">Connector Cavity</label>
-                        <input type="text" id="connector_cavity_mc_update" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
-                            disabled>
-                    </div>
-                </div>
-                <br>
                 <div class="row">
                     <div class="col-sm-3">
                         <!-- unit cost -->

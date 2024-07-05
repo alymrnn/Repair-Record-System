@@ -590,9 +590,6 @@
                     <th>Defect Category</th>
                     <th>Occurrence Process</th>
                     <th>Parts Removed</th>
-                    <th>Wire Type</th>
-                    <th>Wire Size</th>
-                    <th>Connector Cavity</th>
                     <th>Quantity</th>
                     <th>Unit Cost ( ¥ )</th>
                     <th>Material Cost ( ¥ )</th>

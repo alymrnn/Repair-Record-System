@@ -354,7 +354,7 @@
                         <span id="defectCategoryError" class="error-message" style="display:none; color:#CA3F3F;">Defect
                             Category field is required.</span>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <!-- sequence number -->
                         <label style="font-weight: normal;color: #000;">Sequence Number</label>
                         <label style="color:#CA3F3F">*</label>
@@ -364,7 +364,17 @@
                         <span id="sequenceNumberError" class="error-message"
                             style="display:none; color:#CA3F3F;">Sequence Number field is required.</span>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
+                        <!-- assy board number -->
+                        <label style="font-weight: normal;color: #000;">Assy Board Number</label>
+                        <label style="color:#CA3F3F">*</label>
+                        <input type="text" id="assy_board_no_dr" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            required>
+                        <span id="assyBoardNumberError" class="error-message"
+                            style="display:none; color:#CA3F3F;">Assy Board Number field is required.</span>
+                    </div>
+                    <div class="col-sm-2">
                         <!-- cause of defect -->
                         <label style="font-weight: normal;color: #000;">Cause of Defect</label>
                         <label style="color:#CA3F3F">*</label>
@@ -373,7 +383,7 @@
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required>
                         <datalist id="defectCauseDrList"></datalist> -->
-                        
+
                         <select name="defect_cause_dr" id="defect_cause_dr" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required>
@@ -425,8 +435,38 @@
                             Measurement field is required.</span>
                     </div>
                 </div>
+                <div class="row mb-2">
+                    <div class="col-sm-4">
+                        <!-- type -->
+                        <label style="font-weight: normal;color: #000;">Wire Type</label>
+                        <label style="color:#CA3F3F">*</label>
+                        <input type="text" id="wire_type_dr" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            required>
+                        <span id="wireTypeDrError" class="error-message" style="display:none; color:#CA3F3F;">Wire Type field is required.</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <!-- wire size -->
+                        <label style="font-weight: normal;color: #000;">Wire Size</label>
+                        <label style="color:#CA3F3F">*</label>
+                        <input type="text" id="wire_size_dr" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            required>
+                        <span id="wireSizeDrError" class="error-message" style="display:none; color:#CA3F3F;">Wire Size field is required.</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <!-- connector cavity -->
+                        <label style="font-weight: normal;color: #000;">Connector Cavity</label>
+                        <label style="color:#CA3F3F">*</label>
+                        <input type="text" id="connector_cavity_dr" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            required>
+                        <span id="connectorCavityDrError" class="error-message"
+                            style="display:none; color:#CA3F3F;">Connector Cavity field is required.</span>
+                    </div>
+                </div>
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <!-- Detail in content of defect -->
                         <label style="font-weight: normal;color: #000;">Detail in Content of Defect</label>
                         <label style="color:#CA3F3F">*</label>
@@ -437,18 +477,28 @@
                             Detail in Content of Defect field is required.</span>
                         <span id="detail_content_defect_count" style="color: #525252;font-size: 12px;"></span>
                     </div>
-
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <!-- treatment content of defect -->
                         <label style="font-weight: normal;color: #000;">Treatment Content of Defect</label>
                         <label style="color:#CA3F3F">*</label>
-                        <textarea type="text" id="treatment_content_defect" class="textarea form-control pl-3"
-                            maxlength="255"
+                        <textarea type="text" id="treatment_content_defect" class="textarea form-control pl-3" maxlength="255"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:65px; width:100%;"
                             onkeyup="count_treatment_content_defect_char()" required></textarea>
                         <span id="treatmentDefectError" class="error-message" style="display:none; color:#CA3F3F;">
                             Treatment Content of Defect field is required.</span>
                         <span id="treatment_content_defect_count" style="color: #525252;font-size: 12px;"></span>
+                    </div>
+                    <div class="col-sm-4">
+                        <!-- harness status after repair -->
+                        <label style="font-weight: normal;color: #000;">Harness Status after Repair</label>
+                        <label style="color:#CA3F3F">*</label>
+                        <select name="harness_status_dr" id="harness_status_dr" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
+                            class="pl-2" required>
+                            <option value="" disabled selected>Select the harness status</option>
+                        </select>
+                        <span id="harnessStatusError" class="error-message"
+                            style="display:none; color:#CA3F3F;">Harness Status field is required.</span>
                     </div>
                 </div>
                 <br>
