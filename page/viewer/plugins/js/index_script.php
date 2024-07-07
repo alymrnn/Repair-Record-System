@@ -303,10 +303,17 @@
                     <th>Outflow ID Number</th>
                     <th>Outflow Person</th>
                     <th>Defect Category</th>
-                    <th>Sequence Number</th>
+                    <th>Sequence No.</th>
+                    <th>Assy Board No.</th>
                     <th>Cause of Defect</th>
+                    <th>Good Measurement</th>
+                    <th>NG Measurement</th>
+                    <th>Wire Type</th>
+                    <th>Wire Size</th>
+                    <th>Connector Cavity</th>
                     <th>Detail in Content of Defect</th>
                     <th>Treatment Content of Defect</th>
+                    <th>Harness Status after Repair</th>
                     <th>Dis-assembled/Dis-inserted by:</th>
                 </tr>
             </thead>

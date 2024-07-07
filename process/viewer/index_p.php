@@ -123,7 +123,7 @@ function count_viewer_defect_table_data($conn, $defect_category, $discovery_proc
     }
 
     if (!empty($defect_category)) {
-        $conditions[] = "defect_category LIKE ?";
+        $conditions[] = "defect_category_dr LIKE ?";
         $params[] = '%' . $defect_category . '%';
     }
 
@@ -133,7 +133,7 @@ function count_viewer_defect_table_data($conn, $defect_category, $discovery_proc
     }
 
     if (!empty($occurrence_process)) {
-        $conditions[] = "occurrence_process LIKE ?";
+        $conditions[] = "occurrence_process_dr LIKE ?";
         $params[] = '%' . $occurrence_process . '%';
     }
 
@@ -294,7 +294,7 @@ if ($method == 'load_viewer_defect_table_data') {
     }
 
     if (!empty($defect_category)) {
-        $conditions[] = "defect_category LIKE ?";
+        $conditions[] = "defect_category_dr LIKE ?";
         $params[] = '%' . $defect_category . '%';
     }
 
@@ -304,7 +304,7 @@ if ($method == 'load_viewer_defect_table_data') {
     }
 
     if (!empty($occurrence_process)) {
-        $conditions[] = "occurrence_process LIKE ?";
+        $conditions[] = "occurrence_process_dr LIKE ?";
         $params[] = '%' . $occurrence_process . '%';
     }
 
@@ -380,7 +380,7 @@ if ($method == 'load_viewer_defect_table_data') {
             echo '<td style="text-align:center;">' . $row['discovery_process'] . '</td>';
             echo '<td style="text-align:center;">' . $row['discovery_id_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['discovery_person'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['occurrence_process'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['occurrence_process_dr'] . '</td>';
             echo '<td style="text-align:center;">' . $row['occurrence_shift'] . '</td>';
             echo '<td style="text-align:center;">' . $row['occurrence_id_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['occurrence_person'] . '</td>';
@@ -388,11 +388,18 @@ if ($method == 'load_viewer_defect_table_data') {
             echo '<td style="text-align:center;">' . $row['outflow_shift'] . '</td>';
             echo '<td style="text-align:center;">' . $row['outflow_id_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['outflow_person'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['defect_category'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['defect_category_dr'] . '</td>';
             echo '<td style="text-align:center;">' . $row['sequence_num'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['assy_board_no'] . '</td>';
             echo '<td style="text-align:center;">' . $row['defect_cause'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['good_measurement'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['ng_measurement'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['wire_type'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['wire_size'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['connector_cavity'] . '</td>';
             echo '<td style="text-align:left;">' . $row['defect_detail_content'] . '</td>';
             echo '<td style="text-align:left;">' . $row['defect_treatment_content'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['harness_status'] . '</td>';
             echo '<td style="text-align:center;">' . $row['dis_assembled_by'] . '</td>';
             echo '</tr>';
         }
@@ -449,7 +456,7 @@ if ($method == 'load_viewer_mancost_table_data') {
 
     // $query = "SELECT * FROM t_mancost_monitoring_f WHERE defect_id = '$defect_id' LIMIT " . $page_first_result . ", " . $results_per_page;
 
-    $query = "SELECT t_mancost_monitoring_f.id, t_defect_record_f.defect_id, t_defect_record_f.car_maker, t_defect_record_f.line_no, t_defect_record_f.category,t_defect_record_f.repairing_date, t_mancost_monitoring_f.repair_start, t_mancost_monitoring_f.repair_end, t_mancost_monitoring_f.time_consumed, t_mancost_monitoring_f.defect_category, t_mancost_monitoring_f.occurrence_process, t_mancost_monitoring_f.parts_removed, t_mancost_monitoring_f.quantity, t_mancost_monitoring_f.unit_cost, t_mancost_monitoring_f.material_cost, t_mancost_monitoring_f.manhour_cost, t_mancost_monitoring_f.repaired_portion_treatment, t_mancost_monitoring_f.qc_verification, t_mancost_monitoring_f.checking_date_sign, t_mancost_monitoring_f.verified_by, t_mancost_monitoring_f.remarks, t_mancost_monitoring_f.record_added_by FROM t_defect_record_f LEFT JOIN t_mancost_monitoring_f ON t_defect_record_f.defect_id = t_mancost_monitoring_f.defect_id WHERE t_defect_record_f.defect_id = '$viewer_defect_id'";
+    $query = "SELECT t_mancost_monitoring_f.id, t_defect_record_f.defect_id, t_defect_record_f.car_maker, t_defect_record_f.line_no, t_defect_record_f.category,t_defect_record_f.repairing_date, t_mancost_monitoring_f.repair_start, t_mancost_monitoring_f.repair_end, t_mancost_monitoring_f.time_consumed, t_mancost_monitoring_f.defect_category_mc, t_mancost_monitoring_f.occurrence_process_mc, t_mancost_monitoring_f.parts_removed, t_mancost_monitoring_f.quantity, t_mancost_monitoring_f.unit_cost, t_mancost_monitoring_f.material_cost, t_mancost_monitoring_f.manhour_cost, t_mancost_monitoring_f.repaired_portion_treatment, t_mancost_monitoring_f.qc_verification, t_mancost_monitoring_f.checking_date_sign, t_mancost_monitoring_f.verified_by, t_mancost_monitoring_f.remarks, t_mancost_monitoring_f.record_added_by FROM t_defect_record_f LEFT JOIN t_mancost_monitoring_f ON t_defect_record_f.defect_id = t_mancost_monitoring_f.defect_id WHERE t_defect_record_f.defect_id = '$viewer_defect_id'";
 
     // 1st Approach using SQL Server DB when using Select Query
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
@@ -476,8 +483,8 @@ if ($method == 'load_viewer_mancost_table_data') {
             echo '<td style="text-align:center;">' . $row['repair_start'] . '</td>';
             echo '<td style="text-align:center;">' . $row['repair_end'] . '</td>';
             echo '<td style="text-align:center;">' . $row['time_consumed'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['defect_category'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['occurrence_process'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['defect_category_mc'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['occurrence_process_mc'] . '</td>';
             echo '<td style="text-align:center;">' . $row['parts_removed'] . '</td>';
             echo '<td style="text-align:center;">' . $row['quantity'] . '</td>';
             echo '<td style="text-align:center;">' . $row['unit_cost'] . '</td>';
@@ -489,74 +496,6 @@ if ($method == 'load_viewer_mancost_table_data') {
     } else {
         echo '<tr>';
         echo '<td colspan="12" style="text-align:center; color:red;">No Result</td>';
-        echo '</tr>';
-    }
-}
-
-// search keyword in mancost monitoring only
-if ($method == 'viewer_mancost_search_keyword') {
-    $v_mancost_keyword = trim($_POST['v_mancost_keyword']);
-
-    // date search
-    $date_from = trim($_POST['date_from']);
-    if (!empty($date_from)) {
-        $date_from = date_create($date_from);
-        $date_from = date_format($date_from, "Y/m/d");
-    }
-
-    $date_to = trim($_POST['date_to']);
-    if (!empty($date_to)) {
-        $date_to = date_create($date_to);
-        $date_to = date_format($date_to, "Y/m/d");
-    }
-
-    $c = 0;
-    $query = "SELECT * FROM `t_mancost_monitoring_f`";
-    // $conditions = [];
-    $conditions[] = "defect_id IN ('', NULL)";
-
-    if (!empty($date_from) && !empty($date_to)) {
-        $conditions[] = "repairing_date BETWEEN '$date_from' AND '$date_to'";
-    }
-
-    if (!empty($v_mancost_keyword)) {
-        $conditions[] = "`car_maker` LIKE '$v_mancost_keyword%' OR `line_no` LIKE '$v_mancost_keyword%' OR `defect_category` LIKE '$v_mancost_keyword%' OR `occurrence_process` LIKE '$v_mancost_keyword%' OR `parts_removed` LIKE '$v_mancost_keyword%' OR `repaired_portion_treatment` LIKE '$v_mancost_keyword%' OR `re_checking` LIKE '$v_mancost_keyword%' OR `qc_verification` LIKE '$v_mancost_keyword%' OR `checking_date_sign`";
-    }
-
-    if (!empty($conditions)) {
-        $query .= " WHERE " . implode(" AND ", $conditions);
-    }
-
-    $stmt = $conn->prepare($query);
-    $stmt->execute();
-
-    if ($stmt->rowCount() > 0) {
-        foreach ($stmt->fetchAll() as $row) {
-            $c++;
-            echo '<tr style="cursor:pointer;">';
-            echo '<td style="text-align:center;">' . $c . '</td>';
-            echo '<td style="text-align:center;">' . $row['car_maker'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['line_no'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['repairing_date'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['repair_start'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['repair_end'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['time_consumed'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['defect_category'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['occurrence_process'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['parts_removed'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['quantity'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['unit_cost'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['material_cost'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['manhour_cost'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['repaired_portion_treatment'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['re_checking'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['qc_verification'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['checking_date_sign'] . '</td>';
-            echo '</tr>';
-        }
-    } else {
-        echo '<tr>';
-        echo '<td colspan="12" style="text-align:center; color:red;">No Record Found</td>';
         echo '</tr>';
     }
 }

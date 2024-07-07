@@ -49,10 +49,17 @@ $headers = array(
         'Outflow ID No.',
         'Outflow Person',
         'Defect Category',
-        'Sequence Number',
+        'Sequence No.',
+        'Assy Board No.',
         'Cause of Defect',
+        'Good Measurement',
+        'NG Measurement',
+        'Wire Type',
+        'Wire Size',
+        'Connector Cavity',
         'Detail in Content of Defect',
         'Treatment Content of Defect',
+        'Harness Status after Repair',
         'Dis-assembled/Dis-inserted by',
         'Repair Start',
         'Repair End',
@@ -86,7 +93,7 @@ $query = "SELECT
     t_defect_record_f.discovery_process,
     t_defect_record_f.discovery_id_num,
     t_defect_record_f.discovery_person,
-    t_defect_record_f.occurrence_process,
+    t_defect_record_f.occurrence_process_dr,
     t_defect_record_f.occurrence_shift,
     t_defect_record_f.occurrence_id_num,
     t_defect_record_f.occurrence_person,
@@ -94,17 +101,24 @@ $query = "SELECT
     t_defect_record_f.outflow_shift,
     t_defect_record_f.outflow_id_num,
     t_defect_record_f.outflow_person,
-    t_defect_record_f.defect_category,
+    t_defect_record_f.defect_category_dr,
     t_defect_record_f.sequence_num,
+    t_defect_record_f.assy_board_no,
     t_defect_record_f.defect_cause,
+    t_defect_record_f.good_measurement,
+    t_defect_record_f.ng_measurement,
+    t_defect_record_f.wire_type,
+    t_defect_record_f.wire_size,
+    t_defect_record_f.connector_cavity,
     t_defect_record_f.defect_detail_content,
     t_defect_record_f.defect_treatment_content,
+    t_defect_record_f.harness_status,
     t_defect_record_f.dis_assembled_by,
     t_mancost_monitoring_f.repair_start,
     t_mancost_monitoring_f.repair_end,
     t_mancost_monitoring_f.time_consumed,
-    t_mancost_monitoring_f.defect_category,
-    t_mancost_monitoring_f.occurrence_process,
+    t_mancost_monitoring_f.defect_category_mc,
+    t_mancost_monitoring_f.occurrence_process_mc,
     t_mancost_monitoring_f.parts_removed,
     t_mancost_monitoring_f.quantity,
     t_mancost_monitoring_f.unit_cost,
@@ -122,7 +136,7 @@ WHERE 1=1";
 $params = [];
 
 if ($defect_category !== '') {
-        $query .= " AND t_defect_record_f.defect_category LIKE ?";
+        $query .= " AND t_defect_record_f.defect_category_dr LIKE ?";
         $params[] = $defect_category . '%';
 }
 if ($defect_cause !== '') {
@@ -142,7 +156,7 @@ if ($discovery_process !== '') {
         $params[] = $discovery_process . '%';
 }
 if ($occurrence_process1 !== '') {
-        $query .= " AND t_defect_record_f.occurrence_process LIKE ?";
+        $query .= " AND t_defect_record_f.occurrence_process_dr LIKE ?";
         $params[] = $occurrence_process1 . '%';
 }
 if ($outflow_process !== '') {
@@ -197,7 +211,7 @@ if ($stmt->rowCount() > 0) {
                         $row['discovery_process'],
                         $row['discovery_id_num'],
                         $row['discovery_person'],
-                        $row['occurrence_process'],
+                        $row['occurrence_process_dr'],
                         $row['occurrence_shift'],
                         $row['occurrence_id_num'],
                         $row['occurrence_person'],
@@ -205,17 +219,24 @@ if ($stmt->rowCount() > 0) {
                         $row['outflow_shift'],
                         $row['outflow_id_num'],
                         $row['outflow_person'],
-                        $row['defect_category'],
+                        $row['defect_category_dr'],
                         $row['sequence_num'],
+                        $row['assy_board_no'],
                         $row['defect_cause'],
+                        $row['good_measurement'],
+                        $row['ng_measurement'],
+                        $row['wire_type'],
+                        $row['wire_size'],
+                        $row['connector_cavity'],
                         $row['defect_detail_content'],
                         $row['defect_treatment_content'],
+                        $row['harness_status'],
                         $row['dis_assembled_by'],
                         $row['repair_start'],
                         $row['repair_end'],
                         $row['time_consumed'],
-                        $row['defect_category'],
-                        $row['occurrence_process'],
+                        $row['defect_category_mc'],
+                        $row['occurrence_process_mc'],
                         $row['parts_removed'],
                         $row['quantity'],
                         $row['unit_cost'],
