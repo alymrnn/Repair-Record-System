@@ -20,13 +20,10 @@ $filename = 'Defect-and-Mancost-Record_' . date("Y-m-d") . '.csv';
 header('Content-Type: text/csv; charset=utf-8');
 header('Content-Disposition: attachment; filename="' . $filename . '";');
 
-$f = fopen('php://memory', 'w');
-
+$f = fopen('php://output', 'w');
 fputs($f, "\xEF\xBB\xBF");
 
 $delimiter = ',';
-$fields = array();
-
 $headers = array(
         'Line No',
         'Category',
@@ -64,8 +61,8 @@ $headers = array(
         'Repair Start',
         'Repair End',
         'Time Consumed (in minutes)',
-        'Defect Category',
-        'Occurrence Process',
+        'Defect Category (MC)',
+        'Occurrence Process (MC)',
         'Parts Removed',
         'Quantity',
         'Unit Cost (JPY)',
@@ -133,67 +130,67 @@ FROM t_defect_record_f
 LEFT JOIN t_mancost_monitoring_f ON t_defect_record_f.defect_id = t_mancost_monitoring_f.defect_id
 WHERE 1=1";
 
-$params = [];
+$params = array();
 
-if ($defect_category !== '') {
+if (!empty($defect_category)) {
         $query .= " AND t_defect_record_f.defect_category_dr LIKE ?";
-        $params[] = $defect_category . '%';
+        $params[] = '%' . $defect_category . '%';
 }
-if ($defect_cause !== '') {
+if (!empty($defect_cause)) {
         $query .= " AND t_defect_record_f.defect_cause LIKE ?";
-        $params[] = $defect_cause . '%';
+        $params[] = '%' . $defect_cause . '%';
 }
-if ($line_no !== '') {
+if (!empty($line_no)) {
         $query .= " AND t_defect_record_f.line_no LIKE ?";
-        $params[] = $line_no . '%';
+        $params[] = '%' . $line_no . '%';
 }
-if ($car_maker !== '') {
+if (!empty($car_maker)) {
         $query .= " AND t_defect_record_f.car_maker LIKE ?";
-        $params[] = $car_maker . '%';
+        $params[] = '%' . $car_maker . '%';
 }
-if ($discovery_process !== '') {
+if (!empty($discovery_process)) {
         $query .= " AND t_defect_record_f.discovery_process LIKE ?";
-        $params[] = $discovery_process . '%';
+        $params[] = '%' . $discovery_process . '%';
 }
-if ($occurrence_process1 !== '') {
+if (!empty($occurrence_process1)) {
         $query .= " AND t_defect_record_f.occurrence_process_dr LIKE ?";
-        $params[] = $occurrence_process1 . '%';
+        $params[] = '%' . $occurrence_process1 . '%';
 }
-if ($outflow_process !== '') {
+if (!empty($outflow_process)) {
         $query .= " AND t_defect_record_f.outflow_process LIKE ?";
-        $params[] = $outflow_process . '%';
+        $params[] = '%' . $outflow_process . '%';
 }
-if ($product_name !== '') {
+if (!empty($product_name)) {
         $query .= " AND t_defect_record_f.product_name LIKE ?";
-        $params[] = $product_name . '%';
+        $params[] = '%' . $product_name . '%';
 }
-if ($lot_no !== '') {
+if (!empty($lot_no)) {
         $query .= " AND t_defect_record_f.lot_no LIKE ?";
-        $params[] = $lot_no . '%';
+        $params[] = '%' . $lot_no . '%';
 }
-if ($serial_no !== '') {
+if (!empty($serial_no)) {
         $query .= " AND t_defect_record_f.serial_no LIKE ?";
-        $params[] = $serial_no . '%';
+        $params[] = '%' . $serial_no . '%';
 }
-if ($record_type !== '') {
+if (!empty($record_type)) {
         $query .= " AND t_defect_record_f.record_type LIKE ?";
-        $params[] = $record_type . '%';
+        $params[] = '%' . $record_type . '%';
 }
-if ($date_from !== '' && $date_to !== '') {
+if (!empty($date_from) && !empty($date_to)) {
         $query .= " AND t_defect_record_f.repairing_date BETWEEN ? AND ?";
         $params[] = $date_from;
         $params[] = $date_to;
-} elseif ($date_from !== '') {
+} elseif (!empty($date_from)) {
         $query .= " AND t_defect_record_f.repairing_date >= ?";
         $params[] = $date_from;
-} elseif ($date_to !== '') {
+} elseif (!empty($date_to)) {
         $query .= " AND t_defect_record_f.repairing_date <= ?";
         $params[] = $date_to;
 }
 
 $query .= " AND (t_defect_record_f.qc_status = 'Verified' OR t_defect_record_f.record_type = 'White Tag')";
 
-$stmt = $conn->prepare($query);
+$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 $stmt->execute($params);
 
 if ($stmt->rowCount() > 0) {
@@ -255,8 +252,6 @@ if ($stmt->rowCount() > 0) {
         exit;
 }
 
-fseek($f, 0);
-fpassthru($f);
-
+fclose($f);
 $conn = null;
 ?>

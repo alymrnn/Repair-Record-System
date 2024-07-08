@@ -12,9 +12,9 @@ $date_to = $_GET['date_to'] ?? '';
 
 $filename = 'Mancost-Record_' . date("Y-m-d") . '.csv';
 header('Content-Type: text/csv; charset=utf-8');
-header('Content-Disposition: attachment; filename="' . $filename . '";');
+header('Content-Disposition: attachment; filename="' . $filename . '"');
 
-$f = fopen('php://memory', 'w');
+$f = fopen('php://output', 'w');
 
 fputs($f, "\xEF\xBB\xBF");
 
@@ -38,7 +38,6 @@ $headers = array(
 fputcsv($f, $headers, $delimiter);
 
 $query = "SELECT
-                t_defect_record_f.id,
                 t_defect_record_f.line_no,
                 t_defect_record_f.repairing_date,
                 t_mancost_monitoring_f.repair_start,
@@ -54,77 +53,89 @@ $query = "SELECT
                 t_mancost_monitoring_f.repaired_portion_treatment
         FROM t_defect_record_f
         LEFT JOIN t_mancost_monitoring_f ON t_defect_record_f.defect_id = t_mancost_monitoring_f.defect_id
-        WHERE 1=1
-        ORDER BY t_mancost_monitoring_f.record_added_mancost_datetime ASC";
+        WHERE 1=1 ";
 
-$conditions = [];
-$params = [];
+$params = array();
+$conditions = array();
 
-if ($product_name !== '') {
-    $conditions[] = "product_name LIKE ?";
-    $params[] = $product_name . '%';
+if (!empty($product_name)) {
+    $conditions[] = "t_defect_record_f.product_name LIKE ?";
+    $params[] = '%' . $product_name . '%';
 }
-if ($lot_no !== '') {
-    $conditions[] = "lot_no LIKE ?";
-    $params[] = $lot_no . '%';
+if (!empty($lot_no)) {
+    $conditions[] = "t_defect_record_f.lot_no LIKE ?";
+    $params[] = '%' . $lot_no . '%';
 }
-if ($serial_no !== '') {
-    $conditions[] = "serial_no LIKE ?";
-    $params[] = $serial_no . '%';
+if (!empty($serial_no)) {
+    $conditions[] = "t_defect_record_f.serial_no LIKE ?";
+    $params[] = '%' . $serial_no . '%';
 }
-if ($record_type !== '') {
-    $conditions[] = "record_type LIKE ?";
-    $params[] = $record_type . '%';
+if (!empty($record_type)) {
+    $conditions[] = "t_defect_record_f.record_type LIKE ?";
+    $params[] = '%' . $record_type . '%';
 }
-if ($line_no !== '') {
-    $conditions[] = "line_no LIKE ?";
-    $params[] = $line_no . '%';
+if (!empty($line_no)) {
+    $conditions[] = "t_defect_record_f.line_no LIKE ?";
+    $params[] = '%' . $line_no . '%';
 }
-if ($date_from !== '' && $date_to !== '') {
-    $conditions[] = "repairing_date BETWEEN ? AND ?";
+if (!empty($date_from) && !empty($date_to)) {
+    $conditions[] = "t_defect_record_f.repairing_date BETWEEN ? AND ?";
     $params[] = $date_from;
     $params[] = $date_to;
-} elseif ($date_from !== '') {
-    $conditions[] = "repairing_date >= ?";
+} elseif (!empty($date_from)) {
+    $conditions[] = "t_defect_record_f.repairing_date >= ?";
     $params[] = $date_from;
-} elseif ($date_to !== '') {
-    $conditions[] = "repairing_date <= ?";
+} elseif (!empty($date_to)) {
+    $conditions[] = "t_defect_record_f.repairing_date <= ?";
     $params[] = $date_to;
 }
 
-if (count($conditions) > 0) {
+if (!empty($conditions)) {
     $query .= ' AND ' . implode(' AND ', $conditions);
 }
 
-$stmt = $conn->prepare($query);
-$stmt->execute($params);
+$query .= " ORDER BY t_mancost_monitoring_f.record_added_mancost_datetime ASC";
 
-if ($stmt->rowCount() > 0) {
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $lineData = array(
-            $row['line_no'],
-            $row['repairing_date'],
-            $row['repair_start'],
-            $row['repair_end'],
-            $row['time_consumed'],
-            $row['defect_category_mc'],
-            $row['occurrence_process_mc'],
-            $row['parts_removed'],
-            $row['quantity'],
-            $row['unit_cost'],
-            $row['material_cost'],
-            $row['manhour_cost'],
-            $row['repaired_portion_treatment'],
-        );
-        fputcsv($f, $lineData, $delimiter);
+$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+
+for ($i = 0; $i < count($params); $i++) {
+    $paramValue = $params[$i];
+    $paramType = PDO::PARAM_STR; 
+
+    if (strtotime($paramValue) !== false) {
+        $paramType = PDO::PARAM_STR;
     }
-} else {
-    echo 'NO RECORD FOUND';
-    exit;
+
+    $stmt->bindValue($i + 1, $paramValue, $paramType);
 }
 
-fseek($f, 0);
-fpassthru($f);
+try {
+    if ($stmt->execute()) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $lineData = array(
+                $row['line_no'],
+                $row['repairing_date'],
+                $row['repair_start'],
+                $row['repair_end'],
+                $row['time_consumed'],
+                $row['defect_category_mc'],
+                $row['occurrence_process_mc'],
+                $row['parts_removed'],
+                $row['quantity'],
+                $row['unit_cost'],
+                $row['material_cost'],
+                $row['manhour_cost'],
+                $row['repaired_portion_treatment'],
+            );
+            fputcsv($f, $lineData, $delimiter);
+        }
+    } else {
+        echo 'NO RECORD FOUND';
+    }
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
 
-$conn = null;
+fclose($f);
+exit;
 ?>
