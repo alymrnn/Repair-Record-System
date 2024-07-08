@@ -607,8 +607,8 @@
             <thead style="text-align: center;">
                 <tr>
                     <th>#</th>
-                    <th>Car Maker</th>
                     <th>Line No.</th>
+                    <th>Car Maker</th>
                     <th>Category</th>
                     <th>Repair Start</th>
                     <th>Repair End</th>
@@ -739,7 +739,7 @@
 
     $(document).ready(function () {
         // Disable all input fields by default
-        $("#line_no, #line_category_dr, #date_detected, #na_date_detected, #issue_tag, #repairing_date, #car_maker, #product_name, #lot_no, #serial_no, #discovery_process_dr, #discovery_id_no_dr, #discovery_person, #occurrence_process_dr, #occurrence_shift_dr, #occurrence_id_no_dr, #occurrence_person, #outflow_process_dr, #outflow_shift_dr, #outflow_id_no_dr, #outflow_person, #defect_category_dr, #sequence_no, #assy_board_no_dr, #good_measurement_dr, #ng_measurement_dr, #wire_type_dr, #wire_size_dr, #connector_cavity_dr, #harness_status_dr, #defect_cause_dr, #repair_person_dr, #detail_content_defect, #treatment_content_defect, #repair_start_mc, #repair_end_mc, #time_consumed_mc, #defect_category_mc, #occurrence_process_mc, #manhour_cost_mc, #parts_removed_mc, #quantity_mc, #unit_cost_mc, #material_cost_mc, #portion_treatment").prop('disabled', true);
+        $("#line_no, #line_category_dr, #date_detected, #na_repairing_date, #issue_tag, #repairing_date, #car_maker, #product_name, #lot_no, #serial_no, #discovery_process_dr, #discovery_id_no_dr, #discovery_person, #occurrence_process_dr, #occurrence_shift_dr, #occurrence_id_no_dr, #occurrence_person, #outflow_process_dr, #outflow_shift_dr, #outflow_id_no_dr, #outflow_person, #defect_category_dr, #sequence_no, #assy_board_no_dr, #good_measurement_dr, #ng_measurement_dr, #wire_type_dr, #wire_size_dr, #connector_cavity_dr, #harness_status_dr, #defect_cause_dr, #repair_person_dr, #detail_content_defect, #treatment_content_defect, #repair_start_mc, #repair_end_mc, #time_consumed_mc, #defect_category_mc, #occurrence_process_mc, #manhour_cost_mc, #parts_removed_mc, #quantity_mc, #unit_cost_mc, #material_cost_mc, #portion_treatment").prop('disabled', true);
 
         // add change event listener to radio buttons
         $("input[name='record_type']").change(function () {
@@ -752,17 +752,18 @@
             if ($(this).val() === "Mancost Only") {
                 // If 'Mancost Only' is selected, fill the form with n/a and disable the fields
                 $("#line_no").prop('disabled', false).val('');
-                $("#line_category_dr").prop('disabled', false).val('');
-                $("#issue_tag").prop('disabled', false).val('');
-                $("#repairing_date").prop('disabled', false).val('');
+                $("#line_category_dr").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
+                $("#issue_tag").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
+                $("#date_detected").prop('disabled', false).val('');
                 $("#defect_category_dr").prop('disabled', false).val('');
-                // $("#car_maker").prop('disabled', false).val('');
-                $("#product_name").prop('disabled', false).val('');
-                $("#lot_no").prop('disabled', false).val('');
-                $("#serial_no").prop('disabled', false).val('');
+                $("#car_maker").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
+                $("#qr_scan").prop('disabled', true).val('').css('background-color', '#D3D3D3');
+                $("#product_name").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
+                $("#lot_no").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
+                $("#serial_no").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
 
-                $("#date_detected").prop('type', 'text').prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
-                $("#na_date_detected").prop('disabled', false).val('N/A').css('background-color', '#D3D3D3');
+                $("#repairing_date").prop('type', 'text').prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
+                $("#na_repairing_date").prop('disabled', false).val('N/A').css('background-color', '#D3D3D3');
                 $("#discovery_process_dr").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
                 $("#discovery_id_no_dr").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
                 $("#discovery_person").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
@@ -775,10 +776,17 @@
                 $("#outflow_id_no_dr").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
                 $("#outflow_person").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
                 $("#sequence_no").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
+                $("#assy_board_no_dr").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
                 $("#defect_cause_dr").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
+                $("#good_measurement_dr").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
+                $("#ng_measurement_dr").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
+                $("#wire_type_dr").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
+                $("#wire_size_dr").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
+                $("#connector_cavity_dr").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
                 $("#repair_person_dr").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
                 $("#detail_content_defect").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
                 $("#treatment_content_defect").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
+                $("#harness_status_dr").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
 
                 $("#repair_start_mc").prop('type', 'time').prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#na_repair_start").prop('disabled', true).val('').css('background-color', '#FFF');
@@ -803,7 +811,7 @@
                 $("#line_no").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#line_category_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#date_detected").prop('type', 'date').prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#na_date_detected").prop('disabled', true).val('').css('background-color', '#FFF');
+                $("#na_repairing_date").prop('disabled', true).val('').css('background-color', '#FFF');
                 $("#issue_tag").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#repairing_date").prop('disabled', false).val(current_date).css('background-color', '#FFF');
                 // $("#car_maker").prop('disabled', false).val('').css('background-color', '#FFF');
@@ -860,7 +868,7 @@
                 $("#line_no").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#line_category_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#date_detected").prop('type', 'date').prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#na_date_detected").prop('disabled', true).val('').css('background-color', '#FFF');
+                $("#na_repairing_date").prop('disabled', true).val('').css('background-color', '#FFF');
                 $("#issue_tag").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#repairing_date").prop('disabled', false).val(current_date).css('background-color', '#FFF');
                 // $("#car_maker").prop('disabled', false).val('').css('background-color', '#FFF');
@@ -918,7 +926,7 @@
                 $("#line_no").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#line_category_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#date_detected").prop('type', 'date').prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#na_date_detected").prop('disabled', true).val('').css('background-color', '#FFF');
+                $("#na_repairing_date").prop('disabled', true).val('').css('background-color', '#FFF');
                 $("#issue_tag").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#repairing_date").prop('disabled', false).val(current_date).css('background-color', '#FFF');
                 // $("#car_maker").prop('disabled', false).val('').css('background-color', '#FFF');
@@ -1552,11 +1560,28 @@
     //     handle_qr_scan();
     // });
 
+    // function handle_line_no_change(line_no) {
+    //     update_car_maker(line_no);
+    //     update_issue_tag(line_no);
+    // }
+
+    // Function to handle changes in line number
     function handle_line_no_change(line_no) {
-        update_car_maker(line_no);
-        update_issue_tag(line_no);
+        var record_type = $('input[name="record_type"]:checked').val(); // Get the selected record type
+
+        if (record_type !== "Mancost Only") {
+            update_car_maker(line_no);
+            update_issue_tag(line_no, record_type); // Pass line_no and record_type to update_issue_tag
+        } else {
+            // Set car maker and issue tag to N/A if record type is "Mancost Only"
+            var car_maker_input = document.getElementById("car_maker");
+            var issue_tag_input = document.getElementById("issue_tag");
+            car_maker_input.value = 'N/A';
+            issue_tag_input.value = 'N/A';
+        }
     }
 
+    // Function to update the car maker based on line number
     function update_car_maker(line_no) {
         var car_maker_input = document.getElementById("car_maker");
 
@@ -1587,19 +1612,12 @@
         }
     }
 
-    document.getElementById("line_no").addEventListener("input", function () {
-        handle_line_no_change(this.value);
-    });
-
-    document.getElementById("line_no").addEventListener("input", function () {
-        update_issue_tag(this.value);
-    });
-
-    function update_issue_tag(line_no) {
+    function update_issue_tag(line_no, record_type) {
+        var record_type = $('input[name="record_type"]:checked').val();
         var issue_tag_input = document.getElementById("issue_tag");
 
-        if (line_no.trim() === '') {
-            issue_tag_input.value = '';
+        if (line_no.trim() === '' || record_type === "Mancost Only") {
+            issue_tag_input.value = 'N/A';
             return;
         }
 
@@ -1609,10 +1627,10 @@
             cache: false,
             data: {
                 method: 'get_issue_tag',
-                line_no: line_no
+                line_no: line_no,
+                record_type: record_type
             },
             success: function (response) {
-                // console.log('Response:', response);
                 try {
                     var result = JSON.parse(response);
                     if (result.error) {
@@ -1639,6 +1657,34 @@
         });
     }
 
+    // Add event listeners for radio buttons
+    document.querySelectorAll('input[name="record_type"]').forEach(function (radio) {
+        radio.addEventListener('change', function () {
+            var record_type = this.value;
+            var line_no = document.getElementById("line_no").value;
+            if (record_type === "Mancost Only") {
+                document.getElementById("car_maker").value = "N/A";
+                document.getElementById("issue_tag").value = "N/A";
+            } else {
+                update_car_maker(line_no);
+                update_issue_tag(line_no, record_type);
+            }
+        });
+    });
+
+    // Trigger the update when line_no is changed
+    document.getElementById("line_no").addEventListener("input", function () {
+        var line_no = this.value;
+        var record_type = document.querySelector('input[name="record_type"]:checked').value;
+        if (record_type === "Mancost Only") {
+            document.getElementById("car_maker").value = "N/A";
+            document.getElementById("issue_tag").value = "N/A";
+        } else {
+            update_car_maker(line_no);
+            update_issue_tag(line_no, record_type);
+        }
+    });
+
     // function get_issue_tag_no(line_no) {
     //     if (!getIssueTag.counter) {
     //         getIssueTag.counter = 1;
@@ -1662,7 +1708,7 @@
         $("#line_no").prop('disabled', true).val('').css('background-color', '#FFF');
         $("#line_category_dr").prop('disabled', true).val('').css('background-color', '#FFF');
         $("#date_detected").prop('type', 'date').prop('disabled', true).val('').css('background-color', '#FFF');
-        $("#na_date_detected").prop('disabled', true).val('').css('background-color', '#FFF');
+        $("#na_repairing_date").prop('disabled', true).val('').css('background-color', '#FFF');
         $("#issue_tag").prop('disabled', true).val('').css('background-color', '#F1F1F1');
         $("#repairing_date").prop('disabled', true).val('').css('background-color', '#FFF');
         $("#car_maker").prop('disabled', true).val('').css('background-color', '#F1F1F1');

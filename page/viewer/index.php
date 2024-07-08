@@ -135,7 +135,7 @@ include ('plugins/navbar/index_navbar.php');
                   <select name="search_v_defect_cause" id="search_v_defect_cause" autocomplete="off"
                     style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
                     class="pl-1" required>
-                    <option value="">Select cause of defect</option>
+                    <option value="" disabled selected>Select cause of defect</option>
                     <option value="Jig">Jig</option>
                     <option value="Method">Method</option>
                     <option value="N/A">N/A</option>

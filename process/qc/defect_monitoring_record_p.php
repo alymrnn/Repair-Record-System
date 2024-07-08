@@ -81,7 +81,7 @@ if ($method == 'fetch_opt_search_ad_record_type') {
     $stmt = $conn->prepare($query);
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="">Select record type</option>';
+        echo '<option value="" disabled selected>Select record type</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['record_name']) . '</option>';
         }
@@ -527,8 +527,8 @@ if ($method == 'load_qc_mancost_table_data') {
             \'' . $row['remarks'] . '\',\'' . $row['defect_id'] . '\')">';
 
             echo '<td style="text-align:center;">' . $c . '</td>';
-            echo '<td style="text-align:center;">' . $row['car_maker'] . '</td>';
             echo '<td style="text-align:center;">' . $row['line_no'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['car_maker'] . '</td>';
             echo '<td style="text-align:center;">' . $row['category'] . '</td>';
             echo '<td style="text-align:center;">' . $row['repair_start'] . '</td>';
             echo '<td style="text-align:center;">' . $row['repair_end'] . '</td>';

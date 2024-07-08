@@ -155,13 +155,13 @@
 
             <div class="col-12 col-sm-4 col-md-2 mb-2">
               <!-- add mancost only button -->
-              <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
+              <!-- <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
               <button class="btn btn-block d-flex justify-content-left" data-toggle="modal"
                 data-target="#"
                 style="color:#fff;height:34px;border-radius:.25rem;background: #004B7E;font-size:15px;font-weight:normal;"
                 onmouseover="this.style.backgroundColor='#003356'; this.style.color='#FFF';"
                 onmouseout="this.style.backgroundColor='#004B7E'; this.style.color='#FFF';"><i
-                  class="fas fa-plus-circle" style="margin-top: 2px;"></i>&nbsp;&nbsp;Add Mancost Only</button>
+                  class="fas fa-plus-circle" style="margin-top: 2px;"></i>&nbsp;&nbsp;Add Mancost Only</button> -->
             </div>
             <div class="col-12 col-sm-2">
               <!-- add defect record and mancost monitoring button -->

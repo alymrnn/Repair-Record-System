@@ -10,7 +10,7 @@ if ($method == 'fetch_opt_record_type_dr') {
     $stmt = $conn->prepare($query);
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="">Record Type</option>';
+        echo '<option value="" disabled selected>Record Type</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['record_name']) . '</option>';
         }
@@ -655,8 +655,8 @@ if ($method == 'load_mancost_table_data') {
                 . $row['unit_cost'] . '~!~' . $row['material_cost'] . '~!~' . $row['manhour_cost'] . '~!~' . $row['repaired_portion_treatment'] . '~!~'
                 . $row['defect_id'] . '\')">';
             echo '<td style="text-align:center;">' . $c . '</td>';
-            echo '<td style="text-align:center;">' . $row['car_maker'] . '</td>';
             echo '<td style="text-align:center;">' . $row['line_no'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['car_maker'] . '</td>';
             echo '<td style="text-align:center;">' . $row['category'] . '</td>';
             echo '<td style="text-align:center;">' . $row['repair_start'] . '</td>';
             echo '<td style="text-align:center;">' . $row['repair_end'] . '</td>';
@@ -1414,39 +1414,76 @@ if ($method == 'add_multiple_mancost') {
 
 // get issue tag
 if ($method == 'get_issue_tag') {
+    // $line_no = filter_var($_POST['line_no'], FILTER_SANITIZE_STRING);
+    // $padded_line_no = str_pad($line_no, 4, '0', STR_PAD_LEFT);
+
+    // try {
+    //     // Begin a transaction
+    //     $conn->beginTransaction();
+
+    //     // Check if there are any records for the current month and year for the given line number
+    //     $check_records_query = "SELECT COUNT(*) FROM t_defect_record_f WHERE line_no = ? AND MONTH(record_added_defect_datetime) = MONTH(CURDATE()) AND YEAR(record_added_defect_datetime) = YEAR(CURDATE())";
+    //     $stmt_check_records = $conn->prepare($check_records_query);
+    //     $stmt_check_records->execute([$padded_line_no]);
+    //     $total_records = $stmt_check_records->fetchColumn();
+
+    //     // Reset issue number to 1 if there are no records or if the month has changed
+    //     if ($total_records == 0 || $total_records === false) {
+    //         $issue_no = 1;
+    //     } else {
+    //         // Increment the count of records by 1 to get the next issue tag number
+    //         $issue_no = $total_records + 1;
+    //     }
+
+    //     // Commit the transaction
+    //     $conn->commit();
+
+    //     // Debugging output
+    //     error_log("Line No: $padded_line_no, Total Records: $total_records, Next Issue No: $issue_no");
+
+    //     echo json_encode(['issue_no' => $issue_no]);  // Return JSON response
+    // } catch (Exception $e) {
+    //     // Rollback the transaction in case of error
+    //     $conn->rollBack();
+    //     error_log("Error: " . $e->getMessage());
+    //     echo json_encode(['error' => 'error']);  // Return JSON error response
+    // }
+    // exit();
+
+    // $record_type = filter_var($_POST['record_type'], FILTER_SANITIZE_STRING);
     $line_no = filter_var($_POST['line_no'], FILTER_SANITIZE_STRING);
     $padded_line_no = str_pad($line_no, 4, '0', STR_PAD_LEFT);
 
     try {
-        // Begin a transaction
         $conn->beginTransaction();
 
-        // Check if there are any records for the current month and year for the given line number
-        $check_records_query = "SELECT COUNT(*) FROM t_defect_record_f WHERE line_no = ? AND MONTH(record_added_defect_datetime) = MONTH(CURDATE()) AND YEAR(record_added_defect_datetime) = YEAR(CURDATE())";
+        // $check_records_query = "SELECT COUNT(*) FROM t_defect_record_f WHERE line_no = ? AND MONTH(record_added_defect_datetime) = MONTH(CURDATE()) AND YEAR(record_added_defect_datetime) = YEAR(CURDATE())";
+
+        $check_records_query = "SELECT COUNT(*) FROM t_defect_record_f 
+                                WHERE line_no = ? 
+                                AND record_type IN ('Defect and Mancost', 'Defect Only', 'White Tag') 
+                                AND MONTH(record_added_defect_datetime) = MONTH(CURDATE()) 
+                                AND YEAR(record_added_defect_datetime) = YEAR(CURDATE())";
+
         $stmt_check_records = $conn->prepare($check_records_query);
         $stmt_check_records->execute([$padded_line_no]);
         $total_records = $stmt_check_records->fetchColumn();
 
-        // Reset issue number to 1 if there are no records or if the month has changed
-        if ($total_records == 0 || $total_records === false) {
-            $issue_no = 1;
-        } else {
-            // Increment the count of records by 1 to get the next issue tag number
-            $issue_no = $total_records + 1;
+        if ($total_records === false) {
+            $total_records = 0;
         }
 
-        // Commit the transaction
+        $issue_no = $total_records + 1;
+
         $conn->commit();
 
-        // Debugging output
         error_log("Line No: $padded_line_no, Total Records: $total_records, Next Issue No: $issue_no");
 
-        echo json_encode(['issue_no' => $issue_no]);  // Return JSON response
+        echo json_encode(['issue_no' => $issue_no]);
     } catch (Exception $e) {
-        // Rollback the transaction in case of error
         $conn->rollBack();
         error_log("Error: " . $e->getMessage());
-        echo json_encode(['error' => 'error']);  // Return JSON error response
+        echo json_encode(['error' => 'error']);
     }
     exit();
 }
@@ -1586,28 +1623,35 @@ if ($method == 'get_update_issue_tag') {
     $padded_line_no = str_pad($line_no, 4, '0', STR_PAD_LEFT);
 
     try {
+        // Begin a transaction
         $conn->beginTransaction();
 
+        // Check if there are any records for the current month and year for the given line number
         $check_records_query = "SELECT COUNT(*) FROM t_defect_record_f WHERE line_no = ? AND MONTH(record_added_defect_datetime) = MONTH(CURDATE()) AND YEAR(record_added_defect_datetime) = YEAR(CURDATE())";
         $stmt_check_records = $conn->prepare($check_records_query);
         $stmt_check_records->execute([$padded_line_no]);
         $total_records = $stmt_check_records->fetchColumn();
 
-        if ($total_records === false) {
-            $total_records = 0;
+        // Reset issue number to 1 if there are no records or if the month has changed
+        if ($total_records == 0 || $total_records === false) {
+            $issue_no = 1;
+        } else {
+            // Increment the count of records by 1 to get the next issue tag number
+            $issue_no = $total_records + 1;
         }
 
-        $issue_no = $total_records + 1;
-
+        // Commit the transaction
         $conn->commit();
 
+        // Debugging output
         error_log("Line No: $padded_line_no, Total Records: $total_records, Next Issue No: $issue_no");
 
-        echo json_encode(['issue_no' => $issue_no]);
+        echo json_encode(['issue_no' => $issue_no]);  // Return JSON response
     } catch (Exception $e) {
+        // Rollback the transaction in case of error
         $conn->rollBack();
         error_log("Error: " . $e->getMessage());
-        echo json_encode(['error' => 'error']);
+        echo json_encode(['error' => 'error']);  // Return JSON error response
     }
     exit();
 }

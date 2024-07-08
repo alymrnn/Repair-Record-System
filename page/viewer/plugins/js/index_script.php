@@ -502,8 +502,8 @@
             <thead style="text-align: center;">
                 <tr>
                     <th>#</th>
-                    <th>Car Maker</th>
                     <th>Line No.</th>
+                    <th>Car Maker</th>
                     <th>Category</th>
                     <th>Repair Start</th>
                     <th>Repair End</th>

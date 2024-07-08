@@ -9,7 +9,7 @@ if ($method == 'fetch_opt_search_v_defect_category') {
     $stmt = $conn->prepare($query);
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="">Select defect category</option>';
+        echo '<option value="" disabled selected>Select defect category</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['defect_category_ng_content']) . '</option>';
         }
@@ -24,7 +24,7 @@ if ($method == 'fetch_opt_search_v_discovery_process') {
     $stmt = $conn->prepare($query);
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="">Select discovery process</option>';
+        echo '<option value="" disabled selected>Select discovery process</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['discovery_process']) . '</option>';
         }
@@ -39,7 +39,7 @@ if ($method == 'fetch_opt_search_v_occurrence_process') {
     $stmt = $conn->prepare($query);
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="">Select occurrence process</option>';
+        echo '<option value="" disabled selected>Select occurrence process</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['occurrence_process']) . '</option>';
         }
@@ -54,7 +54,7 @@ if ($method == 'fetch_opt_search_v_outflow_process') {
     $stmt = $conn->prepare($query);
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="">Select outflow process</option>';
+        echo '<option value="" disabled selected>Select outflow process</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['outflow_process']) . '</option>';
         }
@@ -69,7 +69,7 @@ if ($method == 'fetch_opt_search_v_car_maker') {
     $stmt = $conn->prepare($query);
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="">Select car maker</option>';
+        echo '<option value="" disabled selected>Select car maker</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['car_maker']) . '</option>';
         }
@@ -83,7 +83,7 @@ if ($method == 'fetch_opt_search_v_record_type') {
     $stmt = $conn->prepare($query);
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="">Select record type</option>';
+        echo '<option value="" disabled selected>Select record type</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['record_name']) . '</option>';
         }
@@ -477,8 +477,8 @@ if ($method == 'load_viewer_mancost_table_data') {
 
             echo '<tr style="cursor:pointer;" class="' . $row_class . '">';
             echo '<td style="text-align:center;">' . $c . '</td>';
-            echo '<td style="text-align:center;">' . $row['car_maker'] . '</td>';
             echo '<td style="text-align:center;">' . $row['line_no'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['car_maker'] . '</td>';
             echo '<td style="text-align:center;">' . $row['category'] . '</td>';
             echo '<td style="text-align:center;">' . $row['repair_start'] . '</td>';
             echo '<td style="text-align:center;">' . $row['repair_end'] . '</td>';
