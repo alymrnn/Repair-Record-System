@@ -129,7 +129,7 @@ if ($method == 'search_account_list') {
               WHERE role = 'QC' 
               AND emp_no LIKE :emp_no_search 
               AND full_name LIKE :full_name_search 
-              ORDER BY emp_no 
+              ORDER BY date_updated DESC 
               OFFSET :page_first_result ROWS
               FETCH NEXT :results_per_page ROWS ONLY";
 

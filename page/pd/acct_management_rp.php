@@ -23,7 +23,7 @@
   <!-- Main content -->
   <section class="content">
     <div class="col-md-12">
-      <div class="card card-light" style="background: #fff; border-top: 2px solid #2D7AC0;">
+      <div class="card card-light" style="background: #fff; border-top: 1px solid #2D7AC0;">
         <div class="card-header">
           <h3 class="card-title"><img src="../../dist/img/acct-user.png" style="height:28px;">&ensp;Account Management
             Table</h3>
@@ -109,7 +109,7 @@
           </div>
           <div class="d-flex justify-content-sm-center">
             <button type="button" class="btn" style="background: #032b43; color: #fff;" id="btnNextPage"
-              onclick="get_next_page()" onclick="get_next_page()"
+              onclick="get_next_page()"
               onmouseover="this.style.backgroundColor='#032031'; this.style.color='#FFF';"
               onmouseout="this.style.backgroundColor='#032b43'; this.style.color='#FFF';">Load more</button>
           </div>

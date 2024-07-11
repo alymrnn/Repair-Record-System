@@ -26,7 +26,7 @@ include ('plugins/navbar/index_navbar.php');
   <!-- Main content -->
   <section class="content">
     <div class="col-12 col-md-12 m-0 p-0">
-      <div class="card" style="border-top: 2px solid #E89F4C;">
+      <div class="card" style="border-top: 1px solid #E89F4C;">
         <div class="card-header">
           <h3 class="card-title"><img src="../../dist/img/view.png" style="height:28px;">&ensp;Viewer Table</h3>
           <div class="card-tools">
@@ -172,7 +172,7 @@ include ('plugins/navbar/index_navbar.php');
                     style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"
                     onmouseover="this.style.backgroundColor='#1B5541'; this.style.color='#FFF';"
                     onmouseout="this.style.backgroundColor='#226F54'; this.style.color='#FFF';">
-                    <i class="fas fa-search" style="margin-top: 2px;"></i>&nbsp;&nbsp;Search</button>
+                    <i class="fas fa-search" style="margin-top: 2px;"></i>&nbsp;Search</button>
                 </div>
                 <div class=" col-12 col-sm-4 col-md-2 mb-2">
                   <!-- export button -->
@@ -181,7 +181,7 @@ include ('plugins/navbar/index_navbar.php');
                     style="color:#fff;height:34px;border-radius:.25rem;background: #0267c1;font-size:15px;font-weight:normal;"
                     onmouseover="this.style.backgroundColor='#024E92'; this.style.color='#FFF';"
                     onmouseout="this.style.backgroundColor='#0267c1'; this.style.color='#FFF';"><i
-                      class="fas fa-download" style="margin-top: 2px;"></i>&nbsp;&nbsp;Export</button>
+                      class="fas fa-download" style="margin-top: 2px;"></i>&nbsp;Export</button>
                 </div>
                 <div class="col-12 col-sm-4 col-md-1 mb-2">
                   <!-- clear all button -->
@@ -190,7 +190,7 @@ include ('plugins/navbar/index_navbar.php');
                     style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;"
                     onmouseover="this.style.backgroundColor='#2D2D2D'; this.style.color='#FFF';"
                     onmouseout="this.style.backgroundColor='#474747'; this.style.color='#FFF';">
-                    <i class="fas fa-trash" style="margin-top: 2px;"></i>&nbsp;&nbsp;Clear All</button>
+                    <i class="fas fa-trash" style="margin-top: 2px;"></i>&nbsp;Clear All</button>
                 </div>
                 <div class="col-12 col-sm-4 col-md-1 mb-2">
                   <!-- refresh button -->
@@ -199,7 +199,7 @@ include ('plugins/navbar/index_navbar.php');
                     style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;"
                     onmouseover="this.style.backgroundColor='#2D2D2D'; this.style.color='#FFF';"
                     onmouseout="this.style.backgroundColor='#474747'; this.style.color='#FFF';">
-                    <i class="fas fa-sync-alt" style="margin-top: 2px;"></i>&nbsp;&nbsp;Refresh</button>
+                    <i class="fas fa-sync-alt" style="margin-top: 2px;"></i>&nbsp;Refresh</button>
                 </div>
               </div>
               <br>

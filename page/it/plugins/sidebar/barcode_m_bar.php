@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <a href="acct_management_m.php" class="brand-link">
         <img src="../../dist/img/tool-box.png" alt="Logo" class="brand-image" style="opacity: .8;">
-        <span class="brand-text" style="font-size:17px;color:black">Repair Record System</span>
+        <span class="brand-text" style="font-size:15px;color:black">Repair Record System</span>
     </a>
 
     <!-- Sidebar -->

@@ -50,10 +50,11 @@
                         <label style="font-weight: normal;color: #000;">User Type</label>
                         <select id="user_type" class="form_control pl-2"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;">
-                            <option value="">Select User Type</option>
-                            <option value="PD">PD</option>
-                            <option value="QC">QC</option>
+                            <option value="" selected disabled>Select User Type</option>
                             <option value="IT">IT</option>
+                            <option value="PD">PD</option>
+                            <option value="QA">QA</option>
+                            <option value="QC">QC</option>
                         </select>
                     </div>
                     <div class="col-3">

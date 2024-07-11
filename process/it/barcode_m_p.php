@@ -7,7 +7,7 @@ if ($method == 'qr_setting_list') {
     $c = 0;
 
     $query = "SELECT * FROM m_car_maker";
-    $stmt = $conn->prepare($query);
+    $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
         foreach ($stmt->fetchALL() as $row) {
@@ -49,9 +49,9 @@ if ($method == 'register_setting') {
         echo 'Already Exist';
     } else {
         $stmt = NULL;
-        $query = "INSERT INTO m_car_maker (`car_maker`,`car_value`,`product_name_start`,`product_name_length`,`lot_no_start`,`lot_no_length`,`serial_no_start`,`serial_no_length`) VALUES ('$car_maker','$car_value','$pro_name_start','$pro_name_length','$lot_no_start','$lot_no_length','$serial_no_start','$serial_no_length')";
+        $query = "INSERT INTO m_car_maker (car_maker,car_value,product_name_start,product_name_length,lot_no_start,lot_no_length,serial_no_start,serial_no_length) VALUES ('$car_maker','$car_value','$pro_name_start','$pro_name_length','$lot_no_start','$lot_no_length','$serial_no_start','$serial_no_length')";
 
-        $stmt = $conn->prepare($query);
+        $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
         if ($stmt->execute()) {
             echo 'success';
         } else {
@@ -73,7 +73,7 @@ if ($method == 'update_setting') {
 
     $query = "UPDATE m_car_maker SET car_maker = '$car_maker', car_value = '$car_value', product_name_start = '$pro_name_start', product_name_length = '$pro_name_length', lot_no_start = '$lot_no_start', lot_no_length = '$lot_no_length', serial_no_start = '$serial_no_start', serial_no_length = '$serial_no_length' WHERE id = '$id'";
 
-    $stmt = $conn->prepare($query);
+    $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 
     if ($stmt->execute()) {
         echo 'success';
@@ -87,7 +87,7 @@ if ($method == 'delete_setting') {
     $id = $_POST['id'];
 
     $query = "DELETE FROM m_car_maker WHERE id = $id";
-    $stmt = $conn->prepare($query);
+    $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     if ($stmt->execute()) {
         echo 'success';
     } else {

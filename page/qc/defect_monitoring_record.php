@@ -23,7 +23,7 @@
   <!-- Main content -->
   <section class="content">
     <div class="col-md-12">
-      <div class="card card-light" style="background: #FFF; border-top: 2px solid #2D7AC0;">
+      <div class="card card-light" style="background: #FFF; border-top: 1px solid #2D7AC0;">
         <div class="card-header">
           <h3 class="card-title"><img src="../../dist/img/settings.png" style="height:28px;">&ensp;Records Monitoring
             Table</h3>

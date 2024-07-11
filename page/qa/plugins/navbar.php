@@ -1,6 +1,25 @@
 <?php
-//SESSION
+// SESSION
 include '../../process/login.php';
+include '../../process/conn.php';
+
+// query for deleting the 'add' status when refreshed
+function delete_added_record($record_added_by, $conn)
+{
+    try {
+        $query = "DELETE FROM t_mancost_monitoring_f WHERE record_added_by = ? AND status = 'Added'";
+        $stmt = $conn->prepare($query);
+        $params = array($record_added_by);
+        $stmt->execute($params);
+
+        // Log success or any relevant information
+        error_log('Records deleted successfully.');
+
+    } catch (Exception $e) {
+        // Log the error
+        error_log('Error deleting records: ' . $e->getMessage());
+    }
+}
 
 if (!isset($_SESSION['emp_no'])) {
     header('location:../../');
@@ -8,15 +27,17 @@ if (!isset($_SESSION['emp_no'])) {
 } else if ($_SESSION['role'] == 'QC') {
     header('location: ../../page/qc/defect_monitoring_record.php');
     exit;
+} else if ($_SESSION['role'] == 'IT') {
+    header('location: ../../page/it/barcode_m.php');
+    exit;
 } else if ($_SESSION['role'] == 'PD') {
-    header('location: ../../page/pd/defect_monitoring_record_rp.php');
+    header('location: ../../page/qa/defect_monitoring_record_rp.php');
     exit;
-} else if ($_SESSION['role'] == 'QA') {
-    header('location: ../../page/qa/defect_monitoring_record_qa.php');
-    exit;
-  }
+}
 
+delete_added_record($_SESSION['full_name'], $conn);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -100,7 +121,6 @@ if (!isset($_SESSION['emp_no'])) {
             position: fixed;
             right: 15px;
             bottom: 15px;
-            /* border: 3px solid #332D2D; */
             border: none;
             background: none;
             border-radius: 15%;
@@ -113,14 +133,16 @@ if (!isset($_SESSION['emp_no'])) {
         }
 
         .return-to-top:hover {
-            /* border: 3px solid #3B71CA; */
             border: none;
-            /* background: #3B71CA; */
         }
 
         .nav-icon-top:hover {
             color: #2b2b2b;
             opacity: 1.0;
+        }
+
+        .error-text {
+            border: 1px solid #ECA843;
         }
     </style>
 </head>
@@ -130,15 +152,15 @@ if (!isset($_SESSION['emp_no'])) {
 
         <!-- Preloader -->
         <!-- <div class="preloader flex-column justify-content-center align-items-center" style="background: #00375C;">
-      <img class="animation__shake" src="../../dist/img/tool-box.png" alt="logo" height="100" width="100">
-    </div> -->
+            <img class="animation__shake" src="../../dist/img/tool-box.png" alt="logo" height="100" width="100">
+        </div> -->
 
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white" style="background: #343a40;">
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background: #3066be;">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button" style="color: #fff;"><i
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button" style="color: white;"><i
                             class="fas fa-bars"></i></a>
                 </li>
             </ul>
@@ -146,7 +168,7 @@ if (!isset($_SESSION['emp_no'])) {
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="fullscreen" href="#" role="button" style="color: #fff;">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button" style="color: white;">
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
                 </li>

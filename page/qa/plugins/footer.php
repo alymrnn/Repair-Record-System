@@ -7,12 +7,10 @@
 <?php
 //MODALS
 include '../../modals/logout_modal.php';
-include '../../modals/add_defect_mancost.php';
-include '../../modals/add_defect_mancost_2.php';
-include '../../modals/update_defect_mancost_pd.php';
+include '../../modals/add_defect_qa.php';
 
 include '../../modals/add_account.php';
-include '../../modals/update_account.php';
+include '../../modals/update_account.php'
 ?>
 <!-- jQuery -->
 <script src="../../plugins/jquery/dist/jquery.min.js"></script>

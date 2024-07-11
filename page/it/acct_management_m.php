@@ -23,7 +23,7 @@
   <!-- Main content -->
   <section class="content">
     <div class="col-md-12">
-      <div class="card card-light" style="background: #fff; border-top: 2px solid #1b263b;">
+      <div class="card card-light" style="background: #fff; border-top: 1px solid #1b263b;">
         <div class="card-header">
           <h3 class="card-title"><img src="../../dist/img/acct-user.png" style="height:28px;">&ensp;Account Management
             Table</h3>

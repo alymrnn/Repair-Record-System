@@ -1,5 +1,5 @@
 <?php include 'plugins/navbar.php'; ?>
-<?php include 'plugins/sidebar/acct_management_bar.php'; ?>
+<?php include 'plugins/sidebar/acct_management_qa_bar.php'; ?>
 
 <div class="content-wrapper" style="background: #FFF;">
   <!-- Content Header (Page header) -->
@@ -25,7 +25,8 @@
     <div class="col-md-12">
       <div class="card card-light" style="background: #fff; border-top: 1px solid #2D7AC0;">
         <div class="card-header">
-          <h3 class="card-title"><img src="../../dist/img/acct-user.png" style="height:28px;">&ensp;Account Management
+          <h3 class="card-title"><img src="../../dist/img/acct-user.png" style="height:28px;">&ensp;Account
+            Management
             Table</h3>
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -37,21 +38,21 @@
         <!-- /.card-header -->
         <div class="card-body">
           <div class="row">
-            <div class="col-sm-3">
+            <div class="col-12 col-sm-3">
               <!-- search employee id -->
               <input type="text" name="emp_no_search" id="emp_no_search" class="form-control" placeholder="Employee ID"
                 autocomplete="off"
-                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;"
                 class="pl-3">
             </div>
-            <div class="col-sm-3">
+            <div class="col-12 col-sm-3">
               <!-- search full name -->
               <input type="text" name="full_name_search" id="full_name_search" class="form-control"
                 placeholder="Full Name" autocomplete="off"
-                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;"
                 class="pl-3">
             </div>
-            <div class="col-sm-3">
+            <div class="col-12 col-sm-3">
               <!-- search button -->
               <button class="btn btn-block d-flex justify-content-left" id="search_btn" onclick="search_account()"
                 style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"
@@ -59,14 +60,13 @@
                 onmouseout="this.style.backgroundColor='#226F54'; this.style.color='#FFF';"><i class="fas fa-search"
                   style="margin-top: 2px;"></i>&nbsp;&nbsp;Search</button>
             </div>
-            <div class="col-sm-3">
+            <div class="col-12 col-sm-3">
               <!-- add account button -->
               <a class="btn btn-block d-flex justify-content-left" data-toggle="modal" data-target="#add_account"
                 style="color:#fff;height:34px;border-radius:.25rem;background: #0267c1;font-size:15px;font-weight:normal;"
                 onmouseover="this.style.backgroundColor='#024E92'; this.style.color='#FFF';"
                 onmouseout="this.style.backgroundColor='#0267c1'; this.style.color='#FFF';"><i
                   class="fas fa-plus-circle" style="margin-top: 2px;"></i>&nbsp;&nbsp;Add Account</a>
-
             </div>
           </div>
 
@@ -82,14 +82,12 @@
             <table class="table col-12 mt-3 table-head-fixed text-nowrap table-hover" id="account_table"
               style="background: #F9F9F9;">
               <thead style="text-align: center;">
-                <!-- table switching content -->
                 <th>#</th>
                 <th>Employee ID</th>
                 <th>Full Name</th>
                 <th>Department</th>
                 <th>Section</th>
                 <th>Role</th>
-                <!-- <th>Repair Station</th> -->
                 <th>Date Updated</th>
               </thead>
               <tbody class="mb-0" id="list_of_accounts">
@@ -111,7 +109,8 @@
             <button type="button" class="btn" style="background: #032b43; color: #fff;" id="btnNextPage"
               onclick="get_next_page()" onclick="get_next_page()"
               onmouseover="this.style.backgroundColor='#032031'; this.style.color='#FFF';"
-              onmouseout="this.style.backgroundColor='#032b43'; this.style.color='#FFF';">Load more</button>
+              onmouseout="this.style.backgroundColor='#032b43'; this.style.color='#FFF';">Load
+              more</button>
           </div>
         </div>
       </div>
@@ -120,4 +119,4 @@
 </div>
 
 <?php include 'plugins/footer.php'; ?>
-<?php include 'plugins/js/acct_management_script.php'; ?>
+<?php include 'plugins/js/acct_management_qa_script.php'; ?>

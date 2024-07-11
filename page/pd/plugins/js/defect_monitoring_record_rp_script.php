@@ -435,8 +435,8 @@
                     <th>Cause of Defect</th>
                     <th>Good Measurement</th>
                     <th>NG Measurement</th>
-                    <th>Wire Size</th>
                     <th>Wire Type</th>
+                    <th>Wire Size</th>
                     <th>Connector Cavity</th>
                     <th>Detail in Content of Defect</th>
                     <th>Treatment Content of Defect</th>
@@ -836,8 +836,6 @@
                 $("#good_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#ng_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#repair_person_dr").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#good_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#ng_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#wire_type_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#wire_size_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#connector_cavity_dr").prop('disabled', false).val('').css('background-color', '#FFF');
@@ -893,8 +891,6 @@
                 $("#good_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#ng_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#repair_person_dr").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#good_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#ng_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#wire_type_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#wire_size_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#connector_cavity_dr").prop('disabled', false).val('').css('background-color', '#FFF');
@@ -951,8 +947,6 @@
                 $("#good_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#ng_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#repair_person_dr").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#good_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#ng_measurement_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#wire_type_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#wire_size_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#connector_cavity_dr").prop('disabled', false).val('').css('background-color', '#FFF');
@@ -1101,7 +1095,6 @@
         });
     }
 
-    // NOT YET IMPLEMENTED IN PRODUCTION
     function handleDaihatsuScan() {
         document.getElementById('qr_scan').addEventListener('keyup', function (e) {
             if (e.which === 13) {

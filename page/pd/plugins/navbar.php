@@ -30,6 +30,9 @@ if (!isset($_SESSION['emp_no'])) {
 } else if ($_SESSION['role'] == 'IT') {
   header('location: ../../page/it/barcode_m.php');
   exit;
+} else if ($_SESSION['role'] == 'QA') {
+  header('location: ../../page/qa/defect_monitoring_record_qa.php');
+  exit;
 }
 
 delete_added_record($_SESSION['full_name'], $conn);
