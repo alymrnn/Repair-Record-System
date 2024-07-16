@@ -7,7 +7,7 @@
 <?php
 //MODALS
 include '../../modals/logout_modal.php';
-include '../../modals/add_defect_qa.php';
+include '../../modals/add_defect_inspector.php';
 
 include '../../modals/add_account.php';
 include '../../modals/update_account.php'

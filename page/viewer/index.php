@@ -84,7 +84,7 @@ include ('plugins/navbar/index_navbar.php');
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Car Maker</label>
                   <select name="search_v_car_maker" id="search_v_car_maker" autocomplete="off"
                     style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
-                    class="pl-1" required>
+                    class="pl-1 form-control" required>
                     <option>Car Maker</option>
                     <option></option>
                   </select>
@@ -94,7 +94,7 @@ include ('plugins/navbar/index_navbar.php');
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Discovery Process</label>
                   <select name="search_v_discovery_process" id="search_v_discovery_process" autocomplete="off"
                     style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
-                    class="pl-1" required>
+                    class="pl-1 form-control" required>
                     <option>Discovery Process</option>
                     <option></option>
                   </select>
@@ -104,7 +104,7 @@ include ('plugins/navbar/index_navbar.php');
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Occurrence Process</label>
                   <select name="search_v_occurrence_process" id="search_v_occurrence_process" autocomplete="off"
                     style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
-                    class="pl-1" required>
+                    class="pl-1 form-control" required>
                     <option>Occurrence Process</option>
                     <option></option>
                   </select>
@@ -114,7 +114,7 @@ include ('plugins/navbar/index_navbar.php');
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Outflow Process</label>
                   <select name="search_v_outflow_process" id="search_v_outflow_process" autocomplete="off"
                     style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
-                    class="pl-1" required>
+                    class="pl-1 form-control" required>
                     <option>Outflow Process</option>
                     <option></option>
                   </select>
@@ -124,7 +124,7 @@ include ('plugins/navbar/index_navbar.php');
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Defect Category</label>
                   <select name="search_v_defect_category" id="search_v_defect_category" autocomplete="off"
                     style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
-                    class="pl-1" required>
+                    class="pl-1 form-control" required>
                     <option>Defect Category</option>
                     <option></option>
                   </select>
@@ -134,7 +134,7 @@ include ('plugins/navbar/index_navbar.php');
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Cause of Defect</label>
                   <select name="search_v_defect_cause" id="search_v_defect_cause" autocomplete="off"
                     style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
-                    class="pl-1" required>
+                    class="pl-1 form-control" required>
                     <option value="" disabled selected>Select cause of defect</option>
                     <option value="Jig">Jig</option>
                     <option value="Method">Method</option>
@@ -148,7 +148,7 @@ include ('plugins/navbar/index_navbar.php');
                   <!-- record type -->
                   <select name="search_v_record_type" id="search_v_record_type" autocomplete="off"
                     style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
-                    class="pl-1" required>
+                    class="pl-1 form-control" required>
                     <option>Record Type</option>
                     <option></option>
                   </select>

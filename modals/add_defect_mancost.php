@@ -52,7 +52,7 @@
                         <label style="color:#CA3F3F">*</label>
                         <input type="text" id="line_no" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
-                            required>
+                            required maxlength="4" pattern="[0-9]{1,4}">
                         <span id="lineError" class="error-message" style="display:none; color:#CA3F3F;">Line No. field
                             is required.</span>
                         <br>
@@ -68,7 +68,7 @@
 
                         <select name="line_category_dr" id="line_category_dr" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
-                            class="pl-2" required>
+                            class="form-control pl-2" required>
                             <option value="" disabled selected>Select the category</option>
                         </select>
                         <span id="lineCategoryError" class="error-message" style="display:none; color:#CA3F3F;">Category
@@ -123,7 +123,7 @@
 
                         <input name="car_maker" id="car_maker" onchange="handleCarMakerChange(this)"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #F1F1F1;height:34px; width:100%;"
-                            class="pl-2" disabled>
+                            class="pl-2" readonly>
                         <span id="carMakerError" class="error-message" style="display:none; color:#CA3F3F;">Car Maker
                             field is required.</span>
                     </div>
@@ -187,7 +187,7 @@
 
                         <select name="discovery_process_dr" id="discovery_process_dr" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
-                            class="pl-2" required>
+                            class="form-control pl-2" required>
                             <option value="" disabled selected>Select the discovery process</option>
                         </select>
                         <span id="discoveryProcessError" class="error-message"
@@ -208,7 +208,7 @@
                         <label style="font-weight: normal;color: #000;">Discovery Person</label>
                         <label style="color:#CA3F3F">*</label>
                         <input type="text" id="discovery_person" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"readonly
                             required>
                         <span id="discoveryPersonError" class="error-message"
                             style="display:none; color:#CA3F3F;">Discovery Person field is required.</span>
@@ -229,7 +229,7 @@
 
                         <select name="occurrence_process_dr" id="occurrence_process_dr" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
-                            class="pl-2" required>
+                            class="form-control pl-2" required>
                             <option value="" disabled selected>Select the occurrence process</option>
                         </select>
                         <span id="occurrenceProcessError" class="error-message"
@@ -247,7 +247,7 @@
 
                         <select name="occurrence_shift_dr" id="occurrence_shift_dr" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
-                            class="pl-2" required>
+                            class="form-control pl-2" required>
                             <option value="" disabled selected>Select the occurrence shift</option>
                         </select>
                         <span id="occurrenceShiftError" class="error-message"
@@ -289,7 +289,7 @@
 
                         <select name="outflow_process_dr" id="outflow_process_dr" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
-                            class="pl-2" required>
+                            class="form-control pl-2" required>
                             <option value="" disabled selected>Select the outflow process</option>
                         </select>
                         <span id="outflowProcessError" class="error-message"
@@ -307,7 +307,7 @@
 
                         <select name="outflow_shift_dr" id="outflow_shift_dr" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
-                            class="pl-2" required>
+                            class="form-control pl-2" required>
                             <option value="" disabled selected>Select the outflow shift</option>
                         </select>
                         <span id="outflowShiftError" class="error-message" style="display:none; color:#CA3F3F;">Outflow
@@ -349,7 +349,7 @@
 
                         <select name="defect_category_dr" id="defect_category_dr" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
-                            class="pl-2" required>
+                            class="form-control pl-2" required>
                             <option value="" disabled selected>Select the defect category</option>
                         </select>
                         <span id="defectCategoryError" class="error-message" style="display:none; color:#CA3F3F;">Defect
@@ -387,7 +387,7 @@
 
                         <select name="defect_cause_dr" id="defect_cause_dr" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
-                            class="pl-2" required>
+                            class="form-control pl-2" required>
                             <option value="" disabled selected>Select the cause of defect</option>
                         </select>
                         <span id="defectCauseError" class="error-message" style="display:none; color:#CA3F3F;">Cause of
@@ -405,7 +405,7 @@
 
                         <select name="repair_person_dr" id="repair_person_dr" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
-                            class="pl-2" required>
+                            class="form-control pl-2" required>
                             <option value="" disabled selected>Select the repair person</option>
                         </select>
                         <span id="repairPersonError" class="error-message" style="display:none; color:#CA3F3F;">Repair
@@ -498,7 +498,7 @@
                         <label style="color:#CA3F3F">*</label>
                         <select name="harness_status_dr" id="harness_status_dr" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
-                            class="pl-2" required>
+                            class="form-control pl-2" required>
                             <option value="" disabled selected>Select the harness status</option>
                         </select>
                         <span id="harnessStatusError" class="error-message" style="display:none; color:#CA3F3F;">Harness

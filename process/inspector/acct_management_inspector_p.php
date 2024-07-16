@@ -5,7 +5,7 @@ $method = $_POST['method'];
 
 function count_account_list($search_arr, $conn)
 {
-    $query = "SELECT count(id) AS total FROM m_accounts WHERE role = 'QA' AND emp_no LIKE '" . $search_arr['emp_no_search'] . "%' AND full_name LIKE '" . $search_arr['full_name_search'] . "%'";
+    $query = "SELECT count(id) AS total FROM m_accounts WHERE role = 'Inspector' AND emp_no LIKE '" . $search_arr['emp_no_search'] . "%' AND full_name LIKE '" . $search_arr['full_name_search'] . "%'";
 
     // $stmt = $conn->prepare($query);
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
@@ -124,7 +124,7 @@ if ($method == 'search_account_list') {
 
     $query = "SELECT id, emp_no, full_name, department, section, role, date_updated 
               FROM m_accounts 
-              WHERE role = 'QA' 
+              WHERE role = 'Inspector' 
               AND emp_no LIKE :emp_no_search 
               AND full_name LIKE :full_name_search 
               ORDER BY date_updated DESC

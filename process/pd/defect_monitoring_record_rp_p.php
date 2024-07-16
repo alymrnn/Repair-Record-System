@@ -279,6 +279,8 @@ function count_defect_table_data($conn, $date_from, $date_to, $line_no_rp, $reco
     $conditions = [];
     $params = [];
 
+    $conditions[] = "(pending_status = '' OR pending_status = 'Updated' OR pending_status IS NULL)";
+
     if (!empty($date_from) && !empty($date_to)) {
         $conditions[] = "repairing_date BETWEEN ? AND ?";
         $params[] = $date_from;
@@ -551,6 +553,8 @@ if ($method == 'load_defect_table_data') {
 
     $query = "SELECT * FROM t_defect_record_f";
     $conditions = [];
+
+    $conditions[] = "(pending_status = '' OR pending_status = 'Updated' OR pending_status IS NULL)";
 
     if (!empty($date_from) && !empty($date_to)) {
         $conditions[] = "repairing_date BETWEEN :date_from AND :date_to";
@@ -1380,7 +1384,7 @@ if ($method == 'add_defect_mancost_record') {
                 occurrence_shift, occurrence_id_num, occurrence_person, outflow_process, outflow_shift, 
                 outflow_id_num, outflow_person, defect_category_dr, sequence_num, assy_board_no, defect_cause, 
                 defect_detail_content, defect_treatment_content, harness_status, dis_assembled_by, good_measurement, 
-                ng_measurement, wire_type, wire_size, connector_cavity, qc_status, record_type, record_added_defect_datetime
+                ng_measurement, wire_type, wire_size, connector_cavity, qc_status, record_type
             ) VALUES (
                 :defect_id, :line_no, :category, :date_detected, :issue_no_tag, :repairing_date, 
                 :car_maker, :product_name, :lot_no, :serial_no, :discovery_process, :discovery_id_num, 
@@ -1388,7 +1392,7 @@ if ($method == 'add_defect_mancost_record') {
                 :occurrence_person, :outflow_process, :outflow_shift, :outflow_id_num, :outflow_person, 
                 :defect_category_dr, :sequence_num, :assy_board_no, :defect_cause, :defect_detail_content, 
                 :defect_treatment_content, :harness_status, :dis_assembled_by, :good_measurement, :ng_measurement, 
-                :wire_type, :wire_size, :connector_cavity, :qc_status, :record_type, GETDATE()
+                :wire_type, :wire_size, :connector_cavity, :qc_status, :record_type
             )
         ";
         $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));

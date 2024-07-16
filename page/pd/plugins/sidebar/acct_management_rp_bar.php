@@ -33,6 +33,14 @@
           </a>
         </li>
         <li class="nav-item mb-1">
+          <a href="pending_defect_record_rp.php" class="nav-link">
+            <img src="../../dist/img/pending-tasks.png" style="height:25px;">
+            <p style="font-size:14px; color:black">
+              Pending Defect Record
+            </p>
+          </a>
+        </li>
+        <li class="nav-item mb-1">
           <a href="acct_management_rp.php" class="nav-link active">
             <img src="../../dist/img/user-sidebar.png" style="height:25px;">
             <p style="font-size:14px; color:black">

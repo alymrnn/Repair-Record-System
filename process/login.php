@@ -85,8 +85,8 @@ if (isset($_POST['login_btn'])) {
             } elseif ($role == 'IT') {
                 header('location: page/it/barcode_m.php');
                 exit;
-            } elseif ($role == 'QA') {
-                header('location: page/qa/defect_monitoring_record_qa.php');
+            } elseif ($role == 'Inspector') {
+                header('location: page/inspector/defect_monitoring_record_inspector.php');
                 exit;
             }
         } else {

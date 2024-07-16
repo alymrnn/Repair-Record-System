@@ -15,6 +15,52 @@
         fetch_opt_update_outflow_process();
         fetch_opt_update_defect_category();
         fetch_opt_update_repair_person();
+
+        $('#discovery_id_no_mc_update').on('keypress', function (e) {
+            if (e.which === 13) {
+                get_discovery_person();
+            }
+        });
+
+        $('#discovery_id_no_mc_update').on('input', function () {
+            if ($(this).val() === '') {
+                $('#discovery_person_mc_update').val('');
+            }
+        });
+
+        // fetch occurrence person
+        $('#occurrence_id_no_mc_update').on('keypress', function (e) {
+            if (e.which === 13) {
+                get_occurrence_person();
+            }
+        });
+
+        $('#occurrence_id_no_mc_update').on('input', function () {
+            if ($(this).val() === '') {
+                $('#occurrence_person_mc_update').val('');
+            }
+        });
+
+        // fetch outflow person
+        $('#outflow_id_no_mc_update').on('keypress', function (e) {
+            if (e.which === 13) {
+                get_outflow_person();
+            }
+        });
+
+        $('#outflow_id_no_mc_update').on('input', function () {
+            if ($(this).val() === '') {
+                $('#outflow_person_mc_update').val('');
+            }
+        });
+    });
+
+    document.getElementById('line_no_mc_update').addEventListener('input', function () {
+        this.value = this.value.replace(/\D/g, '');
+
+        if (this.value.length > 4) {
+            this.value = this.value.slice(0, 4);
+        }
     });
 
     document.getElementById("search_ad_record_type").addEventListener("change", e => {
@@ -44,6 +90,96 @@
     document.getElementById("search_ad_date_to").addEventListener("change", e => {
         load_qc_defect_table(1);
     });
+
+    const get_discovery_person = () => {
+        var discovery_id_no = $('#discovery_id_no_mc_update').val();
+
+        if (discovery_id_no === 'N/A') {
+            $('#discovery_person_mc_update').val('N/A');
+            return;
+        }
+
+        if (discovery_id_no === '') {
+            $('#discovery_person_mc_update').val('');
+            return;
+        }
+
+        $.ajax({
+            url: '../../process/qc/defect_monitoring_record_get_p.php',
+            type: 'GET',
+            data: {
+                method: 'get_discovery_person',
+                discovery_id_no: discovery_id_no
+            },
+            success: function (response) {
+                var data = JSON.parse(response);
+                $('#discovery_person_mc_update').val(data.full_name);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+
+            }
+        });
+    };
+
+    const get_occurrence_person = () => {
+        var occurrence_id_no = $('#occurrence_id_no_mc_update').val();
+
+        if (occurrence_id_no === 'N/A') {
+            $('#occurrence_person_mc_update').val('N/A');
+            return;
+        }
+
+        if (occurrence_id_no === '') {
+            $('#occurrence_person_mc_update').val('');
+            return;
+        }
+
+        $.ajax({
+            url: '../../process/qc/defect_monitoring_record_get_p.php',
+            type: 'GET',
+            data: {
+                method: 'get_occurrence_person',
+                occurrence_id_no: occurrence_id_no
+            },
+            success: function (response) {
+                var data = JSON.parse(response);
+                $('#occurrence_person_mc_update').val(data.full_name);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+
+            }
+        });
+    };
+
+    const get_outflow_person = () => {
+        var outflow_id_no = $('#outflow_id_no_mc_update').val();
+
+        if (outflow_id_no === 'N/A') {
+            $('#outflow_person_mc_update').val('N/A');
+            return;
+        }
+
+        if (outflow_id_no === '') {
+            $('#outflow_person_mc_update').val('');
+            return;
+        }
+
+        $.ajax({
+            url: '../../process/qc/defect_monitoring_record_get_p.php',
+            type: 'GET',
+            data: {
+                method: 'get_outflow_person',
+                outflow_id_no: outflow_id_no
+            },
+            success: function (response) {
+                var data = JSON.parse(response);
+                $('#outflow_person_mc_update').val(data.full_name);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+
+            }
+        });
+    };
 
     // fetch for update discovery process
     const fetch_opt_update_discovery_process = (get_value = '') => {
@@ -681,11 +817,11 @@
         issue_no_tag_mc, product_name_mc, lot_no_mc, serial_no_mc, discovery_process_mc,
         discovery_id_no_mc, discovery_person_mc, occurrence_process_dr, occurrence_shift_dr, occurrence_id_no_mc,
         occurrence_person_mc, outflow_process_mc, outflow_shift_mc, outflow_id_no_mc, outflow_person_mc,
-        defect_category_mc2, sequence_no_mc, assy_board_no_mc, defect_cause_mc, good_measurement_mc, 
-        ng_measurement_mc, wire_type_mc, wire_size_mc, connector_cavity_mc, repair_person_mc, 
-        detail_content_defect_mc, treatment_content_defect_mc, harness_status_mc, repairing_date_mc, repair_start_mc, 
-        repair_end_mc, time_consumed_mc, defect_category_mc, occurrence_process_mc, parts_removed_mc, 
-        quantity_mc, unit_cost_mc, material_cost_mc, manhour_cost_mc, portion_treatment_mc, 
+        defect_category_mc2, sequence_no_mc, assy_board_no_mc, defect_cause_mc, good_measurement_mc,
+        ng_measurement_mc, wire_type_mc, wire_size_mc, connector_cavity_mc, repair_person_mc,
+        detail_content_defect_mc, treatment_content_defect_mc, harness_status_mc, repairing_date_mc, repair_start_mc,
+        repair_end_mc, time_consumed_mc, defect_category_mc, occurrence_process_mc, parts_removed_mc,
+        quantity_mc, unit_cost_mc, material_cost_mc, manhour_cost_mc, portion_treatment_mc,
         qc_veri_mc_update, checking_date_mc_update, verified_by_mc_update, remarks_mc_update, defect_id) {
 
         $('#update_defect_mancost_id').val(id).prop('hidden', true);

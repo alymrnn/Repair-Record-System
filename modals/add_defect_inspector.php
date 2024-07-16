@@ -52,7 +52,7 @@
                         <label style="color:#CA3F3F">*</label>
                         <input type="text" id="line_no_qa" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
-                            required>
+                            required maxlength="4" pattern="[0-9]{1,4}">
                         <span id="lineError" class="error-message" style="display:none; color:#CA3F3F;">Line No. field
                             is required.</span>
                         <br>

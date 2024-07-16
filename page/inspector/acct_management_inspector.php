@@ -1,5 +1,5 @@
 <?php include 'plugins/navbar.php'; ?>
-<?php include 'plugins/sidebar/acct_management_qa_bar.php'; ?>
+<?php include 'plugins/sidebar/acct_management_inspector_bar.php'; ?>
 
 <div class="content-wrapper" style="background: #FFF;">
   <!-- Content Header (Page header) -->
@@ -119,4 +119,4 @@
 </div>
 
 <?php include 'plugins/footer.php'; ?>
-<?php include 'plugins/js/acct_management_qa_script.php'; ?>
+<?php include 'plugins/js/acct_management_inspector_script.php'; ?>

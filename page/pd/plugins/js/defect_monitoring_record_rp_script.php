@@ -20,6 +20,53 @@
         fetch_opt_harness_status();
         count_detail_content_defect_char();
         count_treatment_content_defect_char();
+
+        // fetch discovery person
+        $('#discovery_id_no_dr').on('keypress', function (e) {
+            if (e.which === 13) {
+                get_discovery_person();
+            }
+        });
+
+        $('#discovery_id_no_dr').on('input', function () {
+            if ($(this).val() === '') {
+                $('#discovery_person').val('');
+            }
+        });
+
+        // fetch occurrence person
+        $('#occurrence_id_no_dr').on('keypress', function (e) {
+            if (e.which === 13) {
+                get_occurrence_person();
+            }
+        });
+
+        $('#occurrence_id_no_dr').on('input', function () {
+            if ($(this).val() === '') {
+                $('#occurrence_person').val('');
+            }
+        });
+
+        // fetch outflow person
+        $('#outflow_id_no_dr').on('keypress', function (e) {
+            if (e.which === 13) {
+                get_outflow_person();
+            }
+        });
+
+        $('#outflow_id_no_dr').on('input', function () {
+            if ($(this).val() === '') {
+                $('#outflow_person').val('');
+            }
+        });
+    });
+
+    document.getElementById('line_no').addEventListener('input', function () {
+        this.value = this.value.replace(/\D/g, '');
+
+        if (this.value.length > 4) {
+            this.value = this.value.slice(0, 4);
+        }
     });
 
     document.getElementById("search_product_name").addEventListener("keyup", e => {
@@ -49,6 +96,96 @@
     document.getElementById("line_no_rp").addEventListener("keyup", e => {
         load_defect_table(1);
     });
+
+    const get_discovery_person = () => {
+        var discovery_id_no = $('#discovery_id_no_dr').val();
+
+        if (discovery_id_no === 'N/A') {
+            $('#discovery_person').val('N/A');
+            return;
+        }
+
+        if (discovery_id_no === '') {
+            $('#discovery_person').val('');
+            return;
+        }
+
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_get_p.php',
+            type: 'GET',
+            data: {
+                method: 'get_discovery_person',
+                discovery_id_no: discovery_id_no
+            },
+            success: function (response) {
+                var data = JSON.parse(response);
+                $('#discovery_person').val(data.full_name);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+
+            }
+        });
+    };
+
+    const get_occurrence_person = () => {
+        var occurrence_id_no = $('#occurrence_id_no_dr').val();
+
+        if (occurrence_id_no === 'N/A') {
+            $('#occurrence_person').val('N/A');
+            return;
+        }
+
+        if (occurrence_id_no === '') {
+            $('#occurrence_person').val('');
+            return;
+        }
+
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_get_p.php',
+            type: 'GET',
+            data: {
+                method: 'get_occurrence_person',
+                occurrence_id_no: occurrence_id_no
+            },
+            success: function (response) {
+                var data = JSON.parse(response);
+                $('#occurrence_person').val(data.full_name);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+
+            }
+        });
+    };
+
+    const get_outflow_person = () => {
+        var outflow_id_no = $('#outflow_id_no_dr').val();
+
+        if (outflow_id_no === 'N/A') {
+            $('#outflow_person').val('N/A');
+            return;
+        }
+
+        if (outflow_id_no === '') {
+            $('#outflow_person').val('');
+            return;
+        }
+
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_get_p.php',
+            type: 'GET',
+            data: {
+                method: 'get_outflow_person',
+                outflow_id_no: outflow_id_no
+            },
+            success: function (response) {
+                var data = JSON.parse(response);
+                $('#outflow_person').val(data.full_name);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+
+            }
+        });
+    };
 
     // fetch record type option
     const fetch_opt_record_type_dr = () => {
@@ -735,11 +872,11 @@
     //     });
     // });
 
-    let current_date = new Date().toISOString().slice(0, 10);
+    const current_date = new Date().toISOString().slice(0, 10);
 
     $(document).ready(function () {
         // Disable all input fields by default
-        $("#line_no, #line_category_dr, #date_detected, #na_repairing_date, #issue_tag, #repairing_date, #car_maker, #product_name, #lot_no, #serial_no, #discovery_process_dr, #discovery_id_no_dr, #discovery_person, #occurrence_process_dr, #occurrence_shift_dr, #occurrence_id_no_dr, #occurrence_person, #outflow_process_dr, #outflow_shift_dr, #outflow_id_no_dr, #outflow_person, #defect_category_dr, #sequence_no, #assy_board_no_dr, #good_measurement_dr, #ng_measurement_dr, #wire_type_dr, #wire_size_dr, #connector_cavity_dr, #harness_status_dr, #defect_cause_dr, #repair_person_dr, #detail_content_defect, #treatment_content_defect, #repair_start_mc, #repair_end_mc, #time_consumed_mc, #defect_category_mc, #occurrence_process_mc, #manhour_cost_mc, #parts_removed_mc, #quantity_mc, #unit_cost_mc, #material_cost_mc, #portion_treatment").prop('disabled', true);
+        $("#line_no, #line_category_dr, #date_detected, #na_repairing_date, #issue_tag, #repairing_date, #car_maker, #qr_scan, #product_name, #lot_no, #serial_no, #discovery_process_dr, #discovery_id_no_dr, #discovery_person, #occurrence_process_dr, #occurrence_shift_dr, #occurrence_id_no_dr, #occurrence_person, #outflow_process_dr, #outflow_shift_dr, #outflow_id_no_dr, #outflow_person, #defect_category_dr, #sequence_no, #assy_board_no_dr, #good_measurement_dr, #ng_measurement_dr, #wire_type_dr, #wire_size_dr, #connector_cavity_dr, #harness_status_dr, #defect_cause_dr, #repair_person_dr, #detail_content_defect, #treatment_content_defect, #repair_start_mc, #repair_end_mc, #time_consumed_mc, #defect_category_mc, #occurrence_process_mc, #manhour_cost_mc, #parts_removed_mc, #quantity_mc, #unit_cost_mc, #material_cost_mc, #portion_treatment").prop('disabled', true).css('background-color', '#DDD');
 
         // add change event listener to radio buttons
         $("input[name='record_type']").change(function () {
@@ -751,11 +888,11 @@
             // Check which radio button is selected
             if ($(this).val() === "Mancost Only") {
                 // If 'Mancost Only' is selected, fill the form with n/a and disable the fields
-                $("#line_no").prop('disabled', false).val('');
+                $("#line_no").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#line_category_dr").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
                 $("#issue_tag").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
-                $("#date_detected").prop('disabled', false).val('');
-                $("#defect_category_dr").prop('disabled', false).val('');
+                $("#date_detected").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#defect_category_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#car_maker").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
                 $("#qr_scan").prop('disabled', true).val('').css('background-color', '#D3D3D3');
                 $("#product_name").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
@@ -809,26 +946,27 @@
             }
             else if ($(this).val() === "Defect Only") {
                 $("#line_no").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#line_category_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#line_category_dr").prop('disabled', false).val('Mass Pro').css('background-color', '#FFF');
                 $("#date_detected").prop('type', 'date').prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#na_repairing_date").prop('disabled', true).val('').css('background-color', '#FFF');
                 $("#issue_tag").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#repairing_date").prop('disabled', false).val(current_date).css('background-color', '#FFF');
-                // $("#car_maker").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#car_maker").prop('readonly', true).val('').css('background-color', '#F1F1F1');
+                $("#qr_scan").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#product_name").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#lot_no").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#serial_no").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#discovery_process_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#discovery_id_no_dr").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#discovery_person").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#discovery_person").prop('readonly', true).val('').css('background-color', '#F1F1F1');
                 $("#occurrence_process_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#occurrence_shift_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#occurrence_id_no_dr").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#occurrence_person").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#occurrence_person").prop('disabled', true).val('').css('background-color', '#F1F1F1');
                 $("#outflow_process_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#outflow_shift_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#outflow_id_no_dr").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#outflow_person").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#outflow_person").prop('disabled', true).val('').css('background-color', '#F1F1F1');
                 $("#defect_category_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#sequence_no").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#assy_board_no_dr").prop('disabled', false).val('').css('background-color', '#FFF');
@@ -864,26 +1002,27 @@
             }
             else if ($(this).val() === "Defect & Mancost") {
                 $("#line_no").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#line_category_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#line_category_dr").prop('disabled', false).val('Mass Pro').css('background-color', '#FFF');
                 $("#date_detected").prop('type', 'date').prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#na_repairing_date").prop('disabled', true).val('').css('background-color', '#FFF');
                 $("#issue_tag").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#repairing_date").prop('disabled', false).val(current_date).css('background-color', '#FFF');
-                // $("#car_maker").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#car_maker").prop('readonly', true).val('').css('background-color', '#F1F1F1');
+                $("#qr_scan").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#product_name").prop('disabled', false).val('').css('background-color', '#FF1F1F1FF');
                 $("#lot_no").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#serial_no").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#discovery_process_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#discovery_id_no_dr").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#discovery_person").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#discovery_person").prop('disabled', true).val('').css('background-color', '#F1F1F1');
                 $("#occurrence_process_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#occurrence_shift_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#occurrence_id_no_dr").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#occurrence_person").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#occurrence_person").prop('disabled', true).val('').css('background-color', '#F1F1F1');
                 $("#outflow_process_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#outflow_shift_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#outflow_id_no_dr").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#outflow_person").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#outflow_person").prop('disabled', true).val('').css('background-color', '#F1F1F1');
                 $("#defect_category_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#sequence_no").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#assy_board_no_dr").prop('disabled', false).val('').css('background-color', '#FFF');
@@ -920,26 +1059,27 @@
             else {
                 // If 'White Tag', enable the date input, disable the text input, and clear their values
                 $("#line_no").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#line_category_dr").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#line_category_dr").prop('disabled', false).val('Mass Pro').css('background-color', '#FFF');
                 $("#date_detected").prop('type', 'date').prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#na_repairing_date").prop('disabled', true).val('').css('background-color', '#FFF');
                 $("#issue_tag").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#repairing_date").prop('disabled', false).val(current_date).css('background-color', '#FFF');
-                // $("#car_maker").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#car_maker").prop('readonly', true).val('').css('background-color', '#F1F1F1');
+                $("#qr_scan").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#product_name").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#lot_no").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#serial_no").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#discovery_process_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#discovery_id_no_dr").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#discovery_person").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#discovery_person").prop('disabled', true).val('').css('background-color', '#F1F1F1');
                 $("#occurrence_process_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#occurrence_shift_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#occurrence_id_no_dr").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#occurrence_person").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#occurrence_person").prop('disabled', true).val('').css('background-color', '#F1F1F1');
                 $("#outflow_process_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#outflow_shift_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#outflow_id_no_dr").prop('disabled', false).val('').css('background-color', '#FFF');
-                $("#outflow_person").prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#outflow_person").prop('disabled', true).val('').css('background-color', '#F1F1F1');
                 $("#defect_category_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#sequence_no").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#assy_board_no_dr").prop('disabled', false).val('').css('background-color', '#FFF');

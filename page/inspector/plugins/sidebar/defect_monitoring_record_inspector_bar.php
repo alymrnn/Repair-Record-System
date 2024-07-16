@@ -13,7 +13,7 @@
         <img src="../../dist/img/user.png" class="img-circle" alt="User Image">
       </div>
       <div class="info">
-        <a href="defect_monitoring_record_rp.php" class="d-block"
+        <a href="defect_monitoring_record_inspector.php" class="d-block"
           style="font-size:15px; color:black"><?= htmlspecialchars($_SESSION['full_name']); ?></a>
       </div>
     </div>
@@ -22,10 +22,10 @@
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
-          <p class="nav-link">QA</p>
+          <p class="nav-link">INSP</p>
         </li>
         <li class="nav-item mb-1">
-          <a href="defect_monitoring_record_qa.php" class="nav-link active">
+          <a href="defect_monitoring_record_inspector.php" class="nav-link active">
             <img src="../../dist/img/files.png" style="height:25px;">
             <p class="pl-1" style="font-size:14px; color:black">
               Defect Record
@@ -33,7 +33,7 @@
           </a>
         </li>
         <li class="nav-item mb-1">
-          <a href="acct_management_qa.php" class="nav-link">
+          <a href="acct_management_inspector.php" class="nav-link">
             <img src="../../dist/img/user-sidebar.png" style="height:25px;">
             <p class="pl-1" style="font-size:14px; color:black">
               Account Management

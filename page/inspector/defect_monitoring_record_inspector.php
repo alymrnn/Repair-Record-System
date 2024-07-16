@@ -1,5 +1,5 @@
 <?php include 'plugins/navbar.php'; ?>
-<?php include 'plugins/sidebar/defect_monitoring_record_qa_bar.php'; ?>
+<?php include 'plugins/sidebar/defect_monitoring_record_inspector_bar.php'; ?>
 
 <div class="content-wrapper" style="background: #FFF;">
   <!-- Content Header (Page header) -->
@@ -23,7 +23,7 @@
   <!-- Main content -->
   <section class="content">
     <div class="col-md-12">
-      <div class="card card-light" style="background: #fff; border-top: 1px solid #0069B0;">
+      <div class="card card-light" style="background: #fff; border-top: 1px solid #F48D5A;">
         <div class="card-header">
           <h3 class="card-title"><img src="../../dist/img/settings.png" style="height:28px;">&ensp;Defect Record and
             Mancost Monitoring Table</h3>
@@ -196,4 +196,4 @@
 </div>
 
 <?php include 'plugins/footer.php'; ?>
-<?php include 'plugins/js/defect_monitoring_record_qa_script.php'; ?>
+<?php include 'plugins/js/defect_monitoring_record_inspector_script.php'; ?>

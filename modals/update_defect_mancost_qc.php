@@ -21,7 +21,8 @@
                         <label style="font-weight: normal;color: #000;">Line No.</label>
                         <label style="color:#EA9515">*</label>
                         <input type="text" id="line_no_mc_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            maxlength="4" pattern="[0-9]{1,4}">
                         <br>
                     </div>
                     <div class="col-sm-2">
@@ -193,7 +194,8 @@
                         <label style="font-weight: normal;color: #000;">Outflow Person</label>
                         <label style="color:#EA9515">*</label>
                         <input type="text" id="outflow_person_mc_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            readonly>
                     </div>
                 </div>
                 <br>

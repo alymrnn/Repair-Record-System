@@ -171,6 +171,14 @@
     });
   });
 
+  document.getElementById('line_no_qa').addEventListener('input', function () {
+        this.value = this.value.replace(/\D/g, '');
+
+        if (this.value.length > 4) {
+            this.value = this.value.slice(0, 4);
+        }
+    });
+
   const get_discovery_person = () => {
     var discovery_id_no = $('#discovery_id_no_qa').val();
 
@@ -185,7 +193,7 @@
     }
 
     $.ajax({
-      url: '../../process/qa/defect_monitoring_record_qa_get_p.php',
+      url: '../../process/inspector/defect_monitoring_record_inspector_get_p.php',
       type: 'GET',
       data: {
         method: 'get_discovery_person',
@@ -215,7 +223,7 @@
     }
 
     $.ajax({
-      url: '../../process/qa/defect_monitoring_record_qa_get_p.php',
+      url: '../../process/inspector/defect_monitoring_record_inspector_get_p.php',
       type: 'GET',
       data: {
         method: 'get_occurrence_person',
@@ -245,7 +253,7 @@
     }
 
     $.ajax({
-      url: '../../process/qa/defect_monitoring_record_qa_get_p.php',
+      url: '../../process/inspector/defect_monitoring_record_inspector_get_p.php',
       type: 'GET',
       data: {
         method: 'get_outflow_person',
@@ -263,7 +271,7 @@
 
   const fetch_opt_record_type_qa = () => {
     $.ajax({
-      url: '../../process/qa/defect_monitoring_record_qa_p.php',
+      url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
       type: 'POST',
       cache: false,
       data: {
@@ -277,7 +285,7 @@
 
   const fetch_opt_category_qa = () => {
     $.ajax({
-      url: '../../process/qa/defect_monitoring_record_qa_p.php',
+      url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
       type: 'POST',
       cache: false,
       data: {
@@ -292,7 +300,7 @@
 
   const fetch_opt_discovery_process_qa = () => {
     $.ajax({
-      url: '../../process/qa/defect_monitoring_record_qa_p.php',
+      url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
       type: 'POST',
       cache: false,
       data: {
@@ -306,7 +314,7 @@
 
   const fetch_opt_occurrence_process_qa = () => {
     $.ajax({
-      url: '../../process/qa/defect_monitoring_record_qa_p.php',
+      url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
       type: 'POST',
       cache: false,
       data: {
@@ -320,7 +328,7 @@
 
   const fetch_opt_outflow_process_qa = () => {
     $.ajax({
-      url: '../../process/qa/defect_monitoring_record_qa_p.php',
+      url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
       type: 'POST',
       cache: false,
       data: {
@@ -334,7 +342,7 @@
 
   const fetch_opt_defect_category_qa = () => {
     $.ajax({
-      url: '../../process/qa/defect_monitoring_record_qa_p.php',
+      url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
       type: 'POST',
       cache: false,
       data: {
@@ -348,7 +356,7 @@
 
   const fetch_opt_occurrence_shift_qa = () => {
     $.ajax({
-      url: '../../process/qa/defect_monitoring_record_qa_p.php',
+      url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
       type: 'POST',
       cache: false,
       data: {
@@ -362,7 +370,7 @@
 
   const fetch_opt_outflow_shift_qa = () => {
     $.ajax({
-      url: '../../process/qa/defect_monitoring_record_qa_p.php',
+      url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
       type: 'POST',
       cache: false,
       data: {
@@ -376,7 +384,7 @@
 
   const fetch_opt_defect_cause_qa = () => {
     $.ajax({
-      url: '../../process/qa/defect_monitoring_record_qa_p.php',
+      url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
       type: 'POST',
       cache: false,
       data: {
@@ -620,7 +628,7 @@
     }
 
     $.ajax({
-      url: '../../process/qa/defect_monitoring_record_qa_p.php',
+      url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
       type: 'POST',
       cache: false,
       data: {
@@ -761,7 +769,7 @@
     var search_date_to_qa = sessionStorage.getItem('search_date_to_qa');
 
     $.ajax({
-      url: '../../process/qa/defect_monitoring_record_qa_p.php',
+      url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
       type: 'POST',
       cache: false,
       data: {
@@ -801,7 +809,7 @@
     var current_page = sessionStorage.getItem('defect_qa_table_pagination');
 
     $.ajax({
-      url: '../../process/qa/defect_monitoring_record_qa_p.php',
+      url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
       type: 'POST',
       cache: false,
       data: {
@@ -877,7 +885,7 @@
     }
 
     $.ajax({
-      url: '../../process/qa/defect_monitoring_record_qa_p.php',
+      url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
       type: 'POST',
       cache: false,
       data: {
@@ -953,8 +961,8 @@
   //   var defect_id_qa = document.getElementById('defect_id_no_qa').value;
 
   //   $.ajax({
-  //     url: '../../process/qa/defect_monitoring_record_qa_p.php',
-  //     type: 'POST',
+    // url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
+    //     type: 'POST',
   //     cache: false,
   //     data: {
   //       method: 'add_record_qa',
@@ -1165,7 +1173,7 @@
     var defect_id_qa = document.getElementById('defect_id_no_qa').value;
 
     $.ajax({
-      url: '../../process/qa/defect_monitoring_record_qa_p.php',
+      url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
       type: 'POST',
       cache: false,
       data: {

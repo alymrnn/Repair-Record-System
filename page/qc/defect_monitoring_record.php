@@ -43,7 +43,7 @@
                 <div class="col-12 col-sm-6 col-md-4">
                   <!-- qr scan -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Scan here</label>
-                  <input type="text" id="qr_scan_qc" class="form-control pl-3" autocomplete="off"
+                  <input type="text" id="qr_scan_qc" class="form-control" autocomplete="off"
                     style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;">
                 </div>
                 <div class="col-sm-4 col-md-2">
@@ -52,14 +52,14 @@
                   <input type="text" id="search_ad_product_name" class="form-control" placeholder="Product Name"
                     autocomplete="off"
                     style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
-                    class="pl-3">
+                    >
                 </div>
                 <div class="col-sm-4 col-md-2">
                   <!-- lot no -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Lot No.</label>
                   <input type="text" id="search_ad_lot_no" class="form-control" placeholder="Lot No." autocomplete="off"
                     style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
-                    class="pl-3">
+                    >
                 </div>
                 <div class="col-sm-4 col-md-2">
                   <!-- serial no -->
@@ -67,7 +67,7 @@
                   <input type="text" id="search_ad_serial_no" class="form-control" placeholder="Serial No."
                     autocomplete="off"
                     style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
-                    class="pl-3">
+                    >
                 </div>
                 <div class="col-12 col-sm-4 col-md-2 mb-2">
                   <!-- clear button -->
@@ -86,7 +86,7 @@
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Record Type</label>
                   <select name="search_ad_record_type" id="search_ad_record_type" autocomplete="off"
                     style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
-                    class="pl-1" required>
+                    class="form-control" required>
                     <option></option>
                   </select>
                 </div>
@@ -96,7 +96,7 @@
                   <input type="text" id="search_ad_line_no" class="form-control" placeholder="Line No."
                     autocomplete="off"
                     style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
-                    class="pl-3">
+                    >
                 </div>
                 <!-- date -->
                 <div class="col-12 col-sm-2">

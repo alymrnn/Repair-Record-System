@@ -91,7 +91,7 @@
 
                         <select name="defect_category_mc" id="defect_category_mc" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
-                            class="pl-2" required>
+                            class="form-control pl-2" required>
                             <option value="" disabled selected>Select the defect category</option>
                         </select>
                         <span id="defectCategoryMcError" class="error-message"
@@ -110,7 +110,7 @@
 
                         <select name="occurrence_process_mc" id="occurrence_process_mc" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
-                            class="pl-2" required>
+                            class="form-control pl-2" required>
                             <option value="" disabled selected>Select the occurrence process</option>
                         </select>
                         <span id="occurrenceProcessMcError" class="error-message"
@@ -125,7 +125,8 @@
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             required list="partsRemovedMcList">
                         <datalist id="partsRemovedMcList"></datalist>
-                        <span id="partsRemovedMcError" class="error-message" style="display:none; color:#CA3F3F;">Parts Removed 
+                        <span id="partsRemovedMcError" class="error-message" style="display:none; color:#CA3F3F;">Parts
+                            Removed
                             field is required.</span>
                     </div>
                 </div>
@@ -176,7 +177,7 @@
 
                         <select name="portion_treatment" id="portion_treatment" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
-                            class="pl-2" required>
+                            class="form-control pl-2" required>
                             <option value="" disabled selected>Select the repaired portion treatment</option>
                         </select>
                         <span id="portionTreatmentMcError" class="error-message"
@@ -186,8 +187,6 @@
                 <!-- /.end -->
 
                 <div class="row mt-3">
-                    <div class="col-sm-4"></div>
-                    <div class="col-sm-4"></div>
                     <div class="col-sm-2">
                         <!-- clear button -->
                         <button class="btn btn-block" onclick="clear_dr_mc_fields()"
@@ -195,6 +194,8 @@
                             onmouseover="this.style.backgroundColor='#272727'; this.style.color='#FFF';"
                             onmouseout="this.style.backgroundColor='#474747'; this.style.color='#FFF';">Clear</button>
                     </div>
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4"></div>
                     <div class="col-sm-2">
                         <!-- add record -->
                         <button class="btn btn-block" onclick="add_multiple_mancost()"
@@ -229,7 +230,7 @@
                         </thead>
                         <tbody class="mb-0" id="list_of_added_mancost">
                             <tr>
-                                <td colspan="9" style="text-align: center;">
+                                <td colspan="6" style="text-align: center;">
                                     <div class="spinner-border text-dark" role="status">
                                         <span class="sr-only">Loading...</span>
                                     </div>
