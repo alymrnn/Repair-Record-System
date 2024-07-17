@@ -58,6 +58,8 @@ $query = "SELECT
 $params = array();
 $conditions = array();
 
+$conditions[] = "(status = 'Saved' OR status = 'Verified')";
+
 if (!empty($product_name)) {
     $conditions[] = "t_defect_record_f.product_name LIKE ?";
     $params[] = '%' . $product_name . '%';

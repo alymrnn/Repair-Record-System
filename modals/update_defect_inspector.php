@@ -25,15 +25,6 @@
                         </button>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-sm-4">
-                        <label style="font-weight: normal;color: #000;">Record Type</label>
-                        <input type="text" id="record_type_insp_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
-                    </div>
-                </div>
-
                 <div class="row">
                     <div class="col-sm-2">
                         <!-- defect id hidden -->

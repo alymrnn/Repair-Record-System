@@ -70,6 +70,8 @@ $query = "
 $conditions = [];
 $params = [];
 
+$conditions[] = "(pending_status = '' OR pending_status = 'Updated' OR pending_status IS NULL)";
+
 if (!empty($product_name)) {
     $conditions[] = "product_name LIKE ?";
     $params[] = $product_name . '%';
