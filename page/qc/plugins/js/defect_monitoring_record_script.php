@@ -1068,7 +1068,6 @@
                     admin_defect_id: admin_defect_id
                 },
                 success: function (response) {
-                    // console.log('Response:', response); 
                     if (response === 'success') {
                         Swal.fire({
                             icon: 'success',
@@ -1077,7 +1076,7 @@
                             timer: 1500
                         });
 
-                        $('#update_defect_mancost_id').val('');
+                        // $('#update_defect_mancost_id').val('');
                         $('#car_maker_mc_update').val('');
                         $('#line_no_mc_update').val('');
                         $('#date_detected_mc_update').val('');
@@ -1098,9 +1097,11 @@
                         $('#checking_date_mc_update').val('');
                         $('#verified_by_mc_update').val('');
                         $('#remarks_mc_update').val('');
-                        $('#admin_defect_id_1').val('');
+                        // $('#admin_defect_id_1').val('');
 
-                        load_qc_mancost_table($('#update_defect_mancost_id').val() + '~!~' + $('#admin_defect_id_1').val());
+                        // load_qc_mancost_table($('#update_defect_mancost_id').val() + '~!~' + $('#admin_defect_id_1').val());
+
+                        load_qc_mancost_table(id + '~!~' + admin_defect_id);
 
                         $('#update_defect_mancost_qc').modal('hide');
                     } else {

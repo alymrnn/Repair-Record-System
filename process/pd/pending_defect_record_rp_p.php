@@ -338,7 +338,7 @@ if ($method == 'load_defect_table_data') {
         }
     } else {
         echo '<tr>';
-        echo '<td colspan="12" style="text-align:center; color:red;">No Result</td>';
+        echo '<td colspan="12" style="text-align:center; color:red;">No Pending Record</td>';
         echo '</tr>';
     }
     exit;
@@ -451,7 +451,7 @@ if ($method == 'load_mancost_table_data') {
         }
     } else {
         echo '<tr>';
-        echo '<td colspan="12" style="text-align:center; color:red;">No Result</td>';
+        echo '<td colspan="12" style="text-align:center; color:red;">No Pending Record</td>';
         echo '</tr>';
     }
     exit;
@@ -518,6 +518,7 @@ if ($method == 'load_added_mancost') {
             $c++;
             echo '<tr>';
             echo '<td>' . $c . '</td>';
+            echo '<td><button type="button" class="btn btn-block btn-outline-danger btn-xs" onclick="delete_added_btn(event)" data-id="' . $row["id"] . '">Remove</button></td>';
             echo '<td style="text-align:center;">' . $row['repair_start'] . '</td>';
             echo '<td style="text-align:center;">' . $row['repair_end'] . '</td>';
             echo '<td style="text-align:center;">' . $row['time_consumed'] . '</td>';
@@ -529,7 +530,6 @@ if ($method == 'load_added_mancost') {
             echo '<td style="text-align:center;">' . $row['material_cost'] . '</td>';
             echo '<td style="text-align:center;">' . $row['manhour_cost'] . '</td>';
             echo '<td style="text-align:center;">' . $row['repaired_portion_treatment'] . '</td>';
-            echo '<td><button type="button" class="btn btn-block btn-outline-danger btn-xs" onclick="delete_added_btn(event)" data-id="' . $row["id"] . '">Remove</button></td>';
             echo '</tr>';
         }
     } else {

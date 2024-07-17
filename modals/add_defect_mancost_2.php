@@ -20,7 +20,6 @@
                             value="Defect and Mancost" style="vertical-align: middle;">
                         N/A
                     </label>&emsp;
-
                 </div>
                 <!-- form label -->
                 <label style="font-weight: normal;color: #000;font-size:25px"><b>Manpower and Material Cost
@@ -215,6 +214,7 @@
                         style="background: white;">
                         <thead style="text-align: center;">
                             <th>#</th>
+                            <th>Action</th>
                             <th>Repair Start</th>
                             <th>Repair End</th>
                             <th>Time Consumed</th>
@@ -226,7 +226,6 @@
                             <th>Material Cost</th>
                             <th>Manhour Cost</th>
                             <th>Repaired Portion Treatment</th>
-                            <th>Action</th>
                         </thead>
                         <tbody class="mb-0" id="list_of_added_mancost">
                             <tr>

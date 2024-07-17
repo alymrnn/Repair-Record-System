@@ -8,9 +8,9 @@ include ('plugins/navbar/index_navbar.php');
   <!-- Content Header (Page header) -->
   <div class="content-header">
     <div class="container-fluid">
-      <div class="row mb-2">
+      <div class="row">
         <div class="col-sm-6">
-          <h3 class="m-0">Home Page</h3>
+          <h4 class="m-0">Home Page</h4>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">

@@ -1510,6 +1510,7 @@ if ($method == 'load_added_mancost') {
             $c++;
             echo '<tr>';
             echo '<td>' . $c . '</td>';
+            echo '<td><button type="button" class="btn btn-block btn-outline-danger btn-xs" onclick="delete_added_btn(event)" data-id="' . $row["id"] . '">Remove</button></td>';
             echo '<td style="text-align:center;">' . $row['repair_start'] . '</td>';
             echo '<td style="text-align:center;">' . $row['repair_end'] . '</td>';
             echo '<td style="text-align:center;">' . $row['time_consumed'] . '</td>';
@@ -1521,7 +1522,6 @@ if ($method == 'load_added_mancost') {
             echo '<td style="text-align:center;">' . $row['material_cost'] . '</td>';
             echo '<td style="text-align:center;">' . $row['manhour_cost'] . '</td>';
             echo '<td style="text-align:center;">' . $row['repaired_portion_treatment'] . '</td>';
-            echo '<td><button type="button" class="btn btn-block btn-outline-danger btn-xs" onclick="delete_added_btn(event)" data-id="' . $row["id"] . '">Remove</button></td>';
             echo '</tr>';
         }
     } else {

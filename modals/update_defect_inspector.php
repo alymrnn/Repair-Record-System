@@ -27,6 +27,14 @@
                 </div>
 
                 <div class="row">
+                    <div class="col-sm-4">
+                        <label style="font-weight: normal;color: #000;">Record Type</label>
+                        <input type="text" id="record_type_insp_update" class="form-control" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="col-sm-2">
                         <!-- defect id hidden -->
                         <!-- <input type="hidden" id="update_defect_inspector_id" class="form-control"> -->
@@ -299,6 +307,15 @@
                 <!-- form label -->
                 <label class="mt-4" style="font-weight: normal;color: #000;font-size:25px"><b>Manpower and Material Cost
                         Monitoring</b></label>
+                <div class="row justify-content-end mt-2">
+                    <p style="font-size: 18px"><i>Check N/A if White Tag and Defect Only:</i></p>&ensp;
+
+                    <label style="display: inline-block;font-size: 18px">
+                        <input type="radio" id="r_white_tag_defect" name="na_white_tag_defect"
+                            value="Defect and Mancost" style="vertical-align: middle;">
+                        N/A
+                    </label>&emsp;
+                </div>
                 <div class="row mb-2">
                     <div class="col-sm-3">
                         <!-- defect id hidden -->
@@ -489,6 +506,7 @@
                         style="background: white;">
                         <thead style="text-align: center;">
                             <th>#</th>
+                            <th>Action</th>
                             <th>Repair Start</th>
                             <th>Repair End</th>
                             <th>Time Consumed</th>
@@ -500,7 +518,6 @@
                             <th>Material Cost</th>
                             <th>Manhour Cost</th>
                             <th>Repaired Portion Treatment</th>
-                            <th>Action</th>
                         </thead>
                         <tbody class="mb-0" id="list_of_added_mancost_insp">
                             <tr>

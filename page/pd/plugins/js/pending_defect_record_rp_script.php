@@ -8,6 +8,24 @@
         fetch_opt_defect_category_pd();
         fetch_opt_occurrence_process_pd();
         fetch_opt_portion_treatment_pd();
+
+        $('input[name="na_white_tag_defect"]').click(function () {
+            // Check if the N/A radio button is selected
+            if ($(this).val() === "White Tag" || $(this).val() === "Defect Only") {
+                // Set values to N/A
+                $('#repair_start_mc2').attr('placeholder', 'N/A').val('');
+                $('#repair_end_mc2').attr('placeholder', 'N/A').val('');
+                $('#time_consumed_mc2').val('N/A');
+                $('#defect_category_mc2').val('N/A');
+                $('#occurrence_process_mc2').val('N/A');
+                $('#parts_removed_mc2').val('N/A');
+                $('#quantity_mc2').val('N/A');
+                $('#unit_cost_mc2').val('N/A');
+                $('#material_cost_mc2').val('N/A');
+                $('#manhour_cost_mc2').val('N/A');
+                $('#portion_treatment2').val('N/A');
+            }
+        });
     });
 
     document.getElementById('qr_scan_pd').addEventListener('keyup', function (e) {
@@ -521,8 +539,9 @@
         $('#detail_content_defect_insp_update').val(data[30]);
         $('#treatment_content_defect_insp_update').val(data[31]);
         $('#harness_status_insp_update').val(data[32]);
-        $('#repairing_date_insp_update').val(data[33]);
+        // $('#repairing_date_insp_update').val(data[33]);
 
+        $('#repairing_date_insp_update').val(get_current_date());
         $('#repair_start_mc2').val(data[34]);
         $('#repair_end_mc2').val(data[35]);
         $('#time_consumed_mc2').val(data[36]);
@@ -538,6 +557,15 @@
         // defect unique id 
         $('#inspector_defect_id').val(data[45]).prop('hidden', true);
         $('#update_defect_inspector').modal('show');
+    }
+
+    function get_current_date() {
+        const today = new Date();
+        const dd = String(today.getDate()).padStart(2, '0');
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+        const yyyy = today.getFullYear();
+
+        return yyyy + '-' + mm + '-' + dd;
     }
 
     // const time_difference = () => {
@@ -949,7 +977,7 @@
             cache: false,
             data: data,
             success: function (response) {
-                console.log("Response:", response); 
+                console.log("Response:", response);
                 if (response == 'success') {
                     Swal.fire({
                         icon: 'success',
@@ -958,7 +986,7 @@
                         timer: 1500
                     });
                     load_pending_defect_table();
-                    $('#update_defect_inspector').modal('hide'); 
+                    $('#update_defect_inspector').modal('hide');
                 } else {
                     Swal.fire({
                         icon: 'error',
@@ -971,7 +999,7 @@
             },
             error: function (xhr, status, error) {
                 console.error('AJAX error:', status, error);
-                console.log('XHR object:', xhr); 
+                console.log('XHR object:', xhr);
                 Swal.fire({
                     icon: 'error',
                     title: 'Error occurred',
@@ -1003,6 +1031,7 @@
     }
 
     const clear_pending_mc_fields = () => {
+        document.querySelector('input[name="na_white_tag_defect"]:checked').checked = false;
         document.getElementById('parts_removed_mc2').value = '';
         document.getElementById('quantity_mc2').value = '';
         document.getElementById('unit_cost_mc2').value = '';

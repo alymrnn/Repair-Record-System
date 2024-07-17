@@ -51,23 +51,20 @@
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Product Name</label>
                   <input type="text" id="search_ad_product_name" class="form-control" placeholder="Product Name"
                     autocomplete="off"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
-                    >
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;">
                 </div>
                 <div class="col-sm-4 col-md-2">
                   <!-- lot no -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Lot No.</label>
                   <input type="text" id="search_ad_lot_no" class="form-control" placeholder="Lot No." autocomplete="off"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
-                    >
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;">
                 </div>
                 <div class="col-sm-4 col-md-2">
                   <!-- serial no -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Serial No.</label>
                   <input type="text" id="search_ad_serial_no" class="form-control" placeholder="Serial No."
                     autocomplete="off"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
-                    >
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;">
                 </div>
                 <div class="col-12 col-sm-4 col-md-2 mb-2">
                   <!-- clear button -->
@@ -95,8 +92,7 @@
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Line No.</label>
                   <input type="text" id="search_ad_line_no" class="form-control" placeholder="Line No."
                     autocomplete="off"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
-                    >
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;">
                 </div>
                 <!-- date -->
                 <div class="col-12 col-sm-2">
@@ -163,6 +159,13 @@
                         </div>
                       </div>
                     </div>
+                    <div class="col-12 col-sm-6 m-0 p-0">
+                      <p class="p-1" style="background: #FFFAD1; border-left: 3px solid #E89F4C; font-size: 14px;">
+                        <i>Note:</i>
+                        &nbsp;<b>Each entry in the mancost monitoring must be verified</b> for the overall record to be considered
+                        fully verified.
+                      </p>
+                    </div>
                   </div>
                   <ol class="breadcrumb m-0 p-0">
                     <li class="breadcrumb-item"><a href="#" onclick="load_qc_defect_table()"><i
@@ -174,7 +177,7 @@
 
               <!-- table with load more -->
               <div id="t_qc_table_res" class="table-responsive"
-                style="height: 500px; overflow: auto; display:inline-block;">
+                style="height: 400px; overflow: auto; display:inline-block;">
                 <table id="qc_defect_table" class="table table-sm table-head-fixed text-nowrap table-hover">
                 </table>
               </div>
