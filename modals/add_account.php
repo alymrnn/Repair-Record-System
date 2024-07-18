@@ -3,7 +3,8 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content" style="background:#f9f9f9;">
             <div class="modal-header" style="background:#343a40;">
-                <h5 class="modal-title" id="exampleModalLabel" style="font-weight: normal;color: #fff;"><i class="fas fa-plus-circle"></i>&nbsp;
+                <h5 class="modal-title" id="exampleModalLabel" style="font-weight: normal;color: #fff;"><i
+                        class="fas fa-plus-circle"></i>&nbsp;
                     Add New Account
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff;">
@@ -27,8 +28,15 @@
                     <div class="col-sm-5">
                         <!-- department -->
                         <label style="font-weight: normal;color: #000;">Department</label>
-                        <input type="text" id="department" class="form-control pl-2" autocomplete="off"
+                        <select id="department" class="form_control pl-2"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;">
+                            <option value="" selected disabled>Select Department</option>
+                            <option value="IT">IT</option>
+                            <option value="PD1">PD1</option>
+                            <option value="PD2">PD2</option>
+                            <option value="QA">QA</option>
+                            <option value="QC">QC</option>
+                        </select>
                     </div>
                 </div>
                 <br>
@@ -36,8 +44,16 @@
                     <div class="col-sm-4">
                         <!-- section -->
                         <label style="font-weight: normal;color: #000;">Section</label>
-                        <input type="text" id="section" class="form-control pl-2" autocomplete="off"
+                        <select id="section" class="form_control pl-2"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #525252;background: #FFF;height:34px; width:100%;">
+                            <option value="" selected disabled>Select Section</option>
+                            <option value="FAP1">FAP1</option>
+                            <option value="FAP2">FAP2</option>
+                            <option value="FAP3">FAP3</option>
+                            <option value="FAP4">FAP4</option>
+                            <option value="QA">QA</option>
+                            <option value="QC">QC</option>
+                        </select>
                     </div>
                     <div class="col-sm-4">
                         <!-- password -->

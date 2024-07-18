@@ -51,7 +51,7 @@
       <p style="color: #fff; font-size: 15px;"><i class="fas fa-calendar-check"></i>&nbsp;&nbsp;<span id="datetime"></span></p>
     </li>
     <li class="nav-item mr-2 mt-2">
-      <a href="/repair_record_system/" class="nav-link btn btn-block"
+      <a href="/repair_record_system2/" class="nav-link btn btn-block"
         style="border-radius: 3px;background: #E89F4C;color: #000;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); width:100px;"
         onmouseover="this.style.backgroundColor='#EA922E'; this.style.color='#000';"
         onmouseout="this.style.backgroundColor='#E89F4C'; this.style.color='#000';">
