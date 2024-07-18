@@ -1,5 +1,9 @@
 <script type="text/javascript">
     $(document).ready(function () {
+        var currentDate = new Date().toISOString().split('T')[0];
+        $('#date_from_search_v_defect').val(currentDate);
+        $('#date_to_search_v_defect').val(currentDate);
+
         load_viewer_defect_table(1);
         fetch_opt_search_v_defect_category();
         fetch_opt_search_v_discovery_process();
@@ -9,57 +13,57 @@
         fetch_opt_search_v_record_type();
     });
 
-    document.getElementById("search_v_discovery_process").addEventListener("change", e => {
-        load_viewer_defect_table(1);
-    });
+    // document.getElementById("search_v_discovery_process").addEventListener("change", e => {
+    //     load_viewer_defect_table(1);
+    // });
 
-    document.getElementById("search_v_occurrence_process").addEventListener("change", e => {
-        load_viewer_defect_table(1);
-    });
+    // document.getElementById("search_v_occurrence_process").addEventListener("change", e => {
+    //     load_viewer_defect_table(1);
+    // });
 
-    document.getElementById("search_v_outflow_process").addEventListener("change", e => {
-        load_viewer_defect_table(1);
-    });
+    // document.getElementById("search_v_outflow_process").addEventListener("change", e => {
+    //     load_viewer_defect_table(1);
+    // });
 
-    document.getElementById("search_v_defect_category").addEventListener("change", e => {
-        load_viewer_defect_table(1);
-    });
+    // document.getElementById("search_v_defect_category").addEventListener("change", e => {
+    //     load_viewer_defect_table(1);
+    // });
 
-    document.getElementById("search_v_car_maker").addEventListener("change", e => {
-        load_viewer_defect_table(1);
-    });
+    // document.getElementById("search_v_car_maker").addEventListener("change", e => {
+    //     load_viewer_defect_table(1);
+    // });
 
-    document.getElementById("search_v_line_no").addEventListener("keyup", e => {
-        load_viewer_defect_table(1);
-    });
+    // document.getElementById("search_v_line_no").addEventListener("keyup", e => {
+    //     load_viewer_defect_table(1);
+    // });
 
-    document.getElementById("search_v_product_name").addEventListener("keyup", e => {
-        load_viewer_defect_table(1);
-    });
+    // document.getElementById("search_v_product_name").addEventListener("keyup", e => {
+    //     load_viewer_defect_table(1);
+    // });
 
-    document.getElementById("search_v_lot_no").addEventListener("keyup", e => {
-        load_viewer_defect_table(1);
-    });
+    // document.getElementById("search_v_lot_no").addEventListener("keyup", e => {
+    //     load_viewer_defect_table(1);
+    // });
 
-    document.getElementById("search_v_serial_no").addEventListener("keyup", e => {
-        load_viewer_defect_table(1);
-    });
+    // document.getElementById("search_v_serial_no").addEventListener("keyup", e => {
+    //     load_viewer_defect_table(1);
+    // });
 
-    document.getElementById("search_v_record_type").addEventListener("change", e => {
-        load_viewer_defect_table(1);
-    });
+    // document.getElementById("search_v_record_type").addEventListener("change", e => {
+    //     load_viewer_defect_table(1);
+    // });
 
-    document.getElementById("search_v_defect_cause").addEventListener("change", e => {
-        load_viewer_defect_table(1);
-    });
+    // document.getElementById("search_v_defect_cause").addEventListener("change", e => {
+    //     load_viewer_defect_table(1);
+    // });
 
-    document.getElementById("date_from_search_v_defect").addEventListener("change", e => {
-        load_viewer_defect_table(1);
-    });
+    // document.getElementById("date_from_search_v_defect").addEventListener("change", e => {
+    //     load_viewer_defect_table(1);
+    // });
 
-    document.getElementById("date_to_search_v_defect").addEventListener("change", e => {
-        load_viewer_defect_table(1);
-    });
+    // document.getElementById("date_to_search_v_defect").addEventListener("change", e => {
+    //     load_viewer_defect_table(1);
+    // });
 
     // fetch defect category defect record
     const fetch_opt_search_v_defect_category = () => {
@@ -603,8 +607,8 @@
         document.getElementById("search_v_defect_category").value = '';
         document.getElementById("search_v_defect_cause").value = '';
         document.getElementById("search_v_record_type").value = '';
-        document.getElementById("date_from_search_v_defect").value = '';
-        document.getElementById("date_to_search_v_defect").value = '';
+        // document.getElementById("date_from_search_v_defect").value = '';
+        // document.getElementById("date_to_search_v_defect").value = '';
 
         load_viewer_defect_table(1);
     }

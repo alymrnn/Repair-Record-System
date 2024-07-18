@@ -1,5 +1,9 @@
 <script type="text/javascript">
     $(document).ready(function () {
+        var currentDate = new Date().toISOString().split('T')[0];
+        $('#search_date_from_pd').val(currentDate);
+        $('#search_date_to_pd').val(currentDate);
+
         load_pending_defect_table(1);
         load_added_mancost2();
         fetch_opt_record_type_pd();
@@ -9,21 +13,19 @@
         fetch_opt_occurrence_process_pd();
         fetch_opt_portion_treatment_pd();
 
-        $('input[name="na_white_tag_defect"]').click(function () {
-            // Check if the N/A radio button is selected
-            if ($(this).val() === "White Tag" || $(this).val() === "Defect Only") {
-                // Set values to N/A
-                $('#repair_start_mc2').attr('placeholder', 'N/A').val('');
-                $('#repair_end_mc2').attr('placeholder', 'N/A').val('');
-                $('#time_consumed_mc2').val('N/A');
-                $('#defect_category_mc2').val('N/A');
-                $('#occurrence_process_mc2').val('N/A');
-                $('#parts_removed_mc2').val('N/A');
-                $('#quantity_mc2').val('N/A');
-                $('#unit_cost_mc2').val('N/A');
-                $('#material_cost_mc2').val('N/A');
-                $('#manhour_cost_mc2').val('N/A');
-                $('#portion_treatment2').val('N/A');
+        $(document).on('click', 'input[name="na_white_tag_defect"]', function () {
+            if ($(this).val() === "Defect and Mancost") {
+                $('#repair_start_mc2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
+                $('#repair_end_mc2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
+                $('#time_consumed_mc2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
+                $('#defect_category_mc2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
+                $('#occurrence_process_mc2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
+                $('#parts_removed_mc2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
+                $('#quantity_mc2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
+                $('#unit_cost_mc2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
+                $('#material_cost_mc2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
+                $('#manhour_cost_mc2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
+                $('#portion_treatment2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
             }
         });
     });
@@ -141,33 +143,33 @@
     }
 
 
-    document.getElementById("search_product_name_pd").addEventListener("keyup", e => {
-        load_pending_defect_table(1);
-    });
+    // document.getElementById("search_product_name_pd").addEventListener("keyup", e => {
+    //     load_pending_defect_table(1);
+    // });
 
-    document.getElementById("search_lot_no_pd").addEventListener("keyup", e => {
-        load_pending_defect_table(1);
-    });
+    // document.getElementById("search_lot_no_pd").addEventListener("keyup", e => {
+    //     load_pending_defect_table(1);
+    // });
 
-    document.getElementById("search_serial_no_pd").addEventListener("keyup", e => {
-        load_pending_defect_table(1);
-    });
+    // document.getElementById("search_serial_no_pd").addEventListener("keyup", e => {
+    //     load_pending_defect_table(1);
+    // });
 
-    document.getElementById("search_record_type_pd").addEventListener("change", e => {
-        load_pending_defect_table(1);
-    });
+    // document.getElementById("search_record_type_pd").addEventListener("change", e => {
+    //     load_pending_defect_table(1);
+    // });
 
-    document.getElementById("search_date_from_pd").addEventListener("change", e => {
-        load_pending_defect_table(1);
-    });
+    // document.getElementById("search_date_from_pd").addEventListener("change", e => {
+    //     load_pending_defect_table(1);
+    // });
 
-    document.getElementById("search_date_to_pd").addEventListener("change", e => {
-        load_pending_defect_table(1);
-    });
+    // document.getElementById("search_date_to_pd").addEventListener("change", e => {
+    //     load_pending_defect_table(1);
+    // });
 
-    document.getElementById("search_line_no_pd").addEventListener("keyup", e => {
-        load_pending_defect_table(1);
-    });
+    // document.getElementById("search_line_no_pd").addEventListener("keyup", e => {
+    //     load_pending_defect_table(1);
+    // });
 
     document.getElementById("t_table_res").addEventListener("scroll", function () {
         var scrollTop = document.getElementById("t_table_res").scrollTop;
@@ -1058,8 +1060,8 @@
         document.getElementById("search_serial_no_pd").value = '';
         document.getElementById("search_record_type_pd").value = '';
         document.getElementById("search_line_no_pd").value = '';
-        document.getElementById("search_date_from_pd").value = '';
-        document.getElementById("search_date_to_pd").value = '';
+        // document.getElementById("search_date_from_pd").value = '';
+        // document.getElementById("search_date_to_pd").value = '';
 
         load_pending_defect_table(1);
     }

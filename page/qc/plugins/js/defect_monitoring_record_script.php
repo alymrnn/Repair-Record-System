@@ -1,5 +1,9 @@
 <script type="text/javascript">
     $(document).ready(function () {
+        var currentDate = new Date().toISOString().split('T')[0];
+        $('#search_ad_date_from').val(currentDate);
+        $('#search_ad_date_to').val(currentDate);
+
         load_qc_defect_table(1);
         fetch_opt_search_ad_record_type();
         fetch_opt_search_ad_defect_category();
@@ -63,33 +67,33 @@
         }
     });
 
-    document.getElementById("search_ad_record_type").addEventListener("change", e => {
-        load_qc_defect_table(1);
-    });
+    // document.getElementById("search_ad_record_type").addEventListener("change", e => {
+    //     load_qc_defect_table(1);
+    // });
 
-    document.getElementById("search_ad_line_no").addEventListener("keyup", e => {
-        load_qc_defect_table(1);
-    });
+    // document.getElementById("search_ad_line_no").addEventListener("keyup", e => {
+    //     load_qc_defect_table(1);
+    // });
 
-    document.getElementById("search_ad_product_name").addEventListener("keyup", e => {
-        load_qc_defect_table(1);
-    });
+    // document.getElementById("search_ad_product_name").addEventListener("keyup", e => {
+    //     load_qc_defect_table(1);
+    // });
 
-    document.getElementById("search_ad_lot_no").addEventListener("keyup", e => {
-        load_qc_defect_table(1);
-    });
+    // document.getElementById("search_ad_lot_no").addEventListener("keyup", e => {
+    //     load_qc_defect_table(1);
+    // });
 
-    document.getElementById("search_ad_serial_no").addEventListener("keyup", e => {
-        load_qc_defect_table(1);
-    });
+    // document.getElementById("search_ad_serial_no").addEventListener("keyup", e => {
+    //     load_qc_defect_table(1);
+    // });
 
-    document.getElementById("search_ad_date_from").addEventListener("change", e => {
-        load_qc_defect_table(1);
-    });
+    // document.getElementById("search_ad_date_from").addEventListener("change", e => {
+    //     load_qc_defect_table(1);
+    // });
 
-    document.getElementById("search_ad_date_to").addEventListener("change", e => {
-        load_qc_defect_table(1);
-    });
+    // document.getElementById("search_ad_date_to").addEventListener("change", e => {
+    //     load_qc_defect_table(1);
+    // });
 
     const get_discovery_person = () => {
         var discovery_id_no = $('#discovery_id_no_mc_update').val();
@@ -1177,8 +1181,8 @@
         document.getElementById("search_ad_serial_no").value = '';
         document.getElementById("search_ad_record_type").value = '';
         document.getElementById("search_ad_line_no").value = '';
-        document.getElementById("search_ad_date_from").value = '';
-        document.getElementById("search_ad_date_to").value = '';
+        // document.getElementById("search_ad_date_from").value = '';
+        // document.getElementById("search_ad_date_to").value = '';
 
         load_qc_defect_table(1);
     }

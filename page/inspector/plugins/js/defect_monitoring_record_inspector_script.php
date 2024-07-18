@@ -1,5 +1,9 @@
 <script type="text/javascript">
   $(document).ready(function () {
+    var currentDate = new Date().toISOString().split('T')[0];
+    $('#search_date_from_qa').val(currentDate);
+    $('#search_date_to_qa').val(currentDate);
+
     load_defect_table_qa(1);
     fetch_opt_record_type_qa();
     fetch_opt_category_qa();
@@ -172,12 +176,12 @@
   });
 
   document.getElementById('line_no_qa').addEventListener('input', function () {
-        this.value = this.value.replace(/\D/g, '');
+    this.value = this.value.replace(/\D/g, '');
 
-        if (this.value.length > 4) {
-            this.value = this.value.slice(0, 4);
-        }
-    });
+    if (this.value.length > 4) {
+      this.value = this.value.slice(0, 4);
+    }
+  });
 
   const get_discovery_person = () => {
     var discovery_id_no = $('#discovery_id_no_qa').val();
@@ -689,33 +693,33 @@
     }
   });
 
-  document.getElementById("search_product_name_qa").addEventListener("keyup", e => {
-    load_defect_table_qa(1);
-  });
+  // document.getElementById("search_product_name_qa").addEventListener("keyup", e => {
+  //   load_defect_table_qa(1);
+  // });
 
-  document.getElementById("search_lot_no_qa").addEventListener("keyup", e => {
-    load_defect_table_qa(1);
-  });
+  // document.getElementById("search_lot_no_qa").addEventListener("keyup", e => {
+  //   load_defect_table_qa(1);
+  // });
 
-  document.getElementById("search_serial_no_qa").addEventListener("keyup", e => {
-    load_defect_table_qa(1);
-  });
+  // document.getElementById("search_serial_no_qa").addEventListener("keyup", e => {
+  //   load_defect_table_qa(1);
+  // });
 
-  document.getElementById("search_record_type_qa").addEventListener("change", e => {
-    load_defect_table_qa(1);
-  });
+  // document.getElementById("search_record_type_qa").addEventListener("change", e => {
+  //   load_defect_table_qa(1);
+  // });
 
-  document.getElementById("search_line_no_qa").addEventListener("keyup", e => {
-    load_defect_table_qa(1);
-  });
+  // document.getElementById("search_line_no_qa").addEventListener("keyup", e => {
+  //   load_defect_table_qa(1);
+  // });
 
-  document.getElementById("search_date_from_qa").addEventListener("change", e => {
-    load_defect_table_qa(1);
-  });
+  // document.getElementById("search_date_from_qa").addEventListener("change", e => {
+  //   load_defect_table_qa(1);
+  // });
 
-  document.getElementById("search_date_to_qa").addEventListener("change", e => {
-    load_defect_table_qa(1);
-  });
+  // document.getElementById("search_date_to_qa").addEventListener("change", e => {
+  //   load_defect_table_qa(1);
+  // });
 
   document.getElementById('search_qr_scan_qa').addEventListener('keyup', function (e) {
     var qrCode = this.value;
@@ -961,8 +965,8 @@
   //   var defect_id_qa = document.getElementById('defect_id_no_qa').value;
 
   //   $.ajax({
-    // url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
-    //     type: 'POST',
+  // url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
+  //     type: 'POST',
   //     cache: false,
   //     data: {
   //       method: 'add_record_qa',
@@ -1070,8 +1074,8 @@
   //   });
   // }
 
-  const add_record_qa = () => {
-    var requiredFields = [
+  const add_record_inspector = () => {
+    var required_fields = [
       'line_no_qa',
       'line_category_qa',
       'date_detected_qa',
@@ -1099,7 +1103,7 @@
       'harness_status_qa'
     ];
 
-    requiredFields.forEach(field => {
+    required_fields.forEach(field => {
       $('#' + field).on('change', function () {
         $(this).removeClass('error-text');
       });
@@ -1107,7 +1111,7 @@
 
     var allFieldsFilled = true;
 
-    requiredFields.forEach(field => {
+    required_fields.forEach(field => {
       var element = document.getElementById(field);
       if (element.tagName === 'SELECT') {
         if (element.value === '') {
@@ -1129,9 +1133,8 @@
     if (!allFieldsFilled) {
       Swal.fire({
         icon: 'warning',
-        title: 'Please fill-out all required fields.',
-        showConfirmButton: false,
-        timer: 2500
+        title: 'There is an empty field. Please fill-out all required fields.',
+        showConfirmButton: true
       });
       return;
     }
@@ -1170,14 +1173,14 @@
     var detail_content_defect_qa = document.getElementById("detail_content_defect_qa").value.trim();
     var treatment_content_defect_qa = document.getElementById("treatment_content_defect_qa").value.trim();
     var harness_status_qa = document.getElementById("harness_status_qa").value.trim();
-    var defect_id_qa = document.getElementById('defect_id_no_qa').value;
+    var defect_id_qa = document.getElementById("defect_id_no_qa").value;
 
     $.ajax({
       url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
       type: 'POST',
       cache: false,
       data: {
-        method: 'add_record_qa',
+        method: 'add_record_inspector',
         record_type_qa: record_type_qa,
         line_no_qa: line_no_qa,
         line_category_qa: line_category_qa,
@@ -1227,7 +1230,7 @@
             timer: 1500
           });
 
-          requiredFields.forEach(field => {
+          required_fields.forEach(field => {
             $('#' + field).val('');
           });
 
@@ -1331,8 +1334,8 @@
     document.getElementById("search_serial_no_qa").value = '';
     document.getElementById("search_record_type_qa").value = '';
     document.getElementById("search_line_no_qa").value = '';
-    document.getElementById("search_date_from_qa").value = '';
-    document.getElementById("search_date_to_qa").value = '';
+    // document.getElementById("search_date_from_qa").value = '';
+    // document.getElementById("search_date_to_qa").value = '';
 
     load_defect_table_qa(1);
   }

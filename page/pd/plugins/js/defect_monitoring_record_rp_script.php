@@ -1,5 +1,9 @@
 <script type="text/javascript">
     $(document).ready(function () {
+        var currentDate = new Date().toISOString().split('T')[0];
+        $('#date_from_search_defect').val(currentDate);
+        $('#date_to_search_defect').val(currentDate);
+
         load_defect_table(1);
         load_added_mancost();
         fetch_opt_record_type_dr();
@@ -69,33 +73,33 @@
         }
     });
 
-    document.getElementById("search_product_name").addEventListener("keyup", e => {
-        load_defect_table(1);
-    });
+    // document.getElementById("search_product_name").addEventListener("keyup", e => {
+    //     load_defect_table(1);
+    // });
 
-    document.getElementById("search_lot_no").addEventListener("keyup", e => {
-        load_defect_table(1);
-    });
+    // document.getElementById("search_lot_no").addEventListener("keyup", e => {
+    //     load_defect_table(1);
+    // });
 
-    document.getElementById("search_serial_no").addEventListener("keyup", e => {
-        load_defect_table(1);
-    });
+    // document.getElementById("search_serial_no").addEventListener("keyup", e => {
+    //     load_defect_table(1);
+    // });
 
-    document.getElementById("search_record_type").addEventListener("change", e => {
-        load_defect_table(1);
-    });
+    // document.getElementById("search_record_type").addEventListener("change", e => {
+    //     load_defect_table(1);
+    // });
 
-    document.getElementById("date_from_search_defect").addEventListener("change", e => {
-        load_defect_table(1);
-    });
+    // document.getElementById("date_from_search_defect").addEventListener("change", e => {
+    //     load_defect_table(1);
+    // });
 
-    document.getElementById("date_to_search_defect").addEventListener("change", e => {
-        load_defect_table(1);
-    });
+    // document.getElementById("date_to_search_defect").addEventListener("change", e => {
+    //     load_defect_table(1);
+    // });
 
-    document.getElementById("line_no_rp").addEventListener("keyup", e => {
-        load_defect_table(1);
-    });
+    // document.getElementById("line_no_rp").addEventListener("keyup", e => {
+    //     load_defect_table(1);
+    // });
 
     const get_discovery_person = () => {
         var discovery_id_no = $('#discovery_id_no_dr').val();
@@ -1918,17 +1922,17 @@
         var treatment_content_defect = document.getElementById("treatment_content_defect").value.trim();
         var harness_status_dr = document.getElementById("harness_status_dr").value.trim();
 
-        var repair_start_mc = document.getElementById("repair_start_mc").value.trim();
-        var repair_end_mc = document.getElementById("repair_end_mc").value.trim();
-        var time_consumed_mc = document.getElementById("time_consumed_mc").value;
-        var defect_category_mc = document.getElementById("defect_category_mc").value.trim();
-        var occurrence_process_mc = document.getElementById("occurrence_process_mc").value.trim();
-        var parts_removed_mc = document.getElementById("parts_removed_mc").value.trim();
-        var quantity_mc = document.getElementById("quantity_mc").value.trim();
-        var unit_cost_mc = document.getElementById("unit_cost_mc").value.trim();
-        var material_cost_mc = document.getElementById("material_cost_mc").value;
-        var manhour_cost_mc = document.getElementById("manhour_cost_mc").value;
-        var portion_treatment = document.getElementById("portion_treatment").value.trim();
+        // var repair_start_mc = document.getElementById("repair_start_mc").value.trim();
+        // var repair_end_mc = document.getElementById("repair_end_mc").value.trim();
+        // var time_consumed_mc = document.getElementById("time_consumed_mc").value;
+        // var defect_category_mc = document.getElementById("defect_category_mc").value.trim();
+        // var occurrence_process_mc = document.getElementById("occurrence_process_mc").value.trim();
+        // var parts_removed_mc = document.getElementById("parts_removed_mc").value.trim();
+        // var quantity_mc = document.getElementById("quantity_mc").value.trim();
+        // var unit_cost_mc = document.getElementById("unit_cost_mc").value.trim();
+        // var material_cost_mc = document.getElementById("material_cost_mc").value;
+        // var manhour_cost_mc = document.getElementById("manhour_cost_mc").value;
+        // var portion_treatment = document.getElementById("portion_treatment").value.trim();
 
         var defect_id = document.getElementById('defect_id_no').value;
 
@@ -1973,17 +1977,17 @@
                 treatment_content_defect: treatment_content_defect,
                 harness_status_dr: harness_status_dr,
 
-                repair_start_mc: repair_start_mc,
-                repair_end_mc: repair_end_mc,
-                time_consumed_mc: time_consumed_mc,
-                defect_category_mc: defect_category_mc,
-                occurrence_process_mc: occurrence_process_mc,
-                parts_removed_mc: parts_removed_mc,
-                quantity_mc: quantity_mc,
-                unit_cost_mc: unit_cost_mc,
-                material_cost_mc: material_cost_mc,
-                manhour_cost_mc: manhour_cost_mc,
-                portion_treatment: portion_treatment,
+                // repair_start_mc: repair_start_mc,
+                // repair_end_mc: repair_end_mc,
+                // time_consumed_mc: time_consumed_mc,
+                // defect_category_mc: defect_category_mc,
+                // occurrence_process_mc: occurrence_process_mc,
+                // parts_removed_mc: parts_removed_mc,
+                // quantity_mc: quantity_mc,
+                // unit_cost_mc: unit_cost_mc,
+                // material_cost_mc: material_cost_mc,
+                // manhour_cost_mc: manhour_cost_mc,
+                // portion_treatment: portion_treatment,
                 defect_id: defect_id
             },
             success: function (response) {
@@ -2034,17 +2038,17 @@
                     $('#treatment_content_defect').val('');
                     $('#harness_status_dr').val('');
 
-                    $('#repair_start_mc').val('');
-                    $('#repair_end_mc').val('');
-                    $('#time_consumed_mc').val('');
-                    $('#defect_category_mc').val('');
-                    $('#occurrence_process_mc').val('');
-                    $('#parts_removed_mc').val('');
-                    $('#quantity_mc').val('');
-                    $('#unit_cost_mc').val('');
-                    $('#material_cost_mc').val('');
-                    $('#manhour_cost_mc').val('');
-                    $('#portion_treatment').val('');
+                    // $('#repair_start_mc').val('');
+                    // $('#repair_end_mc').val('');
+                    // $('#time_consumed_mc').val('');
+                    // $('#defect_category_mc').val('');
+                    // $('#occurrence_process_mc').val('');
+                    // $('#parts_removed_mc').val('');
+                    // $('#quantity_mc').val('');
+                    // $('#unit_cost_mc').val('');
+                    // $('#material_cost_mc').val('');
+                    // $('#manhour_cost_mc').val('');
+                    // $('#portion_treatment').val('');
 
                     $('#defect_id').val('');
 
@@ -2558,16 +2562,16 @@
                                     $('#add_defect_mancost_2').modal('show');
                                 }, 300);
                             } else {
-                                // console.log(response);
+                                console.log(response);
                             }
                         } catch (e) {
-                            // console.log(response);
+                            console.log(response);
                         }
                     }, 300);
                 }
             })
                 .fail((jqXHR, textStatus, errorThrown) => {
-                    // console.log(jqXHR);
+                    console.log(jqXHR);
                 });
         }
         return false;
@@ -2998,7 +3002,6 @@
             portionTreatmentMcError.style.display = 'block';
         }
         else {
-            // Construct an array of records
             var records = [
                 {
                     repair_start_mc: repair_start_mc.value,
@@ -3034,7 +3037,6 @@
                             timer: 1000
                         });
 
-                        // Retain values in these fields
                         var retainedValues = {
                             'repair_start_mc': repair_start_mc.value,
                             'repair_end_mc': repair_end_mc.value,
@@ -3045,7 +3047,6 @@
                             'manhour_cost_mc': manhour_cost_mc.value,
                         };
 
-                        // Clear specific fields
                         $('#parts_removed_mc').val('');
                         $('#quantity_mc').val('');
                         $('#unit_cost_mc').val('');
@@ -3055,7 +3056,6 @@
                         $('#defect_id').val('');
 
                         $('#list_of_added_mancost').empty();
-                        // console.log("Table cleared");
 
                         load_added_mancost();
                     } else {
@@ -3071,6 +3071,117 @@
             });
         }
     };
+
+    // const add_multiple_mancost = () => {
+    //     $('#list_of_added_mancost').empty();
+
+    //     var repair_start_mc = document.getElementById("repair_start_mc");
+    //     var repair_end_mc = document.getElementById("repair_end_mc");
+    //     var time_consumed_mc = document.getElementById("time_consumed_mc");
+    //     var defect_category_mc = document.getElementById("defect_category_mc");
+    //     var occurrence_process_mc = document.getElementById("occurrence_process_mc");
+    //     var parts_removed_mc = document.getElementById("parts_removed_mc");
+    //     var quantity_mc = document.getElementById("quantity_mc");
+    //     var unit_cost_mc = document.getElementById("unit_cost_mc");
+    //     var material_cost_mc = document.getElementById("material_cost_mc");
+    //     var manhour_cost_mc = document.getElementById("manhour_cost_mc");
+    //     var portion_treatment = document.getElementById("portion_treatment");
+    //     var defect_id = document.getElementById('defect_id_no');
+
+    //     defect_category_mc.classList.remove('highlight');
+    //     occurrence_process_mc.classList.remove('highlight');
+    //     parts_removed_mc.classList.remove('highlight');
+    //     quantity_mc.classList.remove('highlight');
+    //     portion_treatment.classList.remove('highlight');
+
+    //     if (defect_category_mc.value.trim() === '') {
+    //         defect_category_mc.classList.add('highlight');
+    //         document.getElementById("defectCategoryMcError").style.display = 'block';
+    //     }
+    //     if (occurrence_process_mc.value.trim() === '') {
+    //         occurrence_process_mc.classList.add('highlight');
+    //         document.getElementById("occurrenceProcessMcError").style.display = 'block';
+    //     }
+    //     if (parts_removed_mc.value.trim() === '') {
+    //         parts_removed_mc.classList.add('highlight');
+    //         document.getElementById("partsRemovedMcError").style.display = 'block';
+    //     }
+    //     if (portion_treatment.value.trim() === '') {
+    //         portion_treatment.classList.add('highlight');
+    //         document.getElementById("portionTreatmentMcError").style.display = 'block';
+    //     }
+    //     else {
+    //         var records = [
+    //             {
+    //                 repair_start_mc: repair_start_mc.value.trim() === '' ? null : repair_start_mc.value,
+    //                 repair_end_mc: repair_end_mc.value.trim() === '' ? null : repair_end_mc.value,
+    //                 time_consumed_mc: time_consumed_mc.value.trim() === '' ? null : time_consumed_mc.value,
+    //                 defect_category_mc: defect_category_mc.value,
+    //                 occurrence_process_mc: occurrence_process_mc.value,
+    //                 parts_removed_mc: parts_removed_mc.value,
+    //                 quantity_mc: quantity_mc.value.trim() === '' ? null : quantity_mc.value,
+    //                 unit_cost_mc: unit_cost_mc.value.trim() === '' ? null : unit_cost_mc.value,
+    //                 material_cost_mc: material_cost_mc.value.trim() === '' ? null : material_cost_mc.value,
+    //                 manhour_cost_mc: manhour_cost_mc.value.trim() === '' ? null : manhour_cost_mc.value,
+    //                 portion_treatment: portion_treatment.value,
+    //                 defect_id: defect_id.value
+    //             }
+    //         ];
+
+    //         $.ajax({
+    //             url: '../../process/pd/defect_monitoring_record_rp_p.php',
+    //             type: 'POST',
+    //             cache: false,
+    //             data: {
+    //                 method: 'add_multiple_mancost',
+    //                 records: records
+    //             },
+    //             success: function (response) {
+    //                 if (response == 'success') {
+    //                     Swal.fire({
+    //                         icon: 'success',
+    //                         title: 'Successfully Recorded',
+    //                         text: 'Success',
+    //                         showConfirmButton: false,
+    //                         timer: 1000
+    //                     });
+
+    //                     var retainedValues = {
+    //                         'repair_start_mc': repair_start_mc.value,
+    //                         'repair_end_mc': repair_end_mc.value,
+    //                         'time_consumed_mc': time_consumed_mc.value,
+    //                         'defect_category_mc': defect_category_mc.value,
+    //                         'occurrence_process_mc': occurrence_process_mc.value,
+    //                         'parts_removed_mc': parts_removed_mc.value,
+    //                         'manhour_cost_mc': manhour_cost_mc.value,
+    //                     };
+
+    //                     $('#parts_removed_mc').val('');
+    //                     $('#quantity_mc').val('');
+    //                     $('#unit_cost_mc').val('');
+    //                     $('#material_cost_mc').val('');
+    //                     $('#portion_treatment').val('');
+
+    //                     $('#defect_id').val('');
+
+    //                     $('#list_of_added_mancost').empty();
+
+    //                     load_added_mancost();
+    //                 } else {
+    //                     Swal.fire({
+    //                         icon: 'error',
+    //                         title: 'Error',
+    //                         text: 'Error',
+    //                         showConfirmButton: false,
+    //                         timer: 1500
+    //                     });
+    //                 }
+    //             }
+    //         });
+    //     }
+    // };
+
+
 
     // Event listener for 'input' event on the parts_removed field
     $("#parts_removed_mc").on("input", function () {
@@ -3251,8 +3362,8 @@
         document.getElementById("search_serial_no").value = '';
         document.getElementById("search_record_type").value = '';
         document.getElementById("line_no_rp").value = '';
-        document.getElementById("date_from_search_defect").value = '';
-        document.getElementById("date_to_search_defect").value = '';
+        // document.getElementById("date_from_search_defect").value = '';
+        // document.getElementById("date_to_search_defect").value = '';
 
         load_defect_table(1);
     }

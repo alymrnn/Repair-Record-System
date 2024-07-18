@@ -140,6 +140,10 @@ delete_added_record($_SESSION['full_name'], $conn);
       color: #2b2b2b;
       opacity: 1.0;
     }
+
+    .error-text {
+      border: 1px solid #ECA843;
+    }
   </style>
 </head>
 
@@ -171,4 +175,5 @@ delete_added_record($_SESSION['full_name'], $conn);
       </ul>
     </nav>
     <!-- /.navbar -->
+
 </html>

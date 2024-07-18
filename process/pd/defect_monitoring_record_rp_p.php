@@ -1345,18 +1345,18 @@ if ($method == 'add_defect_mancost_record') {
     $treatment_content_defect = trim($_POST['treatment_content_defect']);
     $harness_status_dr = trim($_POST['harness_status_dr']);
 
-    $repair_person_dr = trim($_POST['repair_person_dr']);
-    $repair_start_mc = trim($_POST['repair_start_mc']);
-    $repair_end_mc = trim($_POST['repair_end_mc']);
-    $time_consumed_mc = trim($_POST['time_consumed_mc']);
-    $defect_category_mc = trim($_POST['defect_category_mc']);
-    $occurrence_process_mc = trim($_POST['occurrence_process_mc']);
-    $parts_removed_mc = trim($_POST['parts_removed_mc']);
-    $quantity_mc = trim($_POST['quantity_mc']);
-    $unit_cost_mc = trim($_POST['unit_cost_mc']);
-    $material_cost_mc = trim($_POST['material_cost_mc']);
-    $manhour_cost_mc = trim($_POST['manhour_cost_mc']);
-    $portion_treatment = trim($_POST['portion_treatment']);
+    // $repair_person_dr = trim($_POST['repair_person_dr']);
+    // $repair_start_mc = trim($_POST['repair_start_mc']);
+    // $repair_end_mc = trim($_POST['repair_end_mc']);
+    // $time_consumed_mc = trim($_POST['time_consumed_mc']);
+    // $defect_category_mc = trim($_POST['defect_category_mc']);
+    // $occurrence_process_mc = trim($_POST['occurrence_process_mc']);
+    // $parts_removed_mc = trim($_POST['parts_removed_mc']);
+    // $quantity_mc = trim($_POST['quantity_mc']);
+    // $unit_cost_mc = trim($_POST['unit_cost_mc']);
+    // $material_cost_mc = trim($_POST['material_cost_mc']);
+    // $manhour_cost_mc = trim($_POST['manhour_cost_mc']);
+    // $portion_treatment = trim($_POST['portion_treatment']);
     $defect_id = $_POST['defect_id'];
     $status = 'Saved';
     $record_added_by = $_SESSION['full_name'];
@@ -1454,33 +1454,33 @@ if ($method == 'add_defect_mancost_record') {
             // Update was successful
         } else {
             // Insert into t_mancost_monitoring_f
-            $query1 = "
-                INSERT INTO t_mancost_monitoring_f (
-                    defect_id, repair_start, repair_end, time_consumed, defect_category_mc, occurrence_process_mc, 
-                    parts_removed, quantity, 
-                    unit_cost, material_cost, manhour_cost, repaired_portion_treatment, status, record_added_by
-                ) VALUES (
-                    :defect_id, :repair_start, :repair_end, :time_consumed, :defect_category_mc, 
-                    :occurrence_process_mc, :parts_removed,
-                    :quantity, :unit_cost, :material_cost, :manhour_cost, :portion_treatment, :status, :record_added_by
-                )
-            ";
+            // $query1 = "
+            //     INSERT INTO t_mancost_monitoring_f (
+            //         defect_id, repair_start, repair_end, time_consumed, defect_category_mc, occurrence_process_mc, 
+            //         parts_removed, quantity, 
+            //         unit_cost, material_cost, manhour_cost, repaired_portion_treatment, status, record_added_by
+            //     ) VALUES (
+            //         :defect_id, :repair_start, :repair_end, :time_consumed, :defect_category_mc, 
+            //         :occurrence_process_mc, :parts_removed,
+            //         :quantity, :unit_cost, :material_cost, :manhour_cost, :portion_treatment, :status, :record_added_by
+            //     )
+            // ";
 
-            $stmt1 = $conn->prepare($query1, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-            $stmt1->bindParam(':defect_id', $defect_id, PDO::PARAM_STR);
-            $stmt1->bindParam(':repair_start', $repair_start_mc, PDO::PARAM_STR);
-            $stmt1->bindParam(':repair_end', $repair_end_mc, PDO::PARAM_STR);
-            $stmt1->bindParam(':time_consumed', $time_consumed_mc, PDO::PARAM_STR);
-            $stmt1->bindParam(':defect_category_mc', $defect_category_mc, PDO::PARAM_STR);
-            $stmt1->bindParam(':occurrence_process_mc', $occurrence_process_mc, PDO::PARAM_STR);
-            $stmt1->bindParam(':parts_removed', $parts_removed_mc, PDO::PARAM_STR);
-            $stmt1->bindParam(':quantity', $quantity_mc, PDO::PARAM_STR);
-            $stmt1->bindParam(':unit_cost', $unit_cost_mc, PDO::PARAM_STR);
-            $stmt1->bindParam(':material_cost', $material_cost_mc, PDO::PARAM_STR);
-            $stmt1->bindParam(':manhour_cost', $manhour_cost_mc, PDO::PARAM_STR);
-            $stmt1->bindParam(':portion_treatment', $portion_treatment, PDO::PARAM_STR);
-            $stmt1->bindParam(':status', $status, PDO::PARAM_STR);
-            $stmt1->bindParam(':record_added_by', $record_added_by, PDO::PARAM_STR);
+            // $stmt1 = $conn->prepare($query1, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+            // $stmt1->bindParam(':defect_id', $defect_id, PDO::PARAM_STR);
+            // $stmt1->bindParam(':repair_start', $repair_start_mc, PDO::PARAM_STR);
+            // $stmt1->bindParam(':repair_end', $repair_end_mc, PDO::PARAM_STR);
+            // $stmt1->bindParam(':time_consumed', $time_consumed_mc, PDO::PARAM_STR);
+            // $stmt1->bindParam(':defect_category_mc', $defect_category_mc, PDO::PARAM_STR);
+            // $stmt1->bindParam(':occurrence_process_mc', $occurrence_process_mc, PDO::PARAM_STR);
+            // $stmt1->bindParam(':parts_removed', $parts_removed_mc, PDO::PARAM_STR);
+            // $stmt1->bindParam(':quantity', $quantity_mc, PDO::PARAM_STR);
+            // $stmt1->bindParam(':unit_cost', $unit_cost_mc, PDO::PARAM_STR);
+            // $stmt1->bindParam(':material_cost', $material_cost_mc, PDO::PARAM_STR);
+            // $stmt1->bindParam(':manhour_cost', $manhour_cost_mc, PDO::PARAM_STR);
+            // $stmt1->bindParam(':portion_treatment', $portion_treatment, PDO::PARAM_STR);
+            // $stmt1->bindParam(':status', $status, PDO::PARAM_STR);
+            // $stmt1->bindParam(':record_added_by', $record_added_by, PDO::PARAM_STR);
 
             if (!$stmt1->execute()) {
                 $message = 'error';
@@ -1583,6 +1583,69 @@ if ($method == 'add_multiple_mancost') {
         echo 'success';
     }
 }
+
+// if ($method == 'add_multiple_mancost') {
+//     $records = $_POST['records'];
+
+//     $status = 'Added';
+//     $record_added_by = $_SESSION['full_name'];
+
+//     $error = 0;
+//     $message = "";
+
+//     foreach ($records as $record) {
+//         // Retrieve and trim the input values
+//         $repair_start_mc = isset($record['repair_start_mc']) ? trim($record['repair_start_mc']) : null;
+//         $repair_end_mc = isset($record['repair_end_mc']) ? trim($record['repair_end_mc']) : null;
+//         $time_consumed_mc = isset($record['time_consumed_mc'])? trim($record['time_consumed_mc']) : null;
+//         $defect_category_mc = trim($record['defect_category_mc']);
+//         $occurrence_process_mc = trim($record['occurrence_process_mc']);
+//         $parts_removed_mc = trim($record['parts_removed_mc']);
+//         $quantity_mc = isset($record['quantity_mc'])? trim($record['quantity_mc']) : null;
+//         $unit_cost_mc = isset($record['unit_cost_mc'])? trim($record['unit_cost_mc']) : null;
+//         $material_cost_mc = isset($record['material_cost_mc'])? trim($record['material_cost_mc']) : null;
+//         $manhour_cost_mc = isset($record['manhour_cost_mc'])? trim($record['manhour_cost_mc']) : null;
+//         $portion_treatment = trim($record['portion_treatment']);
+//         $defect_id = $record['defect_id'];
+
+//         // Prepare the SQL query with placeholders
+//         $query = "INSERT INTO t_mancost_monitoring_f (defect_id, repair_start, repair_end, time_consumed, defect_category_mc, occurrence_process_mc, parts_removed, quantity, unit_cost, material_cost, manhour_cost, repaired_portion_treatment, status, record_added_by) VALUES (:defect_id, :repair_start, :repair_end, :time_consumed, :defect_category_mc, :occurrence_process_mc, :parts_removed, :quantity, :unit_cost, :material_cost, :manhour_cost, :portion_treatment, :status, :record_added_by)";
+
+//         $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+
+//         // Bind the parameters
+//         $stmt->bindParam(':defect_id', $defect_id);
+//         $stmt->bindParam(':repair_start', $repair_start_mc, PDO::PARAM_STR); // Use PDO::PARAM_STR explicitly for string fields
+//         $stmt->bindParam(':repair_end', $repair_end_mc, PDO::PARAM_STR); 
+//         $stmt->bindParam(':time_consumed', $time_consumed_mc, PDO::PARAM_STR);
+//         $stmt->bindParam(':defect_category_mc', $defect_category_mc);
+//         $stmt->bindParam(':occurrence_process_mc', $occurrence_process_mc);
+//         $stmt->bindParam(':parts_removed', $parts_removed_mc);
+//         $stmt->bindParam(':quantity', $quantity_mc, PDO::PARAM_STR);
+//         $stmt->bindParam(':unit_cost', $unit_cost_mc, PDO::PARAM_STR);
+//         $stmt->bindParam(':material_cost', $material_cost_mc, PDO::PARAM_STR);
+//         $stmt->bindParam(':manhour_cost', $manhour_cost_mc, PDO::PARAM_STR);
+//         $stmt->bindParam(':portion_treatment', $portion_treatment);
+//         $stmt->bindParam(':status', $status);
+//         $stmt->bindParam(':record_added_by', $record_added_by);
+
+//         // Execute the query
+//         if (!$stmt->execute()) {
+//             $message = 'error';
+//             $error = 1;
+//             break;
+//         }
+//     }
+
+//     if ($error > 0) {
+//         echo $message;
+//     } else {
+//         echo 'success';
+//     }
+// }
+
+
+
 
 // get issue tag
 // mysql

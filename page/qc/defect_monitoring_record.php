@@ -98,12 +98,14 @@
                 <div class="col-12 col-sm-2">
                   <!-- date from -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date From</label>
+                  <label style="color:#CA3F3F;margin:0;padding:0;">*</label>
                   <input type="date" name="date_from" class="form-control" id="search_ad_date_from"
                     style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px;">
                 </div>
                 <div class="col-12 col-sm-2">
                   <!-- date to -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date To</label>
+                  <label style="color:#CA3F3F;margin:0;padding:0;">*</label>
                   <input type="date" name="date_to" class="form-control" id="search_ad_date_to"
                     style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px;">
                 </div>

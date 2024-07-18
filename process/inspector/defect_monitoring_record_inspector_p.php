@@ -147,7 +147,7 @@ function count_defect_qa_list($conn, $search_product_name_qa, $search_lot_no_qa,
     $conditions = [];
     $params = [];
 
-    $conditions[] = "pending_status = 'Pending' OR pending_status = 'Updated'";
+    $conditions[] = "(pending_status = 'Pending' OR pending_status = 'Updated')";
 
     if (!empty($search_date_from_qa) && !empty($search_date_to_qa)) {
         $conditions[] = "date_detected BETWEEN ? AND ?";
@@ -302,7 +302,7 @@ if ($method == 'load_defect_table_qa') {
     $query = "SELECT * FROM t_defect_record_f";
     $conditions = [];
 
-    $conditions[] = "pending_status = 'Pending' OR pending_status = 'Updated'";
+    $conditions[] = "(pending_status = 'Pending' OR pending_status = 'Updated')";
 
     if (!empty($search_date_from_qa) && !empty($search_date_to_qa)) {
         $conditions[] = "date_detected BETWEEN :search_date_from_qa AND :search_date_to_qa";
@@ -433,7 +433,7 @@ if ($method == 'get_issue_tag_qa') {
     exit();
 }
 
-if ($method == 'add_record_qa') {
+if ($method == 'add_record_inspector') {
     $record_type_qa = trim($_POST['record_type_qa']);
     $line_no_qa = trim($_POST['line_no_qa']);
     $line_category_qa = trim($_POST['line_category_qa']);

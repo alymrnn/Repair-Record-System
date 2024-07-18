@@ -93,12 +93,14 @@
             <div class="col-12 col-sm-2">
               <!-- date from -->
               <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date From</label>
+              <label style="color:#CA3F3F;margin:0;padding:0;">*</label>
               <input type="date" name="search_date_from_pd" class="form-control" id="search_date_from_pd"
                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px;">
             </div>
             <div class="col-12 col-sm-2">
               <!-- date to -->
               <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date To</label>
+              <label style="color:#CA3F3F;margin:0;padding:0;">*</label>
               <input type="date" name="search_date_to_pd" class="form-control" id="search_date_to_pd"
                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px;">
             </div>
@@ -127,7 +129,7 @@
               <label></label>
               <p class="p-1" style="background: #FFFAD1; border-left: 3px solid #E89F4C; font-size: 14px;">
                 <i>Note:</i>
-                The records searched by date are based on the 'record added' column.
+                The records searched by date are based on the <b>'date_detected'</b> column.
                 Also, <b>refresh</b> the table to fetch latest pending defect records.
               </p>
             </div>

@@ -36,7 +36,7 @@
                             autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             required>
-                        <input type="hidden" id="na_repair_start" name="na_repair_start">
+                        <!-- <input type="hidden" id="na_repair_start" name="na_repair_start"> -->
 
                         <span id="repairStartMcError" class="error-message" style="display:none; color:#CA3F3F;">Repair
                             Start field is required.</span>
@@ -49,7 +49,7 @@
                             autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             required>
-                        <input type="hidden" id="na_repair_end" name="na_repair_end">
+                        <!-- <input type="hidden" id="na_repair_end" name="na_repair_end"> -->
 
                         <span id="repairEndMcError" class="error-message" style="display:none; color:#CA3F3F;">Repair
                             End field is required.</span>

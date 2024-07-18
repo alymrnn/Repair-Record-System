@@ -62,12 +62,12 @@
                         <label style="color:#CA3F3F">*</label>
                         <!-- <input list="categoryList" placeholder="Select category" name="category_dr"
                             id="line_category_dr" autocomplete="off"
-                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style=" color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required>
                         <datalist id="categoryList"></datalist> -->
 
                         <select name="line_category_dr" id="line_category_dr" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="form-control pl-2" required>
                             <option value="" disabled selected>Select the category</option>
                         </select>
@@ -116,14 +116,14 @@
                         <label style="color:#CA3F3F">*</label>
                         <!-- <input list="carMakerList" placeholder="Select the car maker" name="car_maker" id="car_maker"
                             onchange="handleCarMakerChange(this)" autocomplete="off"
-                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style=" color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required> -->
                         <!-- <datalist id="carMakerList">
                         </datalist> -->
 
                         <input name="car_maker" id="car_maker" onchange="handleCarMakerChange(this)"
-                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #F1F1F1;height:34px; width:100%;"
-                            class="pl-2" readonly>
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #F1F1F1;height:34px; width:100%;"
+                            class="pl-2 form-control" readonly>
                         <span id="carMakerError" class="error-message" style="display:none; color:#CA3F3F;">Car Maker
                             field is required.</span>
                     </div>
@@ -180,13 +180,13 @@
                         <label style="color:#CA3F3F">*</label>
                         <!-- <input list="discoveryProcessDrList" placeholder="Select the discovery process"
                             name="discovery_process_dr" id="discovery_process_dr" autocomplete="off"
-                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style=" color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required> -->
 
                         <!-- <datalist id="discoveryProcessDrList"></datalist> -->
 
                         <select name="discovery_process_dr" id="discovery_process_dr" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="form-control pl-2" required>
                             <option value="" disabled selected>Select the discovery process</option>
                         </select>
@@ -208,8 +208,8 @@
                         <label style="font-weight: normal;color: #000;">Discovery Person</label>
                         <label style="color:#CA3F3F">*</label>
                         <input type="text" id="discovery_person" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"readonly
-                            required>
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            readonly required>
                         <span id="discoveryPersonError" class="error-message"
                             style="display:none; color:#CA3F3F;">Discovery Person field is required.</span>
                     </div>
@@ -223,12 +223,12 @@
                         <label style="color:#CA3F3F">*</label>
                         <!-- <input list="occurrenceProcessDrList" placeholder="Select the occurrence process"
                             name="occurrence_process_dr" id="occurrence_process_dr" autocomplete="off"
-                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style=" color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required>
                         <datalist id="occurrenceProcessDrList"></datalist> -->
 
                         <select name="occurrence_process_dr" id="occurrence_process_dr" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="form-control pl-2" required>
                             <option value="" disabled selected>Select the occurrence process</option>
                         </select>
@@ -241,12 +241,12 @@
                         <label style="color:#CA3F3F">*</label>
                         <!-- <input list="occurrenceShiftDrList" placeholder="Select the occurrence shift"
                             name="occurrence_shift_dr" id="occurrence_shift_dr" autocomplete="off"
-                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style=" color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required>
                         <datalist id="occurrenceShiftDrList"></datalist> -->
 
                         <select name="occurrence_shift_dr" id="occurrence_shift_dr" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="form-control pl-2" required>
                             <option value="" disabled selected>Select the occurrence shift</option>
                         </select>
@@ -283,12 +283,12 @@
                         <label style="color:#CA3F3F">*</label>
                         <!-- <input list="outflowProcessDrList" placeholder="Select the outflow process"
                             name="outflow_process_dr" id="outflow_process_dr" autocomplete="off"
-                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style=" color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required>
                         <datalist id="outflowProcessDrList"></datalist> -->
 
                         <select name="outflow_process_dr" id="outflow_process_dr" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="form-control pl-2" required>
                             <option value="" disabled selected>Select the outflow process</option>
                         </select>
@@ -301,12 +301,12 @@
                         <label style="color:#CA3F3F">*</label>
                         <!-- <input list="outflowShiftDrList" placeholder="Select the outflow shift" name="outflow_shift_dr"
                             id="outflow_shift_dr" autocomplete="off"
-                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style=" color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required>
                         <datalist id="outflowShiftDrList"></datalist> -->
 
                         <select name="outflow_shift_dr" id="outflow_shift_dr" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="form-control pl-2" required>
                             <option value="" disabled selected>Select the outflow shift</option>
                         </select>
@@ -343,12 +343,12 @@
                         <label style="color:#CA3F3F">*</label>
                         <!-- <input list="defectCategoryDrList" placeholder="Select the defect category"
                             name="defect_category_dr" id="defect_category_dr" autocomplete="off"
-                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style=" color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required>
                         <datalist id="defectCategoryDrList"></datalist> -->
 
                         <select name="defect_category_dr" id="defect_category_dr" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="form-control pl-2" required>
                             <option value="" disabled selected>Select the defect category</option>
                         </select>
@@ -381,12 +381,12 @@
                         <label style="color:#CA3F3F">*</label>
                         <!-- <input list="defectCauseDrList" placeholder="Select the cause of defect" name="defect_cause_dr"
                             id="defect_cause_dr" autocomplete="off"
-                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style=" color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required>
                         <datalist id="defectCauseDrList"></datalist> -->
 
                         <select name="defect_cause_dr" id="defect_cause_dr" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="form-control pl-2" required>
                             <option value="" disabled selected>Select the cause of defect</option>
                         </select>
@@ -399,12 +399,12 @@
                         <label style="color:#CA3F3F">*</label>
                         <!-- <input list="repairPersonDrList" placeholder="Select the repair person" name="repair_person_dr"
                             id="repair_person_dr" autocomplete="off"
-                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            style=" color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2" required>
                         <datalist id="repairPersonDrList"></datalist> -->
 
                         <select name="repair_person_dr" id="repair_person_dr" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="form-control pl-2" required>
                             <option value="" disabled selected>Select the repair person</option>
                         </select>
@@ -497,7 +497,7 @@
                         <label style="font-weight: normal;color: #000;">Harness Status after Repair</label>
                         <label style="color:#CA3F3F">*</label>
                         <select name="harness_status_dr" id="harness_status_dr" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #ced4da;background: #FFF;height:34px; width:100%;"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="form-control pl-2" required>
                             <option value="" disabled selected>Select the harness status</option>
                         </select>

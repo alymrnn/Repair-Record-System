@@ -95,7 +95,7 @@ function count_pending_defect_table_data($conn, $date_from, $date_to, $line_no_r
     $conditions = [];
     $params = [];
 
-    $conditions[] = "pending_status = 'Pending'";
+    $conditions[] = "(pending_status = 'Pending')";
 
     if (!empty($date_from) && !empty($date_to)) {
         $conditions[] = "repairing_date BETWEEN ? AND ?";
@@ -236,10 +236,10 @@ if ($method == 'load_defect_table_data') {
     $query = "SELECT * FROM t_defect_record_f";
     $conditions = [];
 
-    $conditions[] = "pending_status = 'Pending'";
+    $conditions[] = "(pending_status = 'Pending')";
 
     if (!empty($date_from) && !empty($date_to)) {
-        $conditions[] = "repairing_date BETWEEN :date_from AND :date_to";
+        $conditions[] = "date_detected BETWEEN :date_from AND :date_to";
     }
 
     if (!empty($line_no_rp)) {
@@ -266,7 +266,7 @@ if ($method == 'load_defect_table_data') {
         $query .= " WHERE " . implode(" AND ", $conditions);
     }
 
-    $query .= " ORDER BY record_added_defect_datetime DESC";
+    $query .= " ORDER BY date_detected DESC";
 
     $query .= " OFFSET :page_first_result ROWS FETCH NEXT :results_per_page ROWS ONLY";
 
