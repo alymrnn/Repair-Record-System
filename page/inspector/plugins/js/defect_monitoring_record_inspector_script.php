@@ -5,6 +5,7 @@
     $('#search_date_to_qa').val(currentDate);
 
     load_defect_table_qa(1);
+    fetch_opt_line_no_qa();
     fetch_opt_record_type_qa();
     fetch_opt_category_qa();
     fetch_opt_discovery_process_qa();
@@ -272,6 +273,20 @@
       }
     });
   };
+
+  const fetch_opt_line_no_qa = () => {
+    $.ajax({
+      url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
+      type: 'POST',
+      cache: false,
+      data: {
+        method: 'fetch_opt_line_no_qa',
+      },
+      success: function (response) {
+        $('#line_no_qa').html(response);
+      }
+    });
+  }
 
   const fetch_opt_record_type_qa = () => {
     $.ajax({

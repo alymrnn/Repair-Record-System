@@ -6,6 +6,7 @@
 
         load_qc_defect_table(1);
         fetch_opt_search_ad_record_type();
+        fetch_opt_line_no();
         fetch_opt_search_ad_defect_category();
         fetch_opt_search_ad_discovery_process();
         fetch_opt_search_ad_occurrence_process();
@@ -184,6 +185,23 @@
             }
         });
     };
+
+    const fetch_opt_line_no = () => {
+        $.ajax({
+            url: '../../process/qc/defect_monitoring_record_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_opt_line_no',
+            },
+            success: function (response) {
+                $('#line_no_mc_update').html(response);
+                if (get_value) {
+                    $('#line_no_mc_update').val(get_value);
+                }
+            }
+        });
+    }
 
     // fetch for update discovery process
     const fetch_opt_update_discovery_process = (get_value = '') => {

@@ -7,6 +7,8 @@
         load_defect_table(1);
         load_added_mancost();
         fetch_opt_record_type_dr();
+        fetch_opt_line_no_dr();
+        fetch_opt_line_no_update();
         fetch_opt_category_dr();
         fetch_opt_car_maker_dr();
         fetch_opt_discovery_process();
@@ -190,6 +192,37 @@
             }
         });
     };
+
+    const fetch_opt_line_no_dr = () => {
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_opt_line_no_dr',
+            },
+            success: function (response) {
+                $('#line_no').html(response);
+            }
+        });
+    }
+
+    const fetch_opt_line_no_update = () => {
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_opt_line_no_update',
+            },
+            success: function (response) {
+                $('#line_no_pd_update').html(response);
+                if (get_value) {
+                    $('#line_no_pd_update').val(get_value);
+                }
+            }
+        });
+    }
 
     // fetch record type option
     const fetch_opt_record_type_dr = () => {

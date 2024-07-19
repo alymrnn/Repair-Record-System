@@ -4,6 +4,20 @@ include '../conn.php';
 
 $method = $_POST['method'];
 
+if ($method == 'fetch_opt_line_no_qa') {
+    $query = "SELECT line_no FROM m_line_no ORDER BY line_no ASC";
+    $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+    $stmt->execute();
+    if ($stmt->rowCount() > 0) {
+        echo '<option value="" disabled selected>Select line no.</option>';
+        foreach ($stmt->fetchALL() as $row) {
+            echo '<option>' . htmlspecialchars($row['line_no']) . '</option>';
+        }
+    } else {
+        echo '<option value="">Select line no.</option>';
+    }
+}
+
 if ($method == 'fetch_opt_record_type_qa') {
     $query = "SELECT record_name FROM m_record_type ORDER BY record_name ASC";
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
@@ -14,7 +28,7 @@ if ($method == 'fetch_opt_record_type_qa') {
             echo '<option>' . htmlspecialchars($row['record_name']) . '</option>';
         }
     } else {
-        echo '<option value="">Select the record type</option>';
+        echo '<option value="">Select record type</option>';
     }
 }
 
@@ -29,7 +43,7 @@ if ($method == 'fetch_opt_category_qa') {
             echo '<option value="' . $category . '">' . $category . '</option>';
         }
     } else {
-        echo '<option value="">Select the category</option>';
+        echo '<option value="">Select category</option>';
     }
 }
 
@@ -38,12 +52,12 @@ if ($method == 'fetch_opt_discovery_process_qa') {
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="" disabled selected>Select the discovery process</option>';
+        echo '<option value="" disabled selected>Select discovery process</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['discovery_process']) . '</option>';
         }
     } else {
-        echo '<option>Select the discovery process</option>';
+        echo '<option>Select discovery process</option>';
     }
 }
 
@@ -52,12 +66,12 @@ if ($method == 'fetch_opt_occurrence_process_qa') {
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="" disabled selected>Select the occurrence process</option>';
+        echo '<option value="" disabled selected>Select occurrence process</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['occurrence_process']) . '</option>';
         }
     } else {
-        echo '<option>Select the occurrence process</option>';
+        echo '<option>Select occurrence process</option>';
     }
 }
 
@@ -66,12 +80,12 @@ if ($method == 'fetch_opt_occurrence_shift_qa') {
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="" disabled selected>Select the occurrence shift</option>';
+        echo '<option value="" disabled selected>Select occurrence shift</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['shift']) . '</option>';
         }
     } else {
-        echo '<option>Select the occurrence shift</option>';
+        echo '<option>Select occurrence shift</option>';
     }
 }
 
@@ -80,12 +94,12 @@ if ($method == 'fetch_opt_outflow_process_qa') {
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="" disabled selected>Select the outflow process</option>';
+        echo '<option value="" disabled selected>Select outflow process</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['outflow_process']) . '</option>';
         }
     } else {
-        echo '<option>Select the outflow process</option>';
+        echo '<option>Select outflow process</option>';
     }
 }
 
@@ -94,12 +108,12 @@ if ($method == 'fetch_opt_outflow_shift_qa') {
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="" disabled selected>Select the outflow shift</option>';
+        echo '<option value="" disabled selected>Select outflow shift</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['shift']) . '</option>';
         }
     } else {
-        echo '<option>Select the outflow shift</option>';
+        echo '<option>Select outflow shift</option>';
     }
 }
 
@@ -108,12 +122,12 @@ if ($method == 'fetch_opt_defect_category_qa') {
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="" disabled selected>Select the defect category</option>';
+        echo '<option value="" disabled selected>Select defect category</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['defect_category_ng_content']) . '</option>';
         }
     } else {
-        echo '<option>Select the defect category</option>';
+        echo '<option>Select defect category</option>';
     }
 }
 
@@ -122,12 +136,12 @@ if ($method == 'fetch_opt_defect_cause_qa') {
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
-        echo '<option value="" disabled selected>Select the cause of defect</option>';
+        echo '<option value="" disabled selected>Select cause of defect</option>';
         foreach ($stmt->fetchALL() as $row) {
             echo '<option>' . htmlspecialchars($row['defect_cause']) . '</option>';
         }
     } else {
-        echo '<option>Select the cause of defect</option>';
+        echo '<option>Select cause of defect</option>';
     }
 }
 

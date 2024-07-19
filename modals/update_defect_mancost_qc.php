@@ -20,9 +20,15 @@
                         <!-- line no. -->
                         <label style="font-weight: normal;color: #000;">Line No.</label>
                         <label style="color:#EA9515">*</label>
-                        <input type="text" id="line_no_mc_update" class="form-control" autocomplete="off"
+                        <!-- <input type="text" id="line_no_mc_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
-                            maxlength="4" pattern="[0-9]{1,4}">
+                            maxlength="4" pattern="[0-9]{1,4}"> -->
+
+                        <select name="line_no_mc_update" id="line_no_mc_update" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="pl-2 form-control" required>
+                            <option value="" disabled selected>Select line no.</option>
+                        </select>
                         <br>
                     </div>
                     <div class="col-sm-2">

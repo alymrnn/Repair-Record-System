@@ -7,7 +7,8 @@
                         class="fas fa-plus-circle"></i>&nbsp;
                     Add Defect Record
                 </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="clear_input_fields()">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                    onclick="clear_input_fields()">
                     <span aria-hidden="true" style="color: #fff;">&times;</span>
                 </button>
             </div>
@@ -50,9 +51,15 @@
                         <!-- line no. -->
                         <label style="font-weight: normal;color: #000;">Line No.</label>
                         <label style="color:#CA3F3F">*</label>
-                        <input type="text" id="line_no_qa" class="form-control pl-3" autocomplete="off"
+                        <!-- <input type="text" id="line_no_qa" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
-                            required maxlength="4" pattern="[0-9]{1,4}">
+                            required maxlength="4" pattern="[0-9]{1,4}"> -->
+
+                        <select name="line_no_qa" id="line_no_qa" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="pl-2 form-control" required>
+                            <option value="" disabled selected>Select line no.</option>
+                        </select>
                         <span id="lineError" class="error-message" style="display:none; color:#CA3F3F;">Line No. field
                             is required.</span>
                         <br>
@@ -60,10 +67,10 @@
                     <div class="col-sm-2">
                         <label style="font-weight: normal;color: #000;">Category</label>
                         <label style="color:#CA3F3F">*</label>
-                        <select name="line_category_qa" id="line_category_qa" autocomplete="off" 
+                        <select name="line_category_qa" id="line_category_qa" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2 form-control" required>
-                            <option value="" disabled selected>Select the category</option>
+                            <option value="" disabled selected>Select category</option>
                         </select>
                         <span id="lineCategoryError" class="error-message" style="display:none; color:#CA3F3F;">Category
                             field is required.</span>
@@ -165,7 +172,7 @@
                         <select name="discovery_process_qa" id="discovery_process_qa" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2 form-control" required>
-                            <option value="" disabled selected>Select the discovery process</option>
+                            <option value="" disabled selected>Select discovery process</option>
                         </select>
                         <span id="discoveryProcessError" class="error-message"
                             style="display:none; color:#CA3F3F;">Discovery Process field is required.</span>
@@ -201,7 +208,7 @@
                         <select name="occurrence_process_qa" id="occurrence_process_qa" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2 form-control" required>
-                            <option value="" disabled selected>Select the occurrence process</option>
+                            <option value="" disabled selected>Select occurrence process</option>
                         </select>
                         <span id="occurrenceProcessError" class="error-message"
                             style="display:none; color:#CA3F3F;">Occurrence Process field is required.</span>
@@ -213,7 +220,7 @@
                         <select name="occurrence_shift_qa" id="occurrence_shift_qa" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2 form-control" required>
-                            <option value="" disabled selected>Select the occurrence shift</option>
+                            <option value="" disabled selected>Select occurrence shift</option>
                         </select>
                         <span id="occurrenceShiftError" class="error-message"
                             style="display:none; color:#CA3F3F;">Occurrence Shift field is required.</span>
@@ -249,7 +256,7 @@
                         <select name="outflow_process_qa" id="outflow_process_qa" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2 form-control" required>
-                            <option value="" disabled selected>Select the outflow process</option>
+                            <option value="" disabled selected>Select outflow process</option>
                         </select>
                         <span id="outflowProcessError" class="error-message"
                             style="display:none; color:#CA3F3F;">Outflow Process field is required.</span>
@@ -261,7 +268,7 @@
                         <select name="outflow_shift_qa" id="outflow_shift_qa" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2 form-control" required>
-                            <option value="" disabled selected>Select the outflow shift</option>
+                            <option value="" disabled selected>Select outflow shift</option>
                         </select>
                         <span id="outflowShiftError" class="error-message" style="display:none; color:#CA3F3F;">Outflow
                             Shift field is required.</span>
@@ -297,7 +304,7 @@
                         <select name="defect_category_qa" id="defect_category_qa" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2 form-control" required>
-                            <option value="" disabled selected>Select the defect category</option>
+                            <option value="" disabled selected>Select defect category</option>
                         </select>
                         <span id="defectCategoryError" class="error-message" style="display:none; color:#CA3F3F;">Defect
                             Category field is required.</span>
@@ -329,7 +336,7 @@
                         <select name="defect_cause_qa" id="defect_cause_qa" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2 form-control" required>
-                            <option value="" disabled selected>Select the cause of defect</option>
+                            <option value="" disabled selected>Select cause of defect</option>
                         </select>
                         <span id="defectCauseError" class="error-message" style="display:none; color:#CA3F3F;">Cause of
                             Defect field is required.</span>
@@ -379,7 +386,7 @@
                     <div class="col-sm-4">
                         <!-- wire size -->
                         <label style="font-weight: normal;color: #000;">Wire Size</label>
-                        <input type="text" id="wire_size_qa" class="form-control pl-3" autocomplete="off" 
+                        <input type="text" id="wire_size_qa" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #D3D3D3;height:34px; width:100%;"
                             disabled>
                         <span id="wireSizeDrError" class="error-message" style="display:none; color:#CA3F3F;">Wire Size
@@ -400,7 +407,7 @@
                         <!-- Detail in content of defect -->
                         <label style="font-weight: normal;color: #000;">Detail in Content of Defect</label>
                         <input type="text" id="detail_content_defect_qa" class="textarea form-control pl-3"
-                            autocomplete="off" 
+                            autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #D3D3D3;height:50px; width:100%;"
                             disabled>
                         <span id="detailDefectError" class="error-message" style="display:none; color:#CA3F3F;">

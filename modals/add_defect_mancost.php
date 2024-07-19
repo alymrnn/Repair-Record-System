@@ -50,9 +50,15 @@
                         <!-- line no. -->
                         <label style="font-weight: normal;color: #000;">Line No.</label>
                         <label style="color:#CA3F3F">*</label>
-                        <input type="text" id="line_no" class="form-control pl-3" autocomplete="off"
+                        <!-- <input type="text" id="line_no" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
-                            required maxlength="4" pattern="[0-9]{1,4}">
+                            required maxlength="4" pattern="[0-9]{1,4}"> -->
+
+                        <select name="line_no" id="line_no" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="pl-2 form-control" required>
+                            <option value="" disabled selected>Select line no.</option>
+                        </select>
                         <span id="lineError" class="error-message" style="display:none; color:#CA3F3F;">Line No. field
                             is required.</span>
                         <br>

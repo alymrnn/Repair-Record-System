@@ -5,6 +5,20 @@ include '../conn.php';
 
 $method = $_POST['method'];
 
+if ($method == 'fetch_opt_line_no') {
+    $query = "SELECT line_no FROM m_line_no ORDER BY line_no ASC";
+    $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+    $stmt->execute();
+    if ($stmt->rowCount() > 0) {
+        echo '<option value="" disabled selected>Select line no.</option>';
+        foreach ($stmt->fetchALL() as $row) {
+            echo '<option>' . htmlspecialchars($row['line_no']) . '</option>';
+        }
+    } else {
+        echo '<option value="">Select line no.</option>';
+    }
+}
+
 if ($method == 'fetch_opt_update_discovery_process') {
     $query = "SELECT discovery_process FROM m_dr_discovery_p ORDER BY discovery_process ASC";
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
