@@ -5,7 +5,7 @@ include '../conn.php';
 $method = $_POST['method'];
 
 if ($method == 'fetch_opt_line_no_dr') {
-    $query = "SELECT line_no FROM m_line_no ORDER BY line_no ASC";
+    $query = "SELECT DISTINCT line_no FROM m_line_no ORDER BY line_no ASC";
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
@@ -19,7 +19,7 @@ if ($method == 'fetch_opt_line_no_dr') {
 }
 
 if ($method == 'fetch_opt_line_no_update') {
-    $query = "SELECT line_no FROM m_line_no ORDER BY line_no ASC";
+    $query = "SELECT DISTINCT line_no FROM m_line_no ORDER BY line_no ASC";
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
