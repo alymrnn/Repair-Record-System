@@ -88,6 +88,9 @@ if (isset($_POST['login_btn'])) {
             } elseif ($role == 'Inspector') {
                 header('location: page/inspector/defect_monitoring_record_inspector.php');
                 exit;
+            } elseif ($role == 'PD Verifier') {
+                header('location: page/pd_verifier/defect_monitoring_record_pdv.php');
+                exit;
             }
         } else {
             echo '<script>alert("Sign In Failed. Incorrect credentials or account not found.")</script>';

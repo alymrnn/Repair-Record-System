@@ -4,6 +4,20 @@ include '../conn.php';
 
 $method = $_POST['method'];
 
+if ($method == 'fetch_opt_harness_status_search') {
+    $query = "SELECT DISTINCT harness_status FROM m_harness_status ORDER BY harness_status ASC";
+    $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+    $stmt->execute();
+    if ($stmt->rowCount() > 0) {
+        echo '<option value="" disabled selected>Select harness status</option>';
+        foreach ($stmt->fetchALL() as $row) {
+            echo '<option>' . htmlspecialchars($row['harness_status']) . '</option>';
+        }
+    } else {
+        echo '<option value="">Select harness status</option>';
+    }
+}
+
 if ($method == 'fetch_opt_line_no_dr') {
     $query = "SELECT DISTINCT line_no FROM m_line_no ORDER BY line_no ASC";
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
@@ -645,7 +659,27 @@ if ($method == 'load_defect_table_data') {
     if ($stmt->rowCount() > 0) {
         foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
             $c++;
-            echo '<tr style="cursor:pointer; text-align:center;" class="modal-trigger" onclick="load_mancost_table(&quot;' . $row['id'] . '~!~' . $row['defect_id'] . '&quot;)">';
+
+            // $harness_repair = $row['harness_repair'];
+            // $highlight_class = ($harness_repair == 'Verified') ? 'highlight-green' : (($harness_repair == 'Pending') ? 'highlight-red' : '');
+
+
+            $harness_repair = $row['harness_repair'];
+            $harness_status = $row['harness_status'];
+    
+            $highlight_class = '';
+    
+            if ($harness_repair == 'Pending' && in_array($harness_status, ['Re-assy', 'Re-crimp', 'Re-insertion', 'Re-inspection'])) {
+                $highlight_class = 'highlight-red';
+            } elseif ($harness_repair == 'Verified') {
+                $highlight_class = 'highlight-green'; 
+            } elseif ($harness_status == 'Counterpart Checking') {
+                $highlight_class = 'highlight-gray';  
+            }
+    
+            $onclick_event = ($harness_repair == 'Verified') ? '' : 'onclick="get_update_defect_pdv(\'' . $row['defect_id'] . '\')"';
+
+            echo '<tr style="cursor:pointer; text-align:center;" class="modal-trigger ' . $highlight_class . '" onclick="load_mancost_table(&quot;' . $row['id'] . '~!~' . $row['defect_id'] . '&quot;)">';
             echo '<td style="text-align:center;">' . $c . '</td>';
             echo '<td style="text-align:center;">' . $row['line_no'] . '</td>';
             echo '<td style="text-align:center;">' . $row['category'] . '</td>';
@@ -678,8 +712,10 @@ if ($method == 'load_defect_table_data') {
             echo '<td style="text-align:left;">' . $row['connector_cavity'] . '</td>';
             echo '<td style="text-align:left;">' . $row['defect_detail_content'] . '</td>';
             echo '<td style="text-align:left;">' . $row['defect_treatment_content'] . '</td>';
-            echo '<td style="text-align:left;">' . $row['harness_status'] . '</td>';
             echo '<td style="text-align:center;">' . $row['dis_assembled_by'] . '</td>';
+            echo '<td style="text-align:left;">' . $row['harness_status'] . '</td>';
+            echo '<td style="text-align:left;">' . $row['pdv_id_num'] . '</td>';
+            echo '<td style="text-align:left;">' . $row['pdv_person'] . '</td>';
             echo '</tr>';
         }
     } else {
@@ -1937,7 +1973,7 @@ if ($method == 'update_pd_record') {
     try {
         // Fetch the existing line number and issue number tag for comparison
         $query = "SELECT line_no, issue_no_tag FROM t_defect_record_f WHERE defect_id = :defect_id";
-        $stmt = $conn->prepare($query);
+        $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
         $stmt->bindParam(':defect_id', $defect_id);
         $stmt->execute();
         $existingRecord = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -1957,7 +1993,7 @@ if ($method == 'update_pd_record') {
             WHERE defect_id = :defect_id;
         ";
 
-        $stmt1 = $conn->prepare($query1);
+        $stmt1 = $conn->prepare($query1, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
         $stmt1->bindParam(':line_no', $line_no);
         $stmt1->bindParam(':issue_no_tag', $issue_no_tag);
         $stmt1->bindParam(':serial_no', $serial_no);
@@ -1980,7 +2016,7 @@ if ($method == 'update_pd_record') {
             WHERE id = :mancost_id AND defect_id = :defect_id;
         ";
 
-        $stmt2 = $conn->prepare($query2);
+        $stmt2 = $conn->prepare($query2, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
         $stmt2->bindParam(':parts_removed', $parts_removed);
         $stmt2->bindParam(':quantity', $quantity);
         $stmt2->bindParam(':unit_cost', $unit_cost);

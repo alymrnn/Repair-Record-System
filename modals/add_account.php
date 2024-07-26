@@ -71,6 +71,7 @@
                             <option value="IT">IT</option>
                             <option value="PD">PD</option>
                             <option value="QC">QC</option>
+                            <option value="PD Verifier">PD Verifier</option>
                         </select>
                     </div>
                     <div class="col-3">

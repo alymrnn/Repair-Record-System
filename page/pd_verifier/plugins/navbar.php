@@ -1,12 +1,13 @@
 <?php
-//SESSION
+// SESSION
 include '../../process/login.php';
+include '../../process/conn.php';
 
 if (!isset($_SESSION['emp_no'])) {
   header('location:../../');
   exit;
-} else if ($_SESSION['role'] == 'PD') {
-  header('location: ../../page/pd/defect_monitoring_record_rp.php');
+} else if ($_SESSION['role'] == 'QC') {
+  header('location: ../../page/qc/defect_monitoring_record.php');
   exit;
 } else if ($_SESSION['role'] == 'IT') {
   header('location: ../../page/it/barcode_m.php');
@@ -14,12 +15,13 @@ if (!isset($_SESSION['emp_no'])) {
 } else if ($_SESSION['role'] == 'Inspector') {
   header('location: ../../page/inspector/defect_monitoring_record_inspector.php');
   exit;
-} else if ($_SESSION['role'] == 'PD Verifier') {
+} else if ($_SESSION['role'] == 'PD') {
   header('location: ../../page/pd_verifier/defect_monitoring_record_pdv.php');
   exit;
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -103,7 +105,6 @@ if (!isset($_SESSION['emp_no'])) {
       position: fixed;
       right: 15px;
       bottom: 15px;
-      /* border: 3px solid #332D2D; */
       border: none;
       background: none;
       border-radius: 15%;
@@ -116,14 +117,26 @@ if (!isset($_SESSION['emp_no'])) {
     }
 
     .return-to-top:hover {
-      /* border: 3px solid #3B71CA; */
       border: none;
-      /* background: #3B71CA; */
     }
 
     .nav-icon-top:hover {
       color: #2b2b2b;
       opacity: 1.0;
+    }
+
+    .error-text {
+      border: 1px solid #ECA843;
+    }
+
+    .highlight-green {
+      background-color: #2c6e49;
+      color: #FFF;
+    }
+
+    .highlight-red {
+      background-color: #c44536;
+      color: #FFF;
     }
   </style>
 </head>
@@ -132,12 +145,12 @@ if (!isset($_SESSION['emp_no'])) {
   <div class="wrapper">
 
     <!-- Preloader -->
-    <!-- <div class="preloader flex-column justify-content-center align-items-center" style="background: #425B2C;">
-      <img class="animation__shake" src="../../dist/img/tool-box.png" alt="logo" height="100" width="100">
-    </div> -->
+    <!-- <div class="preloader flex-column justify-content-center align-items-center" style="background: #00375C;">
+            <img class="animation__shake" src="../../dist/img/tool-box.png" alt="logo" height="100" width="100">
+        </div> -->
 
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background: #2D7AC0;">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background: #407BA3;">
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">

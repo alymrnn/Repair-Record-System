@@ -6,6 +6,7 @@
 
         load_defect_table(1);
         load_added_mancost();
+        fetch_opt_harness_status_search();
         fetch_opt_record_type_dr();
         fetch_opt_line_no_dr();
         fetch_opt_line_no_update();
@@ -193,6 +194,20 @@
         });
     };
 
+    const fetch_opt_harness_status_search = () => {
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_opt_harness_status_search',
+            },
+            success: function (response) {
+                $('#search_harness_status').html(response);
+            }
+        });
+    }
+
     const fetch_opt_line_no_dr = () => {
         $.ajax({
             url: '../../process/pd/defect_monitoring_record_rp_p.php',
@@ -207,7 +222,7 @@
         });
     }
 
-    const fetch_opt_line_no_update = () => {
+    const fetch_opt_line_no_update = (get_value) => {
         $.ajax({
             url: '../../process/pd/defect_monitoring_record_rp_p.php',
             type: 'POST',
@@ -614,8 +629,10 @@
                     <th>Connector Cavity</th>
                     <th>Detail in Content of Defect</th>
                     <th>Treatment Content of Defect</th>
-                    <th>Harness Status after Repair</th>
                     <th>Dis-assembled/Dis-inserted by:</th>
+                    <th>Harness Status after Repair</th>
+                    <th>PD Verifier ID No.</th>
+                    <th>PD Verifier Name</th>
                 </tr>
             </thead>
             <tbody class="mb-0" id="defect_table_data" style="background: #F9F9F9;">

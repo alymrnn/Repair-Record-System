@@ -492,6 +492,7 @@ if ($method == 'add_record_inspector') {
     $record_added_by_qa = $_SESSION['full_name'];
     $qc_status_qa = '';
     $pending_status_qa = 'Pending';
+    $harness_repair_qa = 'Pending';
 
     $error = 0;
 
@@ -523,7 +524,8 @@ if ($method == 'add_record_inspector') {
                 occurrence_shift, occurrence_id_num, occurrence_person, outflow_process, outflow_shift, 
                 outflow_id_num, outflow_person, defect_category_dr, sequence_num, assy_board_no, defect_cause, 
                 defect_detail_content, defect_treatment_content, harness_status, dis_assembled_by, good_measurement, 
-                ng_measurement, wire_type, wire_size, connector_cavity, qc_status, record_type, pending_status, record_added_defect_datetime
+                ng_measurement, wire_type, wire_size, connector_cavity, qc_status, record_type, pending_status, harness_repair,
+                record_added_defect_datetime
             ) VALUES (
                 :defect_id, :line_no, :category, :date_detected, :issue_no_tag, :repairing_date, 
                 :car_maker, :product_name, :lot_no, :serial_no, :discovery_process, :discovery_id_num, 
@@ -531,7 +533,8 @@ if ($method == 'add_record_inspector') {
                 :occurrence_person, :outflow_process, :outflow_shift, :outflow_id_num, :outflow_person, 
                 :defect_category_dr, :sequence_num, :assy_board_no, :defect_cause, :defect_detail_content, 
                 :defect_treatment_content, :harness_status, :dis_assembled_by, :good_measurement, :ng_measurement, 
-                :wire_type, :wire_size, :connector_cavity, :qc_status, :record_type, :pending_status, GETDATE()
+                :wire_type, :wire_size, :connector_cavity, :qc_status, :record_type, :pending_status, :harness_repair,
+                GETDATE()
             )
         ";
         $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
@@ -573,6 +576,7 @@ if ($method == 'add_record_inspector') {
         $stmt->bindParam(':qc_status', $qc_status_qa, PDO::PARAM_STR);
         $stmt->bindParam(':record_type', $record_type_qa, PDO::PARAM_STR);
         $stmt->bindParam(':pending_status', $pending_status_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':harness_repair', $harness_repair_qa, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             $response_arr['message'] = 'success';

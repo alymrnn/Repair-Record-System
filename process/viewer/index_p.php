@@ -257,7 +257,7 @@ function count_viewer_defect_table_data($conn, $defect_category, $discovery_proc
     }
 
     if (!empty($defect_cause)) {
-        $conditions[] = "defect_cause LIKE ?";
+        $conditions[] = "harness_status LIKE ?";
         $params[] = '%' . $defect_cause . '%';
     }
 
@@ -583,7 +583,7 @@ if ($method == 'load_viewer_defect_table_data') {
     }
 
     if (!empty($defect_cause)) {
-        $conditions[] = "defect_cause LIKE ?";
+        $conditions[] = "harness_status LIKE ?";
         $params[] = '%' . $defect_cause . '%';
     }
 

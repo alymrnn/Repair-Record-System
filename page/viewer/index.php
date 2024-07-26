@@ -129,8 +129,7 @@ include ('plugins/navbar/index_navbar.php');
                     <option></option>
                   </select>
                 </div>
-                <div class="col-12 col-sm-6 col-md-2 mb-2">
-                  <!-- cause of defect -->
+                <!-- <div class="col-12 col-sm-6 col-md-2 mb-2">
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Cause of Defect</label>
                   <select name="search_v_defect_cause" id="search_v_defect_cause" autocomplete="off"
                     style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
@@ -139,6 +138,19 @@ include ('plugins/navbar/index_navbar.php');
                     <option value="Jig">Jig</option>
                     <option value="Method">Method</option>
                     <option value="N/A">N/A</option>
+                  </select>
+                </div> -->
+                <div class="col-12 col-sm-6 col-md-2 mb-2">
+                  <label style="font-weight:normal;margin:0;padding:0;color:#000;">Harness Status</label>
+                  <select name="search_v_defect_cause" id="search_v_defect_cause" autocomplete="off"
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;"
+                    class="pl-1 form-control" required>
+                    <option value="" disabled selected>Select harness status</option>
+                    <option value="Counterpart Checking">Counterpart Checking</option>
+                    <option value="Re-assy">Re-assy</option>
+                    <option value="Re-crimp">Re-crimp</option>
+                    <option value="Re-insertion">Re-insertion</option>
+                    <option value="Re-inspection">Re-inspection</option>
                   </select>
                 </div>
               </div>

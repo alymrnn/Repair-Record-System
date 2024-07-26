@@ -33,6 +33,9 @@ if (!isset($_SESSION['emp_no'])) {
 } else if ($_SESSION['role'] == 'PD') {
     header('location: ../../page/qa/defect_monitoring_record_rp.php');
     exit;
+} else if ($_SESSION['role'] == 'PD Verifier') {
+    header('location: ../../page/pd_verifier/defect_monitoring_record_pdv.php');
+    exit;
 }
 
 delete_added_record($_SESSION['full_name'], $conn);

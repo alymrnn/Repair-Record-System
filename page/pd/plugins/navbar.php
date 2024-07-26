@@ -33,6 +33,9 @@ if (!isset($_SESSION['emp_no'])) {
 } else if ($_SESSION['role'] == 'Inspector') {
   header('location: ../../page/inspector/defect_monitoring_record_inspector.php');
   exit;
+} else if ($_SESSION['role'] == 'PD Verifier') {
+  header('location: ../../page/pd_verifier/defect_monitoring_record_pdv.php');
+  exit;
 }
 
 delete_added_record($_SESSION['full_name'], $conn);
@@ -143,6 +146,21 @@ delete_added_record($_SESSION['full_name'], $conn);
 
     .error-text {
       border: 1px solid #ECA843;
+    }
+
+    .highlight-green {
+      background-color: #2c6e49;
+      color: #FFF;
+    }
+
+    .highlight-red {
+      background-color: #c44536;
+      color: #FFF;
+    }
+
+    .highlight-gray {
+      background-color: #4a5759;
+      color: #FFF;
     }
   </style>
 </head>

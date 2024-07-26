@@ -44,7 +44,7 @@
                 <!-- form label -->
                 <label style="font-weight: normal;color: #000;font-size:25px"><b>Defect Record</b></label>
                 <div class="row">
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <!-- defect id hidden -->
                         <input type="hidden" id="defect_id_no_qa" class="form-control">
 
@@ -64,7 +64,7 @@
                             is required.</span>
                         <br>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <label style="font-weight: normal;color: #000;">Category</label>
                         <label style="color:#CA3F3F">*</label>
                         <select name="line_category_qa" id="line_category_qa" autocomplete="off"
@@ -85,7 +85,7 @@
                         <span id="dateDetectedError" class="error-message" style="display:none; color:#CA3F3F;">Date
                             Detected field is required.</span>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <!-- issue no of tag -->
                         <label style="font-weight: normal;color: #000;">Issue No. of Tag</label>
                         <label style="color:#CA3F3F">*</label>
@@ -95,7 +95,7 @@
                         <span id="issueTagError" class="error-message" style="display:none; color:#CA3F3F;">Issue No. of
                             Tag field is required.</span>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-3" style="display: none;">
                         <!-- repairing date -->
                         <label style="font-weight: normal;color: #000;">Repairing Date</label>
                         <input type="date" id="repairing_date_qa" class="form-control pl-3" autocomplete="off"
@@ -344,7 +344,7 @@
                 </div>
                 <br>
                 <!-- /.end -->
-                <div class="row mb-2">
+                <div class="row mb-2" style="display: none;">
                     <div class="col-sm-4">
                         <!-- repair person -->
                         <label style="font-weight: normal;color: #000;">Dis-assembled by:</label>
@@ -373,7 +373,7 @@
                             Measurement field is required.</span>
                     </div>
                 </div>
-                <div class="row mb-2">
+                <div class="row mb-2" style="display: none;">
                     <div class="col-sm-4">
                         <!-- type -->
                         <label style="font-weight: normal;color: #000;">Wire Type</label>
@@ -402,7 +402,7 @@
                             style="display:none; color:#CA3F3F;">Connector Cavity field is required.</span>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" style="display: none;">
                     <div class="col-sm-4">
                         <!-- Detail in content of defect -->
                         <label style="font-weight: normal;color: #000;">Detail in Content of Defect</label>
@@ -433,7 +433,7 @@
                             Status field is required.</span>
                     </div>
                 </div>
-                <br>
+                <!-- <br> -->
                 <!-- /.end -->
             </div>
             <div class="modal-footer" style="background:#e9e9e9;">

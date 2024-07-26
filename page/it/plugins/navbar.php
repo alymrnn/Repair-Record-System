@@ -14,7 +14,10 @@ if (!isset($_SESSION['emp_no'])) {
 } else if ($_SESSION['role'] == 'Inspector') {
     header('location: ../../page/inspector/defect_monitoring_record_inspector.php');
     exit;
-  }
+} else if ($_SESSION['role'] == 'PD Verifier') {
+    header('location: ../../page/pd_verifier/defect_monitoring_record_pdv.php');
+    exit;
+}
 
 ?>
 <!DOCTYPE html>

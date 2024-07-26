@@ -186,7 +186,7 @@
         });
     };
 
-    const fetch_opt_line_no = () => {
+    const fetch_opt_line_no = (get_value) => {
         $.ajax({
             url: '../../process/qc/defect_monitoring_record_p.php',
             type: 'POST',
@@ -579,8 +579,10 @@
                     <th>Connector Cavity</th>
                     <th>Detail in Content of Defect</th>
                     <th>Treatment Content of Defect</th>
-                    <th>Harness Status after Repair</th>
                     <th>Dis-assembled/Dis-inserted by:</th>
+                    <th>Harness Status after Repair</th>
+                    <th>PD Verifier ID No.</th>
+                    <th>PD Verifier Name</th>
                 </tr>
             </thead>
             <tbody class="mb-0" id="qc_defect_table_data" style="background: #F9F9F9;">
