@@ -405,6 +405,12 @@ if ($method == 'load_defect_table_qa') {
             echo '<td style="text-align:center;">' . $row['sequence_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['assy_board_no'] . '</td>';
             echo '<td style="text-align:center;">' . $row['defect_cause'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['good_measurement'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['ng_measurement'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['wire_type'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['wire_size'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['connector_cavity'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['defect_detail_content'] . '</td>';
             echo '</tr>';
         }
     } else {

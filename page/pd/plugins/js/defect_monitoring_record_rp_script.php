@@ -631,8 +631,18 @@
                     <th>Treatment Content of Defect</th>
                     <th>Dis-assembled/Dis-inserted by:</th>
                     <th>Harness Status after Repair</th>
-                    <th>PD Verifier ID No.</th>
-                    <th>PD Verifier Name</th>
+                    <th>RE-CRIMP Remarks</th>
+                    <th>ID No.</th>
+                    <th>Re-crimp by (PD FSP)</th>
+                    <th>Verified by ID No.</th>
+                    <th>Verified by (PD FSP)</th>
+                    <th>COUNTERPART CHECKING Remarks</th>
+                    <th>ID No.</th>
+                    <th>Verified by (QA FSP)</th>
+                    <th>RE-ASSY/RE-INSERT Remarks</th>
+                    <th>ID No.</th>
+                    <th>Confirmed by (PD FAP)</th>
+                    <th>Date Confirmed</th>
                 </tr>
             </thead>
             <tbody class="mb-0" id="defect_table_data" style="background: #F9F9F9;">

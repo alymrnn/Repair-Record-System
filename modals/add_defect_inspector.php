@@ -344,8 +344,8 @@
                 </div>
                 <br>
                 <!-- /.end -->
-                <div class="row mb-2" style="display: none;">
-                    <div class="col-sm-4">
+                <div class="row mb-2">
+                    <div class="col-sm-4" style="display: none;">
                         <!-- repair person -->
                         <label style="font-weight: normal;color: #000;">Dis-assembled by:</label>
                         <input type="text" id="repair_person_qa" class="form-control pl-3" autocomplete="off"
@@ -358,8 +358,7 @@
                         <!-- good measurement -->
                         <label style="font-weight: normal;color: #000;">Good Measurement</label>
                         <input type="text" id="good_measurement_qa" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #D3D3D3;height:34px; width:100%;"
-                            disabled>
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #D3D3D3;height:34px; width:100%;">
                         <span id="goodMeasurementError" class="error-message" style="display:none; color:#CA3F3F;">Good
                             Measurement field is required.</span>
                     </div>
@@ -367,19 +366,25 @@
                         <!-- ng measurement -->
                         <label style="font-weight: normal;color: #000;">NG Measurement</label>
                         <input type="text" id="ng_measurement_qa" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #D3D3D3;height:34px; width:100%;"
-                            disabled>
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #D3D3D3;height:34px; width:100%;">
                         <span id="noGoodMeasurementError" class="error-message" style="display:none; color:#CA3F3F;">NG
                             Measurement field is required.</span>
                     </div>
+                    <div class="col-sm-4">
+                        <!-- connector cavity -->
+                        <label style="font-weight: normal;color: #000;">Connector Cavity</label>
+                        <input type="text" id="connector_cavity_qa" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #D3D3D3;height:34px; width:100%;">
+                        <span id="connectorCavityDrError" class="error-message"
+                            style="display:none; color:#CA3F3F;">Connector Cavity field is required.</span>
+                    </div>
                 </div>
-                <div class="row mb-2" style="display: none;">
+                <div class="row mb-2">
                     <div class="col-sm-4">
                         <!-- type -->
                         <label style="font-weight: normal;color: #000;">Wire Type</label>
                         <input type="text" id="wire_type_qa" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #D3D3D3;height:34px; width:100%;"
-                            disabled>
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #D3D3D3;height:34px; width:100%;">
                         <span id="wireTypeDrError" class="error-message" style="display:none; color:#CA3F3F;">Wire Type
                             field is required.</span>
                     </div>
@@ -387,33 +392,22 @@
                         <!-- wire size -->
                         <label style="font-weight: normal;color: #000;">Wire Size</label>
                         <input type="text" id="wire_size_qa" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #D3D3D3;height:34px; width:100%;"
-                            disabled>
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #D3D3D3;height:34px; width:100%;">
                         <span id="wireSizeDrError" class="error-message" style="display:none; color:#CA3F3F;">Wire Size
                             field is required.</span>
                     </div>
                     <div class="col-sm-4">
-                        <!-- connector cavity -->
-                        <label style="font-weight: normal;color: #000;">Connector Cavity</label>
-                        <input type="text" id="connector_cavity_qa" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #D3D3D3;height:34px; width:100%;"
-                            disabled>
-                        <span id="connectorCavityDrError" class="error-message"
-                            style="display:none; color:#CA3F3F;">Connector Cavity field is required.</span>
-                    </div>
-                </div>
-                <div class="row" style="display: none;">
-                    <div class="col-sm-4">
                         <!-- Detail in content of defect -->
                         <label style="font-weight: normal;color: #000;">Detail in Content of Defect</label>
-                        <input type="text" id="detail_content_defect_qa" class="textarea form-control pl-3"
+                        <textarea type="text" id="detail_content_defect_qa" class="textarea form-control pl-3"
                             autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #D3D3D3;height:50px; width:100%;"
-                            disabled>
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #D3D3D3;height:70px; width:100%;"></textarea>
                         <span id="detailDefectError" class="error-message" style="display:none; color:#CA3F3F;">
                             Detail in Content of Defect field is required.</span>
                     </div>
-                    <div class="col-sm-4">
+                </div>
+                <div class="row">
+                    <div class="col-sm-4" style="display: none;">
                         <!-- treatment content of defect -->
                         <label style="font-weight: normal;color: #000;">Treatment Content of Defect</label>
                         <input type="text" id="treatment_content_defect_qa" class="textarea form-control pl-3"
@@ -423,7 +417,7 @@
                         <span id="treatmentDefectError" class="error-message" style="display:none; color:#CA3F3F;">
                             Treatment Content of Defect field is required.</span>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-4" style="display: none;">
                         <!-- harness status after repair -->
                         <label style="font-weight: normal;color: #000;">Harness Status after Repair</label>
                         <input type="text" id="harness_status_qa" class="form-control pl-3" autocomplete="off"
@@ -440,7 +434,7 @@
                 <!-- add record -->
                 <div class="col-sm-2">
                     <!-- cancel button -->
-                    <button class="btn btn-block" data-dismiss="modal"
+                    <button class="btn btn-block" onclick="clear_input_fields()"
                         style="color:#fff;height:34px;border-radius:.25rem;background: #CA3F3F;font-size:15px;font-weight:normal;"
                         onmouseover="this.style.backgroundColor='#AC3737'; this.style.color='#FFF';"
                         onmouseout="this.style.backgroundColor='#CA3F3F'; this.style.color='#FFF';">Cancel</button>

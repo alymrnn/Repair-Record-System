@@ -1,5 +1,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
+        $('#list_of_added_mancost_insp').empty().append('<tr><td colspan="12" style="text-align:center; color:red;">No Added Record</td></tr>');
+
         var currentDate = new Date().toISOString().split('T')[0];
         $('#search_date_from_pd').val(currentDate);
         $('#search_date_to_pd').val(currentDate);
@@ -532,13 +534,13 @@
         $('#sequence_no_insp_update').val(data[21]).prop('disabled', true).css('background', '#EEE');
         $('#assy_board_no_insp_update').val(data[22]).prop('disabled', true).css('background', '#EEE');
         $('#defect_cause_insp_update').val(data[23]).prop('disabled', true).css('background', '#EEE');
-        $('#good_measurement_insp_update').val(data[24]);
-        $('#ng_measurement_insp_update').val(data[25]);
-        $('#wire_type_insp_update').val(data[26]);
-        $('#wire_size_insp_update').val(data[27]);
-        $('#connector_cavity_insp_update').val(data[28]);
+        $('#good_measurement_insp_update').val(data[24]).prop('disabled', true).css('background', '#EEE');
+        $('#ng_measurement_insp_update').val(data[25]).prop('disabled', true).css('background', '#EEE');
+        $('#wire_type_insp_update').val(data[26]).prop('disabled', true).css('background', '#EEE');
+        $('#wire_size_insp_update').val(data[27]).prop('disabled', true).css('background', '#EEE');
+        $('#connector_cavity_insp_update').val(data[28]).prop('disabled', true).css('background', '#EEE');
         $('#repair_person_insp_update').val(data[29]);
-        $('#detail_content_defect_insp_update').val(data[30]);
+        $('#detail_content_defect_insp_update').val(data[30]).prop('disabled', true).css('background', '#EEE');
         $('#treatment_content_defect_insp_update').val(data[31]);
         $('#harness_status_insp_update').val(data[32]);
         // $('#repairing_date_insp_update').val(data[33]);
@@ -870,7 +872,7 @@
     }
 
     const add_pending_multiple_mancost = () => {
-        $('#list_of_added_mancost_insp').empty();
+        $('#list_of_added_mancost_insp').empty().append('<tr><td colspan="12" style="text-align:center; color:red;">No Added Record</td></tr>');
         // console.log("Table cleared");
 
         var repair_start_mc = document.getElementById("repair_start_mc2");
@@ -939,7 +941,7 @@
 
                     // $('#inspector_defect_id').val('');
 
-                    $('#list_of_added_mancost_insp').empty();
+                    $('#list_of_added_mancost_insp').empty().append('<tr><td colspan="12" style="text-align:center; color:red;">No Added Record</td></tr>');
 
                     load_added_mancost2();
                 } else {
@@ -1043,12 +1045,6 @@
 
     const clear_update_pending_record = () => {
         document.getElementById('repair_person_insp_update').value = '';
-        document.getElementById('good_measurement_insp_update').value = '';
-        document.getElementById('ng_measurement_insp_update').value = '';
-        document.getElementById('wire_type_insp_update').value = '';
-        document.getElementById('wire_size_insp_update').value = '';
-        document.getElementById('connector_cavity_insp_update').value = '';
-        document.getElementById('detail_content_defect_insp_update').value = '';
         document.getElementById('treatment_content_defect_insp_update').value = '';
         document.getElementById('harness_status_insp_update').value = '';
     }

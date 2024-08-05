@@ -706,17 +706,27 @@ if ($method == 'load_defect_table_data') {
             echo '<td style="text-align:center;">' . $row['sequence_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['assy_board_no'] . '</td>';
             echo '<td style="text-align:center;">' . $row['defect_cause'] . '</td>';
-            echo '<td style="text-align:left;">' . $row['good_measurement'] . '</td>';
-            echo '<td style="text-align:left;">' . $row['ng_measurement'] . '</td>';
-            echo '<td style="text-align:left;">' . $row['wire_type'] . '</td>';
-            echo '<td style="text-align:left;">' . $row['wire_size'] . '</td>';
-            echo '<td style="text-align:left;">' . $row['connector_cavity'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['good_measurement'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['ng_measurement'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['wire_type'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['wire_size'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['connector_cavity'] . '</td>';
             echo '<td style="text-align:left;">' . $row['defect_detail_content'] . '</td>';
             echo '<td style="text-align:left;">' . $row['defect_treatment_content'] . '</td>';
             echo '<td style="text-align:center;">' . $row['dis_assembled_by'] . '</td>';
-            echo '<td style="text-align:left;">' . $row['harness_status'] . '</td>';
-            echo '<td style="text-align:left;">' . $row['pdv_id_num'] . '</td>';
-            echo '<td style="text-align:left;">' . $row['pdv_person'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['harness_status'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['remarks_recrimp'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['remarks_by_id_num'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['remarks_by_person'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['verified_by_qa_id_num'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['verified_by_qa_person'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['remarks_cc'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['cc_by_id_num'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['cc_by_person'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['remarks_reassy'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['reassy_by_id_num'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['reassy_by_person'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['reassy_date'] . '</td>';
             echo '</tr>';
         }
     } else {

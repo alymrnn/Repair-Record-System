@@ -92,12 +92,12 @@
         $("#assy_board_no_qa").prop('disabled', false).val('').css('background-color', '#FFF');
         $("#defect_cause_qa").prop('disabled', false).val('').css('background-color', '#FFF');
         $("#repair_person_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
-        $("#good_measurement_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
-        $("#ng_measurement_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
-        $("#wire_type_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
-        $("#wire_size_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
-        $("#connector_cavity_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
-        $("#detail_content_defect_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
+        $("#good_measurement_qa").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#ng_measurement_qa").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#wire_type_qa").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#wire_size_qa").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#connector_cavity_qa").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#detail_content_defect_qa").prop('disabled', false).val('').css('background-color', '#FFF');
         $("#treatment_content_defect_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
         $("#harness_status_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
       }
@@ -128,12 +128,12 @@
         $("#assy_board_no_qa").prop('disabled', false).val('').css('background-color', '#FFF');
         $("#defect_cause_qa").prop('disabled', false).val('').css('background-color', '#FFF');
         $("#repair_person_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
-        $("#good_measurement_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
-        $("#ng_measurement_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
-        $("#wire_type_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
-        $("#wire_size_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
-        $("#connector_cavity_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
-        $("#detail_content_defect_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
+        $("#good_measurement_qa").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#ng_measurement_qa").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#wire_type_qa").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#wire_size_qa").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#connector_cavity_qa").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#detail_content_defect_qa").prop('disabled', false).val('').css('background-color', '#FFF');
         $("#treatment_content_defect_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
         $("#harness_status_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
       }
@@ -164,12 +164,12 @@
         $("#assy_board_no_qa").prop('disabled', false).val('').css('background-color', '#FFF');
         $("#defect_cause_qa").prop('disabled', false).val('').css('background-color', '#FFF');
         $("#repair_person_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
-        $("#good_measurement_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
-        $("#ng_measurement_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
-        $("#wire_type_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
-        $("#wire_size_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
-        $("#connector_cavity_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
-        $("#detail_content_defect_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
+        $("#good_measurement_qa").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#ng_measurement_qa").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#wire_type_qa").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#wire_size_qa").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#connector_cavity_qa").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#detail_content_defect_qa").prop('disabled', false).val('').css('background-color', '#FFF');
         $("#treatment_content_defect_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
         $("#harness_status_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
       }
@@ -1340,6 +1340,12 @@
     document.getElementById("sequence_no_qa").value = '';
     document.getElementById("assy_board_no_qa").value = '';
     document.getElementById("defect_cause_qa").value = '';
+    document.getElementById("good_measurement_qa").value = '';
+    document.getElementById("ng_measurement_qa").value = '';
+    document.getElementById("wire_type_qa").value = '';
+    document.getElementById("wire_size_qa").value = '';
+    document.getElementById("connector_cavity_qa").value = '';
+    document.getElementById("detail_content_defect_qa").value = '';
   }
 
   const clear_search_input = () => {

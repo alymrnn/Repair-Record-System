@@ -190,42 +190,32 @@
                         <input type="text" id="defect_category_insp_dr_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <!-- sequence number -->
                         <label style="font-weight: normal;color: #000;">Sequence Number</label>
                         <input type="text" id="sequence_no_insp_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <!-- assy board number -->
                         <label style="font-weight: normal;color: #000;">Assy Board Number</label>
                         <input type="text" id="assy_board_no_insp_update" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             required>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <!-- cause of defect -->
                         <label style="font-weight: normal;color: #000;">Cause of Defect</label>
                         <input list="defectCauseDrList" name="defect_cause_dr" id="defect_cause_insp_update"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
-                            class="pl-2">
+                            class="pl-3">
                         <datalist id="defectCauseDrList"></datalist>
-                    </div>
-                    <div class="col-sm-3">
-                        <!-- repair person -->
-                        <label style="font-weight: normal;color: #000;">Dis-assembled by:</label>
-                        <label style="color:#CA3F3F">*</label>
-                        <select name="repair_person_insp_update" id="repair_person_insp_update" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
-                            class="form-control pl-2" required>
-                            <option value="" disabled selected>Select the repair person</option>
-                        </select>
                     </div>
                 </div>
                 <br>
                 <!-- /.end -->
                 <div class="row mb-2">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <!-- good measurement -->
                         <label style="font-weight: normal;color: #000;">Good Measurement</label>
                         <label style="color:#CA3F3F">*</label>
@@ -233,15 +223,31 @@
                             autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <!-- ng measurement -->
                         <label style="font-weight: normal;color: #000;">NG Measurement</label>
                         <label style="color:#CA3F3F">*</label>
                         <input type="text" id="ng_measurement_insp_update" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
+                    <div class="col-sm-4">
+                        <!-- connector cavity -->
+                        <label style="font-weight: normal;color: #000;">Connector Cavity</label>
+                        <label style="color:#CA3F3F">*</label>
+                        <input type="text" id="connector_cavity_insp_update" class="form-control pl-3"
+                            autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                    </div>
                 </div>
                 <div class="row">
+                    <div class="col-sm-4">
+                        <!-- detail in content of defect -->
+                        <label style="font-weight: normal;color: #000;">Detail in Content of Defect</label>
+                        <label style="color:#CA3F3F">*</label>
+                        <textarea type="text" id="detail_content_defect_insp_update" class="textarea form-control"
+                            autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:65px; width:100%;"></textarea>
+                    </div>
                     <div class="col-sm-4">
                         <!-- wire type -->
                         <label style="font-weight: normal;color: #000;">Wire Type</label>
@@ -256,25 +262,9 @@
                         <input type="text" id="wire_size_insp_update" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
-                    <div class="col-sm-4">
-                        <!-- connector cavity -->
-                        <label style="font-weight: normal;color: #000;">Connector Cavity</label>
-                        <label style="color:#CA3F3F">*</label>
-                        <input type="text" id="connector_cavity_insp_update" class="form-control pl-3"
-                            autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
-                    </div>
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-sm-4">
-                        <!-- detail in content of defect -->
-                        <label style="font-weight: normal;color: #000;">Detail in Content of Defect</label>
-                        <label style="color:#CA3F3F">*</label>
-                        <textarea type="text" id="detail_content_defect_insp_update" class="textarea form-control"
-                            autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:65px; width:100%;"></textarea>
-                    </div>
                     <div class="col-sm-4">
                         <!-- treatment content of defect -->
                         <label style="font-weight: normal;color: #000;">Treatment Content of Defect</label>
@@ -282,6 +272,16 @@
                         <textarea type="text" id="treatment_content_defect_insp_update" class="form-control"
                             autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:65px; width:100%;"></textarea>
+                    </div>
+                    <div class="col-sm-4">
+                        <!-- repair person -->
+                        <label style="font-weight: normal;color: #000;">Dis-assembled by:</label>
+                        <label style="color:#CA3F3F">*</label>
+                        <select name="repair_person_insp_update" id="repair_person_insp_update" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="form-control pl-2" required>
+                            <option value="" disabled selected>Select the repair person</option>
+                        </select>
                     </div>
                     <div class="col-sm-4">
                         <!-- harness status after repair -->
