@@ -479,7 +479,7 @@
                         <!-- Detail in content of defect -->
                         <label style="font-weight: normal;color: #000;">Detail in Content of Defect</label>
                         <label style="color:#CA3F3F">*</label>
-                        <textarea id="detail_content_defect" class="textarea form-control pl-3" maxlength="255"
+                        <textarea id="detail_content_defect" class="textarea form-control pl-3" maxlength="1000"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:65px; width:100%;"
                             onkeyup="count_detail_content_defect_char()" required></textarea>
                         <span id="detailDefectError" class="error-message" style="display:none; color:#CA3F3F;">
@@ -491,7 +491,7 @@
                         <label style="font-weight: normal;color: #000;">Treatment Content of Defect</label>
                         <label style="color:#CA3F3F">*</label>
                         <textarea type="text" id="treatment_content_defect" class="textarea form-control pl-3"
-                            maxlength="255"
+                            maxlength="1000"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:65px; width:100%;"
                             onkeyup="count_treatment_content_defect_char()" required></textarea>
                         <span id="treatmentDefectError" class="error-message" style="display:none; color:#CA3F3F;">

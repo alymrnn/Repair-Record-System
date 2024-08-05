@@ -1,5 +1,5 @@
 <?php include 'plugins/navbar.php'; ?>
-<?php include 'plugins/sidebar/defect_monitoring_record_pdv_bar.php'; ?>
+<?php include 'plugins/sidebar/history_pdv_bar.php'; ?>
 
 <div class="content-wrapper" style="background: #FFF;">
     <!-- Content Header (Page header) -->
@@ -7,13 +7,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Defect Record and Mancost Monitoring</h1>
+                    <h1 class="m-0">NG History Record</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="defect_monitoring_record_rp.php">Repair Record System</a>
                         </li>
-                        <li class="breadcrumb-item active">Defect Record & Mancost</li>
+                        <li class="breadcrumb-item active">NG History Record</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -40,35 +40,35 @@
                         <div class="col-12 col-sm-6 col-md-4 mb-2">
                             <!-- qr scan -->
                             <label style="font-weight:normal;margin:0;padding:0;color:#000;">Scan here</label>
-                            <input type="text" id="search_qr_scan_pdv" class="form-control" autocomplete="off"
+                            <input type="text" id="search_qr_scan_pdv_ng" class="form-control" autocomplete="off"
                                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;">
                         </div>
                         <div class="col-12 col-sm-6 col-md-2 mb-2">
                             <!-- product name -->
                             <label style="font-weight:normal;margin:0;padding:0;color:#000;">Product Name</label>
-                            <input type="text" id="search_product_name_pdv" class="form-control"
+                            <input type="text" id="search_product_name_pdv_ng" class="form-control"
                                 placeholder="Product Name" autocomplete="off"
                                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;">
                         </div>
                         <div class="col-12 col-sm-6 col-md-2 mb-2">
                             <!-- lot  no -->
                             <label style="font-weight:normal;margin:0;padding:0;color:#000;">Lot No.</label>
-                            <input type="text" id="search_lot_no_pdv" class="form-control" placeholder="Lot No."
+                            <input type="text" id="search_lot_no_pdv_ng" class="form-control" placeholder="Lot No."
                                 autocomplete="off"
                                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;">
                         </div>
                         <div class="col-12 col-sm-6 col-md-2 mb-2">
                             <!-- serial no -->
                             <label style="font-weight:normal;margin:0;padding:0;color:#000;">Serial No.</label>
-                            <input type="text" id="search_serial_no_pdv" class="form-control" placeholder="Serial No."
+                            <input type="text" id="search_serial_no_pdv_ng" class="form-control" placeholder="Serial No."
                                 autocomplete="off"
                                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;">
                         </div>
                         <div class="col-12 col-sm-2">
                             <!-- search button -->
                             <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
-                            <button class="btn btn-block d-flex justify-content-left" id="search_record_btn_pdv"
-                                onclick="load_defect_table_pdv(1);"
+                            <button class="btn btn-block d-flex justify-content-left" id="search_record_btn_pdv_ng"
+                                onclick="load_defect_table_pdv_ng(1);"
                                 style="color:#fff;height:34px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"
                                 onmouseover="this.style.backgroundColor='#1B5541'; this.style.color='#FFF';"
                                 onmouseout="this.style.backgroundColor='#226F54'; this.style.color='#FFF';"><i
@@ -80,11 +80,11 @@
                         <div class="col-12 col-sm-2">
                             <!-- search keyword input -->
                             <label style="font-weight:normal;margin:0;padding:0;font-size:15px">Line No.</label>
-                            <input type="text" id="search_line_no_pdv" class="form-control" placeholder="Line no."
+                            <input type="text" id="search_line_no_pdv_ng" class="form-control" placeholder="Line no."
                                 autocomplete="off"
                                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;">
 
-                            <!-- <select name="line_no_pdv" id="search_line_no_pdv" autocomplete="off"
+                            <!-- <select name="line_no_pdv_ng" id="search_line_no_pdv_ng" autocomplete="off"
                                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;"
                                 class="form-control" required>
                                 <option></option>
@@ -92,48 +92,32 @@
                         </div>
                         <div class="col-12 col-sm-2">
                             <!-- harness status -->
-                            <label style="font-weight:normal;margin:0;padding:0;color:#000;">Harness Status after
-                                Repair</label>
-                            <select name="harness_status_pdv" id="search_harness_status_pdv" autocomplete="off"
+                            <label style="font-weight:normal;margin:0;padding:0;color:#000;">Harness Status after Repair</label>
+                            <select name="harness_status_pdv_ng" id="search_harness_status_pdv_ng" autocomplete="off"
                                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;"
                                 class="form-control" required>
                                 <option></option>
                             </select>
                         </div>
                         <div class="col-12 col-sm-2">
-                            <!-- harness verification -->
-                            <label style="font-weight:normal;margin:0;padding:0;color:#000;">Harness Verification
-                                Status</label>
-                            <label style="color:#CA3F3F;margin:0;padding:0;">*</label>
-                            <select name="harness_verification_pdv" id="search_harness_verification_pdv"
-                                autocomplete="off"
-                                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;"
-                                class="form-control" required>
-                                <option value="" selected disabled>Select status</option>
-                                <option value="Pending">Pending</option>
-                                <option value="Verified">Verified</option>
-                            </select>
-                        </div>
-                        <div class="col-12 col-sm-2">
                             <!-- date from -->
-                            <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date From <i style="font-size: 14px">(Repairing
-                                    Date)</i></label>
+                            <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date From <i style="font-size: 14px">(Repairing Date)</i></label>
                             <label style="color:#CA3F3F;margin:0;padding:0;">*</label>
-                            <input type="date" name="date_from" class="form-control" id="search_date_from_pdv"
+                            <input type="date" name="date_from" class="form-control" id="search_date_from_pdv_ng"
                                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px;">
                         </div>
                         <div class="col-12 col-sm-2">
                             <!-- date to -->
-                            <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date To <i style="font-size: 14px">(Repairing
-                                    Date)</i></label>
+                            <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date To <i style="font-size: 14px">(Repairing Date)</i></label>
                             <label style="color:#CA3F3F;margin:0;padding:0;">*</label>
-                            <input type="date" name="date_to" class="form-control" id="search_date_to_pdv"
+                            <input type="date" name="date_to" class="form-control" id="search_date_to_pdv_ng"
                                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px;">
                         </div>
+                        <div class="col-2"></div>
                         <div class="col-12 col-sm-4 col-md-2">
                             <!-- clear button -->
                             <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
-                            <button class="btn btn-block d-flex justify-content-left" id="search_btn_pdv"
+                            <button class="btn btn-block d-flex justify-content-left" id="search_btn_pdv_ng"
                                 onclick="clear_search_input_pdv()"
                                 style="color:#fff;height:34px;border-radius:.25rem;background: #2D2D2D;font-size:15px;font-weight:normal;"
                                 onmouseover="this.style.backgroundColor='#0D0D0D'; this.style.color='#FFF';"
@@ -144,9 +128,9 @@
                     <!-- /.row end -->
 
                     <!-- table -->
-                    <div id="list_of_defect_pdv_res" class="card-body mt-4 table-responsive m-0 p-0"
+                    <div id="list_of_defect_pdv_ng_res" class="card-body mt-4 table-responsive m-0 p-0"
                         style="max-height: 400px;">
-                        <table class="table col-12 table-head-fixed text-nowrap table-hover" id="defect_pdv_table"
+                        <table class="table col-12 table-head-fixed text-nowrap table-hover" id="defect_pdv_ng_table"
                             style="background: #F9F9F9;">
                             <thead style="text-align: center;">
                                 <th>#</th>
@@ -196,7 +180,7 @@
                                 <th>Confirmed by (PD FAP)</th>
                                 <th>Date Confirmed</th>
                             </thead>
-                            <tbody class=" m-0 p-0" id="list_of_defect_record_pdv">
+                            <tbody class="m-0 p-0" id="list_of_defect_record_pdv_ng">
                                 <tr>
                                     <td colspan="12" style="text-align: center;">
                                         <div class="spinner-border text-dark" role="status">
@@ -209,7 +193,7 @@
                     </div>
                     <br>
                     <div class="d-flex justify-content-sm-end">
-                        <div class="dataTables_info" id="defect_pdv_table_info" role="status" aria-live="polite"></div>
+                        <div class="dataTables_info" id="defect_pdv_ng_table_info" role="status" aria-live="polite"></div>
                     </div>
                     <div class="d-flex justify-content-sm-center">
                         <button type="button" class="btn" style="background: #032b43; color: #fff;" id="btnNextPage"
@@ -226,4 +210,4 @@
 </div>
 
 <?php include 'plugins/footer.php'; ?>
-<?php include 'plugins/js/defect_monitoring_record_pdv_script.php'; ?>
+<?php include 'plugins/js/history_pdv_script.php'; ?>

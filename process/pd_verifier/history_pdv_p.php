@@ -34,13 +34,13 @@ if ($method == 'fetch_opt_harness_status_pdv') {
 // }
 
 
-function count_defect_pdv_list($conn, $search_product_name_pdv, $search_lot_no_pdv, $search_serial_no_pdv, $search_line_no_pdv, $search_harness_status_pdv, $search_harness_verification_pdv, $search_date_from_pdv, $search_date_to_pdv)
+function count_defect_pdv_ng_list($conn, $search_product_name_pdv, $search_lot_no_pdv, $search_serial_no_pdv, $search_line_no_pdv, $search_harness_status_pdv, $search_date_from_pdv, $search_date_to_pdv)
 {
     $query = "SELECT COUNT(id) AS total FROM t_defect_record_f";
     $conditions = [];
     $params = [];
 
-    $conditions[] = "(qc_status = 'Saved' AND pending_status = 'Updated' AND (harness_status IN ('Re-assy', 'Re-crimp', 'Re-insertion', 'Re-inspection')))";
+    $conditions[] = "(remarks_recrimp = 'NG' OR remarks_cc = 'NG' OR remarks_reassy = 'NG')";
 
     if (!empty($search_date_from_pdv) && !empty($search_date_to_pdv)) {
         $conditions[] = "repairing_date BETWEEN ? AND ?";
@@ -56,11 +56,6 @@ function count_defect_pdv_list($conn, $search_product_name_pdv, $search_lot_no_p
     if (!empty($search_harness_status_pdv)) {
         $conditions[] = "harness_status LIKE ?";
         $params[] = '%' . $search_harness_status_pdv . '%';
-    }
-
-    if (!empty($search_harness_verification_pdv)) {
-        $conditions[] = "harness_repair LIKE ?";
-        $params[] = '%' . $search_harness_verification_pdv . '%';
     }
 
     if (!empty($search_product_name_pdv) && $search_product_name_pdv !== '%') {
@@ -90,13 +85,12 @@ function count_defect_pdv_list($conn, $search_product_name_pdv, $search_lot_no_p
     return $total;
 }
 
-if ($method == 'count_defect_pdv_list') {
+if ($method == 'count_defect_pdv_ng_list') {
     $search_product_name_pdv = trim($_POST['search_product_name_pdv']);
     $search_serial_no_pdv = trim($_POST['search_serial_no_pdv']);
     $search_lot_no_pdv = trim($_POST['search_lot_no_pdv']);
     $search_line_no_pdv = trim($_POST['search_line_no_pdv']);
     $search_harness_status_pdv = trim($_POST['search_harness_status_pdv']);
-    $search_harness_verification_pdv = trim($_POST['search_harness_verification_pdv']);
 
     $search_date_from_pdv = trim($_POST['search_date_from_pdv']);
     if (!empty($search_date_from_pdv)) {
@@ -110,7 +104,7 @@ if ($method == 'count_defect_pdv_list') {
         $search_date_to_pdv = date_format($search_date_to_pdv, "Y/m/d");
     }
 
-    echo count_defect_pdv_list($conn, $search_product_name_pdv, $search_lot_no_pdv, $search_serial_no_pdv, $search_line_no_pdv, $search_harness_status_pdv, $search_harness_verification_pdv, $search_date_from_pdv, $search_date_to_pdv);
+    echo count_defect_pdv_ng_list($conn, $search_product_name_pdv, $search_lot_no_pdv, $search_serial_no_pdv, $search_line_no_pdv, $search_harness_status_pdv, $search_date_from_pdv, $search_date_to_pdv);
 }
 
 if ($method == 'defect_pdv_list_pagination') {
@@ -119,7 +113,6 @@ if ($method == 'defect_pdv_list_pagination') {
     $search_lot_no_pdv = trim($_POST['search_lot_no_pdv']);
     $search_line_no_pdv = trim($_POST['search_line_no_pdv']);
     $search_harness_status_pdv = trim($_POST['search_harness_status_pdv']);
-    $search_harness_verification_pdv = trim($_POST['search_harness_verification_pdv']);
 
     $search_date_from_pdv = trim($_POST['search_date_from_pdv']);
     if (!empty($search_date_from_pdv)) {
@@ -135,7 +128,7 @@ if ($method == 'defect_pdv_list_pagination') {
 
     $results_per_page = 20;
 
-    $number_of_result = intval(count_defect_pdv_list($conn, $search_product_name_pdv, $search_lot_no_pdv, $search_serial_no_pdv, $search_line_no_pdv, $search_harness_status_pdv, $search_harness_verification_pdv, $search_date_from_pdv, $search_date_to_pdv));
+    $number_of_result = intval(count_defect_pdv_ng_list($conn, $search_product_name_pdv, $search_lot_no_pdv, $search_serial_no_pdv, $search_line_no_pdv, $search_harness_status_pdv, $search_date_from_pdv, $search_date_to_pdv));
 
     $number_of_page = ceil($number_of_result / $results_per_page);
 
@@ -150,7 +143,6 @@ if ($method == 'defect_pdv_list_last_page') {
     $search_lot_no_pdv = trim($_POST['search_lot_no_pdv']);
     $search_line_no_pdv = trim($_POST['search_line_no_pdv']);
     $search_harness_status_pdv = trim($_POST['search_harness_status_pdv']);
-    $search_harness_verification_pdv = trim($_POST['search_harness_verification_pdv']);
 
     $search_date_from_pdv = trim($_POST['search_date_from_pdv']);
     if (!empty($search_date_from_pdv)) {
@@ -165,20 +157,19 @@ if ($method == 'defect_pdv_list_last_page') {
     }
 
     $results_per_page = 20;
-    $number_of_result = intval(count_defect_pdv_list($conn, $search_product_name_pdv, $search_lot_no_pdv, $search_serial_no_pdv, $search_line_no_pdv, $search_harness_status_pdv, $search_harness_verification_pdv, $search_date_from_pdv, $search_date_to_pdv));
+    $number_of_result = intval(count_defect_pdv_ng_list($conn, $search_product_name_pdv, $search_lot_no_pdv, $search_serial_no_pdv, $search_line_no_pdv, $search_harness_status_pdv, $search_date_from_pdv, $search_date_to_pdv));
 
     $number_of_page = ceil($number_of_result / $results_per_page);
 
     echo $number_of_page;
 }
 
-if ($method == 'load_defect_table_pdv') {
+if ($method == 'load_defect_table_pdv_ng') {
     $search_product_name_pdv = trim($_POST['search_product_name_pdv']);
     $search_serial_no_pdv = trim($_POST['search_serial_no_pdv']);
     $search_lot_no_pdv = trim($_POST['search_lot_no_pdv']);
     $search_line_no_pdv = trim($_POST['search_line_no_pdv']);
     $search_harness_status_pdv = trim($_POST['search_harness_status_pdv']);
-    $search_harness_verification_pdv = trim($_POST['search_harness_verification_pdv']);
 
     $search_date_from_pdv = trim($_POST['search_date_from_pdv']);
     if (!empty($search_date_from_pdv)) {
@@ -204,7 +195,7 @@ if ($method == 'load_defect_table_pdv') {
     $query = "SELECT * FROM t_defect_record_f";
     $conditions = [];
 
-    $conditions[] = "(qc_status = 'Saved' AND pending_status = 'Updated' AND (harness_status IN ('Re-assy', 'Re-crimp', 'Re-insertion', 'Re-inspection')))";
+    $conditions[] = "(remarks_recrimp = 'NG' OR remarks_cc = 'NG' OR remarks_reassy = 'NG')";
 
     if (!empty($search_date_from_pdv) && !empty($search_date_to_pdv)) {
         $conditions[] = "date_detected BETWEEN :search_date_from_pdv AND :search_date_to_pdv";
@@ -216,10 +207,6 @@ if ($method == 'load_defect_table_pdv') {
 
     if (!empty($search_harness_status_pdv)) {
         $conditions[] = "harness_status LIKE :search_harness_status_pdv";
-    }
-
-    if (!empty($search_harness_verification_pdv)) {
-        $conditions[] = "harness_repair LIKE :search_harness_verification_pdv";
     }
 
     if (!empty($search_product_name_pdv)) {
@@ -253,9 +240,6 @@ if ($method == 'load_defect_table_pdv') {
     }
     if (!empty($search_harness_status_pdv)) {
         $stmt->bindValue(':search_harness_status_pdv', $search_harness_status_pdv . '%', PDO::PARAM_STR);
-    }
-    if (!empty($search_harness_verification_pdv)) {
-        $stmt->bindValue(':search_harness_verification_pdv', $search_harness_verification_pdv . '%', PDO::PARAM_STR);
     }
     if (!empty($search_product_name_pdv)) {
         $stmt->bindValue(':search_product_name_pdv', $search_product_name_pdv . '%', PDO::PARAM_STR);
@@ -375,45 +359,6 @@ if ($method == 'load_defect_table_pdv') {
     }
 }
 
-if ($method == 'update_pdv_record') {
-    $pdv_remarks = $_POST['pdv_remarks'];
-    $pdv_id_no = $_POST['pdv_id_no'];
-    $pdv_name = $_POST['pdv_name'];
-    $defect_id = $_POST['pdv_defect_id'];
-    $harness_repair = 'Verified';
 
-    // Check if the defect_id exists
-    $check_query = "SELECT defect_id FROM t_defect_record_f WHERE defect_id = :defect_id";
-    $stmt_check = $conn->prepare($check_query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-    $stmt_check->bindParam(':defect_id', $defect_id, PDO::PARAM_INT);
-    $stmt_check->execute();
-
-    // If defect_id exists, proceed with the update
-    if ($stmt_check->rowCount() > 0) {
-        $update_query = "
-            UPDATE t_defect_record_f
-            SET pdv_remarks = :pdv_remarks,
-                pdv_id_num = :pdv_id_num,
-                pdv_person = :pdv_person,
-                harness_repair = :harness_repair
-            WHERE defect_id = :defect_id
-        ";
-
-        $stmt_update = $conn->prepare($update_query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-        $stmt_update->bindParam(':pdv_remarks', $pdv_remarks, PDO::PARAM_STR);
-        $stmt_update->bindParam(':pdv_id_num', $pdv_id_no, PDO::PARAM_STR);
-        $stmt_update->bindParam(':pdv_person', $pdv_name, PDO::PARAM_STR);
-        $stmt_update->bindParam(':harness_repair', $harness_repair, PDO::PARAM_STR);
-        $stmt_update->bindParam(':defect_id', $defect_id, PDO::PARAM_INT);
-
-        if ($stmt_update->execute()) {
-            echo "success";
-        } else {
-            echo "Update failed: " . implode(" ", $stmt_update->errorInfo());
-        }
-    } else {
-        echo "Update failed: defect_id does not exist";
-    }
-}
 
 
