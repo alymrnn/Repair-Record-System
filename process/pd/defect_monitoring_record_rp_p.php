@@ -1,6 +1,7 @@
 <?php
 session_start();
 include '../conn.php';
+include '../conn_emp_mgt.php';
 
 $method = $_POST['method'];
 
@@ -666,17 +667,17 @@ if ($method == 'load_defect_table_data') {
 
             $harness_repair = $row['harness_repair'];
             $harness_status = $row['harness_status'];
-    
+
             $highlight_class = '';
-    
+
             if ($harness_repair == 'Pending' && in_array($harness_status, ['Re-assy', 'Re-crimp', 'Re-insertion', 'Re-inspection'])) {
                 $highlight_class = 'highlight-red';
             } elseif ($harness_repair == 'Verified') {
-                $highlight_class = 'highlight-green'; 
+                $highlight_class = 'highlight-green';
             } elseif ($harness_status == 'Counterpart Checking') {
-                $highlight_class = 'highlight-gray';  
+                $highlight_class = 'highlight-gray';
             }
-    
+
             $onclick_event = ($harness_repair == 'Verified') ? '' : 'onclick="get_update_defect_pdv(\'' . $row['defect_id'] . '\')"';
 
             echo '<tr style="cursor:pointer; text-align:center;" class="modal-trigger ' . $highlight_class . '" onclick="load_mancost_table(&quot;' . $row['id'] . '~!~' . $row['defect_id'] . '&quot;)">';

@@ -18,9 +18,9 @@
                     </div>
                     <div class="col-sm-2">
                         <button class="btn btn-block" onclick="clear_update_pending_record()"
-                            style="color:#fff;height:34px;border-radius:.25rem;background: #292929;font-size:15px;font-weight:normal;"
+                            style="color:#fff;height:34px;border-radius:.25rem;background: #2b2d42;font-size:15px;font-weight:normal;"
                             onmouseover="this.style.backgroundColor='#181818'; this.style.color='#fff';"
-                            onmouseout="this.style.backgroundColor='#292929'; this.style.color='#fff';">
+                            onmouseout="this.style.backgroundColor='#2b2d42'; this.style.color='#fff';">
                             Clear N/As
                         </button>
                     </div>

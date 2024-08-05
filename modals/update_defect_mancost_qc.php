@@ -318,11 +318,11 @@
                     </div>
                 </div>
                 <br>
-                <!-- form label -->
-                <p style="font-weight: bold;color: #000;font-size:25px;">Manpower and Material Cost
-                    Monitoring</p>
+                <hr>
                 <!-- /.end -->
-                <div class="row">
+                <p class="m-0 p-0" style="font-weight: bold;color: #000;font-size:25px">For QC Verifier</p>
+
+                <div class="row" style="display: none;">
                     <div class="col-sm-4">
                         <!-- repair start -->
                         <label style="font-weight: normal;color: #000;">Repair Start</label>
@@ -345,9 +345,8 @@
                             disabled>
                     </div>
                 </div>
-                <br>
                 <!-- /.end -->
-                <div class="row">
+                <div class="row" style="display: none;">
                     <div class="col-sm-3">
                         <!-- defect category mancost -->
                         <label style="font-weight: normal;color: #000;">Defect Category</label>
@@ -376,9 +375,9 @@
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;">
                     </div>
                 </div>
-                <br>
                 <!-- /.end -->
-                <div class="row">
+
+                <div class="row" style="display: none;">
                     <div class="col-sm-3">
                         <!-- unit cost -->
                         <label style="font-weight: normal;color: #000;">Unit Cost ( ¥ )</label>
@@ -467,7 +466,8 @@
                         <span id="remarksMcError" class="error-message" style="display:none; color:#CA3F3F;">Remarks
                             field is required.</span>
                     </div>
-                    <input type="hidden" id="admin_defect_id_1">
+                    <!-- <input type="hidden" id="admin_defect_id_3"> -->
+                    <input type="hidden" id="qc_defect_id">
                 </div>
                 <br>
                 <!-- /.end -->

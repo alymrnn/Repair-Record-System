@@ -77,7 +77,7 @@
                     <i class="fas fa-trash" style="margin-top: 2px;"></i>&nbsp;&nbsp;Clear All</button>
                 </div>
               </div>
-              <div class="row mt-2">
+              <div class="row mt-2 mb-3">
                 <div class="col-sm-4 col-md-2">
                   <!-- record type -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Record Type</label>
@@ -129,7 +129,6 @@
                       style="margin-top: 2px;"></i>&nbsp;&nbsp;Search</button>
                 </div>
               </div>
-              <br>
 
               <!-- table -->
               <div class="row" id="t_qc_defect_breadcrumb">
@@ -145,7 +144,7 @@
                           </a>
                         </h4>
                       </div>
-                      <div id="collapseDefectLegend" class="collapse show" data-parent="#accordion_qc_legend">
+                      <div id="collapseDefectLegend" class="collapse" data-parent="#accordion_qc_legend">
                         <div class="card-body">
                           <div class="row">
                             <div class="col-sm-4 col-lg-4 p-1 bg-danger">
@@ -161,13 +160,23 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-12 col-sm-6 m-0 p-0">
+                    <div class="row mb-3">
+                      <div class="col-10"></div>
+                      <div class="col-2">
+                        <button id="update_button" class="btn btn-block d-flex justify-content-left" data-toggle="modal" data-target="#update_defect_mancost_qc"
+                          style="color:#fff;height:34px;border-radius:.25rem;background: #2D7AC0;font-size:15px;font-weight:normal;"
+                          onmouseover="this.style.backgroundColor='#215A8D'; this.style.color='#FFF';"
+                          onmouseout="this.style.backgroundColor='#2D7AC0'; this.style.color='#FFF';" disabled>
+                          <i class="fas fa-check" style="margin-top: 2px;"></i>&nbsp;&nbsp;Verify Record</button>
+                      </div>
+                    </div>
+                    <!-- <div class="col-12 col-sm-6 m-0 p-0">
                       <p class="p-1" style="background: #FFFAD1; border-left: 3px solid #E89F4C; font-size: 14px;">
                         <i>Note:</i>
                         &nbsp;<b>Each entry in the mancost monitoring must be verified</b> for the overall record to be considered
                         fully verified.
                       </p>
-                    </div>
+                    </div> -->
                   </div>
                   <ol class="breadcrumb m-0 p-0">
                     <li class="breadcrumb-item"><a href="#" onclick="load_qc_defect_table()"><i

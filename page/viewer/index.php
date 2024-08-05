@@ -155,7 +155,7 @@ include ('plugins/navbar/index_navbar.php');
                 </div>
               </div>
               <!-- <br> -->
-              <div class="row mt-2 mt-3 mb-1">
+              <div class="row mt-2 mt-3 mb-2">
                 <div class="col-12 col-sm-4 col-md-2 mb-2">
                   <!-- record type -->
                   <select name="search_v_record_type" id="search_v_record_type" autocomplete="off"
@@ -213,7 +213,6 @@ include ('plugins/navbar/index_navbar.php');
                     <i class="fas fa-sync-alt" style="margin-top: 2px;"></i>&nbsp;Refresh</button>
                 </div> -->
               </div>
-              <br>
 
               <!-- <p class="p-2" style="background: #FFFAD1; border-left: 3px solid #E89F4C">
                 <i>Note:</i>
@@ -221,36 +220,42 @@ include ('plugins/navbar/index_navbar.php');
                   column)</i>. Utilize the search function to view past records.
               </p> -->
 
-              <div class="row" id="t_viewer_defect_breadcrumb">
+              <div class="row">
                 <div class="col-12">
                   <div id="accordion_qc_legend">
                     <div class="card bg-light">
                       <div class="card-header">
                         <h4 class="card-title w-100">
-                          <a class="d-block w-100 text-black" data-toggle="collapse" href="#collapseDefectLegend" style="font-size: 15px;">
+                          <a class="d-block w-100 text-black" data-toggle="collapse" href="#collapseDefectLegend"
+                            style="font-size: 15px;">
                             Defect Record and Mancost Monitoring Legend
                           </a>
                         </h4>
                       </div>
-                      <div id="collapseDefectLegend" class="collapse show" data-parent="#accordion_qc_legend">
+                      <div id="collapseDefectLegend" class="collapse" data-parent="#accordion_qc_legend">
                         <div class="card-body">
                           <div class="row">
-                            <div class="col-sm-4 col-lg-4 p-1 bg-danger">
+                            <!-- <div class="col-sm-4 col-lg-4 p-1 bg-danger">
                               <center>No Good</center>
+                            </div> -->
+                            <div class="col-sm-6 col-lg-6 p-1" style="background-color: #2c6e49; color: #FFF;">
+                              <center>Verified Record</center>
                             </div>
-                            <div class="col-sm-4 col-lg-4 p-1 bg-success">
-                              <center>Good</center>
-                            </div>
-                            <div class="col-sm-4 col-lg-4 p-1 bg-secondary">
-                              <center>Not Applicable</center>
+                            <div class="col-sm-6 col-lg-6 p-1" style="background-color: #4a5759; color: #FFF;">
+                              <center>White Tag Record</center>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+              <div class="row" id="t_viewer_defect_breadcrumb">
+                <div class="col-12">
                   <ol class="breadcrumb m-0 p-0">
-                    <li class="breadcrumb-item"><a href="#" onclick="load_viewer_defect_table()"><i class="fas fa-angle-left"></i>&nbsp;Return</a></li>
+                    <li class="breadcrumb-item"><a href="#" onclick="load_viewer_defect_table()"><i
+                          class="fas fa-angle-left"></i>&nbsp;Return</a></li>
                     <li class="breadcrumb-item active" id="viewer_defect_id"></li>
                   </ol>
                 </div>

@@ -1,5 +1,6 @@
 <?php
 include '../conn.php';
+include '../conn_emp_mgt.php';
 
 $method = $_POST['method'];
 
@@ -626,7 +627,19 @@ if ($method == 'load_viewer_defect_table_data') {
     if ($stmt->rowCount() > 0) {
         foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
             $c++;
-            echo '<tr style="cursor:pointer; text-align:center;" class="modal-trigger" onclick="load_viewer_mancost_table(&quot;' . $row['id'] . '~!~' . $row['defect_id'] . '&quot;)">';
+
+            $qc_status = $row['qc_status'];
+            $record_type = $row['record_type'];
+
+            $highlight_class = '';
+
+            if ($qc_status == 'Verified') {
+                $highlight_class = 'highlight-green';
+            } else if ($record_type == 'White Tag') {
+                $highlight_class = 'highlight-gray';
+            }
+
+            echo '<tr style="cursor:pointer; text-align:center;" class="modal-trigger ' . $highlight_class . '" onclick="load_viewer_mancost_table(&quot;' . $row['id'] . '~!~' . $row['defect_id'] . '&quot;)">';
             echo '<td style="text-align:center;">' . $c . '</td>';
             echo '<td style="text-align:center;">' . $row['line_no'] . '</td>';
             echo '<td style="text-align:center;">' . $row['category'] . '</td>';

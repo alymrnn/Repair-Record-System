@@ -1,6 +1,7 @@
 <?php
 ini_set("memory_limit", "-1");
 include '../conn.php';
+include '../conn_emp_mgt.php';
 
 $product_name = $_GET['product_name'] ?? '';
 $lot_no = $_GET['lot_no'] ?? '';

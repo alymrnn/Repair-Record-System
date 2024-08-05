@@ -1,5 +1,6 @@
 <?php
 include '../conn.php';
+include '../conn_emp_mgt.php';
 
 $method = $_GET['method'];
 

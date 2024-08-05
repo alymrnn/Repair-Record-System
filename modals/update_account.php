@@ -37,6 +37,7 @@
                             <option value="PD2">PD2</option>
                             <option value="QA">QA</option>
                             <option value="QC">QC</option>
+                            <option value="N/A">N/A</option>
                         </select>
                     </div>
 
@@ -55,6 +56,10 @@
                             <option value="FAP4">FAP4</option>
                             <option value="QA">QA</option>
                             <option value="QC">QC</option>
+                            <option value="First Process">First Process</option>
+                            <option value="Secondary 1 Process">Secondary 1 Process</option>
+                            <option value="Secondary 2 Process">Secondary 2 Process</option>
+                            <option value="N/A">N/A</option>
                         </select>
                     </div>
                     <div class="col-sm-4">

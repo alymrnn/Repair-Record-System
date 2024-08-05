@@ -21,6 +21,12 @@
         fetch_opt_update_defect_category();
         fetch_opt_update_repair_person();
 
+        update_button_state();
+
+        $('input.singleCheck').on('change', function () {
+            update_button_state();
+        });
+
         $('#discovery_id_no_mc_update').on('keypress', function (e) {
             if (e.which === 13) {
                 get_discovery_person();
@@ -60,13 +66,13 @@
         });
     });
 
-    document.getElementById('line_no_mc_update').addEventListener('input', function () {
-        this.value = this.value.replace(/\D/g, '');
+    // document.getElementById('line_no_mc_update').addEventListener('input', function () {
+    //     this.value = this.value.replace(/\D/g, '');
 
-        if (this.value.length > 4) {
-            this.value = this.value.slice(0, 4);
-        }
-    });
+    //     if (this.value.length > 4) {
+    //         this.value = this.value.slice(0, 4);
+    //     }
+    // });
 
     // document.getElementById("search_ad_record_type").addEventListener("change", e => {
     //     load_qc_defect_table(1);
@@ -745,6 +751,9 @@
         document.getElementById("qc_defect_table").innerHTML = `
             <thead style="text-align: center;">
                 <tr>
+                    <th>
+                        <input type="checkbox" name="" id="check_all"  onclick="select_all_func()">
+                    </th>
                     <th>#</th>
                     <th>Line No.</th>
                     <th>Car Maker</th>
@@ -903,7 +912,7 @@
 
         // defect unique id 
         $('#admin_defect_id_1').val(defect_id).prop('hidden', true);
-        $('#update_defect_mancost_qc').modal('show');
+        // $('#update_defect_mancost_qc').modal('show');
     }
 
     // FOR OLD QC VERIFICATION
@@ -1006,93 +1015,77 @@
     const update_mancost2_record = () => {
         var id = document.getElementById('update_defect_mancost_id').value;
 
-        var car_maker = document.getElementById('car_maker_mc_update');
-        var line_no = document.getElementById('line_no_mc_update');
-        var date_detected = document.getElementById('date_detected_mc_update');
-        var issue_no_tag = document.getElementById('issue_tag_mc_update');
-        var product_name = document.getElementById('product_name_mc_update');
-        var lot_no = document.getElementById('lot_no_mc_update');
-        var serial_no = document.getElementById('serial_no_mc_update');
-        var discovery_process = document.getElementById('discovery_process_mc_update');
-        var occurrence_process_dr = document.getElementById('occurrence_process_dr_update');
-        var outflow_process = document.getElementById('outflow_process_mc_update');
-        var outflow_id_no = document.getElementById('outflow_id_no_mc_update');
-        var outflow_person = document.getElementById('outflow_person_mc_update');
-        var defect_category_2 = document.getElementById('defect_category_mc_update2');
-        var sequence_no = document.getElementById('sequence_no_mc_update');
-        var repair_person = document.getElementById('repair_person_mc_update');
-        var treatment_content_defect = document.getElementById('treatment_content_defect_mc_update');
+        var car_maker = document.getElementById('car_maker_mc_update').value;
+        var line_no = document.getElementById('line_no_mc_update').value;
+        var date_detected = document.getElementById('date_detected_mc_update').value;
+        var issue_no_tag = document.getElementById('issue_tag_mc_update').value;
+        var product_name = document.getElementById('product_name_mc_update').value;
+        var lot_no = document.getElementById('lot_no_mc_update').value;
+        var serial_no = document.getElementById('serial_no_mc_update').value;
+        var discovery_process = document.getElementById('discovery_process_mc_update').value;
+        var occurrence_process_dr = document.getElementById('occurrence_process_dr_update').value;
+        var outflow_process = document.getElementById('outflow_process_mc_update').value;
+        var outflow_id_no = document.getElementById('outflow_id_no_mc_update').value;
+        var outflow_person = document.getElementById('outflow_person_mc_update').value;
+        var defect_category_2 = document.getElementById('defect_category_mc_update2').value;
+        var sequence_no = document.getElementById('sequence_no_mc_update').value;
+        var repair_person = document.getElementById('repair_person_mc_update').value;
+        var treatment_content_defect = document.getElementById('treatment_content_defect_mc_update').value;
 
-        var qc_verification = document.getElementById('qc_veri_mc_update');
-        var qcVeriMcError = document.getElementById('qcVeriMcError');
+        var qc_verification = document.getElementById('qc_veri_mc_update').value;
+        var checking_date = document.getElementById('checking_date_mc_update').value;
+        var verified_by = document.getElementById('verified_by_mc_update').value;
+        var remarks = document.getElementById('remarks_mc_update').value;
 
-        var checking_date = document.getElementById('checking_date_mc_update');
-        var checkingDateMcError = document.getElementById('checkingDateMcError');
+        // var defect_id = document.getElementById('admin_defect_id_1').value;
+        var defect_id = sessionStorage.getItem('load_qc_defect_id');;
 
-        var verified_by = document.getElementById('verified_by_mc_update');
-        var verifiedByMcError = document.getElementById('verifiedByMcError');
+        
 
-        var remarks = document.getElementById('remarks_mc_update');
-        var remarksMcError = document.getElementById('remarksMcError');
+        var arr = [];
+        $('input.singleCheck:checkbox:checked').each((i, el) => {
+            arr.push($(el).val());
+        });
 
-        var admin_defect_id = document.getElementById('admin_defect_id_1').value;
+        // Log the array to debug
+        console.log('Checked checkboxes:', arr);
 
-        // console.log('Updating with unique id:', admin_defect_id);
-
-        if (qc_verification.value.trim() === '') {
-            qc_verification.classList.add('highlight');
-            qcVeriMcError.style.display = 'block';
-        }
-
-        if (checking_date.value.trim() === '') {
-            checking_date.classList.add('highlight');
-            checkingDateMcError.style.display = 'block';
-        }
-
-        if (verified_by.value.trim() === '') {
-            verified_by.classList.add('highlight');
-            verifiedByMcError.style.display = 'block';
-        }
-
-        if (remarks.value.trim() === '') {
-            remarks.classList.add('highlight');
-            remarksMcError.style.display = 'block';
-        }
-
-        if (qc_verification.value.trim() !== '' && checking_date.value.trim() !== '' &&
-            verified_by.value.trim() !== '' && remarks.value.trim() !== '') {
-
+        var numberOfChecked = arr.length;
+        if (numberOfChecked > 0) {
             $.ajax({
                 url: '../../process/qc/defect_monitoring_record_p.php',
                 type: 'POST',
                 cache: false,
                 data: {
                     method: 'update_mancost2_record',
+                    id_arr: arr,
                     id: id,
-                    car_maker: car_maker.value,
-                    line_no: line_no.value,
-                    date_detected: date_detected.value,
-                    issue_no_tag: issue_no_tag.value,
-                    product_name: product_name.value,
-                    lot_no: lot_no.value,
-                    serial_no: serial_no.value,
-                    discovery_process: discovery_process.value,
-                    occurrence_process_dr: occurrence_process_dr.value,
-                    outflow_process: outflow_process.value,
-                    outflow_id_no: outflow_id_no.value,
-                    outflow_person: outflow_person.value,
-                    defect_category_2: defect_category_2.value,
-                    sequence_no: sequence_no.value,
-                    repair_person: repair_person.value,
-                    treatment_content_defect: treatment_content_defect.value,
-                    qc_verification: qc_verification.value,
-                    checking_date: checking_date.value,
-                    verified_by: verified_by.value,
-                    remarks: remarks.value,
-                    admin_defect_id: admin_defect_id
+                    car_maker: car_maker,
+                    line_no: line_no,
+                    date_detected: date_detected,
+                    issue_no_tag: issue_no_tag,
+                    product_name: product_name,
+                    lot_no: lot_no,
+                    serial_no: serial_no,
+                    discovery_process: discovery_process,
+                    occurrence_process_dr: occurrence_process_dr,
+                    outflow_process: outflow_process,
+                    outflow_id_no: outflow_id_no,
+                    outflow_person: outflow_person,
+                    defect_category_2: defect_category_2,
+                    sequence_no: sequence_no,
+                    repair_person: repair_person,
+                    treatment_content_defect: treatment_content_defect,
+                    qc_verification: qc_verification,
+                    checking_date: checking_date,
+                    verified_by: verified_by,
+                    remarks: remarks,
+                    defect_id: defect_id
                 },
                 success: function (response) {
-                    if (response === 'success') {
+                    console.log('Server response:', response);
+
+                    if (response == 'success') {
                         Swal.fire({
                             icon: 'success',
                             title: 'Verified Successfully',
@@ -1100,7 +1093,7 @@
                             timer: 1500
                         });
 
-                        // $('#update_defect_mancost_id').val('');
+                        // Clear input fields
                         $('#car_maker_mc_update').val('');
                         $('#line_no_mc_update').val('');
                         $('#date_detected_mc_update').val('');
@@ -1121,11 +1114,8 @@
                         $('#checking_date_mc_update').val('');
                         $('#verified_by_mc_update').val('');
                         $('#remarks_mc_update').val('');
-                        // $('#admin_defect_id_1').val('');
 
-                        // load_qc_mancost_table($('#update_defect_mancost_id').val() + '~!~' + $('#admin_defect_id_1').val());
-
-                        load_qc_mancost_table(id + '~!~' + admin_defect_id);
+                        load_qc_mancost_table(id + '~!~' + defect_id);
 
                         $('#update_defect_mancost_qc').modal('hide');
                     } else {
@@ -1143,6 +1133,7 @@
             });
         }
     }
+
 
     // Highlight input fields when empty
     document.getElementById("qc_veri_mc_update").addEventListener("input", function () {
@@ -1239,4 +1230,117 @@
             this.value = '';
         }
     });
+
+    const update_button_state = () => {
+        var numberOfChecked = $('input.singleCheck:checkbox:checked').length;
+        $('#update_button').prop('disabled', numberOfChecked === 0);
+    };
+
+    // Uncheck all checkboxes
+    const uncheck_all = () => {
+        var select_all = document.getElementById('check_all');
+        select_all.checked = false;
+        $('.singleCheck').each((i, el) => {
+            el.checked = false;
+        });
+        get_checked_length();
+    }
+
+    // Select or deselect all checkboxes
+    const select_all_func = () => {
+        var select_all = document.getElementById('check_all');
+        $('.singleCheck').each((i, el) => {
+            el.checked = select_all.checked;
+        });
+        update_button_state();
+        get_checked_length();
+    }
+
+    const get_checked_length = () => {
+        var checkedItems = [];
+        $('.singleCheck:checked').each((i, el) => {
+            checkedItems.push({
+                id: $(el).data('id'),
+                car_maker_mc: $(el).data('car_maker_mc'),
+                line_no_mc: $(el).data('line_no_mc'),
+                line_category_mc: $(el).data('line_category_mc'),
+                date_detected_mc: $(el).data('date_detected_mc'),
+                issue_no_tag_mc: $(el).data('issue_no_tag_mc'),
+                product_name_mc: $(el).data('product_name_mc'),
+                lot_no_mc: $(el).data('lot_no_mc'),
+                serial_no_mc: $(el).data('serial_no_mc'),
+                discovery_process_mc: $(el).data('discovery_process_mc'),
+                discovery_id_no_mc: $(el).data('discovery_id_no_mc'),
+                discovery_person_mc: $(el).data('discovery_person_mc'),
+                occurrence_process_dr: $(el).data('occurrence_process_dr'),
+                occurrence_shift_dr: $(el).data('occurrence_shift_dr'),
+                occurrence_id_no_mc: $(el).data('occurrence_id_no_mc'),
+                occurrence_person_mc: $(el).data('occurrence_person_mc'),
+                outflow_process_mc: $(el).data('outflow_process_mc'),
+                outflow_shift_mc: $(el).data('outflow_shift_mc'),
+                outflow_id_no_mc: $(el).data('outflow_id_no_mc'),
+                outflow_person_mc: $(el).data('outflow_person_mc'),
+                defect_category_mc2: $(el).data('defect_category_mc2'),
+                sequence_no_mc: $(el).data('sequence_no_mc'),
+                assy_board_no_mc: $(el).data('assy_board_no_mc'),
+                defect_cause_mc: $(el).data('defect_cause_mc'),
+                good_measurement_mc: $(el).data('good_measurement_mc'),
+                ng_measurement_mc: $(el).data('ng_measurement_mc'),
+                wire_type_mc: $(el).data('wire_type_mc'),
+                wire_size_mc: $(el).data('wire_size_mc'),
+                connector_cavity_mc: $(el).data('connector_cavity_mc'),
+                repair_person_mc: $(el).data('repair_person_mc'),
+                detail_content_defect_mc: $(el).data('detail_content_defect_mc'),
+                treatment_content_defect_mc: $(el).data('treatment_content_defect_mc'),
+                harness_status_mc: $(el).data('harness_status_mc'),
+                repairing_date_mc_update: $(el).data('repairing_date_mc_update'),
+                defect_id: $(el).data('defect_id'),
+            });
+        });
+
+        update_button_state();
+
+        console.log('Checked items:', checkedItems);
+
+        if (checkedItems.length > 0) {
+            let firstItem = checkedItems[0];
+            get_update_defect_mancost_qc(
+                firstItem.id,
+                firstItem.car_maker_mc,
+                firstItem.line_no_mc,
+                firstItem.line_category_mc,
+                firstItem.date_detected_mc,
+                firstItem.issue_no_tag_mc,
+                firstItem.product_name_mc,
+                firstItem.lot_no_mc,
+                firstItem.serial_no_mc,
+                firstItem.discovery_process_mc,
+                firstItem.discovery_id_no_mc,
+                firstItem.discovery_person_mc,
+                firstItem.occurrence_process_dr,
+                firstItem.occurrence_shift_dr,
+                firstItem.occurrence_id_no_mc,
+                firstItem.occurrence_person_mc,
+                firstItem.outflow_process_mc,
+                firstItem.outflow_shift_mc,
+                firstItem.outflow_id_no_mc,
+                firstItem.outflow_person_mc,
+                firstItem.defect_category_mc2,
+                firstItem.sequence_no_mc,
+                firstItem.assy_board_no_mc,
+                firstItem.defect_cause_mc,
+                firstItem.good_measurement_mc,
+                firstItem.ng_measurement_mc,
+                firstItem.wire_type_mc,
+                firstItem.wire_size_mc,
+                firstItem.connector_cavity_mc,
+                firstItem.repair_person_mc,
+                firstItem.detail_content_defect_mc,
+                firstItem.treatment_content_defect_mc,
+                firstItem.harness_status_mc,
+                firstItem.repairing_date_mc_update,
+                firstItem.defect_id,
+            );
+        }
+    };
 </script>

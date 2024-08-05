@@ -31,6 +31,16 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #332D2D;
   }
+
+  .highlight-green {
+    background-color: #2c6e49;
+    color: #FFF;
+  }
+
+  .highlight-gray {
+    background-color: #4a5759;
+    color: #FFF;
+  }
 </style>
 
 <!-- Navbar -->
@@ -48,7 +58,8 @@
   <!-- Right navbar links -->
   <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
     <li class="nav-item mr-4 pt-3">
-      <p style="color: #fff; font-size: 15px;"><i class="fas fa-calendar-check"></i>&nbsp;&nbsp;<span id="datetime"></span></p>
+      <p style="color: #fff; font-size: 15px;"><i class="fas fa-calendar-check"></i>&nbsp;&nbsp;<span
+          id="datetime"></span></p>
     </li>
     <li class="nav-item mr-2 mt-2">
       <a href="/repair_record_system2/" class="nav-link btn btn-block"
