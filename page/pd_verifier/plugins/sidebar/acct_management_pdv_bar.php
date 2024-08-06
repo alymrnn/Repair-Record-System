@@ -28,7 +28,7 @@
           <a href="defect_monitoring_record_pdv.php" class="nav-link">
             <img src="../../dist/img/files.png" style="height:25px;">
             <p style="font-size:14px; color:black">
-              Defect & Mancost Record
+              For Verification
             </p>
           </a>
         </li>

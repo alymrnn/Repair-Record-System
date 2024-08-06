@@ -188,7 +188,8 @@
                                 <th>Re-crimp by (PD FSP)</th>
                                 <th>Verified by ID No.</th>
                                 <th>Verified by (PD FSP)</th>
-                                <th>COUNTERPART CHECKING Remarks</th>
+                                <th>COUNTERPART CHECKING Remarks 1</th>
+                                <th>Remarks 2</th>
                                 <th>ID No.</th>
                                 <th>Verified by (QA FSP)</th>
                                 <th>RE-ASSY/RE-INSERT Remarks</th>

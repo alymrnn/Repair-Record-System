@@ -40,7 +40,7 @@ function count_defect_pdv_list($conn, $search_product_name_pdv, $search_lot_no_p
     $conditions = [];
     $params = [];
 
-    $conditions[] = "(qc_status = 'Saved' AND pending_status = 'Updated' AND (harness_status IN ('Re-assy', 'Re-crimp', 'Re-insertion', 'Re-inspection')))";
+    $conditions[] = "(qc_status = 'Saved' AND pending_status = 'Updated' AND (harness_status IN ('Re-assy', 'Re-crimp', 'Re-insertion', 'Counterpart Checking')))";
 
     if (!empty($search_date_from_pdv) && !empty($search_date_to_pdv)) {
         $conditions[] = "repairing_date BETWEEN ? AND ?";
@@ -204,7 +204,7 @@ if ($method == 'load_defect_table_pdv') {
     $query = "SELECT * FROM t_defect_record_f";
     $conditions = [];
 
-    $conditions[] = "(qc_status = 'Saved' AND pending_status = 'Updated' AND (harness_status IN ('Re-assy', 'Re-crimp', 'Re-insertion', 'Re-inspection')))";
+    $conditions[] = "(qc_status = 'Saved' AND pending_status = 'Updated' AND (harness_status IN ('Re-assy', 'Re-crimp', 'Re-insertion', 'Counterpart Checking')))";
 
     if (!empty($search_date_from_pdv) && !empty($search_date_to_pdv)) {
         $conditions[] = "date_detected BETWEEN :search_date_from_pdv AND :search_date_to_pdv";
@@ -312,9 +312,19 @@ if ($method == 'load_defect_table_pdv') {
                 $row['defect_detail_content'],
                 $row['defect_treatment_content'],
                 $row['harness_status'],
-                $row['pdv_remarks'],
-                $row['pdv_id_num'],
-                $row['pdv_person'],
+                $row['remarks_recrimp'],
+                $row['recrimp_by_id_num'],
+                $row['recrimp_by_person'],
+                $row['verified_by_qa_id_num'],
+                $row['verified_by_qa_person'],
+                $row['remarks_1_cc'],
+                $row['remarks_2_cc'],
+                $row['cc_by_id_num'],
+                $row['cc_by_person'],
+                $row['remarks_reassy'],
+                $row['reassy_by_id_num'],
+                $row['reassy_by_person'],
+                $row['reassy_date'],
                 $row['defect_id']
             ]) . '\')"';
 
@@ -355,11 +365,12 @@ if ($method == 'load_defect_table_pdv') {
             echo '<td style="text-align:center;">' . $row['dis_assembled_by'] . '</td>';
             echo '<td style="text-align:left;">' . $row['harness_status'] . '</td>';
             echo '<td style="text-align:center;">' . $row['remarks_recrimp'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['remarks_by_id_num'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['remarks_by_person'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['recrimp_by_id_num'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['recrimp_by_person'] . '</td>';
             echo '<td style="text-align:center;">' . $row['verified_by_qa_id_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['verified_by_qa_person'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['remarks_cc'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['remarks_1_cc'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['remarks_2_cc'] . '</td>';
             echo '<td style="text-align:center;">' . $row['cc_by_id_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['cc_by_person'] . '</td>';
             echo '<td style="text-align:center;">' . $row['remarks_reassy'] . '</td>';
@@ -376,9 +387,22 @@ if ($method == 'load_defect_table_pdv') {
 }
 
 if ($method == 'update_pdv_record') {
-    $pdv_remarks = $_POST['pdv_remarks'];
-    $pdv_id_no = $_POST['pdv_id_no'];
-    $pdv_name = $_POST['pdv_name'];
+    $cc_id_no = $_POST['cc_id_no'];
+    $cc_name = $_POST['cc_name'];
+    $cc_remarks_1 = $_POST['cc_remarks_1'];
+    $cc_remarks_2 = $_POST['cc_remarks_2'];
+
+    $recrimp_pd_id_no = $_POST['recrimp_pd_id_no'];
+    $recrimp_pd_name = $_POST['recrimp_pd_name'];
+    $recrimp_qa_id_no = $_POST['recrimp_qa_id_no'];
+    $recrimp_qa_name = $_POST['recrimp_qa_name'];
+    $recrimp_remarks = $_POST['recrimp_remarks'];
+
+    $reassy_id_no = $_POST['reassy_id_no'];
+    $reassy_name = $_POST['reassy_name'];
+    $reassy_remarks = $_POST['reassy_remarks'];
+    $reassy_date = $_POST['reassy_date'];
+
     $defect_id = $_POST['pdv_defect_id'];
     $harness_repair = 'Verified';
 
@@ -392,17 +416,41 @@ if ($method == 'update_pdv_record') {
     if ($stmt_check->rowCount() > 0) {
         $update_query = "
             UPDATE t_defect_record_f
-            SET pdv_remarks = :pdv_remarks,
-                pdv_id_num = :pdv_id_num,
-                pdv_person = :pdv_person,
+            SET remarks_recrimp = :remarks_recrimp,
+                recrimp_by_id_num = :recrimp_by_id_num,
+                recrimp_by_person = :recrimp_by_person,
+                verified_by_qa_id_num = :verified_by_qa_id_num,
+                verified_by_qa_person = :verified_by_qa_person,
+
+                remarks_1_cc = :remarks_1_cc,
+                remarks_2_cc = :remarks_2_cc,
+                cc_by_id_num = :cc_by_id_num,
+                cc_by_person = :cc_by_person,
+
+                remarks_reassy = :remarks_reassy,
+                reassy_by_id_num = :reassy_by_id_num,
+                reassy_by_person = :reassy_by_person,
+                reassy_date = :reassy_date,
+
                 harness_repair = :harness_repair
             WHERE defect_id = :defect_id
         ";
 
         $stmt_update = $conn->prepare($update_query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-        $stmt_update->bindParam(':pdv_remarks', $pdv_remarks, PDO::PARAM_STR);
-        $stmt_update->bindParam(':pdv_id_num', $pdv_id_no, PDO::PARAM_STR);
-        $stmt_update->bindParam(':pdv_person', $pdv_name, PDO::PARAM_STR);
+        $stmt_update->bindParam(':remarks_recrimp', $recrimp_remarks, PDO::PARAM_STR);
+        $stmt_update->bindParam(':recrimp_by_id_num', $recrimp_pd_id_no, PDO::PARAM_STR);
+        $stmt_update->bindParam(':recrimp_by_person', $recrimp_pd_name, PDO::PARAM_STR);
+        $stmt_update->bindParam(':verified_by_qa_id_num', $recrimp_qa_id_no, PDO::PARAM_STR);
+        $stmt_update->bindParam(':verified_by_qa_person', $recrimp_qa_name, PDO::PARAM_STR);
+        $stmt_update->bindParam(':remarks_1_cc', $cc_remarks_1, PDO::PARAM_STR);
+        $stmt_update->bindParam(':remarks_2_cc', $cc_remarks_2, PDO::PARAM_STR);
+        $stmt_update->bindParam(':cc_by_id_num', $cc_id_no, PDO::PARAM_STR);
+        $stmt_update->bindParam(':cc_by_person', $cc_name, PDO::PARAM_STR);
+        $stmt_update->bindParam(':remarks_reassy', $reassy_remarks, PDO::PARAM_STR);
+        $stmt_update->bindParam(':reassy_by_id_num', $reassy_id_no, PDO::PARAM_STR);
+        $stmt_update->bindParam(':reassy_by_person', $reassy_name, PDO::PARAM_STR);
+        $stmt_update->bindParam(':reassy_date', $reassy_date, PDO::PARAM_STR);
+
         $stmt_update->bindParam(':harness_repair', $harness_repair, PDO::PARAM_STR);
         $stmt_update->bindParam(':defect_id', $defect_id, PDO::PARAM_INT);
 
@@ -415,5 +463,7 @@ if ($method == 'update_pdv_record') {
         echo "Update failed: defect_id does not exist";
     }
 }
+
+
 
 

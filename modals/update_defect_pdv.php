@@ -267,26 +267,133 @@
                         <input type="text" id="harness_status_pdv_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
-                    <div class="col-sm-3">
-                        <!-- remarks -->
+                    <div class="col-sm-9">
+                        <label class="p-1" style="font-size: 15px; background: #FFFAD1;">Select the
+                            harness status to be
+                            verified:</label><br>
+                        <label style="display: inline-block;font-size: 15px">
+                            <input type="radio" id="counterpart_checking_radio" name="harness_status_v"
+                                value="Counterpart Checking" style="vertical-align: middle;">
+                            Counterpart Checking
+                        </label>&emsp;&emsp;&emsp;&emsp;
+                        <label style="display: inline-block;font-size: 15px">
+                            <input type="radio" id="recrimp_radio" name="harness_status_v" value="Re-crimp"
+                                style="vertical-align: middle;">
+                            Re-Crimp
+                        </label>&emsp;&emsp;&emsp;&emsp;
+                        <label style="display: inline-block;font-size: 15px">
+                            <input type="radio" id="reassy_radio" name="harness_status_v" value="Re-assy/Re-insert"
+                                style="vertical-align: middle;">
+                            Re-assy / Re-insert
+                        </label>&emsp;
+                    </div>
+                </div>
+                <div class="row mt-3" id="counterpart_checking_fields" style="display: none;">
+                    <!-- counterpart checking -->
+                    <div class="col-3">
+                        <label style="font-weight: normal;color: #000;">Remarks 1</label>
+                        <label style="color:#CA3F3F;">*</label>
+                        <select id="cc_remarks_1" class="form-control"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem; background: #FFF;height:34px; width:100%;"
+                            required>
+                            <option value="" selected disabled>Select verification</option>
+                            <option value="GOOD">GOOD</option>
+                            <option value="NO GOOD">NO GOOD</option>
+                            <option value="N/A">N/A</option>
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label style="font-weight: normal;color: #000;">Remarks 2</label>
+                        <label style="color:#CA3F3F;">*</label>
+                        <input type="text" id="cc_remarks_2" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                    </div>
+                    <div class="col-3">
+                        <label style="font-weight: normal;color: #000;">ID No. QA FSP</label>
+                        <label style="color:#CA3F3F;">*</label>
+                        <input type="text" id="cc_id_no" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                    </div>
+                    <div class="col-3">
+                        <label style="font-weight: normal;color: #000;">Verified by (QA FSP)</label>
+                        <label style="color:#CA3F3F;">*</label>
+                        <input type="text" id="cc_name" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;" readonly>
+                    </div>
+                </div>
+                <div class="row mt-3" id="recrimp_fields" style="display: none;">
+                    <!-- recrimp -->
+                    <div class="col-sm-4">
                         <label style="font-weight: normal;color: #000;">Remarks</label>
-                        <label style="color:#DC3545">*</label>
-                        <input type="text" id="remarks_pdv_update" class="form-control" autocomplete="off"
+                        <label style="color:#CA3F3F;">*</label>
+                        <select id="recrimp_remarks" class="form-control"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem; background: #FFF;height:34px; width:100%;"
+                            required>
+                            <option value="" selected disabled>Select verification</option>
+                            <option value="GOOD">GOOD</option>
+                            <option value="NO GOOD">NO GOOD</option>
+                            <option value="N/A">N/A</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <label style="font-weight: normal;color: #000;">ID No. PD (FSP)</label>
+                        <label style="color:#CA3F3F;">*</label>
+                        <input type="text" id="recrimp_pd_id_no" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                    </div>
+                    <div class="col-sm-4">
+                        <label style="font-weight: normal;color: #000;">Re-crimped by PD (FSP)</label>
+                        <label style="color:#CA3F3F;">*</label>
+                        <input type="text" id="recrimp_pd_name" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;" readonly>
+                    </div>
+                </div>
+                <div class="row mt-3" id="recrimp_2_fields" style="display: none;">
+                    <div class="col-4"></div>
+                    <div class="col-sm-4">
+                        <label style="font-weight: normal;color: #000;">ID No. QA (FSP)</label>
+                        <label style="color:#CA3F3F;">*</label>
+                        <input type="text" id="recrimp_qa_id_no" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                    </div>
+                    <div class="col-sm-4">
+                        <label style="font-weight: normal;color: #000;">Verified by QA (FSP)</label>
+                        <label style="color:#CA3F3F;">*</label>
+                        <input type="text" id="recrimp_qa_name" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;" readonly>
+                    </div>
+                </div>
+                <div class="row mt-3" id="reassy_fields" style="display: none;">
+                    <!-- reassy/reinsert -->
+                    <div class="col-sm-3">
+                        <label style="font-weight: normal;color: #000;">Remarks</label>
+                        <label style="color:#CA3F3F;">*</label>
+                        <select id="reassy_remarks" class="form-control"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem; background: #FFF;height:34px; width:100%;"
+                            required>
+                            <option value="" selected disabled>Select verification</option>
+                            <option value="GOOD">GOOD</option>
+                            <option value="NO GOOD">NO GOOD</option>
+                            <option value="N/A">N/A</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <label style="font-weight:normal;color:#000;">Date Confirmed</label>
+                        <label style="color:#CA3F3F;">*</label>
+                        <input type="date" name="date_to" class="form-control" id="reassy_date"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem; background: #FFF;height:34px; width:100%;">
+                    </div>
+                    <div class="col-sm-3">
+                        <label style="font-weight: normal;color: #000;">ID No. PD (FAP)</label>
+                        <label style="color:#CA3F3F;">*</label>
+                        <input type="text" id="reassy_id_no" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-3">
-                        <!-- pdv id num -->
-                        <label style="font-weight: normal;color: #000;">PD Verifier ID</label>
-                        <label style="color:#DC3545">*</label>
-                        <input type="text" id="verifier_id_no_pdv_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
-                    </div>
-                    <div class="col-sm-3">
-                        <!-- pdv name -->
-                        <label style="font-weight: normal;color: #000;">PD Verifier Name</label>
-                        <label style="color:#DC3545">*</label>
-                        <input type="text" id="verifier_name_pdv_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;" disabled>
+                        <label style="font-weight: normal;color: #000;">Confirmed by PD (FAP)</label>
+                        <label style="color:#CA3F3F;">*</label>
+                        <input type="text" id="reassy_name" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;" readonly>
                     </div>
                 </div>
                 <input type="hidden" id="admin_defect_id_3">
