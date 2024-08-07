@@ -431,7 +431,6 @@
                             <option value="" selected disabled>Select verification</option>
                             <option value="GOOD">GOOD</option>
                             <option value="NO GOOD">NO GOOD</option>
-                            <option value="N/A">N/A</option>
                         </select>
                         <span id="qcVeriMcError" class="error-message" style="display:none; color:#CA3F3F;">QC
                             Verification field is required.</span>

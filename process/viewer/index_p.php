@@ -262,7 +262,7 @@ function count_viewer_defect_table_data($conn, $defect_category, $discovery_proc
         $params[] = '%' . $defect_cause . '%';
     }
 
-    $conditions[] = "(qc_status = 'Verified' OR record_type = 'White Tag')";
+    $conditions[] = "((qc_status = 'Verified' AND remarks_reassy = 'GOOD') OR record_type = 'White Tag')";
 
     if (!empty($conditions)) {
         $query .= " WHERE " . implode(" AND ", $conditions);
@@ -588,7 +588,7 @@ if ($method == 'load_viewer_defect_table_data') {
         $params[] = '%' . $defect_cause . '%';
     }
 
-    $conditions[] = "(qc_status = 'Verified' OR record_type = 'White Tag')";
+    $conditions[] = "((qc_status = 'Verified' AND remarks_reassy = 'GOOD') OR record_type = 'White Tag')";
 
     if (!empty($conditions)) {
         $query .= " WHERE " . implode(" AND ", $conditions);

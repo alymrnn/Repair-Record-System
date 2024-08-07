@@ -25,7 +25,7 @@
           <p class="nav-link">PDV</p>
         </li>
         <li class="nav-item mb-1">
-          <a href="defect_monitoring_record_pdv.php" class="nav-link active">
+          <a href="defect_monitoring_record_pdv.php" class="nav-link">
             <img src="../../dist/img/files.png" style="height:25px;">
             <p style="font-size:14px; color:black">
               For Verification
@@ -33,7 +33,7 @@
           </a>
         </li>
         <li class="nav-item mb-1">
-          <a href="re_assy_re_insert_pdv.php" class="nav-link">
+          <a href="re_assy_re_insert_pdv.php" class="nav-link active">
             <img src="../../dist/img/files.png" style="height:25px;">
             <p style="font-size:14px; color:black">
               For Re-Assy / Re-Insert

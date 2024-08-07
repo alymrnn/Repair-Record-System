@@ -136,7 +136,6 @@
                             <option selected value="">ALL</option>
                             <option value="GOOD"></option>
                             <option value="NO GOOD"></option>
-                            <option value="N/A"></option>
                         </datalist>
                         <span id="qcVeriMcError" class="error-message" style="display:none; color:#CA3F3F;">QC
                             Verification field is required.</span>

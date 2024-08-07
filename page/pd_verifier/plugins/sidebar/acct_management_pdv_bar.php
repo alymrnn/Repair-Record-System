@@ -33,6 +33,14 @@
           </a>
         </li>
         <li class="nav-item mb-1">
+          <a href="re_assy_re_insert_pdv.php" class="nav-link">
+            <img src="../../dist/img/files.png" style="height:25px;">
+            <p style="font-size:14px; color:black">
+              For Re-Assy / Re-Insert
+            </p>
+          </a>
+        </li>
+        <li class="nav-item mb-1">
           <a href="history_pdv.php" class="nav-link">
             <img src="../../dist/img/history.png" style="height:25px;">
             <p style="font-size:14px; color:black">

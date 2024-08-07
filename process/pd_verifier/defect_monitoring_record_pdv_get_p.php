@@ -108,5 +108,32 @@ if ($method == 'get_reassy_name') {
     exit;
 }
 
+if ($method == 'get_reassy_name_update') {
+    $reassy_id_no = $_GET['reassy_id_no'] ?? '';
+
+    if ($reassy_id_no == 'N/A') {
+        echo json_encode(['full_name' => 'N/A']);
+        exit;
+    }
+
+    if ($reassy_id_no == '') {
+        echo json_encode(['full_name' => 'Invalid ID']);
+        exit;
+    }
+
+    $query = "SELECT full_name FROM m_employees WHERE emp_no = ?";
+    $stmt = $conn_emp_mgt_db->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+    $stmt->execute([$reassy_id_no]);
+
+    if ($stmt->rowCount() > 0) {
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        echo json_encode(['full_name' => $row['full_name']]);
+    } else {
+        echo json_encode(['full_name' => 'Not Found']);
+    }
+    exit;
+}
+
+
 $conn = NULL;
 ?>

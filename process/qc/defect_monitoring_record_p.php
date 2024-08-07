@@ -231,7 +231,7 @@ if ($method == 'fetch_opt_search_ad_portion_treatment_mc') {
 
 function count_qc_defect_table_data($conn, $product_name_search, $lot_no_search, $serial_no_search, $record_type_search, $line_no_search, $date_from_search, $date_to_search)
 {
-    $query = "SELECT COUNT(id) AS total FROM t_defect_record_f WHERE qc_status = 'Saved' AND (harness_repair = 'Verified' OR harness_status = 'Counterpart Checking') AND (record_type IN ('Defect and Mancost', 'Defect Only'))";
+    $query = "SELECT COUNT(id) AS total FROM t_defect_record_f WHERE qc_status = 'Saved' AND remarks_reassy = 'GOOD' AND (record_type IN ('Defect and Mancost', 'Defect Only'))";
 
     // $query = "SELECT COUNT(id) AS total FROM t_defect_record_f WHERE qc_status = 'Saved' AND (record_type IN ('Defect and Mancost', 'Mancost Only', 'Defect Only'))";
     $conditions = [];
@@ -462,7 +462,7 @@ if ($method == 'load_qc_defect_table_data') {
     $conditions = [];
 
     $conditions[] = "qc_status = 'Saved'";
-    $conditions[] = "(harness_repair = 'Verified' OR harness_status = 'Counterpart Checking')";
+    $conditions[] = "remarks_reassy = 'GOOD'";
     $conditions[] = "(record_type = 'Defect and Mancost' OR record_type = 'Mancost Only' OR record_type = 'Defect Only')";
 
     if (!empty($date_from_search) && !empty($date_to_search)) {
@@ -560,9 +560,20 @@ if ($method == 'load_qc_defect_table_data') {
             echo '<td style="text-align:left;">' . $row['defect_detail_content'] . '</td>';
             echo '<td style="text-align:left;">' . $row['defect_treatment_content'] . '</td>';
             echo '<td style="text-align:center;">' . $row['dis_assembled_by'] . '</td>';
-            echo '<td style="text-align:left;">' . $row['harness_status'] . '</td>';
-            echo '<td style="text-align:left;">' . $row['pdv_id_num'] . '</td>';
-            echo '<td style="text-align:left;">' . $row['pdv_person'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['harness_status'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['remarks_recrimp'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['recrimp_by_id_num'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['recrimp_by_person'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['verified_by_qa_id_num'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['verified_by_qa_person'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['remarks_1_cc'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['remarks_2_cc'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['cc_by_id_num'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['cc_by_person'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['remarks_reassy'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['reassy_by_id_num'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['reassy_by_person'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['reassy_date'] . '</td>';
             echo '</tr>';
         }
     } else {

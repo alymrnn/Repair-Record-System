@@ -40,7 +40,7 @@ function count_defect_pdv_ng_list($conn, $search_product_name_pdv, $search_lot_n
     $conditions = [];
     $params = [];
 
-    $conditions[] = "(remarks_recrimp = 'NG' OR remarks_cc = 'NG' OR remarks_reassy = 'NG')";
+    $conditions[] = "(remarks_recrimp = 'NG' OR remarks_1_cc = 'NG' OR remarks_reassy = 'NG')";
 
     if (!empty($search_date_from_pdv) && !empty($search_date_to_pdv)) {
         $conditions[] = "repairing_date BETWEEN ? AND ?";
@@ -195,7 +195,7 @@ if ($method == 'load_defect_table_pdv_ng') {
     $query = "SELECT * FROM t_defect_record_f";
     $conditions = [];
 
-    $conditions[] = "(remarks_recrimp = 'NG' OR remarks_cc = 'NG' OR remarks_reassy = 'NG')";
+    $conditions[] = "(remarks_recrimp = 'NG' OR remarks_1_cc = 'NG' OR remarks_reassy = 'NG')";
 
     if (!empty($search_date_from_pdv) && !empty($search_date_to_pdv)) {
         $conditions[] = "date_detected BETWEEN :search_date_from_pdv AND :search_date_to_pdv";
@@ -343,7 +343,8 @@ if ($method == 'load_defect_table_pdv_ng') {
             echo '<td style="text-align:center;">' . $row['remarks_by_person'] . '</td>';
             echo '<td style="text-align:center;">' . $row['verified_by_qa_id_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['verified_by_qa_person'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['remarks_cc'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['remarks_1_cc'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['remarks_2_cc'] . '</td>';
             echo '<td style="text-align:center;">' . $row['cc_by_id_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['cc_by_person'] . '</td>';
             echo '<td style="text-align:center;">' . $row['remarks_reassy'] . '</td>';
