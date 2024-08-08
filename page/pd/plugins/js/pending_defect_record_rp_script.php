@@ -1047,6 +1047,8 @@
         document.getElementById('repair_person_insp_update').value = '';
         document.getElementById('treatment_content_defect_insp_update').value = '';
         document.getElementById('harness_status_insp_update').value = '';
+
+        $('#list_of_added_mancost_insp').empty().append('<tr><td colspan="12" style="text-align:center; color:red;">No Added Record</td></tr>');
     }
 
     const clear_search_pending_input = () => {

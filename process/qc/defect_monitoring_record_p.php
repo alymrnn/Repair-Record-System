@@ -1455,4 +1455,159 @@ if ($method == 'update_mancost2_record') {
 //     }
 // }
 
+function generate_defect_id($defect_id_qa)
+{
+    if (empty($defect_id_qa)) {
+        $prefix = 'DRMMCM-';
+        $unique_part = uniqid('', true);
+        $defect_id_qa = $prefix . $unique_part;
+    }
+    return $defect_id_qa;
+}
+
+if ($method == 'add_record_inspector') {
+    $record_type_qa = trim($_POST['record_type_qa']);
+    $line_no_qa = trim($_POST['line_no_qa']);
+    $line_category_qa = trim($_POST['line_category_qa']);
+    $padded_line_no_qa = str_pad($line_no_qa, 4, '0', STR_PAD_LEFT);
+
+    $date_detected_qa = trim($_POST['date_detected_qa']);
+    $repairing_date_qa = trim($_POST['repairing_date_qa']);
+
+    $date_detected_qa = !empty($date_detected_qa) ? date('Y-m-d', strtotime($date_detected_qa)) : null;
+    $repairing_date_qa = !empty($repairing_date_qa) ? date('Y-m-d', strtotime($repairing_date_qa)) : null;
+
+    $issue_tag_qa = trim($_POST['issue_tag_qa']);
+    $car_maker_qa = trim($_POST['car_maker_qa']);
+    $product_name_qa = trim($_POST['product_name_qa']);
+    $lot_no_qa = trim($_POST['lot_no_qa']);
+    $serial_no_qa = trim($_POST['serial_no_qa']);
+    $discovery_process_qa = trim($_POST['discovery_process_qa']);
+    $discovery_id_no_qa = trim($_POST['discovery_id_no_qa']);
+    $discovery_person_qa = trim($_POST['discovery_person_qa']);
+    $occurrence_process_dr_qa = trim($_POST['occurrence_process_dr_qa']);
+    $occurrence_shift_qa = trim($_POST['occurrence_shift_qa']);
+    $occurrence_id_no_qa = trim($_POST['occurrence_id_no_qa']);
+    $occurrence_person_qa = trim($_POST['occurrence_person_qa']);
+    $outflow_process_qa = trim($_POST['outflow_process_qa']);
+    $outflow_shift_qa = trim($_POST['outflow_shift_qa']);
+    $outflow_id_no_qa = trim($_POST['outflow_id_no_qa']);
+    $outflow_person_qa = trim($_POST['outflow_person_qa']);
+    $defect_category_dr_qa = trim($_POST['defect_category_dr_qa']);
+    $sequence_no_qa = trim($_POST['sequence_no_qa']);
+    $assy_board_no_qa = trim($_POST['assy_board_no_qa']);
+    $defect_cause_qa = trim($_POST['defect_cause_qa']);
+    $good_measurement_qa = trim($_POST['good_measurement_qa']);
+    $ng_measurement_qa = trim($_POST['ng_measurement_qa']);
+    $wire_type_qa = trim($_POST['wire_type_qa']);
+    $wire_size_qa = trim($_POST['wire_size_qa']);
+    $connector_cavity_qa = trim($_POST['connector_cavity_qa']);
+    $detail_content_defect_qa = trim($_POST['detail_content_defect_qa']);
+    $treatment_content_defect_qa = trim($_POST['treatment_content_defect_qa']);
+    $harness_status_qa = trim($_POST['harness_status_qa']);
+
+    $status_qa = '';
+    $record_added_by_qa = $_SESSION['full_name'];
+    $qc_status_qa = '';
+    $pending_status_qa = '';
+    $harness_repair_qa = 'Pending';
+    $new_defect_record = 'Pending';
+    $new_defect_record_qc = 'Added';
+
+    $error = 0;
+
+    $defect_id_qa = $_POST['defect_id_qa'];
+    $message = '';
+
+    if (empty($defect_id_qa)) {
+        $defect_id_qa = generate_defect_id($defect_id_qa);
+    }
+
+    $response_arr = array(
+        'defect_id' => $defect_id_qa,
+        'message' => 'success'
+    );
+
+    $check = "SELECT defect_id FROM t_defect_record_f WHERE defect_id = :defect_id";
+    $stmt = $conn->prepare($check, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+    $stmt->bindParam(':defect_id', $defect_id_qa);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($result) {
+        $response_arr['message'] = 'Defect ID already exists.';
+    } else {
+        $query = "
+             INSERT INTO t_defect_record_f (
+                defect_id, line_no, category, date_detected, issue_no_tag, repairing_date, car_maker, product_name, 
+                lot_no, serial_no, discovery_process, discovery_id_num, discovery_person, occurrence_process_dr, 
+                occurrence_shift, occurrence_id_num, occurrence_person, outflow_process, outflow_shift, 
+                outflow_id_num, outflow_person, defect_category_dr, sequence_num, assy_board_no, defect_cause, 
+                defect_detail_content, defect_treatment_content, harness_status, dis_assembled_by, good_measurement, 
+                ng_measurement, wire_type, wire_size, connector_cavity, qc_status, record_type, pending_status, harness_repair, ng_status_new_record, ng_status_new_record_qc,
+                record_added_defect_datetime
+            ) VALUES (
+                :defect_id, :line_no, :category, :date_detected, :issue_no_tag, :repairing_date, 
+                :car_maker, :product_name, :lot_no, :serial_no, :discovery_process, :discovery_id_num, 
+                :discovery_person, :occurrence_process_dr, :occurrence_shift, :occurrence_id_num, 
+                :occurrence_person, :outflow_process, :outflow_shift, :outflow_id_num, :outflow_person, 
+                :defect_category_dr, :sequence_num, :assy_board_no, :defect_cause, :defect_detail_content, 
+                :defect_treatment_content, :harness_status, :dis_assembled_by, :good_measurement, :ng_measurement, 
+                :wire_type, :wire_size, :connector_cavity, :qc_status, :record_type, :pending_status, :harness_repair, :ng_status_new_record, :ng_status_new_record_qc,
+                GETDATE()
+            )
+        ";
+        $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+
+        $stmt->bindParam(':defect_id', $defect_id_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':line_no', $padded_line_no_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':category', $line_category_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':date_detected', $date_detected_qa);
+        $stmt->bindParam(':issue_no_tag', $issue_tag_qa, PDO::PARAM_INT);
+        $stmt->bindParam(':repairing_date', $repairing_date_qa);
+        $stmt->bindParam(':car_maker', $car_maker_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':product_name', $product_name_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':lot_no', $lot_no_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':serial_no', $serial_no_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':discovery_process', $discovery_process_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':discovery_id_num', $discovery_id_no_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':discovery_person', $discovery_person_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':occurrence_process_dr', $occurrence_process_dr_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':occurrence_shift', $occurrence_shift_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':occurrence_id_num', $occurrence_id_no_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':occurrence_person', $occurrence_person_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':outflow_process', $outflow_process_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':outflow_shift', $outflow_shift_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':outflow_id_num', $outflow_id_no_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':outflow_person', $outflow_person_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':defect_category_dr', $defect_category_dr_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':sequence_num', $sequence_no_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':assy_board_no', $assy_board_no_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':defect_cause', $defect_cause_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':defect_detail_content', $detail_content_defect_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':defect_treatment_content', $treatment_content_defect_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':harness_status', $harness_status_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':dis_assembled_by', $repair_person_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':good_measurement', $good_measurement_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':ng_measurement', $ng_measurement_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':wire_type', $wire_type_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':wire_size', $wire_size_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':connector_cavity', $connector_cavity_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':qc_status', $qc_status_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':record_type', $record_type_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':pending_status', $pending_status_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':harness_repair', $harness_repair_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':ng_status_new_record', $new_defect_record, PDO::PARAM_STR);
+        $stmt->bindParam(':ng_status_new_record_qc', $new_defect_record_qc, PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+            $response_arr['message'] = 'success';
+        } else {
+            $response_arr['message'] = 'error';
+        }
+    }
+
+    echo json_encode($response_arr, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+}
+
 $conn = NULL;

@@ -11,6 +11,7 @@ include '../../modals/add_account.php';
 include '../../modals/update_account.php';
 include '../../modals/update_defect_mancost_qc.php';
 
+include '../../modals/add_defect_inspector.php';
 ?>
 <!-- jQuery -->
 <script src="../../plugins/jquery/dist/jquery.min.js"></script>

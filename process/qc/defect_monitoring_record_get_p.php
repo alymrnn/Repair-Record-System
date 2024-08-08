@@ -4,7 +4,7 @@ include '../conn_emp_mgt.php';
 
 $method = $_GET['method'];
 
-if ($method == 'get_discovery_person') {
+if ($method == 'get_discovery_person_qc') {
     $discovery_id_no = $_GET['discovery_id_no'] ?? '';
 
     if ($discovery_id_no == 'N/A') {
@@ -30,7 +30,7 @@ if ($method == 'get_discovery_person') {
     exit;
 }
 
-if ($method == 'get_occurrence_person') {
+if ($method == 'get_occurrence_person_qc') {
     $occurrence_id_no = $_GET['occurrence_id_no'] ?? '';
 
     if ($occurrence_id_no == 'N/A') {
@@ -56,7 +56,7 @@ if ($method == 'get_occurrence_person') {
     exit;
 }
 
-if ($method == 'get_outflow_person') {
+if ($method == 'get_outflow_person_qc') {
     $outflow_id_no = $_GET['outflow_id_no'] ?? '';
 
     if ($outflow_id_no == 'N/A') {

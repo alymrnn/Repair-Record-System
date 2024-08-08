@@ -10,7 +10,7 @@
 
     const fetch_opt_search_new_record_type = () => {
         $.ajax({
-            url: '../../process/pd_verifier/new_defect_record_pdv_p.php',
+            url: '../../process/qc/new_defect_record_qc_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -74,7 +74,7 @@
         var search_date_to_qa = sessionStorage.getItem('search_date_to_qa');
 
         $.ajax({
-            url: '../../process/pd_verifier/new_defect_record_pdv_p.php',
+            url: '../../process/qc/new_defect_record_qc_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -114,7 +114,7 @@
         var current_page = sessionStorage.getItem('defect_qa_table_pagination');
 
         $.ajax({
-            url: '../../process/pd_verifier/new_defect_record_pdv_p.php',
+            url: '../../process/qc/new_defect_record_qc_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -190,7 +190,7 @@
         }
 
         $.ajax({
-            url: '../../process/pd_verifier/new_defect_record_pdv_p.php',
+            url: '../../process/qc/new_defect_record_qc_p.php',
             type: 'POST',
             cache: false,
             data: {

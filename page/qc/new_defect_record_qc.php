@@ -1,5 +1,5 @@
 <?php include 'plugins/navbar.php'; ?>
-<?php include 'plugins/sidebar/new_defect_record_pdv_bar.php'; ?>
+<?php include 'plugins/sidebar/new_defect_record_qc_bar.php'; ?>
 
 <div class="content-wrapper" style="background: #FFF;">
   <!-- Content Header (Page header) -->
@@ -188,4 +188,4 @@
 </div>
 
 <?php include 'plugins/footer.php'; ?>
-<?php include 'plugins/js/new_defect_record_pdv_script.php'; ?>
+<?php include 'plugins/js/new_defect_record_qc_script.php'; ?>

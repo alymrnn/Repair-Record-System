@@ -35,7 +35,7 @@
           </a>
         </li>
         <li class="nav-item mb-1">
-          <a href="new_defect_record_qc.php" class="nav-link">
+          <a href="new_defect_record_qc.php" class="nav-link active">
             <img src="../../dist/img/add-post.png" style="height:25px;">
             <p style="font-size:14px; color:black">
               New Defect Record
@@ -43,7 +43,7 @@
           </a>
         </li>
         <li class="nav-item mb-1">
-          <a href="acct_management.php" class="nav-link active">
+          <a href="acct_management.php" class="nav-link">
             <img src="../../dist/img/user-sidebar.png" style="height:25px;">
             <p style="font-size:14px; color:black">
               Account Management
