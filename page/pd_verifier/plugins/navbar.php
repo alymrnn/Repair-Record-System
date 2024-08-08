@@ -138,6 +138,11 @@ if (!isset($_SESSION['emp_no'])) {
       background-color: #c44536;
       color: #FFF;
     }
+
+    .highlight-orange {
+      background-color: #EA922E;
+      color: #000;
+    }
   </style>
 </head>
 

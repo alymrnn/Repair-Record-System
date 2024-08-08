@@ -202,7 +202,7 @@
         }
     }
 
-    const load_defect_table_data_last_page = () => {
+    const load_defect_pending_table_data_last_page = () => {
         var current_page = parseInt(sessionStorage.getItem('t_table_pagination'));
 
         var product_name = document.getElementById("search_product_name_pd").value.trim();
@@ -218,7 +218,7 @@
             type: 'POST',
             cache: false,
             data: {
-                method: 'load_defect_table_data_last_page',
+                method: 'load_defect_pending_table_data_last_page',
                 product_name: product_name,
                 lot_no: lot_no,
                 serial_no: serial_no,
@@ -369,8 +369,8 @@
                 var count = `Total Record: ${response}`;
                 $('#defect_pending_table_info').html(count);
 
-                if (response > 0) {
-                    load_defect_table_data_last_page();
+                 if (response > 0) {
+                    load_defect_pending_table_data_last_page();
                 } else {
                     document.getElementById("btnNextPage").style.display = "none";
                     document.getElementById("btnNextPage").setAttribute('disabled', true);
@@ -380,7 +380,7 @@
     }
 
     const load_mancost_table_data_last_page = () => {
-        var defect_id = sessionStorage.getItem('load_defect_id');
+        var defect_id = sessionStorage.getItem('load_pending_defect_id');
         var current_page = parseInt(sessionStorage.getItem('t_table_pagination'));
 
         $.ajax({
@@ -407,7 +407,7 @@
     }
 
     const count_pending_mancost_table_data = () => {
-        var defect_id = sessionStorage.getItem('load_defect_id');
+        var defect_id = sessionStorage.getItem('load_pending_defect_id');
 
         $.ajax({
             url: '../../process/pd/pending_defect_record_rp_p.php',
@@ -437,7 +437,7 @@
         var id = string[0];
         var defect_id = string[1];
 
-        sessionStorage.setItem('load_defect_id', defect_id);
+        sessionStorage.setItem('load_pending_defect_id', defect_id);
 
         load_mancost_table_t2();
         setTimeout(() => {
@@ -472,7 +472,7 @@
     }
 
     const load_mancost_table_data = current_page => {
-        var defect_id = sessionStorage.getItem('load_defect_id');
+        var defect_id = sessionStorage.getItem('load_pending_defect_id');
 
         $.ajax({
             url: '../../process/pd/pending_defect_record_rp_p.php',

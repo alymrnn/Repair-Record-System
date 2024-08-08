@@ -40,7 +40,7 @@ function count_defect_pdv_list($conn, $search_product_name_pdv, $search_lot_no_p
     $conditions = [];
     $params = [];
 
-    $conditions[] = "(qc_status = 'Saved' AND pending_status = 'Updated' AND (harness_status IN ('Re-assy', 'Re-crimp', 'Re-insertion', 'Counterpart Checking')))";
+    $conditions[] = "(qc_status = 'Saved' AND (pending_status = 'Updated' OR ng_status_new_record = 'Updated') AND (harness_status IN ('Re-assy', 'Re-crimp', 'Re-insertion', 'Counterpart Checking')))";
 
     if (!empty($search_date_from_pdv) && !empty($search_date_to_pdv)) {
         $conditions[] = "repairing_date BETWEEN ? AND ?";
@@ -204,10 +204,10 @@ if ($method == 'load_defect_table_pdv') {
     $query = "SELECT * FROM t_defect_record_f";
     $conditions = [];
 
-    $conditions[] = "(qc_status = 'Saved' AND pending_status = 'Updated' AND (harness_status IN ('Re-assy', 'Re-crimp', 'Re-insertion', 'Counterpart Checking')))";
+    $conditions[] = "(qc_status = 'Saved' AND (pending_status = 'Updated' OR ng_status_new_record = 'Updated') AND (harness_status IN ('Re-assy', 'Re-crimp', 'Re-insertion', 'Counterpart Checking')))";
 
     if (!empty($search_date_from_pdv) && !empty($search_date_to_pdv)) {
-        $conditions[] = "date_detected BETWEEN :search_date_from_pdv AND :search_date_to_pdv";
+        $conditions[] = "repairing_date BETWEEN :search_date_from_pdv AND :search_date_to_pdv";
     }
 
     if (!empty($search_line_no_pdv)) {
@@ -276,7 +276,22 @@ if ($method == 'load_defect_table_pdv') {
             $c++;
 
             $harness_repair = $row['harness_repair'];
-            $highlight_class = ($harness_repair == 'Verified') ? 'highlight-green' : (($harness_repair == 'Pending') ? 'highlight-red' : '');
+            $remarks_recrimp = $row['remarks_recrimp'];
+            $remarks_1_cc = $row['remarks_1_cc'];
+            $remarks_reassy = $row['remarks_reassy'];
+
+            if ($harness_repair == 'Verified') {
+                if ($remarks_recrimp == 'NO GOOD' || $remarks_1_cc == 'NO GOOD' || $remarks_reassy == 'NO GOOD') {
+                    $highlight_class = 'highlight-red'; 
+                } elseif ($remarks_recrimp == 'GOOD' || $remarks_1_cc == 'GOOD' || $remarks_reassy == 'GOOD') {
+                    $highlight_class = 'highlight-green'; 
+                } else {
+                    $highlight_class = '';
+                }
+            } elseif ($harness_repair == 'Pending') {
+                $highlight_class = 'highlight-orange'; 
+            }
+            
             $onclick_event = ($harness_repair == 'Verified') ? '' : 'onclick="get_update_defect_pdv(\'' . implode('~!~', [
                 $row['id'],
                 $row['car_maker'],

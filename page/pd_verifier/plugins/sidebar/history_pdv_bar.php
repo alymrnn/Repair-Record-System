@@ -41,6 +41,14 @@
           </a>
         </li>
         <li class="nav-item mb-1">
+          <a href="new_defect_record_pdv.php" class="nav-link">
+            <img src="../../dist/img/add-post.png" style="height:25px;">
+            <p style="font-size:14px; color:black">
+              New Defect Record
+            </p>
+          </a>
+        </li>
+        <li class="nav-item mb-1">
           <a href="history_pdv.php" class="nav-link active">
             <img src="../../dist/img/history.png" style="height:25px;">
             <p style="font-size:14px; color:black">

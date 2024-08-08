@@ -448,7 +448,7 @@
                 </div>
                 <div class="col-sm-2">
                     <!-- add button -->
-                    <button class="btn btn-block" onclick="add_record_inspector()" id="btnGoToMcForm"
+                    <button class="btn btn-block" onclick="add_record_inspector()"
                         style="color:#fff;height:34px;border-radius:.25rem;background: #3066be;font-size:15px;font-weight:normal;"
                         onmouseover="this.style.backgroundColor='#024E92'; this.style.color='#FFF';"
                         onmouseout="this.style.backgroundColor='#3066be'; this.style.color='#FFF';">Add Record</button>

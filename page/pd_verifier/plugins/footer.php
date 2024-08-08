@@ -10,6 +10,7 @@ include '../../modals/logout_modal.php';
 include '../../modals/update_defect_pdv.php';
 include '../../modals/update_defect_re_assy.php';
 
+include '../../modals/add_defect_inspector.php';
 
 include '../../modals/add_account.php';
 include '../../modals/update_account.php';

@@ -27,7 +27,7 @@
             <div class="card card-light" style="background: #fff; border-top: 1px solid #0069B0;">
                 <div class="card-header">
                     <h3 class="card-title"><img src="../../dist/img/settings.png" style="height:28px;">
-                        &ensp;Defect Record and Mancost Monitoring Table</h3>
+                        &ensp;For Re-Assy / Re-Insert Monitoring Table</h3>
                     <div class="card-tools">
                         <!-- <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button> -->
                         <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
@@ -102,7 +102,8 @@
                         </div>
                         <div class="col-12 col-sm-2">
                             <!-- harness verification -->
-                            <label style="font-weight:normal;margin:0;padding:0;color:#000;">Re-Assy/Insert Remarks</label>
+                            <label style="font-weight:normal;margin:0;padding:0;color:#000;">Re-Assy/Insert
+                                Remarks</label>
                             <select name="harness_verification_pdv" id="search_harness_remarks_pdv_re"
                                 autocomplete="off"
                                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;"

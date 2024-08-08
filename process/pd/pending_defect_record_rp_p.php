@@ -96,10 +96,10 @@ function count_pending_defect_table_data($conn, $date_from, $date_to, $line_no_r
     $conditions = [];
     $params = [];
 
-    $conditions[] = "(pending_status = 'Pending')";
+    $conditions[] = "(pending_status = 'Pending' OR ng_status_new_record = 'Pending')";
 
     if (!empty($date_from) && !empty($date_to)) {
-        $conditions[] = "repairing_date BETWEEN ? AND ?";
+        $conditions[] = "date_detected BETWEEN ? AND ?";
         $params[] = $date_from;
         $params[] = $date_to;
     }
@@ -156,7 +156,7 @@ function count_pending_mancost_table_data($search_arr, $conn)
     return $total;
 }
 
-if ($method == 'load_defect_table_data_last_page') {
+if ($method == 'load_defect_pending_table_data_last_page') {
     $product_name = trim($_POST['product_name']);
     $lot_no = trim($_POST['lot_no']);
     $serial_no = trim($_POST['serial_no']);
@@ -237,7 +237,7 @@ if ($method == 'load_defect_table_data') {
     $query = "SELECT * FROM t_defect_record_f";
     $conditions = [];
 
-    $conditions[] = "(pending_status = 'Pending')";
+    $conditions[] = "(pending_status = 'Pending' or ng_status_new_record = 'Pending')";
 
     if (!empty($date_from) && !empty($date_to)) {
         $conditions[] = "date_detected BETWEEN :date_from AND :date_to";
@@ -603,6 +603,7 @@ if ($method == 'add_defect_mancost_record_insp') {
     $qc_status = 'Saved';
 
     $pending_status = 'Updated';
+    $ng_status_new_record = 'Updated';
 
     try {
         // Begin transaction
@@ -624,7 +625,8 @@ if ($method == 'add_defect_mancost_record_insp') {
                 harness_status = :harness_status,
                 dis_assembled_by = :dis_assembled_by,
                 qc_status = :qc_status,
-                pending_status = :pending_status
+                pending_status = :pending_status,
+                ng_status_new_record = :ng_status_new_record
             WHERE defect_id = :defect_id
         ";
 
@@ -643,6 +645,7 @@ if ($method == 'add_defect_mancost_record_insp') {
         $stmt->bindParam(':dis_assembled_by', $repair_person);
         $stmt->bindParam(':qc_status', $qc_status);
         $stmt->bindParam(':pending_status', $pending_status);
+        $stmt->bindParam(':ng_status_new_record', $ng_status_new_record);
         $stmt->bindParam(':defect_id', $inspector_defect_id);
         $stmt->execute();
 

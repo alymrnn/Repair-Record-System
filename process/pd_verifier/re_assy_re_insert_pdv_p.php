@@ -277,7 +277,7 @@ if ($method == 'load_defect_table_pdv_re') {
 
             $remarks_reassy = $row['remarks_reassy'];
             $highlight_class = ($remarks_reassy == 'GOOD') ? 'highlight-green' : (($remarks_reassy == 'NO GOOD') ? 'highlight-red' : '');
-            $onclick_event = ($remarks_reassy == 'GOOD') ? '' : 'onclick="get_update_defect_re_assy(\'' . implode('~!~', [
+            $onclick_event = ($remarks_reassy == 'GOOD' || $remarks_reassy == 'NO GOOD') ? '' : 'onclick="get_update_defect_re_assy(\'' . implode('~!~', [
                 $row['id'],
                 $row['car_maker'],
                 $row['line_no'],

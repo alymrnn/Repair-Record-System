@@ -40,7 +40,7 @@ function count_defect_pdv_ng_list($conn, $search_product_name_pdv, $search_lot_n
     $conditions = [];
     $params = [];
 
-    $conditions[] = "(remarks_recrimp = 'NG' OR remarks_1_cc = 'NG' OR remarks_reassy = 'NG')";
+    $conditions[] = "(remarks_recrimp = 'NO GOOD' OR remarks_1_cc = 'NO GOOD' OR remarks_reassy = 'NO GOOD')";
 
     if (!empty($search_date_from_pdv) && !empty($search_date_to_pdv)) {
         $conditions[] = "repairing_date BETWEEN ? AND ?";
@@ -195,7 +195,7 @@ if ($method == 'load_defect_table_pdv_ng') {
     $query = "SELECT * FROM t_defect_record_f";
     $conditions = [];
 
-    $conditions[] = "(remarks_recrimp = 'NG' OR remarks_1_cc = 'NG' OR remarks_reassy = 'NG')";
+    $conditions[] = "(remarks_recrimp = 'NO GOOD' OR remarks_1_cc = 'NO GOOD' OR remarks_reassy = 'NO GOOD')";
 
     if (!empty($search_date_from_pdv) && !empty($search_date_to_pdv)) {
         $conditions[] = "date_detected BETWEEN :search_date_from_pdv AND :search_date_to_pdv";
@@ -260,7 +260,7 @@ if ($method == 'load_defect_table_pdv_ng') {
             $c++;
 
             $harness_repair = $row['harness_repair'];
-            $highlight_class = ($harness_repair == 'Verified') ? 'highlight-green' : (($harness_repair == 'Pending') ? 'highlight-red' : '');
+            $highlight_class = ($harness_repair == 'Verified') ? 'highlight-red' : '';
             $onclick_event = ($harness_repair == 'Verified') ? '' : 'onclick="get_update_defect_pdv(\'' . implode('~!~', [
                 $row['id'],
                 $row['car_maker'],

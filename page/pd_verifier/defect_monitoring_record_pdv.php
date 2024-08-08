@@ -116,7 +116,8 @@
                         </div>
                         <div class="col-12 col-sm-2">
                             <!-- date from -->
-                            <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date From <i style="font-size: 14px">(Repairing
+                            <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date From <i
+                                    style="font-size: 14px">(Repairing
                                     Date)</i></label>
                             <label style="color:#CA3F3F;margin:0;padding:0;">*</label>
                             <input type="date" name="date_from" class="form-control" id="search_date_from_pdv"
@@ -124,7 +125,8 @@
                         </div>
                         <div class="col-12 col-sm-2">
                             <!-- date to -->
-                            <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date To <i style="font-size: 14px">(Repairing
+                            <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date To <i
+                                    style="font-size: 14px">(Repairing
                                     Date)</i></label>
                             <label style="color:#CA3F3F;margin:0;padding:0;">*</label>
                             <input type="date" name="date_to" class="form-control" id="search_date_to_pdv"

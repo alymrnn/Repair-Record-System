@@ -162,7 +162,7 @@ function count_defect_qa_list($conn, $search_product_name_qa, $search_lot_no_qa,
     $conditions = [];
     $params = [];
 
-    $conditions[] = "(pending_status_2 = 'Added')";
+    $conditions[] = "(ng_status_new_record_2 = 'Added')";
 
     if (!empty($search_date_from_qa) && !empty($search_date_to_qa)) {
         $conditions[] = "date_detected BETWEEN ? AND ?";
@@ -286,7 +286,7 @@ if ($method == 'defect_qa_list_last_page') {
     echo $number_of_page;
 }
 
-if ($method == 'load_defect_table_qa') {
+if ($method == 'load_defect_table_new_record') {
     $search_product_name_qa = trim($_POST['search_product_name_qa']);
     $search_serial_no_qa = trim($_POST['search_serial_no_qa']);
     $search_lot_no_qa = trim($_POST['search_lot_no_qa']);
@@ -317,7 +317,7 @@ if ($method == 'load_defect_table_qa') {
     $query = "SELECT * FROM t_defect_record_f";
     $conditions = [];
 
-    $conditions[] = "(pending_status_2 = 'Added')";
+    $conditions[] = "(ng_status_new_record_2 = 'Added')";
 
     if (!empty($search_date_from_qa) && !empty($search_date_to_qa)) {
         $conditions[] = "date_detected BETWEEN :search_date_from_qa AND :search_date_to_qa";
@@ -498,9 +498,10 @@ if ($method == 'add_record_inspector') {
     $status_qa = '';
     $record_added_by_qa = $_SESSION['full_name'];
     $qc_status_qa = '';
-    $pending_status_qa = 'Pending';
+    $pending_status_qa = '';
     $harness_repair_qa = 'Pending';
-    $pending_status_2 = 'Added';
+    $new_defect_record = 'Pending';
+    $new_defect_record_2 = 'Added';
 
     $error = 0;
 
@@ -532,7 +533,7 @@ if ($method == 'add_record_inspector') {
                 occurrence_shift, occurrence_id_num, occurrence_person, outflow_process, outflow_shift, 
                 outflow_id_num, outflow_person, defect_category_dr, sequence_num, assy_board_no, defect_cause, 
                 defect_detail_content, defect_treatment_content, harness_status, dis_assembled_by, good_measurement, 
-                ng_measurement, wire_type, wire_size, connector_cavity, qc_status, record_type, pending_status, pending_status_2, harness_repair, 
+                ng_measurement, wire_type, wire_size, connector_cavity, qc_status, record_type, pending_status, harness_repair, ng_status_new_record, ng_status_new_record_2,
                 record_added_defect_datetime
             ) VALUES (
                 :defect_id, :line_no, :category, :date_detected, :issue_no_tag, :repairing_date, 
@@ -541,7 +542,7 @@ if ($method == 'add_record_inspector') {
                 :occurrence_person, :outflow_process, :outflow_shift, :outflow_id_num, :outflow_person, 
                 :defect_category_dr, :sequence_num, :assy_board_no, :defect_cause, :defect_detail_content, 
                 :defect_treatment_content, :harness_status, :dis_assembled_by, :good_measurement, :ng_measurement, 
-                :wire_type, :wire_size, :connector_cavity, :qc_status, :record_type, :pending_status, :pending_status_2, :harness_repair, 
+                :wire_type, :wire_size, :connector_cavity, :qc_status, :record_type, :pending_status, :harness_repair, :ng_status_new_record, :ng_status_new_record_2,
                 GETDATE()
             )
         ";
@@ -584,8 +585,9 @@ if ($method == 'add_record_inspector') {
         $stmt->bindParam(':qc_status', $qc_status_qa, PDO::PARAM_STR);
         $stmt->bindParam(':record_type', $record_type_qa, PDO::PARAM_STR);
         $stmt->bindParam(':pending_status', $pending_status_qa, PDO::PARAM_STR);
-        $stmt->bindParam(':pending_status_2', $pending_status_2, PDO::PARAM_STR);
         $stmt->bindParam(':harness_repair', $harness_repair_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':ng_status_new_record', $new_defect_record, PDO::PARAM_STR);
+        $stmt->bindParam(':ng_status_new_record_2', $new_defect_record_2, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             $response_arr['message'] = 'success';
