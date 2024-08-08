@@ -316,7 +316,7 @@ function generate_defect_id($defect_id)
 
 // ==================================================================================================================================================================
 
-function count_defect_table_data($conn, $date_from, $date_to, $line_no_rp, $record_type, $product_name, $serial_no, $lot_no)
+function count_defect_table_data($conn, $date_from, $date_to, $line_no_rp, $record_type, $product_name, $serial_no, $lot_no, $harness_status)
 {
     $query = "SELECT COUNT(id) AS total FROM t_defect_record_f";
     $conditions = [];
@@ -355,6 +355,11 @@ function count_defect_table_data($conn, $date_from, $date_to, $line_no_rp, $reco
         $params[] = '%' . $lot_no . '%';
     }
 
+    if (!empty($harness_status) && $harness_status !== '%') {
+        $conditions[] = "harness_status LIKE ?";
+        $params[] = '%' . $harness_status . '%';
+    }
+
     if (!empty($conditions)) {
         $query .= " WHERE " . implode(" AND ", $conditions);
     }
@@ -388,6 +393,7 @@ if ($method == 'load_defect_table_data_last_page') {
     $serial_no = trim($_POST['serial_no']);
     $record_type = trim($_POST['record_type']);
     $line_no_rp = trim($_POST['line_no_rp']);
+    $harness_status = trim($_POST['harness_status']);
 
     // date search
     $date_from = trim($_POST['date_from']);
@@ -404,7 +410,7 @@ if ($method == 'load_defect_table_data_last_page') {
 
     $results_per_page = 50;
 
-    $number_of_result = intval(count_defect_table_data($conn, $date_from, $date_to, $line_no_rp, $record_type, $product_name, $serial_no, $lot_no));
+    $number_of_result = intval(count_defect_table_data($conn, $date_from, $date_to, $line_no_rp, $record_type, $product_name, $serial_no, $lot_no, $harness_status));
 
     //determine the total number of pages available  
     $number_of_page = ceil($number_of_result / $results_per_page);
@@ -421,6 +427,7 @@ if ($method == 'count_defect_table_data') {
     $lot_no = trim($_POST['lot_no']);
     $record_type = trim($_POST['record_type']);
     $line_no_rp = trim($_POST['line_no_rp']);
+    $harness_status = trim($_POST['harness_status']);
 
     // date search
     $date_from = trim($_POST['date_from']);
@@ -435,7 +442,7 @@ if ($method == 'count_defect_table_data') {
         $date_to = date_format($date_to, "Y/m/d");
     }
 
-    echo count_defect_table_data($conn, $date_from, $date_to, $line_no_rp, $record_type, $product_name, $serial_no, $lot_no);
+    echo count_defect_table_data($conn, $date_from, $date_to, $line_no_rp, $record_type, $product_name, $serial_no, $lot_no, $harness_status);
     exit;
 }
 
@@ -576,6 +583,7 @@ if ($method == 'load_defect_table_data') {
     $serial_no = trim($_POST['serial_no']);
     $record_type = trim($_POST['record_type']);
     $line_no_rp = trim($_POST['line_no_rp']);
+    $harness_status = trim($_POST['harness_status']);
 
     $date_from = trim($_POST['date_from']);
     if (!empty($date_from)) {
@@ -623,6 +631,10 @@ if ($method == 'load_defect_table_data') {
         $conditions[] = "serial_no LIKE :serial_no";
     }
 
+    if (!empty($harness_status)) {
+        $conditions[] = "harness_status LIKE :harness_status";
+    }
+
     if (!empty($conditions)) {
         $query .= " WHERE " . implode(" AND ", $conditions);
     }
@@ -651,6 +663,9 @@ if ($method == 'load_defect_table_data') {
     }
     if (!empty($serial_no)) {
         $stmt->bindValue(':serial_no', $serial_no . '%', PDO::PARAM_STR);
+    }
+    if (!empty($harness_status)) {
+        $stmt->bindValue(':harness_status', $harness_status . '%', PDO::PARAM_STR);
     }
     $stmt->bindValue(':page_first_result', $page_first_result, PDO::PARAM_INT);
     $stmt->bindValue(':results_per_page', $results_per_page, PDO::PARAM_INT);
@@ -716,11 +731,12 @@ if ($method == 'load_defect_table_data') {
             echo '<td style="text-align:center;">' . $row['dis_assembled_by'] . '</td>';
             echo '<td style="text-align:center;">' . $row['harness_status'] . '</td>';
             echo '<td style="text-align:center;">' . $row['remarks_recrimp'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['remarks_by_id_num'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['remarks_by_person'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['recrimp_by_id_num'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['recrimp_by_person'] . '</td>';
             echo '<td style="text-align:center;">' . $row['verified_by_qa_id_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['verified_by_qa_person'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['remarks_cc'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['remarks_1_cc'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['remarks_2_cc'] . '</td>';
             echo '<td style="text-align:center;">' . $row['cc_by_id_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['cc_by_person'] . '</td>';
             echo '<td style="text-align:center;">' . $row['remarks_reassy'] . '</td>';

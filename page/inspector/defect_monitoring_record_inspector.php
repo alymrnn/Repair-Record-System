@@ -81,7 +81,7 @@
               <label style="font-weight:normal;margin:0;padding:0;color:#000;">Record Type</label>
               <select name="search_record_type_qa" id="search_record_type_qa" autocomplete="off"
                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;"
-                class="pl-1" required>
+                class="form-control pl-1" required>
                 <option></option>
               </select>
             </div>

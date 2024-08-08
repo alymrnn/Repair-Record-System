@@ -553,6 +553,7 @@
         var serial_no = document.getElementById("search_serial_no").value.trim();
         var record_type = document.getElementById("search_record_type").value.trim();
         var line_no_rp = document.getElementById("line_no_rp").value.trim();
+        var harness_status = document.getElementById("search_harness_status").value.trim();
         var date_from = document.getElementById("date_from_search_defect").value.trim();
         var date_to = document.getElementById("date_to_search_defect").value.trim();
 
@@ -567,6 +568,7 @@
                 serial_no: serial_no,
                 record_type: record_type,
                 line_no_rp: line_no_rp,
+                harness_status: harness_status,
                 date_from: date_from,
                 date_to: date_to
             },
@@ -636,7 +638,8 @@
                     <th>Re-crimp by (PD FSP)</th>
                     <th>Verified by ID No.</th>
                     <th>Verified by (PD FSP)</th>
-                    <th>COUNTERPART CHECKING Remarks</th>
+                    <th>COUNTERPART CHECKING Remarks 1</th>
+                    <th>Remarks 2</th>
                     <th>ID No.</th>
                     <th>Verified by (QA FSP)</th>
                     <th>RE-ASSY/RE-INSERT Remarks</th>
@@ -655,6 +658,7 @@
         var serial_no = document.getElementById("search_serial_no").value.trim();
         var record_type = document.getElementById("search_record_type").value.trim();
         var line_no_rp = document.getElementById("line_no_rp").value.trim();
+        var harness_status = document.getElementById("search_harness_status").value.trim();
         var date_from = document.getElementById("date_from_search_defect").value.trim();
         var date_to = document.getElementById("date_to_search_defect").value.trim();
 
@@ -671,6 +675,7 @@
                 serial_no: serial_no,
                 record_type: record_type,
                 line_no_rp: line_no_rp,
+                harness_status: harness_status,
                 date_from: date_from,
                 date_to: date_to
             },
@@ -704,6 +709,7 @@
 
         var record_type = document.getElementById("search_record_type").value.trim();
         var line_no_rp = document.getElementById("line_no_rp").value.trim();
+        var harness_status = document.getElementById("search_harness_status").value.trim();
         var date_from = document.getElementById("date_from_search_defect").value.trim();
         var date_to = document.getElementById("date_to_search_defect").value.trim();
 
@@ -718,6 +724,7 @@
                 serial_no: serial_no,
                 record_type: record_type,
                 line_no_rp: line_no_rp,
+                harness_status: harness_status,
                 date_from: date_from,
                 date_to: date_to
             },
