@@ -591,9 +591,9 @@ if ($method == 'add_multiple_mancost') {
 }
 
 if ($method == 'add_defect_mancost_record_insp') {
-    // Fetch common data
     $line_no = $_POST['line_no'];
     $issue_no_tag = $_POST['issue_tag'];
+    $serial_no = $_POST['serial_no'];
     $repairing_date = $_POST['repairing_date'];
     $good_measurement = $_POST['good_measurement'];
     $ng_measurement = $_POST['ng_measurement'];
@@ -623,6 +623,7 @@ if ($method == 'add_defect_mancost_record_insp') {
             UPDATE t_defect_record_f
             SET line_no = :line_no,
                 issue_no_tag = :issue_no_tag,
+                serial_no = :serial_no,
                 repairing_date = :repairing_date,
                 good_measurement = :good_measurement,
                 ng_measurement = :ng_measurement,
@@ -642,6 +643,7 @@ if ($method == 'add_defect_mancost_record_insp') {
         $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
         $stmt->bindParam(':line_no', $line_no);
         $stmt->bindParam(':issue_no_tag', $issue_no_tag);
+        $stmt->bindParam(':serial_no', $serial_no);
         $stmt->bindParam(':repairing_date', $repairing_date);
         $stmt->bindParam(':good_measurement', $good_measurement);
         $stmt->bindParam(':ng_measurement', $ng_measurement);

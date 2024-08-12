@@ -541,13 +541,13 @@
         $('#update_defect_inspector_id').val(data[0]).prop('hidden', true);
 
         $('#car_maker_insp_update').val(data[1]).prop('disabled', true).css('background', '#EEE');
-        $('#line_no_insp_update').val(data[2]).prop('disabled', true).css('background', '#EEE');
+        $('#line_no_insp_update').val(data[2]).prop('disabled', false).css('background', '#FFF');
         $('#line_category_insp_update').val(data[3]).prop('disabled', true).css('background', '#EEE');
         $('#date_detected_insp_update').val(data[4]).prop('disabled', true).css('background', '#EEE');
-        $('#issue_tag_insp_update').val(data[5]).prop('disabled', true).css('background', '#EEE');
+        $('#issue_tag_insp_update').val(data[5]).prop('disabled', false).css('background', '#FFF');
         $('#product_name_insp_update').val(data[6]).prop('disabled', true).css('background', '#EEE');
         $('#lot_no_insp_update').val(data[7]).prop('disabled', true).css('background', '#EEE');
-        $('#serial_no_insp_update').val(data[8]).prop('disabled', true).css('background', '#EEE');
+        $('#serial_no_insp_update').val(data[8]).prop('disabled', false).css('background', '#FFF');
         $('#discovery_process_insp_update').val(data[9]).prop('disabled', true).css('background', '#EEE');
         $('#discovery_id_no_insp_update').val(data[10]).prop('disabled', true).css('background', '#EEE');
         $('#discovery_person_insp_update').val(data[11]).prop('disabled', true).css('background', '#EEE');
@@ -563,13 +563,13 @@
         $('#sequence_no_insp_update').val(data[21]).prop('disabled', true).css('background', '#EEE');
         $('#assy_board_no_insp_update').val(data[22]).prop('disabled', true).css('background', '#EEE');
         $('#defect_cause_insp_update').val(data[23]).prop('disabled', true).css('background', '#EEE');
-        $('#good_measurement_insp_update').val(data[24]).prop('disabled', true).css('background', '#EEE');
-        $('#ng_measurement_insp_update').val(data[25]).prop('disabled', true).css('background', '#EEE');
-        $('#wire_type_insp_update').val(data[26]).prop('disabled', true).css('background', '#EEE');
-        $('#wire_size_insp_update').val(data[27]).prop('disabled', true).css('background', '#EEE');
-        $('#connector_cavity_insp_update').val(data[28]).prop('disabled', true).css('background', '#EEE');
+        $('#good_measurement_insp_update').val(data[24]).prop('disabled', false).css('background', '#FFF');
+        $('#ng_measurement_insp_update').val(data[25]).prop('disabled', false).css('background', '#FFF');
+        $('#wire_type_insp_update').val(data[26]).prop('disabled', false).css('background', '#FFF');
+        $('#wire_size_insp_update').val(data[27]).prop('disabled', false).css('background', '#FFF');
+        $('#connector_cavity_insp_update').val(data[28]).prop('disabled', false).css('background', '#FFF');
         $('#repair_person_insp_update').val(data[29]);
-        $('#detail_content_defect_insp_update').val(data[30]).prop('disabled', true).css('background', '#EEE');
+        $('#detail_content_defect_insp_update').val(data[30]).prop('disabled', false).css('background', '#FFF');
         $('#treatment_content_defect_insp_update').val(data[31]);
         $('#harness_status_insp_update').val(data[32]);
         // $('#repairing_date_insp_update').val(data[33]);
@@ -991,6 +991,7 @@
             method: 'add_defect_mancost_record_insp',
             line_no: $('#line_no_insp_update').val().trim(),
             issue_tag: $('#issue_tag_insp_update').val().trim(),
+            serial_no: $('#serial_no_insp_update').val().trim(),
             repairing_date: $('#repairing_date_insp_update').val().trim(),
             good_measurement: $('#good_measurement_insp_update').val().trim(),
             ng_measurement: $('#ng_measurement_insp_update').val().trim(),
