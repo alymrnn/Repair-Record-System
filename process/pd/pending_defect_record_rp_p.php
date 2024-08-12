@@ -1,7 +1,7 @@
 <?php
 session_start();
 include '../conn.php';
-include '../conn_emp_mgt.php';
+// include '../conn_emp_mgt.php';
 
 $method = $_POST['method'];
 
@@ -88,6 +88,15 @@ if ($method == 'fetch_opt_portion_treatment_pd') {
     } else {
         echo '<option>Select the repaired portion treatment</option>';
     }
+}
+
+if ($method == 'update_badge_count') {
+    $query = "SELECT COUNT(id) AS total FROM t_defect_record_f WHERE pending_status = 'Pending'";
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+        
+        echo json_encode(['count' => $count]);
 }
 
 function count_pending_defect_table_data($conn, $date_from, $date_to, $line_no_rp, $record_type, $product_name, $serial_no, $lot_no)

@@ -1,9 +1,18 @@
 <?php
 session_start();
 include '../conn.php';
-include '../conn_emp_mgt.php';
+// include '../conn_emp_mgt.php';
 
 $method = $_POST['method'];
+
+if ($method == 'update_badge_count_for_reassy') {
+    $query = "SELECT COUNT(id) AS total FROM t_defect_record_f WHERE (remarks_recrimp = 'GOOD' OR remarks_1_cc = 'GOOD') AND reassy_date is NULL";
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+        
+        echo json_encode(['count' => $count]);
+}
 
 if ($method == 'fetch_opt_harness_status_pdv') {
     $query = "SELECT harness_status FROM m_harness_status ORDER BY harness_status ASC";

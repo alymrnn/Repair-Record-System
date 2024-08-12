@@ -2,9 +2,18 @@
 
 session_start();
 include '../conn.php';
-include '../conn_emp_mgt.php';
+// include '../conn_emp_mgt.php';
 
 $method = $_POST['method'];
+
+if ($method == 'update_badge_count_qc') {
+    $query = "SELECT COUNT(id) AS total FROM t_defect_record_f WHERE qc_status = 'Saved' AND remarks_reassy = 'GOOD' AND (record_type IN ('Defect and Mancost', 'Defect Only'))";
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+        
+        echo json_encode(['count' => $count]);
+}
 
 if ($method == 'fetch_opt_line_no') {
     $query = "SELECT DISTINCT line_no FROM m_line_no ORDER BY line_no ASC";

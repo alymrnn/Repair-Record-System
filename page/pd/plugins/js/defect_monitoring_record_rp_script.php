@@ -28,6 +28,8 @@
         count_detail_content_defect_char();
         count_treatment_content_defect_char();
 
+        fetch_and_update_count();
+
         // fetch discovery person
         $('#discovery_id_no_dr').on('keypress', function (e) {
             if (e.which === 13) {
@@ -67,6 +69,33 @@
             }
         });
     });
+
+    function update_display_badge_count(new_count) {
+        var badge = document.querySelector('.badge');
+        if (badge) {
+            badge.textContent = new_count;
+        }
+    }
+
+    function fetch_and_update_count() {
+        $.ajax({
+            url: '../../process/pd/pending_defect_record_rp_p.php',
+            type: 'POST',
+            data: { method: 'update_badge_count' },
+            dataType: 'json',
+            success: function (response) {
+                if (response.count !== undefined) {
+                    update_display_badge_count(response.count);
+                } else if (response.error) {
+                    console.error('Error from server:', response.error);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching count:', error);
+                console.error('Response text:', xhr.responseText);
+            }
+        });
+    }
 
     document.getElementById('line_no').addEventListener('input', function () {
         this.value = this.value.replace(/\D/g, '');
@@ -2714,7 +2743,7 @@
         $('#line_no_pd_update').val(data[2]);
         $('#line_category_pd_update').val(data[3]).prop('disabled', true).css('background', '#EEE');
         $('#date_detected_pd_update').val(data[4]).prop('disabled', true).css('background', '#EEE');
-        $('#issue_tag_pd_update').val(data[5]);
+        $('#issue_tag_pd_update').val(data[5]).prop('disabled', false);
         $('#product_name_pd_update').val(data[6]).prop('disabled', true).css('background', '#EEE');
         $('#lot_no_pd_update').val(data[7]).prop('disabled', true).css('background', '#EEE');
         $('#serial_no_pd_update').val(data[8]);

@@ -1,7 +1,37 @@
 <script type="text/javascript">
     $(document).ready(function () {
         search_account(1);
+
+        fetch_and_update_count();
     });
+
+    function update_display_badge_count(new_count) {
+        var badge = document.querySelector('.badge');
+        if (badge) {
+            badge.textContent = new_count;
+        }
+    }
+
+    function fetch_and_update_count() {
+        $.ajax({
+            url: '../../process/pd/pending_defect_record_rp_p.php',
+            type: 'POST',
+            data: { method: 'update_badge_count' },
+            dataType: 'json',
+            success: function (response) {
+                if (response.count !== undefined) {
+                    update_display_badge_count(response.count);
+                } else if (response.error) {
+                    console.error('Error from server:', response.error);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching count:', error);
+                console.error('Response text:', xhr.responseText);
+            }
+        });
+    }
+
 
     document.getElementById("emp_no_search").addEventListener("keyup", e => {
         search_account(1);

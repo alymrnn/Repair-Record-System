@@ -1,6 +1,6 @@
 <?php
 include '../conn.php';
-include '../conn_emp_mgt.php';
+// include '../conn_emp_mgt.php';
 
 ini_set("memory_limit", "-1");
 

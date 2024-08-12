@@ -34,7 +34,9 @@
         </li>
         <li class="nav-item mb-1">
           <a href="pending_defect_record_rp.php" class="nav-link active">
-            <img src="../../dist/img/pending-tasks.png" style="height:25px;">
+            <!-- <img src="../../dist/img/pending-tasks.png" style="height:25px;"> -->
+            <i class="far fa-file-alt" style="color: #000"></i>
+            <span class="badge m-0 p-0" style="color: #F00F00; font-size: 14px;"></span>
             <p style="font-size:14px; color:black">
               Pending Defect Record
             </p>

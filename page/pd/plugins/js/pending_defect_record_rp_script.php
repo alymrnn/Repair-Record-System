@@ -15,6 +15,8 @@
         fetch_opt_occurrence_process_pd();
         fetch_opt_portion_treatment_pd();
 
+        fetch_and_update_count();
+
         $(document).on('click', 'input[name="na_white_tag_defect"]', function () {
             if ($(this).val() === "Defect and Mancost") {
                 $('#repair_start_mc2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
@@ -31,6 +33,33 @@
             }
         });
     });
+
+    function update_display_badge_count(new_count) {
+        var badge = document.querySelector('.badge');
+        if (badge) {
+            badge.textContent = new_count;
+        }
+    }
+
+    function fetch_and_update_count() {
+        $.ajax({
+            url: '../../process/pd/pending_defect_record_rp_p.php',
+            type: 'POST',
+            data: { method: 'update_badge_count' },
+            dataType: 'json',
+            success: function (response) {
+                if (response.count !== undefined) {
+                    update_display_badge_count(response.count);
+                } else if (response.error) {
+                    console.error('Error from server:', response.error);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching count:', error);
+                console.error('Response text:', xhr.responseText); 
+            }
+        });
+    }
 
     document.getElementById('qr_scan_pd').addEventListener('keyup', function (e) {
         var qrCode = this.value;
@@ -369,7 +398,7 @@
                 var count = `Total Record: ${response}`;
                 $('#defect_pending_table_info').html(count);
 
-                 if (response > 0) {
+                if (response > 0) {
                     load_defect_pending_table_data_last_page();
                 } else {
                     document.getElementById("btnNextPage").style.display = "none";
@@ -990,6 +1019,7 @@
                         timer: 1500
                     });
                     load_pending_defect_table();
+                    fetch_and_update_count();
                     $('#update_defect_inspector').modal('hide');
                 } else {
                     Swal.fire({

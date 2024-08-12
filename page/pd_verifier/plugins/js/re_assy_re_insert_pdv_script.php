@@ -8,6 +8,9 @@
         // fetch_opt_line_no_pdv();
         load_defect_table_pdv_re(1);
 
+        fetch_and_update_count_for_reassy();
+        fetch_and_update_count_for_veri();
+
         $('#reassy_id_no_re_update').on('keypress', function (e) {
             if (e.which === 13) {
                 get_reassy_name_update();
@@ -184,6 +187,60 @@
             }
         });
     });
+
+    function update_display_badge_count_2(new_count) {
+        var badge = document.querySelector('#for_reassy_badge');
+        if (badge) {
+            badge.textContent = new_count;
+        }
+    }
+
+    function fetch_and_update_count_for_reassy() {
+        $.ajax({
+            url: '../../process/pd_verifier/re_assy_re_insert_pdv_p.php',
+            type: 'POST',
+            data: { method: 'update_badge_count_for_reassy' },
+            dataType: 'json',
+            success: function (response) {
+                if (response.count !== undefined) {
+                    update_display_badge_count_2(response.count);
+                } else if (response.error) {
+                    console.error('Error from server:', response.error);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching count:', error);
+                console.error('Response text:', xhr.responseText);
+            }
+        });
+    }
+
+    function update_display_badge_count_1(new_count) {
+        var badge = document.querySelector('#for_veri_badge');
+        if (badge) {
+            badge.textContent = new_count;
+        }
+    }
+
+    function fetch_and_update_count_for_veri() {
+        $.ajax({
+            url: '../../process/pd_verifier/defect_monitoring_record_pdv_p.php',
+            type: 'POST',
+            data: { method: 'update_badge_count_for_veri' },
+            dataType: 'json',
+            success: function (response) {
+                if (response.count !== undefined) {
+                    update_display_badge_count_1(response.count);
+                } else if (response.error) {
+                    console.error('Error from server:', response.error);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching count:', error);
+                console.error('Response text:', xhr.responseText);
+            }
+        });
+    }
 
     document.getElementById('line_no_qa').addEventListener('input', function () {
         this.value = this.value.replace(/\D/g, '');
@@ -1105,6 +1162,7 @@
                     $('#reassy_date_re_update').val('');
                     $('#admin_defect_id_4').val('');
 
+                    fetch_and_update_count_for_reassy();
                     load_defect_table_pdv_re(1);
 
                 } else {

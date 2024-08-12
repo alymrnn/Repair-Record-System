@@ -1,9 +1,22 @@
 <?php
 session_start();
 include '../conn.php';
-include '../conn_emp_mgt.php';
+// include '../conn_emp_mgt.php';
 
 $method = $_POST['method'];
+
+if ($method == 'update_badge_count_for_veri') {
+    $query = "SELECT COUNT(id) AS total FROM t_defect_record_f WHERE qc_status = 'Saved' AND 
+    (pending_status = 'Updated' OR ng_status_new_record = 'Updated') AND 
+    (harness_status IN ('Re-assy', 'Re-crimp', 'Re-insertion', 'Counterpart Checking')) AND
+    (remarks_recrimp IS NULL OR remarks_1_cc IS NULL OR remarks_reassy IS NULL)
+    ";
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
+    $count = $stmt->fetchColumn();
+
+    echo json_encode(['count' => $count]);
+}
 
 if ($method == 'fetch_opt_harness_status_pdv') {
     $query = "SELECT harness_status FROM m_harness_status ORDER BY harness_status ASC";
@@ -282,16 +295,16 @@ if ($method == 'load_defect_table_pdv') {
 
             if ($harness_repair == 'Verified') {
                 if ($remarks_recrimp == 'NO GOOD' || $remarks_1_cc == 'NO GOOD' || $remarks_reassy == 'NO GOOD') {
-                    $highlight_class = 'highlight-red'; 
+                    $highlight_class = 'highlight-red';
                 } elseif ($remarks_recrimp == 'GOOD' || $remarks_1_cc == 'GOOD' || $remarks_reassy == 'GOOD') {
-                    $highlight_class = 'highlight-green'; 
+                    $highlight_class = 'highlight-green';
                 } else {
                     $highlight_class = '';
                 }
             } elseif ($harness_repair == 'Pending') {
-                $highlight_class = 'highlight-orange'; 
+                $highlight_class = 'highlight-orange';
             }
-            
+
             $onclick_event = ($harness_repair == 'Verified') ? '' : 'onclick="get_update_defect_pdv(\'' . implode('~!~', [
                 $row['id'],
                 $row['car_maker'],

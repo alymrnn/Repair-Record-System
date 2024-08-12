@@ -21,6 +21,8 @@
         fetch_opt_update_defect_category();
         fetch_opt_update_repair_person();
 
+        fetch_and_update_count_qc();
+
         update_button_state();
 
         $('input.singleCheck').on('change', function () {
@@ -235,6 +237,33 @@
             }
         });
     });
+
+    function update_display_badge_count_3(new_count) {
+        var badge = document.querySelector('#for_veri_qc_badge');
+        if (badge) {
+            badge.textContent = new_count;
+        }
+    }
+
+    function fetch_and_update_count_qc() {
+        $.ajax({
+            url: '../../process/qc/defect_monitoring_record_p.php',
+            type: 'POST',
+            data: { method: 'update_badge_count_qc' },
+            dataType: 'json',
+            success: function (response) {
+                if (response.count !== undefined) {
+                    update_display_badge_count_3(response.count);
+                } else if (response.error) {
+                    console.error('Error from server:', response.error);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching count:', error);
+                console.error('Response text:', xhr.responseText);
+            }
+        });
+    }
 
     document.getElementById('line_no_qa').addEventListener('input', function () {
         this.value = this.value.replace(/\D/g, '');
@@ -1832,6 +1861,7 @@
                             $('#verified_by_mc_update').val('');
                             $('#remarks_mc_update').val('');
 
+                            fetch_and_update_count_qc();
                             load_qc_mancost_table(id + '~!~' + defect_id);
                         });
                     } else {

@@ -1,7 +1,7 @@
 <?php
 session_start();
 include '../conn.php';
-include '../conn_emp_mgt.php';
+// include '../conn_emp_mgt.php';
 
 $method = $_POST['method'];
 
