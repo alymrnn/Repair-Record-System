@@ -469,14 +469,14 @@
                 <!-- /.end -->
 
                 <div class="row mt-3">
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <!-- clear button -->
                         <button class="btn btn-block" onclick="clear_pending_mc_fields()"
                             style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;"
                             onmouseover="this.style.backgroundColor='#272727'; this.style.color='#FFF';"
-                            onmouseout="this.style.backgroundColor='#474747'; this.style.color='#FFF';">Clear</button>
+                            onmouseout="this.style.backgroundColor='#474747'; this.style.color='#FFF';">Clear Mancost Details</button>
                     </div>
-                    <div class="col-sm-4"></div>
+                    <div class="col-sm-3"></div>
                     <div class="col-sm-4"></div>
                     <div class="col-sm-2">
                         <!-- add record -->

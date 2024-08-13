@@ -6,12 +6,12 @@ include '../conn.php';
 $method = $_POST['method'];
 
 if ($method == 'update_badge_count_for_reassy') {
-    $query = "SELECT COUNT(id) AS total FROM t_defect_record_f WHERE (remarks_recrimp = 'GOOD' OR remarks_1_cc = 'GOOD') AND reassy_date is NULL";
-        $stmt = $conn->prepare($query);
-        $stmt->execute();
-        $count = $stmt->fetchColumn();
-        
-        echo json_encode(['count' => $count]);
+    $query = "SELECT COUNT(id) AS total FROM t_defect_record_f WHERE (remarks_recrimp != 'NO GOOD' AND remarks_1_cc != 'NO GOOD') AND reassy_date is NULL";
+    $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+    $stmt->execute();
+    $count = $stmt->fetchColumn();
+
+    echo json_encode(['count' => $count]);
 }
 
 if ($method == 'fetch_opt_harness_status_pdv') {
@@ -49,9 +49,14 @@ function count_defect_pdv_re_list($conn, $search_product_name_pdv, $search_lot_n
     $conditions = [];
     $params = [];
 
-    $conditions[] = "(remarks_recrimp = 'GOOD' OR remarks_1_cc = 'GOOD')";
+    // $conditions[] = "(remarks_recrimp = 'GOOD' OR remarks_1_cc = 'GOOD')";
+
+    $conditions[] = "(remarks_recrimp != 'NO GOOD' AND remarks_1_cc != 'NO GOOD')";
 
     if (!empty($search_date_from_pdv) && !empty($search_date_to_pdv)) {
+        $search_date_from_pdv = date('Y-m-d', strtotime($search_date_from_pdv));
+        $search_date_to_pdv = date('Y-m-d', strtotime($search_date_to_pdv));
+
         $conditions[] = "repairing_date BETWEEN ? AND ?";
         $params[] = $search_date_from_pdv;
         $params[] = $search_date_to_pdv;
@@ -213,10 +218,12 @@ if ($method == 'load_defect_table_pdv_re') {
     $query = "SELECT * FROM t_defect_record_f";
     $conditions = [];
 
-    $conditions[] = "(remarks_recrimp = 'GOOD' OR remarks_1_cc = 'GOOD')";
+    // $conditions[] = "(remarks_recrimp = 'GOOD' OR remarks_1_cc = 'GOOD')";
+
+    $conditions[] = "(remarks_recrimp != 'NO GOOD' AND remarks_1_cc != 'NO GOOD')";
 
     if (!empty($search_date_from_pdv) && !empty($search_date_to_pdv)) {
-        $conditions[] = "date_detected BETWEEN :search_date_from_pdv AND :search_date_to_pdv";
+        $conditions[] = "repairing_date BETWEEN :search_date_from_pdv AND :search_date_to_pdv";
     }
 
     if (!empty($search_line_no_pdv)) {
@@ -368,7 +375,7 @@ if ($method == 'load_defect_table_pdv_re') {
             echo '<td style="text-align:left;">' . $row['defect_detail_content'] . '</td>';
             echo '<td style="text-align:left;">' . $row['defect_treatment_content'] . '</td>';
             echo '<td style="text-align:center;">' . $row['dis_assembled_by'] . '</td>';
-            echo '<td style="text-align:left;">' . $row['harness_status'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['harness_status'] . '</td>';
             echo '<td style="text-align:center;">' . $row['remarks_recrimp'] . '</td>';
             echo '<td style="text-align:center;">' . $row['recrimp_by_id_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['recrimp_by_person'] . '</td>';

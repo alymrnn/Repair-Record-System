@@ -121,9 +121,9 @@
             },
             success: function (response) {
                 $('#harness_status_insp_update').html(response);
-                if (get_value) {
-                    $('#harness_status_insp_update').val(get_value);
-                }
+                // if (get_value) {
+                //     $('#harness_status_insp_update').val(get_value);
+                // }
             }
         });
     };

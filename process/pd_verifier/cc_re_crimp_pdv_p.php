@@ -5,12 +5,8 @@ include '../conn.php';
 
 $method = $_POST['method'];
 
-if ($method == 'update_badge_count_for_veri') {
-    $query = "SELECT COUNT(id) AS total FROM t_defect_record_f WHERE qc_status = 'Saved' AND 
-    (pending_status = 'Updated' OR ng_status_new_record = 'Updated') AND 
-    (harness_status IN ('Re-assy', 'Re-crimp', 'Re-insertion', 'Counterpart Checking', 'Counterpart Checking and Re-crimp')) AND
-    (remarks_recrimp IS NULL OR remarks_1_cc IS NULL OR remarks_reassy IS NULL)
-    ";
+if ($method == 'update_badge_count_for_cc_re_crimp') {
+    $query = "SELECT COUNT(id) AS total FROM t_defect_record_f WHERE harness_status = 'Counterpart Checking and Re-crimp' AND (remarks_recrimp = '' OR remarks_1_cc = '') AND reassy_date IS NULL";
     $stmt = $conn->prepare($query);
     $stmt->execute();
     $count = $stmt->fetchColumn();
@@ -47,13 +43,13 @@ if ($method == 'fetch_opt_harness_status_pdv') {
 // }
 
 
-function count_defect_pdv_list($conn, $search_product_name_pdv, $search_lot_no_pdv, $search_serial_no_pdv, $search_line_no_pdv, $search_harness_status_pdv, $search_harness_verification_pdv, $search_date_from_pdv, $search_date_to_pdv)
+function count_defect_pdv_re_list($conn, $search_product_name_pdv, $search_lot_no_pdv, $search_serial_no_pdv, $search_line_no_pdv, $search_harness_status_pdv, $search_harness_remarks_pdv, $search_date_from_pdv, $search_date_to_pdv)
 {
     $query = "SELECT COUNT(id) AS total FROM t_defect_record_f";
     $conditions = [];
     $params = [];
 
-    $conditions[] = "(qc_status = 'Saved' AND (pending_status = 'Updated' OR ng_status_new_record = 'Updated') AND (harness_status IN ('Re-assy', 'Re-crimp', 'Re-insertion', 'Counterpart Checking', 'Counterpart Checking and Re-crimp')))";
+    $conditions[] = "(harness_status = 'Counterpart Checking and Re-crimp' AND (remarks_recrimp = 'GOOD' OR remarks_1_cc = 'GOOD'))";
 
     if (!empty($search_date_from_pdv) && !empty($search_date_to_pdv)) {
         $conditions[] = "repairing_date BETWEEN ? AND ?";
@@ -71,9 +67,9 @@ function count_defect_pdv_list($conn, $search_product_name_pdv, $search_lot_no_p
         $params[] = '%' . $search_harness_status_pdv . '%';
     }
 
-    if (!empty($search_harness_verification_pdv)) {
-        $conditions[] = "harness_repair LIKE ?";
-        $params[] = '%' . $search_harness_verification_pdv . '%';
+    if (!empty($search_harness_remarks_pdv)) {
+        $conditions[] = "remarks_reassy LIKE ?";
+        $params[] = '%' . $search_harness_remarks_pdv . '%';
     }
 
     if (!empty($search_product_name_pdv) && $search_product_name_pdv !== '%') {
@@ -103,13 +99,13 @@ function count_defect_pdv_list($conn, $search_product_name_pdv, $search_lot_no_p
     return $total;
 }
 
-if ($method == 'count_defect_pdv_list') {
+if ($method == 'count_defect_pdv_re_list') {
     $search_product_name_pdv = trim($_POST['search_product_name_pdv']);
     $search_serial_no_pdv = trim($_POST['search_serial_no_pdv']);
     $search_lot_no_pdv = trim($_POST['search_lot_no_pdv']);
     $search_line_no_pdv = trim($_POST['search_line_no_pdv']);
     $search_harness_status_pdv = trim($_POST['search_harness_status_pdv']);
-    $search_harness_verification_pdv = trim($_POST['search_harness_verification_pdv']);
+    $search_harness_remarks_pdv = trim($_POST['search_harness_remarks_pdv']);
 
     $search_date_from_pdv = trim($_POST['search_date_from_pdv']);
     if (!empty($search_date_from_pdv)) {
@@ -123,7 +119,7 @@ if ($method == 'count_defect_pdv_list') {
         $search_date_to_pdv = date_format($search_date_to_pdv, "Y/m/d");
     }
 
-    echo count_defect_pdv_list($conn, $search_product_name_pdv, $search_lot_no_pdv, $search_serial_no_pdv, $search_line_no_pdv, $search_harness_status_pdv, $search_harness_verification_pdv, $search_date_from_pdv, $search_date_to_pdv);
+    echo count_defect_pdv_re_list($conn, $search_product_name_pdv, $search_lot_no_pdv, $search_serial_no_pdv, $search_line_no_pdv, $search_harness_status_pdv, $search_harness_remarks_pdv, $search_date_from_pdv, $search_date_to_pdv);
 }
 
 if ($method == 'defect_pdv_list_pagination') {
@@ -132,7 +128,7 @@ if ($method == 'defect_pdv_list_pagination') {
     $search_lot_no_pdv = trim($_POST['search_lot_no_pdv']);
     $search_line_no_pdv = trim($_POST['search_line_no_pdv']);
     $search_harness_status_pdv = trim($_POST['search_harness_status_pdv']);
-    $search_harness_verification_pdv = trim($_POST['search_harness_verification_pdv']);
+    $search_harness_remarks_pdv = trim($_POST['search_harness_remarks_pdv']);
 
     $search_date_from_pdv = trim($_POST['search_date_from_pdv']);
     if (!empty($search_date_from_pdv)) {
@@ -148,7 +144,7 @@ if ($method == 'defect_pdv_list_pagination') {
 
     $results_per_page = 20;
 
-    $number_of_result = intval(count_defect_pdv_list($conn, $search_product_name_pdv, $search_lot_no_pdv, $search_serial_no_pdv, $search_line_no_pdv, $search_harness_status_pdv, $search_harness_verification_pdv, $search_date_from_pdv, $search_date_to_pdv));
+    $number_of_result = intval(count_defect_pdv_re_list($conn, $search_product_name_pdv, $search_lot_no_pdv, $search_serial_no_pdv, $search_line_no_pdv, $search_harness_status_pdv, $search_harness_remarks_pdv, $search_date_from_pdv, $search_date_to_pdv));
 
     $number_of_page = ceil($number_of_result / $results_per_page);
 
@@ -163,7 +159,7 @@ if ($method == 'defect_pdv_list_last_page') {
     $search_lot_no_pdv = trim($_POST['search_lot_no_pdv']);
     $search_line_no_pdv = trim($_POST['search_line_no_pdv']);
     $search_harness_status_pdv = trim($_POST['search_harness_status_pdv']);
-    $search_harness_verification_pdv = trim($_POST['search_harness_verification_pdv']);
+    $search_harness_remarks_pdv = trim($_POST['search_harness_remarks_pdv']);
 
     $search_date_from_pdv = trim($_POST['search_date_from_pdv']);
     if (!empty($search_date_from_pdv)) {
@@ -178,20 +174,20 @@ if ($method == 'defect_pdv_list_last_page') {
     }
 
     $results_per_page = 20;
-    $number_of_result = intval(count_defect_pdv_list($conn, $search_product_name_pdv, $search_lot_no_pdv, $search_serial_no_pdv, $search_line_no_pdv, $search_harness_status_pdv, $search_harness_verification_pdv, $search_date_from_pdv, $search_date_to_pdv));
+    $number_of_result = intval(count_defect_pdv_re_list($conn, $search_product_name_pdv, $search_lot_no_pdv, $search_serial_no_pdv, $search_line_no_pdv, $search_harness_status_pdv, $search_harness_remarks_pdv, $search_date_from_pdv, $search_date_to_pdv));
 
     $number_of_page = ceil($number_of_result / $results_per_page);
 
     echo $number_of_page;
 }
 
-if ($method == 'load_defect_table_pdv') {
+if ($method == 'load_defect_table_pdv_re') {
     $search_product_name_pdv = trim($_POST['search_product_name_pdv']);
     $search_serial_no_pdv = trim($_POST['search_serial_no_pdv']);
     $search_lot_no_pdv = trim($_POST['search_lot_no_pdv']);
     $search_line_no_pdv = trim($_POST['search_line_no_pdv']);
     $search_harness_status_pdv = trim($_POST['search_harness_status_pdv']);
-    $search_harness_verification_pdv = trim($_POST['search_harness_verification_pdv']);
+    $search_harness_remarks_pdv = trim($_POST['search_harness_remarks_pdv']);
 
     $search_date_from_pdv = trim($_POST['search_date_from_pdv']);
     if (!empty($search_date_from_pdv)) {
@@ -217,7 +213,7 @@ if ($method == 'load_defect_table_pdv') {
     $query = "SELECT * FROM t_defect_record_f";
     $conditions = [];
 
-    $conditions[] = "(qc_status = 'Saved' AND (pending_status = 'Updated' OR ng_status_new_record = 'Updated') AND (harness_status IN ('Re-assy', 'Re-crimp', 'Re-insertion', 'Counterpart Checking', 'Counterpart Checking and Re-crimp')))";
+    $conditions[] = "(harness_status = 'Counterpart Checking and Re-crimp' AND (remarks_recrimp = 'GOOD' OR remarks_1_cc = 'GOOD'))";
 
     if (!empty($search_date_from_pdv) && !empty($search_date_to_pdv)) {
         $conditions[] = "repairing_date BETWEEN :search_date_from_pdv AND :search_date_to_pdv";
@@ -231,8 +227,8 @@ if ($method == 'load_defect_table_pdv') {
         $conditions[] = "harness_status LIKE :search_harness_status_pdv";
     }
 
-    if (!empty($search_harness_verification_pdv)) {
-        $conditions[] = "harness_repair LIKE :search_harness_verification_pdv";
+    if (!empty($search_harness_remarks_pdv)) {
+        $conditions[] = "remarks_reassy LIKE :search_harness_remarks_pdv";
     }
 
     if (!empty($search_product_name_pdv)) {
@@ -267,8 +263,8 @@ if ($method == 'load_defect_table_pdv') {
     if (!empty($search_harness_status_pdv)) {
         $stmt->bindValue(':search_harness_status_pdv', $search_harness_status_pdv . '%', PDO::PARAM_STR);
     }
-    if (!empty($search_harness_verification_pdv)) {
-        $stmt->bindValue(':search_harness_verification_pdv', $search_harness_verification_pdv . '%', PDO::PARAM_STR);
+    if (!empty($search_harness_remarks_pdv)) {
+        $stmt->bindValue(':search_harness_remarks_pdv', $search_harness_remarks_pdv . '%', PDO::PARAM_STR);
     }
     if (!empty($search_product_name_pdv)) {
         $stmt->bindValue(':search_product_name_pdv', $search_product_name_pdv . '%', PDO::PARAM_STR);
@@ -288,32 +284,19 @@ if ($method == 'load_defect_table_pdv') {
         foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
             $c++;
 
-            $harness_repair = $row['harness_repair'];
-            $remarks_recrimp = $row['remarks_recrimp'];
-            $remarks_1_cc = $row['remarks_1_cc'];
-            $remarks_reassy = $row['remarks_reassy'];
-            $harness_status = $row['harness_status'];
-
             $highlight_class = '';
-            if ($harness_status == 'Counterpart Checking and Re-crimp') {
-                if ($remarks_recrimp == 'GOOD' || $remarks_1_cc == 'GOOD') {
-                    $highlight_class = 'highlight-gray';
-                } elseif ($remarks_recrimp == 'NO GOOD' || $remarks_1_cc == 'NO GOOD') {
-                    $highlight_class = 'highlight-red';
-                } elseif ($remarks_recrimp == 'GOOD' && $remarks_1_cc == 'GOOD') {
-                    $highlight_class = 'highlight-green';
-                } 
-            } elseif ($harness_repair == 'Verified') {
-                if ($remarks_recrimp == 'NO GOOD' || $remarks_1_cc == 'NO GOOD' || $remarks_reassy == 'NO GOOD') {
-                    $highlight_class = 'highlight-red';
-                } elseif ($remarks_recrimp == 'GOOD' || $remarks_1_cc == 'GOOD' || $remarks_reassy == 'GOOD') {
-                    $highlight_class = 'highlight-green';
-                }
-            } elseif ($harness_repair == 'Pending') {
-                $highlight_class = 'highlight-orange';
-            }
+            $harness_status = $row['harness_status'];
+            $remarks_1_cc = $row['remarks_1_cc'];
+            $remarks_recrimp = $row['remarks_recrimp'];
 
-            $onclick_event = ($harness_repair == 'Verified') ? '' : 'onclick="get_update_defect_pdv(\'' . implode('~!~', [
+            if ($harness_status == 'Counterpart Checking and Re-crimp') {
+                if ($remarks_1_cc == 'GOOD' && $remarks_recrimp == 'GOOD') {
+                    $highlight_class = 'highlight-green';
+                } elseif ($remarks_1_cc == 'NO GOOD' || $remarks_recrimp == 'NO GOOD') {
+                    $highlight_class = 'highlight-red';
+                }
+            }
+            $onclick_event = ($remarks_1_cc == 'GOOD' && $remarks_recrimp == 'GOOD') ? '' : 'onclick="get_update_defect_re_assy(\'' . implode('~!~', [
                 $row['id'],
                 $row['car_maker'],
                 $row['line_no'],
@@ -348,19 +331,15 @@ if ($method == 'load_defect_table_pdv') {
                 $row['defect_detail_content'],
                 $row['defect_treatment_content'],
                 $row['harness_status'],
+                $row['remarks_1_cc'],
+                $row['remarks_2_cc'],
+                $row['cc_by_id_num'],
+                $row['cc_by_person'],
                 $row['remarks_recrimp'],
                 $row['recrimp_by_id_num'],
                 $row['recrimp_by_person'],
                 $row['verified_by_qa_id_num'],
                 $row['verified_by_qa_person'],
-                $row['remarks_1_cc'],
-                $row['remarks_2_cc'],
-                $row['cc_by_id_num'],
-                $row['cc_by_person'],
-                $row['remarks_reassy'],
-                $row['reassy_by_id_num'],
-                $row['reassy_by_person'],
-                $row['reassy_date'],
                 $row['defect_id']
             ]) . '\')"';
 
@@ -409,10 +388,10 @@ if ($method == 'load_defect_table_pdv') {
             echo '<td style="text-align:center;">' . $row['remarks_2_cc'] . '</td>';
             echo '<td style="text-align:center;">' . $row['cc_by_id_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['cc_by_person'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['remarks_reassy'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['reassy_by_id_num'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['reassy_by_person'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['reassy_date'] . '</td>';
+            // echo '<td style="text-align:center;">' . $row['remarks_reassy'] . '</td>';
+            // echo '<td style="text-align:center;">' . $row['reassy_by_id_num'] . '</td>';
+            // echo '<td style="text-align:center;">' . $row['reassy_by_person'] . '</td>';
+            // echo '<td style="text-align:center;">' . $row['reassy_date'] . '</td>';
             echo '</tr>';
         }
     } else {
@@ -422,22 +401,16 @@ if ($method == 'load_defect_table_pdv') {
     }
 }
 
-if ($method == 'update_pdv_record') {
-    $cc_id_no = $_POST['cc_id_no'];
-    $cc_name = $_POST['cc_name'];
+if ($method == 'update_defect_cc_re_crimp') {
     $cc_remarks_1 = $_POST['cc_remarks_1'];
     $cc_remarks_2 = $_POST['cc_remarks_2'];
-
+    $cc_id_no = $_POST['cc_id_no'];
+    $cc_name = $_POST['cc_name'];
+    $recrimp_remarks = $_POST['recrimp_remarks'];
     $recrimp_pd_id_no = $_POST['recrimp_pd_id_no'];
     $recrimp_pd_name = $_POST['recrimp_pd_name'];
     $recrimp_qa_id_no = $_POST['recrimp_qa_id_no'];
     $recrimp_qa_name = $_POST['recrimp_qa_name'];
-    $recrimp_remarks = $_POST['recrimp_remarks'];
-
-    $reassy_id_no = $_POST['reassy_id_no'];
-    $reassy_name = $_POST['reassy_name'];
-    $reassy_remarks = $_POST['reassy_remarks'];
-    $reassy_date = $_POST['reassy_date'];
 
     $defect_id = $_POST['pdv_defect_id'];
     $harness_repair = 'Verified';
@@ -461,10 +434,6 @@ if ($method == 'update_pdv_record') {
                 remarks_2_cc = :remarks_2_cc,
                 cc_by_id_num = :cc_by_id_num,
                 cc_by_person = :cc_by_person,
-                remarks_reassy = :remarks_reassy,
-                reassy_by_id_num = :reassy_by_id_num,
-                reassy_by_person = :reassy_by_person,
-                reassy_date = :reassy_date,
                 harness_repair = :harness_repair
             WHERE defect_id = :defect_id
         ";
@@ -479,16 +448,6 @@ if ($method == 'update_pdv_record') {
         $stmt_update->bindParam(':remarks_2_cc', $cc_remarks_2, PDO::PARAM_STR);
         $stmt_update->bindParam(':cc_by_id_num', $cc_id_no, PDO::PARAM_STR);
         $stmt_update->bindParam(':cc_by_person', $cc_name, PDO::PARAM_STR);
-        $stmt_update->bindParam(':remarks_reassy', $reassy_remarks, PDO::PARAM_STR);
-        $stmt_update->bindParam(':reassy_by_id_num', $reassy_id_no, PDO::PARAM_STR);
-        $stmt_update->bindParam(':reassy_by_person', $reassy_name, PDO::PARAM_STR);
-
-        // Bind reassy_date conditionally
-        if (empty($reassy_date)) {
-            $stmt_update->bindValue(':reassy_date', null, PDO::PARAM_NULL);
-        } else {
-            $stmt_update->bindParam(':reassy_date', $reassy_date, PDO::PARAM_STR);
-        }
 
         $stmt_update->bindParam(':harness_repair', $harness_repair, PDO::PARAM_STR);
         $stmt_update->bindParam(':defect_id', $defect_id, PDO::PARAM_INT);
@@ -502,7 +461,6 @@ if ($method == 'update_pdv_record') {
         echo "Update failed: defect_id does not exist";
     }
 }
-
 
 
 

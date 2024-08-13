@@ -10,6 +10,7 @@
 
         fetch_and_update_count_for_reassy();
         fetch_and_update_count_for_veri();
+        fetch_and_update_count_for_cc_re_crimp();
 
         $('#reassy_id_no_re_update').on('keypress', function (e) {
             if (e.which === 13) {
@@ -187,6 +188,33 @@
             }
         });
     });
+
+    function update_display_badge_count_3(new_count) {
+        var badge = document.querySelector('#for_cc_recrimp_badge');
+        if (badge) {
+            badge.textContent = new_count;
+        }
+    }
+
+    function fetch_and_update_count_for_cc_re_crimp() {
+        $.ajax({
+            url: '../../process/pd_verifier/cc_re_crimp_pdv_p.php',
+            type: 'POST',
+            data: { method: 'update_badge_count_for_cc_re_crimp' },
+            dataType: 'json',
+            success: function (response) {
+                if (response.count !== undefined) {
+                    update_display_badge_count_3(response.count);
+                } else if (response.error) {
+                    console.error('Error from server:', response.error);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching count:', error);
+                console.error('Response text:', xhr.responseText);
+            }
+        });
+    }
 
     function update_display_badge_count_2(new_count) {
         var badge = document.querySelector('#for_reassy_badge');
@@ -1162,7 +1190,9 @@
                     $('#reassy_date_re_update').val('');
                     $('#admin_defect_id_4').val('');
 
+                    fetch_and_update_count_for_veri();
                     fetch_and_update_count_for_reassy();
+                    fetch_and_update_count_for_cc_re_crimp();
                     load_defect_table_pdv_re(1);
 
                 } else {

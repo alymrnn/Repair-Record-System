@@ -261,13 +261,13 @@
                 </div>
                 <hr class="mt-4">
                 <div class="row">
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <!-- harness status after repair -->
                         <label style="font-weight: normal;color: #000;">Harness Status after Repair</label>
                         <input type="text" id="harness_status_pdv_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
-                    <div class="col-sm-9">
+                    <div class="col-sm-8">
                         <label class="p-1" style="font-size: 15px; background: #FFFAD1;">Select the
                             harness status to be
                             verified:</label><br>
@@ -285,11 +285,19 @@
                             <input type="radio" id="reassy_radio" name="harness_status_v" value="Re-assy/Re-insert"
                                 style="vertical-align: middle;">
                             Re-assy / Re-insert
-                        </label>&emsp;
+                        </label>&emsp;&emsp;&emsp;&emsp;
+                        <label style="display: inline-block;font-size: 15px">
+                            <input type="radio" id="cc_recrimp_radio" name="harness_status_v"
+                                value="Counterpart Checking and Re-crimp" style="vertical-align: middle;">
+                            Counterpart Checking and Re-Crimp
+                        </label>
                     </div>
                 </div>
-                <div class="row mt-3" id="counterpart_checking_fields" style="display: none;">
+                <div class="row mt-3 mb-4" id="counterpart_checking_fields" style="display: none;">
                     <!-- counterpart checking -->
+                    <div class="col-12">
+                        <label>FOR COUNTERPART CHECKING</label>
+                    </div>
                     <div class="col-3">
                         <label style="font-weight: normal;color: #000;">Remarks 1</label>
                         <label style="color:#CA3F3F;">*</label>
@@ -317,11 +325,15 @@
                         <label style="font-weight: normal;color: #000;">Verified by (QA FSP)</label>
                         <label style="color:#CA3F3F;">*</label>
                         <input type="text" id="cc_name" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;" readonly>
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
+                            readonly>
                     </div>
                 </div>
                 <div class="row mt-3" id="recrimp_fields" style="display: none;">
                     <!-- recrimp -->
+                    <div class="col-12">
+                        <label>FOR RE-CRIMP</label>
+                    </div>
                     <div class="col-sm-4">
                         <label style="font-weight: normal;color: #000;">Remarks</label>
                         <label style="color:#CA3F3F;">*</label>
@@ -343,7 +355,8 @@
                         <label style="font-weight: normal;color: #000;">Re-crimped by PD (FSP)</label>
                         <label style="color:#CA3F3F;">*</label>
                         <input type="text" id="recrimp_pd_name" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;" readonly>
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
+                            readonly>
                     </div>
                 </div>
                 <div class="row mt-3" id="recrimp_2_fields" style="display: none;">
@@ -358,11 +371,15 @@
                         <label style="font-weight: normal;color: #000;">Verified by QA (FSP)</label>
                         <label style="color:#CA3F3F;">*</label>
                         <input type="text" id="recrimp_qa_name" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;" readonly>
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
+                            readonly>
                     </div>
                 </div>
                 <div class="row mt-3" id="reassy_fields" style="display: none;">
                     <!-- reassy/reinsert -->
+                    <div class="col-12">
+                        <label>FOR RE-ASSY / RE-INSERT</label>
+                    </div>
                     <div class="col-sm-3">
                         <label style="font-weight: normal;color: #000;">Remarks</label>
                         <label style="color:#CA3F3F;">*</label>
@@ -390,7 +407,8 @@
                         <label style="font-weight: normal;color: #000;">Confirmed by PD (FAP)</label>
                         <label style="color:#CA3F3F;">*</label>
                         <input type="text" id="reassy_name" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;" readonly>
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
+                            readonly>
                     </div>
                 </div>
                 <input type="hidden" id="admin_defect_id_3">
