@@ -91,7 +91,7 @@ if ($method == 'fetch_opt_portion_treatment_pd') {
 }
 
 if ($method == 'update_badge_count') {
-    $query = "SELECT COUNT(id) AS total FROM t_defect_record_f WHERE pending_status = 'Pending'";
+    $query = "SELECT COUNT(id) AS total FROM t_defect_record_f WHERE pending_status = 'Pending' OR pending_status = ''";
         $stmt = $conn->prepare($query);
         $stmt->execute();
         $count = $stmt->fetchColumn();

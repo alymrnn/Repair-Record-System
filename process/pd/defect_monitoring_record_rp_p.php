@@ -679,18 +679,29 @@ if ($method == 'load_defect_table_data') {
             // $harness_repair = $row['harness_repair'];
             // $highlight_class = ($harness_repair == 'Verified') ? 'highlight-green' : (($harness_repair == 'Pending') ? 'highlight-red' : '');
 
-
             $harness_repair = $row['harness_repair'];
             $harness_status = $row['harness_status'];
 
+            $remarks_recrimp = $row['remarks_recrimp'];
+            $remarks_1_cc = $row['remarks_1_cc'];
+            $remarks_reassy = $row['remarks_reassy'];
+
             $highlight_class = '';
 
-            if ($harness_repair == 'Pending' && in_array($harness_status, ['Re-assy', 'Re-crimp', 'Re-insertion', 'Re-inspection'])) {
-                $highlight_class = 'highlight-red';
-            } elseif ($harness_repair == 'Verified') {
-                $highlight_class = 'highlight-green';
-            } elseif ($harness_status == 'Counterpart Checking') {
-                $highlight_class = 'highlight-gray';
+            if ($harness_repair == 'Verified') {
+                if ($remarks_recrimp != 'NO GOOD' && $remarks_1_cc != 'NO GOOD' && $remarks_reassy != 'NO GOOD') {
+                    $highlight_class = 'highlight-green';
+                } else {
+                    $highlight_class = 'highlight-red';
+                }
+            } elseif ($harness_repair == 'Pending' && in_array($harness_status, ['Re-assy', 'Re-crimp', 'Re-insertion', 'Counterpart Checking', 'Counterpart Checking and Re-crimp'])) {
+                if ($remarks_recrimp == 'NO GOOD' || $remarks_1_cc == 'NO GOOD' || $remarks_reassy == 'NO GOOD') {
+                    $highlight_class = 'highlight-red';
+                } else {
+                    $highlight_class = 'highliaght-red'; 
+                }
+            } else {
+                $highlight_class = ''; 
             }
 
             $onclick_event = ($harness_repair == 'Verified') ? '' : 'onclick="get_update_defect_pdv(\'' . $row['defect_id'] . '\')"';

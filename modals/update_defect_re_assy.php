@@ -281,12 +281,12 @@
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;" readonly>
                     </div>
                     <div class="col-sm-3">
-                        <label style="font-weight: normal;color: #000;">ID No. QA FSP</label>
+                        <label style="font-weight: normal;color: #000;">ID No. QA (FSP)</label>
                         <input type="text" id="cc_id_no_re_update" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;" readonly>
                     </div>
                     <div class="col-sm-3">
-                        <label style="font-weight: normal;color: #000;">Verified by (QA FSP)</label>
+                        <label style="font-weight: normal;color: #000;">Verified by QA (FSP)</label>
                         <input type="text" id="cc_name_re_update" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;" readonly>
                     </div>

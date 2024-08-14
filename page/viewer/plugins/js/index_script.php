@@ -1,8 +1,8 @@
 <script type="text/javascript">
     $(document).ready(function () {
-        var currentDate = new Date().toISOString().split('T')[0];
-        $('#date_from_search_v_defect').val(currentDate);
-        $('#date_to_search_v_defect').val(currentDate);
+        // var currentDate = new Date().toISOString().split('T')[0];
+        // $('#date_from_search_v_defect').val(currentDate);
+        // $('#date_to_search_v_defect').val(currentDate);
 
         load_viewer_defect_table(1);
         fetch_opt_search_v_defect_category();

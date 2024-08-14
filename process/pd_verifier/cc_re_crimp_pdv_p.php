@@ -6,7 +6,7 @@ include '../conn.php';
 $method = $_POST['method'];
 
 if ($method == 'update_badge_count_for_cc_re_crimp') {
-    $query = "SELECT COUNT(id) AS total FROM t_defect_record_f WHERE harness_status = 'Counterpart Checking and Re-crimp' AND (remarks_recrimp = '' OR remarks_1_cc = '') AND reassy_date IS NULL";
+    $query = "SELECT COUNT(id) AS total FROM t_defect_record_f WHERE harness_status = 'Counterpart Checking and Re-crimp' AND ((remarks_recrimp = '' OR remarks_1_cc = '') AND (remarks_recrimp = 'GOOD' OR remarks_1_cc = 'GOOD')) AND reassy_date IS NULL";
     $stmt = $conn->prepare($query);
     $stmt->execute();
     $count = $stmt->fetchColumn();
