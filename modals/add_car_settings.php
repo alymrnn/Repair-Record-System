@@ -15,52 +15,52 @@
                 <div class="row">
                     <div class="col-4">
                         <label style="font-weight: normal;">Car Maker</label>
-                        <input id="car_maker_qr" style="width: 100%; text-align: center;" type="text">
+                        <input class="form-control" class="form-control" id="car_maker_qr" style="width: 100%; text-align: center;" type="text">
                     </div>
                     <div class="col-4">
-                        <label style="font-weight: normal;">Car Model</label>
-                        <input id="car_model_qr" style="width: 100%; text-align: center;" type="text">
+                        <label style="font-weight: normal;">Car Model Setting</label>
+                        <input class="form-control" id="car_model_qr" style="width: 100%; text-align: center;" type="text">
                     </div>
                     <div class="col-4">
                         <label style="font-weight: normal;">Car Value</label>
-                        <input id="car_value_qr" style="width: 100%; text-align: center;" type="int">
+                        <input class="form-control" id="car_value_qr" style="width: 100%; text-align: center;" type="int">
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-4">
                         <label style="font-weight: normal;">Total Length</label>
-                        <input id="total_length_qr" style="width: 100%; text-align: center;" type="int">
+                        <input class="form-control" id="total_length_qr" style="width: 100%; text-align: center;" type="int">
                     </div>
                     <div class="col-4">
                         <label style="font-weight: normal;">Product Name Start</label>
-                        <input id="pro_name_start_qr" style="width: 100%; text-align: center;" type="int">
+                        <input class="form-control" id="pro_name_start_qr" style="width: 100%; text-align: center;" type="int">
                     </div>
                     <div class="col-4">
                         <label style="font-weight: normal;">Product Name Length</label>
-                        <input id="pro_name_length_qr" style="width: 100%; text-align: center;" type="int">
+                        <input class="form-control" id="pro_name_length_qr" style="width: 100%; text-align: center;" type="int">
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-6">
                         <label style="font-weight: normal;">Lot No. Start</label>
-                        <input id="lot_no_start_qr" style="width: 100%; text-align: center;" type="int">
+                        <input class="form-control" id="lot_no_start_qr" style="width: 100%; text-align: center;" type="int">
                     </div>
                     <div class="col-6">
                         <label style="font-weight: normal;">Lot No. Length</label>
-                        <input id="lot_no_length_qr" style="width: 100%; text-align: center;" type="int">
+                        <input class="form-control" id="lot_no_length_qr" style="width: 100%; text-align: center;" type="int">
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-6">
                         <label style="font-weight: normal;">Serial No. Start</label>
-                        <input id="serial_no_start_qr" style="width: 100%; text-align: center;" type="int">
+                        <input class="form-control" id="serial_no_start_qr" style="width: 100%; text-align: center;" type="int">
                     </div>
                     <div class="col-6">
                         <label style="font-weight: normal;">Serial No. Length</label>
-                        <input id="serial_no_length_qr" style="width: 100%; text-align: center;" type="int">
+                        <input class="form-control" id="serial_no_length_qr" style="width: 100%; text-align: center;" type="int">
                     </div>
                 </div>
             </div>

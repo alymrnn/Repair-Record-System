@@ -21,6 +21,7 @@
         var car_maker = document.getElementById('car_maker_qr').value;
         var car_model = document.getElementById('car_model_qr').value;
         var car_value = document.getElementById('car_value_qr').value;
+        var total_length = document.getElementById('total_length_qr').value;
         var pro_name_start = document.getElementById('pro_name_start_qr').value;
         var pro_name_length = document.getElementById('pro_name_length_qr').value;
         var lot_no_start = document.getElementById('lot_no_start_qr').value;
@@ -33,14 +34,14 @@
                 icon: 'info',
                 title: 'Please input car maker.',
                 showConfirmButton: false,
-                timer: 2000
+                timer: 1500
             });
         } else if (car_value == '') {
             Swal.fire({
                 icon: 'info',
                 title: 'Please input car value.',
                 showConfirmButton: false,
-                timer: 2000
+                timer: 1500
             });
         } 
         else {
@@ -53,6 +54,7 @@
                     car_maker: car_maker,
                     car_model: car_model,
                     car_value: car_value,
+                    total_length: total_length,
                     pro_name_start: pro_name_start,
                     pro_name_length: pro_name_length,
                     lot_no_start: lot_no_start,
@@ -67,11 +69,12 @@
                             title: 'QR Settings Added',
                             text: 'Success',
                             showConfirmButton: false,
-                            timer: 2000
+                            timer: 1500
                         });
                         $('#car_maker_qr').val('');
                         $('#car_model_qr').val('');
                         $('#car_value_qr').val('');
+                        $('#total_length_qr').val('');
                         $('#pro_name_start_qr').val('');
                         $('#pro_name_length_qr').val('');
                         $('#lot_no_start_qr').val('');
@@ -85,14 +88,14 @@
                             icon: 'info',
                             title: 'Duplicate Data',
                             showConfirmButton: false,
-                            timer: 2000
+                            timer: 1500
                         });
                     } else {
                         Swal.fire({
                             icon: 'error',
                             title: 'Error',
                             showConfirmButton: false,
-                            timer: 2000
+                            timer: 1500
                         });
                     }
                 }
@@ -106,17 +109,19 @@
         var car_maker = string[1];
         var car_model = string[2];
         var car_value = string[3];
-        var pro_name_start = string[4];
-        var pro_name_length = string[5];
-        var lot_no_start = string[6];
-        var lot_no_length = string[7];
-        var serial_no_start = string[8];
-        var serial_no_length = string[9];
+        var total_length = string[4];
+        var pro_name_start = string[5];
+        var pro_name_length = string[6];
+        var lot_no_start = string[7];
+        var lot_no_length = string[8];
+        var serial_no_start = string[9];
+        var serial_no_length = string[10];
 
         document.getElementById('id_qr_update').value = id;
         document.getElementById('car_maker_qr_update').value = car_maker;
         document.getElementById('car_model_qr_update').value = car_model;
         document.getElementById('car_value_qr_update').value = car_value;
+        document.getElementById('total_length_qr_update').value = total_length;
         document.getElementById('pro_name_start_qr_update').value = pro_name_start;
         document.getElementById('pro_name_length_qr_update').value = pro_name_length;
         document.getElementById('lot_no_start_qr_update').value = lot_no_start;
@@ -130,6 +135,7 @@
         var car_maker = document.getElementById('car_maker_qr_update').value;
         var car_model = document.getElementById('car_model_qr_update').value;
         var car_value = document.getElementById('car_value_qr_update').value;
+        var total_length = document.getElementById('total_length_qr_update').value;
         var pro_name_start = document.getElementById('pro_name_start_qr_update').value;
         var pro_name_length = document.getElementById('pro_name_length_qr_update').value;
         var lot_no_start = document.getElementById('lot_no_start_qr_update').value;
@@ -147,6 +153,7 @@
                 car_maker: car_maker,
                 car_model: car_model,
                 car_value: car_value,
+                total_length: total_length,
                 pro_name_start: pro_name_start,
                 pro_name_length: pro_name_length,
                 lot_no_start: lot_no_start,
@@ -159,19 +166,19 @@
                     Swal.fire({
                         icon: 'success',
                         title: 'QR Settings Updated',
-                        text: 'Success',
                         showConfirmButton: false,
-                        timer: 2000
+                        timer: 1500
                     });
-                    $('#car_maker_qr').val('');
-                    $('#car_model_qr').val('');
-                    $('#car_value_qr').val('');
-                    $('#pro_name_start_qr').val('');
-                    $('#pro_name_length_qr').val('');
-                    $('#lot_no_start_qr').val('');
-                    $('#lot_no_length_qr').val('');
-                    $('#serial_no_start_qr').val('');
-                    $('#serial_no_length_qr').val('');
+                    $('#car_maker_qr_update').val('');
+                    $('#car_model_qr_update').val('');
+                    $('#car_value_qr_update').val('');
+                    $('#total_length_qr_update').val('');
+                    $('#pro_name_start_qr_update').val('');
+                    $('#pro_name_length_qr_update').val('');
+                    $('#lot_no_start_qr_update').val('');
+                    $('#lot_no_length_qr_update').val('');
+                    $('#serial_no_start_qr_update').val('');
+                    $('#serial_no_length_qr_update').val('');
                     load_car_settings();
                     $('#update_car_settings').modal('hide');
                 } else {
@@ -179,7 +186,7 @@
                         icon: 'error',
                         title: 'Error',
                         showConfirmButton: false,
-                        timer: 2000
+                        timer: 1500
                     });
                 }
             }
@@ -203,7 +210,7 @@
                         icon: 'info',
                         title: 'QR Settings Deleted',
                         showConfirmButton: false,
-                        timer: 2000
+                        timer: 1500
                     });
                     load_car_settings();
                     $('#update_car_settings').modal('hide');
@@ -212,7 +219,7 @@
                         icon: 'error',
                         title: 'Error',
                         showConfirmButton: false,
-                        timer: 2000
+                        timer: 1500
                     });
                 }
             }

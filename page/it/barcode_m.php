@@ -59,8 +59,9 @@
                                 <!-- table switching content -->
                                 <th style="width: 10%;">#</th>
                                 <th style="width: 10%;">Car Maker</th>
-                                <th style="width: 10%;">Car Model</th>
+                                <th style="width: 10%;">Car Model Setting</th>
                                 <th style="width: 10%;">Car Value</th>
+                                <th style="width: 10%;">Total Length</th>
                                 <th style="width: 10%;">Product Name Start</th>
                                 <th style="width: 10%;">Product Name Length</th>
                                 <th style="width: 10%;">Lot No. Start</th>

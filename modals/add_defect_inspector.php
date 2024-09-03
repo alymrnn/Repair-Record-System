@@ -112,13 +112,31 @@
                         <!-- car maker -->
                         <label style="font-weight: normal;color: #000;">Car Maker</label>
                         <label style="color:#CA3F3F">*</label>
-                        <input name="car_maker_qa" id="car_maker_qa" onchange="handleCarMakerChange(this)"
-                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #F1F1F1;height:34px; width:100%;"
-                            class="pl-2" disabled>
+                        <!-- <input list="carMakerList" placeholder="Select the car maker" name="car_maker" id="car_maker"
+                            onchange="handleCarMakerChange(this)" autocomplete="off"
+                            style=" color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="pl-2" required> -->
+                        <!-- <datalist id="carMakerList">
+                        </datalist> -->
+
+                        <input name="car_maker" id="car_maker_qa" onchange="handleCarMakerChange(this)"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #F1F1F1;height:34px; width:100%;"
+                            class="pl-2 form-control" readonly>
                         <span id="carMakerError" class="error-message" style="display:none; color:#CA3F3F;">Car Maker
                             field is required.</span>
                     </div>
-                    <div class="col-sm-10">
+                    <div class="col-sm-2">
+                        <!-- car maker -->
+                        <label style="font-weight: normal;color: #000;">Car Model Setting</label>
+                        <label style="color:#CA3F3F">*</label>
+
+                        <select name="car_model" id="car_model_qa" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="form-control pl-2" required>
+                            <option value="" disabled selected>Select car model</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-8">
                         <!-- qr scanning -->
                         <label style="font-weight: normal;color: #000;">Scan QR-Code</label>
                         <!-- <label style="color:#CA3F3F">*</label> -->
