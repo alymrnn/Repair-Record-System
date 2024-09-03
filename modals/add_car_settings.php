@@ -30,7 +30,7 @@
                 <div class="row">
                     <div class="col-4">
                         <label style="font-weight: normal;">Total Length</label>
-                        <input id="pro_name_start_qr" style="width: 100%; text-align: center;" type="int">
+                        <input id="total_length_qr" style="width: 100%; text-align: center;" type="int">
                     </div>
                     <div class="col-4">
                         <label style="font-weight: normal;">Product Name Start</label>

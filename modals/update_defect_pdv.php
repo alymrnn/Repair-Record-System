@@ -236,7 +236,7 @@
                     </div>
                     <div class="col-sm-4">
                         <!-- connector cavity -->
-                        <label style="font-weight: normal;color: #000;">Connector Cavity</label>
+                        <label style="font-weight: normal;color: #000;">Connector Cavity / Color</label>
                         <input type="text" id="connector_cavity_pdv_update" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>

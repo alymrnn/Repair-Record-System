@@ -50,7 +50,7 @@ $headers = array(
     'NG Measurement',
     'Wire Type',
     'Wire Size',
-    'Connector Cavity',
+    'Connector Cavity / Color',
     'Detail in Content of Defect',
     'Treatment Content of Defect',
     'Harness Status after Repair',

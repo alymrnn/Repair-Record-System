@@ -48,7 +48,8 @@
                         <!-- issue no of tag -->
                         <label style="font-weight: normal;color: #000;">Issue No. of Tag</label>
                         <input type="text" id="issue_tag_pd_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            disabled>
                     </div>
                     <div class="col-sm-3">
                         <!-- repairing date -->
@@ -61,10 +62,11 @@
                     <div class="col-sm-2">
                         <!-- car maker -->
                         <label style="font-weight: normal;color: #000;">Car Maker</label>
+                        <label style="color:#EA9515">*</label>
                         <input list="carMakerList" placeholder="Select the car maker" name="car_maker"
                             id="car_maker_pd_update" onchange="handleCarMakerChange(this)" autocomplete="off"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
-                            class="pl-2">
+                            class="pl-2 form-control">
                         <datalist id="carMakerList"></datalist>
                     </div>
                     <div class="col-sm-4">
@@ -92,18 +94,27 @@
                     <div class="col-sm-4">
                         <!-- discovery process -->
                         <label style="font-weight: normal;color: #000;">Discovery Process</label>
-                        <input type="text" id="discovery_process_pd_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                        <label style="color:#EA9515">*</label>
+                        <!-- <input type="text" id="discovery_process_pd_update" class="form-control" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"> -->
+
+                        <select name="discovery_process_pd_update" id="discovery_process_pd_update" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="pl-2 form-control" required>
+                            <option value="" disabled selected>Select discovery process</option>
+                        </select>
                     </div>
                     <div class="col-sm-4">
                         <!-- discovery id number -->
                         <label style="font-weight: normal;color: #000;">ID Number <i>(Discovery)</i></label>
+                        <label style="color:#EA9515">*</label>
                         <input type="text" id="discovery_id_no_pd_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-4">
                         <!-- discovery person -->
                         <label style="font-weight: normal;color: #000;">Discovery Person</label>
+                        <label style="color:#EA9515">*</label>
                         <input type="text" id="discovery_person_pd_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
@@ -114,27 +125,49 @@
                     <div class="col-sm-3">
                         <!-- occurrence process -->
                         <label style="font-weight: normal;color: #000;">Occurrence Process</label>
-                        <input type="text" id="occurrence_process_pd_dr_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                        <label style="color:#EA9515">*</label>
+                        <!-- <input type="text" id="occurrence_process_pd_dr_update" class="form-control" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"> -->
+
+                        <select name="occurrence_process_pd_dr_update" id="occurrence_process_pd_dr_update"
+                            autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="pl-2 form-control" required>
+                            <option value="" disabled selected>Select occurrence process</option>
+                        </select>
                     </div>
                     <div class="col-sm-3">
                         <!-- occurrence shift -->
                         <label style="font-weight: normal;color: #000;">Occurrence Shift</label>
-                        <input list="occurrenceShiftDrList" name="occurrence_shift_pd_update"
+                        <label style="color:#EA9515">*</label>
+
+                        <!-- <input list="occurrenceShiftDrList" name="occurrence_shift_pd_update"
                             id="occurrence_shift_pd_update"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2">
-                        <datalist id="occurrenceShiftDrList"></datalist>
+                        <datalist id="occurrenceShiftDrList"></datalist> -->
+
+                        <select name="occurrence_shift_pd_update" id="occurrence_shift_pd_update" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="form-control pl-2" required>
+                            <option value="" disabled selected>Select occurrence shift</option>
+                            <option value="A">A</option>
+                            <option value="ADS">ADS</option>
+                            <option value="B">B</option>
+                            <option value="N/A">N/A</option>
+                        </select>
                     </div>
                     <div class="col-sm-3">
                         <!-- occurrence id number -->
                         <label style="font-weight: normal;color: #000;">ID Number <i>(Occurrence)</i></label>
+                        <label style="color:#EA9515">*</label>
                         <input type="text" id="occurrence_id_no_pd_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-3">
                         <!-- occurrence person -->
                         <label style="font-weight: normal;color: #000;">Occurrence Person</label>
+                        <label style="color:#EA9515">*</label>
                         <input type="text" id="occurrence_person_pd_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
@@ -145,26 +178,48 @@
                     <div class="col-sm-3">
                         <!-- outflow process -->
                         <label style="font-weight: normal;color: #000;">Outflow Process</label>
-                        <input type="text" id="outflow_process_pd_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                        <label style="color:#EA9515">*</label>
+                        <!-- <input type="text" id="outflow_process_pd_update" class="form-control" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"> -->
+
+                        <select name="outflow_process_pd_update" id="outflow_process_pd_update" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="pl-2 form-control" required>
+                            <option value="" disabled selected>Select outflow process</option>
+                        </select>
+
                     </div>
                     <div class="col-sm-3">
                         <!-- outflow shift -->
                         <label style="font-weight: normal;color: #000;">Outflow Shift</label>
-                        <input list="outflowShiftDrList" name="outflow_shift_dr" id="outflow_shift_pd_update"
+                        <label style="color:#EA9515">*</label>
+
+                        <!-- <input list="outflowShiftDrList" name="outflow_shift_dr" id="outflow_shift_pd_update"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2">
-                        <datalist id="outflowShiftDrList"></datalist>
+                        <datalist id="outflowShiftDrList"></datalist> -->
+
+                        <select name="outflow_shift_pd_update" id="outflow_shift_pd_update" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="form-control pl-2" required>
+                            <option value="" disabled selected>Select outflow shift</option>
+                            <option value="A">A</option>
+                            <option value="ADS">ADS</option>
+                            <option value="B">B</option>
+                            <option value="N/A">N/A</option>
+                        </select>
                     </div>
                     <div class="col-sm-3">
                         <!-- outflow id number -->
                         <label style="font-weight: normal;color: #000;">ID Number <i>(Outflow)</i></label>
+                        <label style="color:#EA9515">*</label>
                         <input type="text" id="outflow_id_no_pd_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-3">
                         <!-- outflow person -->
                         <label style="font-weight: normal;color: #000;">Outflow Person</label>
+                        <label style="color:#EA9515">*</label>
                         <input type="text" id="outflow_person_pd_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
@@ -175,18 +230,27 @@
                     <div class="col-sm-3">
                         <!-- defect category -->
                         <label style="font-weight: normal;color: #000;">Defect Category</label>
-                        <input type="text" id="defect_category_pd_dr_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                        <label style="color:#EA9515">*</label>
+                        <!-- <input type="text" id="defect_category_pd_dr_update" class="form-control" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"> -->
+
+                        <select name="defect_category_pd_dr_update" id="defect_category_pd_dr_update" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="pl-2 form-control" required>
+                            <option value="" disabled selected>Select defect category</option>
+                        </select>
                     </div>
                     <div class="col-sm-2">
                         <!-- sequence number -->
                         <label style="font-weight: normal;color: #000;">Sequence Number</label>
+                        <label style="color:#EA9515">*</label>
                         <input type="text" id="sequence_no_pd_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-2">
                         <!-- assy board number -->
                         <label style="font-weight: normal;color: #000;">Assy Board Number</label>
+                        <label style="color:#EA9515">*</label>
                         <input type="text" id="assy_board_no_pd_update" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             required>
@@ -194,16 +258,57 @@
                     <div class="col-sm-2">
                         <!-- cause of defect -->
                         <label style="font-weight: normal;color: #000;">Cause of Defect</label>
-                        <input list="defectCauseDrList" name="defect_cause_dr" id="defect_cause_pd_update"
+                        <label style="color:#EA9515">*</label>
+                        <!-- <input list="defectCauseDrList" name="defect_cause_dr" id="defect_cause_pd_update"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2">
-                        <datalist id="defectCauseDrList"></datalist>
+                        <datalist id="defectCauseDrList"></datalist> -->
+
+                        <select name="defect_cause_pd_update" id="defect_cause_pd_update" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="pl-2 form-control" required>
+                            <option value="" disabled selected>Select cause of defect</option>
+                        </select>
                     </div>
                     <div class="col-sm-3">
                         <!-- repair person -->
                         <label style="font-weight: normal;color: #000;">Dis-assembled by:</label>
-                        <input type="text" id="repair_person_pd_update" class="form-control" autocomplete="off"
+                        <label style="color:#EA9515">*</label>
+                        <!-- <input type="text" id="repair_person_pd_update" class="form-control" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"> -->
+
+                        <select name="repair_person_pd_update" id="repair_person_pd_update" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="pl-2 form-control" required>
+                            <option value="" disabled selected>Select repair person</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="foreign_material_details" class="row p-1 mt-3"
+                    style="border-top: 1px solid #DDD; border-bottom: 1px solid #DDD;">
+                    <div class="col-sm-3">
+                        <label style="font-weight: normal;color: #000;">Details <p style="font-size:13px;"><i>for
+                                    Foreign Material only</i></p></label>
+                        <label style="color:#EA9515">*</label>
+                        <input type="text" id="defect_categ_foreign_mat_update" class="form-control pl-3"
+                            autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                    </div>
+                    <div class="col-sm-3 mb-2">
+                        <label style="font-weight: normal;color: #000;">Category <p style="font-size:13px;"><i>for
+                                    Foreign Material only</i></p></label>
+                        <label style="color:#EA9515">*</label>
+                        <select name="defect_categ_foreign_mat_2" id="defect_categ_foreign_mat_2_update"
+                            autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="form-control pl-2" required>
+                            <option value="" disabled selected>----</option>
+                            <option value="Inside Conn">Inside Conn</option>
+                            <option value="Inside Terminal">Inside Terminal</option>
+                            <option value="Outside Portion">Outside Portion</option>
+                            <option value="N/A">N/A</option>
+                        </select>
                     </div>
                 </div>
                 <br>
@@ -241,7 +346,7 @@
                     </div>
                     <div class="col-sm-4">
                         <!-- connector cavity -->
-                        <label style="font-weight: normal;color: #000;">Connector Cavity</label>
+                        <label style="font-weight: normal;color: #000;">Connector Cavity / Color</label>
                         <label style="color:#EA9515">*</label>
                         <input type="text" id="connector_cavity_pd_update" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
@@ -252,10 +357,10 @@
                     <div class="col-sm-4">
                         <!-- detail in content of defect -->
                         <label style="font-weight: normal;color: #000;">Detail in Content of Defect</label>
+                        <label style="color:#EA9515">*</label>
                         <textarea type="text" id="detail_content_defect_pd_update" class="textarea form-control"
                             autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:65px; width:100%;"
-                            readonly></textarea>
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:65px; width:100%;"></textarea>
                     </div>
                     <div class="col-sm-4">
                         <!-- treatment content of defect -->
@@ -268,8 +373,15 @@
                     <div class="col-sm-4">
                         <!-- harness status after repair -->
                         <label style="font-weight: normal;color: #000;">Harness Status after Repair</label>
-                        <input type="text" id="harness_status_pd_update" class="form-control" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                        <label style="color:#EA9515">*</label>
+                        <!-- <input type="text" id="harness_status_pd_update" class="form-control" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"> -->
+
+                        <select name="harness_status_pd_update" id="harness_status_pd_update" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="pl-2 form-control" required>
+                            <option value="" disabled selected>Select line no.</option>
+                        </select>
                     </div>
                 </div>
                 <br>
@@ -311,22 +423,51 @@
                     <div class="col-sm-4">
                         <!-- defect category mancost -->
                         <label style="font-weight: normal;color: #000;">Defect Category</label>
-                        <input id="defect_category_pd_mc_update" class="form-control" autocomplete="off"
+                        <label style="color:#EA9515">*</label>
+                        <!-- <input id="defect_category_pd_mc_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
-                            class="pl-2">
+                            class="pl-2"> -->
+
+                        <select name="defect_category_pd_mc_update" id="defect_category_pd_mc_update" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="pl-2 form-control" required>
+                            <option value="" disabled selected>Select defect category</option>
+                        </select>
+
+                        <label class="p-0 m-0" style="font-size: 12px;font-weight: normal;"><i>Applicable if the value
+                                above is OTHERS</i></label>
+
+                        <input type="text" id="others_defect_category_pd_mc_update"
+                            name="others_defect_category_pd_mc_update" placeholder="If others, please specify"
+                            class="form-control mt-1"
+                            style="color: #525252; font-size: 15px; border-radius: .25rem; background: #FFF; height:34px; width:100%;">
                     </div>
                     <div class="col-sm-4">
                         <!-- occurrence process mancost -->
                         <label style="font-weight: normal;color: #000;">Occurrence Process</label>
-                        <input id="occurrence_process_pd_mc_update" class="form-control" autocomplete="off"
+                        <label style="color:#EA9515">*</label>
+                        <!-- <input id="occurrence_process_pd_mc_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
-                            class="pl-2">
+                            class="pl-2"> -->
+
+                        <select name="occurrence_process_pd_mc_update" id="occurrence_process_pd_mc_update"
+                            autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="pl-2 form-control" required>
+                            <option value="" disabled selected>Select occurrence process</option>
+                        </select>
+
+                        <label class="p-0 m-0" style="font-size: 12px;font-weight: normal;"><i>Applicable if the value
+                                above is OTHERS</i></label>
+                        <input type="text" id="others_occurrence_process_pd_mc_update"
+                            name="others_occurrence_process_pd_mc_update" placeholder="If others, please specify"
+                            class="form-control mt-1"
+                            style="color: #525252; font-size: 15px; border-radius: .25rem; background: #FFF; height:34px; width:100%;">
                     </div>
                     <div class="col-sm-4">
                         <!-- parts removed -->
                         <label style="font-weight: normal;color: #000;">Parts Removed</label>
                         <label style="color:#EA9515">*</label>
-
                         <input type="text" id="parts_removed_pd_update" oninput="fetchUnitCostUpdate()"
                             class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
@@ -363,9 +504,24 @@
                     <div class="col-sm-3">
                         <!-- repaired portion treatment -->
                         <label style="font-weight: normal;color: #000;">Repaired Portion Treatment</label>
-                        <input id="portion_treatment_pd_update" class="form-control" autocomplete="off"
+                        <label style="color:#EA9515">*</label>
+
+                        <!-- <input id="portion_treatment_pd_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
-                            class="pl-2">
+                            class="pl-2"> -->
+
+                        <select name="portion_treatment_pd_update" id="portion_treatment_pd_update" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="pl-2 form-control" required>
+                            <option value="" disabled selected>Select repaired portion treatment</option>
+                        </select>
+
+                        <label class="p-0 m-0" style="font-size: 12px;font-weight: normal;"><i>Applicable if the value
+                                above is OTHERS</i></label>
+                        <input type="text" id="other_portion_treatment_mc_update"
+                            name="other_portion_treatment_mc_update" placeholder="If others, please specify"
+                            class="form-control mt-1"
+                            style="color: #525252; font-size: 15px; border-radius: .25rem; background: #FFF; height:34px; width:100%;">
                     </div>
                     <input type="hidden" id="admin_defect_id_2">
                     <!-- <input type="hidden" id="mancost_id_pd_update"> -->

@@ -180,7 +180,7 @@
                                 <th>NG Measurement</th>
                                 <th>Wire Type</th>
                                 <th>Wire Size</th>
-                                <th>Connector Cavity</th>
+                                <th>Connector Cavity / Color</th>
                                 <th>Detail in Content of Defect</th>
                                 <th>Treatment Content of Defect</th>
                                 <th>Dis-assembled/Dis-inserted by:</th>

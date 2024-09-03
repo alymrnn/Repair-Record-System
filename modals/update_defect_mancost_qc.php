@@ -285,7 +285,7 @@
                     </div>
                     <div class="col-sm-4">
                         <!-- connector cavity -->
-                        <label style="font-weight: normal;color: #000;">Connector Cavity</label>
+                        <label style="font-weight: normal;color: #000;">Connector Cavity / Color</label>
                         <input type="text" id="connector_cavity_mc_update" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
                             disabled>
@@ -431,6 +431,7 @@
                             <option value="" selected disabled>Select verification</option>
                             <option value="GOOD">GOOD</option>
                             <option value="NO GOOD">NO GOOD</option>
+                            <option value="N/A">N/A</option>
                         </select>
                         <span id="qcVeriMcError" class="error-message" style="display:none; color:#CA3F3F;">QC
                             Verification field is required.</span>

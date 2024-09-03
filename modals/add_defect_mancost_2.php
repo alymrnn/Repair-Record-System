@@ -96,6 +96,10 @@
                         <span id="defectCategoryMcError" class="error-message"
                             style="display:none; color:#CA3F3F;">Defect Category field is required.</span>
 
+                        <input type="text" id="other_defect_category_mc" name="other_defect_category_mc"
+                            placeholder="Please specify" class="form-control mt-1"
+                            style="display:none; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+
                     </div>
                     <div class="col-sm-4">
                         <!-- occurrence process mancost -->
@@ -114,6 +118,10 @@
                         </select>
                         <span id="occurrenceProcessMcError" class="error-message"
                             style="display:none; color:#CA3F3F;">Occurrence Process field is required.</span>
+
+                        <input type="text" id="other_occurrence_process_mc" name="other_occurrence_process_mc"
+                            placeholder="Please specify" class="form-control mt-1"
+                            style="display:none; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-4">
                         <!-- parts removed -->
@@ -137,7 +145,7 @@
                         <label style="font-weight: normal;color: #000;">Quantity</label>
                         <label style="color:#CA3F3F">*</label>
                         <input type="int" id="quantity_mc" oninput="qty_cost_product()" class="form-control pl-3"
-                            autocomplete="off"
+                            value="1" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             required>
                         <input type="hidden" id="na_quantity" name="na_quantity">
@@ -181,6 +189,10 @@
                         </select>
                         <span id="portionTreatmentMcError" class="error-message"
                             style="display:none; color:#CA3F3F;">Repaired Portion Treatment field is required.</span>
+
+                        <input type="text" id="other_portion_treatment_mc" name="other_portion_treatment_mc"
+                            placeholder="Please specify" class="form-control mt-1"
+                            style="display:none; color: #525252; font-size: 15px; border-radius: .25rem; background: #FFF; height:34px; width:100%;">
                     </div>
                 </div>
                 <!-- /.end -->
@@ -219,13 +231,16 @@
                             <th>Repair End</th>
                             <th>Time Consumed</th>
                             <th>Defect Category</th>
+                            <th>Others - Defect Category</th>
                             <th>Occurrence Process</th>
+                            <th>Others - Occurrence Process</th>
                             <th>Parts Removed</th>
                             <th>Quantity</th>
                             <th>Unit Cost</th>
                             <th>Material Cost</th>
                             <th>Manhour Cost</th>
                             <th>Repaired Portion Treatment</th>
+                            <th>Others - Repaired Portion Treatment</th>
                         </thead>
                         <tbody class="mb-0" id="list_of_added_mancost">
                             <tr>

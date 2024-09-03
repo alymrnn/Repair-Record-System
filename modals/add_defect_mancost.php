@@ -133,7 +133,18 @@
                         <span id="carMakerError" class="error-message" style="display:none; color:#CA3F3F;">Car Maker
                             field is required.</span>
                     </div>
-                    <div class="col-sm-10">
+                    <div class="col-sm-2">
+                        <!-- car maker -->
+                        <label style="font-weight: normal;color: #000;">Car Model Setting</label>
+                        <label style="color:#CA3F3F">*</label>
+
+                        <select name="car_model" id="car_model" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="form-control pl-2" required>
+                            <option value="" disabled selected>Select car model</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-8">
                         <!-- qr scanning -->
                         <label style="font-weight: normal;color: #000;">Scan QR-Code</label>
                         <!-- <label style="color:#CA3F3F">*</label> -->
@@ -418,10 +429,40 @@
                             Person field is required.</span>
                     </div>
                 </div>
-                <br>
+
+                <div id="foreign_material_details" class="row p-1 mt-3 hidden-defect"
+                    style="border-top: 1px solid #DDD; border-bottom: 1px solid #DDD;">
+                    <div class="col-sm-3">
+                        <label style="font-weight: normal;color: #000;">Details</label>
+                        <label style="color:#CA3F3F">*</label>
+                        <input type="text" id="defect_categ_foreign_mat" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                    </div>
+                    <div class="col-sm-3 mb-2">
+                        <label style="font-weight: normal;color: #000;">Category</label>
+                        <label style="color:#CA3F3F">*</label>
+                        <select name="defect_categ_foreign_mat_2" id="defect_categ_foreign_mat_2" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="form-control pl-2" required>
+                            <option value="" disabled selected>----</option>
+                            <option value="Inside Conn">Inside Conn</option>
+                            <option value="Inside Terminal">Inside Terminal</option>
+                            <option value="Outside Portion">Outside Portion</option>
+                            <option value="N/A">N/A</option>
+                        </select>
+                    </div>
+                </div>
                 <!-- /.end -->
-                <div class="row mb-2">
-                    <div class="col-sm-6">
+                <div class="row mb-2 mt-3">
+                    <div class="col-sm-1"
+                        style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                        <label style="display: flex; align-items: center;">
+                            <input type="checkbox" id="na_value_1" name="na_value_1" value="N/A"
+                                style="margin-right: 5px;" onchange="updateMeasurementFields(this)">
+                            N/A
+                        </label>
+                    </div>
+                    <div class="col-sm-5">
                         <!-- good measurement -->
                         <label style="font-weight: normal;color: #000;">Good Measurement</label>
                         <label style="color:#CA3F3F">*</label>
@@ -443,7 +484,15 @@
                     </div>
                 </div>
                 <div class="row mb-2">
-                    <div class="col-sm-4">
+                    <div class="col-sm-1"
+                        style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                        <label style="display: flex; align-items: center;">
+                            <input type="checkbox" id="na_value_2" name="na_value_2" value="N/A"
+                                style="margin-right: 5px;" onchange="updateWireFields(this)">
+                            N/A
+                        </label>
+                    </div>
+                    <div class="col-sm-3">
                         <!-- type -->
                         <label style="font-weight: normal;color: #000;">Wire Type</label>
                         <label style="color:#CA3F3F">*</label>
@@ -465,7 +514,7 @@
                     </div>
                     <div class="col-sm-4">
                         <!-- connector cavity -->
-                        <label style="font-weight: normal;color: #000;">Connector Cavity</label>
+                        <label style="font-weight: normal;color: #000;">Connector Cavity / Color</label>
                         <label style="color:#CA3F3F">*</label>
                         <input type="text" id="connector_cavity_dr" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
