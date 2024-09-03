@@ -19,6 +19,7 @@
 
     const register_setting = () => {
         var car_maker = document.getElementById('car_maker_qr').value;
+        var car_model = document.getElementById('car_model_qr').value;
         var car_value = document.getElementById('car_value_qr').value;
         var pro_name_start = document.getElementById('pro_name_start_qr').value;
         var pro_name_length = document.getElementById('pro_name_length_qr').value;
@@ -41,49 +42,7 @@
                 showConfirmButton: false,
                 timer: 2000
             });
-        } else if (pro_name_start == '') {
-            Swal.fire({
-                icon: 'info',
-                title: 'Please input product name start.',
-                showConfirmButton: false,
-                timer: 2000
-            });
-        } else if (pro_name_length == '') {
-            Swal.fire({
-                icon: 'info',
-                title: 'Please input product name length.',
-                showConfirmButton: false,
-                timer: 2000
-            });
-        } else if (lot_no_start == '') {
-            Swal.fire({
-                icon: 'info',
-                title: 'Please input lot no. start.',
-                showConfirmButton: false,
-                timer: 2000
-            });
-        } else if (lot_no_length == '') {
-            Swal.fire({
-                icon: 'info',
-                title: 'Please input lot no. length.',
-                showConfirmButton: false,
-                timer: 2000
-            });
-        } else if (serial_no_start == '') {
-            Swal.fire({
-                icon: 'info',
-                title: 'Please input serial no. start.',
-                showConfirmButton: false,
-                timer: 2000
-            });
-        } else if (serial_no_length == '') {
-            Swal.fire({
-                icon: 'info',
-                title: 'Please input serial no. length.',
-                showConfirmButton: false,
-                timer: 2000
-            });
-        }
+        } 
         else {
             $.ajax({
                 url: '../../process/it/barcode_m_p.php',
@@ -92,6 +51,7 @@
                 data: {
                     method: 'register_setting',
                     car_maker: car_maker,
+                    car_model: car_model,
                     car_value: car_value,
                     pro_name_start: pro_name_start,
                     pro_name_length: pro_name_length,
@@ -110,6 +70,7 @@
                             timer: 2000
                         });
                         $('#car_maker_qr').val('');
+                        $('#car_model_qr').val('');
                         $('#car_value_qr').val('');
                         $('#pro_name_start_qr').val('');
                         $('#pro_name_length_qr').val('');
@@ -143,16 +104,18 @@
         var string = param.split('~!~');
         var id = string[0];
         var car_maker = string[1];
-        var car_value = string[2];
-        var pro_name_start = string[3];
-        var pro_name_length = string[4];
-        var lot_no_start = string[5];
-        var lot_no_length = string[6];
-        var serial_no_start = string[7];
-        var serial_no_length = string[8];
+        var car_model = string[2];
+        var car_value = string[3];
+        var pro_name_start = string[4];
+        var pro_name_length = string[5];
+        var lot_no_start = string[6];
+        var lot_no_length = string[7];
+        var serial_no_start = string[8];
+        var serial_no_length = string[9];
 
         document.getElementById('id_qr_update').value = id;
         document.getElementById('car_maker_qr_update').value = car_maker;
+        document.getElementById('car_model_qr_update').value = car_model;
         document.getElementById('car_value_qr_update').value = car_value;
         document.getElementById('pro_name_start_qr_update').value = pro_name_start;
         document.getElementById('pro_name_length_qr_update').value = pro_name_length;
@@ -165,6 +128,7 @@
     const update_setting = () => {
         var id = document.getElementById('id_qr_update').value;
         var car_maker = document.getElementById('car_maker_qr_update').value;
+        var car_model = document.getElementById('car_model_qr_update').value;
         var car_value = document.getElementById('car_value_qr_update').value;
         var pro_name_start = document.getElementById('pro_name_start_qr_update').value;
         var pro_name_length = document.getElementById('pro_name_length_qr_update').value;
@@ -181,6 +145,7 @@
                 method: 'update_setting',
                 id: id,
                 car_maker: car_maker,
+                car_model: car_model,
                 car_value: car_value,
                 pro_name_start: pro_name_start,
                 pro_name_length: pro_name_length,
@@ -199,6 +164,7 @@
                         timer: 2000
                     });
                     $('#car_maker_qr').val('');
+                    $('#car_model_qr').val('');
                     $('#car_value_qr').val('');
                     $('#pro_name_start_qr').val('');
                     $('#pro_name_length_qr').val('');

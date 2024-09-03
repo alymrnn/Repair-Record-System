@@ -1,9 +1,10 @@
 <div class="modal fade bd-example-modal-xl" id="add_car_settings" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content" style="background:#f9f9f9;">
             <div class="modal-header" style="background:#343a40;">
-                <h5 class="modal-title" id="exampleModalLabel" style="font-weight: normal;color: #fff;"><i class="fas fa-plus-circle"></i>&nbsp;
+                <h5 class="modal-title" id="exampleModalLabel" style="font-weight: normal;color: #fff;"><i
+                        class="fas fa-plus-circle"></i>&nbsp;
                     Add New Car Maker QR Settings
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff;">
@@ -12,22 +13,30 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-4">
                         <label style="font-weight: normal;">Car Maker</label>
                         <input id="car_maker_qr" style="width: 100%; text-align: center;" type="text">
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
+                        <label style="font-weight: normal;">Car Model</label>
+                        <input id="car_model_qr" style="width: 100%; text-align: center;" type="text">
+                    </div>
+                    <div class="col-4">
                         <label style="font-weight: normal;">Car Value</label>
                         <input id="car_value_qr" style="width: 100%; text-align: center;" type="int">
                     </div>
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-4">
+                        <label style="font-weight: normal;">Total Length</label>
+                        <input id="pro_name_start_qr" style="width: 100%; text-align: center;" type="int">
+                    </div>
+                    <div class="col-4">
                         <label style="font-weight: normal;">Product Name Start</label>
                         <input id="pro_name_start_qr" style="width: 100%; text-align: center;" type="int">
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                         <label style="font-weight: normal;">Product Name Length</label>
                         <input id="pro_name_length_qr" style="width: 100%; text-align: center;" type="int">
                     </div>

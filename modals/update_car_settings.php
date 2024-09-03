@@ -1,7 +1,7 @@
 <div class="modal fade bd-example-modal-xl" id="update_car_settings" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog" role="document">
-        <div class="modal-content" style="background:#e9e9e9;">
+        <div class="modal-content" style="background:#f9f9f9;">
             <div class="modal-header" style="background:#343a40;">
                 <h5 class="modal-title" id="exampleModalLabel" style="font-weight: normal;color: #fff;">
                     Update Car Maker QR Settings
@@ -13,11 +13,15 @@
             <div class="modal-body">
                 <div class="row">
                     <input type="hidden" id="id_qr_update" class="form-control">
-                    <div class="col-6">
+                    <div class="col-4">
                         <label style="font-weight: normal;">Car Maker</label>
                         <input id="car_maker_qr_update" style="width: 100%; text-align: center;" type="text">
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
+                        <label style="font-weight: normal;">Car Model</label>
+                        <input id="car_model_qr_update" style="width: 100%; text-align: center;" type="text">
+                    </div>
+                    <div class="col-4">
                         <label style="font-weight: normal;">Car Value</label>
                         <input id="car_value_qr_update" style="width: 100%; text-align: center;" type="int">
                     </div>

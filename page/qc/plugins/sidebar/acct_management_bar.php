@@ -27,7 +27,7 @@
           <p class="nav-link">QC</p>
         </li>
         <li class="nav-item mb-1">
-          <a href="defect_monitoring_record.php" class="nav-link active">
+          <a href="defect_monitoring_record.php" class="nav-link">
             <!-- <img src="../../dist/img/files.png" style="height:25px;"> -->
             <i class="far fa-file-alt" style="color: #000"></i>
             <span id="for_veri_qc_badge" class="badge m-0 p-0" style="color: #F00F00; font-size: 14px;"></span>
@@ -40,7 +40,7 @@
           <a href="new_defect_record_qc.php" class="nav-link">
             <img src="../../dist/img/add-post.png" style="height:25px;">
             <p style="font-size:14px; color:black">
-              New Defect Record
+              New Defect Record <br>(Pending in Repair Area)
             </p>
           </a>
         </li>

@@ -1354,16 +1354,35 @@
         });
     }
 
+    // function handleHondaScan() {
+    //     document.getElementById('qr_scan').addEventListener('keyup', function (e) {
+    //         if (e.which === 13) {
+    //             e.preventDefault();
+    //             var qrCode = this.value;
+    //             if (qrCode.length === 50) {
+    //                 document.getElementById('product_name').value = qrCode.substring(10, 35);
+    //                 document.getElementById('lot_no').value = qrCode.substring(35, 41);
+    //                 document.getElementById('serial_no').value = qrCode.substring(41, 50);
+
+    //                 this.value = '';
+    //             }
+    //             else {
+
+    //             }
+    //         }
+    //     });
+    // }
+
     function handleHondaScan() {
         document.getElementById('qr_scan').addEventListener('keyup', function (e) {
             if (e.which === 13) {
                 e.preventDefault();
                 var qrCode = this.value;
-                if (qrCode.length === 50) {
-                    document.getElementById('product_name').value = qrCode.substring(10, 35);
-                    document.getElementById('lot_no').value = qrCode.substring(35, 41);
-                    document.getElementById('serial_no').value = qrCode.substring(41, 50);
-
+                if (qrCode.length === 41) {
+                    document.getElementById('product_name').value = qrCode.substring(1, 26);
+                    document.getElementById('lot_no').value = qrCode.substring(26, 32);
+                    document.getElementById('serial_no').value = qrCode.substring(32, 41);
+                    // Clear the qr_scan input field after processing
                     this.value = '';
                 }
                 else {

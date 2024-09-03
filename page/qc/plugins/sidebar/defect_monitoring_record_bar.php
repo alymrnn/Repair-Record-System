@@ -40,7 +40,7 @@
           <a href="new_defect_record_qc.php" class="nav-link">
             <img src="../../dist/img/add-post.png" style="height:25px;">
             <p style="font-size:14px; color:black">
-              New Defect Record
+              New Defect Record <br>(Pending in Repair Area)
             </p>
           </a>
         </li>
