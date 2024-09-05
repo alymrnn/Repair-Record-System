@@ -59,7 +59,7 @@
     });
 
     // Disable all input fields by default
-    $("#line_no_qa, #line_category_qa, #date_detected_qa, #issue_tag_qa, #repairing_date_qa, #car_maker_qa, #qr_scan_qa, #product_name_qa, #lot_no_qa, #serial_no_qa, #discovery_process_qa, #discovery_id_no_qa, #discovery_person_qa, #occurrence_process_qa, #occurrence_shift_qa, #occurrence_id_no_qa, #occurrence_person_qa, #outflow_process_qa, #outflow_shift_qa, #outflow_id_no_qa, #outflow_person_qa, #defect_category_qa, #sequence_no_qa, #assy_board_no_qa, #defect_cause_qa, #repair_person_qa, #good_measurement_qa, #ng_measurement_qa, #wire_type_qa, #wire_size_qa, #connector_cavity_qa, #detail_content_defect_qa, #treatment_content_defect_qa, #harness_status_qa").prop('disabled', true).css('background-color', '#DDD');
+    $("#line_no_qa, #line_category_qa, #date_detected_qa, #issue_tag_qa, #repairing_date_qa, #car_maker_qa, #qr_scan_qa, #product_name_qa, #lot_no_qa, #serial_no_qa, #discovery_process_qa, #discovery_id_no_qa, #discovery_person_qa, #occurrence_process_qa, #occurrence_shift_qa, #occurrence_id_no_qa, #occurrence_person_qa, #outflow_process_qa, #outflow_shift_qa, #outflow_id_no_qa, #outflow_person_qa, #defect_category_qa, #sequence_no_qa, #assy_board_no_qa, #defect_cause_qa, #repair_person_qa, #good_measurement_qa, #ng_measurement_qa, #wire_type_qa, #wire_size_qa, #connector_cavity_qa, #detail_content_defect_qa, #treatment_content_defect_qa, #harness_status_qa, #na_value_1_insp, #na_value_2_insp").prop('disabled', true).css('background-color', '#DDD');
 
     $("input[name='record_type_qa']").change(function () {
       if ($(this).val() === "Mancost Only") {
@@ -100,6 +100,8 @@
         $("#detail_content_defect_qa").prop('disabled', false).val('').css('background-color', '#FFF');
         $("#treatment_content_defect_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
         $("#harness_status_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
+        $("#na_value_1_insp").prop('disabled', false).val();
+        $("#na_value_2_insp").prop('disabled', false).val();
       }
       else if ($(this).val() === "Defect $ Mancost") {
         $("#line_no_qa").prop('disabled', false).val('').css('background-color', '#FFF');
@@ -136,6 +138,8 @@
         $("#detail_content_defect_qa").prop('disabled', false).val('').css('background-color', '#FFF');
         $("#treatment_content_defect_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
         $("#harness_status_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
+        $("#na_value_1_insp").prop('disabled', false).val();
+        $("#na_value_2_insp").prop('disabled', false).val();
       }
       else {
         $("#line_no_qa").prop('disabled', false).val('').css('background-color', '#FFF');
@@ -172,6 +176,8 @@
         $("#detail_content_defect_qa").prop('disabled', false).val('').css('background-color', '#FFF');
         $("#treatment_content_defect_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
         $("#harness_status_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
+        $("#na_value_1_insp").prop('disabled', false).val();
+        $("#na_value_2_insp").prop('disabled', false).val();
       }
     });
   });
@@ -1359,5 +1365,34 @@
     // document.getElementById("search_date_to_qa").value = '';
 
     load_defect_table_qa(1);
+  }
+
+  function updateMeasurementFieldsInsp(checkbox) {
+    var goodMeasurementField = document.getElementById('good_measurement_qa');
+    var ngMeasurementField = document.getElementById('ng_measurement_qa');
+
+    if (checkbox.checked) {
+      goodMeasurementField.value = 'N/A';
+      ngMeasurementField.value = 'N/A';
+    } else {
+      goodMeasurementField.value = '';
+      ngMeasurementField.value = '';
+    }
+  }
+
+  function updateWireFieldsInsp(checkbox) {
+    var wire_type = document.getElementById('wire_type_qa');
+    var wire_size = document.getElementById('wire_size_qa');
+    var conn_cavity = document.getElementById('connector_cavity_qa');
+
+    if (checkbox.checked) {
+      wire_size.value = 'N/A';
+      wire_type.value = 'N/A';
+      conn_cavity.value = 'N/A';
+    } else {
+      wire_size.value = '';
+      wire_type.value = '';
+      conn_cavity.value = '';
+    }
   }
 </script>

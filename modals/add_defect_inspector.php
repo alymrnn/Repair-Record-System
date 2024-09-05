@@ -372,7 +372,15 @@
                         <span id="repairPersonError" class="error-message" style="display:none; color:#CA3F3F;">Repair
                             Person field is required.</span>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-1"
+                        style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                        <label style="display: flex; align-items: center;">
+                            <input type="checkbox" id="na_value_1_insp" name="na_value_1" value="N/A"
+                                style="margin-right: 5px;" onchange="updateMeasurementFieldsInsp(this)">
+                            N/A
+                        </label>
+                    </div>
+                    <div class="col-sm-5">
                         <!-- good measurement -->
                         <label style="font-weight: normal;color: #000;">Good Measurement</label>
                         <input type="text" id="good_measurement_qa" class="form-control pl-3" autocomplete="off"
@@ -380,7 +388,7 @@
                         <span id="goodMeasurementError" class="error-message" style="display:none; color:#CA3F3F;">Good
                             Measurement field is required.</span>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <!-- ng measurement -->
                         <label style="font-weight: normal;color: #000;">NG Measurement</label>
                         <input type="text" id="ng_measurement_qa" class="form-control pl-3" autocomplete="off"
@@ -388,16 +396,16 @@
                         <span id="noGoodMeasurementError" class="error-message" style="display:none; color:#CA3F3F;">NG
                             Measurement field is required.</span>
                     </div>
-                    <div class="col-sm-4">
-                        <!-- connector cavity -->
-                        <label style="font-weight: normal;color: #000;">Connector Cavity / Color</label>
-                        <input type="text" id="connector_cavity_qa" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #D3D3D3;height:34px; width:100%;">
-                        <span id="connectorCavityDrError" class="error-message"
-                            style="display:none; color:#CA3F3F;">Connector Cavity field is required.</span>
-                    </div>
                 </div>
                 <div class="row mb-2">
+                    <div class="col-sm-1"
+                        style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                        <label style="display: flex; align-items: center;">
+                            <input type="checkbox" id="na_value_2_insp" name="na_value_2" value="N/A"
+                                style="margin-right: 5px;" onchange="updateWireFieldsInsp(this)">
+                            N/A
+                        </label>
+                    </div>
                     <div class="col-sm-4">
                         <!-- type -->
                         <label style="font-weight: normal;color: #000;">Wire Type</label>
@@ -414,7 +422,17 @@
                         <span id="wireSizeDrError" class="error-message" style="display:none; color:#CA3F3F;">Wire Size
                             field is required.</span>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
+                        <!-- connector cavity -->
+                        <label style="font-weight: normal;color: #000;">Connector Cavity / Color</label>
+                        <input type="text" id="connector_cavity_qa" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #D3D3D3;height:34px; width:100%;">
+                        <span id="connectorCavityDrError" class="error-message"
+                            style="display:none; color:#CA3F3F;">Connector Cavity field is required.</span>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-sm-6">
                         <!-- Detail in content of defect -->
                         <label style="font-weight: normal;color: #000;">Detail in Content of Defect</label>
                         <textarea type="text" id="detail_content_defect_qa" class="textarea form-control pl-3"
@@ -423,8 +441,6 @@
                         <span id="detailDefectError" class="error-message" style="display:none; color:#CA3F3F;">
                             Detail in Content of Defect field is required.</span>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-sm-4" style="display: none;">
                         <!-- treatment content of defect -->
                         <label style="font-weight: normal;color: #000;">Treatment Content of Defect</label>

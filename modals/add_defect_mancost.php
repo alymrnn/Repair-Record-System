@@ -457,8 +457,8 @@
                     <div class="col-sm-1"
                         style="display: flex; justify-content: center; align-items: center; height: 100%;">
                         <label style="display: flex; align-items: center;">
-                            <input type="checkbox" id="na_value_1" name="na_value_1" value="N/A"
-                                style="margin-right: 5px;" onchange="updateMeasurementFields(this)">
+                            <input type="checkbox" id="na_value_1_pd" name="na_value_1" value="N/A"
+                                style="margin-right: 5px;" onchange="updateMeasurementFieldsPd(this)">
                             N/A
                         </label>
                     </div>
@@ -487,8 +487,8 @@
                     <div class="col-sm-1"
                         style="display: flex; justify-content: center; align-items: center; height: 100%;">
                         <label style="display: flex; align-items: center;">
-                            <input type="checkbox" id="na_value_2" name="na_value_2" value="N/A"
-                                style="margin-right: 5px;" onchange="updateWireFields(this)">
+                            <input type="checkbox" id="na_value_2_pd" name="na_value_2" value="N/A"
+                                style="margin-right: 5px;" onchange="updateWireFieldsPd(this)">
                             N/A
                         </label>
                     </div>

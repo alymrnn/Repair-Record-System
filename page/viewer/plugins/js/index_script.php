@@ -307,6 +307,8 @@
                     <th>Outflow ID Number</th>
                     <th>Outflow Person</th>
                     <th>Defect Category</th>
+                    <th>Foreign Material Details</th>
+                    <th>Foreign Material Category</th>
                     <th>Sequence No.</th>
                     <th>Assy Board No.</th>
                     <th>Cause of Defect</th>
@@ -513,13 +515,16 @@
                     <th>Repair End</th>
                     <th>Time Consumed</th>
                     <th>Defect Category</th>
+                    <th>Others - Defect Category</th>
                     <th>Occurrence Process</th>
+                    <th>Others - Occurrence Process</th>
                     <th>Parts Removed</th>
                     <th>Quantity</th>
                     <th>Unit Cost ( ¥ )</th>
                     <th>Material Cost ( ¥ )</th>
                     <th>Manhour Cost ( ¥ )</th>
                     <th>Repaired Portion Treatment</th>
+                    <th>Others - Repaired Portion Treatment</th>
                 </tr>
             </thead>
             <tbody class="mb-0" id="viewer_mancost_table_data" style="background: #F9F9F9;">

@@ -502,13 +502,16 @@
                             <th>Repair End</th>
                             <th>Time Consumed</th>
                             <th>Defect Category</th>
+                            <th>Others - Defect Category</th>
                             <th>Occurrence Process</th>
+                            <th>Others - Occurrence Process</th>
                             <th>Parts Removed</th>
                             <th>Quantity</th>
                             <th>Unit Cost</th>
                             <th>Material Cost</th>
                             <th>Manhour Cost</th>
                             <th>Repaired Portion Treatment</th>
+                            <th>Others - Repaired Portion Treatment</th>
                         </thead>
                         <tbody class="mb-0" id="list_of_added_mancost_insp">
                             <tr>

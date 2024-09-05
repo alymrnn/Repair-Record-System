@@ -650,6 +650,8 @@
                     <th>Outflow ID Number</th>
                     <th>Outflow Person</th>
                     <th>Defect Category</th>
+                    <th>Foreign Material Details</th>
+                    <th>Foreign Material Category</th>
                     <th>Sequence No.</th>
                     <th>Assy Board No.</th>
                     <th>Cause of Defect</th>
@@ -851,13 +853,16 @@
                     <th>Repair End</th>
                     <th>Time Consumed</th>
                     <th>Defect Category</th>
+                    <th>Others - Defect Category</th>
                     <th>Occurrence Process</th>
+                    <th>Others - Occurrence Process</th>
                     <th>Parts Removed</th>
                     <th>Quantity</th>
                     <th>Unit Cost ( ¥ )</th>
                     <th>Material Cost ( ¥ )</th>
                     <th>Manhour Cost ( ¥ )</th>
                     <th>Repaired Portion Treatment</th>
+                    <th>Others - Repaired Portion Treatment</th>
                 </tr>
             </thead>
             <tbody class="mb-0" id="mancost_table_data" style="background: #F9F9F9;">
@@ -976,7 +981,7 @@
 
     $(document).ready(function () {
         // Disable all input fields by default
-        $("#line_no, #line_category_dr, #date_detected, #na_repairing_date, #issue_tag, #repairing_date, #car_maker, #qr_scan, #product_name, #lot_no, #serial_no, #discovery_process_dr, #discovery_id_no_dr, #discovery_person, #occurrence_process_dr, #occurrence_shift_dr, #occurrence_id_no_dr, #occurrence_person, #outflow_process_dr, #outflow_shift_dr, #outflow_id_no_dr, #outflow_person, #defect_category_dr, #sequence_no, #assy_board_no_dr, #good_measurement_dr, #ng_measurement_dr, #wire_type_dr, #wire_size_dr, #connector_cavity_dr, #harness_status_dr, #defect_cause_dr, #repair_person_dr, #detail_content_defect, #treatment_content_defect, #repair_start_mc, #repair_end_mc, #time_consumed_mc, #defect_category_mc, #occurrence_process_mc, #manhour_cost_mc, #parts_removed_mc, #quantity_mc, #unit_cost_mc, #material_cost_mc, #portion_treatment").prop('disabled', true).css('background-color', '#DDD');
+        $("#line_no, #line_category_dr, #date_detected, #na_repairing_date, #issue_tag, #repairing_date, #car_maker, #qr_scan, #product_name, #lot_no, #serial_no, #discovery_process_dr, #discovery_id_no_dr, #discovery_person, #occurrence_process_dr, #occurrence_shift_dr, #occurrence_id_no_dr, #occurrence_person, #outflow_process_dr, #outflow_shift_dr, #outflow_id_no_dr, #outflow_person, #defect_category_dr, #sequence_no, #assy_board_no_dr, #good_measurement_dr, #ng_measurement_dr, #wire_type_dr, #wire_size_dr, #connector_cavity_dr, #harness_status_dr, #defect_cause_dr, #repair_person_dr, #detail_content_defect, #treatment_content_defect, #repair_start_mc, #repair_end_mc, #time_consumed_mc, #defect_category_mc, #occurrence_process_mc, #manhour_cost_mc, #parts_removed_mc, #quantity_mc, #unit_cost_mc, #material_cost_mc, #portion_treatment, #na_value_1_pd, #na_value_2_pd").prop('disabled', true).css('background-color', '#DDD');
 
         // add change event listener to radio buttons
         $("input[name='record_type']").change(function () {
@@ -1043,6 +1048,9 @@
                 $("#occurrence_process_mc").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#parts_removed_mc").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#portion_treatment").prop('disabled', false).val('').css('background-color', '#FFF');
+
+                $("#na_value_1_pd").prop('disabled', true).val();
+                $("#na_value_2_pd").prop('disabled', true).val();
             }
             else if ($(this).val() === "Defect Only") {
                 $("#line_no").prop('disabled', false).val('').css('background-color', '#FFF');
@@ -1099,6 +1107,9 @@
                 $("#occurrence_process_mc").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
                 $("#parts_removed_mc").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
                 $("#portion_treatment").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
+
+                $("#na_value_1_pd").prop('disabled', false).val();
+                $("#na_value_2_pd").prop('disabled', false).val();
             }
             else if ($(this).val() === "Defect & Mancost") {
                 $("#line_no").prop('disabled', false).val('').css('background-color', '#FFF');
@@ -1155,6 +1166,9 @@
                 $("#occurrence_process_mc").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#parts_removed_mc").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#portion_treatment").prop('disabled', false).val('').css('background-color', '#FFF');
+
+                $("#na_value_1_pd").prop('disabled', false).val();
+                $("#na_value_2_pd").prop('disabled', false).val();
             }
             else {
                 // If 'White Tag', enable the date input, disable the text input, and clear their values
@@ -1212,6 +1226,9 @@
                 $("#occurrence_process_mc").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#parts_removed_mc").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#portion_treatment").prop('disabled', false).val('').css('background-color', '#FFF');
+
+                $("#na_value_1_pd").prop('disabled', false).val();
+                $("#na_value_2_pd").prop('disabled', false).val();
 
                 $("input[name='na_white_tag_defect']").change(function () {
                     // console.log("N/A radio button changed");
@@ -3689,5 +3706,34 @@
         result = result.toFixed(2); // two decimal places
 
         document.getElementById("material_cost_pd_update").value = result;
+    }
+
+    function updateMeasurementFieldsPd(checkbox) {
+        var goodMeasurementField = document.getElementById('good_measurement_dr');
+        var ngMeasurementField = document.getElementById('ng_measurement_dr');
+
+        if (checkbox.checked) {
+            goodMeasurementField.value = 'N/A';
+            ngMeasurementField.value = 'N/A';
+        } else {
+            goodMeasurementField.value = '';
+            ngMeasurementField.value = '';
+        }
+    }
+
+    function updateWireFieldsPd(checkbox) {
+        var wire_type = document.getElementById('wire_type_dr');
+        var wire_size = document.getElementById('wire_size_dr');
+        var conn_cavity = document.getElementById('connector_cavity_dr');
+
+        if (checkbox.checked) {
+            wire_size.value = 'N/A';
+            wire_type.value = 'N/A';
+            conn_cavity.value = 'N/A';
+        } else {
+            wire_size.value = '';
+            wire_type.value = '';
+            conn_cavity.value = '';
+        }
     }
 </script>

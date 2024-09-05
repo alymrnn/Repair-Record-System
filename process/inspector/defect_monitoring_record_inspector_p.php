@@ -402,6 +402,8 @@ if ($method == 'load_defect_table_qa') {
             echo '<td style="text-align:center;">' . $row['outflow_id_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['outflow_person'] . '</td>';
             echo '<td style="text-align:center;">' . $row['defect_category_dr'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['dc_foreign_mat_details'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['dc_foreign_mat_category'] . '</td>';
             echo '<td style="text-align:center;">' . $row['sequence_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['assy_board_no'] . '</td>';
             echo '<td style="text-align:center;">' . $row['defect_cause'] . '</td>';

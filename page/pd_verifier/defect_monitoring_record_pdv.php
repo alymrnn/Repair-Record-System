@@ -173,6 +173,8 @@
                                 <th>Outflow ID No.</th>
                                 <th>Outflow Person</th>
                                 <th>Defect Category</th>
+                                <th>Foreign Material Details</th>
+                                <th>Foreign Material Category</th>
                                 <th>Sequence No.</th>
                                 <th>Assy Board No.</th>
                                 <th>Cause of Defect</th>

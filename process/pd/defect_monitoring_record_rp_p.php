@@ -729,6 +729,8 @@ if ($method == 'load_defect_table_data') {
             echo '<td style="text-align:center;">' . $row['outflow_id_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['outflow_person'] . '</td>';
             echo '<td style="text-align:center;">' . $row['defect_category_dr'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['dc_foreign_mat_details'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['dc_foreign_mat_category'] . '</td>';
             echo '<td style="text-align:center;">' . $row['sequence_num'] . '</td>';
             echo '<td style="text-align:center;">' . $row['assy_board_no'] . '</td>';
             echo '<td style="text-align:center;">' . $row['defect_cause'] . '</td>';
@@ -992,13 +994,16 @@ if ($method == 'load_mancost_table_data') {
             echo '<td style="text-align:center;">' . $row['repair_end'] . '</td>';
             echo '<td style="text-align:center;">' . $row['time_consumed'] . '</td>';
             echo '<td style="text-align:center;">' . $row['defect_category_mc'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['defect_category_mc_others'] . '</td>';
             echo '<td style="text-align:center;">' . $row['occurrence_process_mc'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['occurrence_process_mc_others'] . '</td>';
             echo '<td style="text-align:center;">' . $row['parts_removed'] . '</td>';
             echo '<td style="text-align:center;">' . $row['quantity'] . '</td>';
             echo '<td style="text-align:center;">' . $row['unit_cost'] . '</td>';
             echo '<td style="text-align:center;">' . $row['material_cost'] . '</td>';
             echo '<td style="text-align:center;">' . $row['manhour_cost'] . '</td>';
             echo '<td style="text-align:center;">' . $row['repaired_portion_treatment'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['repaired_portion_treatment_others'] . '</td>';
             echo '</tr>';
         }
     } else {
@@ -1617,13 +1622,16 @@ if ($method == 'load_added_mancost') {
             echo '<td style="text-align:center;">' . $row['repair_end'] . '</td>';
             echo '<td style="text-align:center;">' . $row['time_consumed'] . '</td>';
             echo '<td style="text-align:center;">' . $row['defect_category_mc'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['defect_category_mc_others'] . '</td>';
             echo '<td style="text-align:center;">' . $row['occurrence_process_mc'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['occurrence_process_mc_others'] . '</td>';
             echo '<td style="text-align:center;">' . $row['parts_removed'] . '</td>';
             echo '<td style="text-align:center;">' . $row['quantity'] . '</td>';
             echo '<td style="text-align:center;">' . $row['unit_cost'] . '</td>';
             echo '<td style="text-align:center;">' . $row['material_cost'] . '</td>';
             echo '<td style="text-align:center;">' . $row['manhour_cost'] . '</td>';
             echo '<td style="text-align:center;">' . $row['repaired_portion_treatment'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['repaired_portion_treatment_others'] . '</td>';
             echo '</tr>';
         }
     } else {
