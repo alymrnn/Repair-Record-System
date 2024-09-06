@@ -19,6 +19,20 @@ if ($method == 'fetch_opt_harness_status_search') {
     }
 }
 
+if ($method == 'fetch_opt_occurrence_process_mc_update') {
+    $query = "SELECT occurrence_equivalent FROM m_mc_occurrence_p ORDER BY occurrence_equivalent ASC";
+    $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+    $stmt->execute();
+    if ($stmt->rowCount() > 0) {
+        echo '<option value="" disabled selected>Select the occurrence process</option>';
+        foreach ($stmt->fetchALL() as $row) {
+            echo '<option>' . htmlspecialchars($row['occurrence_equivalent']) . '</option>';
+        }
+    } else {
+        echo '<option>Select the occurrence process</option>';
+    }
+}
+
 if ($method == 'fetch_opt_line_no_dr') {
     $query = "SELECT DISTINCT line_no FROM m_line_no ORDER BY line_no ASC";
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
@@ -80,7 +94,7 @@ if ($method == 'fetch_opt_category_dr') {
 
 // fetch option car maker
 if ($method == 'fetch_opt_car_maker_dr') {
-    $query = "SELECT car_maker FROM m_car_maker ORDER BY car_maker ASC";
+    $query = "SELECT DISTINCT car_maker FROM m_car_maker ORDER BY car_maker ASC";
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
@@ -227,6 +241,20 @@ if ($method == 'fetch_opt_repair_person') {
     }
 }
 
+if ($method == 'fetch_opt_repair_person_update') {
+    $query = "SELECT rp_name FROM m_repair_person ORDER BY rp_name ASC";
+    $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+    $stmt->execute();
+    if ($stmt->rowCount() > 0) {
+        echo '<option value="" disabled selected>Select the repair person</option>';
+        foreach ($stmt->fetchALL() as $row) {
+            echo '<option>' . htmlspecialchars($row['rp_name']) . '</option>';
+        }
+    } else {
+        echo '<option>Select the repair person</option>';
+    }
+}
+
 // fetch option defect category mancost
 if ($method == 'fetch_opt_defect_category_mc') {
     $query = "SELECT defect_equivalent FROM m_mc_defect_c ORDER BY defect_equivalent ASC";
@@ -283,6 +311,76 @@ if ($method == 'fetch_opt_harness_status') {
         }
     } else {
         echo '<option>Select the harness status</option>';
+    }
+}
+
+if ($method == 'fetch_opt_harness_status_update') {
+    $query = "SELECT harness_status FROM m_harness_status ORDER BY harness_status ASC";
+    $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+    $stmt->execute();
+    if ($stmt->rowCount() > 0) {
+        echo '<option value="" disabled selected>Select the harness status</option>';
+        foreach ($stmt->fetchALL() as $row) {
+            echo '<option>' . htmlspecialchars($row['harness_status']) . '</option>';
+        }
+    } else {
+        echo '<option>Select the harness status</option>';
+    }
+}
+
+if ($method == 'fetch_opt_defect_category_pd_mc_update') {
+    $query = "SELECT defect_equivalent FROM m_mc_defect_c ORDER BY defect_equivalent ASC";
+    $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+    $stmt->execute();
+    if ($stmt->rowCount() > 0) {
+        echo '<option value="" disabled selected>Select the defect category</option>';
+        foreach ($stmt->fetchALL() as $row) {
+            echo '<option>' . htmlspecialchars($row['defect_equivalent']) . '</option>';
+        }
+    } else {
+        echo '<option>Select the defect category</option>';
+    }
+}
+
+if ($method == 'fetch_opt_portion_treatment_update') {
+    $query = "SELECT portion_treatment FROM m_portion_treatment ORDER BY portion_treatment ASC";
+    $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+    $stmt->execute();
+    if ($stmt->rowCount() > 0) {
+        echo '<option value="" disabled selected>Select the repaired portion treatment</option>';
+        foreach ($stmt->fetchALL() as $row) {
+            echo '<option>' . htmlspecialchars($row['portion_treatment']) . '</option>';
+        }
+    } else {
+        echo '<option>Select the repaired portion treatment</option>';
+    }
+}
+
+if ($method == 'fetch_opt_defect_category_pd_dr_update') {
+    $query = "SELECT defect_category_ng_content FROM m_dr_defect_c ORDER BY defect_category_ng_content ASC";
+    $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+    $stmt->execute();
+    if ($stmt->rowCount() > 0) {
+        echo '<option value="" disabled selected>Select the defect category</option>';
+        foreach ($stmt->fetchALL() as $row) {
+            echo '<option>' . htmlspecialchars($row['defect_category_ng_content']) . '</option>';
+        }
+    } else {
+        echo '<option>Select the defect category</option>';
+    }
+}
+
+if ($method == 'fetch_opt_defect_cause_pd_update') {
+    $query = "SELECT defect_cause FROM m_defect_cause ORDER BY defect_cause ASC";
+    $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+    $stmt->execute();
+    if ($stmt->rowCount() > 0) {
+        echo '<option value="" disabled selected>Select the cause of defect</option>';
+        foreach ($stmt->fetchALL() as $row) {
+            echo '<option>' . htmlspecialchars($row['defect_cause']) . '</option>';
+        }
+    } else {
+        echo '<option>Select the cause of defect</option>';
     }
 }
 
@@ -698,10 +796,10 @@ if ($method == 'load_defect_table_data') {
                 if ($remarks_recrimp == 'NO GOOD' || $remarks_1_cc == 'NO GOOD' || $remarks_reassy == 'NO GOOD') {
                     $highlight_class = 'highlight-red';
                 } else {
-                    $highlight_class = 'highliaght-red'; 
+                    $highlight_class = 'highliaght-red';
                 }
             } else {
-                $highlight_class = ''; 
+                $highlight_class = '';
             }
 
             $onclick_event = ($harness_repair == 'Verified') ? '' : 'onclick="get_update_defect_pdv(\'' . $row['defect_id'] . '\')"';
@@ -930,26 +1028,30 @@ if ($method == 'load_mancost_table_data') {
     $defect_id = $_POST['defect_id'];
     $current_page = intval($_POST['current_page']);
 
-    $c = 0;
-
     $results_per_page = 50;
     $page_first_result = ($current_page - 1) * $results_per_page;
 
-    $c = $page_first_result;
+    function escapeJs($string)
+    {
+        return htmlspecialchars(addslashes($string), ENT_QUOTES, 'UTF-8');
+    }
 
-    $query = "SELECT m.id, d.defect_id, 
-        d.car_maker, d.line_no, d.category, d.date_detected, d.issue_no_tag,
-        d.product_name, d.lot_no, d.serial_no, d.discovery_process, d.discovery_id_num,
-        d.discovery_person, d.occurrence_process_dr, d.occurrence_shift, d.occurrence_id_num, d.occurrence_person,
-        d.outflow_process, d.outflow_shift, d.outflow_id_num, d.outflow_person, d.defect_category_dr,
-        d.sequence_num, d.assy_board_no, d.defect_cause, d.good_measurement, d.ng_measurement,
-        d.wire_type, d.wire_size, d.connector_cavity,
-        d.defect_detail_content, d.defect_treatment_content, d.harness_status, d.dis_assembled_by,
-        d.repairing_date, 
-        m.repair_start, m.repair_end, m.time_consumed, m.defect_category_mc, 
-        m.occurrence_process_mc, m.parts_removed,
-        m.quantity, m.unit_cost, m.material_cost, 
-        m.manhour_cost, m.repaired_portion_treatment
+    $query = "
+        SELECT 
+            m.id, d.defect_id, 
+            d.car_maker, d.line_no, d.category, d.date_detected, d.issue_no_tag,
+            d.product_name, d.lot_no, d.serial_no, d.discovery_process, d.discovery_id_num,
+            d.discovery_person, d.occurrence_process_dr, d.occurrence_shift, d.occurrence_id_num, d.occurrence_person,
+            d.outflow_process, d.outflow_shift, d.outflow_id_num, d.outflow_person, d.defect_category_dr,
+            d.sequence_num, d.assy_board_no, d.defect_cause, d.good_measurement, d.ng_measurement,
+            d.wire_type, d.wire_size, d.connector_cavity,
+            d.defect_detail_content, d.defect_treatment_content, d.harness_status, d.dis_assembled_by,
+            d.dc_foreign_mat_details, d.dc_foreign_mat_category,
+            d.repairing_date, 
+            m.repair_start, m.repair_end, m.time_consumed, m.defect_category_mc, m.defect_category_mc_others, 
+            m.occurrence_process_mc, m.occurrence_process_mc_others, m.parts_removed,
+            m.quantity, m.unit_cost, m.material_cost, 
+            m.manhour_cost, m.repaired_portion_treatment, m.repaired_portion_treatment_others
         FROM 
             t_defect_record_f AS d 
         LEFT JOIN 
@@ -957,95 +1059,196 @@ if ($method == 'load_mancost_table_data') {
         ON 
             d.defect_id = m.defect_id 
         WHERE 
-            d.defect_id = :defect_id";
-
-    $query .= " ORDER BY d.date_detected DESC";
-    $query .= " OFFSET :page_first_result ROWS FETCH NEXT :results_per_page ROWS ONLY";
+            d.defect_id = ?
+        ORDER BY 
+            d.date_detected DESC
+        OFFSET ? ROWS FETCH NEXT ? ROWS ONLY
+    ";
 
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-    $stmt->bindValue(':defect_id', $defect_id, PDO::PARAM_STR);
-    $stmt->bindValue(':page_first_result', $page_first_result, PDO::PARAM_INT);
-    $stmt->bindValue(':results_per_page', $results_per_page, PDO::PARAM_INT);
+
+    $stmt->bindParam(1, $defect_id, PDO::PARAM_STR);
+    $stmt->bindParam(2, $page_first_result, PDO::PARAM_INT);
+    $stmt->bindParam(3, $results_per_page, PDO::PARAM_INT);
 
     $stmt->execute();
 
     if ($stmt->rowCount() > 0) {
+        $c = $page_first_result;
+
         foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
             $c++;
 
-            echo '<tr style="cursor:pointer; text-align:center;" class="modal-trigger" onclick="get_update_defect_mancost_pd(\''
-                . $row['id'] . '~!~' . $row['car_maker'] . '~!~' . $row['line_no'] . '~!~' . $row['category'] . '~!~' . $row['date_detected'] . '~!~'
-                . $row['issue_no_tag'] . '~!~' . $row['product_name'] . '~!~' . $row['lot_no'] . '~!~' . $row['serial_no'] . '~!~'
-                . $row['discovery_process'] . '~!~' . $row['discovery_id_num'] . '~!~' . $row['discovery_person'] . '~!~' . $row['occurrence_process_dr'] . '~!~'
-                . $row['occurrence_shift'] . '~!~' . $row['occurrence_id_num'] . '~!~' . $row['occurrence_person'] . '~!~' . $row['outflow_process'] . '~!~'
-                . $row['outflow_shift'] . '~!~' . $row['outflow_id_num'] . '~!~' . $row['outflow_person'] . '~!~' . $row['defect_category_dr'] . '~!~'
-                . $row['sequence_num'] . '~!~' . $row['assy_board_no'] . '~!~' . $row['defect_cause'] . '~!~' . $row['good_measurement'] . '~!~'
-                . $row['ng_measurement'] . '~!~' . $row['wire_type'] . '~!~' . $row['wire_size'] . '~!~' . $row['connector_cavity'] . '~!~'
-                . $row['dis_assembled_by'] . '~!~' . $row['defect_detail_content'] . '~!~' . $row['defect_treatment_content'] . '~!~' . $row['harness_status'] . '~!~'
-                . $row['repairing_date'] . '~!~' . $row['repair_start'] . '~!~' . $row['repair_end'] . '~!~' . $row['time_consumed'] . '~!~'
-                . $row['defect_category_mc'] . '~!~' . $row['occurrence_process_mc'] . '~!~' . $row['parts_removed'] . '~!~' . $row['quantity'] . '~!~'
-                . $row['unit_cost'] . '~!~' . $row['material_cost'] . '~!~' . $row['manhour_cost'] . '~!~' . $row['repaired_portion_treatment'] . '~!~'
-                . $row['defect_id'] . '\')">';
+            echo '<tr style="cursor:pointer; text-align:center;" class="modal-trigger" onclick="get_update_defect_mancost_pd(\'' .
+                escapeJs($row['id']) . '~!~' .
+                escapeJs($row['car_maker']) . '~!~' .
+                escapeJs($row['line_no']) . '~!~' .
+                escapeJs($row['category']) . '~!~' .
+                escapeJs($row['date_detected']) . '~!~' .
+                escapeJs($row['issue_no_tag']) . '~!~' .
+                escapeJs($row['product_name']) . '~!~' .
+                escapeJs($row['lot_no']) . '~!~' .
+                escapeJs($row['serial_no']) . '~!~' .
+                escapeJs($row['discovery_process']) . '~!~' .
+                escapeJs($row['discovery_id_num']) . '~!~' .
+                escapeJs($row['discovery_person']) . '~!~' .
+                escapeJs($row['occurrence_process_dr']) . '~!~' .
+                escapeJs($row['occurrence_shift']) . '~!~' .
+                escapeJs($row['occurrence_id_num']) . '~!~' .
+                escapeJs($row['occurrence_person']) . '~!~' .
+                escapeJs($row['outflow_process']) . '~!~' .
+                escapeJs($row['outflow_shift']) . '~!~' .
+                escapeJs($row['outflow_id_num']) . '~!~' .
+                escapeJs($row['outflow_person']) . '~!~' .
+                escapeJs($row['defect_category_dr']) . '~!~' .
+                escapeJs($row['sequence_num']) . '~!~' .
+                escapeJs($row['assy_board_no']) . '~!~' .
+                escapeJs($row['defect_cause']) . '~!~' .
+                escapeJs($row['good_measurement']) . '~!~' .
+                escapeJs($row['ng_measurement']) . '~!~' .
+                escapeJs($row['wire_type']) . '~!~' .
+                escapeJs($row['wire_size']) . '~!~' .
+                escapeJs($row['connector_cavity']) . '~!~' .
+                escapeJs($row['dis_assembled_by']) . '~!~' .
+                escapeJs($row['dc_foreign_mat_details']) . '~!~' .
+                escapeJs($row['dc_foreign_mat_category']) . '~!~' .
+                escapeJs(str_replace(array("\r", "\n"), ' ', $row['defect_detail_content'])) . '~!~' .
+                escapeJs(str_replace(array("\r", "\n"), ' ', $row['defect_treatment_content'])) . '~!~' .
+                escapeJs($row['harness_status']) . '~!~' .
+                escapeJs($row['repairing_date']) . '~!~' .
+                escapeJs($row['repair_start']) . '~!~' .
+                escapeJs($row['repair_end']) . '~!~' .
+                escapeJs($row['time_consumed']) . '~!~' .
+                escapeJs($row['defect_category_mc']) . '~!~' .
+                escapeJs($row['defect_category_mc_others']) . '~!~' .
+                escapeJs($row['occurrence_process_mc']) . '~!~' .
+                escapeJs($row['occurrence_process_mc_others']) . '~!~' .
+                escapeJs($row['parts_removed']) . '~!~' .
+                escapeJs($row['quantity']) . '~!~' .
+                escapeJs($row['unit_cost']) . '~!~' .
+                escapeJs($row['material_cost']) . '~!~' .
+                escapeJs($row['manhour_cost']) . '~!~' .
+                escapeJs($row['repaired_portion_treatment']) . '~!~' .
+                escapeJs($row['repaired_portion_treatment_others']) . '~!~' .
+                escapeJs($row['defect_id']) . '\')">';
+
             echo '<td style="text-align:center;">' . $c . '</td>';
-            echo '<td style="text-align:center;">' . $row['line_no'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['car_maker'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['category'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['repair_start'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['repair_end'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['time_consumed'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['defect_category_mc'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['defect_category_mc_others'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['occurrence_process_mc'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['occurrence_process_mc_others'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['parts_removed'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['quantity'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['unit_cost'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['material_cost'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['manhour_cost'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['repaired_portion_treatment'] . '</td>';
-            echo '<td style="text-align:center;">' . $row['repaired_portion_treatment_others'] . '</td>';
+            echo '<td style="text-align:center;">' . escapeJs($row['line_no']) . '</td>';
+            echo '<td style="text-align:center;">' . escapeJs($row['car_maker']) . '</td>';
+            echo '<td style="text-align:center;">' . escapeJs($row['category']) . '</td>';
+            echo '<td style="text-align:center;">' . escapeJs($row['repair_start']) . '</td>';
+            echo '<td style="text-align:center;">' . escapeJs($row['repair_end']) . '</td>';
+            echo '<td style="text-align:center;">' . escapeJs($row['time_consumed']) . '</td>';
+            echo '<td style="text-align:center;">' . escapeJs($row['defect_category_mc']) . '</td>';
+            echo '<td style="text-align:center;">' . escapeJs($row['defect_category_mc_others']) . '</td>';
+            echo '<td style="text-align:center;">' . escapeJs($row['occurrence_process_mc']) . '</td>';
+            echo '<td style="text-align:center;">' . escapeJs($row['occurrence_process_mc_others']) . '</td>';
+            echo '<td style="text-align:center;">' . escapeJs($row['parts_removed']) . '</td>';
+            echo '<td style="text-align:center;">' . escapeJs($row['quantity']) . '</td>';
+            echo '<td style="text-align:center;">' . escapeJs($row['unit_cost']) . '</td>';
+            echo '<td style="text-align:center;">' . escapeJs($row['material_cost']) . '</td>';
+            echo '<td style="text-align:center;">' . escapeJs($row['manhour_cost']) . '</td>';
+            echo '<td style="text-align:center;">' . escapeJs($row['repaired_portion_treatment']) . '</td>';
+            echo '<td style="text-align:center;">' . escapeJs($row['repaired_portion_treatment_others']) . '</td>';
             echo '</tr>';
         }
     } else {
         echo '<tr>';
-        echo '<td colspan="12" style="text-align:center; color:red;">No Result</td>';
+        echo '<td colspan="15" style="text-align:center; color:red;">No Record Found</td>';
         echo '</tr>';
     }
     exit;
 }
 
-//to fetch QR settings
-// function fetch_qr_setting($conn)
-// {
-//     $query = "SELECT product_name_start, product_name_length, lot_no_start, lot_no_length, serial_no_start, serial_no_length FROM m_car_maker WHERE car_maker = 'Suzuki'";
 
-//     try {
-//         $stmt = $conn->query($query);
-//         if ($stmt->rowCount() > 0) {
-//             $setting = $stmt->fetch(PDO::FETCH_ASSOC);
-//             return $setting;
-//         } else {
-//             echo "No QR settings found in the database.";
-//             return false;
+// if ($method == 'load_mancost_table_data') {
+//     $defect_id = $_POST['defect_id'];
+//     $current_page = intval($_POST['current_page']);
+
+//     $c = 0;
+
+//     $results_per_page = 50;
+//     $page_first_result = ($current_page - 1) * $results_per_page;
+
+//     $c = $page_first_result;
+
+//     $query = "SELECT m.id, d.defect_id, 
+//         d.car_maker, d.line_no, d.category, d.date_detected, d.issue_no_tag,
+//         d.product_name, d.lot_no, d.serial_no, d.discovery_process, d.discovery_id_num,
+//         d.discovery_person, d.occurrence_process_dr, d.occurrence_shift, d.occurrence_id_num, d.occurrence_person,
+//         d.outflow_process, d.outflow_shift, d.outflow_id_num, d.outflow_person, d.defect_category_dr,
+//         d.sequence_num, d.assy_board_no, d.defect_cause, d.good_measurement, d.ng_measurement,
+//         d.wire_type, d.wire_size, d.connector_cavity,
+//         d.defect_detail_content, d.defect_treatment_content, d.harness_status, d.dis_assembled_by,
+//         d.repairing_date, 
+//         m.repair_start, m.repair_end, m.time_consumed, m.defect_category_mc, m.defect_category_mc_others,
+//         m.occurrence_process_mc, m.occurrence_process_mc_others, m.parts_removed,
+//         m.quantity, m.unit_cost, m.material_cost, 
+//         m.manhour_cost, m.repaired_portion_treatment, m.repaired_portion_treatment_others
+//         FROM 
+//             t_defect_record_f AS d 
+//         LEFT JOIN 
+//             t_mancost_monitoring_f AS m 
+//         ON 
+//             d.defect_id = m.defect_id 
+//         WHERE 
+//             d.defect_id = :defect_id";
+
+//     $query .= " ORDER BY d.date_detected DESC";
+//     $query .= " OFFSET :page_first_result ROWS FETCH NEXT :results_per_page ROWS ONLY";
+
+//     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+//     $stmt->bindValue(':defect_id', $defect_id, PDO::PARAM_STR);
+//     $stmt->bindValue(':page_first_result', $page_first_result, PDO::PARAM_INT);
+//     $stmt->bindValue(':results_per_page', $results_per_page, PDO::PARAM_INT);
+
+//     $stmt->execute();
+
+//     if ($stmt->rowCount() > 0) {
+//         foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
+//             $c++;
+
+//             echo '<tr style="cursor:pointer; text-align:center;" class="modal-trigger" onclick="get_update_defect_mancost_pd(\''
+//                 . $row['id'] . '~!~' . $row['car_maker'] . '~!~' . $row['line_no'] . '~!~' . $row['category'] . '~!~' . $row['date_detected'] . '~!~'
+//                 . $row['issue_no_tag'] . '~!~' . $row['product_name'] . '~!~' . $row['lot_no'] . '~!~' . $row['serial_no'] . '~!~'
+//                 . $row['discovery_process'] . '~!~' . $row['discovery_id_num'] . '~!~' . $row['discovery_person'] . '~!~' . $row['occurrence_process_dr'] . '~!~'
+//                 . $row['occurrence_shift'] . '~!~' . $row['occurrence_id_num'] . '~!~' . $row['occurrence_person'] . '~!~' . $row['outflow_process'] . '~!~'
+//                 . $row['outflow_shift'] . '~!~' . $row['outflow_id_num'] . '~!~' . $row['outflow_person'] . '~!~' . $row['defect_category_dr'] . '~!~'
+//                 . $row['sequence_num'] . '~!~' . $row['assy_board_no'] . '~!~' . $row['defect_cause'] . '~!~' . $row['good_measurement'] . '~!~'
+//                 . $row['ng_measurement'] . '~!~' . $row['wire_type'] . '~!~' . $row['wire_size'] . '~!~' . $row['connector_cavity'] . '~!~'
+//                 . $row['dis_assembled_by'] . '~!~' . $row['defect_detail_content'] . '~!~' . $row['defect_treatment_content'] . '~!~' . $row['harness_status'] . '~!~'
+//                 . $row['repairing_date'] . '~!~' . $row['repair_start'] . '~!~' . $row['repair_end'] . '~!~' . $row['time_consumed'] . '~!~'
+//                 . $row['defect_category_mc'] . '~!~' . $row['occurrence_process_mc'] . '~!~' . $row['parts_removed'] . '~!~' . $row['quantity'] . '~!~'
+//                 . $row['unit_cost'] . '~!~' . $row['material_cost'] . '~!~' . $row['manhour_cost'] . '~!~' . $row['repaired_portion_treatment'] . '~!~'
+//                 . $row['defect_id'] . '\')">';
+//             echo '<td style="text-align:center;">' . $c . '</td>';
+//             echo '<td style="text-align:center;">' . $row['line_no'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['car_maker'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['category'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['repair_start'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['repair_end'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['time_consumed'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['defect_category_mc'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['defect_category_mc_others'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['occurrence_process_mc'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['occurrence_process_mc_others'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['parts_removed'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['quantity'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['unit_cost'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['material_cost'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['manhour_cost'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['repaired_portion_treatment'] . '</td>';
+//             echo '<td style="text-align:center;">' . $row['repaired_portion_treatment_others'] . '</td>';
+//             echo '</tr>';
 //         }
-//     } catch (PDOException $e) {
-//         echo "Error fetching QR settings: " . $e->getMessage();
-//         return false;
+//     } else {
+//         echo '<tr>';
+//         echo '<td colspan="12" style="text-align:center; color:red;">No Result</td>';
+//         echo '</tr>';
 //     }
+//     exit;
 // }
 
-// $qr_setting = fetch_qr_setting($conn);
-
-
-// if ($qr_setting) {
-//     echo "<script>";
-//     echo "var qr_setting = " . json_encode($qr_setting) . ";";
-//     echo "</script>";
-// } else {
-//     echo "<script>";
-//     echo "var qr_setting = null;";
-//     echo "</script>";
-// }
 // ==================================================================================================================================================================
 
 
@@ -1439,7 +1642,11 @@ if ($method == 'add_defect_mancost_record') {
     $outflow_shift_dr = trim($_POST['outflow_shift_dr']);
     $outflow_id_no_dr = trim($_POST['outflow_id_no_dr']);
     $outflow_person = trim($_POST['outflow_person']);
+
     $defect_category_dr = trim($_POST['defect_category_dr']);
+    $defect_categ_foreign_mat = trim($_POST['defect_categ_foreign_mat']);
+    $defect_categ_foreign_mat_2 = trim($_POST['defect_categ_foreign_mat_2']);
+
     $sequence_no = trim($_POST['sequence_no']);
     $assy_board_no_dr = trim($_POST['assy_board_no_dr']);
     $defect_cause_dr = trim($_POST['defect_cause_dr']);
@@ -1451,8 +1658,8 @@ if ($method == 'add_defect_mancost_record') {
     $detail_content_defect = trim($_POST['detail_content_defect']);
     $treatment_content_defect = trim($_POST['treatment_content_defect']);
     $harness_status_dr = trim($_POST['harness_status_dr']);
+    $repair_person_dr = trim($_POST['repair_person_dr']);
 
-    // $repair_person_dr = trim($_POST['repair_person_dr']);
     // $repair_start_mc = trim($_POST['repair_start_mc']);
     // $repair_end_mc = trim($_POST['repair_end_mc']);
     // $time_consumed_mc = trim($_POST['time_consumed_mc']);
@@ -1489,7 +1696,8 @@ if ($method == 'add_defect_mancost_record') {
                 defect_id, line_no, category, date_detected, issue_no_tag, repairing_date, car_maker, product_name, 
                 lot_no, serial_no, discovery_process, discovery_id_num, discovery_person, occurrence_process_dr, 
                 occurrence_shift, occurrence_id_num, occurrence_person, outflow_process, outflow_shift, 
-                outflow_id_num, outflow_person, defect_category_dr, sequence_num, assy_board_no, defect_cause, 
+                outflow_id_num, outflow_person, defect_category_dr, dc_foreign_mat_details, dc_foreign_mat_category,
+                sequence_num, assy_board_no, defect_cause, 
                 defect_detail_content, defect_treatment_content, harness_status, dis_assembled_by, good_measurement, 
                 ng_measurement, wire_type, wire_size, connector_cavity, qc_status, record_type
             ) VALUES (
@@ -1497,7 +1705,8 @@ if ($method == 'add_defect_mancost_record') {
                 :car_maker, :product_name, :lot_no, :serial_no, :discovery_process, :discovery_id_num, 
                 :discovery_person, :occurrence_process_dr, :occurrence_shift, :occurrence_id_num, 
                 :occurrence_person, :outflow_process, :outflow_shift, :outflow_id_num, :outflow_person, 
-                :defect_category_dr, :sequence_num, :assy_board_no, :defect_cause, :defect_detail_content, 
+                :defect_category_dr, :dc_foreign_mat_details, :dc_foreign_mat_category,
+                :sequence_num, :assy_board_no, :defect_cause, :defect_detail_content, 
                 :defect_treatment_content, :harness_status, :dis_assembled_by, :good_measurement, :ng_measurement, 
                 :wire_type, :wire_size, :connector_cavity, :qc_status, :record_type
             )
@@ -1524,7 +1733,11 @@ if ($method == 'add_defect_mancost_record') {
         $stmt->bindParam(':outflow_shift', $outflow_shift_dr, PDO::PARAM_STR);
         $stmt->bindParam(':outflow_id_num', $outflow_id_no_dr, PDO::PARAM_STR);
         $stmt->bindParam(':outflow_person', $outflow_person, PDO::PARAM_STR);
+
         $stmt->bindParam(':defect_category_dr', $defect_category_dr, PDO::PARAM_STR);
+        $stmt->bindParam(':dc_foreign_mat_details', $defect_categ_foreign_mat, PDO::PARAM_STR);
+        $stmt->bindParam(':dc_foreign_mat_category', $defect_categ_foreign_mat_2, PDO::PARAM_STR);
+
         $stmt->bindParam(':sequence_num', $sequence_no, PDO::PARAM_STR);
         $stmt->bindParam(':assy_board_no', $assy_board_no_dr, PDO::PARAM_STR);
         $stmt->bindParam(':defect_cause', $defect_cause_dr, PDO::PARAM_STR);
@@ -1674,9 +1887,14 @@ if ($method == 'add_multiple_mancost') {
         $material_cost_mc = trim($record['material_cost_mc']);
         $manhour_cost_mc = trim($record['manhour_cost_mc']);
         $portion_treatment = trim($record['portion_treatment']);
+
+        $other_defect_category_mc = trim($record['other_defect_category_mc']);
+        $other_occurrence_process_mc = trim($record['other_occurrence_process_mc']);
+        $other_portion_treatment_mc = trim($record['other_portion_treatment_mc']);
+
         $defect_id = $record['defect_id'];
 
-        $query = "INSERT INTO t_mancost_monitoring_f (defect_id,repair_start,repair_end,time_consumed,defect_category_mc,occurrence_process_mc,parts_removed,quantity,unit_cost,material_cost,manhour_cost,repaired_portion_treatment,status,record_added_by) VALUES ('$defect_id','$repair_start_mc','$repair_end_mc','$time_consumed_mc','$defect_category_mc','$occurrence_process_mc','$parts_removed_mc','$quantity_mc','$unit_cost_mc','$material_cost_mc','$manhour_cost_mc','$portion_treatment','$status','$record_added_by')";
+        $query = "INSERT INTO t_mancost_monitoring_f (defect_id,repair_start,repair_end,time_consumed,defect_category_mc,defect_category_mc_others,occurrence_process_mc,occurrence_process_mc_others,parts_removed,quantity,unit_cost,material_cost,manhour_cost,repaired_portion_treatment,repaired_portion_treatment_others,status,record_added_by) VALUES ('$defect_id','$repair_start_mc','$repair_end_mc','$time_consumed_mc','$defect_category_mc','$other_defect_category_mc','$occurrence_process_mc','$other_occurrence_process_mc','$parts_removed_mc','$quantity_mc','$unit_cost_mc','$material_cost_mc','$manhour_cost_mc','$portion_treatment','$other_portion_treatment_mc','$status','$record_added_by')";
 
         $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 
@@ -2001,19 +2219,52 @@ if ($method == 'autocomplete_parts') {
 // MSSQL
 if ($method == 'update_pd_record') {
     $mancost_id = $_POST['id'];
+    $car_maker = $_POST['car_maker'];
     $line_no = $_POST['line_no'];
     $issue_no_tag = $_POST['issue_tag'];
     $serial_no = $_POST['serial_no'];
+    $repair_person = $_POST['repair_person'];
     $good_measurement = $_POST['good_measurement'];
     $ng_measurement = $_POST['ng_measurement'];
     $wire_type = $_POST['wire_type'];
     $wire_size = $_POST['wire_size'];
     $connector_cavity = $_POST['connector_cavity'];
     $defect_treatment_content = $_POST['defect_treatment_content'];
+    $defect_details_content = $_POST['defect_details_content'];
+    $harness_status = $_POST['harness_status'];
+    $occurrence_process_mc = $_POST['occurrence_process_mc'];
     $parts_removed = $_POST['parts_removed'];
     $quantity = $_POST['quantity'];
     $unit_cost = $_POST['unit_cost'];
     $material_cost = $_POST['material_cost'];
+
+    $defect_category_mc = $_POST['defect_category_mc'];
+    $repaired_portion_treatment = $_POST['repaired_portion_treatment'];
+    $foreign_mat_details = $_POST['foreign_mat_details'];
+    $foreign_mat_category = $_POST['foreign_mat_category'];
+    $defect_category_dr = $_POST['defect_category_dr'];
+    $sequence_no = $_POST['sequence_no'];
+    $assy_board_no = $_POST['assy_board_no'];
+    $defect_cause = $_POST['defect_cause'];
+
+    $discovery_id_no = $_POST['discovery_id_no'];
+    $discovery_person = $_POST['discovery_person'];
+    $occurrence_id_no = $_POST['occurrence_id_no'];
+    $occurrence_person = $_POST['occurrence_person'];
+    $outflow_id_no = $_POST['outflow_id_no'];
+    $outflow_person = $_POST['outflow_person'];
+
+    $occurrence_shift = $_POST['occurrence_shift'];
+    $outflow_shift = $_POST['outflow_shift'];
+
+    $discovery_process = $_POST['discovery_process'];
+    $occurrence_process_dr = $_POST['occurrence_process_dr'];
+    $outflow_process = $_POST['outflow_process'];
+
+    $others_defect_category_mc = $_POST['others_defect_category_mc'];
+    $others_occurrence_process_mc = $_POST['others_occurrence_process_mc'];
+    $others_portion_treatment_mc = $_POST['others_portion_treatment_mc'];
+
     $defect_id = $_POST['pd_defect_id'];
 
     try {
@@ -2035,7 +2286,26 @@ if ($method == 'update_pd_record') {
                 wire_type = :wire_type,
                 wire_size = :wire_size,
                 connector_cavity = :connector_cavity,
-                defect_treatment_content = :defect_treatment_content
+                defect_treatment_content = :defect_treatment_content,
+                car_maker = :car_maker,
+                harness_status = :harness_status,
+                dc_foreign_mat_details = :dc_foreign_mat_details,
+                dc_foreign_mat_category = :dc_foreign_mat_category,
+                defect_category_dr = :defect_category_dr,
+                sequence_num = :sequence_num,
+                assy_board_no = :assy_board_no,
+                defect_cause = :defect_cause,
+                discovery_id_num = :discovery_id_num,
+                discovery_person = :discovery_person,
+                occurrence_id_num = :occurrence_id_num,
+                occurrence_person = :occurrence_person,
+                outflow_id_num = :outflow_id_num,
+                outflow_person = :outflow_person,
+                occurrence_shift = :occurrence_shift,
+                outflow_shift = :outflow_shift,
+                discovery_process = :discovery_process,
+                occurrence_process_dr = :occurrence_process_dr,
+                outflow_process = :outflow_process
             WHERE defect_id = :defect_id;
         ";
 
@@ -2049,6 +2319,26 @@ if ($method == 'update_pd_record') {
         $stmt1->bindParam(':wire_size', $wire_size);
         $stmt1->bindParam(':connector_cavity', $connector_cavity);
         $stmt1->bindParam(':defect_treatment_content', $defect_treatment_content);
+        $stmt1->bindParam(':car_maker', $car_maker);
+        $stmt1->bindParam(':harness_status', $harness_status);
+        $stmt1->bindParam(':dc_foreign_mat_details', $foreign_mat_details);
+        $stmt1->bindParam(':dc_foreign_mat_category', $foreign_mat_category);
+        $stmt1->bindParam(':defect_category_dr', $defect_category_dr);
+        $stmt1->bindParam(':sequence_num', $sequence_no);
+        $stmt1->bindParam(':assy_board_no', $assy_board_no);
+        $stmt1->bindParam(':defect_cause', $defect_cause);
+        $stmt1->bindParam(':discovery_id_num', $discovery_id_no);
+        $stmt1->bindParam(':discovery_person', $discovery_person);
+        $stmt1->bindParam(':occurrence_id_num', $occurrence_id_no);
+        $stmt1->bindParam(':occurrence_person', $occurrence_person);
+        $stmt1->bindParam(':outflow_id_num', $outflow_id_no);
+        $stmt1->bindParam(':outflow_person', $outflow_person);
+        $stmt1->bindParam(':occurrence_shift', $occurrence_shift);
+        $stmt1->bindParam(':outflow_shift', $outflow_shift);
+        $stmt1->bindParam(':discovery_process', $discovery_process);
+        $stmt1->bindParam(':occurrence_process_dr', $occurrence_process_dr);
+        $stmt1->bindParam(':outflow_process', $outflow_process);
+
         $stmt1->bindParam(':defect_id', $defect_id);
         $stmt1->execute();
 
@@ -2058,7 +2348,13 @@ if ($method == 'update_pd_record') {
             SET parts_removed = :parts_removed,
                 quantity = :quantity,
                 unit_cost = :unit_cost,
-                material_cost = :material_cost
+                material_cost = :material_cost,
+                occurrence_process_mc = :occurrence_process_mc,
+                defect_category_mc = :defect_category_mc,
+                repaired_portion_treatment = :repaired_portion_treatment,
+                defect_category_mc_others = :defect_category_mc_others,
+                occurrence_process_mc_others = :occurrence_process_mc_others,
+                repaired_portion_treatment_others = :repaired_portion_treatment_others
             WHERE id = :mancost_id AND defect_id = :defect_id;
         ";
 
@@ -2067,6 +2363,12 @@ if ($method == 'update_pd_record') {
         $stmt2->bindParam(':quantity', $quantity);
         $stmt2->bindParam(':unit_cost', $unit_cost);
         $stmt2->bindParam(':material_cost', $material_cost);
+        $stmt2->bindParam(':occurrence_process_mc', $occurrence_process_mc);
+        $stmt2->bindParam(':defect_category_mc', $defect_category_mc);
+        $stmt2->bindParam(':repaired_portion_treatment', $repaired_portion_treatment);
+        $stmt2->bindParam(':defect_category_mc_others', $others_defect_category_mc);
+        $stmt2->bindParam(':occurrence_process_mc_others', $others_occurrence_process_mc);
+        $stmt2->bindParam(':repaired_portion_treatment_others', $others_portion_treatment_mc);
         $stmt2->bindParam(':mancost_id', $mancost_id);
         $stmt2->bindParam(':defect_id', $defect_id);
         $stmt2->execute();

@@ -162,6 +162,10 @@ delete_added_record($_SESSION['full_name'], $conn);
       background-color: #4a5759;
       color: #FFF;
     }
+
+    .hidden-defect {
+      display: none;
+    }
   </style>
 </head>
 

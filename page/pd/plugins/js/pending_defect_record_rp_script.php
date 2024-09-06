@@ -30,6 +30,10 @@
                 $('#material_cost_mc2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
                 $('#manhour_cost_mc2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
                 $('#portion_treatment2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
+
+                $('#others_defect_category_insp_mc_update').prop('disabled', true).val('').css('background-color', '#D3D3D3');
+                $('#others_occurrence_process_insp_mc_update').prop('disabled', true).val('').css('background-color', '#D3D3D3');
+                $('#other_portion_treatment_insp_mc_update').prop('disabled', true).val('').css('background-color', '#D3D3D3');
             }
         });
     });
@@ -56,7 +60,7 @@
             },
             error: function (xhr, status, error) {
                 console.error('Error fetching count:', error);
-                console.error('Response text:', xhr.responseText); 
+                console.error('Response text:', xhr.responseText);
             }
         });
     }
@@ -574,33 +578,43 @@
         $('#wire_size_insp_update').val(data[27]).prop('disabled', false).css('background', '#FFF');
         $('#connector_cavity_insp_update').val(data[28]).prop('disabled', false).css('background', '#FFF');
         $('#repair_person_insp_update').val(data[29]);
-        $('#detail_content_defect_insp_update').val(data[30]).prop('disabled', false).css('background', '#FFF');
-        $('#treatment_content_defect_insp_update').val(data[31]);
-        $('#harness_status_insp_update').val(data[32]);
+
+        $('#defect_categ_foreign_mat_insp_update').val(data[30]).prop('disabled', true).css('background', '#EEE');
+        $('#defect_categ_foreign_mat_2_insp_update').val(data[31]).prop('disabled', true).css('background', '#EEE');
+
+        $('#detail_content_defect_insp_update').val(data[32]).prop('disabled', false).css('background', '#FFF');
+        $('#treatment_content_defect_insp_update').val(data[33]);
+        $('#harness_status_insp_update').val(data[34]);
         // $('#repairing_date_insp_update').val(data[33]);
 
         $('#repairing_date_insp_update').val(get_current_date());
-        $('#repair_start_mc2').val(data[34]);
-        $('#repair_end_mc2').val(data[35]);
-        $('#time_consumed_mc2').val(data[36]);
-        $('#defect_category_mc2').val(data[37]);
-        $('#occurrence_process_mc2').val(data[38]);
-        $('#parts_removed_mc2').val(data[39]);
-        $('#quantity_mc2').val(data[40]);
-        $('#unit_cost_mc2').val(data[41]);
-        $('#material_cost_mc2').val(data[42]);
-        $('#manhour_cost_mc2').val(data[43]);
-        $('#portion_treatment2').val(data[44]);
+        $('#repair_start_mc2').val(data[36]);
+        $('#repair_end_mc2').val(data[37]);
+        $('#time_consumed_mc2').val(data[38]);
+
+        $('#defect_category_mc2').val(data[39]);
+        $('#others_defect_category_insp_mc_update').val('N/A');
+
+        $('#occurrence_process_mc2').val(data[41]);
+        $('#others_occurrence_process_insp_mc_update').val('N/A');
+
+        $('#parts_removed_mc2').val(data[43]);
+        $('#quantity_mc2').val(data[44]);
+        $('#unit_cost_mc2').val(data[45]);
+        $('#material_cost_mc2').val(data[46]);
+        $('#manhour_cost_mc2').val(data[47]);
+        $('#portion_treatment2').val(data[48]);
+        $('#other_portion_treatment_insp_mc_update').val('N/A');
 
         // defect unique id 
-        $('#inspector_defect_id').val(data[45]).prop('hidden', true);
+        $('#inspector_defect_id').val(data[50]).prop('hidden', true);
         $('#update_defect_inspector').modal('show');
     }
 
     function get_current_date() {
         const today = new Date();
         const dd = String(today.getDate()).padStart(2, '0');
-        const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
         const yyyy = today.getFullYear();
 
         return yyyy + '-' + mm + '-' + dd;
@@ -920,6 +934,11 @@
         var material_cost_mc = document.getElementById("material_cost_mc2");
         var manhour_cost_mc = document.getElementById("manhour_cost_mc2");
         var portion_treatment = document.getElementById("portion_treatment2");
+
+        var defect_category_mc_others = document.getElementById("others_defect_category_insp_mc_update");
+        var occurrence_process_mc_others = document.getElementById("others_occurrence_process_insp_mc_update");
+        var portion_treatment_others = document.getElementById("other_portion_treatment_insp_mc_update");
+
         var defect_id = document.getElementById('inspector_defect_id');
 
         var records = [
@@ -935,6 +954,10 @@
                 material_cost_mc: material_cost_mc.value,
                 manhour_cost_mc: manhour_cost_mc.value,
                 portion_treatment: portion_treatment.value,
+                defect_category_mc_others: defect_category_mc_others.value,
+                occurrence_process_mc_others: occurrence_process_mc_others.value,
+                portion_treatment_others: portion_treatment_others.value,
+
                 defect_id: defect_id.value
             }
         ];
@@ -965,13 +988,16 @@
                         'occurrence_process_mc': occurrence_process_mc.value,
                         'parts_removed_mc': parts_removed_mc.value,
                         'manhour_cost_mc': manhour_cost_mc.value,
+                        'portion_treatment': portion_treatment.value,
+                        'defect_category_mc_others': defect_category_mc_others.value,
+                        'occurrence_process_mc_others': occurrence_process_mc_others.value,
+                        'portion_treatment_others': portion_treatment_others.value,
                     };
 
                     $('#parts_removed_mc2').val('');
-                    $('#quantity_mc2').val('');
+                    $('#quantity_mc2').val(0);
                     $('#unit_cost_mc2').val('');
                     $('#material_cost_mc2').val('');
-                    $('#portion_treatment2').val('');
 
                     // $('#inspector_defect_id').val('');
 

@@ -102,6 +102,9 @@
         $("#harness_status_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
         $("#na_value_1_insp").prop('disabled', false).val();
         $("#na_value_2_insp").prop('disabled', false).val();
+
+        $("#na_value_1_insp").prop('checked', false);
+        $("#na_value_2_insp").prop('checked', false);
       }
       else if ($(this).val() === "Defect $ Mancost") {
         $("#line_no_qa").prop('disabled', false).val('').css('background-color', '#FFF');
@@ -140,6 +143,9 @@
         $("#harness_status_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
         $("#na_value_1_insp").prop('disabled', false).val();
         $("#na_value_2_insp").prop('disabled', false).val();
+
+        $("#na_value_1_insp").prop('checked', false);
+        $("#na_value_2_insp").prop('checked', false);
       }
       else {
         $("#line_no_qa").prop('disabled', false).val('').css('background-color', '#FFF');
@@ -178,8 +184,27 @@
         $("#harness_status_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
         $("#na_value_1_insp").prop('disabled', false).val();
         $("#na_value_2_insp").prop('disabled', false).val();
+
+        $("#na_value_1_insp").prop('checked', false);
+        $("#na_value_2_insp").prop('checked', false);
       }
     });
+  });
+
+  document.getElementById('defect_category_qa').addEventListener('change', function () {
+    var selectedValue = this.value;
+    var foreignMaterialDiv = document.getElementById('foreign_material_details_insp');
+    var defectCategForeignMat = document.getElementById('defect_categ_foreign_mat_insp');
+    var defectCategForeignMat2 = document.getElementById('defect_categ_foreign_mat_2_insp');
+
+    if (selectedValue === 'Foreign Material') {
+      foreignMaterialDiv.classList.remove('hidden-defect');
+    } else {
+      foreignMaterialDiv.classList.add('hidden-defect');
+      // Autofill fields with 'N/A'
+      defectCategForeignMat.value = 'N/A';
+      defectCategForeignMat2.value = 'N/A';
+    }
   });
 
   document.getElementById('line_no_qa').addEventListener('input', function () {
@@ -1181,7 +1206,11 @@
     var outflow_shift_qa = document.getElementById("outflow_shift_qa").value.trim();
     var outflow_id_no_qa = document.getElementById("outflow_id_no_qa").value.trim();
     var outflow_person_qa = document.getElementById("outflow_person_qa").value.trim();
+
     var defect_category_dr_qa = document.getElementById("defect_category_qa").value.trim();
+    var defect_categ_foreign_mat = document.getElementById("defect_categ_foreign_mat_insp").value.trim();
+    var defect_categ_foreign_mat_2 = document.getElementById("defect_categ_foreign_mat_2_insp").value.trim();
+
     var sequence_no_qa = document.getElementById("sequence_no_qa").value.trim();
     var assy_board_no_qa = document.getElementById("assy_board_no_qa").value.trim();
     var defect_cause_qa = document.getElementById("defect_cause_qa").value.trim();
@@ -1223,7 +1252,11 @@
         outflow_shift_qa: outflow_shift_qa,
         outflow_id_no_qa: outflow_id_no_qa,
         outflow_person_qa: outflow_person_qa,
+
         defect_category_dr_qa: defect_category_dr_qa,
+        defect_categ_foreign_mat: defect_categ_foreign_mat,
+        defect_categ_foreign_mat_2: defect_categ_foreign_mat_2,
+
         sequence_no_qa: sequence_no_qa,
         assy_board_no_qa: assy_board_no_qa,
         defect_cause_qa: defect_cause_qa,
@@ -1321,6 +1354,9 @@
     $("#detail_content_defect_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
     $("#treatment_content_defect_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
     $("#harness_status_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
+
+    $("#na_value_1_insp").prop('checked', false);
+    $("#na_value_2_insp").prop('checked', false);
   }
 
   const clear_qa_fields = () => {

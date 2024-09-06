@@ -360,6 +360,28 @@
                             Defect field is required.</span>
                     </div>
                 </div>
+                <div id="foreign_material_details_insp" class="row p-1 mt-3 hidden-defect"
+                    style="border-top: 1px solid #DDD; border-bottom: 1px solid #DDD;">
+                    <div class="col-sm-3">
+                        <label style="font-weight: normal;color: #000;">Details</label>
+                        <label style="color:#CA3F3F">*</label>
+                        <input type="text" id="defect_categ_foreign_mat_insp" class="form-control pl-3" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                    </div>
+                    <div class="col-sm-3 mb-2">
+                        <label style="font-weight: normal;color: #000;">Category</label>
+                        <label style="color:#CA3F3F">*</label>
+                        <select name="defect_categ_foreign_mat_2" id="defect_categ_foreign_mat_2_insp" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="form-control pl-2" required>
+                            <option value="" disabled selected>----</option>
+                            <option value="Inside Conn">Inside Conn</option>
+                            <option value="Inside Terminal">Inside Terminal</option>
+                            <option value="Outside Portion">Outside Portion</option>
+                            <option value="N/A">N/A</option>
+                        </select>
+                    </div>
+                </div>
                 <br>
                 <!-- /.end -->
                 <div class="row mb-2">

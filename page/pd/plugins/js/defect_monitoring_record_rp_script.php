@@ -6,14 +6,12 @@
 
         load_defect_table(1);
         load_added_mancost();
-        fetch_opt_harness_status_search();
         fetch_opt_record_type_dr();
         fetch_opt_line_no_dr();
         fetch_opt_line_no_update();
         fetch_opt_category_dr();
         fetch_opt_car_maker_dr();
         fetch_opt_discovery_process();
-        // fetch_opt_parts_removed();
         fetch_opt_occurrence_process();
         fetch_opt_occurrence_shift();
         fetch_opt_outflow_process();
@@ -21,12 +19,27 @@
         fetch_opt_defect_category();
         fetch_opt_defect_cause();
         fetch_opt_repair_person();
+        fetch_opt_repair_person_update();
         fetch_opt_defect_category_mc();
         fetch_opt_occurrence_process_mc();
+        fetch_opt_occurrence_process_mc_update();
         fetch_opt_portion_treatment();
         fetch_opt_harness_status();
+        fetch_opt_harness_status_update();
         count_detail_content_defect_char();
         count_treatment_content_defect_char();
+
+        fetch_opt_defect_category_pd_mc_update();
+        fetch_opt_portion_treatment_update();
+        fetch_opt_defect_category_pd_dr_update();
+        fetch_opt_defect_cause_pd_update();
+        get_discovery_person_update();
+        get_occurrence_person_update();
+        get_outflow_person_update();
+
+        fetch_opt_discovery_process_update();
+        fetch_opt_occurrence_process_update();
+        fetch_opt_outflow_process_update();
 
         fetch_and_update_count();
 
@@ -68,6 +81,45 @@
                 $('#outflow_person').val('');
             }
         });
+
+        // ==================================================
+        $('#discovery_id_no_pd_update').on('keypress', function (e) {
+            if (e.which === 13) {
+                get_discovery_person_update();
+            }
+        });
+
+        $('#discovery_id_no_pd_update').on('input', function () {
+            if ($(this).val() === '') {
+                $('#discovery_person_pd_update').val('');
+            }
+        });
+
+        // fetch occurrence person
+        $('#occurrence_id_no_pd_update').on('keypress', function (e) {
+            if (e.which === 13) {
+                get_occurrence_person_update();
+            }
+        });
+
+        $('#occurrence_id_no_pd_update').on('input', function () {
+            if ($(this).val() === '') {
+                $('#occurrence_person_pd_update').val('');
+            }
+        });
+
+        // fetch outflow person
+        $('#outflow_id_no_pd_update').on('keypress', function (e) {
+            if (e.which === 13) {
+                get_outflow_person_update();
+            }
+        });
+
+        $('#outflow_id_no_pd_update').on('input', function () {
+            if ($(this).val() === '') {
+                $('#outflow_person_pd_update').val('');
+            }
+        });
     });
 
     function update_display_badge_count(new_count) {
@@ -105,33 +157,63 @@
         }
     });
 
-    // document.getElementById("search_product_name").addEventListener("keyup", e => {
-    //     load_defect_table(1);
-    // });
+    document.getElementById('defect_category_dr').addEventListener('change', function () {
+        var selectedValue = this.value;
+        var foreignMaterialDiv = document.getElementById('foreign_material_details');
+        var defectCategForeignMat = document.getElementById('defect_categ_foreign_mat');
+        var defectCategForeignMat2 = document.getElementById('defect_categ_foreign_mat_2');
 
-    // document.getElementById("search_lot_no").addEventListener("keyup", e => {
-    //     load_defect_table(1);
-    // });
+        if (selectedValue === 'Foreign Material') {
+            foreignMaterialDiv.classList.remove('hidden-defect');
+        } else {
+            foreignMaterialDiv.classList.add('hidden-defect');
+            // Autofill fields with 'N/A'
+            defectCategForeignMat.value = 'N/A';
+            defectCategForeignMat2.value = 'N/A';
+        }
+    });
 
-    // document.getElementById("search_serial_no").addEventListener("keyup", e => {
-    //     load_defect_table(1);
-    // });
+    document.getElementById('defect_category_mc').addEventListener('change', function () {
+        var selectedValue = this.value;
+        var otherInput = document.getElementById('other_defect_category_mc');
 
-    // document.getElementById("search_record_type").addEventListener("change", e => {
-    //     load_defect_table(1);
-    // });
+        if (selectedValue === 'H - Others, please specify') {
+            otherInput.style.display = 'block';
+            otherInput.focus();
+            otherInput.value = '';
+        } else {
+            otherInput.style.display = 'none';
+            otherInput.value = 'N/A';
+        }
+    });
 
-    // document.getElementById("date_from_search_defect").addEventListener("change", e => {
-    //     load_defect_table(1);
-    // });
+    document.getElementById('occurrence_process_mc').addEventListener('change', function () {
+        var selectedValue = this.value;
+        var otherInput = document.getElementById('other_occurrence_process_mc');
 
-    // document.getElementById("date_to_search_defect").addEventListener("change", e => {
-    //     load_defect_table(1);
-    // });
+        if (selectedValue === 'P - Others, please specify') {
+            otherInput.style.display = 'block';
+            otherInput.focus();
+            otherInput.value = '';
+        } else {
+            otherInput.style.display = 'none';
+            otherInput.value = 'N/A';
+        }
+    });
 
-    // document.getElementById("line_no_rp").addEventListener("keyup", e => {
-    //     load_defect_table(1);
-    // });
+    document.getElementById('portion_treatment').addEventListener('change', function () {
+        var selectedValue = this.value;
+        var otherInput = document.getElementById('other_portion_treatment_mc');
+
+        if (selectedValue === 'Others') {
+            otherInput.style.display = 'block';
+            otherInput.focus();
+            otherInput.value = '';
+        } else {
+            otherInput.style.display = 'none';
+            otherInput.value = 'N/A';
+        }
+    });
 
     const get_discovery_person = () => {
         var discovery_id_no = $('#discovery_id_no_dr').val();
@@ -223,6 +305,23 @@
         });
     };
 
+    const fetch_opt_line_no_update = (get_value) => {
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_opt_line_no_update',
+            },
+            success: function (response) {
+                $('#line_no_pd_update').html(response);
+                if (get_value) {
+                    $('#line_no_pd_update').val(get_value);
+                }
+            }
+        });
+    }
+
     const fetch_opt_harness_status_search = () => {
         $.ajax({
             url: '../../process/pd/defect_monitoring_record_rp_p.php',
@@ -247,23 +346,6 @@
             },
             success: function (response) {
                 $('#line_no').html(response);
-            }
-        });
-    }
-
-    const fetch_opt_line_no_update = (get_value) => {
-        $.ajax({
-            url: '../../process/pd/defect_monitoring_record_rp_p.php',
-            type: 'POST',
-            cache: false,
-            data: {
-                method: 'fetch_opt_line_no_update',
-            },
-            success: function (response) {
-                $('#line_no_pd_update').html(response);
-                if (get_value) {
-                    $('#line_no_pd_update').val(get_value);
-                }
             }
         });
     }
@@ -437,6 +519,24 @@
             success: function (response) {
                 // $('#repairPersonDrList').html(response);
                 $('#repair_person_dr').html(response);
+                $('#search_repair_person').html(response);
+            }
+        });
+    }
+
+    const fetch_opt_repair_person_update = (get_value) => {
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_opt_repair_person_update',
+            },
+            success: function (response) {
+                $('#repair_person_pd_update').html(response);
+                if (get_value) {
+                    $('#repair_person_pd_update').val(get_value);
+                }
             }
         });
     }
@@ -473,6 +573,23 @@
         });
     }
 
+    const fetch_opt_occurrence_process_mc_update = (get_value) => {
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_opt_occurrence_process_mc_update',
+            },
+            success: function (response) {
+                $('#occurrence_process_pd_mc_update').html(response);
+                if (get_value) {
+                    $('#occurrence_process_pd_mc_update').val(get_value);
+                }
+            }
+        });
+    }
+
     // fetch option portion treatment
     const fetch_opt_portion_treatment = () => {
         $.ajax({
@@ -501,6 +618,232 @@
             success: function (response) {
                 // $('#portionTreatmentMcList').html(response);
                 $('#harness_status_dr').html(response);
+            }
+        });
+    }
+
+    const fetch_opt_harness_status_update = (get_value) => {
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_opt_harness_status_update',
+            },
+            success: function (response) {
+                $('#harness_status_pd_update').html(response);
+                if (get_value) {
+                    $('#harness_status_pd_update').val(get_value);
+                }
+            }
+        });
+    }
+
+    const fetch_opt_defect_category_pd_mc_update = (get_value) => {
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_opt_defect_category_pd_mc_update',
+            },
+            success: function (response) {
+                $('#defect_category_pd_mc_update').html(response);
+                if (get_value) {
+                    $('#defect_category_pd_mc_update').val(get_value);
+                }
+            }
+        });
+    }
+
+    const fetch_opt_portion_treatment_update = (get_value) => {
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_opt_portion_treatment_update',
+            },
+            success: function (response) {
+                $('#portion_treatment_pd_update').html(response);
+                if (get_value) {
+                    $('#portion_treatment_pd_update').val(get_value);
+                }
+            }
+        });
+    }
+
+    const fetch_opt_defect_category_pd_dr_update = (get_value) => {
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_opt_defect_category_pd_dr_update',
+            },
+            success: function (response) {
+                $('#defect_category_pd_dr_update').html(response);
+                if (get_value) {
+                    $('#defect_category_pd_dr_update').val(get_value);
+                }
+            }
+        });
+    }
+
+    const fetch_opt_defect_cause_pd_update = (get_value) => {
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_opt_defect_cause_pd_update',
+            },
+            success: function (response) {
+                $('#defect_cause_pd_update').html(response);
+                if (get_value) {
+                    $('#defect_cause_pd_update').val(get_value);
+                }
+            }
+        });
+    }
+
+    const get_discovery_person_update = () => {
+        var discovery_id_no = $('#discovery_id_no_pd_update').val();
+
+        if (discovery_id_no === 'N/A') {
+            $('#discovery_person_pd_update').val('N/A');
+            return;
+        }
+
+        if (discovery_id_no === '') {
+            $('#discovery_person_pd_update').val('');
+            return;
+        }
+
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_get_p.php',
+            type: 'GET',
+            data: {
+                method: 'get_discovery_person',
+                discovery_id_no: discovery_id_no
+            },
+            success: function (response) {
+                var data = JSON.parse(response);
+                $('#discovery_person_pd_update').val(data.full_name);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+
+            }
+        });
+    };
+
+    const get_occurrence_person_update = () => {
+        var occurrence_id_no = $('#occurrence_id_no_pd_update').val();
+
+        if (occurrence_id_no === 'N/A') {
+            $('#occurrence_person_pd_update').val('N/A');
+            return;
+        }
+
+        if (occurrence_id_no === '') {
+            $('#occurrence_person_pd_update').val('');
+            return;
+        }
+
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_get_p.php',
+            type: 'GET',
+            data: {
+                method: 'get_occurrence_person',
+                occurrence_id_no: occurrence_id_no
+            },
+            success: function (response) {
+                var data = JSON.parse(response);
+                $('#occurrence_person_pd_update').val(data.full_name);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+
+            }
+        });
+    };
+
+    const get_outflow_person_update = () => {
+        var outflow_id_no = $('#outflow_id_no_pd_update').val();
+
+        if (outflow_id_no === 'N/A') {
+            $('#outflow_person_pd_update').val('N/A');
+            return;
+        }
+
+        if (outflow_id_no === '') {
+            $('#outflow_person_pd_update').val('');
+            return;
+        }
+
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_get_p.php',
+            type: 'GET',
+            data: {
+                method: 'get_outflow_person',
+                outflow_id_no: outflow_id_no
+            },
+            success: function (response) {
+                var data = JSON.parse(response);
+                $('#outflow_person_pd_update').val(data.full_name);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+
+            }
+        });
+    };
+
+    const fetch_opt_discovery_process_update = (get_value) => {
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_opt_discovery_process',
+            },
+            success: function (response) {
+                $('#discovery_process_pd_update').html(response);
+                if (get_value) {
+                    $('#discovery_process_pd_update').val(get_value);
+                }
+            }
+        });
+    }
+
+    const fetch_opt_occurrence_process_update = (get_value) => {
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_opt_occurrence_process',
+            },
+            success: function (response) {
+                $('#occurrence_process_pd_dr_update').html(response);
+                if (get_value) {
+                    $('#occurrence_process_pd_dr_update').val(get_value);
+                }
+            }
+        });
+    }
+
+    const fetch_opt_outflow_process_update = (get_value) => {
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_opt_outflow_process',
+            },
+            success: function (response) {
+                $('#outflow_process_pd_update').html(response);
+                if (get_value) {
+                    $('#outflow_process_pd_update').val(get_value);
+                }
             }
         });
     }
@@ -1051,11 +1394,14 @@
 
                 $("#na_value_1_pd").prop('disabled', true).val();
                 $("#na_value_2_pd").prop('disabled', true).val();
+
+                $("#na_value_1_insp").prop('checked', false);
+                $("#na_value_2_insp").prop('checked', false);
             }
             else if ($(this).val() === "Defect Only") {
                 $("#line_no").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#line_category_dr").prop('disabled', false).val('Mass Pro').css('background-color', '#FFF');
-                $("#date_detected").prop('type', 'date').prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#date_detected").prop('type', 'date').prop('disabled', false).val(current_date).css('background-color', '#FFF');
                 $("#na_repairing_date").prop('disabled', true).val('').css('background-color', '#FFF');
                 $("#issue_tag").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#repairing_date").prop('disabled', false).val(current_date).css('background-color', '#FFF');
@@ -1110,11 +1456,14 @@
 
                 $("#na_value_1_pd").prop('disabled', false).val();
                 $("#na_value_2_pd").prop('disabled', false).val();
+
+                $("#na_value_1_insp").prop('checked', false);
+                $("#na_value_2_insp").prop('checked', false);
             }
             else if ($(this).val() === "Defect & Mancost") {
                 $("#line_no").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#line_category_dr").prop('disabled', false).val('Mass Pro').css('background-color', '#FFF');
-                $("#date_detected").prop('type', 'date').prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#date_detected").prop('type', 'date').prop('disabled', false).val(current_date).css('background-color', '#FFF');
                 $("#na_repairing_date").prop('disabled', true).val('').css('background-color', '#FFF');
                 $("#issue_tag").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#repairing_date").prop('disabled', false).val(current_date).css('background-color', '#FFF');
@@ -1169,12 +1518,15 @@
 
                 $("#na_value_1_pd").prop('disabled', false).val();
                 $("#na_value_2_pd").prop('disabled', false).val();
+
+                $("#na_value_1_insp").prop('checked', false);
+                $("#na_value_2_insp").prop('checked', false);
             }
             else {
                 // If 'White Tag', enable the date input, disable the text input, and clear their values
                 $("#line_no").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#line_category_dr").prop('disabled', false).val('Mass Pro').css('background-color', '#FFF');
-                $("#date_detected").prop('type', 'date').prop('disabled', false).val('').css('background-color', '#FFF');
+                $("#date_detected").prop('type', 'date').prop('disabled', false).val(current_date).css('background-color', '#FFF');
                 $("#na_repairing_date").prop('disabled', true).val('').css('background-color', '#FFF');
                 $("#issue_tag").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#repairing_date").prop('disabled', false).val(current_date).css('background-color', '#FFF');
@@ -1229,6 +1581,9 @@
 
                 $("#na_value_1_pd").prop('disabled', false).val();
                 $("#na_value_2_pd").prop('disabled', false).val();
+
+                $("#na_value_1_insp").prop('checked', false);
+                $("#na_value_2_insp").prop('checked', false);
 
                 $("input[name='na_white_tag_defect']").change(function () {
                     // console.log("N/A radio button changed");
@@ -1466,374 +1821,6 @@
         });
     }
 
-    // ============================================================================
-
-    // function handleHondaScan() {
-    //     console.log('honda is selected');
-    //     document.getElementById('qr_scan').addEventListener('keydown', function (e) {
-    //         if (e.which === 13) {
-    //             e.preventDefault();
-    //             var qrCode = this.value;
-    //             if (qrCode.length === 41) {
-    //                 document.getElementById('product_name').value = qrCode.substring(1, 22);
-    //                 document.getElementById('lot_no').value = qrCode.substring(26, 33);
-    //                 document.getElementById('serial_no').value = qrCode.substring(32, 38);
-    //             } else {
-    //                 // alert('Invalid QR code');
-    //                 Swal.fire({
-    //                     icon: 'error',
-    //                     title: 'Invalid QR Code',
-    //                     text: 'Invalid',
-    //                     showConfirmButton: false,
-    //                     timer: 1000
-    //                 });
-    //             } document.getElementById('qr_scan').value = '';
-    //         }
-    //     });
-    // }
-
-    // function handleMazdaScan() {
-    //     console.log('mazda is selected');
-    //     document.getElementById('qr_scan').addEventListener('keyup', function (e) {
-    //         if (e.which === 13) {
-    //             e.preventDefault();
-    //             var qrCode = this.value;
-    //             if (qrCode.length === 50) {
-    //                 document.getElementById('product_name').value = qrCode.substring(10, 35);
-    //                 document.getElementById('lot_no').value = qrCode.substring(35, 41);
-    //                 document.getElementById('serial_no').value = qrCode.substring(41, 50);
-    //                 // Clear the qr_scan input field after processing
-    //                 this.value = '';
-    //             }
-    //             else {
-    //                 // Invalid QR code
-    //                 // Swal.fire({
-    //                 //     icon: 'error',
-    //                 //     title: 'Invalid QR Code',
-    //                 //     showConfirmButton: false,
-    //                 //     timer: 1000
-    //                 // });
-    //             }
-    //         }
-    //     });
-    // }
-
-    // function handleNissanScan() {
-    //     console.log('nissan is selected');
-    //     document.getElementById('qr_scan').addEventListener('keydown', function (e) {
-    //         if (e.which === 13) {
-    //             e.preventDefault();
-    //             var qrCode = this.value;
-    //             if (qrCode.length === 41) {
-    //                 document.getElementById('product_name').value = qrCode.substring(1, 22);
-    //                 document.getElementById('lot_no').value = qrCode.substring(26, 33);
-    //                 document.getElementById('serial_no').value = qrCode.substring(32, 38);
-    //             } else {
-    //                 // alert('Invalid QR code');
-    //                 Swal.fire({
-    //                     icon: 'error',
-    //                     title: 'Invalid QR Code',
-    //                     text: 'Invalid',
-    //                     showConfirmButton: false,
-    //                     timer: 1000
-    //                 });
-    //             } document.getElementById('qr_scan').value = '';
-    //         }
-    //     });
-    // }
-
-    // function handleSubaruScan() {
-    //     console.log('subaru is selected');
-    //     document.getElementById('qr_scan').addEventListener('keydown', function (e) {
-    //         if (e.which === 13) {
-    //             e.preventDefault();
-    //             var qrCode = this.value;
-    //             if (qrCode.length === 41) {
-    //                 document.getElementById('product_name').value = qrCode.substring(1, 22);
-    //                 document.getElementById('lot_no').value = qrCode.substring(26, 33);
-    //                 document.getElementById('serial_no').value = qrCode.substring(32, 38);
-    //             } else {
-    //                 // alert('Invalid QR code');
-    //                 Swal.fire({
-    //                     icon: 'error',
-    //                     title: 'Invalid QR Code',
-    //                     text: 'Invalid',
-    //                     showConfirmButton: false,
-    //                     timer: 1000
-    //                 });
-    //             } document.getElementById('qr_scan').value = '';
-    //         }
-    //     });
-    // }
-
-    // function handleSuzukiScan() {
-    //     document.getElementById('qr_scan').addEventListener('keyup', function (e) {
-    //         var qrCode = this.value;
-    //         var exactLength = qrCode.length;
-
-    //         if (qrCode.trim().length > 0 && qrCode.length >= 50) {
-    //             e.preventDefault();
-    //             qrCode = qrCode.trim();
-    //             var millisecond = new Date().getMilliseconds(); // Get current milliseconds
-
-    //             document.getElementById('product_name').value = qrCode.substring(10, 35);
-    //             document.getElementById('lot_no').value = qrCode.substring(35, 41);
-    //             document.getElementById('serial_no').value = qrCode.substring(41, 50);
-
-    //             document.getElementById('qr_scan').value = '';
-    //         } else if (qrCode.length > 0) {
-    //             console.error('Invalid QR code length:', qrCode.length);
-
-    //             Swal.fire({
-    //                 icon: 'error',
-    //                 title: 'Invalid QR Code',
-    //                 text: 'Invalid',
-    //                 showConfirmButton: false,
-    //                 timer: 1000
-    //             }).then(function () {
-    //                 setTimeout(function () {
-    //                     document.getElementById('qr_scan').value = '';
-    //                 }, 500);
-    //             });
-    //         }
-    //     });
-    // }
-
-    // function handleSuzukiScan() {
-    //     console.log('Suzuki is selected');
-    //     document.getElementById('qr_scan').addEventListener('keyup', function (e) {
-    //         var qrCode = this.value;
-    //         var exactLength = qrCode.length;
-
-    //         console.log('Exact Length:', exactLength);
-
-    //         if (exactLength >= 50) {
-    //             e.preventDefault();
-
-    //             var setting = qr_setting;
-
-    //             if (setting) {
-    //                 var product_start = setting.product_name_start;
-    //                 var product_length = setting.product_name_length;
-    //                 var lot_start = setting.lot_no_start;
-    //                 var lot_length = setting.lot_no_length;
-    //                 var serial_start = setting.serial_no_start;
-    //                 var serial_length = setting.serial_no_length;
-
-    //                 document.getElementById('product_name').value = qrCode.substring(product_start, product_start + product_length);
-    //                 document.getElementById('lot_no').value = qrCode.substring(lot_start, lot_start + lot_length);
-    //                 document.getElementById('serial_no').value = qrCode.substring(serial_start, serial_start + serial_length);
-    //             } else {
-    //                 console.error('QR setting is not defined or invalid');
-    //                 // You can display an error message to the user here
-    //             }
-
-    //             document.getElementById('qr_scan').value = '';
-    //         } else if (exactLength > 0) {
-    //             console.error('Invalid QR code length:', exactLength);
-
-    //             Swal.fire({
-    //                 icon: 'error',
-    //                 title: 'Invalid QR Code',
-    //                 text: 'Invalid',
-    //                 showConfirmButton: false,
-    //                 timer: 1000
-    //             }).then(function () {
-    //                 setTimeout(function () {
-    //                     document.getElementById('qr_scan').value = '';
-    //                 }, 500);
-    //             });
-    //         }
-    //     });
-    // }
-
-    // function handleToyotaScan() {
-    //     console.log('toyota is selected');
-    //     document.getElementById('qr_scan').addEventListener('keydown', function (e) {
-    //         if (e.which === 13) {
-    //             e.preventDefault();
-    //             var qrCode = this.value;
-    //             if (qrCode.length === 41) {
-    //                 document.getElementById('product_name').value = qrCode.substring(1, 22);
-    //                 document.getElementById('lot_no').value = qrCode.substring(26, 33);
-    //                 document.getElementById('serial_no').value = qrCode.substring(32, 38);
-    //             } else {
-    //                 // alert('Invalid QR code');
-    //                 Swal.fire({
-    //                     icon: 'error',
-    //                     title: 'Invalid QR Code',
-    //                     text: 'Invalid',
-    //                     showConfirmButton: false,
-    //                     timer: 1000
-    //                 });
-    //             } document.getElementById('qr_scan').value = '';
-    //         }
-    //     });
-    // }
-
-    // function handleDaihatsuScan() {
-    //     console.log('daihatsu is selected');
-    //     document.getElementById('qr_scan').addEventListener('keydown', function (e) {
-    //         if (e.which === 13) {
-    //             e.preventDefault();
-    //             var qrCode = this.value;
-    //             if (qrCode.length === 41) {
-    //                 document.getElementById('product_name').value = qrCode.substring(1, 22);
-    //                 document.getElementById('lot_no').value = qrCode.substring(26, 33);
-    //                 document.getElementById('serial_no').value = qrCode.substring(32, 38);
-    //             } else {
-    //                 // alert('Invalid QR code');
-    //                 Swal.fire({
-    //                     icon: 'error',
-    //                     title: 'Invalid QR Code',
-    //                     text: 'Invalid',
-    //                     showConfirmButton: false,
-    //                     timer: 1000
-    //                 });
-    //             } document.getElementById('qr_scan').value = '';
-    //         }
-    //     });
-    // }
-
-
-
-    // $(document).ready(function () {
-    //     fetchQRSettings().then(function (qr_setting) {
-    //         if (qr_setting) {
-    //             window.qr_setting = qr_setting;
-    //         } else {
-    //             window.qr_setting = null;
-    //         }
-    //     });
-    // });
-
-    // function fetchQRSettings() {
-    //     return $.ajax({
-    //         url: '../../process/pd/defect_monitoring_record_rp_p.php',
-    //         type: 'POST',
-    //         dataType: 'json',
-    //         data: { method: 'fetch_qr_setting' },
-    //         success: function (response) {
-    //             console.log('QR Settings:', response.qr_setting);
-    //             return response.qr_setting;
-    //         },
-    //         error: function (xhr, status, error) {
-    //             console.error('Error fetching QR settings:', error);
-    //             console.log('XHR response:', xhr.responseText);
-    //             return null;
-    //         }
-    //     });
-    // }
-
-    // function handleCarMakerChange(selectOpt) {
-    //     var carMaker = selectOpt.value;
-    //     switch (carMaker) {
-    //         case 'Honda':
-    //             document.getElementById('qr_scan').disabled = false;
-    //             handle_qr_scan();
-    //             break;
-    //         case 'Mazda':
-    //             document.getElementById('qr_scan').disabled = false;
-    //             handle_qr_scan();
-    //             break;
-    //         case 'Nissan':
-    //             document.getElementById('qr_scan').disabled = false;
-    //             handle_qr_scan();
-    //             break;
-    //         case 'Subaru':
-    //             document.getElementById('qr_scan').disabled = false;
-    //             handle_qr_scan();
-    //             break;
-    //         case 'Suzuki':
-    //             document.getElementById('qr_scan').disabled = false;
-    //             handle_qr_scan();
-    //             break;
-    //         case 'Toyota':
-    //             document.getElementById('qr_scan').disabled = false;
-    //             handle_qr_scan();
-    //             break;
-    //         case 'Daihatsu':
-    //             document.getElementById('qr_scan').disabled = false;
-    //             handle_qr_scan();
-    //             break;
-    //         default:
-    //             document.getElementById('qr_scan').disabled = true;
-    //             break;
-    //     }
-    // }
-
-    // function handle_qr_scan() {
-    //     document.getElementById('qr_scan').addEventListener('keyup', function (e) {
-    //         var qrCode = this.value;
-    //         var exactLength = qrCode.length;
-
-    //         // console.log('Exact Length:', exactLength);
-    //         // console.log('QR Code:', qrCode);
-
-    //         if (exactLength >= 50) {
-    //             e.preventDefault();
-
-    //             if (typeof qr_setting !== 'undefined' && qr_setting !== null && qr_setting.product_name_start !== '0') {
-    //                 var setting = qr_setting;
-    //                 // console.log('Settings:', setting);
-
-    //                 var product_start = parseInt(setting.product_name_start);
-    //                 var product_length = parseInt(setting.product_name_length);
-    //                 var lot_start = parseInt(setting.lot_no_start);
-    //                 var lot_length = parseInt(setting.lot_no_length);
-    //                 var serial_start = parseInt(setting.serial_no_start);
-    //                 var serial_length = parseInt(setting.serial_no_length);
-
-    //                 var productName = qrCode.substring(product_start, product_start + product_length);
-    //                 var lotNo = qrCode.substring(lot_start, lot_start + lot_length);
-    //                 var serialNo = qrCode.substring(serial_start, serial_start + serial_length);
-
-    //                 console.log('Product Name:', productName);
-    //                 console.log('Lot No:', lotNo);
-    //                 console.log('Serial No:', serialNo);
-
-    //                 document.getElementById('product_name').value = productName;
-    //                 document.getElementById('lot_no').value = lotNo;
-    //                 document.getElementById('serial_no').value = serialNo;
-    //             } else {
-    //                 console.error('QR setting is not defined or invalid');
-    //                 Swal.fire({
-    //                     icon: 'error',
-    //                     title: 'Invalid QR Setting',
-    //                     showConfirmButton: false
-    //                 });
-    //             }
-
-    //             document.getElementById('qr_scan').value = '';
-
-    //             console.log(qr_setting);
-    //         } else if (exactLength > 0) {
-    //             console.error('Invalid QR code length:', exactLength);
-
-    //             Swal.fire({
-    //                 icon: 'error',
-    //                 title: 'Invalid QR Code',
-    //                 text: 'Invalid QR code length',
-    //                 showConfirmButton: false,
-    //                 timer: 1000
-    //             }).then(function () {
-    //                 setTimeout(function () {
-    //                     document.getElementById('qr_scan').value = '';
-    //                 }, 500);
-    //             });
-    //         }
-    //     });
-    // }
-
-    // document.addEventListener('DOMContentLoaded', function () {
-    //     handle_qr_scan();
-    // });
-
-    // function handle_line_no_change(line_no) {
-    //     update_car_maker(line_no);
-    //     update_issue_tag(line_no);
-    // }
-
     // Function to handle changes in line number
     function handle_line_no_change(line_no) {
         var record_type = $('input[name="record_type"]:checked').val(); // Get the selected record type
@@ -2040,7 +2027,11 @@
         var outflow_shift_dr = document.getElementById("outflow_shift_dr").value.trim();
         var outflow_id_no_dr = document.getElementById("outflow_id_no_dr").value.trim();
         var outflow_person = document.getElementById("outflow_person").value.trim();
+
         var defect_category_dr = document.getElementById("defect_category_dr").value.trim();
+        var defect_categ_foreign_mat = document.getElementById("defect_categ_foreign_mat").value.trim();
+        var defect_categ_foreign_mat_2 = document.getElementById("defect_categ_foreign_mat_2").value.trim();
+
         var sequence_no = document.getElementById("sequence_no").value.trim();
         var assy_board_no_dr = document.getElementById("assy_board_no_dr").value.trim();
         var defect_cause_dr = document.getElementById("defect_cause_dr").value.trim();
@@ -2096,6 +2087,9 @@
                 outflow_id_no_dr: outflow_id_no_dr,
                 outflow_person: outflow_person,
                 defect_category_dr: defect_category_dr,
+                defect_categ_foreign_mat: defect_categ_foreign_mat,
+                defect_categ_foreign_mat_2: defect_categ_foreign_mat_2,
+
                 sequence_no: sequence_no,
                 assy_board_no_dr: assy_board_no_dr,
                 defect_cause_dr: defect_cause_dr,
@@ -2157,6 +2151,9 @@
                     $('#outflow_id_no_dr').val('');
                     $('#outflow_person').val('');
                     $('#defect_category_dr').val('');
+                    $('#defect_categ_foreign_mat').val('');
+                    $('#defect_categ_foreign_mat_2').val('');
+
                     $('#sequence_no').val('');
                     $('#assy_board_no_dr').val('');
                     $('#defect_cause_dr').val('');
@@ -2185,13 +2182,13 @@
                     $('#defect_id').val('');
 
                     clearInputFields();
-                    load_defect_table();
+                    // load_defect_table();
 
                     $('#add_defect_mancost_2').modal('hide');
 
-                    // setTimeout(function () {
-                    //     location.reload();
-                    // }, 500);
+                    setTimeout(function () {
+                        location.reload();
+                    }, 500);
                 }
                 else {
                     console.error("Unexpected response from the server:", response);
@@ -2775,74 +2772,113 @@
 
         $('#update_defect_mancost_pd_id').val(data[0]).prop('hidden', true);
 
-        $('#car_maker_pd_update').val(data[1]).prop('disabled', true).css('background', '#EEE');
+        $('#car_maker_pd_update').val(data[1]);
         $('#line_no_pd_update').val(data[2]);
         $('#line_category_pd_update').val(data[3]).prop('disabled', true).css('background', '#EEE');
         $('#date_detected_pd_update').val(data[4]).prop('disabled', true).css('background', '#EEE');
-        $('#issue_tag_pd_update').val(data[5]).prop('disabled', false);
+        $('#issue_tag_pd_update').val(data[5]);
         $('#product_name_pd_update').val(data[6]).prop('disabled', true).css('background', '#EEE');
         $('#lot_no_pd_update').val(data[7]).prop('disabled', true).css('background', '#EEE');
         $('#serial_no_pd_update').val(data[8]);
-        $('#discovery_process_pd_update').val(data[9]).prop('disabled', true).css('background', '#EEE');
-        $('#discovery_id_no_pd_update').val(data[10]).prop('disabled', true).css('background', '#EEE');
-        $('#discovery_person_pd_update').val(data[11]).prop('disabled', true).css('background', '#EEE');
-        $('#occurrence_process_pd_dr_update').val(data[12]).prop('disabled', true).css('background', '#EEE');
-        $('#occurrence_shift_pd_update').val(data[13]).prop('disabled', true).css('background', '#EEE');
-        $('#occurrence_id_no_pd_update').val(data[14]).prop('disabled', true).css('background', '#EEE');
-        $('#occurrence_person_pd_update').val(data[15]).prop('disabled', true).css('background', '#EEE');
-        $('#outflow_process_pd_update').val(data[16]).prop('disabled', true).css('background', '#EEE');
-        $('#outflow_shift_pd_update').val(data[17]).prop('disabled', true).css('background', '#EEE');
-        $('#outflow_id_no_pd_update').val(data[18]).prop('disabled', true).css('background', '#EEE');
-        $('#outflow_person_pd_update').val(data[19]).prop('disabled', true).css('background', '#EEE');
-        $('#defect_category_pd_dr_update').val(data[20]).prop('disabled', true).css('background', '#EEE');
-        $('#sequence_no_pd_update').val(data[21]).prop('disabled', true).css('background', '#EEE');
-        $('#assy_board_no_pd_update').val(data[22]).prop('disabled', true).css('background', '#EEE');
-        $('#defect_cause_pd_update').val(data[23]).prop('disabled', true).css('background', '#EEE');
+        $('#discovery_process_pd_update').val(data[9]);
+        $('#discovery_id_no_pd_update').val(data[10]);
+        $('#discovery_person_pd_update').val(data[11]).prop('disabled', true).css('background', '#F1F1F1');
+        $('#occurrence_process_pd_dr_update').val(data[12]);
+        $('#occurrence_shift_pd_update').val(data[13]);
+        $('#occurrence_id_no_pd_update').val(data[14]);
+        $('#occurrence_person_pd_update').val(data[15]).prop('disabled', true).css('background', '#F1F1F1');
+        $('#outflow_process_pd_update').val(data[16]);
+        $('#outflow_shift_pd_update').val(data[17]);
+        $('#outflow_id_no_pd_update').val(data[18]);
+        $('#outflow_person_pd_update').val(data[19]).prop('disabled', true).css('background', '#F1F1F1');
+        $('#defect_category_pd_dr_update').val(data[20]);
+        $('#sequence_no_pd_update').val(data[21]);
+        $('#assy_board_no_pd_update').val(data[22]);
+        $('#defect_cause_pd_update').val(data[23]);
         $('#good_measurement_pd_update').val(data[24]);
         $('#ng_measurement_pd_update').val(data[25]);
         $('#wire_type_pd_update').val(data[26]);
         $('#wire_size_pd_update').val(data[27]);
         $('#connector_cavity_pd_update').val(data[28]);
-        $('#repair_person_pd_update').val(data[29]).prop('disabled', true).css('background', '#EEE');
-        $('#detail_content_defect_pd_update').val(data[30]).prop('disabled', true).css('background', '#EEE');
-        $('#treatment_content_defect_pd_update').val(data[31]);
-        $('#harness_status_pd_update').val(data[32]).prop('disabled', true).css('background', '#EEE');
-        $('#repairing_date_pd_update').val(data[33]).prop('disabled', true).css('background', '#EEE');
-        $('#repair_start_pd_update').val(data[34]).prop('disabled', true).css('background', '#EEE');
-        $('#repair_end_pd_update').val(data[35]).prop('disabled', true).css('background', '#EEE');
-        $('#time_consumed_pd_update').val(data[36]).prop('disabled', true).css('background', '#EEE');
-        $('#defect_category_pd_mc_update').val(data[37]).prop('disabled', true).css('background', '#EEE');
-        $('#occurrence_process_pd_mc_update').val(data[38]).prop('disabled', true).css('background', '#EEE');
-        $('#parts_removed_pd_update').val(data[39]);
-        $('#quantity_pd_update').val(data[40]).prop('disabled', true).css('background', '#EEE');
-        $('#unit_cost_pd_update').val(data[41]);
-        $('#material_cost_pd_update').val(data[42]);
-        $('#manhour_cost_pd_update').val(data[43]).prop('disabled', true).css('background', '#EEE');
-        $('#portion_treatment_pd_update').val(data[44]).prop('disabled', true).css('background', '#EEE');
+        $('#repair_person_pd_update').val(data[29]);
+
+        $('#defect_categ_foreign_mat_update').val(data[30]);
+        $('#defect_categ_foreign_mat_2_update').val(data[31]);
+        $('#detail_content_defect_pd_update').val(data[32]);
+        $('#treatment_content_defect_pd_update').val(data[33]);
+        $('#harness_status_pd_update').val(data[34]);
+        $('#repairing_date_pd_update').val(data[35]).prop('disabled', true).css('background', '#EEE');
+        $('#repair_start_pd_update').val(data[36]).prop('disabled', true).css('background', '#EEE');
+        $('#repair_end_pd_update').val(data[37]).prop('disabled', true).css('background', '#EEE');
+        $('#time_consumed_pd_update').val(data[38]).prop('disabled', true).css('background', '#EEE');
+        $('#defect_category_pd_mc_update').val(data[39]);
+        $('#others_defect_category_pd_mc_update').val(data[40]);
+        $('#occurrence_process_pd_mc_update').val(data[41]);
+        $('#others_occurrence_process_pd_mc_update').val(data[42]);
+        $('#parts_removed_pd_update').val(data[43]);
+        $('#quantity_pd_update').val(data[44]).prop('disabled', true).css('background', '#EEE');
+        $('#unit_cost_pd_update').val(data[45]);
+        $('#material_cost_pd_update').val(data[46]);
+        $('#manhour_cost_pd_update').val(data[47]).prop('disabled', true).css('background', '#EEE');
+        $('#portion_treatment_pd_update').val(data[48]);
+        $('#other_portion_treatment_mc_update').val(data[49]);
 
         // defect unique id 
-        $('#admin_defect_id_2').val(data[45]).prop('hidden', true);
+        $('#admin_defect_id_2').val(data[50]).prop('hidden', true);
         $('#update_defect_mancost_pd').modal('show');
     }
 
     const update_pd_record = () => {
         var id = document.getElementById('update_defect_mancost_pd_id').value;
 
+        var car_maker = document.getElementById('car_maker_pd_update').value;
         var line_no = document.getElementById('line_no_pd_update').value;
         var issue_tag = document.getElementById('issue_tag_pd_update').value;
         var serial_no = document.getElementById('serial_no_pd_update').value;
+        var repair_person = document.getElementById('repair_person_pd_update').value;
         var good_measurement = document.getElementById('good_measurement_pd_update').value;
         var ng_measurement = document.getElementById('ng_measurement_pd_update').value;
         var wire_type = document.getElementById('wire_type_pd_update').value;
         var wire_size = document.getElementById('wire_size_pd_update').value;
         var connector_cavity = document.getElementById('connector_cavity_pd_update').value;
         var defect_treatment_content = document.getElementById('treatment_content_defect_pd_update').value;
+        var defect_details_content = document.getElementById('detail_content_defect_pd_update').value;
+        var harness_status = document.getElementById('harness_status_pd_update').value;
+        var occurrence_process_mc = document.getElementById('occurrence_process_pd_mc_update').value;
         var parts_removed = document.getElementById('parts_removed_pd_update').value;
         var quantity = document.getElementById('quantity_pd_update').value;
         var unit_cost = document.getElementById('unit_cost_pd_update').value;
         var material_cost = document.getElementById('material_cost_pd_update').value;
 
-        var pd_defect_id = document.getElementById('admin_defect_id_2').value;
+        var defect_category_mc = document.getElementById('defect_category_pd_mc_update').value;
+        var repaired_portion_treatment = document.getElementById('portion_treatment_pd_update').value;
+        var foreign_mat_details = document.getElementById('defect_categ_foreign_mat_update').value;
+        var foreign_mat_category = document.getElementById('defect_categ_foreign_mat_2_update').value;
+        var defect_category_dr = document.getElementById('defect_category_pd_dr_update').value;
+        var sequence_no = document.getElementById('sequence_no_pd_update').value;
+        var assy_board_no = document.getElementById('assy_board_no_pd_update').value;
+        var defect_cause = document.getElementById('defect_cause_pd_update').value;
+
+        var discovery_id_no = document.getElementById('discovery_id_no_pd_update').value;
+        var discovery_person = document.getElementById('discovery_person_pd_update').value;
+        var occurrence_id_no = document.getElementById('occurrence_id_no_pd_update').value;
+        var occurrence_person = document.getElementById('occurrence_person_pd_update').value;
+        var outflow_id_no = document.getElementById('outflow_id_no_pd_update').value;
+        var outflow_person = document.getElementById('outflow_person_pd_update').value;
+
+        var occurrence_shift = document.getElementById('occurrence_shift_pd_update').value;
+        var outflow_shift = document.getElementById('outflow_shift_pd_update').value;
+
+        var discovery_process = document.getElementById('discovery_process_pd_update').value;
+        var occurrence_process_dr = document.getElementById('occurrence_process_pd_dr_update').value;
+        var outflow_process = document.getElementById('outflow_process_pd_update').value;
+
+        var others_defect_category_mc = document.getElementById('others_defect_category_pd_mc_update').value;
+        var others_occurrence_process_mc = document.getElementById('others_occurrence_process_pd_mc_update').value;
+        var others_portion_treatment_mc = document.getElementById('other_portion_treatment_mc_update').value;
+
+        // var pd_defect_id = document.getElementById('admin_defect_id_2').value;
+        var pd_defect_id = sessionStorage.getItem('load_defect_id');
 
         // var mancost_id = document.getElementById('mancost_id_pd_update').value;
 
@@ -2853,20 +2889,53 @@
             data: {
                 method: 'update_pd_record',
                 id: id,
+                car_maker: car_maker,
                 line_no: line_no,
                 issue_tag: issue_tag,
                 serial_no: serial_no,
+                repair_person: repair_person,
                 good_measurement: good_measurement,
                 ng_measurement: ng_measurement,
                 wire_type: wire_type,
                 wire_size: wire_size,
                 connector_cavity: connector_cavity,
                 defect_treatment_content: defect_treatment_content,
+                defect_details_content: defect_details_content,
+                harness_status: harness_status,
+                occurrence_process_mc: occurrence_process_mc,
                 parts_removed: parts_removed,
                 quantity: quantity,
                 unit_cost: unit_cost,
                 material_cost: material_cost,
-                pd_defect_id: pd_defect_id,
+
+                defect_category_mc: defect_category_mc,
+                repaired_portion_treatment: repaired_portion_treatment,
+                foreign_mat_details: foreign_mat_details,
+                foreign_mat_category: foreign_mat_category,
+                defect_category_dr: defect_category_dr,
+                sequence_no: sequence_no,
+                assy_board_no: assy_board_no,
+                defect_cause: defect_cause,
+
+                discovery_id_no: discovery_id_no,
+                discovery_person: discovery_person,
+                occurrence_id_no: occurrence_id_no,
+                occurrence_person: occurrence_person,
+                outflow_id_no: outflow_id_no,
+                outflow_person: outflow_person,
+
+                occurrence_shift: occurrence_shift,
+                outflow_shift: outflow_shift,
+
+                discovery_process: discovery_process,
+                occurrence_process_dr: occurrence_process_dr,
+                outflow_process: outflow_process,
+
+                others_defect_category_mc: others_defect_category_mc,
+                others_occurrence_process_mc: others_occurrence_process_mc,
+                others_portion_treatment_mc: others_portion_treatment_mc,
+
+                pd_defect_id: pd_defect_id
                 // mancost_id: mancost_id 
             },
             success: function (response) {
@@ -2879,31 +2948,60 @@
                     });
 
                     $('#update_defect_mancost_pd_id').val('');
+                    $('#car_maker_pd_update').val('');
                     $('#line_no_pd_update').val('');
                     $('#issue_tag_pd_update').val('');
                     $('#serial_no_pd_update').val('');
+                    $('#repair_person_pd_update').val('');
                     $('#good_measurement_pd_update').val('');
                     $('#ng_measurement_pd_update').val('');
                     $('#wire_type_pd_update').val('');
                     $('#wire_size_pd_update').val('');
                     $('#connector_cavity_pd_update').val('');
                     $('#treatment_content_defect_pd_update').val('');
+                    $('#detail_content_defect_pd_update').val('');
+                    $('#harness_status_pd_update').val('');
+                    $('#occurrence_process_pd_mc_update').val('');
                     $('#parts_removed_pd_update').val('');
                     $('#quantity_pd_update').val('');
                     $('#unit_cost_pd_update').val('');
                     $('#material_cost_pd_update').val('');
+
+                    $('#defect_category_pd_mc_update').val('');
+                    $('#portion_treatment_pd_update').val('');
+                    $('#defect_categ_foreign_mat_update').val('');
+                    $('#defect_categ_foreign_mat_2_update').val('');
+                    $('#defect_category_pd_dr_update').val('');
+                    $('#sequence_no_pd_update').val('');
+                    $('#assy_board_no_pd_update').val('');
+                    $('#defect_cause_pd_update').val('');
+
+                    $('#discovery_id_no_pd_update').val('');
+                    $('#discovery_person_pd_update').val('');
+                    $('#occurrence_id_no_pd_update').val('');
+                    $('#occurrence_person_pd_update').val('');
+                    $('#outflow_id_no_pd_update').val('');
+                    $('#outflow_person_pd_update').val('');
+
+                    $('#occurrence_shift_pd_update').val('');
+                    $('#outflow_shift_pd_update').val('');
+
+                    $('#discovery_process_pd_update').val('');
+                    $('#occurrence_process_pd_update').val('');
+                    $('#outflow_process_pd_update').val('');
+
+                    $('#others_defect_category_pd_mc_update').val('');
+                    $('#others_occurrence_process_pd_mc_update').val('');
+                    $('#other_portion_treatment_mc_update').val('');
+
                     $('#admin_defect_id_2').val('');
 
-                    // $('#mancost_id_pd_update').val('');
-
-                    // load_mancost_table($('#update_defect_mancost_pd_id').val() + '~!~' + $('#admin_defect_id_2').val());
-
-                    // $('#update_defect_mancost_pd').modal('hide');
-
                     // Reload table
-                    load_mancost_table(id + '~!~' + pd_defect_id);
+                    // load_mancost_table(id + '~!~' + pd_defect_id);
 
-                    // Hide modal
+                    var defect_id = $('#update_defect_mancost_pd_id').val(); // Pass the correct parameters if needed
+                    load_defect_table(defect_id);
+
                     $('#update_defect_mancost_pd').modal('hide');
                 } else {
                     Swal.fire({
@@ -3087,6 +3185,10 @@
         var portion_treatment = document.getElementById("portion_treatment");
         var portionTreatmentMcError = document.getElementById("portionTreatmentMcError");
 
+        var other_defect_category_mc = document.getElementById("other_defect_category_mc");
+        var other_occurrence_process_mc = document.getElementById("other_occurrence_process_mc");
+        var other_portion_treatment_mc = document.getElementById("other_portion_treatment_mc");
+
         var defect_id = document.getElementById('defect_id_no');
 
         // Reset highlighting and error messages
@@ -3147,6 +3249,10 @@
                     material_cost_mc: material_cost_mc.value,
                     manhour_cost_mc: manhour_cost_mc.value,
                     portion_treatment: portion_treatment.value,
+
+                    other_defect_category_mc: other_defect_category_mc.value,
+                    other_occurrence_process_mc: other_occurrence_process_mc.value,
+                    other_portion_treatment_mc: other_portion_treatment_mc.value,
                     defect_id: defect_id.value
                 }
             ];
@@ -3175,15 +3281,19 @@
                             'time_consumed_mc': time_consumed_mc.value,
                             'defect_category_mc': defect_category_mc.value,
                             'occurrence_process_mc': occurrence_process_mc.value,
-                            'parts_removed_mc': parts_removed_mc.value,
                             'manhour_cost_mc': manhour_cost_mc.value,
+                            'portion_treatment': portion_treatment.value,
+
+                            'other_defect_category_mc': other_defect_category_mc.value,
+                            'other_occurrence_process_mc': other_occurrence_process_mc.value,
+                            'other_portion_treatment_mc': other_portion_treatment_mc.value
                         };
 
                         $('#parts_removed_mc').val('');
-                        $('#quantity_mc').val('');
+                        $('#quantity_mc').val(0);
                         $('#unit_cost_mc').val('');
                         $('#material_cost_mc').val('');
-                        $('#portion_treatment').val('');
+                        // $('#portion_treatment').val('');
 
                         $('#defect_id').val('');
 

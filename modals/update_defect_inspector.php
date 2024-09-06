@@ -33,7 +33,6 @@
 
                         <input type="hidden" id="update_defect_mancost_inspector_id" class="form-control">
 
-
                         <!-- line no. -->
                         <label style="font-weight: normal;color: #000;">Line No.</label>
                         <input type="text" id="line_no_insp_update" class="form-control" autocomplete="off"
@@ -212,6 +211,36 @@
                         <datalist id="defectCauseDrList"></datalist>
                     </div>
                 </div>
+                <div id="foreign_material_details" class="row p-1 mt-3"
+                    style="border-top: 1px solid #DDD; border-bottom: 1px solid #DDD;">
+                    <div class="col-sm-3">
+                        <label style="font-weight: normal;color: #000;">Details <p style="font-size:13px;"><i>for
+                                    Foreign Material only</i></p></label>
+                        <!-- <label style="color:#EA9515">*</label> -->
+                        <input type="text" id="defect_categ_foreign_mat_insp_update" class="form-control pl-3"
+                            autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                    </div>
+                    <div class="col-sm-3 mb-2">
+                        <label style="font-weight: normal;color: #000;">Category <p style="font-size:13px;"><i>for
+                                    Foreign Material only</i></p></label>
+                        <!-- <label style="color:#EA9515">*</label> -->
+
+                        <input type="text" id="defect_categ_foreign_mat_2_insp_update" class="form-control pl-3"
+                            autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                        <!-- <select name="defect_categ_foreign_mat_2" id="defect_categ_foreign_mat_2_insp_update"
+                            autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="form-control pl-2" required>
+                            <option value="" disabled selected>----</option>
+                            <option value="Inside Conn">Inside Conn</option>
+                            <option value="Inside Terminal">Inside Terminal</option>
+                            <option value="Outside Portion">Outside Portion</option>
+                            <option value="N/A">N/A</option>
+                        </select> -->
+                    </div>
+                </div>
                 <br>
                 <!-- /.end -->
                 <div class="row mb-2">
@@ -360,7 +389,7 @@
                 </div>
                 <!-- <br> -->
                 <!-- /.end -->
-                <div class="row mb-2">
+                <div class="row mb-3">
                     <div class="col-sm-4">
                         <!-- defect category mancost -->
                         <label style="font-weight: normal;color: #000;">Defect Category</label>
@@ -378,6 +407,13 @@
                         </select>
                         <span id="defectCategoryMcError" class="error-message"
                             style="display:none; color:#CA3F3F;">Defect Category field is required.</span>
+
+                        <label class="p-0 m-0" style="font-size: 12px;font-weight: normal;"><i>Applicable if the value
+                                above is OTHERS</i></label>
+                        <input type="text" id="others_defect_category_insp_mc_update"
+                            name="others_defect_category_insp_mc_update" placeholder="If others, please specify"
+                            class="form-control mt-1" value="N/A"
+                            style="color: #525252; font-size: 15px; border-radius: .25rem; background: #FFF; height:34px; width:100%;">
 
                     </div>
                     <div class="col-sm-4">
@@ -397,6 +433,13 @@
                         </select>
                         <span id="occurrenceProcessMcError" class="error-message"
                             style="display:none; color:#CA3F3F;">Occurrence Process field is required.</span>
+
+                        <label class="p-0 m-0" style="font-size: 12px;font-weight: normal;"><i>Applicable if the value
+                                above is OTHERS</i></label>
+                        <input type="text" id="others_occurrence_process_insp_mc_update"
+                            name="others_occurrence_process_insp_mc_update" placeholder="If others, please specify"
+                            class="form-control mt-1" value="N/A"
+                            style="color: #525252; font-size: 15px; border-radius: .25rem; background: #FFF; height:34px; width:100%;">
                     </div>
                     <div class="col-sm-4">
                         <!-- parts removed -->
@@ -464,6 +507,13 @@
                         </select>
                         <span id="portionTreatmentMcError" class="error-message"
                             style="display:none; color:#CA3F3F;">Repaired Portion Treatment field is required.</span>
+
+                        <label class="p-0 m-0" style="font-size: 12px;font-weight: normal;"><i>Applicable if the value
+                                above is OTHERS</i></label>
+                        <input type="text" id="other_portion_treatment_insp_mc_update"
+                            name="other_portion_treatment_insp_mc_update" placeholder="If others, please specify"
+                            class="form-control mt-1" value="N/A"
+                            style="color: #525252; font-size: 15px; border-radius: .25rem; background: #FFF; height:34px; width:100%;">
                     </div>
                 </div>
                 <!-- /.end -->
@@ -474,7 +524,8 @@
                         <button class="btn btn-block" onclick="clear_pending_mc_fields()"
                             style="color:#fff;height:34px;border-radius:.25rem;background: #474747;font-size:15px;font-weight:normal;"
                             onmouseover="this.style.backgroundColor='#272727'; this.style.color='#FFF';"
-                            onmouseout="this.style.backgroundColor='#474747'; this.style.color='#FFF';">Clear Mancost Details</button>
+                            onmouseout="this.style.backgroundColor='#474747'; this.style.color='#FFF';">Clear Mancost
+                            Details</button>
                     </div>
                     <div class="col-sm-3"></div>
                     <div class="col-sm-4"></div>

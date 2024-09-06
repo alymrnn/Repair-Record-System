@@ -484,7 +484,11 @@ if ($method == 'add_record_inspector') {
     $outflow_shift_qa = trim($_POST['outflow_shift_qa']);
     $outflow_id_no_qa = trim($_POST['outflow_id_no_qa']);
     $outflow_person_qa = trim($_POST['outflow_person_qa']);
+
     $defect_category_dr_qa = trim($_POST['defect_category_dr_qa']);
+    $defect_categ_foreign_mat = trim($_POST['defect_categ_foreign_mat']);
+    $defect_categ_foreign_mat_2 = trim($_POST['defect_categ_foreign_mat_2']);
+
     $sequence_no_qa = trim($_POST['sequence_no_qa']);
     $assy_board_no_qa = trim($_POST['assy_board_no_qa']);
     $defect_cause_qa = trim($_POST['defect_cause_qa']);
@@ -532,7 +536,8 @@ if ($method == 'add_record_inspector') {
                 defect_id, line_no, category, date_detected, issue_no_tag, repairing_date, car_maker, product_name, 
                 lot_no, serial_no, discovery_process, discovery_id_num, discovery_person, occurrence_process_dr, 
                 occurrence_shift, occurrence_id_num, occurrence_person, outflow_process, outflow_shift, 
-                outflow_id_num, outflow_person, defect_category_dr, sequence_num, assy_board_no, defect_cause, 
+                outflow_id_num, outflow_person, defect_category_dr, dc_foreign_mat_details, dc_foreign_mat_category,
+                sequence_num, assy_board_no, defect_cause, 
                 defect_detail_content, defect_treatment_content, harness_status, dis_assembled_by, good_measurement, 
                 ng_measurement, wire_type, wire_size, connector_cavity, qc_status, record_type, pending_status, pending_status_2, harness_repair, 
                 record_added_defect_datetime
@@ -541,7 +546,8 @@ if ($method == 'add_record_inspector') {
                 :car_maker, :product_name, :lot_no, :serial_no, :discovery_process, :discovery_id_num, 
                 :discovery_person, :occurrence_process_dr, :occurrence_shift, :occurrence_id_num, 
                 :occurrence_person, :outflow_process, :outflow_shift, :outflow_id_num, :outflow_person, 
-                :defect_category_dr, :sequence_num, :assy_board_no, :defect_cause, :defect_detail_content, 
+                :defect_category_dr, :dc_foreign_mat_details, :dc_foreign_mat_category,
+                :sequence_num, :assy_board_no, :defect_cause, :defect_detail_content, 
                 :defect_treatment_content, :harness_status, :dis_assembled_by, :good_measurement, :ng_measurement, 
                 :wire_type, :wire_size, :connector_cavity, :qc_status, :record_type, :pending_status, :pending_status_2, :harness_repair, 
                 GETDATE()
@@ -570,7 +576,11 @@ if ($method == 'add_record_inspector') {
         $stmt->bindParam(':outflow_shift', $outflow_shift_qa, PDO::PARAM_STR);
         $stmt->bindParam(':outflow_id_num', $outflow_id_no_qa, PDO::PARAM_STR);
         $stmt->bindParam(':outflow_person', $outflow_person_qa, PDO::PARAM_STR);
+
         $stmt->bindParam(':defect_category_dr', $defect_category_dr_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':dc_foreign_mat_details', $defect_categ_foreign_mat, PDO::PARAM_STR);
+        $stmt->bindParam(':dc_foreign_mat_category', $defect_categ_foreign_mat_2, PDO::PARAM_STR);
+        
         $stmt->bindParam(':sequence_num', $sequence_no_qa, PDO::PARAM_STR);
         $stmt->bindParam(':assy_board_no', $assy_board_no_qa, PDO::PARAM_STR);
         $stmt->bindParam(':defect_cause', $defect_cause_qa, PDO::PARAM_STR);

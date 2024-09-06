@@ -147,6 +147,10 @@ delete_added_record($_SESSION['full_name'], $conn);
         .error-text {
             border: 1px solid #ECA843;
         }
+
+        .hidden-defect {
+            display: none;
+        }
     </style>
 </head>
 
