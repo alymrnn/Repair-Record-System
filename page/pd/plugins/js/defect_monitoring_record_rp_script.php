@@ -26,6 +26,8 @@
         fetch_opt_portion_treatment();
         fetch_opt_harness_status();
         fetch_opt_harness_status_update();
+        fetch_opt_harness_status_search();
+        fetch_opt_repair_person_search();
         count_detail_content_defect_char();
         count_treatment_content_defect_char();
 
@@ -332,6 +334,20 @@
             },
             success: function (response) {
                 $('#search_harness_status').html(response);
+            }
+        });
+    }
+
+    const fetch_opt_repair_person_search = () => {
+        $.ajax({
+            url: '../../process/pd/defect_monitoring_record_rp_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_opt_repair_person',
+            },
+            success: function (response) {
+                $('#search_repair_person').html(response);
             }
         });
     }
@@ -925,6 +941,7 @@
         var serial_no = document.getElementById("search_serial_no").value.trim();
         var record_type = document.getElementById("search_record_type").value.trim();
         var line_no_rp = document.getElementById("line_no_rp").value.trim();
+        var repair_person = document.getElementById("search_repair_person").value.trim();
         var harness_status = document.getElementById("search_harness_status").value.trim();
         var date_from = document.getElementById("date_from_search_defect").value.trim();
         var date_to = document.getElementById("date_to_search_defect").value.trim();
@@ -940,6 +957,7 @@
                 serial_no: serial_no,
                 record_type: record_type,
                 line_no_rp: line_no_rp,
+                repair_person: repair_person,
                 harness_status: harness_status,
                 date_from: date_from,
                 date_to: date_to
@@ -1032,6 +1050,7 @@
         var serial_no = document.getElementById("search_serial_no").value.trim();
         var record_type = document.getElementById("search_record_type").value.trim();
         var line_no_rp = document.getElementById("line_no_rp").value.trim();
+        var repair_person = document.getElementById("search_repair_person").value.trim();
         var harness_status = document.getElementById("search_harness_status").value.trim();
         var date_from = document.getElementById("date_from_search_defect").value.trim();
         var date_to = document.getElementById("date_to_search_defect").value.trim();
@@ -1049,6 +1068,7 @@
                 serial_no: serial_no,
                 record_type: record_type,
                 line_no_rp: line_no_rp,
+                repair_person: repair_person,
                 harness_status: harness_status,
                 date_from: date_from,
                 date_to: date_to
@@ -1083,6 +1103,7 @@
 
         var record_type = document.getElementById("search_record_type").value.trim();
         var line_no_rp = document.getElementById("line_no_rp").value.trim();
+        var repair_person = document.getElementById("search_repair_person").value.trim();
         var harness_status = document.getElementById("search_harness_status").value.trim();
         var date_from = document.getElementById("date_from_search_defect").value.trim();
         var date_to = document.getElementById("date_to_search_defect").value.trim();
@@ -1098,6 +1119,7 @@
                 serial_no: serial_no,
                 record_type: record_type,
                 line_no_rp: line_no_rp,
+                repair_person: repair_person,
                 harness_status: harness_status,
                 date_from: date_from,
                 date_to: date_to
@@ -3560,6 +3582,7 @@
 
         var record_type = document.getElementById("search_record_type").value.trim();
         var line_no = document.getElementById("line_no_rp").value.trim();
+        var repair_person = document.getElementById("search_repair_person").value.trim();
         var date_from = document.getElementById("date_from_search_defect").value.trim();
         var date_to = document.getElementById("date_to_search_defect").value.trim();
 
@@ -3569,6 +3592,7 @@
             "&serial_no=" + serial_no +
             "&record_type=" + record_type +
             "&line_no=" + line_no +
+            "&repair_person=" + repair_person +
             "&date_from=" + date_from +
             "&date_to=" + date_to,
             '_blank'
@@ -3583,6 +3607,7 @@
 
         var record_type = document.getElementById("search_record_type").value.trim();
         var line_no = document.getElementById("line_no_rp").value.trim();
+        var repair_person = document.getElementById("search_repair_person").value.trim();
         var date_from = document.getElementById("date_from_search_defect").value.trim();
         var date_to = document.getElementById("date_to_search_defect").value.trim();
 
@@ -3592,6 +3617,7 @@
             "&serial_no=" + serial_no +
             "&record_type=" + record_type +
             "&line_no=" + line_no +
+            "&repair_person=" + repair_person +
             "&date_from=" + date_from +
             "&date_to=" + date_to,
             '_blank'
@@ -3603,7 +3629,9 @@
         document.getElementById("search_lot_no").value = '';
         document.getElementById("search_serial_no").value = '';
         document.getElementById("search_record_type").value = '';
+        document.getElementById("search_repair_person").value = '';
         document.getElementById("line_no_rp").value = '';
+        document.getElementById("qr_scan_pd").value = '';
         // document.getElementById("date_from_search_defect").value = '';
         // document.getElementById("date_to_search_defect").value = '';
 

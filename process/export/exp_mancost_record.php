@@ -9,6 +9,7 @@ $lot_no = $_GET['lot_no'] ?? '';
 $serial_no = $_GET['serial_no'] ?? '';
 $record_type = $_GET['record_type'] ?? '';
 $line_no = $_GET['line_no'] ?? '';
+$repair_person = $_GET['repair_person'] ?? '';
 $date_from = $_GET['date_from'] ?? '';
 $date_to = $_GET['date_to'] ?? '';
 
@@ -28,20 +29,30 @@ $headers = array(
     'Repair Start',
     'Repair End',
     'Time Consumed (in minutes)',
+    'Defect Name',
     'Defect Category',
     'Occurrence Process',
+    'Lot No.',
     'Parts Removed',
     'Quantity',
     'Unit Cost (JPY)',
     'Material Cost (JPY)',
     'Manhour Cost (JPY)',
     'Repaired Portion Treatment',
+    'Repaired By',
 );
 fputcsv($f, $headers, $delimiter);
 
 $query = "SELECT
                 t_defect_record_f.line_no,
                 t_defect_record_f.repairing_date,
+                t_defect_record_f.dis_assembled_by,
+                t_defect_record_f.product_name,
+                t_defect_record_f.lot_no,
+                t_defect_record_f.serial_no,
+                t_defect_record_f.record_type,
+                t_defect_record_f.defect_category_dr,
+                t_defect_record_f.lot_no,
                 t_mancost_monitoring_f.repair_start,
                 t_mancost_monitoring_f.repair_end,
                 t_mancost_monitoring_f.time_consumed,
@@ -81,6 +92,10 @@ if (!empty($record_type)) {
 if (!empty($line_no)) {
     $conditions[] = "t_defect_record_f.line_no LIKE ?";
     $params[] = '%' . $line_no . '%';
+}
+if (!empty($repair_person)) {
+    $conditions[] = "t_defect_record_f.dis_assembled_by LIKE ?";
+    $params[] = '%' . $repair_person . '%';
 }
 if (!empty($date_from) && !empty($date_to)) {
     $conditions[] = "t_defect_record_f.repairing_date BETWEEN ? AND ?";
@@ -122,14 +137,17 @@ try {
                 $row['repair_start'],
                 $row['repair_end'],
                 $row['time_consumed'],
+                $row['defect_category_dr'],
                 $row['defect_category_mc'],
                 $row['occurrence_process_mc'],
+                $row['lot_no'],
                 $row['parts_removed'],
                 $row['quantity'],
                 $row['unit_cost'],
                 $row['material_cost'],
                 $row['manhour_cost'],
                 $row['repaired_portion_treatment'],
+                $row['dis_assembled_by'],
             );
             fputcsv($f, $lineData, $delimiter);
         }

@@ -74,7 +74,7 @@
 
           </div>
           <div class="row">
-            <div class="col-12 col-sm-2">
+            <div class="col-12 col-sm-1">
               <!-- record type -->
               <label style="font-weight:normal;margin:0;padding:0;color:#000;">Record Type</label>
               <select name="search_record_type" id="search_record_type" autocomplete="off"
@@ -83,11 +83,20 @@
                 <option></option>
               </select>
             </div>
-            <div class="col-12 col-sm-2">
+            <div class="col-12 col-sm-1">
               <!-- search keyword input -->
               <label style="font-weight:normal;margin:0;padding:0;font-size:15px">Line No.</label>
               <input type="text" id="line_no_rp" class="form-control" placeholder="Line no." autocomplete="off"
                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;">
+            </div>
+            <div class="col-12 col-sm-2">
+              <!-- search repair person -->
+              <label style="font-weight:normal;margin:0;padding:0;font-size:15px">Repair Person</label>
+              <select name="search_repair_person" id="search_repair_person" autocomplete="off"
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;"
+                class="form-control" required>
+                <option></option>
+              </select>
             </div>
             <div class="col-12 col-sm-2">
               <!-- harness status after repair -->

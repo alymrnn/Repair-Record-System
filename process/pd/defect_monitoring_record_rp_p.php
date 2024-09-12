@@ -414,7 +414,7 @@ function generate_defect_id($defect_id)
 
 // ==================================================================================================================================================================
 
-function count_defect_table_data($conn, $date_from, $date_to, $line_no_rp, $record_type, $product_name, $serial_no, $lot_no, $harness_status)
+function count_defect_table_data($conn, $date_from, $date_to, $line_no_rp, $record_type, $product_name, $serial_no, $lot_no, $harness_status, $repair_person)
 {
     $query = "SELECT COUNT(id) AS total FROM t_defect_record_f";
     $conditions = [];
@@ -458,6 +458,11 @@ function count_defect_table_data($conn, $date_from, $date_to, $line_no_rp, $reco
         $params[] = '%' . $harness_status . '%';
     }
 
+    if (!empty($repair_person) && $repair_person !== '%') {
+        $conditions[] = "dis_assembled_by LIKE ?";
+        $params[] = '%' . $repair_person . '%';
+    }
+
     if (!empty($conditions)) {
         $query .= " WHERE " . implode(" AND ", $conditions);
     }
@@ -492,6 +497,7 @@ if ($method == 'load_defect_table_data_last_page') {
     $record_type = trim($_POST['record_type']);
     $line_no_rp = trim($_POST['line_no_rp']);
     $harness_status = trim($_POST['harness_status']);
+    $repair_person = trim($_POST['repair_person']);
 
     // date search
     $date_from = trim($_POST['date_from']);
@@ -508,7 +514,7 @@ if ($method == 'load_defect_table_data_last_page') {
 
     $results_per_page = 50;
 
-    $number_of_result = intval(count_defect_table_data($conn, $date_from, $date_to, $line_no_rp, $record_type, $product_name, $serial_no, $lot_no, $harness_status));
+    $number_of_result = intval(count_defect_table_data($conn, $date_from, $date_to, $line_no_rp, $record_type, $product_name, $serial_no, $lot_no, $harness_status, $repair_person));
 
     //determine the total number of pages available  
     $number_of_page = ceil($number_of_result / $results_per_page);
@@ -526,6 +532,7 @@ if ($method == 'count_defect_table_data') {
     $record_type = trim($_POST['record_type']);
     $line_no_rp = trim($_POST['line_no_rp']);
     $harness_status = trim($_POST['harness_status']);
+    $repair_person = trim($_POST['repair_person']);
 
     // date search
     $date_from = trim($_POST['date_from']);
@@ -540,7 +547,7 @@ if ($method == 'count_defect_table_data') {
         $date_to = date_format($date_to, "Y/m/d");
     }
 
-    echo count_defect_table_data($conn, $date_from, $date_to, $line_no_rp, $record_type, $product_name, $serial_no, $lot_no, $harness_status);
+    echo count_defect_table_data($conn, $date_from, $date_to, $line_no_rp, $record_type, $product_name, $serial_no, $lot_no, $harness_status, $repair_person);
     exit;
 }
 
@@ -682,6 +689,7 @@ if ($method == 'load_defect_table_data') {
     $record_type = trim($_POST['record_type']);
     $line_no_rp = trim($_POST['line_no_rp']);
     $harness_status = trim($_POST['harness_status']);
+    $repair_person = trim($_POST['repair_person']);
 
     $date_from = trim($_POST['date_from']);
     if (!empty($date_from)) {
@@ -733,6 +741,10 @@ if ($method == 'load_defect_table_data') {
         $conditions[] = "harness_status LIKE :harness_status";
     }
 
+    if (!empty($repair_person)) {
+        $conditions[] = "dis_assembled_by LIKE :dis_assembled_by";
+    }
+
     if (!empty($conditions)) {
         $query .= " WHERE " . implode(" AND ", $conditions);
     }
@@ -764,6 +776,9 @@ if ($method == 'load_defect_table_data') {
     }
     if (!empty($harness_status)) {
         $stmt->bindValue(':harness_status', $harness_status . '%', PDO::PARAM_STR);
+    }
+    if (!empty($repair_person)) {
+        $stmt->bindValue(':dis_assembled_by', $repair_person . '%', PDO::PARAM_STR);
     }
     $stmt->bindValue(':page_first_result', $page_first_result, PDO::PARAM_INT);
     $stmt->bindValue(':results_per_page', $results_per_page, PDO::PARAM_INT);

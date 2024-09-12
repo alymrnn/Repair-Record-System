@@ -8,6 +8,7 @@ $lot_no = $_GET['lot_no'] ?? '';
 $serial_no = $_GET['serial_no'] ?? '';
 $record_type = $_GET['record_type'] ?? '';
 $line_no = $_GET['line_no'] ?? '';
+$repair_person = $_GET['repair_person'] ?? '';
 $date_from = $_GET['date_from'] ?? '';
 $date_to = $_GET['date_to'] ?? '';
 
@@ -92,6 +93,10 @@ if (!empty($record_type)) {
 if (!empty($line_no)) {
     $conditions[] = "line_no LIKE ?";
     $params[] = $line_no . '%';
+}
+if (!empty($repair_person)) {
+    $conditions[] = "dis_assembled_by LIKE ?";
+    $params[] = $repair_person . '%';
 }
 if (!empty($date_from) && !empty($date_to)) {
     $conditions[] = "repairing_date BETWEEN ? AND ?";

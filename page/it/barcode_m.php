@@ -37,7 +37,7 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row mb-3">
                         <div class="col-12 col-sm-2">
                             <!-- add qr setting button -->
                             <a class="btn btn-block d-flex justify-content-left" data-toggle="modal"
