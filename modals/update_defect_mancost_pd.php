@@ -68,11 +68,15 @@
                         <!-- car maker -->
                         <label style="font-weight: normal;color: #000;">Car Maker</label>
                         <label style="color:#EA9515">*</label>
-                        <input list="carMakerList" placeholder="Select the car maker" name="car_maker"
+                        <!-- <input list="carMakerList" placeholder="Select the car maker" name="car_maker"
                             id="car_maker_pd_update" onchange="handleCarMakerChange(this)" autocomplete="off"
                             style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2 form-control">
-                        <datalist id="carMakerList"></datalist>
+                        <datalist id="carMakerList"></datalist> -->
+
+                        <input name="car_maker_pd_update" id="car_maker_pd_update" onchange="handleCarMakerChange(this)"
+                            style="font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="pl-2 form-control" readonly>
                     </div>
                     <div class="col-sm-3">
                         <!-- product name -->
