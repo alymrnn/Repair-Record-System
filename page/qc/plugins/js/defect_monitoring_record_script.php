@@ -1320,16 +1320,16 @@
                     <th>Treatment Content of Defect</th>
                     <th>Dis-assembled/Dis-inserted by:</th>
                     <th>Harness Status after Repair</th>
-                    <th>RE-CRIMP Remarks</th>
+                    <th>RE-CRIMP Judgement</th>
                     <th>ID No.</th>
                     <th>Re-crimp by (PD FSP)</th>
                     <th>Verified by ID No.</th>
                     <th>Verified by (PD FSP)</th>
-                    <th>COUNTERPART CHECKING Remarks 1</th>
-                    <th>Remarks 2</th>
+                    <th>COUNTERPART CHECKING Judgement</th>
+                    <th>Details</th>
                     <th>ID No.</th>
                     <th>Verified by (QA FSP)</th>
-                    <th>RE-ASSY/RE-INSERT Remarks</th>
+                    <th>RE-ASSY/RE-INSERT Judgement</th>
                     <th>ID No.</th>
                     <th>Confirmed by (PD FAP)</th>
                     <th>Date Confirmed</th>
@@ -1519,7 +1519,7 @@
                     <th>QC Verification</th>
                     <th>Checking Date</th>
                     <th>Verified By</th>
-                    <th>Remarks</th>
+                    <th>Judgement</th>
                     <th>Record Added By</th>
                 </tr>
             </thead>

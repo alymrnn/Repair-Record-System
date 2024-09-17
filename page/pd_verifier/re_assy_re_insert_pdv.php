@@ -103,7 +103,7 @@
                         <div class="col-12 col-sm-2">
                             <!-- harness verification -->
                             <label style="font-weight:normal;margin:0;padding:0;color:#000;">Re-Assy/Insert
-                                Remarks</label>
+                                Judgement</label>
                             <select name="harness_verification_pdv" id="search_harness_remarks_pdv_re"
                                 autocomplete="off"
                                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;"
@@ -184,16 +184,16 @@
                                 <th>Treatment Content of Defect</th>
                                 <th>Dis-assembled/Dis-inserted by:</th>
                                 <th>Harness Status after Repair</th>
-                                <th>RE-CRIMP Remarks</th>
+                                <th>RE-CRIMP Judgement</th>
                                 <th>ID No.</th>
                                 <th>Re-crimp by (PD FSP)</th>
                                 <th>Verified by ID No.</th>
                                 <th>Verified by (PD FSP)</th>
-                                <th>COUNTERPART CHECKING Remarks 1</th>
-                                <th>Remarks 2</th>
+                                <th>COUNTERPART CHECKING Judgement</th>
+                                <th>Details</th>
                                 <th>ID No.</th>
                                 <th>Verified by (QA FSP)</th>
-                                <th>RE-ASSY/RE-INSERT Remarks</th>
+                                <th>RE-ASSY/RE-INSERT Judgement</th>
                                 <th>ID No.</th>
                                 <th>Confirmed by (PD FAP)</th>
                                 <th>Date Confirmed</th>

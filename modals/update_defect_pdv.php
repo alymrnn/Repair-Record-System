@@ -299,7 +299,7 @@
                         <label>FOR COUNTERPART CHECKING</label>
                     </div>
                     <div class="col-3">
-                        <label style="font-weight: normal;color: #000;">Remarks 1</label>
+                        <label style="font-weight: normal;color: #000;">Judgement</label>
                         <label style="color:#CA3F3F;">*</label>
                         <select id="cc_remarks_1" class="form-control"
                             style="color: #525252;font-size: 15px;border-radius: .25rem; background: #FFF;height:34px; width:100%;"
@@ -310,7 +310,7 @@
                         </select>
                     </div>
                     <div class="col-3">
-                        <label style="font-weight: normal;color: #000;">Remarks 2</label>
+                        <label style="font-weight: normal;color: #000;">Details</label>
                         <label style="color:#CA3F3F;">*</label>
                         <input type="text" id="cc_remarks_2" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
@@ -335,7 +335,7 @@
                         <label>FOR RE-CRIMP</label>
                     </div>
                     <div class="col-sm-4">
-                        <label style="font-weight: normal;color: #000;">Remarks</label>
+                        <label style="font-weight: normal;color: #000;">Judgement</label>
                         <label style="color:#CA3F3F;">*</label>
                         <select id="recrimp_remarks" class="form-control"
                             style="color: #525252;font-size: 15px;border-radius: .25rem; background: #FFF;height:34px; width:100%;"
@@ -381,7 +381,7 @@
                         <label>FOR RE-ASSY / RE-INSERT</label>
                     </div>
                     <div class="col-sm-3">
-                        <label style="font-weight: normal;color: #000;">Remarks</label>
+                        <label style="font-weight: normal;color: #000;">Judgement</label>
                         <label style="color:#CA3F3F;">*</label>
                         <select id="reassy_remarks" class="form-control"
                             style="color: #525252;font-size: 15px;border-radius: .25rem; background: #FFF;height:34px; width:100%;"

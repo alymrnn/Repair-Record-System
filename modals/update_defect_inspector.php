@@ -27,6 +27,11 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-2">
+                        <label style="font-weight: normal;color: #000; background: #FFFAD1">Record Type</label>
+                        <input type="text" id="record_type_insp_update" class="form-control" autocomplete="off"
+                            style="color: #525252;font-size: 14px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                    </div>
+                    <div class="col-sm-2">
                         <!-- defect id hidden -->
                         <!-- <input type="hidden" id="update_defect_inspector_id" class="form-control"> -->
                         <input type="hidden" id="inspector_defect_id" class="form-control">
@@ -39,13 +44,6 @@
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                         <br>
                     </div>
-                    <div class="col-sm-2">
-                        <label style="font-weight: normal;color: #000;">Category</label>
-                        <input list="categoryList" name="category_dr" id="line_category_insp_update"
-                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
-                            class="pl-2">
-                        <datalist id="categoryList"></datalist>
-                    </div>
                     <div class="col-sm-3">
                         <!-- date detected -->
                         <label style="font-weight: normal;color: #000;">Date Detected</label>
@@ -55,7 +53,7 @@
                     </div>
                     <div class="col-sm-2">
                         <!-- issue no of tag -->
-                        <label style="font-weight: normal;color: #000;">Issue No. of Tag</label>
+                        <label style="font-weight: normal;color: #000;">Issue Tag No.</label>
                         <input type="text" id="issue_tag_insp_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             disabled>
@@ -70,6 +68,13 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-2">
+                        <label style="font-weight: normal;color: #000;">Category</label>
+                        <input list="categoryList" name="category_dr" id="line_category_insp_update"
+                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="pl-2">
+                        <datalist id="categoryList"></datalist>
+                    </div>
+                    <div class="col-sm-2">
                         <!-- car maker -->
                         <label style="font-weight: normal;color: #000;">Car Maker</label>
                         <input list="carMakerList" placeholder="Select the car maker" name="car_maker"
@@ -78,7 +83,7 @@
                             class="pl-2">
                         <datalist id="carMakerList"></datalist>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <!-- product name -->
                         <label style="font-weight: normal;color: #000;">Product Name</label>
                         <input type="text" id="product_name_insp_update" class="form-control" autocomplete="off"
@@ -91,7 +96,7 @@
                         <input type="text" id="lot_no_insp_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <!-- serial number -->
                         <label style="font-weight: normal;color: #000;">Serial No.</label>
                         <input type="text" id="serial_no_insp_update" class="form-control" autocomplete="off"

@@ -14,6 +14,11 @@
                 <p style="font-weight: bold;color: #000;font-size:25px">Defect Record</p>
                 <div class="row">
                     <div class="col-sm-2">
+                        <label style="font-weight: normal;color: #000; background: #FFFAD1">Record Type</label>
+                        <input type="text" id="record_type_pd_update" class="form-control" autocomplete="off"
+                            style="color: #525252;font-size: 14px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                    </div>
+                    <div class="col-sm-2">
                         <!-- defect id hidden -->
                         <input type="hidden" id="update_defect_mancost_pd_id" class="form-control">
 
@@ -29,13 +34,6 @@
                             <option value="" disabled selected>Select line no.</option>
                         </select>
                         <br>
-                    </div>
-                    <div class="col-sm-2">
-                        <label style="font-weight: normal;color: #000;">Category</label>
-                        <input list="categoryList" name="category_dr" id="line_category_pd_update"
-                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
-                            class="pl-2">
-                        <datalist id="categoryList"></datalist>
                     </div>
                     <div class="col-sm-3">
                         <!-- date detected -->
@@ -60,6 +58,13 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-2">
+                        <label style="font-weight: normal;color: #000;">Category</label>
+                        <input list="categoryList" name="category_dr" id="line_category_pd_update"
+                            style="border:1px solid #ced4da; color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="pl-2">
+                        <datalist id="categoryList"></datalist>
+                    </div>
+                    <div class="col-sm-2">
                         <!-- car maker -->
                         <label style="font-weight: normal;color: #000;">Car Maker</label>
                         <label style="color:#EA9515">*</label>
@@ -69,7 +74,7 @@
                             class="pl-2 form-control">
                         <datalist id="carMakerList"></datalist>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <!-- product name -->
                         <label style="font-weight: normal;color: #000;">Product Name</label>
                         <input type="text" id="product_name_pd_update" class="form-control" autocomplete="off"
@@ -82,7 +87,7 @@
                         <input type="text" id="lot_no_pd_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <!-- serial number -->
                         <label style="font-weight: normal;color: #000;">Serial No.</label>
                         <label style="color:#EA9515">*</label>

@@ -605,9 +605,10 @@
         $('#manhour_cost_mc2').val(data[47]);
         $('#portion_treatment2').val(data[48]);
         $('#other_portion_treatment_insp_mc_update').val('N/A');
+        $('#record_type_insp_update').val(data[50]).prop('disabled', true).css('background', '#EEE');
 
         // defect unique id 
-        $('#inspector_defect_id').val(data[50]).prop('hidden', true);
+        $('#inspector_defect_id').val(data[51]).prop('hidden', true);
         $('#update_defect_inspector').modal('show');
     }
 

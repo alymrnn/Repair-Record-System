@@ -458,12 +458,12 @@
                     </div>
                     <div class="col-sm-3">
                         <!-- remarks -->
-                        <label style="font-weight: normal;color: #000;">Remarks</label>
+                        <label style="font-weight: normal;color: #000;">Judgement</label>
                         <label style="color:#CA3F3F">*</label>
                         <input type="text" id="remarks_mc_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             required>
-                        <span id="remarksMcError" class="error-message" style="display:none; color:#CA3F3F;">Remarks
+                        <span id="remarksMcError" class="error-message" style="display:none; color:#CA3F3F;">Judgement
                             field is required.</span>
                     </div>
                     <!-- <input type="hidden" id="admin_defect_id_3"> -->

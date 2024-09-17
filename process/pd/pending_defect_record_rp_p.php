@@ -407,7 +407,7 @@ if ($method == 'load_mancost_table_data') {
             d.wire_type, d.wire_size, d.connector_cavity,
             d.defect_detail_content, d.defect_treatment_content, d.harness_status, d.dis_assembled_by,
             d.dc_foreign_mat_details, d.dc_foreign_mat_category,
-            d.repairing_date, 
+            d.repairing_date, d.record_type,
             m.repair_start, m.repair_end, m.time_consumed, m.defect_category_mc, m.defect_category_mc_others, 
             m.occurrence_process_mc, m.occurrence_process_mc_others, m.parts_removed,
             m.quantity, m.unit_cost, m.material_cost, 
@@ -490,6 +490,7 @@ if ($method == 'load_mancost_table_data') {
                 escapeJs($row['manhour_cost']) . '~!~' .
                 escapeJs($row['repaired_portion_treatment']) . '~!~' .
                 escapeJs($row['repaired_portion_treatment_others']) . '~!~' .
+                escapeJs($row['record_type']) . '~!~' .
                 escapeJs($row['defect_id']) . '\')">';
 
             echo '<td style="text-align:center;">' . $c . '</td>';

@@ -275,7 +275,7 @@
                 <div class="row">
                     <!-- counterpart checking -->
                     <div class="col-sm-3">
-                        <label style="font-weight: normal;color: #000;">Remarks 1</label>
+                        <label style="font-weight: normal;color: #000;">Judgement</label>
                         <!-- <input type="text" id="cc_remarks_1_re_cc_update" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"> -->
 
@@ -288,7 +288,7 @@
                         </select>
                     </div>
                     <div class="col-sm-3">
-                        <label style="font-weight: normal;color: #000;">Remarks 2</label>
+                        <label style="font-weight: normal;color: #000;">Details</label>
                         <input type="text" id="cc_remarks_2_re_cc_update" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
@@ -309,7 +309,7 @@
                 <div class="row">
                     <!-- recrimp -->
                     <div class="col-sm-4">
-                        <label style="font-weight: normal;color: #000;">Remarks</label>
+                        <label style="font-weight: normal;color: #000;">Judgement</label>
                         <!-- <input type="text" id="recrimp_remarks_re_cc_update" class="form-control pl-3"
                             autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"> -->

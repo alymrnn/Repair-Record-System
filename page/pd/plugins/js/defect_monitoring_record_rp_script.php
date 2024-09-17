@@ -1025,16 +1025,16 @@
                     <th>Treatment Content of Defect</th>
                     <th>Dis-assembled/Dis-inserted by:</th>
                     <th>Harness Status after Repair</th>
-                    <th>RE-CRIMP Remarks</th>
+                    <th>RE-CRIMP Judgement</th>
                     <th>ID No.</th>
                     <th>Re-crimp by (PD FSP)</th>
                     <th>Verified by ID No.</th>
                     <th>Verified by (PD FSP)</th>
-                    <th>COUNTERPART CHECKING Remarks 1</th>
-                    <th>Remarks 2</th>
+                    <th>COUNTERPART CHECKING Judgement</th>
+                    <th>Details</th>
                     <th>ID No.</th>
                     <th>Verified by (QA FSP)</th>
-                    <th>RE-ASSY/RE-INSERT Remarks</th>
+                    <th>RE-ASSY/RE-INSERT Judgement</th>
                     <th>ID No.</th>
                     <th>Confirmed by (PD FAP)</th>
                     <th>Date Confirmed</th>
@@ -1346,7 +1346,7 @@
 
     $(document).ready(function () {
         // Disable all input fields by default
-        $("#line_no, #line_category_dr, #date_detected, #na_repairing_date, #issue_tag, #repairing_date, #car_maker, #qr_scan, #product_name, #lot_no, #serial_no, #discovery_process_dr, #discovery_id_no_dr, #discovery_person, #occurrence_process_dr, #occurrence_shift_dr, #occurrence_id_no_dr, #occurrence_person, #outflow_process_dr, #outflow_shift_dr, #outflow_id_no_dr, #outflow_person, #defect_category_dr, #sequence_no, #assy_board_no_dr, #good_measurement_dr, #ng_measurement_dr, #wire_type_dr, #wire_size_dr, #connector_cavity_dr, #harness_status_dr, #defect_cause_dr, #repair_person_dr, #detail_content_defect, #treatment_content_defect, #repair_start_mc, #repair_end_mc, #time_consumed_mc, #defect_category_mc, #occurrence_process_mc, #manhour_cost_mc, #parts_removed_mc, #quantity_mc, #unit_cost_mc, #material_cost_mc, #portion_treatment, #na_value_1_pd, #na_value_2_pd").prop('disabled', true).css('background-color', '#DDD');
+        $("#line_no, #line_category_dr, #date_detected, #na_repairing_date, #issue_tag, #repairing_date, #car_maker, #qr_scan, #product_name, #lot_no, #serial_no, #discovery_process_dr, #discovery_id_no_dr, #discovery_person, #occurrence_process_dr, #occurrence_shift_dr, #occurrence_id_no_dr, #occurrence_person, #outflow_process_dr, #outflow_shift_dr, #outflow_id_no_dr, #outflow_person, #defect_category_dr, #sequence_no, #assy_board_no_dr, #good_measurement_dr, #ng_measurement_dr, #wire_type_dr, #wire_size_dr, #connector_cavity_dr, #harness_status_dr, #defect_cause_dr, #repair_person_dr, #detail_content_defect, #treatment_content_defect, #repair_start_mc, #repair_end_mc, #time_consumed_mc, #defect_category_mc, #occurrence_process_mc, #manhour_cost_mc, #parts_removed_mc, #quantity_mc, #unit_cost_mc, #material_cost_mc, #portion_treatment, #na_value_1_pd, #na_value_2_pd, #car_model").prop('disabled', true).css('background-color', '#DDD');
 
         // add change event listener to radio buttons
         $("input[name='record_type']").change(function () {
@@ -1364,6 +1364,7 @@
                 $("#date_detected").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#defect_category_dr").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#car_maker").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
+                $("#car_model").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
                 $("#qr_scan").prop('disabled', true).val('').css('background-color', '#D3D3D3');
                 $("#product_name").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
                 $("#lot_no").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
@@ -1428,6 +1429,7 @@
                 $("#issue_tag").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#repairing_date").prop('disabled', false).val(current_date).css('background-color', '#FFF');
                 $("#car_maker").prop('readonly', true).val('').css('background-color', '#F1F1F1');
+                $("#car_model").prop('readonly', true).val('').css('background-color', '#F1F1F1');
                 $("#qr_scan").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#product_name").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#lot_no").prop('disabled', false).val('').css('background-color', '#F1F1F1');
@@ -1490,6 +1492,7 @@
                 $("#issue_tag").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#repairing_date").prop('disabled', false).val(current_date).css('background-color', '#FFF');
                 $("#car_maker").prop('readonly', true).val('').css('background-color', '#F1F1F1');
+                $("#car_model").prop('readonly', true).val('').css('background-color', '#F1F1F1');
                 $("#qr_scan").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#product_name").prop('disabled', false).val('').css('background-color', '#FF1F1F1FF');
                 $("#lot_no").prop('disabled', false).val('').css('background-color', '#F1F1F1');
@@ -1646,109 +1649,52 @@
     });
 
     // Attach event listener to the car_maker input
-    $(document).on('input', '#car_maker', function () {
-        handleCarMakerChange(this);
-    });
+    // $(document).on('input', '#car_maker', function () {
+    //     handleCarMakerChange(this);
+    // });
 
-    // qr scan function
-    function handleCarMakerChange(selectOpt) {
-        var carMaker = selectOpt.value;
-        switch (carMaker) {
-            case 'Honda':
-                document.getElementById('qr_scan').disabled = false;
-                handleHondaScan();
-                break;
-            case 'Mazda':
-                document.getElementById('qr_scan').disabled = false;
-                handleMazdaScan();
-                break;
-            case 'Nissan':
-                document.getElementById('qr_scan').disabled = false;
-                handleNissanScan();
-                break;
-            case 'Subaru':
-                document.getElementById('qr_scan').disabled = false;
-                handleSubaruScan();
-                break;
-            case 'Suzuki':
-                document.getElementById('qr_scan').disabled = false;
-                handleSuzukiScan();
-                break;
-            case 'Toyota':
-                document.getElementById('qr_scan').disabled = false;
-                handleToyotaScan();
-                break;
-            case 'Daihatsu':
-                document.getElementById('qr_scan').disabled = false;
-                handleDaihatsuScan();
-                break;
-            default:
-                document.getElementById('qr_scan').disabled = true;
-                break;
-        }
-    }
+    // // qr scan function
+    // function handleCarMakerChange(selectOpt) {
+    //     var carMaker = selectOpt.value;
+    //     switch (carMaker) {
+    //         case 'Honda':
+    //             document.getElementById('qr_scan').disabled = false;
+    //             handleHondaScan();
+    //             break;
+    //         case 'Mazda':
+    //             document.getElementById('qr_scan').disabled = false;
+    //             handleMazdaScan();
+    //             break;
+    //         case 'Nissan':
+    //             document.getElementById('qr_scan').disabled = false;
+    //             handleNissanScan();
+    //             break;
+    //         case 'Subaru':
+    //             document.getElementById('qr_scan').disabled = false;
+    //             handleSubaruScan();
+    //             break;
+    //         case 'Suzuki':
+    //             document.getElementById('qr_scan').disabled = false;
+    //             handleSuzukiScan();
+    //             break;
+    //         case 'Toyota':
+    //             document.getElementById('qr_scan').disabled = false;
+    //             handleToyotaScan();
+    //             break;
+    //         case 'Daihatsu':
+    //             document.getElementById('qr_scan').disabled = false;
+    //             handleDaihatsuScan();
+    //             break;
+    //         default:
+    //             document.getElementById('qr_scan').disabled = true;
+    //             break;
+    //     }
+    // }
 
-    // ============================================================================
-    // WORKING SCAN IN LIVE
-    // IMPLEMENTED IN PRODUCTION
-    function handleSuzukiScan() {
-        document.getElementById('qr_scan').addEventListener('keyup', function (e) {
-            if (e.which === 13) {
-                e.preventDefault();
-                var qrCode = this.value;
-                if (qrCode.length === 50) {
-                    document.getElementById('product_name').value = qrCode.substring(10, 35);
-                    document.getElementById('lot_no').value = qrCode.substring(35, 41);
-                    document.getElementById('serial_no').value = qrCode.substring(41, 50);
-
-                    this.value = '';
-                }
-                else {
-
-                }
-            }
-        });
-    }
-
-    function handleMazdaScan() {
-        document.getElementById('qr_scan').addEventListener('keyup', function (e) {
-            if (e.which === 13) {
-                e.preventDefault();
-                var qrCode = this.value;
-                if (qrCode.length === 50) {
-                    document.getElementById('product_name').value = qrCode.substring(10, 35);
-                    document.getElementById('lot_no').value = qrCode.substring(35, 41);
-                    document.getElementById('serial_no').value = qrCode.substring(41, 50);
-
-                    this.value = '';
-                }
-                else {
-
-                }
-            }
-        });
-    }
-
-    function handleDaihatsuScan() {
-        document.getElementById('qr_scan').addEventListener('keyup', function (e) {
-            if (e.which === 13) {
-                e.preventDefault();
-                var qrCode = this.value;
-                if (qrCode.length === 50) {
-                    document.getElementById('product_name').value = qrCode.substring(10, 35);
-                    document.getElementById('lot_no').value = qrCode.substring(35, 41);
-                    document.getElementById('serial_no').value = qrCode.substring(41, 50);
-
-                    this.value = '';
-                }
-                else {
-
-                }
-            }
-        });
-    }
-
-    // function handleHondaScan() {
+    // // ============================================================================
+    // // WORKING SCAN IN LIVE
+    // // IMPLEMENTED IN PRODUCTION
+    // function handleSuzukiScan() {
     //     document.getElementById('qr_scan').addEventListener('keyup', function (e) {
     //         if (e.which === 13) {
     //             e.preventDefault();
@@ -1767,81 +1713,138 @@
     //     });
     // }
 
-    function handleHondaScan() {
-        document.getElementById('qr_scan').addEventListener('keyup', function (e) {
-            if (e.which === 13) {
-                e.preventDefault();
-                var qrCode = this.value;
-                if (qrCode.length === 41) {
-                    document.getElementById('product_name').value = qrCode.substring(1, 26);
-                    document.getElementById('lot_no').value = qrCode.substring(26, 32);
-                    document.getElementById('serial_no').value = qrCode.substring(32, 41);
-                    // Clear the qr_scan input field after processing
-                    this.value = '';
-                }
-                else {
+    // function handleMazdaScan() {
+    //     document.getElementById('qr_scan').addEventListener('keyup', function (e) {
+    //         if (e.which === 13) {
+    //             e.preventDefault();
+    //             var qrCode = this.value;
+    //             if (qrCode.length === 50) {
+    //                 document.getElementById('product_name').value = qrCode.substring(10, 35);
+    //                 document.getElementById('lot_no').value = qrCode.substring(35, 41);
+    //                 document.getElementById('serial_no').value = qrCode.substring(41, 50);
 
-                }
-            }
-        });
-    }
+    //                 this.value = '';
+    //             }
+    //             else {
 
-    function handleNissanScan() {
-        document.getElementById('qr_scan').addEventListener('keyup', function (e) {
-            if (e.which === 13) {
-                e.preventDefault();
-                var qrCode = this.value;
-                if (qrCode.length === 50) {
-                    document.getElementById('product_name').value = qrCode.substring(10, 35);
-                    document.getElementById('lot_no').value = qrCode.substring(35, 41);
-                    document.getElementById('serial_no').value = qrCode.substring(41, 50);
+    //             }
+    //         }
+    //     });
+    // }
 
-                    this.value = '';
-                }
-                else {
+    // function handleDaihatsuScan() {
+    //     document.getElementById('qr_scan').addEventListener('keyup', function (e) {
+    //         if (e.which === 13) {
+    //             e.preventDefault();
+    //             var qrCode = this.value;
+    //             if (qrCode.length === 50) {
+    //                 document.getElementById('product_name').value = qrCode.substring(10, 35);
+    //                 document.getElementById('lot_no').value = qrCode.substring(35, 41);
+    //                 document.getElementById('serial_no').value = qrCode.substring(41, 50);
 
-                }
-            }
-        });
-    }
+    //                 this.value = '';
+    //             }
+    //             else {
 
-    function handleSubaruScan() {
-        document.getElementById('qr_scan').addEventListener('keyup', function (e) {
-            if (e.which === 13) {
-                e.preventDefault();
-                var qrCode = this.value;
-                if (qrCode.length === 50) {
-                    document.getElementById('product_name').value = qrCode.substring(10, 35);
-                    document.getElementById('lot_no').value = qrCode.substring(35, 41);
-                    document.getElementById('serial_no').value = qrCode.substring(41, 50);
+    //             }
+    //         }
+    //     });
+    // }
 
-                    this.value = '';
-                }
-                else {
+    // // function handleHondaScan() {
+    // //     document.getElementById('qr_scan').addEventListener('keyup', function (e) {
+    // //         if (e.which === 13) {
+    // //             e.preventDefault();
+    // //             var qrCode = this.value;
+    // //             if (qrCode.length === 50) {
+    // //                 document.getElementById('product_name').value = qrCode.substring(10, 35);
+    // //                 document.getElementById('lot_no').value = qrCode.substring(35, 41);
+    // //                 document.getElementById('serial_no').value = qrCode.substring(41, 50);
 
-                }
-            }
-        });
-    }
+    // //                 this.value = '';
+    // //             }
+    // //             else {
 
-    function handleToyotaScan() {
-        document.getElementById('qr_scan').addEventListener('keyup', function (e) {
-            if (e.which === 13) {
-                e.preventDefault();
-                var qrCode = this.value;
-                if (qrCode.length === 50) {
-                    document.getElementById('product_name').value = qrCode.substring(10, 35);
-                    document.getElementById('lot_no').value = qrCode.substring(35, 41);
-                    document.getElementById('serial_no').value = qrCode.substring(41, 50);
+    // //             }
+    // //         }
+    // //     });
+    // // }
 
-                    this.value = '';
-                }
-                else {
+    // function handleHondaScan() {
+    //     document.getElementById('qr_scan').addEventListener('keyup', function (e) {
+    //         if (e.which === 13) {
+    //             e.preventDefault();
+    //             var qrCode = this.value;
+    //             if (qrCode.length === 41) {
+    //                 document.getElementById('product_name').value = qrCode.substring(1, 26);
+    //                 document.getElementById('lot_no').value = qrCode.substring(26, 32);
+    //                 document.getElementById('serial_no').value = qrCode.substring(32, 41);
+    //                 // Clear the qr_scan input field after processing
+    //                 this.value = '';
+    //             }
+    //             else {
 
-                }
-            }
-        });
-    }
+    //             }
+    //         }
+    //     });
+    // }
+
+    // function handleNissanScan() {
+    //     document.getElementById('qr_scan').addEventListener('keyup', function (e) {
+    //         if (e.which === 13) {
+    //             e.preventDefault();
+    //             var qrCode = this.value;
+    //             if (qrCode.length === 50) {
+    //                 document.getElementById('product_name').value = qrCode.substring(10, 35);
+    //                 document.getElementById('lot_no').value = qrCode.substring(35, 41);
+    //                 document.getElementById('serial_no').value = qrCode.substring(41, 50);
+
+    //                 this.value = '';
+    //             }
+    //             else {
+
+    //             }
+    //         }
+    //     });
+    // }
+
+    // function handleSubaruScan() {
+    //     document.getElementById('qr_scan').addEventListener('keyup', function (e) {
+    //         if (e.which === 13) {
+    //             e.preventDefault();
+    //             var qrCode = this.value;
+    //             if (qrCode.length === 50) {
+    //                 document.getElementById('product_name').value = qrCode.substring(10, 35);
+    //                 document.getElementById('lot_no').value = qrCode.substring(35, 41);
+    //                 document.getElementById('serial_no').value = qrCode.substring(41, 50);
+
+    //                 this.value = '';
+    //             }
+    //             else {
+
+    //             }
+    //         }
+    //     });
+    // }
+
+    // function handleToyotaScan() {
+    //     document.getElementById('qr_scan').addEventListener('keyup', function (e) {
+    //         if (e.which === 13) {
+    //             e.preventDefault();
+    //             var qrCode = this.value;
+    //             if (qrCode.length === 50) {
+    //                 document.getElementById('product_name').value = qrCode.substring(10, 35);
+    //                 document.getElementById('lot_no').value = qrCode.substring(35, 41);
+    //                 document.getElementById('serial_no').value = qrCode.substring(41, 50);
+
+    //                 this.value = '';
+    //             }
+    //             else {
+
+    //             }
+    //         }
+    //     });
+    // }
 
     // Function to handle changes in line number
     function handle_line_no_change(line_no) {
@@ -1859,36 +1862,36 @@
         }
     }
 
-    // Function to update the car maker based on line number
-    function update_car_maker(line_no) {
-        var car_maker_input = document.getElementById("car_maker");
+    // // Function to update the car maker based on line number
+    // function update_car_maker(line_no) {
+    //     var car_maker_input = document.getElementById("car_maker");
 
-        if (line_no.trim().startsWith('1')) {
-            car_maker_input.value = 'Mazda';
-            handleCarMakerChange(car_maker_input);
-        } else if (line_no.trim().startsWith('2')) {
-            car_maker_input.value = 'Daihatsu';
-            handleCarMakerChange(car_maker_input);
-        } else if (line_no.trim().startsWith('3')) {
-            car_maker_input.value = 'Honda';
-            handleCarMakerChange(car_maker_input);
-        } else if (line_no.trim().startsWith('4')) {
-            car_maker_input.value = 'Toyota';
-            handleCarMakerChange(car_maker_input);
-        } else if (line_no.trim().startsWith('5')) {
-            car_maker_input.value = 'Suzuki';
-            handleCarMakerChange(car_maker_input);
-        } else if (line_no.trim().startsWith('6')) {
-            car_maker_input.value = 'Nissan';
-            handleCarMakerChange(car_maker_input);
-        } else if (line_no.trim().startsWith('7')) {
-            car_maker_input.value = 'Subaru';
-            handleCarMakerChange(car_maker_input);
-        } else {
-            car_maker_input.value = '';
-            handleCarMakerChange(car_maker_input);
-        }
-    }
+    //     if (line_no.trim().startsWith('1')) {
+    //         car_maker_input.value = 'Mazda';
+    //         handleCarMakerChange(car_maker_input);
+    //     } else if (line_no.trim().startsWith('2')) {
+    //         car_maker_input.value = 'Daihatsu';
+    //         handleCarMakerChange(car_maker_input);
+    //     } else if (line_no.trim().startsWith('3')) {
+    //         car_maker_input.value = 'Honda';
+    //         handleCarMakerChange(car_maker_input);
+    //     } else if (line_no.trim().startsWith('4')) {
+    //         car_maker_input.value = 'Toyota';
+    //         handleCarMakerChange(car_maker_input);
+    //     } else if (line_no.trim().startsWith('5')) {
+    //         car_maker_input.value = 'Suzuki';
+    //         handleCarMakerChange(car_maker_input);
+    //     } else if (line_no.trim().startsWith('6')) {
+    //         car_maker_input.value = 'Nissan';
+    //         handleCarMakerChange(car_maker_input);
+    //     } else if (line_no.trim().startsWith('7')) {
+    //         car_maker_input.value = 'Subaru';
+    //         handleCarMakerChange(car_maker_input);
+    //     } else {
+    //         car_maker_input.value = '';
+    //         handleCarMakerChange(car_maker_input);
+    //     }
+    // }
 
     function update_issue_tag(line_no, record_type) {
         var record_type = $('input[name="record_type"]:checked').val();
@@ -2844,9 +2847,10 @@
         $('#manhour_cost_pd_update').val(data[47]).prop('disabled', true).css('background', '#EEE');
         $('#portion_treatment_pd_update').val(data[48]);
         $('#other_portion_treatment_mc_update').val(data[49]);
+        $('#record_type_pd_update').val(data[50]).prop('disabled', true).css('background', '#EEE');
 
         // defect unique id 
-        $('#admin_defect_id_2').val(data[50]).prop('hidden', true);
+        $('#admin_defect_id_2').val(data[51]).prop('hidden', true);
         $('#update_defect_mancost_pd').modal('show');
     }
 
@@ -3873,5 +3877,199 @@
             wire_type.value = '';
             conn_cavity.value = '';
         }
+    }
+
+    // FOR BARCODING DEPENDING ON CAR MAKER AND CAR MODEL
+    function update_car_maker(line_no) {
+        // Extract the first digit from the line number
+        var digit = line_no.trim().charAt(0);
+
+        if (digit) {
+            fetchCarMaker(digit);
+        } else {
+            var car_maker_input = document.getElementById("car_maker");
+            car_maker_input.value = '';
+            handleCarMakerChange(car_maker_input);
+        }
+    }
+
+    const fetchCarMaker = (digit) => {
+        $.ajax({
+            url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'get_car_maker',
+                digit: digit
+            },
+            success: function (response) {
+                var car_maker_input = document.getElementById('car_maker');
+                car_maker_input.value = response.trim();
+                handleCarMakerChange(car_maker_input);
+            },
+        });
+    }
+
+    const fetch_qr_setting = (carMaker, carModel) => {
+        $.ajax({
+            url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_qr_setting',
+                car_maker: carMaker,
+                car_model: carModel
+            },
+            success: function (response) {
+                var settings = JSON.parse(response);
+                configureQrSettings(settings);
+            },
+        });
+    }
+
+    const configureQrSettings = (settings) => {
+        window.qrSettings = settings; // Store settings globally or in an appropriate scope
+    }
+
+    function handleCarMakerChange(selectOpt) {
+        var carMaker = selectOpt.value;
+        var car_model_input = document.getElementById('car_model');
+        var qr_scan_input = document.getElementById('qr_scan');
+        var product_name_input = document.getElementById('product_name');
+        var lot_no_input = document.getElementById('lot_no');
+        var serial_no_input = document.getElementById('serial_no');
+
+        if (carMaker) {
+            // Enable car_model and qr_scan fields
+            car_model_input.disabled = false;
+            car_model_input.style.backgroundColor = '';
+            qr_scan_input.disabled = false;
+            qr_scan_input.style.backgroundColor = '';
+
+            fetch_car_model(carMaker); // Fetch car models based on car maker
+
+            product_name_input.value = '';
+            lot_no_input.value = '';
+            serial_no_input.value = '';
+
+            // Fetch QR settings if a car model is already selected
+            var selectedCarModel = car_model_input.value;
+            if (selectedCarModel) {
+                fetch_qr_setting(carMaker, selectedCarModel);
+            }
+        } else {
+            // Disable car_model and qr_scan fields when no car maker is selected
+            car_model_input.disabled = true;
+            qr_scan_input.disabled = true;
+            car_model_input.style.backgroundColor = '#DDD';
+            qr_scan_input.style.backgroundColor = '#DDD';
+
+            car_model_input.innerHTML = '<option value="" disabled selected>Select car model</option>';
+            qr_scan_input.value = '';
+        }
+    }
+
+    // Listen for changes in the car_model dropdown
+    $(document).on('change', '#car_model', function () {
+        var qr_scan_input = $('#qr_scan');
+        var product_name_input = $('#product_name');
+        var lot_no_input = $('#lot_no');
+        var serial_no_input = $('#serial_no');
+        var selectedCarModel = $(this).val();
+        var carMaker = $('#car_maker').val();
+
+        qr_scan_input.val('');
+        product_name_input.val('');
+        lot_no_input.val('');
+        serial_no_input.val('');
+
+        if (selectedCarModel && carMaker) {
+            fetch_qr_setting(carMaker, selectedCarModel); // Fetch QR settings based on car maker and model
+            qr_scan_input.prop('disabled', false);
+            qr_scan_input.css('background-color', '');
+        } else {
+            qr_scan_input.prop('disabled', true);
+            qr_scan_input.css('background-color', '#DDD');
+        }
+    });
+
+    function handleQrScan() {
+        document.getElementById('qr_scan').addEventListener('keyup', function (e) {
+            if (e.which === 13) { // Enter key
+                e.preventDefault();
+                var qrCode = this.value;
+
+                // Log the QR code to ensure it is being captured
+                console.log('QR Code:', qrCode);
+
+                if (window.qrSettings) {
+                    var settings = window.qrSettings;
+                    // Parse settings as integers
+                    var totalLength = parseInt(settings.total_length, 10);
+                    var productNameStart = parseInt(settings.product_name_start, 10);
+                    var productNameLength = parseInt(settings.product_name_length, 10);
+                    var lotNoStart = parseInt(settings.lot_no_start, 10);
+                    var lotNoLength = parseInt(settings.lot_no_length, 10);
+                    var serialNoStart = parseInt(settings.serial_no_start, 10);
+                    var serialNoLength = parseInt(settings.serial_no_length, 10);
+
+                    // Log settings and QR code length for debugging
+                    // console.log('QR Settings:', settings);
+                    console.log('Parsed Settings:', {
+                        totalLength,
+                        productNameStart,
+                        productNameLength,
+                        lotNoStart,
+                        lotNoLength,
+                        serialNoStart,
+                        serialNoLength
+                    });
+                    console.log('Expected Length:', totalLength);
+                    console.log('QR Code Length:', qrCode.length);
+
+                    // Check if the QR code length matches the expected totalLength
+                    if (qrCode.length === totalLength) {
+                        var productName = qrCode.substring(productNameStart, productNameStart + productNameLength).trim();
+                        var lotNo = qrCode.substring(lotNoStart, lotNoStart + lotNoLength).trim();
+                        var serialNo = qrCode.substring(serialNoStart, serialNoStart + serialNoLength).trim();
+
+                        // Log extracted values for debugging
+                        console.log('Product Name:', productName);
+                        console.log('Lot No:', lotNo);
+                        console.log('Serial No:', serialNo);
+
+                        // Set the values in the fields
+                        document.getElementById('product_name').value = productName;
+                        document.getElementById('lot_no').value = lotNo;
+                        document.getElementById('serial_no').value = serialNo;
+
+                        // Clear the QR scan input
+                        this.value = '';
+                    } else {
+                        console.error("QR code length does not match expected length. Expected:", totalLength, "Actual:", qrCode.length);
+                    }
+                } else {
+                    console.error("QR settings are not available.");
+                }
+            }
+        });
+    }
+
+    // Call this function to set up the QR scan handler when the page loads
+    document.addEventListener('DOMContentLoaded', handleQrScan);
+
+    const fetch_car_model = (carMaker) => {
+        $.ajax({
+            url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_car_model',
+                car_maker: carMaker
+            },
+            success: function (response) {
+                $('#car_model').html(response);
+            },
+        });
     }
 </script>
