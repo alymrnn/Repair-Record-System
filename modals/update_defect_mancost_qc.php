@@ -57,7 +57,7 @@
                         <!-- repairing date -->
                         <label style="font-weight: normal;color: #000;">Repairing Date</label>
                         <label style="color:#EA9515">*</label>
-                        <input type="date" id="repairing_date_mc_update" class="form-control" autocomplete="off"
+                        <input type="datetime-local" id="repairing_date_mc_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
                 </div>

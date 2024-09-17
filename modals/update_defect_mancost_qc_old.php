@@ -29,7 +29,7 @@
                     </div>
                     <div class="col-sm-4">
                         <label style="font-weight: normal;color: #000;">Repairing Date</label>
-                        <input type="date" id="repairing_date_mc_update" class="form-control pl-3" autocomplete="off"
+                        <input type="datetime-local" id="repairing_date_mc_update" class="form-control pl-3" autocomplete="off"
                             style="border:1px solid #E3E3E3; color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;">
                     </div>
                 </div>

@@ -247,7 +247,7 @@ function count_qc_defect_table_data($conn, $product_name_search, $lot_no_search,
     $params = [];
 
     if (!empty($date_from_search) && !empty($date_to_search)) {
-        $conditions[] = "repairing_date BETWEEN ? AND ?";
+        $conditions[] = "CONVERT(date, repairing_date) BETWEEN ? AND ?";
         $params[] = $date_from_search;
         $params[] = $date_to_search;
     }
@@ -475,7 +475,7 @@ if ($method == 'load_qc_defect_table_data') {
     $conditions[] = "(record_type = 'Defect and Mancost' OR record_type = 'Mancost Only' OR record_type = 'Defect Only')";
 
     if (!empty($date_from_search) && !empty($date_to_search)) {
-        $conditions[] = "repairing_date BETWEEN :date_from_search AND :date_to_search";
+        $conditions[] = "CONVERT(date, repairing_date) BETWEEN :date_from_search AND :date_to_search";
     }
 
     if (!empty($line_no_rp_search)) {

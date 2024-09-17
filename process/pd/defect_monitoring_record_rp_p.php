@@ -423,7 +423,7 @@ function count_defect_table_data($conn, $date_from, $date_to, $line_no_rp, $reco
     $conditions[] = "(pending_status = '' OR pending_status = 'Updated' OR pending_status IS NULL OR ng_status_new_record = 'Updated')";
 
     if (!empty($date_from) && !empty($date_to)) {
-        $conditions[] = "repairing_date BETWEEN ? AND ?";
+        $conditions[] = "CONVERT(date, repairing_date) BETWEEN ? AND ?";
         $params[] = $date_from;
         $params[] = $date_to;
     }
@@ -714,7 +714,7 @@ if ($method == 'load_defect_table_data') {
     $conditions[] = "(pending_status = '' OR pending_status = 'Updated' OR pending_status IS NULL OR ng_status_new_record = 'Updated')";
 
     if (!empty($date_from) && !empty($date_to)) {
-        $conditions[] = "repairing_date BETWEEN :date_from AND :date_to";
+        $conditions[] = "CONVERT(date, repairing_date) BETWEEN :date_from AND :date_to";
     }
 
     if (!empty($line_no_rp)) {

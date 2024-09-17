@@ -587,7 +587,7 @@
         $('#harness_status_insp_update').val(data[34]);
         // $('#repairing_date_insp_update').val(data[33]);
 
-        $('#repairing_date_insp_update').val(get_current_date());
+        $('#repairing_date_insp_update').val(current_date_time);
         $('#repair_start_mc2').val(data[36]);
         $('#repair_end_mc2').val(data[37]);
         $('#time_consumed_mc2').val(data[38]);
@@ -612,14 +612,18 @@
         $('#update_defect_inspector').modal('show');
     }
 
-    function get_current_date() {
-        const today = new Date();
-        const dd = String(today.getDate()).padStart(2, '0');
-        const mm = String(today.getMonth() + 1).padStart(2, '0');
-        const yyyy = today.getFullYear();
+    function formatDateTime(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
 
-        return yyyy + '-' + mm + '-' + dd;
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     }
+
+    const current_date_time = formatDateTime(new Date());
 
     // const time_difference = () => {
     //     var repair_start = document.getElementById('repair_start_insp_update').value;

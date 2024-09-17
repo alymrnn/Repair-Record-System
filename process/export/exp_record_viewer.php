@@ -179,14 +179,14 @@ if (!empty($record_type)) {
         $params[] = '%' . $record_type . '%';
 }
 if (!empty($date_from) && !empty($date_to)) {
-        $query .= " AND t_defect_record_f.repairing_date BETWEEN ? AND ?";
+        $query .= " AND CONVERT(date, t_defect_record_f.repairing_date) BETWEEN ? AND ?";
         $params[] = $date_from;
         $params[] = $date_to;
 } elseif (!empty($date_from)) {
-        $query .= " AND t_defect_record_f.repairing_date >= ?";
+        $query .= " AND CONVERT(date, t_defect_record_f.repairing_date) >= ?";
         $params[] = $date_from;
 } elseif (!empty($date_to)) {
-        $query .= " AND t_defect_record_f.repairing_date <= ?";
+        $query .= " AND CONVERT(date, t_defect_record_f.repairing_date) <= ?";
         $params[] = $date_to;
 }
 

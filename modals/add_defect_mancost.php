@@ -105,7 +105,7 @@
                         <!-- repairing date -->
                         <label style="font-weight: normal;color: #000;">Repairing Date</label>
                         <label style="color:#CA3F3F">*</label>
-                        <input type="date" id="repairing_date" class="form-control pl-3" autocomplete="off"
+                        <input type="datetime-local" id="repairing_date" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             required>
                         <input type="hidden" id="na_repairing_date" name="na_repairing_date">

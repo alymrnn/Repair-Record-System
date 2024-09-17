@@ -1344,6 +1344,19 @@
 
     const current_date = new Date().toISOString().slice(0, 10);
 
+    function formatDateTime(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    }
+
+    const current_date_time = formatDateTime(new Date());
+
     $(document).ready(function () {
         // Disable all input fields by default
         $("#line_no, #line_category_dr, #date_detected, #na_repairing_date, #issue_tag, #repairing_date, #car_maker, #qr_scan, #product_name, #lot_no, #serial_no, #discovery_process_dr, #discovery_id_no_dr, #discovery_person, #occurrence_process_dr, #occurrence_shift_dr, #occurrence_id_no_dr, #occurrence_person, #outflow_process_dr, #outflow_shift_dr, #outflow_id_no_dr, #outflow_person, #defect_category_dr, #sequence_no, #assy_board_no_dr, #good_measurement_dr, #ng_measurement_dr, #wire_type_dr, #wire_size_dr, #connector_cavity_dr, #harness_status_dr, #defect_cause_dr, #repair_person_dr, #detail_content_defect, #treatment_content_defect, #repair_start_mc, #repair_end_mc, #time_consumed_mc, #defect_category_mc, #occurrence_process_mc, #manhour_cost_mc, #parts_removed_mc, #quantity_mc, #unit_cost_mc, #material_cost_mc, #portion_treatment, #na_value_1_pd, #na_value_2_pd, #car_model").prop('disabled', true).css('background-color', '#DDD');
@@ -1427,7 +1440,7 @@
                 $("#date_detected").prop('type', 'date').prop('disabled', false).val(current_date).css('background-color', '#FFF');
                 $("#na_repairing_date").prop('disabled', true).val('').css('background-color', '#FFF');
                 $("#issue_tag").prop('disabled', false).val('').css('background-color', '#F1F1F1');
-                $("#repairing_date").prop('disabled', false).val(current_date).css('background-color', '#FFF');
+                $("#repairing_date").prop('disabled', false).val(current_date_time).css('background-color', '#FFF');
                 $("#car_maker").prop('readonly', true).val('').css('background-color', '#F1F1F1');
                 $("#car_model").prop('readonly', true).val('').css('background-color', '#F1F1F1');
                 $("#qr_scan").prop('disabled', false).val('').css('background-color', '#FFF');
@@ -1490,7 +1503,7 @@
                 $("#date_detected").prop('type', 'date').prop('disabled', false).val(current_date).css('background-color', '#FFF');
                 $("#na_repairing_date").prop('disabled', true).val('').css('background-color', '#FFF');
                 $("#issue_tag").prop('disabled', false).val('').css('background-color', '#F1F1F1');
-                $("#repairing_date").prop('disabled', false).val(current_date).css('background-color', '#FFF');
+                $("#repairing_date").prop('disabled', false).val(current_date_time).css('background-color', '#FFF');
                 $("#car_maker").prop('readonly', true).val('').css('background-color', '#F1F1F1');
                 $("#car_model").prop('readonly', true).val('').css('background-color', '#F1F1F1');
                 $("#qr_scan").prop('disabled', false).val('').css('background-color', '#FFF');
@@ -1554,7 +1567,7 @@
                 $("#date_detected").prop('type', 'date').prop('disabled', false).val(current_date).css('background-color', '#FFF');
                 $("#na_repairing_date").prop('disabled', true).val('').css('background-color', '#FFF');
                 $("#issue_tag").prop('disabled', false).val('').css('background-color', '#F1F1F1');
-                $("#repairing_date").prop('disabled', false).val(current_date).css('background-color', '#FFF');
+                $("#repairing_date").prop('disabled', false).val(current_date_time).css('background-color', '#FFF');
                 $("#car_maker").prop('readonly', true).val('').css('background-color', '#F1F1F1');
                 $("#qr_scan").prop('disabled', false).val('').css('background-color', '#FFF');
                 $("#product_name").prop('disabled', false).val('').css('background-color', '#F1F1F1');

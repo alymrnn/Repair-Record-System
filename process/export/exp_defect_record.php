@@ -99,7 +99,7 @@ if (!empty($repair_person)) {
     $params[] = $repair_person . '%';
 }
 if (!empty($date_from) && !empty($date_to)) {
-    $conditions[] = "repairing_date BETWEEN ? AND ?";
+    $conditions[] = "CONVERT(date, repairing_date) BETWEEN ? AND ?";
     $params[] = $date_from;
     $params[] = $date_to;
 } elseif (!empty($date_from)) {

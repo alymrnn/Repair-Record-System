@@ -202,7 +202,7 @@ function count_viewer_defect_table_data($conn, $defect_category, $discovery_proc
     $params = [];
 
     if (!empty($date_from) && !empty($date_to)) {
-        $conditions[] = "repairing_date BETWEEN ? AND ?";
+        $conditions[] = "CONVERT(date, repairing_date) BETWEEN ? AND ?";
         $params[] = $date_from;
         $params[] = $date_to;
     }
@@ -528,7 +528,7 @@ if ($method == 'load_viewer_defect_table_data') {
     $params = [];
 
     if (!empty($date_from) && !empty($date_to)) {
-        $conditions[] = "repairing_date BETWEEN ? AND ?";
+        $conditions[] = "CONVERT(date, repairing_date) BETWEEN ? AND ?";
         $params[] = $date_from;
         $params[] = $date_to;
     }

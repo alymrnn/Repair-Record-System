@@ -98,14 +98,14 @@ if (!empty($repair_person)) {
     $params[] = '%' . $repair_person . '%';
 }
 if (!empty($date_from) && !empty($date_to)) {
-    $conditions[] = "t_defect_record_f.repairing_date BETWEEN ? AND ?";
+    $conditions[] = "CONVERT(date, t_defect_record_f.repairing_date) BETWEEN ? AND ?";
     $params[] = $date_from;
     $params[] = $date_to;
 } elseif (!empty($date_from)) {
-    $conditions[] = "t_defect_record_f.repairing_date >= ?";
+    $conditions[] = "CONVERT(date, t_defect_record_f.repairing_date) >= ?";
     $params[] = $date_from;
 } elseif (!empty($date_to)) {
-    $conditions[] = "t_defect_record_f.repairing_date <= ?";
+    $conditions[] = "CONVERT(date, t_defect_record_f.repairing_date) <= ?";
     $params[] = $date_to;
 }
 

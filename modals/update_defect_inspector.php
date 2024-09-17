@@ -62,7 +62,7 @@
                         <!-- repairing date -->
                         <label style="font-weight: normal;color: #000;">Repairing Date</label>
                         <label style="color:#CA3F3F">*</label>
-                        <input type="date" id="repairing_date_insp_update" autocomplete="off" class="form-control pl-2"
+                        <input type="datetime-local" id="repairing_date_insp_update" autocomplete="off" class="form-control pl-2"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
                 </div>

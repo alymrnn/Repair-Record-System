@@ -56,7 +56,7 @@ function count_defect_pdv_list($conn, $search_product_name_pdv, $search_lot_no_p
     $conditions[] = "(qc_status = 'Saved' AND (pending_status = 'Updated' OR ng_status_new_record = 'Updated') AND (harness_status IN ('Re-assy', 'Re-crimp', 'Re-insertion', 'Counterpart Checking', 'Counterpart Checking and Re-crimp')))";
 
     if (!empty($search_date_from_pdv) && !empty($search_date_to_pdv)) {
-        $conditions[] = "repairing_date BETWEEN ? AND ?";
+        $conditions[] = "CONVERT(date, repairing_date) BETWEEN ? AND ?";
         $params[] = $search_date_from_pdv;
         $params[] = $search_date_to_pdv;
     }
@@ -220,7 +220,7 @@ if ($method == 'load_defect_table_pdv') {
     $conditions[] = "(qc_status = 'Saved' AND (pending_status = 'Updated' OR ng_status_new_record = 'Updated') AND (harness_status IN ('Re-assy', 'Re-crimp', 'Re-insertion', 'Counterpart Checking', 'Counterpart Checking and Re-crimp')))";
 
     if (!empty($search_date_from_pdv) && !empty($search_date_to_pdv)) {
-        $conditions[] = "repairing_date BETWEEN :search_date_from_pdv AND :search_date_to_pdv";
+        $conditions[] = "CONVERT(date, repairing_date) BETWEEN :search_date_from_pdv AND :search_date_to_pdv";
     }
 
     if (!empty($search_line_no_pdv)) {

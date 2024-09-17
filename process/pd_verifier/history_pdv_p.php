@@ -43,7 +43,7 @@ function count_defect_pdv_ng_list($conn, $search_product_name_pdv, $search_lot_n
     $conditions[] = "(remarks_recrimp = 'NO GOOD' OR remarks_1_cc = 'NO GOOD' OR remarks_reassy = 'NO GOOD')";
 
     if (!empty($search_date_from_pdv) && !empty($search_date_to_pdv)) {
-        $conditions[] = "repairing_date BETWEEN ? AND ?";
+        $conditions[] = "CONVERT(date, repairing_date) BETWEEN ? AND ?";
         $params[] = $search_date_from_pdv;
         $params[] = $search_date_to_pdv;
     }

@@ -57,7 +57,7 @@ function count_defect_pdv_re_list($conn, $search_product_name_pdv, $search_lot_n
         $search_date_from_pdv = date('Y-m-d', strtotime($search_date_from_pdv));
         $search_date_to_pdv = date('Y-m-d', strtotime($search_date_to_pdv));
 
-        $conditions[] = "repairing_date BETWEEN ? AND ?";
+        $conditions[] = "CONVERT(date, repairing_date) BETWEEN ? AND ?";
         $params[] = $search_date_from_pdv;
         $params[] = $search_date_to_pdv;
     }
@@ -223,7 +223,7 @@ if ($method == 'load_defect_table_pdv_re') {
     $conditions[] = "(remarks_recrimp != 'NO GOOD' AND remarks_1_cc != 'NO GOOD')";
 
     if (!empty($search_date_from_pdv) && !empty($search_date_to_pdv)) {
-        $conditions[] = "repairing_date BETWEEN :search_date_from_pdv AND :search_date_to_pdv";
+        $conditions[] = "CONVERT(date, repairing_date) BETWEEN :search_date_from_pdv AND :search_date_to_pdv";
     }
 
     if (!empty($search_line_no_pdv)) {
