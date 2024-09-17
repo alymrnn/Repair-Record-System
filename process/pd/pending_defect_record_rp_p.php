@@ -350,7 +350,7 @@ if ($method == 'load_defect_table_data') {
         }
     } else {
         echo '<tr>';
-        echo '<td colspan="12" style="text-align:center; color:red;">No Pending Record</td>';
+        echo '<td colspan="12" style="text-align:center; color:red;">No Pending Record. Filter search date to view previous pending records.</td>';
         echo '</tr>';
     }
     exit;

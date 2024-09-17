@@ -1048,17 +1048,21 @@
             data: data,
             success: function (response) {
                 console.log("Response:", response);
-                if (response == 'success') {
+                if (response.trim() === 'success') {
                     Swal.fire({
                         icon: 'success',
                         title: 'Updated Successfully',
                         showConfirmButton: false,
                         timer: 1500
+                    }).then(() => {
+                        load_pending_defect_table(); 
+                        fetch_and_update_count();   
+                        $('#update_defect_inspector').modal('hide'); 
+
+                        load_added_mancost2().empty(); 
                     });
-                    load_pending_defect_table();
-                    fetch_and_update_count();
-                    $('#update_defect_inspector').modal('hide');
-                } else {
+                }
+                else {
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
