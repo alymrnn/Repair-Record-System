@@ -1,5 +1,5 @@
-<div class="modal fade bd-example-modal-xl" id="update_defect_pdv" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div class="modal fade bd-example-modal-xl" id="update_defect_pdv" tabindex="-1" role="dialog" data-backdrop="static"
+    data-keyboard="false">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content" style="background:#f9f9f9;">
             <div class="modal-header" style="background:#407BA3;">
@@ -10,7 +10,7 @@
                     <span aria-hidden="true" style="color: #fff;">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: 550px; overflow-y: auto;">
                 <p style="font-weight: bold;color: #000;font-size:25px">Defect Record</p>
                 <div class="row">
                     <div class="col-sm-2">
@@ -53,7 +53,8 @@
                     <div class="col-sm-3">
                         <!-- repairing date -->
                         <label style="font-weight: normal;color: #000;">Repairing Date</label>
-                        <input type="datetime-local" id="repairing_date_pdv_update" class="form-control" autocomplete="off"
+                        <input type="datetime-local" id="repairing_date_pdv_update" class="form-control"
+                            autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
                 </div>

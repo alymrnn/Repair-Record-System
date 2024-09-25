@@ -309,9 +309,10 @@ if ($method == 'load_defect_table_pdv') {
                 } elseif ($remarks_recrimp == 'GOOD' || $remarks_1_cc == 'GOOD' || $remarks_reassy == 'GOOD') {
                     $highlight_class = 'highlight-green';
                 }
-            } elseif ($harness_repair == 'Pending') {
-                $highlight_class = 'highlight-orange';
-            }
+            } 
+            // elseif ($harness_repair == 'Pending') {
+            //     $highlight_class = 'highlight-orange';
+            // }
 
             $onclick_event = ($harness_repair == 'Verified') ? '' : 'onclick="get_update_defect_pdv(\'' . implode('~!~', [
                 $row['id'],
@@ -502,6 +503,72 @@ if ($method == 'update_pdv_record') {
         }
     } else {
         echo "Update failed: defect_id does not exist";
+    }
+}
+
+$digit = isset($_POST['digit']) ? $_POST['digit'] : '';
+$car_maker = isset($_POST['car_maker']) ? $_POST['car_maker'] : '';
+
+if ($method == 'get_car_maker') {
+    if (!empty($digit)) {
+        // Prepare the query to select the car maker based on the digit
+        $query = "SELECT TOP 1 car_maker FROM m_car_maker WHERE car_value = :digit";
+        $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+        $stmt->bindParam(':digit', $digit, PDO::PARAM_INT);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            $row = $stmt->fetch();
+            echo htmlspecialchars($row['car_maker']);
+        } else {
+            echo ''; // No car maker found
+        }
+    } else {
+        echo '';
+    }
+} elseif ($method == 'fetch_car_model') {
+    if (!empty($car_maker)) {
+        // Prepare the query to select car models based on the car maker
+        $query = "SELECT DISTINCT car_model FROM m_car_maker WHERE car_maker = :car_maker ORDER BY car_model ASC";
+        $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+        $stmt->bindParam(':car_maker', $car_maker, PDO::PARAM_STR);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            echo '<option value="" disabled selected>Select car model</option>';
+            foreach ($stmt->fetchAll() as $row) {
+                echo '<option>' . htmlspecialchars($row['car_model']) . '</option>';
+            }
+        } else {
+            echo '<option value="">No car models available</option>';
+        }
+    } else {
+        echo '<option value="">Select car model</option>';
+    }
+}
+
+if ($method == 'fetch_qr_setting') {
+    $car_maker = $_POST['car_maker'] ?? '';
+    $car_model = $_POST['car_model'] ?? '';
+
+    if ($car_maker && $car_model) {
+        // Prepare the query to fetch QR settings based on car maker and car model
+        $query = "SELECT total_length, product_name_start, product_name_length, lot_no_start, lot_no_length, serial_no_start, serial_no_length 
+                  FROM m_car_maker 
+                  WHERE car_maker = :car_maker AND car_model = :car_model";
+        $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+        $stmt->bindParam(':car_maker', $car_maker, PDO::PARAM_STR);
+        $stmt->bindParam(':car_model', $car_model, PDO::PARAM_STR);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            $settings = $stmt->fetch(PDO::FETCH_ASSOC);
+            echo json_encode($settings);
+        } else {
+            echo json_encode([]);
+        }
+    } else {
+        echo json_encode([]);
     }
 }
 

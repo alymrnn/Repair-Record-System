@@ -5,7 +5,7 @@ if (isset($_SESSION['emp_no'])) {
         header('location: page/qc/defect_monitoring_record.php');
         exit;
     } elseif ($_SESSION['role'] == 'PD') {
-        header('location: page/pd/defect_monitoring_record_rp.php');
+        header('location: page/pd/pending_defect_record_rp.php');
         exit;
     } elseif ($_SESSION['role'] == 'IT') {
         header('location: page/it/barcode_m.php');

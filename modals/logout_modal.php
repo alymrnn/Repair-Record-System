@@ -10,8 +10,8 @@
             <span aria-hidden="true" style="color: red;">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          <h5 style="text-align:center;">Confirm Logout</h5>
+        <div class="modal-body" style="max-height: 550px; overflow-y: auto;">
+        <h5 style="text-align:center;">Confirm Logout</h5>
         </div>
         <div class="modal-footer">
           <input type="submit" value="Logout" class="btn btn-block col-sm-12" style="color: #fff; background: #CA3F3F;"

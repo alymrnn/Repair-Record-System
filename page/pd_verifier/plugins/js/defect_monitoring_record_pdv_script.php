@@ -108,7 +108,7 @@
         });
 
         // Disable all input fields by default
-        $("#line_no_qa, #line_category_qa, #date_detected_qa, #issue_tag_qa, #repairing_date_qa, #car_maker_qa, #qr_scan_qa, #product_name_qa, #lot_no_qa, #serial_no_qa, #discovery_process_qa, #discovery_id_no_qa, #discovery_person_qa, #occurrence_process_qa, #occurrence_shift_qa, #occurrence_id_no_qa, #occurrence_person_qa, #outflow_process_qa, #outflow_shift_qa, #outflow_id_no_qa, #outflow_person_qa, #defect_category_qa, #sequence_no_qa, #assy_board_no_qa, #defect_cause_qa, #repair_person_qa, #good_measurement_qa, #ng_measurement_qa, #wire_type_qa, #wire_size_qa, #connector_cavity_qa, #detail_content_defect_qa, #treatment_content_defect_qa, #harness_status_qa").prop('disabled', true).css('background-color', '#DDD');
+        $("#line_no_qa, #line_category_qa, #date_detected_qa, #issue_tag_qa, #repairing_date_qa, #car_maker_qa, #qr_scan_qa, #product_name_qa, #lot_no_qa, #serial_no_qa, #discovery_process_qa, #discovery_id_no_qa, #discovery_person_qa, #occurrence_process_qa, #occurrence_shift_qa, #occurrence_id_no_qa, #occurrence_person_qa, #outflow_process_qa, #outflow_shift_qa, #outflow_id_no_qa, #outflow_person_qa, #defect_category_qa, #sequence_no_qa, #assy_board_no_qa, #defect_cause_qa, #repair_person_qa, #good_measurement_qa, #ng_measurement_qa, #wire_type_qa, #wire_size_qa, #connector_cavity_qa, #detail_content_defect_qa, #treatment_content_defect_qa, #harness_status_qa, #car_model_qa").prop('disabled', true).css('background-color', '#DDD');
 
         $("input[name='record_type_qa']").change(function () {
             if ($(this).val() === "Mancost Only") {
@@ -121,6 +121,7 @@
                 $("#issue_tag_qa").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#repairing_date_qa").prop('disabled', true).val('').css('background-color', '#D3D3D3');
                 $("#car_maker_qa").prop('disabled', true).val('').css('background-color', '#F1F1F1');
+                $("#car_model_qa").prop('readonly', true).val('').css('background-color', '#F1F1F1');
                 $("#qr_scan_qa").prop('disabled', true).val('').css('background-color', '#FFF');
                 $("#product_name_qa").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#lot_no_qa").prop('disabled', false).val('').css('background-color', '#F1F1F1');
@@ -157,6 +158,7 @@
                 $("#issue_tag_qa").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#repairing_date_qa").prop('disabled', true).val('').css('background-color', '#D3D3D3');
                 $("#car_maker_qa").prop('disabled', true).val('').css('background-color', '#F1F1F1');
+                $("#car_model_qa").prop('readonly', true).val('').css('background-color', '#F1F1F1');
                 $("#qr_scan_qa").prop('disabled', true).val('').css('background-color', '#FFF');
                 $("#product_name_qa").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#lot_no_qa").prop('disabled', false).val('').css('background-color', '#F1F1F1');
@@ -193,6 +195,7 @@
                 $("#issue_tag_qa").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#repairing_date_qa").prop('disabled', true).val('').css('background-color', '#D3D3D3');
                 $("#car_maker_qa").prop('disabled', true).val('').css('background-color', '#F1F1F1');
+                $("#car_model_qa").prop('readonly', true).val('').css('background-color', '#F1F1F1');
                 $("#qr_scan_qa").prop('disabled', true).val('').css('background-color', '#FFF');
                 $("#product_name_qa").prop('disabled', false).val('').css('background-color', '#F1F1F1');
                 $("#lot_no_qa").prop('disabled', false).val('').css('background-color', '#F1F1F1');
@@ -223,6 +226,22 @@
                 $("#harness_status_qa").prop('disabled', true).val('N/A').css('background-color', '#D3D3D3');
             }
         });
+    });
+
+    document.getElementById('defect_category_qa').addEventListener('change', function () {
+        var selectedValue = this.value;
+        var foreignMaterialDiv = document.getElementById('foreign_material_details_insp');
+        var defectCategForeignMat = document.getElementById('defect_categ_foreign_mat_insp');
+        var defectCategForeignMat2 = document.getElementById('defect_categ_foreign_mat_2_insp');
+
+        if (selectedValue === 'Foreign Material') {
+            foreignMaterialDiv.classList.remove('hidden-defect');
+        } else {
+            foreignMaterialDiv.classList.add('hidden-defect');
+            // Autofill fields with 'N/A'
+            defectCategForeignMat.value = 'N/A';
+            defectCategForeignMat2.value = 'N/A';
+        }
     });
 
     function update_display_badge_count_3(new_count) {
@@ -723,49 +742,72 @@
         });
     }
 
+    // function handle_line_no_change(line_no_qa) {
+    //     var record_type_qa = $('input[name="record_type_qa"]:checked').val();
+
+    //     if (record_type_qa !== "Mancost Only") {
+    //         update_car_maker_qa(line_no_qa);
+    //         update_issue_tag_qa(line_no_qa, record_type_qa);
+    //     } else {
+    //         var car_maker_input = document.getElementById("car_maker_qa");
+    //         var issue_tag_input = document.getElementById("issue_tag_qa");
+    //         car_maker_input.value = 'N/A';
+    //         issue_tag_input.value = 'N/A';
+    //     }
+    // }
+
     function handle_line_no_change(line_no_qa) {
         var record_type_qa = $('input[name="record_type_qa"]:checked').val();
 
-        if (record_type_qa !== "Mancost Only") {
-            update_car_maker_qa(line_no_qa);
+        var record_type_qa_update = ["Defect & Mancost", "Defect Only", "White Tag"];
+
+        if (record_type_qa_update.includes(record_type_qa)) {
+            update_car_maker(line_no_qa);
             update_issue_tag_qa(line_no_qa, record_type_qa);
-        } else {
-            var car_maker_input = document.getElementById("car_maker_qa");
-            var issue_tag_input = document.getElementById("issue_tag_qa");
-            car_maker_input.value = 'N/A';
+
+            // Ensure car_model and qr_scan are enabled
+            $("#car_model_qa").prop('disabled', false).css('background-color', '');
+            $("#qr_scan_qa").prop('disabled', false).css('background-color', '');
+        } else if (record_type_qa === "Mancost Only") {
+            update_car_maker(line_no_qa);
+            var issue_tag_input = document.getElementById("issue_tag");
             issue_tag_input.value = 'N/A';
+
+            // Disable and style car_model and qr_scan fields
+            $("#car_model_qa").prop('disabled', true).css('background-color', '#D3D3D3');
+            $("#qr_scan_qa").prop('disabled', true).css('background-color', '#D3D3D3');
         }
     }
 
-    function update_car_maker_qa(line_no) {
-        var car_maker_input = document.getElementById("car_maker_qa");
+    // function update_car_maker_qa(line_no) {
+    //     var car_maker_input = document.getElementById("car_maker_qa");
 
-        if (line_no.trim().startsWith('1')) {
-            car_maker_input.value = 'Mazda';
-            handleCarMakerChange(car_maker_input);
-        } else if (line_no.trim().startsWith('2')) {
-            car_maker_input.value = 'Daihatsu';
-            handleCarMakerChange(car_maker_input);
-        } else if (line_no.trim().startsWith('3')) {
-            car_maker_input.value = 'Honda';
-            handleCarMakerChange(car_maker_input);
-        } else if (line_no.trim().startsWith('4')) {
-            car_maker_input.value = 'Toyota';
-            handleCarMakerChange(car_maker_input);
-        } else if (line_no.trim().startsWith('5')) {
-            car_maker_input.value = 'Suzuki';
-            handleCarMakerChange(car_maker_input);
-        } else if (line_no.trim().startsWith('6')) {
-            car_maker_input.value = 'Nissan';
-            handleCarMakerChange(car_maker_input);
-        } else if (line_no.trim().startsWith('7')) {
-            car_maker_input.value = 'Subaru';
-            handleCarMakerChange(car_maker_input);
-        } else {
-            car_maker_input.value = '';
-            handleCarMakerChange(car_maker_input);
-        }
-    }
+    //     if (line_no.trim().startsWith('1')) {
+    //         car_maker_input.value = 'Mazda';
+    //         handleCarMakerChange(car_maker_input);
+    //     } else if (line_no.trim().startsWith('2')) {
+    //         car_maker_input.value = 'Daihatsu';
+    //         handleCarMakerChange(car_maker_input);
+    //     } else if (line_no.trim().startsWith('3')) {
+    //         car_maker_input.value = 'Honda';
+    //         handleCarMakerChange(car_maker_input);
+    //     } else if (line_no.trim().startsWith('4')) {
+    //         car_maker_input.value = 'Toyota';
+    //         handleCarMakerChange(car_maker_input);
+    //     } else if (line_no.trim().startsWith('5')) {
+    //         car_maker_input.value = 'Suzuki';
+    //         handleCarMakerChange(car_maker_input);
+    //     } else if (line_no.trim().startsWith('6')) {
+    //         car_maker_input.value = 'Nissan';
+    //         handleCarMakerChange(car_maker_input);
+    //     } else if (line_no.trim().startsWith('7')) {
+    //         car_maker_input.value = 'Subaru';
+    //         handleCarMakerChange(car_maker_input);
+    //     } else {
+    //         car_maker_input.value = '';
+    //         handleCarMakerChange(car_maker_input);
+    //     }
+    // }
 
     function update_issue_tag_qa(line_no_qa, record_type_qa) {
         var record_type_qa = $('input[name="record_type_qa"]:checked').val();
@@ -812,15 +854,33 @@
         });
     }
 
+    // document.querySelectorAll('input[name="record_type_qa"]').forEach(function (radio) {
+    //     radio.addEventListener('change', function () {
+    //         var record_type_qa = this.value;
+    //         var line_no_qa = document.getElementById("line_no_qa").value;
+    //         if (record_type_qa === "Mancost Only") {
+    //             document.getElementById("car_maker_qa").value = "N/A";
+    //             document.getElementById("issue_tag_qa").value = "N/A";
+    //         } else {
+    //             update_car_maker_qa(line_no_qa);
+    //             update_issue_tag_qa(line_no_qa, record_type_qa);
+    //         }
+    //     });
+    // });
+
     document.querySelectorAll('input[name="record_type_qa"]').forEach(function (radio) {
         radio.addEventListener('change', function () {
             var record_type_qa = this.value;
             var line_no_qa = document.getElementById("line_no_qa").value;
             if (record_type_qa === "Mancost Only") {
-                document.getElementById("car_maker_qa").value = "N/A";
+                // document.getElementById("car_maker").value = "N/A";
+                update_car_maker(line_no_qa);
                 document.getElementById("issue_tag_qa").value = "N/A";
+
+                $("#car_model_qa").prop('disabled', true).css('background-color', '#D3D3D3');
+                $("#qr_scan_qa").prop('disabled', true).css('background-color', '#D3D3D3');
             } else {
-                update_car_maker_qa(line_no_qa);
+                update_car_maker(line_no_qa);
                 update_issue_tag_qa(line_no_qa, record_type_qa);
             }
         });
@@ -830,10 +890,14 @@
         var line_no_qa = this.value;
         var record_type_qa = document.querySelector('input[name="record_type_qa"]:checked').value;
         if (record_type_qa === "Mancost Only") {
-            document.getElementById("car_maker_qa").value = "N/A";
+            // document.getElementById("car_maker").value = "N/A";
+            update_car_maker(line_no_qa);
             document.getElementById("issue_tag_qa").value = "N/A";
+
+            $("#car_model_qa").prop('disabled', true).css('background-color', '#D3D3D3');
+            $("#qr_scan_qa").prop('disabled', true).css('background-color', '#D3D3D3');
         } else {
-            update_car_maker_qa(line_no_qa);
+            update_car_maker(line_no_qa);
             update_issue_tag_qa(line_no_qa, record_type_qa);
         }
     });
@@ -1672,4 +1736,237 @@
         document.getElementById("connector_cavity_qa").value = '';
         document.getElementById("detail_content_defect_qa").value = '';
     }
+
+    function updateMeasurementFieldsInsp(checkbox) {
+        var goodMeasurementField = document.getElementById('good_measurement_qa');
+        var ngMeasurementField = document.getElementById('ng_measurement_qa');
+
+        if (checkbox.checked) {
+            goodMeasurementField.value = 'N/A';
+            ngMeasurementField.value = 'N/A';
+        } else {
+            goodMeasurementField.value = '';
+            ngMeasurementField.value = '';
+        }
+    }
+
+    function updateWireFieldsInsp(checkbox) {
+        var wire_type = document.getElementById('wire_type_qa');
+        var wire_size = document.getElementById('wire_size_qa');
+        var conn_cavity = document.getElementById('connector_cavity_qa');
+
+        if (checkbox.checked) {
+            wire_size.value = 'N/A';
+            wire_type.value = 'N/A';
+            conn_cavity.value = 'N/A';
+        } else {
+            wire_size.value = '';
+            wire_type.value = '';
+            conn_cavity.value = '';
+        }
+    }
+
+    // FOR BARCODING DEPENDING ON CAR MAKER AND CAR MODEL
+    function update_car_maker(line_no_qa) {
+        // Extract the first digit from the line number
+        var digit = line_no_qa.trim().charAt(0);
+
+        if (digit) {
+            fetchCarMaker(digit);
+        } else {
+            var car_maker_input = document.getElementById("car_maker_qa");
+            car_maker_input.value = '';
+            handleCarMakerChange(car_maker_input);
+        }
+    }
+
+    const fetchCarMaker = (digit) => {
+        $.ajax({
+            url: '../../process/pd_verifier/defect_monitoring_record_pdv_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'get_car_maker',
+                digit: digit
+            },
+            success: function (response) {
+                var car_maker_input = document.getElementById('car_maker_qa');
+                car_maker_input.value = response.trim();
+                handleCarMakerChange(car_maker_input);
+            },
+        });
+    }
+
+    const fetch_qr_setting = (carMaker, carModel) => {
+        $.ajax({
+            url: '../../process/pd_verifier/defect_monitoring_record_pdv_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_qr_setting',
+                car_maker: carMaker,
+                car_model: carModel
+            },
+            success: function (response) {
+                var settings = JSON.parse(response);
+                configureQrSettings(settings);
+            },
+        });
+    }
+
+    const configureQrSettings = (settings) => {
+        window.qrSettings = settings; // Store settings globally or in an appropriate scope
+    }
+
+    function handleCarMakerChange(selectOpt) {
+        var carMaker = selectOpt.value;
+        var car_model_input = document.getElementById('car_model_qa');
+        var qr_scan_input = document.getElementById('qr_scan_qa');
+        var product_name_input = document.getElementById('product_name_qa');
+        var lot_no_input = document.getElementById('lot_no_qa');
+        var serial_no_input = document.getElementById('serial_no_qa');
+
+        // Fetch the record type to check if it is "Mancost Only"
+        var record_type_qa = $('input[name="record_type_qa"]:checked').val();
+
+        if (record_type_qa === "Mancost Only") {
+            // Disable and style car_model and qr_scan fields
+            car_model_input.disabled = true;
+            qr_scan_input.disabled = true;
+            car_model_input.style.backgroundColor = '#D3D3D3';
+            qr_scan_input.style.backgroundColor = '#D3D3D3';
+        } else if (carMaker) {
+            // Enable car_model and qr_scan fields
+            car_model_input.disabled = false;
+            car_model_input.style.backgroundColor = '';
+            qr_scan_input.disabled = false;
+            qr_scan_input.style.backgroundColor = '';
+
+            fetch_car_model(carMaker); // Fetch car models based on car maker
+
+            product_name_input.value = '';
+            lot_no_input.value = '';
+            serial_no_input.value = '';
+
+            // Fetch QR settings if a car model is already selected
+            var selectedCarModel = car_model_input.value;
+            if (selectedCarModel) {
+                fetch_qr_setting(carMaker, selectedCarModel);
+            }
+        } else {
+            // Disable car_model and qr_scan fields when no car maker is selected
+            car_model_input.disabled = true;
+            qr_scan_input.disabled = true;
+            car_model_input.style.backgroundColor = '#DDD';
+            qr_scan_input.style.backgroundColor = '#DDD';
+
+            car_model_input.innerHTML = '<option value="" disabled selected>Select car model</option>';
+            qr_scan_input.value = '';
+        }
+    }
+
+    // Listen for changes in the car_model dropdown
+    $(document).on('change', '#car_model_qa', function () {
+        var qr_scan_input = $('#qr_scan_qa');
+        var product_name_input = $('#product_name_qa');
+        var lot_no_input = $('#lot_no_qa');
+        var serial_no_input = $('#serial_no_qa');
+        var selectedCarModel = $(this).val();
+        var carMaker = $('#car_maker_qa').val();
+
+        qr_scan_input.val('');
+        product_name_input.val('');
+        lot_no_input.val('');
+        serial_no_input.val('');
+
+        if (selectedCarModel && carMaker) {
+            fetch_qr_setting(carMaker, selectedCarModel); // Fetch QR settings based on car maker and model
+            qr_scan_input.prop('disabled', false);
+            qr_scan_input.css('background-color', '');
+        } else {
+            qr_scan_input.prop('disabled', true);
+            qr_scan_input.css('background-color', '#DDD');
+        }
+    });
+
+    function handleQrScan() {
+        document.getElementById('qr_scan_qa').addEventListener('keyup', function (e) {
+            if (e.which === 13) { // Enter key
+                e.preventDefault();
+                var qrCode = this.value;
+
+                // Log the QR code to ensure it is being captured
+                console.log('QR Code:', qrCode);
+
+                if (window.qrSettings) {
+                    var settings = window.qrSettings;
+                    // Parse settings as integers
+                    var totalLength = parseInt(settings.total_length, 10);
+                    var productNameStart = parseInt(settings.product_name_start, 10);
+                    var productNameLength = parseInt(settings.product_name_length, 10);
+                    var lotNoStart = parseInt(settings.lot_no_start, 10);
+                    var lotNoLength = parseInt(settings.lot_no_length, 10);
+                    var serialNoStart = parseInt(settings.serial_no_start, 10);
+                    var serialNoLength = parseInt(settings.serial_no_length, 10);
+
+                    // Log settings and QR code length for debugging
+                    // console.log('QR Settings:', settings);
+                    console.log('Parsed Settings:', {
+                        totalLength,
+                        productNameStart,
+                        productNameLength,
+                        lotNoStart,
+                        lotNoLength,
+                        serialNoStart,
+                        serialNoLength
+                    });
+                    console.log('Expected Length:', totalLength);
+                    console.log('QR Code Length:', qrCode.length);
+
+                    // Check if the QR code length matches the expected totalLength
+                    if (qrCode.length === totalLength) {
+                        var productName = qrCode.substring(productNameStart, productNameStart + productNameLength).trim();
+                        var lotNo = qrCode.substring(lotNoStart, lotNoStart + lotNoLength).trim();
+                        var serialNo = qrCode.substring(serialNoStart, serialNoStart + serialNoLength).trim();
+
+                        // Log extracted values for debugging
+                        console.log('Product Name:', productName);
+                        console.log('Lot No:', lotNo);
+                        console.log('Serial No:', serialNo);
+
+                        // Set the values in the fields
+                        document.getElementById('product_name_qa').value = productName;
+                        document.getElementById('lot_no_qa').value = lotNo;
+                        document.getElementById('serial_no_qa').value = serialNo;
+
+                        // Clear the QR scan input
+                        this.value = '';
+                    } else {
+                        console.error("QR code length does not match expected length. Expected:", totalLength, "Actual:", qrCode.length);
+                    }
+                } else {
+                    console.error("QR settings are not available.");
+                }
+            }
+        });
+    }
+
+    // Call this function to set up the QR scan handler when the page loads
+    document.addEventListener('DOMContentLoaded', handleQrScan);
+
+    const fetch_car_model = (carMaker) => {
+        $.ajax({
+            url: '../../process/pd_verifier/defect_monitoring_record_pdv_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_car_model',
+                car_maker: carMaker
+            },
+            success: function (response) {
+                $('#car_model_qa').html(response);
+            },
+        });
+    }
+
 </script>

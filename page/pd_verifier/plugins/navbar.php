@@ -148,6 +148,10 @@ if (!isset($_SESSION['emp_no'])) {
       background-color: #3D3D3D;
       color: #FFF;
     }
+
+    .hidden-defect {
+      display: none;
+    }
   </style>
 </head>
 

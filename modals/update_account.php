@@ -1,5 +1,5 @@
-<div class="modal fade bd-example-modal-xl" id="update_account" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div class="modal fade bd-example-modal-xl" id="update_account" tabindex="-1" role="dialog" data-backdrop="static"
+    data-keyboard="false">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content" style="background:#f9f9f9;">
             <div class="modal-header" style="background:#343a40;">
@@ -10,7 +10,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: 550px; overflow-y: auto;">
                 <div class="row">
                     <div class="col-sm-4">
                         <!-- id -->

@@ -3852,7 +3852,6 @@
         }
     }
 
-
     // Listen for changes in the car_model dropdown
     $(document).on('change', '#car_model', function () {
         var qr_scan_input = $('#qr_scan');

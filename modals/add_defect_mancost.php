@@ -11,7 +11,7 @@
                     <span aria-hidden="true" style="color: #fff;">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: 550px; overflow-y: auto;">
                 <div class="row justify-content-end mt-2">
                     <p style="font-size: 18px"><i>Select the record to be added:</i></p>&ensp;
 

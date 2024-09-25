@@ -80,7 +80,7 @@ if (isset($_POST['login_btn'])) {
                 header('location: page/qc/defect_monitoring_record.php');
                 exit;
             } elseif ($role == 'PD') {
-                header('location: page/pd/defect_monitoring_record_rp.php');
+                header('location: page/pd/pending_defect_record_rp.php');
                 exit;
             } elseif ($role == 'IT') {
                 header('location: page/it/barcode_m.php');

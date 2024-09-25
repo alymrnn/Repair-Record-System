@@ -1,5 +1,5 @@
-<div class="modal fade bd-example-modal-xl" id="add_car_settings" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div class="modal fade bd-example-modal-xl" id="add_car_settings" tabindex="-1" role="dialog" data-backdrop="static"
+    data-keyboard="false">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content" style="background:#f9f9f9;">
             <div class="modal-header" style="background:#343a40;">
@@ -11,56 +11,66 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: 550px; overflow-y: auto;">
                 <div class="row">
                     <div class="col-4">
                         <label style="font-weight: normal;">Car Maker</label>
-                        <input class="form-control" class="form-control" id="car_maker_qr" style="width: 100%; text-align: center;" type="text">
+                        <input class="form-control" class="form-control" id="car_maker_qr"
+                            style="width: 100%; text-align: center;" type="text">
                     </div>
                     <div class="col-4">
                         <label style="font-weight: normal;">Car Model Setting</label>
-                        <input class="form-control" id="car_model_qr" style="width: 100%; text-align: center;" type="text">
+                        <input class="form-control" id="car_model_qr" style="width: 100%; text-align: center;"
+                            type="text">
                     </div>
                     <div class="col-4">
                         <label style="font-weight: normal;">Car Value</label>
-                        <input class="form-control" id="car_value_qr" style="width: 100%; text-align: center;" type="int">
+                        <input class="form-control" id="car_value_qr" style="width: 100%; text-align: center;"
+                            type="int">
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-4">
                         <label style="font-weight: normal;">Total Length</label>
-                        <input class="form-control" id="total_length_qr" style="width: 100%; text-align: center;" type="int">
+                        <input class="form-control" id="total_length_qr" style="width: 100%; text-align: center;"
+                            type="int">
                     </div>
                     <div class="col-4">
                         <label style="font-weight: normal;">Product Name Start</label>
-                        <input class="form-control" id="pro_name_start_qr" style="width: 100%; text-align: center;" type="int">
+                        <input class="form-control" id="pro_name_start_qr" style="width: 100%; text-align: center;"
+                            type="int">
                     </div>
                     <div class="col-4">
                         <label style="font-weight: normal;">Product Name Length</label>
-                        <input class="form-control" id="pro_name_length_qr" style="width: 100%; text-align: center;" type="int">
+                        <input class="form-control" id="pro_name_length_qr" style="width: 100%; text-align: center;"
+                            type="int">
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-6">
                         <label style="font-weight: normal;">Lot No. Start</label>
-                        <input class="form-control" id="lot_no_start_qr" style="width: 100%; text-align: center;" type="int">
+                        <input class="form-control" id="lot_no_start_qr" style="width: 100%; text-align: center;"
+                            type="int">
                     </div>
                     <div class="col-6">
                         <label style="font-weight: normal;">Lot No. Length</label>
-                        <input class="form-control" id="lot_no_length_qr" style="width: 100%; text-align: center;" type="int">
+                        <input class="form-control" id="lot_no_length_qr" style="width: 100%; text-align: center;"
+                            type="int">
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-6">
                         <label style="font-weight: normal;">Serial No. Start</label>
-                        <input class="form-control" id="serial_no_start_qr" style="width: 100%; text-align: center;" type="int">
+                        <input class="form-control" id="serial_no_start_qr" style="width: 100%; text-align: center;"
+                            type="int">
                     </div>
                     <div class="col-6">
                         <label style="font-weight: normal;">Serial No. Length</label>
-                        <input class="form-control" id="serial_no_length_qr" style="width: 100%; text-align: center;" type="int">
+                        <input class="form-control" id="serial_no_length_qr" style="width: 100%; text-align: center;"
+                            type="int">
                     </div>
                 </div>
             </div>

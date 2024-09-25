@@ -11,7 +11,7 @@
                     <span aria-hidden="true" style="color: #fff;">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: 550px; overflow-y: auto;">
                 <div class="row">
                     <div class="col-sm-10">
                         <p style="font-weight: bold;color: #000;font-size:25px">Defect Record</p>

@@ -1,5 +1,5 @@
 <div class="modal fade bd-example-modal-xl" id="update_defect_re_assy" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content" style="background:#f9f9f9;">
             <div class="modal-header" style="background:#407BA3;">
@@ -9,7 +9,7 @@
                     <span aria-hidden="true" style="color: #fff;">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: 550px; overflow-y: auto;">
                 <p style="font-weight: bold;color: #000;font-size:25px">Defect Record</p>
                 <div class="row">
                     <div class="col-sm-2">
@@ -52,7 +52,8 @@
                     <div class="col-sm-3">
                         <!-- repairing date -->
                         <label style="font-weight: normal;color: #000;">Repairing Date</label>
-                        <input type="datetime-local" id="repairing_date_pdv_re_update" class="form-control" autocomplete="off"
+                        <input type="datetime-local" id="repairing_date_pdv_re_update" class="form-control"
+                            autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
                 </div>
@@ -112,7 +113,8 @@
                     <div class="col-sm-3">
                         <!-- occurrence process -->
                         <label style="font-weight: normal;color: #000;">Occurrence Process</label>
-                        <input type="text" id="occurrence_process_pdv_dr_re_update" class="form-control" autocomplete="off"
+                        <input type="text" id="occurrence_process_pdv_dr_re_update" class="form-control"
+                            autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-3">
@@ -210,13 +212,15 @@
                     <div class="col-sm-6">
                         <!-- good measurement -->
                         <label style="font-weight: normal;color: #000;">Good Measurement</label>
-                        <input type="text" id="good_measurement_pdv_re_update" class="form-control pl-3" autocomplete="off"
+                        <input type="text" id="good_measurement_pdv_re_update" class="form-control pl-3"
+                            autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-6">
                         <!-- ng measurement -->
                         <label style="font-weight: normal;color: #000;">NG Measurement</label>
-                        <input type="text" id="ng_measurement_pdv_re_update" class="form-control pl-3" autocomplete="off"
+                        <input type="text" id="ng_measurement_pdv_re_update" class="form-control pl-3"
+                            autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
                 </div>
@@ -236,7 +240,8 @@
                     <div class="col-sm-4">
                         <!-- connector cavity -->
                         <label style="font-weight: normal;color: #000;">Connector Cavity / Color</label>
-                        <input type="text" id="connector_cavity_pdv_re_update" class="form-control pl-3" autocomplete="off"
+                        <input type="text" id="connector_cavity_pdv_re_update" class="form-control pl-3"
+                            autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
                 </div>
@@ -273,22 +278,26 @@
                     <div class="col-sm-3">
                         <label style="font-weight: normal;color: #000;">Judgement</label>
                         <input type="text" id="cc_remarks_1_re_update" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;" readonly>
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
+                            readonly>
                     </div>
                     <div class="col-sm-3">
                         <label style="font-weight: normal;color: #000;">Details</label>
                         <input type="text" id="cc_remarks_2_re_update" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;" readonly>
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
+                            readonly>
                     </div>
                     <div class="col-sm-3">
                         <label style="font-weight: normal;color: #000;">ID No. QA (FSP)</label>
                         <input type="text" id="cc_id_no_re_update" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;" readonly>
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
+                            readonly>
                     </div>
                     <div class="col-sm-3">
                         <label style="font-weight: normal;color: #000;">Verified by QA (FSP)</label>
                         <input type="text" id="cc_name_re_update" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;" readonly>
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
+                            readonly>
                     </div>
                 </div>
 
@@ -298,17 +307,20 @@
                     <div class="col-sm-4">
                         <label style="font-weight: normal;color: #000;">Judgement</label>
                         <input type="text" id="recrimp_remarks_re_update" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;" readonly>
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
+                            readonly>
                     </div>
                     <div class="col-sm-4">
                         <label style="font-weight: normal;color: #000;">ID No. PD (FSP)</label>
                         <input type="text" id="recrimp_pd_id_no_re_update" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;" readonly>
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
+                            readonly>
                     </div>
                     <div class="col-sm-4">
                         <label style="font-weight: normal;color: #000;">Re-crimped by PD (FSP)</label>
                         <input type="text" id="recrimp_pd_name_re_update" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;" readonly>
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
+                            readonly>
                     </div>
                 </div>
                 <div class="row mt-1" i>
@@ -316,12 +328,14 @@
                     <div class="col-sm-4">
                         <label style="font-weight: normal;color: #000;">ID No. QA (FSP)</label>
                         <input type="text" id="recrimp_qa_id_no_re_update" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;" readonly>
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
+                            readonly>
                     </div>
                     <div class="col-sm-4">
                         <label style="font-weight: normal;color: #000;">Verified by QA (FSP)</label>
                         <input type="text" id="recrimp_qa_name_re_update" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;" readonly>
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
+                            readonly>
                     </div>
                 </div>
 
@@ -351,7 +365,8 @@
                     <div class="col-sm-3">
                         <label style="font-weight: normal;color: #000;">Confirmed by PD (FAP)</label>
                         <input type="text" id="reassy_name_re_update" class="form-control pl-3" autocomplete="off"
-                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;" readonly>
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
+                            readonly>
                     </div>
                 </div>
                 <input type="hidden" id="admin_defect_id_4">

@@ -45,6 +45,19 @@
         }
     }
 
+    function formatDateTime(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    }
+
+    const current_date_time = formatDateTime(new Date());
+
     function fetch_and_update_count() {
         $.ajax({
             url: '../../process/pd/pending_defect_record_rp_p.php',
@@ -612,19 +625,6 @@
         $('#update_defect_inspector').modal('show');
     }
 
-    function formatDateTime(date) {
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
-        const hours = String(date.getHours()).padStart(2, '0');
-        const minutes = String(date.getMinutes()).padStart(2, '0');
-        const seconds = String(date.getSeconds()).padStart(2, '0');
-
-        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-    }
-
-    const current_date_time = formatDateTime(new Date());
-
     // const time_difference = () => {
     //     var repair_start = document.getElementById('repair_start_insp_update').value;
     //     var repair_end = document.getElementById('repair_end_insp_update').value;
@@ -1055,11 +1055,11 @@
                         showConfirmButton: false,
                         timer: 1500
                     }).then(() => {
-                        load_pending_defect_table(); 
-                        fetch_and_update_count();   
-                        $('#update_defect_inspector').modal('hide'); 
+                        load_pending_defect_table();
+                        fetch_and_update_count();
+                        $('#update_defect_inspector').modal('hide');
 
-                        load_added_mancost2().empty(); 
+                        load_added_mancost2().empty();
                     });
                 }
                 else {

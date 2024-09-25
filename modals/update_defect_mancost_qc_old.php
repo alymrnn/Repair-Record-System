@@ -1,5 +1,5 @@
 <div class="modal fade bd-example-modal-xl" id="update_defect_mancost_qc" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content" style="background:#f9f9f9;">
             <div class="modal-header" style="background:#004e89;">
@@ -9,9 +9,10 @@
                     <span aria-hidden="true" style="color: #fff;">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: 550px; overflow-y: auto;">
                 <!-- form label -->
-                <label style="font-weight: bold;color: #000;font-size:25px">Manpower and Material Cost Monitoring</label>
+                <label style="font-weight: bold;color: #000;font-size:25px">Manpower and Material Cost
+                    Monitoring</label>
                 <div class="row">
                     <div class="col-sm-4">
                         <input type="hidden" id="update_defect_mancost_id" class="form-control">
@@ -29,7 +30,8 @@
                     </div>
                     <div class="col-sm-4">
                         <label style="font-weight: normal;color: #000;">Repairing Date</label>
-                        <input type="datetime-local" id="repairing_date_mc_update" class="form-control pl-3" autocomplete="off"
+                        <input type="datetime-local" id="repairing_date_mc_update" class="form-control pl-3"
+                            autocomplete="off"
                             style="border:1px solid #E3E3E3; color: #525252;font-size: 15px;border-radius: .25rem;background: #E3E3E3;height:34px; width:100%;">
                     </div>
                 </div>
