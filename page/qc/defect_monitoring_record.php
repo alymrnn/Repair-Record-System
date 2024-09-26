@@ -23,7 +23,7 @@
   <!-- Main content -->
   <section class="content">
     <div class="col-md-12">
-      <div class="card card-light" style="background: #FFF; border-top: 1px solid #2D7AC0;">
+      <div class="card card-light">
         <div class="card-header">
           <h3 class="card-title"><img src="../../dist/img/settings.png" style="height:28px;">&ensp;Records Monitoring
             Table</h3>
@@ -39,19 +39,37 @@
           <div class="col-sm-12">
             <!-- /.card header -->
             <div class="card-body">
+              <div class="row mb-2">
+                <div class="col-2">
+                  <label style="font-weight:normal;margin:0;padding:0;color:#000;">Car Maker</label>
+                  <select name="search_ad_car_maker" id="search_ad_car_maker" autocomplete="off"
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;"
+                    class="form-control pl-1">
+                    <option></option>
+                  </select>
+                </div>
+                <div class="col-2">
+                  <label style="font-weight:normal;margin:0;padding:0;color:#000;">Car Model</label>
+                  <select name="search_ad_car_model" id="search_ad_car_model" autocomplete="off"
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;height:34px; width:100%;"
+                    class="form-control pl-1" disabled>
+                    <option>Select car model</option>
+                  </select>
+                </div>
+              </div>
               <div class="row">
                 <div class="col-12 col-sm-6 col-md-4">
                   <!-- qr scan -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Scan here</label>
                   <input type="text" id="qr_scan_qc" class="form-control" autocomplete="off"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;">
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;height:34px; width:100%;" disabled>
                 </div>
                 <div class="col-sm-4 col-md-2">
                   <!-- product name -->
                   <label style="font-weight:normal;margin:0;padding:0;color:#000;">Product Name</label>
                   <input type="text" id="search_ad_product_name" class="form-control" placeholder="Product Name"
                     autocomplete="off"
-                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888888;background: #FFF;height:34px; width:100%;">
+                    style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;">
                 </div>
                 <div class="col-sm-4 col-md-2">
                   <!-- lot no -->
@@ -163,7 +181,8 @@
                     <div class="row mb-3">
                       <div class="col-10"></div>
                       <div class="col-2">
-                        <button id="update_button" class="btn btn-block d-flex justify-content-left" data-toggle="modal" data-target="#update_defect_mancost_qc"
+                        <button id="update_button" class="btn btn-block d-flex justify-content-left" data-toggle="modal"
+                          data-target="#update_defect_mancost_qc"
                           style="color:#fff;height:34px;border-radius:.25rem;background: #2D7AC0;font-size:15px;font-weight:normal;"
                           onmouseover="this.style.backgroundColor='#215A8D'; this.style.color='#FFF';"
                           onmouseout="this.style.backgroundColor='#2D7AC0'; this.style.color='#FFF';" disabled>

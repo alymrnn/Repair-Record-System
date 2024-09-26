@@ -23,7 +23,7 @@
   <!-- Main content -->
   <section class="content">
     <div class="col-md-12">
-      <div class="card card-light" style="background: #fff; border-top: 1px solid orange;">
+      <div class="card card-light">
         <div class="card-header">
           <h3 class="card-title"><img src="../../dist/img/settings.png" style="height:28px;">&ensp;Pending Defect Record
             Table</h3>
@@ -35,12 +35,30 @@
         </div>
         <!-- /.card header -->
         <div class="card-body">
-          <div class="row mt-2">
+          <div class="row mb-2">
+            <div class="col-2">
+              <label style="font-weight:normal;margin:0;padding:0;color:#000;">Car Maker</label>
+              <select name="search_car_maker_pd" id="search_car_maker_pd" autocomplete="off"
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;"
+                class="form-control pl-1">
+                <option></option>
+              </select>
+            </div>
+            <div class="col-2">
+              <label style="font-weight:normal;margin:0;padding:0;color:#000;">Car Model</label>
+              <select name="search_car_model_pd" id="search_car_model_pd" autocomplete="off"
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;height:34px; width:100%;"
+                class="form-control pl-1" disabled>
+                <option>Select car model</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
             <div class="col-12 col-sm-6 col-md-4 mb-2">
               <!-- qr scan -->
               <label style="font-weight:normal;margin:0;padding:0;color:#000;">Scan here</label>
               <input type="text" id="qr_scan_pd" class="form-control" autocomplete="off"
-                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;">
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;height:34px; width:100%;" disabled>
             </div>
             <div class="col-12 col-sm-6 col-md-2 mb-2">
               <!-- product name -->

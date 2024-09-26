@@ -5,6 +5,53 @@ include '../conn.php';
 
 $method = $_POST['method'];
 
+if ($method == 'fetch_opt_car_maker_insp') {
+    $query = "SELECT DISTINCT car_maker FROM m_car_maker ORDER BY car_maker ASC";
+    $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+    $stmt->execute();
+    if ($stmt->rowCount() > 0) {
+        echo '<option value="" disabled selected>Select car maker</option>';
+        foreach ($stmt->fetchAll() as $row) {
+            echo '<option>' . htmlspecialchars($row['car_maker']) . '</option>';
+        }
+    } else {
+        echo '<option value="">No car makers available</option>';
+    }
+}
+
+if ($method == 'fetch_car_models' && isset($_POST['car_maker'])) {
+    $car_maker = $_POST['car_maker'];
+    $query = "SELECT DISTINCT car_model FROM m_car_maker WHERE car_maker = :car_maker ORDER BY car_model ASC";
+    $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+    $stmt->bindParam(':car_maker', $car_maker);
+    $stmt->execute();
+
+    if ($stmt->rowCount() > 0) {
+        echo '<option value="" disabled selected>Select car model</option>';
+        foreach ($stmt->fetchAll() as $row) {
+            echo '<option>' . htmlspecialchars($row['car_model']) . '</option>';
+        }
+    } else {
+        echo '<option value="">No models available</option>';
+    }
+}
+
+if ($method == 'fetch_qr_settings' && isset($_POST['car_model'])) {
+    $car_model = $_POST['car_model'];
+    $query = "SELECT total_length, product_name_start, product_name_length, lot_no_start, lot_no_length, serial_no_start, serial_no_length FROM m_car_maker WHERE car_model = :car_model";
+    $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+    $stmt->bindParam(':car_model', $car_model);
+    $stmt->execute();
+
+    if ($stmt->rowCount() > 0) {
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        echo json_encode($row); // Return data as JSON
+    } else {
+        echo json_encode([]); // Return empty array if no data
+    }
+}
+
+
 if ($method == 'fetch_opt_line_no_qa') {
     $query = "SELECT DISTINCT line_no FROM m_line_no ORDER BY line_no ASC";
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));

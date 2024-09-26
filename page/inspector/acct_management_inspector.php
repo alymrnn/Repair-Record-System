@@ -23,13 +23,13 @@
   <!-- Main content -->
   <section class="content">
     <div class="col-md-12">
-      <div class="card card-light" style="background: #fff; border-top: 1px solid #2D7AC0;">
+      <div class="card card-light">
         <div class="card-header">
           <h3 class="card-title"><img src="../../dist/img/acct-user.png" style="height:28px;">&ensp;Account
             Management
             Table</h3>
           <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+            <!-- <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i> -->
             </button>
             <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
                 class="fas fa-expand"></i></button>

@@ -23,7 +23,7 @@
   <!-- Main content -->
   <section class="content">
     <div class="col-md-12">
-      <div class="card card-light" style="background: #fff; border-top: 1px solid #3066be;">
+      <div class="card card-light">
         <div class="card-header">
           <h3 class="card-title"><img src="../../dist/img/settings.png" style="height:28px;">&ensp;Defect Record and
             Mancost Monitoring Table</h3>
@@ -35,12 +35,31 @@
         </div>
         <!-- /.card header -->
         <div class="card-body">
-          <div class="row mt-2">
+          <div class="row mb-2">
+            <div class="col-2">
+              <label style="font-weight:normal;margin:0;padding:0;color:#000;">Car Maker</label>
+              <select name="search_car_maker_qa" id="search_car_maker_qa" autocomplete="off"
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;"
+                class="form-control pl-1">
+                <option></option>
+              </select>
+            </div>
+            <div class="col-2">
+              <label style="font-weight:normal;margin:0;padding:0;color:#000;">Car Model</label>
+              <select name="search_car_model_qa" id="search_car_model_qa" autocomplete="off"
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;height:34px; width:100%;"
+                class="form-control pl-1" disabled>
+                <option>Select car model</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
             <div class="col-12 col-sm-6 col-md-4 mb-2">
               <!-- qr scan -->
               <label style="font-weight:normal;margin:0;padding:0;color:#000;">Scan here</label>
               <input type="text" id="search_qr_scan_qa" class="form-control pl-3" autocomplete="off"
-                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;">
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888; height:34px; width:100%;"
+                disabled>
             </div>
             <div class="col-12 col-sm-6 col-md-2 mb-2">
               <!-- product name -->
@@ -60,7 +79,8 @@
             <div class="col-12 col-sm-6 col-md-2 mb-2">
               <!-- serial no -->
               <label style="font-weight:normal;margin:0;padding:0;color:#000;">Serial No.</label>
-              <input type="text" id="search_serial_no_qa" class="form-control" placeholder="Serial No." autocomplete="off"
+              <input type="text" id="search_serial_no_qa" class="form-control" placeholder="Serial No."
+                autocomplete="off"
                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;"
                 class="pl-3">
             </div>
@@ -118,8 +138,7 @@
             <div class="col-12 col-sm-2">
               <!-- add defect record and mancost monitoring button -->
               <label style="font-weight:normal;margin:0;padding:0;color:#fff;font-size:10px">-</label>
-              <button class="btn btn-block d-flex justify-content-left" data-toggle="modal"
-                data-target="#add_defect_qa"
+              <button class="btn btn-block d-flex justify-content-left" data-toggle="modal" data-target="#add_defect_qa"
                 style="color:#fff;height:34px;border-radius:.25rem;background: #3066be;font-size:15px;font-weight:normal;"
                 onmouseover="this.style.backgroundColor='#024E92'; this.style.color='#FFF';"
                 onmouseout="this.style.backgroundColor='#3066be'; this.style.color='#FFF';"><i
@@ -187,8 +206,7 @@
           </div>
           <div class="d-flex justify-content-sm-center">
             <button type="button" class="btn" style="background: #032b43; color: #fff;" id="btnNextPage"
-              onclick="get_next_page()"
-              onmouseover="this.style.backgroundColor='#032031'; this.style.color='#FFF';"
+              onclick="get_next_page()" onmouseover="this.style.backgroundColor='#032031'; this.style.color='#FFF';"
               onmouseout="this.style.backgroundColor='#032b43'; this.style.color='#FFF';">Load
               more</button>
           </div>

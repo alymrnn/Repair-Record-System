@@ -8,7 +8,128 @@
         load_defect_table_new_record(1);
 
         fetch_and_update_count_qc();
+
+        fetch_opt_car_maker_insp();
+
+        $('#search_car_maker_new').change(function () {
+            const selectedMaker = $(this).val();
+            if (selectedMaker) {
+                $.ajax({
+                    url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
+                    type: 'POST',
+                    cache: false,
+                    data: {
+                        method: 'fetch_car_models',
+                        car_maker: selectedMaker
+                    },
+                    success: function (response) {
+                        $('#search_car_model_new').html(response).prop('disabled', false);
+                        $('#search_qr_scan_new').val('').prop('disabled', true);
+                    }
+                });
+            } else {
+                $('#search_car_model_new').html('<option></option>').prop('disabled', true);
+                $('#search_qr_scan_new').prop('disabled', false);
+            }
+        });
+
+        $('#search_car_model_new').change(function () {
+            const selectedModel = $(this).val();
+            if (selectedModel) {
+                $.ajax({
+                    url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
+                    type: 'POST',
+                    cache: false,
+                    data: {
+                        method: 'fetch_qr_settings',
+                        car_model: selectedModel
+                    },
+                    success: function (response) {
+                        const settings = JSON.parse(response);
+                        if (settings && Object.keys(settings).length > 0) {
+                            window.qrSettings = settings;
+                            $('#search_qr_scan_new').prop('disabled', false);
+                        } else {
+                            $('#search_qr_scan_new').prop('disabled', true);
+                        }
+                    }
+                });
+            } else {
+                $('#search_qr_scan_new').prop('disabled', false);
+            }
+        });
+
+        handleSearchQrScan();
     });
+
+    function handleSearchQrScan() {
+        document.getElementById('search_qr_scan_new').addEventListener('keyup', function (e) {
+            if (e.which === 13) {
+                e.preventDefault();
+                var qrCode = this.value;
+
+                // console.log('QR Code:', qrCode);
+
+                if (window.qrSettings) {
+                    var settings = window.qrSettings;
+                    var totalLength = parseInt(settings.total_length, 10);
+                    var productNameStart = parseInt(settings.product_name_start, 10);
+                    var productNameLength = parseInt(settings.product_name_length, 10);
+                    var lotNoStart = parseInt(settings.lot_no_start, 10);
+                    var lotNoLength = parseInt(settings.lot_no_length, 10);
+                    var serialNoStart = parseInt(settings.serial_no_start, 10);
+                    var serialNoLength = parseInt(settings.serial_no_length, 10);
+
+                    // console.log('Parsed Settings:', {
+                    //   totalLength,
+                    //   productNameStart,
+                    //   productNameLength,
+                    //   lotNoStart,
+                    //   lotNoLength,
+                    //   serialNoStart,
+                    //   serialNoLength
+                    // });
+                    // console.log('Expected Length:', totalLength);
+                    // console.log('QR Code Length:', qrCode.length);
+
+                    if (qrCode.length === totalLength) {
+                        var productName = qrCode.substring(productNameStart, productNameStart + productNameLength).trim();
+                        var lotNo = qrCode.substring(lotNoStart, lotNoStart + lotNoLength).trim();
+                        var serialNo = qrCode.substring(serialNoStart, serialNoStart + serialNoLength).trim();
+
+                        // console.log('Product Name:', productName);
+                        // console.log('Lot No:', lotNo);
+                        // console.log('Serial No:', serialNo);
+
+                        document.getElementById('search_product_name_new').value = productName;
+                        document.getElementById('search_lot_no_new').value = lotNo;
+                        document.getElementById('search_serial_no_new').value = serialNo;
+
+                        this.value = ''; // Clear the QR scan input
+                    } else {
+                        console.error("QR code length does not match expected length. Expected:", totalLength, "Actual:", qrCode.length);
+                    }
+                } else {
+                    console.error("QR settings are not available.");
+                }
+            }
+        });
+    }
+
+    const fetch_opt_car_maker_insp = () => {
+        $.ajax({
+            url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_opt_car_maker_insp',
+            },
+            success: function (response) {
+                $('#search_car_maker_new').html(response);
+            }
+        });
+    }
+
 
     function update_display_badge_count_3(new_count) {
         var badge = document.querySelector('#for_veri_qc_badge');
@@ -51,27 +172,27 @@
         });
     }
 
-    document.getElementById('search_qr_scan_new').addEventListener('keyup', function (e) {
-        var qrCode = this.value;
+    // document.getElementById('search_qr_scan_new').addEventListener('keyup', function (e) {
+    //     var qrCode = this.value;
 
-        if (qrCode.length === 50) {
-            const productNameField = document.getElementById('search_product_name_qa');
-            const lotNoField = document.getElementById('search_lot_no_qa');
-            const serialNoField = document.getElementById('search_serial_no_qa');
+    //     if (qrCode.length === 50) {
+    //         const productNameField = document.getElementById('search_product_name_qa');
+    //         const lotNoField = document.getElementById('search_lot_no_qa');
+    //         const serialNoField = document.getElementById('search_serial_no_qa');
 
-            if (productNameField && lotNoField && serialNoField) {
-                productNameField.value = qrCode.substring(10, 35);
-                lotNoField.value = qrCode.substring(35, 41);
-                serialNoField.value = qrCode.substring(41, 50);
+    //         if (productNameField && lotNoField && serialNoField) {
+    //             productNameField.value = qrCode.substring(10, 35);
+    //             lotNoField.value = qrCode.substring(35, 41);
+    //             serialNoField.value = qrCode.substring(41, 50);
 
-                load_defect_table_new_record(1);
-            } else {
+    //             load_defect_table_new_record(1);
+    //         } else {
 
-            }
+    //         }
 
-            this.value = '';
-        }
-    });
+    //         this.value = '';
+    //     }
+    // });
 
     document.getElementById("list_of_defect_qa_res").addEventListener("scroll", function () {
         var scrollTop = document.getElementById("list_of_defect_qa_res").scrollTop;
@@ -261,6 +382,12 @@
         document.getElementById("search_serial_no_new").value = '';
         document.getElementById("search_record_type_new").value = '';
         document.getElementById("search_line_no_new").value = '';
+
+        document.getElementById("search_car_maker_new").value = '';
+        document.getElementById("search_car_model_new").value = '';
+
+        document.getElementById("search_qr_scan_new").disabled = true;
+        document.getElementById("search_car_model_new").disabled = true;
         // document.getElementById("search_date_from_qa").value = '';
         // document.getElementById("search_date_to_qa").value = '';
 

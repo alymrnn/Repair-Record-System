@@ -23,9 +23,10 @@
   <!-- Main content -->
   <section class="content">
     <div class="col-md-12">
-      <div class="card card-light" style="background: #fff; border-top: 1px solid #F48D5A;">
+      <div class="card card-light">
         <div class="card-header">
-          <h3 class="card-title"><img src="../../dist/img/settings.png" style="height:28px;">&ensp;New Added Defect Record Monitoring Table</h3>
+          <h3 class="card-title"><img src="../../dist/img/settings.png" style="height:28px;">&ensp;New Added Defect
+            Record Monitoring Table</h3>
           <div class="card-tools">
             <!-- <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button> -->
             <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
@@ -34,12 +35,30 @@
         </div>
         <!-- /.card header -->
         <div class="card-body">
+          <div class="row mb-2">
+            <div class="col-2">
+              <label style="font-weight:normal;margin:0;padding:0;color:#000;">Car Maker</label>
+              <select name="search_car_maker_new" id="search_car_maker_new" autocomplete="off"
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;"
+                class="form-control pl-1">
+                <option></option>
+              </select>
+            </div>
+            <div class="col-2">
+              <label style="font-weight:normal;margin:0;padding:0;color:#000;">Car Model</label>
+              <select name="search_car_model_new" id="search_car_model_new" autocomplete="off"
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;height:34px; width:100%;"
+                class="form-control pl-1" disabled>
+                <option>Select car model</option>
+              </select>
+            </div>
+          </div>
           <div class="row mt-2">
             <div class="col-12 col-sm-6 col-md-4 mb-2">
               <!-- qr scan -->
               <label style="font-weight:normal;margin:0;padding:0;color:#000;">Scan here</label>
               <input type="text" id="search_qr_scan_new" class="form-control pl-3" autocomplete="off"
-                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;">
+                style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;height:34px; width:100%;" disabled>
             </div>
             <div class="col-12 col-sm-6 col-md-2 mb-2">
               <!-- product name -->
@@ -59,7 +78,8 @@
             <div class="col-12 col-sm-6 col-md-2 mb-2">
               <!-- serial no -->
               <label style="font-weight:normal;margin:0;padding:0;color:#000;">Serial No.</label>
-              <input type="text" id="search_serial_no_new" class="form-control" placeholder="Serial No." autocomplete="off"
+              <input type="text" id="search_serial_no_new" class="form-control" placeholder="Serial No."
+                autocomplete="off"
                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px; width:100%;"
                 class="pl-3">
             </div>
@@ -93,14 +113,16 @@
             </div>
             <div class="col-12 col-sm-2">
               <!-- date from -->
-              <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date From <i style="font-size: 13px;">(Date Detected)</i></label>
+              <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date From <i
+                  style="font-size: 13px;">(Date Detected)</i></label>
               <label style="color:#CA3F3F;margin:0;padding:0;">*</label>
               <input type="date" name="date_from" class="form-control" id="search_date_from_new"
                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px;">
             </div>
             <div class="col-12 col-sm-2">
               <!-- date to -->
-              <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date To <i style="font-size: 13px;">(Date Detected)</i></label>
+              <label style="font-weight:normal;margin:0;padding:0;color:#000;">Date To <i style="font-size: 13px;">(Date
+                  Detected)</i></label>
               <label style="color:#CA3F3F;margin:0;padding:0;">*</label>
               <input type="date" name="date_to" class="form-control" id="search_date_to_new"
                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;background: #FFF;height:34px;">
@@ -177,8 +199,7 @@
           </div>
           <div class="d-flex justify-content-sm-center">
             <button type="button" class="btn" style="background: #032b43; color: #fff;" id="btnNextPage"
-              onclick="get_next_page()"
-              onmouseover="this.style.backgroundColor='#032031'; this.style.color='#FFF';"
+              onclick="get_next_page()" onmouseover="this.style.backgroundColor='#032031'; this.style.color='#FFF';"
               onmouseout="this.style.backgroundColor='#032b43'; this.style.color='#FFF';">Load
               more</button>
           </div>

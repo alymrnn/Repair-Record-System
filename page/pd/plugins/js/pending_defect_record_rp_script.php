@@ -36,7 +36,127 @@
                 $('#other_portion_treatment_insp_mc_update').prop('disabled', true).val('').css('background-color', '#D3D3D3');
             }
         });
+
+        fetch_opt_car_maker_insp();
+
+        $('#search_car_maker_pd').change(function () {
+            const selectedMaker = $(this).val();
+            if (selectedMaker) {
+                $.ajax({
+                    url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
+                    type: 'POST',
+                    cache: false,
+                    data: {
+                        method: 'fetch_car_models',
+                        car_maker: selectedMaker
+                    },
+                    success: function (response) {
+                        $('#search_car_model_pd').html(response).prop('disabled', false);
+                        $('#qr_scan_pd').val('').prop('disabled', true);
+                    }
+                });
+            } else {
+                $('#search_car_model_pd').html('<option></option>').prop('disabled', true);
+                $('#qr_scan_pd').prop('disabled', false);
+            }
+        });
+
+        $('#search_car_model_pd').change(function () {
+            const selectedModel = $(this).val();
+            if (selectedModel) {
+                $.ajax({
+                    url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
+                    type: 'POST',
+                    cache: false,
+                    data: {
+                        method: 'fetch_qr_settings',
+                        car_model: selectedModel
+                    },
+                    success: function (response) {
+                        const settings = JSON.parse(response);
+                        if (settings && Object.keys(settings).length > 0) {
+                            window.qrSettings = settings;
+                            $('#qr_scan_pd').prop('disabled', false);
+                        } else {
+                            $('#qr_scan_pd').prop('disabled', true);
+                        }
+                    }
+                });
+            } else {
+                $('#qr_scan_pd').prop('disabled', false);
+            }
+        });
+
+        handleSearchQrScan();
     });
+
+    function handleSearchQrScan() {
+        document.getElementById('qr_scan_pd').addEventListener('keyup', function (e) {
+            if (e.which === 13) {
+                e.preventDefault();
+                var qrCode = this.value;
+
+                // console.log('QR Code:', qrCode);
+
+                if (window.qrSettings) {
+                    var settings = window.qrSettings;
+                    var totalLength = parseInt(settings.total_length, 10);
+                    var productNameStart = parseInt(settings.product_name_start, 10);
+                    var productNameLength = parseInt(settings.product_name_length, 10);
+                    var lotNoStart = parseInt(settings.lot_no_start, 10);
+                    var lotNoLength = parseInt(settings.lot_no_length, 10);
+                    var serialNoStart = parseInt(settings.serial_no_start, 10);
+                    var serialNoLength = parseInt(settings.serial_no_length, 10);
+
+                    // console.log('Parsed Settings:', {
+                    //   totalLength,
+                    //   productNameStart,
+                    //   productNameLength,
+                    //   lotNoStart,
+                    //   lotNoLength,
+                    //   serialNoStart,
+                    //   serialNoLength
+                    // });
+                    // console.log('Expected Length:', totalLength);
+                    // console.log('QR Code Length:', qrCode.length);
+
+                    if (qrCode.length === totalLength) {
+                        var productName = qrCode.substring(productNameStart, productNameStart + productNameLength).trim();
+                        var lotNo = qrCode.substring(lotNoStart, lotNoStart + lotNoLength).trim();
+                        var serialNo = qrCode.substring(serialNoStart, serialNoStart + serialNoLength).trim();
+
+                        // console.log('Product Name:', productName);
+                        // console.log('Lot No:', lotNo);
+                        // console.log('Serial No:', serialNo);
+
+                        document.getElementById('search_product_name_pd').value = productName;
+                        document.getElementById('search_lot_no_pd').value = lotNo;
+                        document.getElementById('search_serial_no_pd').value = serialNo;
+
+                        this.value = ''; // Clear the QR scan input
+                    } else {
+                        console.error("QR code length does not match expected length. Expected:", totalLength, "Actual:", qrCode.length);
+                    }
+                } else {
+                    console.error("QR settings are not available.");
+                }
+            }
+        });
+    }
+
+    const fetch_opt_car_maker_insp = () => {
+        $.ajax({
+            url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'fetch_opt_car_maker_insp',
+            },
+            success: function (response) {
+                $('#search_car_maker_pd').html(response);
+            }
+        });
+    }
 
     function update_display_badge_count(new_count) {
         var badge = document.querySelector('.badge');
@@ -1129,6 +1249,11 @@
         document.getElementById("search_serial_no_pd").value = '';
         document.getElementById("search_record_type_pd").value = '';
         document.getElementById("search_line_no_pd").value = '';
+        document.getElementById("search_car_model_pd").value = '';
+        document.getElementById("qr_scan_pd").value = '';
+
+        document.getElementById("search_car_model_pd").disabled = true;
+        document.getElementById("qr_scan_pd").disabled = true;
         // document.getElementById("search_date_from_pd").value = '';
         // document.getElementById("search_date_to_pd").value = '';
 
