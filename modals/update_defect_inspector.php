@@ -336,7 +336,7 @@
                     <p style="font-size: 18px"><i>Check N/A if White Tag and Defect Only:</i></p>&ensp;
 
                     <label style="display: inline-block;font-size: 18px">
-                        <input type="radio" id="r_white_tag_defect" name="na_white_tag_defect"
+                        <input type="checkbox" id="r_white_tag_defect" name="na_white_tag_defect"
                             value="Defect and Mancost" style="vertical-align: middle;">
                         N/A
                     </label>&emsp;

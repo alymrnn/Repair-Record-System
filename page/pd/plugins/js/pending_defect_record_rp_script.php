@@ -16,24 +16,14 @@
         fetch_opt_portion_treatment_pd();
 
         fetch_and_update_count();
-
+        
         $(document).on('click', 'input[name="na_white_tag_defect"]', function () {
-            if ($(this).val() === "Defect and Mancost") {
-                $('#repair_start_mc2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
-                $('#repair_end_mc2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
-                $('#time_consumed_mc2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
-                $('#defect_category_mc2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
-                $('#occurrence_process_mc2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
-                $('#parts_removed_mc2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
-                $('#quantity_mc2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
-                $('#unit_cost_mc2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
-                $('#material_cost_mc2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
-                $('#manhour_cost_mc2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
-                $('#portion_treatment2').prop('disabled', true).val('').css('background-color', '#D3D3D3');
-
-                $('#others_defect_category_insp_mc_update').prop('disabled', true).val('').css('background-color', '#D3D3D3');
-                $('#others_occurrence_process_insp_mc_update').prop('disabled', true).val('').css('background-color', '#D3D3D3');
-                $('#other_portion_treatment_insp_mc_update').prop('disabled', true).val('').css('background-color', '#D3D3D3');
+            if ($(this).is(':checked')) {
+                $('#repair_start_mc2, #repair_end_mc2, #time_consumed_mc2, #defect_category_mc2, #occurrence_process_mc2, #parts_removed_mc2, #quantity_mc2, #unit_cost_mc2, #material_cost_mc2, #manhour_cost_mc2, #portion_treatment2, #others_defect_category_insp_mc_update, #others_occurrence_process_insp_mc_update, #other_portion_treatment_insp_mc_update')
+                    .prop('disabled', true).val('').css('background-color', '#D3D3D3');
+            } else {
+                $('#repair_start_mc2, #repair_end_mc2, #time_consumed_mc2, #defect_category_mc2, #occurrence_process_mc2, #parts_removed_mc2, #quantity_mc2, #unit_cost_mc2, #material_cost_mc2, #manhour_cost_mc2, #portion_treatment2, #others_defect_category_insp_mc_update, #others_occurrence_process_insp_mc_update, #other_portion_treatment_insp_mc_update')
+                    .prop('disabled', false).css('background-color', '#FFF');
             }
         });
 
