@@ -12,6 +12,15 @@ include '../../modals/add_account.php';
 include '../../modals/update_account.php';
 include '../../modals/add_car_settings.php';
 include '../../modals/update_car_settings.php';
+
+include '../../modals/add_line_no.php';
+include '../../modals/add_defect_category_d.php';
+include '../../modals/add_defect_category_m.php';
+include '../../modals/add_discovery_process.php';
+include '../../modals/add_occurrence_process_d.php';
+include '../../modals/add_occurrence_process_m.php';
+include '../../modals/add_outflow_process.php';
+include '../../modals/add_repair_person.php';
 ?>
 
 <!-- jQuery -->

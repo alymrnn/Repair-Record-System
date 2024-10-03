@@ -310,7 +310,7 @@ if ($method == 'load_viewer_defect_table_data_last_page') {
     $date_from = trim($_POST['date_from']);
     $date_to = trim($_POST['date_to']);
 
-    $results_per_page = 50;
+     $results_per_page = 100;
 
     $number_of_result = intval(count_viewer_defect_table_data($conn, $defect_category, $discovery_process, $occurrence_process, $outflow_process, $car_maker, $line_no, $product_name, $lot_no, $serial_no, $record_type, $defect_cause, $date_from, $date_to));
 
@@ -366,7 +366,7 @@ if ($method == 'count_viewer_defect_table_data') {
 //     $current_page = intval($_POST['current_page']);
 //     $c = 0;
 
-//     $results_per_page = 50;
+//      $results_per_page = 100;
 
 //     $page_first_result = ($current_page - 1) * $results_per_page;
 
@@ -519,7 +519,7 @@ if ($method == 'load_viewer_defect_table_data') {
     $current_page = intval($_POST['current_page']);
     $c = 0;
 
-    $results_per_page = 50;
+     $results_per_page = 100;
 
     $page_first_result = ($current_page - 1) * $results_per_page;
 
@@ -693,7 +693,7 @@ if ($method == 'load_viewer_mancost_table_data_last_page') {
         "viewer_defect_id" => $viewer_defect_id
     );
 
-    $results_per_page = 50;
+     $results_per_page = 100;
 
     $number_of_result = intval(count_viewer_mancost_table_data($search_arr, $conn));
 
@@ -723,7 +723,7 @@ if ($method == 'count_viewer_mancost_table_data') {
 //     $row_class_arr = array('modal-trigger', 'modal-trigger bg-success', 'modal-trigger bg-danger', 'modal-trigger bg-secondary');
 //     $row_class = $row_class_arr[0];
 
-//     $results_per_page = 50;
+//      $results_per_page = 100;
 
 //     //determine the sql LIMIT starting number for the results on the displaying page
 //     $page_first_result = ($current_page - 1) * $results_per_page;
@@ -786,7 +786,7 @@ if ($method == 'load_viewer_mancost_table_data') {
     $row_class_arr = array('modal-trigger', 'modal-trigger bg-success', 'modal-trigger bg-danger', 'modal-trigger bg-secondary');
     $row_class = $row_class_arr[0];
 
-    $results_per_page = 50;
+     $results_per_page = 100;
     $page_first_result = ($current_page - 1) * $results_per_page;
     $c = $page_first_result;
 

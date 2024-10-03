@@ -15,8 +15,17 @@
                 <div class="row">
                     <div class="col-4">
                         <label style="font-weight: normal;">Car Maker</label>
-                        <input class="form-control" class="form-control" id="car_maker_qr"
-                            style="width: 100%; text-align: center;" type="text">
+                        <select class="form-control" id="car_maker_qr" style="width: 100%;">
+                            <option value="" selected disabled>Select car maker</option>
+                            <option value="Mazda">Mazda</option>
+                            <option value="Daihatsu">Daihatsu</option>
+                            <option value="Honda">Honda</option>
+                            <option value="Toyota">Toyota</option>
+                            <option value="Suzuki">Suzuki</option>
+                            <option value="Nissan">Nissan</option>
+                            <option value="Subaru">Subaru</option>
+                        </select>
+
                     </div>
                     <div class="col-4">
                         <label style="font-weight: normal;">Car Model Setting</label>
@@ -25,8 +34,16 @@
                     </div>
                     <div class="col-4">
                         <label style="font-weight: normal;">Car Value</label>
-                        <input class="form-control" id="car_value_qr" style="width: 100%; text-align: center;"
-                            type="int">
+                        <select class="form-control" id="car_value_qr" style="width: 100%;">
+                            <option value="" selected disabled>Select car value</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                        </select>
                     </div>
                 </div>
                 <br>
@@ -49,12 +66,13 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-4"></div>
+                    <div class="col-4">
                         <label style="font-weight: normal;">Lot No. Start</label>
                         <input class="form-control" id="lot_no_start_qr" style="width: 100%; text-align: center;"
                             type="int">
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                         <label style="font-weight: normal;">Lot No. Length</label>
                         <input class="form-control" id="lot_no_length_qr" style="width: 100%; text-align: center;"
                             type="int">
@@ -62,12 +80,13 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-4"></div>
+                    <div class="col-4">
                         <label style="font-weight: normal;">Serial No. Start</label>
                         <input class="form-control" id="serial_no_start_qr" style="width: 100%; text-align: center;"
                             type="int">
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                         <label style="font-weight: normal;">Serial No. Length</label>
                         <input class="form-control" id="serial_no_length_qr" style="width: 100%; text-align: center;"
                             type="int">
@@ -88,7 +107,7 @@
                             style="color:#fff;height:34px;width:150px;border-radius:.25rem;background: #226F54;font-size:15px;font-weight:normal;"
                             onmouseover="this.style.backgroundColor='#164B39'; this.style.color='#FFF';"
                             onmouseout="this.style.backgroundColor='#226F54'; this.style.color='#FFF';">Add
-                            Settings</button>
+                        </button>
                     </div>
                 </div>
             </div>

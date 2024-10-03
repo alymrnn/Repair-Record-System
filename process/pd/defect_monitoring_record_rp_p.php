@@ -512,7 +512,7 @@ if ($method == 'load_defect_table_data_last_page') {
         $date_to = date_format($date_to, "Y/m/d");
     }
 
-    $results_per_page = 50;
+    $results_per_page = 100;
 
     $number_of_result = intval(count_defect_table_data($conn, $date_from, $date_to, $line_no_rp, $record_type, $product_name, $serial_no, $lot_no, $harness_status, $repair_person));
 
@@ -576,7 +576,7 @@ if ($method == 'count_defect_table_data') {
 
 //     $c = 0;
 
-//     $results_per_page = 50;
+//      $results_per_page = 100;
 
 //     //determine the sql LIMIT starting number for the results on the displaying page
 //     $page_first_result = ($current_page - 1) * $results_per_page;
@@ -704,7 +704,7 @@ if ($method == 'load_defect_table_data') {
     }
 
     $c = 0;
-    $results_per_page = 50;
+    $results_per_page = 100;
     $page_first_result = ($current_page - 1) * $results_per_page;
     $c = $page_first_result;
 
@@ -886,7 +886,7 @@ if ($method == 'load_mancost_table_data_last_page') {
         "defect_id" => $defect_id
     );
 
-    $results_per_page = 50;
+    $results_per_page = 100;
 
     $number_of_result = intval(count_mancost_table_data($search_arr, $conn));
 
@@ -914,7 +914,7 @@ if ($method == 'count_mancost_table_data') {
 
 //     $c = 0;
 
-//     $results_per_page = 50;
+//      $results_per_page = 100;
 
 //     $page_first_result = ($current_page - 1) * $results_per_page;
 
@@ -966,7 +966,7 @@ if ($method == 'count_mancost_table_data') {
 
 //     $c = 0;
 
-//     $results_per_page = 50;
+//      $results_per_page = 100;
 //     $page_first_result = ($current_page - 1) * $results_per_page;
 
 //     $c = $page_first_result;
@@ -1043,7 +1043,7 @@ if ($method == 'load_mancost_table_data') {
     $defect_id = $_POST['defect_id'];
     $current_page = intval($_POST['current_page']);
 
-    $results_per_page = 50;
+    $results_per_page = 100;
     $page_first_result = ($current_page - 1) * $results_per_page;
 
     function escapeJs($string)
@@ -1183,7 +1183,7 @@ if ($method == 'load_mancost_table_data') {
 
 //     $c = 0;
 
-//     $results_per_page = 50;
+//      $results_per_page = 100;
 //     $page_first_result = ($current_page - 1) * $results_per_page;
 
 //     $c = $page_first_result;

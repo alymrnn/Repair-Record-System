@@ -315,7 +315,7 @@ if ($method == 'load_qc_defect_table_data_last_page') {
     $date_from_search = trim($_POST['date_from_search']);
     $date_to_search = trim($_POST['date_to_search']);
 
-    $results_per_page = 50;
+     $results_per_page = 100;
 
     $number_of_result = intval(count_qc_defect_table_data($conn, $product_name_search, $lot_no_search, $serial_no_search, $record_type_search, $line_no_search, $date_from_search, $date_to_search));
 
@@ -351,7 +351,7 @@ if ($method == 'count_qc_defect_table_data') {
 //     $current_page = intval($_POST['current_page']);
 //     $c = 0;
 
-//     $results_per_page = 50;
+//      $results_per_page = 100;
 
 //     $page_first_result = ($current_page - 1) * $results_per_page;
 
@@ -463,7 +463,7 @@ if ($method == 'load_qc_defect_table_data') {
     $current_page = intval($_POST['current_page']);
     $c = 0;
 
-    $results_per_page = 50;
+     $results_per_page = 100;
 
     $page_first_result = ($current_page - 1) * $results_per_page;
 
@@ -601,7 +601,7 @@ if ($method == 'load_qc_mancost_table_data_last_page') {
         "qc_defect_id" => $qc_defect_id
     );
 
-    $results_per_page = 50;
+     $results_per_page = 100;
 
     $number_of_result = intval(count_qc_mancost_table_data($search_arr, $conn));
 
@@ -633,7 +633,7 @@ if ($method == 'count_qc_mancost_table_data') {
 //     $row_class_arr = array('modal-trigger', 'modal-trigger bg-success', 'modal-trigger bg-danger', 'modal-trigger bg-secondary');
 //     $row_class = $row_class_arr[0];
 
-//     $results_per_page = 50;
+//      $results_per_page = 100;
 
 //     $page_first_result = ($current_page - 1) * $results_per_page;
 
@@ -739,7 +739,7 @@ if ($method == 'load_qc_mancost_table_data') {
     $row_class_arr = array('modal-trigger', 'modal-trigger bg-success', 'modal-trigger bg-danger', 'modal-trigger bg-secondary');
     $row_class = $row_class_arr[0];
 
-    $results_per_page = 50;
+     $results_per_page = 100;
     $page_first_result = ($current_page - 1) * $results_per_page;
 
     $c = $page_first_result;

@@ -252,7 +252,7 @@ if ($method == 'defect_qa_list_pagination') {
         $search_date_to_qa = date_format($search_date_to_qa, "Y/m/d");
     }
 
-    $results_per_page = 20;
+     $results_per_page = 100;
 
     $number_of_result = intval(count_defect_qa_list($conn, $search_product_name_qa, $search_lot_no_qa, $search_serial_no_qa, $search_record_type_qa, $search_line_no_qa, $search_date_from_qa, $search_date_to_qa));
 
@@ -282,7 +282,7 @@ if ($method == 'defect_qa_list_last_page') {
         $search_date_to_qa = date_format($search_date_to_qa, "Y/m/d");
     }
 
-    $results_per_page = 20;
+     $results_per_page = 100;
     $number_of_result = intval(count_defect_qa_list($conn, $search_product_name_qa, $search_lot_no_qa, $search_serial_no_qa, $search_record_type_qa, $search_line_no_qa, $search_date_from_qa, $search_date_to_qa));
 
     $number_of_page = ceil($number_of_result / $results_per_page);
@@ -312,7 +312,7 @@ if ($method == 'load_defect_table_new_record') {
     $current_page = isset($_POST['current_page']) ? max(1, intval($_POST['current_page'])) : 1;
     $c = 0;
 
-    $results_per_page = 20;
+     $results_per_page = 100;
 
     $page_first_result = ($current_page - 1) * $results_per_page;
 

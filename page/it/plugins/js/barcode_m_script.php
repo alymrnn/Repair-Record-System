@@ -1,8 +1,17 @@
 <script type="text/javascript">
     $(document).ready(function () {
         load_car_settings();
+        load_line_no();
+        load_discovery_process();
+        load_occurrence_process_defect();
+        load_outflow_process();
+        load_defect_category_d();
+        load_defect_category_m();
+        load_occurrence_process_m();
+        load_repair_person_d();
     });
 
+    // for qr settings
     const load_car_settings = () => {
         $.ajax({
             url: '../../process/it/barcode_m_p.php',
@@ -43,7 +52,7 @@
                 showConfirmButton: false,
                 timer: 1500
             });
-        } 
+        }
         else {
             $.ajax({
                 url: '../../process/it/barcode_m_p.php',
@@ -226,4 +235,611 @@
         });
     }
 
+    // for line no
+    const load_line_no = () => {
+        $.ajax({
+            url: '../../process/it/barcode_m_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'load_line_no'
+            }, success: function (response) {
+                $('#list_of_line_no').html(response);
+                $('#spinner').fadeOut();
+            }
+        });
+    }
+
+    const register_line_no = () => {
+        var line_no = document.getElementById('line_no_m').value;
+
+        $.ajax({
+            url: '../../process/it/barcode_m_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'register_line_no',
+                line_no: line_no
+            },
+            success: function (response) {
+                if (response == 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    $('#line_no_m').val('');
+
+                    load_line_no();
+
+                    $('#add_line_no').modal('hide');
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            }
+        });
+    }
+
+    const delete_added_line_no = (event) => {
+        var id = event.target.dataset.id;
+
+        $.ajax({
+            url: '../../process/it/barcode_m_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'delete_added_line_no',
+                id: id
+            },
+            success: function (response) {
+                if (response == 'success') {
+                    Swal.fire({
+                        icon: 'info',
+                        text: 'Deleted',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    load_line_no();
+                }
+            }
+        });
+    }
+
+    // for discovery process
+    const load_discovery_process = () => {
+        $.ajax({
+            url: '../../process/it/barcode_m_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'load_discovery_process'
+            }, success: function (response) {
+                $('#list_of_discovery_process').html(response);
+                $('#spinner').fadeOut();
+            }
+        });
+    }
+
+    const register_discovery_process = () => {
+        var discovery_process = document.getElementById('discovery_process_m').value;
+
+        $.ajax({
+            url: '../../process/it/barcode_m_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'register_discovery_process',
+                discovery_process: discovery_process
+            },
+            success: function (response) {
+                if (response == 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    $('#discovery_process_m').val('');
+
+                    load_discovery_process();
+
+                    $('#add_discovery_process').modal('hide');
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            }
+        });
+    }
+
+    const delete_added_discovery_process = (event) => {
+        var id = event.target.dataset.id;
+
+        $.ajax({
+            url: '../../process/it/barcode_m_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'delete_added_discovery_process',
+                id: id
+            },
+            success: function (response) {
+                if (response == 'success') {
+                    Swal.fire({
+                        icon: 'info',
+                        text: 'Deleted',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    load_discovery_process();
+                }
+            }
+        });
+    }
+
+    // for occurrence process (defect)
+    const load_occurrence_process_defect = () => {
+        $.ajax({
+            url: '../../process/it/barcode_m_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'load_occurrence_process_defect'
+            }, success: function (response) {
+                $('#list_of_occurrence_process_defect').html(response);
+                $('#spinner').fadeOut();
+            }
+        });
+    }
+
+    const register_occurrence_process_defect = () => {
+        var occurrence_process_d = document.getElementById('occurrence_process_d').value;
+
+        $.ajax({
+            url: '../../process/it/barcode_m_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'register_occurrence_process_defect',
+                occurrence_process_d: occurrence_process_d
+            },
+            success: function (response) {
+                if (response == 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    $('#occurrence_process_d').val('');
+
+                    load_occurrence_process_defect();
+
+                    $('#add_occurrence_process_d').modal('hide');
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            }
+        });
+    }
+
+    const delete_added_occurrence_process_d = (event) => {
+        var id = event.target.dataset.id;
+
+        $.ajax({
+            url: '../../process/it/barcode_m_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'delete_added_occurrence_process_d',
+                id: id
+            },
+            success: function (response) {
+                if (response == 'success') {
+                    Swal.fire({
+                        icon: 'info',
+                        text: 'Deleted',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    load_occurrence_process_defect();
+                }
+            }
+        });
+    }
+
+    // for outflow process
+    const load_outflow_process = () => {
+        $.ajax({
+            url: '../../process/it/barcode_m_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'load_outflow_process'
+            }, success: function (response) {
+                $('#list_of_outflow_process').html(response);
+                $('#spinner').fadeOut();
+            }
+        });
+    }
+
+    const register_outflow_process = () => {
+        var outflow_process = document.getElementById('outflow_process_m').value;
+
+        $.ajax({
+            url: '../../process/it/barcode_m_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'register_outflow_process',
+                outflow_process: outflow_process
+            },
+            success: function (response) {
+                if (response == 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    $('#outflow_process_m').val('');
+
+                    load_outflow_process();
+
+                    $('#add_outflow_process').modal('hide');
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            }
+        });
+    }
+
+    const delete_added_outflow_process = (event) => {
+        var id = event.target.dataset.id;
+
+        $.ajax({
+            url: '../../process/it/barcode_m_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'delete_added_outflow_process',
+                id: id
+            },
+            success: function (response) {
+                if (response == 'success') {
+                    Swal.fire({
+                        icon: 'info',
+                        text: 'Deleted',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    load_outflow_process();
+                }
+            }
+        });
+    }
+
+    //for defect category (defect)
+    const load_defect_category_d = () => {
+        $.ajax({
+            url: '../../process/it/barcode_m_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'load_defect_category_d'
+            }, success: function (response) {
+                $('#list_of_defect_category').html(response);
+                $('#spinner').fadeOut();
+            }
+        });
+    }
+
+    const register_defect_category_d = () => {
+        var defect_category_d = document.getElementById('defect_category_d').value;
+
+        $.ajax({
+            url: '../../process/it/barcode_m_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'register_defect_category_d',
+                defect_category_d: defect_category_d
+            },
+            success: function (response) {
+                if (response == 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    $('#defect_category_d').val('');
+
+                    load_defect_category_d();
+
+                    $('#add_defect_category_d').modal('hide');
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            }
+        });
+    }
+
+    const delete_added_defect_category_d = (event) => {
+        var id = event.target.dataset.id;
+
+        $.ajax({
+            url: '../../process/it/barcode_m_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'delete_added_defect_category_d',
+                id: id
+            },
+            success: function (response) {
+                if (response == 'success') {
+                    Swal.fire({
+                        icon: 'info',
+                        text: 'Deleted',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    load_defect_category_d();
+                }
+            }
+        });
+    }
+
+    //for defect category (mancost)
+    const load_defect_category_m = () => {
+        $.ajax({
+            url: '../../process/it/barcode_m_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'load_defect_category_m'
+            }, success: function (response) {
+                $('#list_of_defect_category_mancost').html(response);
+                $('#spinner').fadeOut();
+            }
+        });
+    }
+
+    const register_defect_category_m = () => {
+        var defect_category_m = document.getElementById('defect_category_m').value;
+
+        $.ajax({
+            url: '../../process/it/barcode_m_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'register_defect_category_m',
+                defect_category_m: defect_category_m
+            },
+            success: function (response) {
+                if (response == 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    $('#defect_category_m').val('');
+
+                    load_defect_category_m();
+
+                    $('#add_defect_category_m').modal('hide');
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            }
+        });
+    }
+
+    const delete_added_defect_category_m = (event) => {
+        var id = event.target.dataset.id;
+
+        $.ajax({
+            url: '../../process/it/barcode_m_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'delete_added_defect_category_m',
+                id: id
+            },
+            success: function (response) {
+                if (response == 'success') {
+                    Swal.fire({
+                        icon: 'info',
+                        text: 'Deleted',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    load_defect_category_m();
+                }
+            }
+        });
+    }
+
+    //for occurrence process (mancost)
+    const load_occurrence_process_m = () => {
+        $.ajax({
+            url: '../../process/it/barcode_m_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'load_occurrence_process_m'
+            }, success: function (response) {
+                $('#list_of_occurrence_process_mancost').html(response);
+                $('#spinner').fadeOut();
+            }
+        });
+    }
+
+    const register_occurrence_process_mancost = () => {
+        var occurrence_process_m = document.getElementById('occurrence_process_m').value;
+
+        $.ajax({
+            url: '../../process/it/barcode_m_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'register_occurrence_process_mancost',
+                occurrence_process_m: occurrence_process_m
+            },
+            success: function (response) {
+                if (response == 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    $('#occurrence_process_m').val('');
+
+                    load_occurrence_process_m();
+
+                    $('#add_occurrence_process_m').modal('hide');
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            }
+        });
+    }
+
+    const delete_added_occurrence_process_m = (event) => {
+        var id = event.target.dataset.id;
+
+        $.ajax({
+            url: '../../process/it/barcode_m_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'delete_added_occurrence_process_m',
+                id: id
+            },
+            success: function (response) {
+                if (response == 'success') {
+                    Swal.fire({
+                        icon: 'info',
+                        text: 'Deleted',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    load_occurrence_process_m();
+                }
+            }
+        });
+    }
+
+    //for repair person
+    const load_repair_person_d = () => {
+        $.ajax({
+            url: '../../process/it/barcode_m_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'load_repair_person_d'
+            }, success: function (response) {
+                $('#list_of_repair_person').html(response);
+                $('#spinner').fadeOut();
+            }
+        });
+    }
+
+    const register_repair_person = () => {
+        var repair_person_d = document.getElementById('repair_person_d').value;
+
+        $.ajax({
+            url: '../../process/it/barcode_m_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'register_repair_person',
+                repair_person_d: repair_person_d
+            },
+            success: function (response) {
+                if (response == 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    $('#repair_person_d').val('');
+
+                    load_repair_person_d();
+
+                    $('#add_repair_person').modal('hide');
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            }
+        });
+    }
+
+    const delete_added_repair_person = (event) => {
+        var id = event.target.dataset.id;
+
+        $.ajax({
+            url: '../../process/it/barcode_m_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'delete_added_repair_person',
+                id: id
+            },
+            success: function (response) {
+                if (response == 'success') {
+                    Swal.fire({
+                        icon: 'info',
+                        text: 'Deleted',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    load_repair_person_d();
+                }
+            }
+        });
+    }
 </script>

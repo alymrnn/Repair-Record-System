@@ -126,7 +126,7 @@ if ($method == 'defect_pdv_list_pagination') {
         $search_date_to_pdv = date_format($search_date_to_pdv, "Y/m/d");
     }
 
-    $results_per_page = 20;
+     $results_per_page = 100;
 
     $number_of_result = intval(count_defect_pdv_ng_list($conn, $search_product_name_pdv, $search_lot_no_pdv, $search_serial_no_pdv, $search_line_no_pdv, $search_harness_status_pdv, $search_date_from_pdv, $search_date_to_pdv));
 
@@ -156,7 +156,7 @@ if ($method == 'defect_pdv_list_last_page') {
         $search_date_to_pdv = date_format($search_date_to_pdv, "Y/m/d");
     }
 
-    $results_per_page = 20;
+     $results_per_page = 100;
     $number_of_result = intval(count_defect_pdv_ng_list($conn, $search_product_name_pdv, $search_lot_no_pdv, $search_serial_no_pdv, $search_line_no_pdv, $search_harness_status_pdv, $search_date_from_pdv, $search_date_to_pdv));
 
     $number_of_page = ceil($number_of_result / $results_per_page);
@@ -186,7 +186,7 @@ if ($method == 'load_defect_table_pdv_ng') {
     $current_page = isset($_POST['current_page']) ? max(1, intval($_POST['current_page'])) : 1;
     $c = 0;
 
-    $results_per_page = 20;
+     $results_per_page = 100;
 
     $page_first_result = ($current_page - 1) * $results_per_page;
 
