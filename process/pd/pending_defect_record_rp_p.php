@@ -276,7 +276,7 @@ if ($method == 'load_defect_table_data') {
         $query .= " WHERE " . implode(" AND ", $conditions);
     }
 
-    $query .= " ORDER BY date_detected DESC";
+    $query .= " ORDER BY date_detected ASC";
 
     $query .= " OFFSET :page_first_result ROWS FETCH NEXT :results_per_page ROWS ONLY";
 

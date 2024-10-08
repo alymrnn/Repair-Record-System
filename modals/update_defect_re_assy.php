@@ -44,7 +44,7 @@
                     </div>
                     <div class="col-sm-2">
                         <!-- issue no of tag -->
-                        <label style="font-weight: normal;color: #000;">Issue No. of Tag</label>
+                        <label style="font-weight: normal;color: #000;">Issue Tag No.</label>
                         <input type="text" id="issue_tag_pdv_re_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             disabled>

@@ -575,190 +575,30 @@
     });
   }
 
+  // Update issue tag when the line number is changed
   $(document).on('input', '#line_no_qa', function () {
-    update_issue_tag_qa(this.value);
+    var line_no_qa = this.value;
+    var line_category_qa = document.getElementById("line_category_qa").value;
+    var record_type_qa = $('input[name="record_type_qa"]:checked').val();
+    update_issue_tag_qa(line_no_qa, line_category_qa, record_type_qa);
   });
 
-  // $(document).on('input', '#car_maker_qa', function () {
-  //   handleCarMakerChange(this);
-  // });
+  // Update issue tag when the line category is changed
+  $(document).on('change', '#line_category_qa', function () {
+    var line_no_qa = document.getElementById("line_no_qa").value;
+    var line_category_qa = this.value;
+    var record_type_qa = $('input[name="record_type_qa"]:checked').val();
+    update_issue_tag_qa(line_no_qa, line_category_qa, record_type_qa);
+  });
 
-  // function handleCarMakerChange(selectOpt) {
-  //   var carMaker = selectOpt.value;
-  //   switch (carMaker) {
-  //     case 'Honda':
-  //       document.getElementById('qr_scan_qa').disabled = false;
-  //       handleHondaScan();
-  //       break;
-  //     case 'Mazda':
-  //       document.getElementById('qr_scan_qa').disabled = false;
-  //       handleMazdaScan();
-  //       break;
-  //     case 'Nissan':
-  //       document.getElementById('qr_scan_qa').disabled = false;
-  //       handleNissanScan();
-  //       break;
-  //     case 'Subaru':
-  //       document.getElementById('qr_scan_qa').disabled = false;
-  //       handleSubaruScan();
-  //       break;
-  //     case 'Suzuki':
-  //       document.getElementById('qr_scan_qa').disabled = false;
-  //       handleSuzukiScan();
-  //       break;
-  //     case 'Toyota':
-  //       document.getElementById('qr_scan_qa').disabled = false;
-  //       handleToyotaScan();
-  //       break;
-  //     case 'Daihatsu':
-  //       document.getElementById('qr_scan_qa').disabled = false;
-  //       handleDaihatsuScan();
-  //       break;
-  //     default:
-  //       document.getElementById('qr_scan_qa').disabled = true;
-  //       break;
-  //   }
-  // }
-
-  // function handleSuzukiScan() {
-  //   document.getElementById('qr_scan_qa').addEventListener('keyup', function (e) {
-  //     if (e.which === 13) {
-  //       e.preventDefault();
-  //       var qrCode = this.value;
-  //       if (qrCode.length === 50) {
-  //         document.getElementById('product_name_qa').value = qrCode.substring(10, 35);
-  //         document.getElementById('lot_no_qa').value = qrCode.substring(35, 41);
-  //         document.getElementById('serial_no_qa').value = qrCode.substring(41, 50);
-
-  //         this.value = '';
-  //       }
-  //       else {
-
-  //       }
-  //     }
-  //   });
-  // }
-
-  // function handleMazdaScan() {
-  //   document.getElementById('qr_scan_qa').addEventListener('keyup', function (e) {
-  //     if (e.which === 13) {
-  //       e.preventDefault();
-  //       var qrCode = this.value;
-  //       if (qrCode.length === 50) {
-  //         document.getElementById('product_name_qa').value = qrCode.substring(10, 35);
-  //         document.getElementById('lot_no_qa').value = qrCode.substring(35, 41);
-  //         document.getElementById('serial_no_qa').value = qrCode.substring(41, 50);
-
-  //         this.value = '';
-  //       }
-  //       else {
-
-  //       }
-  //     }
-  //   });
-  // }
-
-  // function handleDaihatsuScan() {
-  //   document.getElementById('qr_scan_qa').addEventListener('keyup', function (e) {
-  //     if (e.which === 13) {
-  //       e.preventDefault();
-  //       var qrCode = this.value;
-  //       if (qrCode.length === 50) {
-  //         document.getElementById('product_name_qa').value = qrCode.substring(10, 35);
-  //         document.getElementById('lot_no_qa').value = qrCode.substring(35, 41);
-  //         document.getElementById('serial_no_qa').value = qrCode.substring(41, 50);
-
-  //         this.value = '';
-  //       }
-  //       else {
-
-  //       }
-  //     }
-  //   });
-  // }
-
-  // function handleHondaScan() {
-  //   document.getElementById('qr_scan_qa').addEventListener('keyup', function (e) {
-  //     if (e.which === 13) {
-  //       e.preventDefault();
-  //       var qrCode = this.value;
-  //       if (qrCode.length === 50) {
-  //         document.getElementById('product_name_qa').value = qrCode.substring(10, 35);
-  //         document.getElementById('lot_no_qa').value = qrCode.substring(35, 41);
-  //         document.getElementById('serial_no_qa').value = qrCode.substring(41, 50);
-
-  //         this.value = '';
-  //       }
-  //       else {
-
-  //       }
-  //     }
-  //   });
-  // }
-
-  // function handleNissanScan() {
-  //   document.getElementById('qr_scan_qa').addEventListener('keyup', function (e) {
-  //     if (e.which === 13) {
-  //       e.preventDefault();
-  //       var qrCode = this.value;
-  //       if (qrCode.length === 50) {
-  //         document.getElementById('product_name_qa').value = qrCode.substring(10, 35);
-  //         document.getElementById('lot_no_qa').value = qrCode.substring(35, 41);
-  //         document.getElementById('serial_no_qa').value = qrCode.substring(41, 50);
-
-  //         this.value = '';
-  //       }
-  //       else {
-
-  //       }
-  //     }
-  //   });
-  // }
-
-  // function handleSubaruScan() {
-  //   document.getElementById('qr_scan_qa').addEventListener('keyup', function (e) {
-  //     if (e.which === 13) {
-  //       e.preventDefault();
-  //       var qrCode = this.value;
-  //       if (qrCode.length === 50) {
-  //         document.getElementById('product_name_qa').value = qrCode.substring(10, 35);
-  //         document.getElementById('lot_no_qa').value = qrCode.substring(35, 41);
-  //         document.getElementById('serial_no_qa').value = qrCode.substring(41, 50);
-
-  //         this.value = '';
-  //       }
-  //       else {
-
-  //       }
-  //     }
-  //   });
-  // }
-
-  // function handleToyotaScan() {
-  //   document.getElementById('qr_scan_qa').addEventListener('keyup', function (e) {
-  //     if (e.which === 13) {
-  //       e.preventDefault();
-  //       var qrCode = this.value;
-  //       if (qrCode.length === 50) {
-  //         document.getElementById('product_name_qa').value = qrCode.substring(10, 35);
-  //         document.getElementById('lot_no_qa').value = qrCode.substring(35, 41);
-  //         document.getElementById('serial_no_qa').value = qrCode.substring(41, 50);
-
-  //         this.value = '';
-  //       }
-  //       else {
-
-  //       }
-  //     }
-  //   });
-  // }
-
+  // Function to handle changes to the line number
   function handle_line_no_change(line_no_qa) {
+    var line_category_qa = document.getElementById("line_category_qa").value;
     var record_type_qa = $('input[name="record_type_qa"]:checked').val();
 
     if (record_type_qa !== "Mancost Only") {
       update_car_maker_qa(line_no_qa);
-      update_issue_tag_qa(line_no_qa, record_type_qa);
+      update_issue_tag_qa(line_no_qa, line_category_qa, record_type_qa);
     } else {
       var car_maker_input = document.getElementById("car_maker_qa");
       var issue_tag_input = document.getElementById("issue_tag_qa");
@@ -767,38 +607,8 @@
     }
   }
 
-  // function update_car_maker_qa(line_no) {
-  //   var car_maker_input = document.getElementById("car_maker_qa");
-
-  //   if (line_no.trim().startsWith('1')) {
-  //     car_maker_input.value = 'Mazda';
-  //     handleCarMakerChange(car_maker_input);
-  //   } else if (line_no.trim().startsWith('2')) {
-  //     car_maker_input.value = 'Daihatsu';
-  //     handleCarMakerChange(car_maker_input);
-  //   } else if (line_no.trim().startsWith('3')) {
-  //     car_maker_input.value = 'Honda';
-  //     handleCarMakerChange(car_maker_input);
-  //   } else if (line_no.trim().startsWith('4')) {
-  //     car_maker_input.value = 'Toyota';
-  //     handleCarMakerChange(car_maker_input);
-  //   } else if (line_no.trim().startsWith('5')) {
-  //     car_maker_input.value = 'Suzuki';
-  //     handleCarMakerChange(car_maker_input);
-  //   } else if (line_no.trim().startsWith('6')) {
-  //     car_maker_input.value = 'Nissan';
-  //     handleCarMakerChange(car_maker_input);
-  //   } else if (line_no.trim().startsWith('7')) {
-  //     car_maker_input.value = 'Subaru';
-  //     handleCarMakerChange(car_maker_input);
-  //   } else {
-  //     car_maker_input.value = '';
-  //     handleCarMakerChange(car_maker_input);
-  //   }
-  // }
-
-  function update_issue_tag_qa(line_no_qa, record_type_qa) {
-    var record_type_qa = $('input[name="record_type_qa"]:checked').val();
+  // Update issue tag function
+  function update_issue_tag_qa(line_no_qa, line_category_qa, record_type_qa) {
     var issue_tag_input = document.getElementById("issue_tag_qa");
 
     if (line_no_qa.trim() === '' || record_type_qa === "Mancost Only") {
@@ -813,6 +623,7 @@
       data: {
         method: 'get_issue_tag_qa',
         line_no_qa: line_no_qa,
+        line_category_qa: line_category_qa,
         record_type_qa: record_type_qa
       },
       success: function (response) {
@@ -851,7 +662,7 @@
         document.getElementById("issue_tag_qa").value = "N/A";
       } else {
         update_car_maker_qa(line_no_qa);
-        update_issue_tag_qa(line_no_qa, record_type_qa);
+        update_issue_tag_qa(line_no_qa, line_category_qa, record_type_qa);
       }
     });
   });
@@ -864,59 +675,9 @@
       document.getElementById("issue_tag_qa").value = "N/A";
     } else {
       update_car_maker_qa(line_no_qa);
-      update_issue_tag_qa(line_no_qa, record_type_qa);
+      update_issue_tag_qa(line_no_qa, line_category_qa, record_type_qa);
     }
   });
-
-  // document.getElementById("search_product_name_qa").addEventListener("keyup", e => {
-  //   load_defect_table_qa(1);
-  // });
-
-  // document.getElementById("search_lot_no_qa").addEventListener("keyup", e => {
-  //   load_defect_table_qa(1);
-  // });
-
-  // document.getElementById("search_serial_no_qa").addEventListener("keyup", e => {
-  //   load_defect_table_qa(1);
-  // });
-
-  // document.getElementById("search_record_type_qa").addEventListener("change", e => {
-  //   load_defect_table_qa(1);
-  // });
-
-  // document.getElementById("search_line_no_qa").addEventListener("keyup", e => {
-  //   load_defect_table_qa(1);
-  // });
-
-  // document.getElementById("search_date_from_qa").addEventListener("change", e => {
-  //   load_defect_table_qa(1);
-  // });
-
-  // document.getElementById("search_date_to_qa").addEventListener("change", e => {
-  //   load_defect_table_qa(1);
-  // });
-
-  // document.getElementById('search_qr_scan_qa').addEventListener('keyup', function (e) {
-  //   var qrCode = this.value;
-
-  //   if (qrCode.length === 50) {
-  //     const productNameField = document.getElementById('search_product_name_qa');
-  //     const lotNoField = document.getElementById('search_lot_no_qa');
-  //     const serialNoField = document.getElementById('search_serial_no_qa');
-
-  //     if (productNameField && lotNoField && serialNoField) {
-  //       productNameField.value = qrCode.substring(10, 35);
-  //       lotNoField.value = qrCode.substring(35, 41);
-  //       serialNoField.value = qrCode.substring(41, 50);
-
-  //       load_defect_table_qa(1);
-  //     } else {
-
-  //     }
-
-  //     this.value = '';
-  //   }
-  // });
 
   document.getElementById("list_of_defect_qa_res").addEventListener("scroll", function () {
     var scrollTop = document.getElementById("list_of_defect_qa_res").scrollTop;
@@ -1421,6 +1182,7 @@
 
           clear_input_fields();
           load_defect_table_qa(1);
+          // window.location.reload();
 
           $('#add_defect_qa').modal('hide');
         }

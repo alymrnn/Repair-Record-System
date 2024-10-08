@@ -196,6 +196,7 @@
                                 <th>Verified by ID No.</th>
                                 <th>Verified by (PD FSP)</th>
                                 <th>COUNTERPART CHECKING Judgement</th>
+                                <th>Details</th>
                                 <th>ID No.</th>
                                 <th>Verified by (QA FSP)</th>
                                 <th>RE-ASSY/RE-INSERT Judgement</th>

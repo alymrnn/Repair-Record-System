@@ -93,7 +93,7 @@
                     </div>
                     <div class="col-sm-2">
                         <!-- issue no of tag -->
-                        <label style="font-weight: normal;color: #000;">Issue No. of Tag</label>
+                        <label style="font-weight: normal;color: #000;">Issue Tag No.</label>
                         <label style="color:#CA3F3F">*</label>
                         <input type="text" id="issue_tag" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #F1F1F1;height:34px; width:100%;"
@@ -374,7 +374,7 @@
                     </div>
                     <div class="col-sm-2">
                         <!-- sequence number -->
-                        <label style="font-weight: normal;color: #000;">Sequence Number</label>
+                        <label style="font-weight: normal;color: #000;">Sequence No.</label>
                         <label style="color:#CA3F3F">*</label>
                         <input type="text" id="sequence_no" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
@@ -384,7 +384,7 @@
                     </div>
                     <div class="col-sm-2">
                         <!-- assy board number -->
-                        <label style="font-weight: normal;color: #000;">Assy Board Number</label>
+                        <label style="font-weight: normal;color: #000;">Assy Board No.</label>
                         <label style="color:#CA3F3F">*</label>
                         <input type="text" id="assy_board_no_dr" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"

@@ -1776,20 +1776,37 @@
     });
 
     // ISSUE TAG NUMBER FUNCTION, INCREMENTS DEPENDING ON THE LINE NUMBER
+    // $(document).on('input', '#line_no', function () {
+    //     update_issue_tag(this.value);
+    //     // update_car_maker(this.value);
+    // });
+
+    // Update issue tag when the line number is changed
     $(document).on('input', '#line_no', function () {
-        update_issue_tag(this.value);
-        // update_car_maker(this.value);
+        var line_no = this.value;
+        var line_category_dr = document.getElementById("line_category_dr").value;
+        var record_type = $('input[name="record_type"]:checked').val();
+        update_issue_tag(line_no, line_category_dr, record_type);
+    });
+
+    // Update issue tag when the line category is changed
+    $(document).on('change', '#line_category_dr', function () {
+        var line_no = document.getElementById("line_no").value;
+        var line_category_dr = this.value;
+        var record_type = $('input[name="record_type"]:checked').val();
+        update_issue_tag(line_no, line_category_dr, record_type);
     });
 
     // Function to handle changes in line number
     function handle_line_no_change(line_no) {
+        var line_category_dr = document.getElementById("line_category_dr").value;
         var record_type = $('input[name="record_type"]:checked').val();
 
         var record_type_update = ["Defect & Mancost", "Defect Only", "White Tag"];
 
         if (record_type_update.includes(record_type)) {
             update_car_maker(line_no);
-            update_issue_tag(line_no, record_type);
+            update_issue_tag(line_no, line_category_dr, record_type);
 
             // Ensure car_model and qr_scan are enabled
             $("#car_model").prop('disabled', false).css('background-color', '');
@@ -1820,7 +1837,7 @@
     //     }
     // }
 
-    function update_issue_tag(line_no, record_type) {
+    function update_issue_tag(line_no, line_category_dr, record_type) {
         var record_type = $('input[name="record_type"]:checked').val();
         var issue_tag_input = document.getElementById("issue_tag");
 
@@ -1836,6 +1853,7 @@
             data: {
                 method: 'get_issue_tag',
                 line_no: line_no,
+                line_category_dr: line_category_dr,
                 record_type: record_type
             },
             success: function (response) {
@@ -1879,7 +1897,7 @@
                 $("#qr_scan").prop('disabled', true).css('background-color', '#D3D3D3');
             } else {
                 update_car_maker(line_no);
-                update_issue_tag(line_no, record_type);
+                update_issue_tag(line_no, line_category_dr, record_type);
             }
         });
     });
@@ -1897,7 +1915,7 @@
             $("#qr_scan").prop('disabled', true).css('background-color', '#D3D3D3');
         } else {
             update_car_maker(line_no);
-            update_issue_tag(line_no, record_type);
+            update_issue_tag(line_no, line_category_dr, record_type);
         }
     });
 
@@ -3677,9 +3695,9 @@
         if (digit) {
             fetchCarMaker(digit);
         } else {
-            var car_maker_input = document.getElementById("car_maker_pd_update");
-            car_maker_input.value = '';
-            handleCarMakerChange(car_maker_input);
+            var car_maker_input_2 = document.getElementById("car_maker_pd_update");
+            car_maker_input_2.value = '';
+            handleCarMakerChange(car_maker_input_2);
         }
     }
 
@@ -3902,7 +3920,7 @@
             },
             success: function (response) {
                 var car_maker_input = document.getElementById('car_maker');
-                var car_maker_input = document.getElementById('car_maker_pd_update');
+                var car_maker_input_2 = document.getElementById('car_maker_pd_update');
                 car_maker_input.value = response.trim();
                 handleCarMakerChange(car_maker_input);
             },

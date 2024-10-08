@@ -395,7 +395,7 @@ if ($method == 'count_qc_defect_table_data') {
 //         $query .= " WHERE " . implode(" AND ", $conditions);
 //     }
 
-//     $query .= " ORDER BY record_added_defect_datetime DESC";
+//     $query .= " ORDER BY record_added_defect_datetime ASC";
 
 //     $query .= " LIMIT " . $page_first_result . ", " . $results_per_page;
 
@@ -502,7 +502,7 @@ if ($method == 'load_qc_defect_table_data') {
         $query .= " WHERE " . implode(" AND ", $conditions);
     }
 
-    $query .= " ORDER BY record_added_defect_datetime DESC";
+    $query .= " ORDER BY record_added_defect_datetime ASC";
 
     $query .= " OFFSET :page_first_result ROWS FETCH NEXT :results_per_page ROWS ONLY";
 

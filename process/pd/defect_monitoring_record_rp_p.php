@@ -576,7 +576,7 @@ if ($method == 'count_defect_table_data') {
 
 //     $c = 0;
 
-//      $results_per_page = 100;
+//     $results_per_page = 100;
 
 //     //determine the sql LIMIT starting number for the results on the displaying page
 //     $page_first_result = ($current_page - 1) * $results_per_page;
@@ -623,8 +623,8 @@ if ($method == 'count_defect_table_data') {
 //     }
 
 //     // $query .= " ORDER BY repairing_date DESC";
-//     // $query .= " ORDER BY record_added_defect_datetime DESC";
-//     $query .= " ORDER BY record_added_defect_datetime DESC";
+//     // $query .= " ORDER BY record_added_defect_datetime ASC";
+//     $query .= " ORDER BY record_added_defect_datetime ASC";
 
 //     // Add limit to the query
 //     $query .= " LIMIT " . $page_first_result . ", " . $results_per_page;
@@ -749,7 +749,7 @@ if ($method == 'load_defect_table_data') {
         $query .= " WHERE " . implode(" AND ", $conditions);
     }
 
-    $query .= " ORDER BY record_added_defect_datetime DESC";
+    $query .= " ORDER BY record_added_defect_datetime ASC";
 
     $query .= " OFFSET :page_first_result ROWS FETCH NEXT :results_per_page ROWS ONLY";
 
@@ -914,7 +914,7 @@ if ($method == 'count_mancost_table_data') {
 
 //     $c = 0;
 
-//      $results_per_page = 100;
+//     $results_per_page = 100;
 
 //     $page_first_result = ($current_page - 1) * $results_per_page;
 
@@ -966,7 +966,7 @@ if ($method == 'count_mancost_table_data') {
 
 //     $c = 0;
 
-//      $results_per_page = 100;
+//     $results_per_page = 100;
 //     $page_first_result = ($current_page - 1) * $results_per_page;
 
 //     $c = $page_first_result;
@@ -1183,7 +1183,7 @@ if ($method == 'load_mancost_table_data') {
 
 //     $c = 0;
 
-//      $results_per_page = 100;
+//     $results_per_page = 100;
 //     $page_first_result = ($current_page - 1) * $results_per_page;
 
 //     $c = $page_first_result;
@@ -2030,20 +2030,29 @@ if ($method == 'add_multiple_mancost') {
 
 // mssql
 if ($method == 'get_issue_tag') {
+    if(!isset($_POST['line_category_dr'])) {
+        error_log("line_category_dr is not set in POST");
+        echo json_encode(['error' => 'line_category_dr is required']);
+        exit();
+    }
+
     $line_no = filter_var($_POST['line_no'], FILTER_SANITIZE_STRING);
     $padded_line_no = str_pad($line_no, 4, '0', STR_PAD_LEFT);
+
+    $line_category_dr = filter_var($_POST['line_category_dr'], FILTER_SANITIZE_STRING);
 
     try {
         $conn->beginTransaction();
 
         $check_records_query = "SELECT COUNT(*) FROM t_defect_record_f 
                                 WHERE line_no = ? 
+                                AND category = ?
                                 AND record_type IN ('Defect and Mancost', 'Defect Only', 'White Tag') 
                                 AND MONTH(record_added_defect_datetime) = MONTH(GETDATE()) 
                                 AND YEAR(record_added_defect_datetime) = YEAR(GETDATE())";
 
         $stmt_check_records = $conn->prepare($check_records_query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-        $stmt_check_records->execute([$padded_line_no]);
+        $stmt_check_records->execute([$padded_line_no, $line_category_dr]);
         $total_records = $stmt_check_records->fetchColumn();
 
         if ($total_records === false) {

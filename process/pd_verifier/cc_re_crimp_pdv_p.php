@@ -247,7 +247,7 @@ if ($method == 'load_defect_table_pdv_re') {
         $query .= " WHERE " . implode(" AND ", $conditions);
     }
 
-    $query .= " ORDER BY record_added_defect_datetime DESC";
+    $query .= " ORDER BY record_added_defect_datetime ASC";
 
     $query .= " OFFSET :page_first_result ROWS FETCH NEXT :results_per_page ROWS ONLY";
 

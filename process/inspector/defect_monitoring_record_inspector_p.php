@@ -394,7 +394,7 @@ if ($method == 'load_defect_table_qa') {
         $query .= " WHERE " . implode(" AND ", $conditions);
     }
 
-    $query .= " ORDER BY record_added_defect_datetime DESC";
+    $query .= " ORDER BY record_added_defect_datetime ASC";
 
     $query .= " OFFSET :page_first_result ROWS FETCH NEXT :results_per_page ROWS ONLY";
 
@@ -470,20 +470,29 @@ if ($method == 'load_defect_table_qa') {
 }
 
 if ($method == 'get_issue_tag_qa') {
+    if (!isset($_POST['line_category_qa'])) {
+        error_log("line_category_qa is not set in POST");
+        echo json_encode(['error' => 'line_category_qa is required']);
+        exit();
+    }
+
     $line_no_qa = filter_var($_POST['line_no_qa'], FILTER_SANITIZE_STRING);
     $padded_line_no_qa = str_pad($line_no_qa, 4, '0', STR_PAD_LEFT);
+
+    $line_category_qa = filter_var($_POST['line_category_qa'], FILTER_SANITIZE_STRING);
 
     try {
         $conn->beginTransaction();
 
         $check_records_query = "SELECT COUNT(*) FROM t_defect_record_f 
                                 WHERE line_no = ? 
+                                AND category = ?
                                 AND record_type IN ('Defect and Mancost', 'Defect Only', 'White Tag') 
                                 AND MONTH(record_added_defect_datetime) = MONTH(GETDATE()) 
                                 AND YEAR(record_added_defect_datetime) = YEAR(GETDATE())";
 
         $stmt_check_records = $conn->prepare($check_records_query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-        $stmt_check_records->execute([$padded_line_no_qa]);
+        $stmt_check_records->execute([$padded_line_no_qa, $line_category_qa]);
         $total_records = $stmt_check_records->fetchColumn();
 
         if ($total_records === false) {

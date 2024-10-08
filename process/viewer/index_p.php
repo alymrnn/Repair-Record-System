@@ -444,7 +444,7 @@ if ($method == 'count_viewer_defect_table_data') {
 //     }
 
 //     // $query .= " ORDER BY repairing_date DESC";
-//     $query .= " ORDER BY record_added_defect_datetime DESC";
+//     $query .= " ORDER BY record_added_defect_datetime ASC";
 
 //     $query .= " LIMIT " . $page_first_result . ", " . $results_per_page;
 
