@@ -21,7 +21,6 @@
       fetch_car_model(selectedCarMaker);
     });
 
-
     // Set default value of date_detected_qa to current date
     const current_date = new Date().toISOString().slice(0, 10);
 
@@ -65,7 +64,7 @@
     });
 
     // Disable all input fields by default
-    $("#line_no_qa, #line_category_qa, #date_detected_qa, #issue_tag_qa, #repairing_date_qa, #car_maker_qa, #qr_scan_qa, #product_name_qa, #lot_no_qa, #serial_no_qa, #discovery_process_qa, #discovery_id_no_qa, #discovery_person_qa, #occurrence_process_qa, #occurrence_shift_qa, #occurrence_id_no_qa, #occurrence_person_qa, #outflow_process_qa, #outflow_shift_qa, #outflow_id_no_qa, #outflow_person_qa, #defect_category_qa, #sequence_no_qa, #assy_board_no_qa, #defect_cause_qa, #repair_person_qa, #good_measurement_qa, #ng_measurement_qa, #wire_type_qa, #wire_size_qa, #connector_cavity_qa, #detail_content_defect_qa, #treatment_content_defect_qa, #harness_status_qa, #na_value_1_insp, #na_value_2_insp, #car_model_qa").prop('disabled', true).css('background-color', '#DDD');
+    $("#line_no_qa, #line_model_qa, #line_category_qa, #date_detected_qa, #issue_tag_qa, #repairing_date_qa, #car_maker_qa, #qr_scan_qa, #product_name_qa, #lot_no_qa, #serial_no_qa, #discovery_process_qa, #discovery_id_no_qa, #discovery_person_qa, #occurrence_process_qa, #occurrence_shift_qa, #occurrence_id_no_qa, #occurrence_person_qa, #outflow_process_qa, #outflow_shift_qa, #outflow_id_no_qa, #outflow_person_qa, #defect_category_qa, #sequence_no_qa, #assy_board_no_qa, #defect_cause_qa, #repair_person_qa, #good_measurement_qa, #ng_measurement_qa, #wire_type_qa, #wire_size_qa, #connector_cavity_qa, #detail_content_defect_qa, #treatment_content_defect_qa, #harness_status_qa, #na_value_1_insp, #na_value_2_insp, #car_model_qa").prop('disabled', true).css('background-color', '#DDD');
 
     $("input[name='record_type_qa']").change(function () {
       if ($(this).val() === "Mancost Only") {
@@ -73,6 +72,7 @@
       }
       else if ($(this).val() === "Defect Only") {
         $("#line_no_qa").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#line_model_qa").prop('disabled', true).val('N/A').css('background-color', '#F1F1F1');
         $("#line_category_qa").prop('disabled', false).val('Mass Pro').css('background-color', '#FFF');
         $("#date_detected_qa").prop('disabled', false).val(current_date).css('background-color', '#FFF');
         $("#issue_tag_qa").prop('disabled', false).val('').css('background-color', '#F1F1F1');
@@ -115,6 +115,7 @@
       }
       else if ($(this).val() === "Defect $ Mancost") {
         $("#line_no_qa").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#line_model_qa").prop('disabled', true).val('N/A').css('background-color', '#F1F1F1');
         $("#line_category_qa").prop('disabled', false).val('Mass Pro').css('background-color', '#FFF');
         $("#date_detected_qa").prop('disabled', false).val(current_date).css('background-color', '#FFF');
         $("#issue_tag_qa").prop('disabled', false).val('').css('background-color', '#F1F1F1');
@@ -157,6 +158,7 @@
       }
       else {
         $("#line_no_qa").prop('disabled', false).val('').css('background-color', '#FFF');
+        $("#line_model_qa").prop('disabled', true).val('N/A').css('background-color', '#F1F1F1');
         $("#line_category_qa").prop('disabled', false).val('Mass Pro').css('background-color', '#FFF');
         $("#date_detected_qa").prop('disabled', false).val(current_date).css('background-color', '#FFF');
         $("#issue_tag_qa").prop('disabled', false).val('').css('background-color', '#F1F1F1');
@@ -447,6 +449,28 @@
       }
     });
   }
+
+  $('#line_no_qa').on('change', function () {
+    let selectedLineNo = $(this).val();
+
+    if (selectedLineNo) {
+      $('#line_model_qa').prop('disabled', false).css('background-color', '#FFF');
+
+      $.ajax({
+        url: '../../process/inspector/defect_monitoring_record_inspector_p.php',
+        type: 'POST',
+        data: {
+          method: 'fetch_car_models_by_line_no',
+          line_no: selectedLineNo,
+        },
+        success: function (response) {
+          $('#line_model_qa').html(response);
+        }
+      });
+    } else {
+      $('#line_model_qa').prop('disabled', true).html('<option value="" disabled selected>Select car model</option>');
+    }
+  });
 
   const fetch_opt_record_type_qa = () => {
     $.ajax({
@@ -1013,6 +1037,7 @@
   const add_record_inspector = () => {
     var required_fields = [
       'line_no_qa',
+      'line_model_qa',
       'line_category_qa',
       'date_detected_qa',
       'car_maker_qa',
@@ -1077,6 +1102,7 @@
 
     var record_type_qa = $("input[name='record_type_qa']:checked").val();
     var line_no_qa = document.getElementById("line_no_qa").value.trim();
+    var line_model_qa = document.getElementById("line_model_qa").value.trim();
     var line_category_qa = document.getElementById("line_category_qa").value.trim();
     var date_detected_qa = document.getElementById("date_detected_qa").value.trim();
     var issue_tag_qa = document.getElementById("issue_tag_qa").value.trim();
@@ -1123,6 +1149,7 @@
         method: 'add_record_inspector',
         record_type_qa: record_type_qa,
         line_no_qa: line_no_qa,
+        line_model_qa: line_model_qa,
         line_category_qa: line_category_qa,
         date_detected_qa: date_detected_qa,
         issue_tag_qa: issue_tag_qa,
@@ -1200,7 +1227,6 @@
     });
   }
 
-
   function clear_input_fields() {
     var inputFieldIds = ['issue_tag_qa', 'car_maker_qa'];
     for (var i = 0; i < inputFieldIds.length; i++) {
@@ -1211,6 +1237,7 @@
     $("input[name='record_type_qa']").prop('checked', false);
 
     $("#line_category_qa").prop('disabled', true).val('').css('background-color', '#D3D3D3');
+    $("#line_model_qa").prop('disabled', true).val('').css('background-color', '#D3D3D3');
     $("#date_detected_qa").prop('disabled', true).val('').css('background-color', '#D3D3D3');
     $("#qr_scan_qa").prop('disabled', true).val('').css('background-color', '#D3D3D3');
 
@@ -1218,6 +1245,7 @@
     $("#issue_tag_qa").prop('disabled', true).val('').css('background-color', '#D3D3D3');
     $("#repairing_date_qa").prop('disabled', true).val('').css('background-color', '#D3D3D3');
     $("#car_maker_qa").prop('disabled', true).val('').css('background-color', '#D3D3D3');
+    $("#car_model_qa").prop('disabled', true).val('').css('background-color', '#D3D3D3');
     $("#product_name_qa").prop('disabled', true).val('').css('background-color', '#D3D3D3');
     $("#lot_no_qa").prop('disabled', true).val('').css('background-color', '#D3D3D3');
     $("#serial_no_qa").prop('disabled', true).val('').css('background-color', '#D3D3D3');
@@ -1252,6 +1280,7 @@
 
   const clear_qa_fields = () => {
     document.getElementById("line_no_qa").value = '';
+    document.getElementById("line_model_qa").value = '';
     document.getElementById("issue_tag_qa").value = '';
     document.getElementById("car_maker_qa").value = '';
     document.getElementById("qr_scan_qa").value = '';
@@ -1414,7 +1443,7 @@
       car_model_input.style.backgroundColor = '#DDD';
       qr_scan_input.style.backgroundColor = '#DDD';
 
-      car_model_input.innerHTML = '<option value="" disabled selected>Select car model</option>';
+      car_model_input.innerHTML = '<option value="" disabled selected>Select setting</option>';
       qr_scan_input.value = '';
     }
   }

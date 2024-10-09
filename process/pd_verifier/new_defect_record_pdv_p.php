@@ -401,6 +401,7 @@ if ($method == 'load_defect_table_new_record') {
             echo '<td style="text-align:center;">' . $row['date_detected'] . '</td>';
             echo '<td style="text-align:center;">' . $row['issue_no_tag'] . '</td>';
             echo '<td style="text-align:center;">' . $row['car_maker'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['car_model'] . '</td>';
             echo '<td style="text-align:center;">' . $row['product_name'] . '</td>';
             echo '<td style="text-align:center;">' . $row['lot_no'] . '</td>';
             echo '<td style="text-align:center;">' . $row['serial_no'] . '</td>';

@@ -29,6 +29,7 @@ $headers = array(
     'Issue No. Tag',
     'Repairing Date',
     'Car Maker',
+    'Car Model',
     'Product Name',
     'Lot No.',
     'Serial No.',
@@ -60,7 +61,7 @@ $headers = array(
 fputcsv($f, $headers, $delimiter);
 
 $query = "
-    SELECT line_no, category, date_detected, issue_no_tag, repairing_date, car_maker, product_name, lot_no, serial_no, 
+    SELECT line_no, category, date_detected, issue_no_tag, repairing_date, car_maker, car_model, product_name, lot_no, serial_no, 
            discovery_process, discovery_id_num, discovery_person, occurrence_process_dr, occurrence_shift, occurrence_id_num, 
            occurrence_person, outflow_process, outflow_shift, outflow_id_num, outflow_person, defect_category_dr, sequence_num, 
            assy_board_no, defect_cause, defect_detail_content, defect_treatment_content, harness_status, dis_assembled_by, 
@@ -127,6 +128,7 @@ if ($stmt->rowCount() > 0) {
             $row['issue_no_tag'],
             $row['repairing_date'],
             $row['car_maker'],
+            $row['car_model'],
             $row['product_name'],
             $row['lot_no'],
             $row['serial_no'],

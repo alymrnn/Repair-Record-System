@@ -67,7 +67,13 @@
                             class="pl-2">
                         <datalist id="carMakerList"></datalist>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
+                        <!-- car model -->
+                        <label style="font-weight: normal;color: #000;">Car Model</label>
+                        <input type="text" id="car_model_pdv_re_update" class="form-control" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                    </div>
+                    <div class="col-sm-3">
                         <!-- product name -->
                         <label style="font-weight: normal;color: #000;">Product Name</label>
                         <input type="text" id="product_name_pdv_re_update" class="form-control" autocomplete="off"
@@ -80,7 +86,7 @@
                         <input type="text" id="lot_no_pdv_re_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <!-- serial number -->
                         <label style="font-weight: normal;color: #000;">Serial No.</label>
                         <input type="text" id="serial_no_pdv_re_update" class="form-control" autocomplete="off"
@@ -344,6 +350,7 @@
                     <!-- reassy/reinsert -->
                     <div class="col-sm-3">
                         <label style="font-weight: normal;color: #000;">Judgement</label>
+                        <label style="color:#CA3F3F;">*</label>
                         <select id="reassy_remarks_re_update" class="form-control"
                             style="color: #525252;font-size: 15px;border-radius: .25rem; background: #FFF;height:34px; width:100%;"
                             required>
@@ -354,16 +361,19 @@
                     </div>
                     <div class="col-sm-3">
                         <label style="font-weight:normal;color:#000;">Date Confirmed</label>
+                        <label style="color:#CA3F3F;">*</label>
                         <input type="date" name="date_to" class="form-control" id="reassy_date_re_update"
                             style="color: #525252;font-size: 15px;border-radius: .25rem; background: #FFF;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-3">
                         <label style="font-weight: normal;color: #000;">ID No. PD (FAP)</label>
+                        <label style="color:#CA3F3F;">*</label>
                         <input type="text" id="reassy_id_no_re_update" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-3">
                         <label style="font-weight: normal;color: #000;">Confirmed by PD (FAP)</label>
+                        <label style="color:#CA3F3F;">*</label>
                         <input type="text" id="reassy_name_re_update" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
                             readonly>

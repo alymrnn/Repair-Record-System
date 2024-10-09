@@ -44,7 +44,7 @@
                 <!-- form label -->
                 <label style="font-weight: normal;color: #000;font-size:25px"><b>Defect Record</b></label>
                 <div class="row">
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <!-- defect id hidden -->
                         <input type="hidden" id="defect_id_no_qa" class="form-control">
 
@@ -64,7 +64,18 @@
                             is required.</span>
                         <br>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
+                        <label style="font-weight: normal;color: #000;">Car Model</label>
+                        <label style="color:#CA3F3F">*</label>
+                        <select name="line_model_qa" id="line_model_qa" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="pl-2 form-control" disabled required>
+                            <option value="" disabled selected>Select car model</option>
+                        </select>
+                        <span id="lineCategoryError" class="error-message" style="display:none; color:#CA3F3F;">Car Model
+                            field is required.</span>
+                    </div>
+                    <div class="col-sm-2">
                         <label style="font-weight: normal;color: #000;">Category</label>
                         <label style="color:#CA3F3F">*</label>
                         <select name="line_category_qa" id="line_category_qa" autocomplete="off"
@@ -127,13 +138,13 @@
                     </div>
                     <div class="col-sm-2">
                         <!-- car maker -->
-                        <label style="font-weight: normal;color: #000;">Car Model Setting</label>
+                        <label style="font-weight: normal;color: #000;">QR Setting</label>
                         <label style="color:#CA3F3F">*</label>
 
                         <select name="car_model" id="car_model_qa" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="form-control pl-2" required>
-                            <option value="" disabled selected>Select car model</option>
+                            <option value="" disabled selected>Select setting</option>
                         </select>
                     </div>
                     <div class="col-sm-8">
@@ -365,13 +376,15 @@
                     <div class="col-sm-3">
                         <label style="font-weight: normal;color: #000;">Details</label>
                         <label style="color:#CA3F3F">*</label>
-                        <input type="text" id="defect_categ_foreign_mat_insp" class="form-control pl-3" autocomplete="off"
+                        <input type="text" id="defect_categ_foreign_mat_insp" class="form-control pl-3"
+                            autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-3 mb-2">
                         <label style="font-weight: normal;color: #000;">Category</label>
                         <label style="color:#CA3F3F">*</label>
-                        <select name="defect_categ_foreign_mat_2" id="defect_categ_foreign_mat_2_insp" autocomplete="off"
+                        <select name="defect_categ_foreign_mat_2" id="defect_categ_foreign_mat_2_insp"
+                            autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="form-control pl-2" required>
                             <option value="" disabled selected>----</option>

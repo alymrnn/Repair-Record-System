@@ -68,7 +68,13 @@
                             class="pl-2">
                         <datalist id="carMakerList"></datalist>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
+                        <!-- car model -->
+                        <label style="font-weight: normal;color: #000;">Car Model</label>
+                        <input type="text" id="car_model_pdv_update" class="form-control" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                    </div>
+                    <div class="col-sm-3">
                         <!-- product name -->
                         <label style="font-weight: normal;color: #000;">Product Name</label>
                         <input type="text" id="product_name_pdv_update" class="form-control" autocomplete="off"
@@ -81,7 +87,7 @@
                         <input type="text" id="lot_no_pdv_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <!-- serial number -->
                         <label style="font-weight: normal;color: #000;">Serial No.</label>
                         <input type="text" id="serial_no_pdv_update" class="form-control" autocomplete="off"

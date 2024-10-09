@@ -134,17 +134,29 @@
                             field is required.</span>
                     </div>
                     <div class="col-sm-2">
+                        <label style="font-weight: normal;color: #000;">Car Model</label>
+                        <label style="color:#CA3F3F">*</label>
+                        <select name="line_model" id="line_model" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
+                            class="pl-2 form-control" disabled required>
+                            <option value="" disabled selected>Select car model</option>
+                        </select>
+                        <span id="lineCategoryError" class="error-message" style="display:none; color:#CA3F3F;">Car
+                            Model field is required.</span>
+                    </div>
+
+                    <div class="col-sm-2">
                         <!-- car maker -->
-                        <label style="font-weight: normal;color: #000;">Car Model Setting</label>
+                        <label style="font-weight: normal;color: #000;">QR Setting</label>
                         <label style="color:#CA3F3F">*</label>
 
                         <select name="car_model" id="car_model" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="form-control pl-2" required>
-                            <option value="" disabled selected>Select car model</option>
+                            <option value="" disabled selected>Select setting</option>
                         </select>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-12">
                         <!-- qr scanning -->
                         <label style="font-weight: normal;color: #000;">Scan QR-Code</label>
                         <!-- <label style="color:#CA3F3F">*</label> -->

@@ -27,7 +27,7 @@ if ($method == 'fetch_car_models' && isset($_POST['car_maker'])) {
     $stmt->execute();
 
     if ($stmt->rowCount() > 0) {
-        echo '<option value="" disabled selected>Select car model</option>';
+        echo '<option value="" disabled selected>Select setting</option>';
         foreach ($stmt->fetchAll() as $row) {
             echo '<option>' . htmlspecialchars($row['car_model']) . '</option>';
         }
@@ -51,7 +51,6 @@ if ($method == 'fetch_qr_settings' && isset($_POST['car_model'])) {
     }
 }
 
-
 if ($method == 'fetch_opt_line_no_qa') {
     $query = "SELECT DISTINCT line_no FROM m_line_no ORDER BY line_no ASC";
     $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
@@ -63,6 +62,21 @@ if ($method == 'fetch_opt_line_no_qa') {
         }
     } else {
         echo '<option value="">Select line no.</option>';
+    }
+}
+
+if ($method == 'fetch_car_models_by_line_no') {
+    $line_no = $_POST['line_no'];
+    $query = "SELECT line_model FROM m_line_no WHERE line_no = ?";
+    $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+    $stmt->execute([$line_no]);
+    if ($stmt->rowCount() > 0) {
+        echo '<option value="N/A" selected>N/A</option>';
+        foreach ($stmt->fetchAll() as $row) {
+            echo '<option value="' . htmlspecialchars($row['line_model']) . '">' . htmlspecialchars($row['line_model']) . '</option>';
+        }
+    } else {
+        echo '<option value="">No car models available</option>';
     }
 }
 
@@ -434,6 +448,7 @@ if ($method == 'load_defect_table_qa') {
             echo '<td style="text-align:center;">' . $row['date_detected'] . '</td>';
             echo '<td style="text-align:center;">' . $row['issue_no_tag'] . '</td>';
             echo '<td style="text-align:center;">' . $row['car_maker'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['car_model'] . '</td>';
             echo '<td style="text-align:center;">' . $row['product_name'] . '</td>';
             echo '<td style="text-align:center;">' . $row['lot_no'] . '</td>';
             echo '<td style="text-align:center;">' . $row['serial_no'] . '</td>';
@@ -515,6 +530,7 @@ if ($method == 'get_issue_tag_qa') {
 if ($method == 'add_record_inspector') {
     $record_type_qa = trim($_POST['record_type_qa']);
     $line_no_qa = trim($_POST['line_no_qa']);
+    $line_model_qa = trim($_POST['line_model_qa']);
     $line_category_qa = trim($_POST['line_category_qa']);
     $padded_line_no_qa = str_pad($line_no_qa, 4, '0', STR_PAD_LEFT);
 
@@ -589,7 +605,7 @@ if ($method == 'add_record_inspector') {
     } else {
         $query = "
              INSERT INTO t_defect_record_f (
-                defect_id, line_no, category, date_detected, issue_no_tag, repairing_date, car_maker, product_name, 
+                defect_id, line_no, category, date_detected, issue_no_tag, repairing_date, car_maker, car_model, product_name, 
                 lot_no, serial_no, discovery_process, discovery_id_num, discovery_person, occurrence_process_dr, 
                 occurrence_shift, occurrence_id_num, occurrence_person, outflow_process, outflow_shift, 
                 outflow_id_num, outflow_person, defect_category_dr, dc_foreign_mat_details, dc_foreign_mat_category,
@@ -599,7 +615,7 @@ if ($method == 'add_record_inspector') {
                 record_added_defect_datetime
             ) VALUES (
                 :defect_id, :line_no, :category, :date_detected, :issue_no_tag, :repairing_date, 
-                :car_maker, :product_name, :lot_no, :serial_no, :discovery_process, :discovery_id_num, 
+                :car_maker, :car_model, :product_name, :lot_no, :serial_no, :discovery_process, :discovery_id_num, 
                 :discovery_person, :occurrence_process_dr, :occurrence_shift, :occurrence_id_num, 
                 :occurrence_person, :outflow_process, :outflow_shift, :outflow_id_num, :outflow_person, 
                 :defect_category_dr, :dc_foreign_mat_details, :dc_foreign_mat_category,
@@ -618,6 +634,7 @@ if ($method == 'add_record_inspector') {
         $stmt->bindParam(':issue_no_tag', $issue_tag_qa, PDO::PARAM_INT);
         $stmt->bindParam(':repairing_date', $repairing_date_qa);
         $stmt->bindParam(':car_maker', $car_maker_qa, PDO::PARAM_STR);
+        $stmt->bindParam(':car_model', $line_model_qa, PDO::PARAM_STR);
         $stmt->bindParam(':product_name', $product_name_qa, PDO::PARAM_STR);
         $stmt->bindParam(':lot_no', $lot_no_qa, PDO::PARAM_STR);
         $stmt->bindParam(':serial_no', $serial_no_qa, PDO::PARAM_STR);
@@ -696,7 +713,7 @@ if ($method == 'get_car_maker') {
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
-            echo '<option value="" disabled selected>Select car model</option>';
+            echo '<option value="" disabled selected>Select setting</option>';
             foreach ($stmt->fetchAll() as $row) {
                 echo '<option>' . htmlspecialchars($row['car_model']) . '</option>';
             }
@@ -704,7 +721,7 @@ if ($method == 'get_car_maker') {
             echo '<option value="">No car models available</option>';
         }
     } else {
-        echo '<option value="">Select car model</option>';
+        echo '<option value="">Select setting</option>';
     }
 }
 

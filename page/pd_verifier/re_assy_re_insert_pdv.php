@@ -46,11 +46,11 @@
                             </select>
                         </div>
                         <div class="col-2">
-                            <label style="font-weight:normal;margin:0;padding:0;color:#000;">Car Model</label>
+                            <label style="font-weight:normal;margin:0;padding:0;color:#000;">QR Setting</label>
                             <select name="search_car_model_pdv_re" id="search_car_model_pdv_re" autocomplete="off"
                                 style="color: #525252;font-size: 15px;border-radius: .25rem;border: 1px solid #888;height:34px; width:100%;"
                                 class="form-control pl-1" disabled>
-                                <option>Select car model</option>
+                                <option>Select setting</option>
                             </select>
                         </div>
                     </div>
@@ -173,6 +173,7 @@
                                 <th>Issue No. Tag</th>
                                 <th>Repairing Date</th>
                                 <th>Car Maker</th>
+                                <th>Car Model</th>
                                 <th>Product Name</th>
                                 <th>Lot No.</th>
                                 <th>Serial No.</th>

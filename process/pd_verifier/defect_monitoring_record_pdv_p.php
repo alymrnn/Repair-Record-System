@@ -317,6 +317,7 @@ if ($method == 'load_defect_table_pdv') {
             $onclick_event = ($harness_repair == 'Verified') ? '' : 'onclick="get_update_defect_pdv(\'' . implode('~!~', [
                 $row['id'],
                 $row['car_maker'],
+                $row['car_model'],
                 $row['line_no'],
                 $row['category'],
                 $row['date_detected'],
@@ -374,6 +375,7 @@ if ($method == 'load_defect_table_pdv') {
             echo '<td style="text-align:center;">' . $row['issue_no_tag'] . '</td>';
             echo '<td style="text-align:center;">' . $row['repairing_date'] . '</td>';
             echo '<td style="text-align:center;">' . $row['car_maker'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['car_model'] . '</td>';
             echo '<td style="text-align:center;">' . $row['product_name'] . '</td>';
             echo '<td style="text-align:center;">' . $row['lot_no'] . '</td>';
             echo '<td style="text-align:center;">' . $row['serial_no'] . '</td>';
@@ -535,7 +537,7 @@ if ($method == 'get_car_maker') {
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
-            echo '<option value="" disabled selected>Select car model</option>';
+            echo '<option value="" disabled selected>Select setting</option>';
             foreach ($stmt->fetchAll() as $row) {
                 echo '<option>' . htmlspecialchars($row['car_model']) . '</option>';
             }
@@ -543,7 +545,7 @@ if ($method == 'get_car_maker') {
             echo '<option value="">No car models available</option>';
         }
     } else {
-        echo '<option value="">Select car model</option>';
+        echo '<option value="">Select setting</option>';
     }
 }
 

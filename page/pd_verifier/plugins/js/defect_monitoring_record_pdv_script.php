@@ -1175,62 +1175,57 @@
         $('#update_defect_mancost_pdv_id').val(data[0]).prop('hidden', true);
 
         $('#car_maker_pdv_update').val(data[1]).prop('disabled', true).css('background', '#EEE');
-        $('#line_no_pdv_update').val(data[2]).prop('disabled', true).css('background', '#EEE');
-        $('#line_category_pdv_update').val(data[3]).prop('disabled', true).css('background', '#EEE');
-        $('#date_detected_pdv_update').val(data[4]).prop('disabled', true).css('background', '#EEE');
-        $('#issue_tag_pdv_update').val(data[5]).prop('disabled', true).css('background', '#EEE');
-        $('#repairing_date_pdv_update').val(data[6]).prop('disabled', true).css('background', '#EEE');
-        $('#product_name_pdv_update').val(data[7]).prop('disabled', true).css('background', '#EEE');
-        $('#lot_no_pdv_update').val(data[8]).prop('disabled', true).css('background', '#EEE');
-        $('#serial_no_pdv_update').val(data[9]).prop('disabled', true).css('background', '#EEE');
-        $('#discovery_process_pdv_update').val(data[10]).prop('disabled', true).css('background', '#EEE');
-        $('#discovery_id_no_pdv_update').val(data[11]).prop('disabled', true).css('background', '#EEE');
-        $('#discovery_person_pdv_update').val(data[12]).prop('disabled', true).css('background', '#EEE');
-        $('#occurrence_process_pdv_dr_update').val(data[13]).prop('disabled', true).css('background', '#EEE');
-        $('#occurrence_shift_pdv_update').val(data[14]).prop('disabled', true).css('background', '#EEE');
-        $('#occurrence_id_no_pdv_update').val(data[15]).prop('disabled', true).css('background', '#EEE');
-        $('#occurrence_person_pdv_update').val(data[16]).prop('disabled', true).css('background', '#EEE');
-        $('#outflow_process_pdv_update').val(data[17]).prop('disabled', true).css('background', '#EEE');
-        $('#outflow_shift_pdv_update').val(data[18]).prop('disabled', true).css('background', '#EEE');
-        $('#outflow_id_no_pdv_update').val(data[19]).prop('disabled', true).css('background', '#EEE');
-        $('#outflow_person_pdv_update').val(data[20]).prop('disabled', true).css('background', '#EEE');
-        $('#defect_category_pdv_dr_update').val(data[21]).prop('disabled', true).css('background', '#EEE');
-        $('#sequence_no_pdv_update').val(data[22]).prop('disabled', true).css('background', '#EEE');
-        $('#assy_board_no_pdv_update').val(data[23]).prop('disabled', true).css('background', '#EEE');
-        $('#defect_cause_pdv_update').val(data[24]).prop('disabled', true).css('background', '#EEE');
-        $('#good_measurement_pdv_update').val(data[25]).prop('disabled', true).css('background', '#EEE');
-        $('#ng_measurement_pdv_update').val(data[26]).prop('disabled', true).css('background', '#EEE');
-        $('#wire_type_pdv_update').val(data[27]).prop('disabled', true).css('background', '#EEE');
-        $('#wire_size_pdv_update').val(data[28]).prop('disabled', true).css('background', '#EEE');
-        $('#connector_cavity_pdv_update').val(data[29]).prop('disabled', true).css('background', '#EEE');
-        $('#repair_person_pdv_update').val(data[30]).prop('disabled', true).css('background', '#EEE');
-        $('#detail_content_defect_pdv_update').val(data[31]).prop('disabled', true).css('background', '#EEE');
-        $('#treatment_content_defect_pdv_update').val(data[32]).prop('disabled', true).css('background', '#EEE');
-        $('#harness_status_pdv_update').val(data[33]).prop('disabled', true).css('background', '#EEE');
+        $('#car_model_pdv_update').val(data[2]).prop('disabled', true).css('background', '#EEE');
+        $('#line_no_pdv_update').val(data[3]).prop('disabled', true).css('background', '#EEE');
+        $('#line_category_pdv_update').val(data[4]).prop('disabled', true).css('background', '#EEE');
+        $('#date_detected_pdv_update').val(data[5]).prop('disabled', true).css('background', '#EEE');
+        $('#issue_tag_pdv_update').val(data[6]).prop('disabled', true).css('background', '#EEE');
+        $('#repairing_date_pdv_update').val(data[7]).prop('disabled', true).css('background', '#EEE');
+        $('#product_name_pdv_update').val(data[8]).prop('disabled', true).css('background', '#EEE');
+        $('#lot_no_pdv_update').val(data[9]).prop('disabled', true).css('background', '#EEE');
+        $('#serial_no_pdv_update').val(data[10]).prop('disabled', true).css('background', '#EEE');
+        $('#discovery_process_pdv_update').val(data[11]).prop('disabled', true).css('background', '#EEE');
+        $('#discovery_id_no_pdv_update').val(data[12]).prop('disabled', true).css('background', '#EEE');
+        $('#discovery_person_pdv_update').val(data[13]).prop('disabled', true).css('background', '#EEE');
+        $('#occurrence_process_pdv_dr_update').val(data[14]).prop('disabled', true).css('background', '#EEE');
+        $('#occurrence_shift_pdv_update').val(data[15]).prop('disabled', true).css('background', '#EEE');
+        $('#occurrence_id_no_pdv_update').val(data[16]).prop('disabled', true).css('background', '#EEE');
+        $('#occurrence_person_pdv_update').val(data[17]).prop('disabled', true).css('background', '#EEE');
+        $('#outflow_process_pdv_update').val(data[18]).prop('disabled', true).css('background', '#EEE');
+        $('#outflow_shift_pdv_update').val(data[19]).prop('disabled', true).css('background', '#EEE');
+        $('#outflow_id_no_pdv_update').val(data[20]).prop('disabled', true).css('background', '#EEE');
+        $('#outflow_person_pdv_update').val(data[21]).prop('disabled', true).css('background', '#EEE');
+        $('#defect_category_pdv_dr_update').val(data[22]).prop('disabled', true).css('background', '#EEE');
+        $('#sequence_no_pdv_update').val(data[23]).prop('disabled', true).css('background', '#EEE');
+        $('#assy_board_no_pdv_update').val(data[24]).prop('disabled', true).css('background', '#EEE');
+        $('#defect_cause_pdv_update').val(data[25]).prop('disabled', true).css('background', '#EEE');
+        $('#good_measurement_pdv_update').val(data[26]).prop('disabled', true).css('background', '#EEE');
+        $('#ng_measurement_pdv_update').val(data[27]).prop('disabled', true).css('background', '#EEE');
+        $('#wire_type_pdv_update').val(data[28]).prop('disabled', true).css('background', '#EEE');
+        $('#wire_size_pdv_update').val(data[29]).prop('disabled', true).css('background', '#EEE');
+        $('#connector_cavity_pdv_update').val(data[30]).prop('disabled', true).css('background', '#EEE');
+        $('#repair_person_pdv_update').val(data[31]).prop('disabled', true).css('background', '#EEE');
+        $('#detail_content_defect_pdv_update').val(data[32]).prop('disabled', true).css('background', '#EEE');
+        $('#treatment_content_defect_pdv_update').val(data[33]).prop('disabled', true).css('background', '#EEE');
+        $('#harness_status_pdv_update').val(data[34]).prop('disabled', true).css('background', '#EEE');
 
+        $('#recrimp_remarks').val(data[35]);
+        $('#recrimp_pd_id_no').val(data[36]);
+        $('#recrimp_pd_name').val(data[37]);
+        $('#recrimp_qa_id_no').val(data[38]);
+        $('#recrimp_qa_name').val(data[39]);
 
-        // $('#remarks_pdv_update').val(data[34]);
-        // $('#verifier_id_no_pdv_update').val(data[35]);
-        // $('#verifier_name_pdv_update').val(data[36]).prop('disabled', true).css('background', '#EEE');
+        $('#cc_remarks_1').val(data[40]);
+        $('#cc_remakrs_2').val(data[41]);
+        $('#cc_id_no').val(data[42]);
+        $('#cc_name').val(data[43]);
 
-        $('#recrimp_remarks').val(data[34]);
-        $('#recrimp_pd_id_no').val(data[35]);
-        $('#recrimp_pd_name').val(data[36]);
-        $('#recrimp_qa_id_no').val(data[37]);
-        $('#recrimp_qa_name').val(data[38]);
+        $('#reassy_remarks').val(data[44]);
+        $('#reassy_id_no').val(data[45]);
+        $('#reassy_name').val(data[46]);
+        $('#reassy_date').val(data[47]);
 
-        $('#cc_remarks_1').val(data[39]);
-        $('#cc_remakrs_2').val(data[40]);
-        $('#cc_id_no').val(data[41]);
-        $('#cc_name').val(data[42]);
-
-        $('#reassy_remarks').val(data[43]);
-        $('#reassy_id_no').val(data[44]);
-        $('#reassy_name').val(data[45]);
-        $('#reassy_date').val(data[46]);
-
-        // defect unique id 
-        $('#admin_defect_id_3').val(data[47]).prop('hidden', true);
+        $('#admin_defect_id_3').val(data[48]).prop('hidden', true);
         $('#update_defect_pdv').modal('show');
     }
 
@@ -1771,7 +1766,7 @@
             car_model_input.style.backgroundColor = '#DDD';
             qr_scan_input.style.backgroundColor = '#DDD';
 
-            car_model_input.innerHTML = '<option value="" disabled selected>Select car model</option>';
+            car_model_input.innerHTML = '<option value="" disabled selected>Select setting</option>';
             qr_scan_input.value = '';
         }
     }

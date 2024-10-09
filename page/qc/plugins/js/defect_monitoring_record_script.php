@@ -1411,6 +1411,7 @@
                     <th>Issue No. Tag</th>
                     <th>Repairing Date</th>
                     <th>Car Maker</th>
+                    <th>Car Model</th>
                     <th>Product Name</th>
                     <th>Lot No.</th>
                     <th>Serial No.</th>
@@ -1713,7 +1714,7 @@
     // }
 
     // FOR NEW QC VERIFICATION
-    function get_update_defect_mancost_qc(id, car_maker_mc, line_no_mc, line_category_mc, date_detected_mc,
+    function get_update_defect_mancost_qc(id, car_maker_mc, car_model_mc, line_no_mc, line_category_mc, date_detected_mc,
         issue_no_tag_mc, product_name_mc, lot_no_mc, serial_no_mc, discovery_process_mc,
         discovery_id_no_mc, discovery_person_mc, occurrence_process_dr, occurrence_shift_dr, occurrence_id_no_mc,
         occurrence_person_mc, outflow_process_mc, outflow_shift_mc, outflow_id_no_mc, outflow_person_mc,
@@ -1727,6 +1728,7 @@
         $('#update_defect_mancost_id').val(id).prop('hidden', true);
 
         $('#car_maker_mc_update').val(car_maker_mc);
+        $('#car_model_mc_update').val(car_model_mc);
         $('#line_no_mc_update').val(line_no_mc);
         $('#line_category_mc_update').val(line_category_mc);
         $('#date_detected_mc_update').val(date_detected_mc);
@@ -2140,6 +2142,7 @@
             checkedItems.push({
                 id: $(el).data('id'),
                 car_maker_mc: $(el).data('car_maker_mc'),
+                car_model_mc: $(el).data('car_model_mc'),
                 line_no_mc: $(el).data('line_no_mc'),
                 line_category_mc: $(el).data('line_category_mc'),
                 date_detected_mc: $(el).data('date_detected_mc'),
@@ -2185,6 +2188,7 @@
             get_update_defect_mancost_qc(
                 firstItem.id,
                 firstItem.car_maker_mc,
+                firstItem.car_model_mc,
                 firstItem.line_no_mc,
                 firstItem.line_category_mc,
                 firstItem.date_detected_mc,

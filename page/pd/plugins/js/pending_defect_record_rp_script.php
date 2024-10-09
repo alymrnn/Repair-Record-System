@@ -16,7 +16,7 @@
         fetch_opt_portion_treatment_pd();
 
         fetch_and_update_count();
-        
+
         $(document).on('click', 'input[name="na_white_tag_defect"]', function () {
             if ($(this).is(':checked')) {
                 $('#repair_start_mc2, #repair_end_mc2, #time_consumed_mc2, #defect_category_mc2, #occurrence_process_mc2, #parts_removed_mc2, #quantity_mc2, #unit_cost_mc2, #material_cost_mc2, #manhour_cost_mc2, #portion_treatment2, #others_defect_category_insp_mc_update, #others_occurrence_process_insp_mc_update, #other_portion_treatment_insp_mc_update')
@@ -417,6 +417,7 @@
                     <th>Issue No. Tag</th>
                     <th>Repairing Date</th>
                     <th>Car Maker</th>
+                    <th>Car Model</th>
                     <th>Product Name</th>
                     <th>Lot No.</th>
                     <th>Serial No.</th>
@@ -675,64 +676,65 @@
         $('#car_maker_insp_update').val(data[1]).prop('disabled', true).css('background', '#EEE');
         $('#line_no_insp_update').val(data[2]).prop('disabled', false).css('background', '#FFF');
         $('#line_category_insp_update').val(data[3]).prop('disabled', true).css('background', '#EEE');
-        $('#date_detected_insp_update').val(data[4]).prop('disabled', true).css('background', '#EEE');
-        $('#issue_tag_insp_update').val(data[5]).prop('disabled', false).css('background', '#FFF');
-        $('#product_name_insp_update').val(data[6]).prop('disabled', true).css('background', '#EEE');
-        $('#lot_no_insp_update').val(data[7]).prop('disabled', true).css('background', '#EEE');
-        $('#serial_no_insp_update').val(data[8]).prop('disabled', false).css('background', '#FFF');
-        $('#discovery_process_insp_update').val(data[9]).prop('disabled', true).css('background', '#EEE');
-        $('#discovery_id_no_insp_update').val(data[10]).prop('disabled', true).css('background', '#EEE');
-        $('#discovery_person_insp_update').val(data[11]).prop('disabled', true).css('background', '#EEE');
-        $('#occurrence_process_insp_dr_update').val(data[12]).prop('disabled', true).css('background', '#EEE');
-        $('#occurrence_shift_insp_update').val(data[13]).prop('disabled', true).css('background', '#EEE');
-        $('#occurrence_id_no_insp_update').val(data[14]).prop('disabled', true).css('background', '#EEE');
-        $('#occurrence_person_insp_update').val(data[15]).prop('disabled', true).css('background', '#EEE');
-        $('#outflow_process_insp_update').val(data[16]).prop('disabled', true).css('background', '#EEE');
-        $('#outflow_shift_insp_update').val(data[17]).prop('disabled', true).css('background', '#EEE');
-        $('#outflow_id_no_insp_update').val(data[18]).prop('disabled', true).css('background', '#EEE');
-        $('#outflow_person_insp_update').val(data[19]).prop('disabled', true).css('background', '#EEE');
-        $('#defect_category_insp_dr_update').val(data[20]).prop('disabled', true).css('background', '#EEE');
-        $('#sequence_no_insp_update').val(data[21]).prop('disabled', true).css('background', '#EEE');
-        $('#assy_board_no_insp_update').val(data[22]).prop('disabled', true).css('background', '#EEE');
-        $('#defect_cause_insp_update').val(data[23]).prop('disabled', true).css('background', '#EEE');
-        $('#good_measurement_insp_update').val(data[24]).prop('disabled', false).css('background', '#FFF');
-        $('#ng_measurement_insp_update').val(data[25]).prop('disabled', false).css('background', '#FFF');
-        $('#wire_type_insp_update').val(data[26]).prop('disabled', false).css('background', '#FFF');
-        $('#wire_size_insp_update').val(data[27]).prop('disabled', false).css('background', '#FFF');
-        $('#connector_cavity_insp_update').val(data[28]).prop('disabled', false).css('background', '#FFF');
-        $('#repair_person_insp_update').val(data[29]);
+        $('#line_model_insp_update').val(data[4]).prop('disabled', true).css('background', '#EEE');
+        $('#date_detected_insp_update').val(data[5]).prop('disabled', true).css('background', '#EEE'); 
+        $('#issue_tag_insp_update').val(data[6]).prop('disabled', false).css('background', '#FFF');
+        $('#product_name_insp_update').val(data[7]).prop('disabled', true).css('background', '#EEE');
+        $('#lot_no_insp_update').val(data[8]).prop('disabled', true).css('background', '#EEE');
+        $('#serial_no_insp_update').val(data[9]).prop('disabled', false).css('background', '#FFF');
+        $('#discovery_process_insp_update').val(data[10]).prop('disabled', true).css('background', '#EEE');
+        $('#discovery_id_no_insp_update').val(data[11]).prop('disabled', true).css('background', '#EEE');
+        $('#discovery_person_insp_update').val(data[12]).prop('disabled', true).css('background', '#EEE');
+        $('#occurrence_process_insp_dr_update').val(data[13]).prop('disabled', true).css('background', '#EEE');
+        $('#occurrence_shift_insp_update').val(data[14]).prop('disabled', true).css('background', '#EEE');
+        $('#occurrence_id_no_insp_update').val(data[15]).prop('disabled', true).css('background', '#EEE');
+        $('#occurrence_person_insp_update').val(data[16]).prop('disabled', true).css('background', '#EEE');
+        $('#outflow_process_insp_update').val(data[17]).prop('disabled', true).css('background', '#EEE');
+        $('#outflow_shift_insp_update').val(data[18]).prop('disabled', true).css('background', '#EEE');
+        $('#outflow_id_no_insp_update').val(data[19]).prop('disabled', true).css('background', '#EEE');
+        $('#outflow_person_insp_update').val(data[20]).prop('disabled', true).css('background', '#EEE');
+        $('#defect_category_insp_dr_update').val(data[21]).prop('disabled', true).css('background', '#EEE');
+        $('#sequence_no_insp_update').val(data[22]).prop('disabled', true).css('background', '#EEE');
+        $('#assy_board_no_insp_update').val(data[23]).prop('disabled', true).css('background', '#EEE');
+        $('#defect_cause_insp_update').val(data[24]).prop('disabled', true).css('background', '#EEE');
+        $('#good_measurement_insp_update').val(data[25]).prop('disabled', false).css('background', '#FFF');
+        $('#ng_measurement_insp_update').val(data[26]).prop('disabled', false).css('background', '#FFF');
+        $('#wire_type_insp_update').val(data[27]).prop('disabled', false).css('background', '#FFF');
+        $('#wire_size_insp_update').val(data[28]).prop('disabled', false).css('background', '#FFF');
+        $('#connector_cavity_insp_update').val(data[29]).prop('disabled', false).css('background', '#FFF');
+        $('#repair_person_insp_update').val(data[30]);
 
-        $('#defect_categ_foreign_mat_insp_update').val(data[30]).prop('disabled', true).css('background', '#EEE');
-        $('#defect_categ_foreign_mat_2_insp_update').val(data[31]).prop('disabled', true).css('background', '#EEE');
+        $('#defect_categ_foreign_mat_insp_update').val(data[31]).prop('disabled', true).css('background', '#EEE');
+        $('#defect_categ_foreign_mat_2_insp_update').val(data[32]).prop('disabled', true).css('background', '#EEE');
 
-        $('#detail_content_defect_insp_update').val(data[32]).prop('disabled', false).css('background', '#FFF');
-        $('#treatment_content_defect_insp_update').val(data[33]);
-        $('#harness_status_insp_update').val(data[34]);
-        // $('#repairing_date_insp_update').val(data[33]);
+        $('#detail_content_defect_insp_update').val(data[33]).prop('disabled', false).css('background', '#FFF');
+        $('#treatment_content_defect_insp_update').val(data[34]);
+        $('#harness_status_insp_update').val(data[35]);
 
         $('#repairing_date_insp_update').val(current_date_time);
-        $('#repair_start_mc2').val(data[36]);
-        $('#repair_end_mc2').val(data[37]);
-        $('#time_consumed_mc2').val(data[38]);
+        $('#repair_start_mc2').val(data[37]);
+        $('#repair_end_mc2').val(data[38]);
+        $('#time_consumed_mc2').val(data[39]);
 
-        $('#defect_category_mc2').val(data[39]);
+        $('#defect_category_mc2').val(data[40]);
         $('#others_defect_category_insp_mc_update').val('N/A');
 
-        $('#occurrence_process_mc2').val(data[41]);
+        $('#occurrence_process_mc2').val(data[42]);
         $('#others_occurrence_process_insp_mc_update').val('N/A');
 
-        $('#parts_removed_mc2').val(data[43]);
-        $('#quantity_mc2').val(data[44]);
-        $('#unit_cost_mc2').val(data[45]);
-        $('#material_cost_mc2').val(data[46]);
-        $('#manhour_cost_mc2').val(data[47]);
-        $('#portion_treatment2').val(data[48]);
+        $('#parts_removed_mc2').val(data[44]);
+        $('#quantity_mc2').val(data[45]);
+        $('#unit_cost_mc2').val(data[46]);
+        $('#material_cost_mc2').val(data[47]);
+        $('#manhour_cost_mc2').val(data[48]);
+        $('#portion_treatment2').val(data[49]);
         $('#other_portion_treatment_insp_mc_update').val('N/A');
-        $('#record_type_insp_update').val(data[50]).prop('disabled', true).css('background', '#EEE');
+        $('#record_type_insp_update').val(data[51]).prop('disabled', true).css('background', '#EEE');
 
         // defect unique id 
-        $('#inspector_defect_id').val(data[51]).prop('hidden', true);
+        $('#inspector_defect_id').val(data[52]).prop('hidden', true);
         $('#update_defect_inspector').modal('show');
+
     }
 
     // const time_difference = () => {

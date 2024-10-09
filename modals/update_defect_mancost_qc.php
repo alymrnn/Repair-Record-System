@@ -72,7 +72,13 @@
                         <datalist id="carMakerList">
                         </datalist>
                     </div>
-                    <div class="col-sm-10">
+                    <div class="col-sm-2">
+                        <!-- Car model -->
+                        <label style="font-weight: normal;color: #000;">Car Model</label>
+                        <input type="text" id="car_model_mc_update" class="form-control" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;" disabled>
+                    </div>
+                    <div class="col-sm-8">
                         <!-- qr scanning -->
                         <label style="font-weight: normal;color: #000;">Scan QR-Code</label>
                         <input type="text" id="qr_scan_update" class="form-control" autocomplete="off"

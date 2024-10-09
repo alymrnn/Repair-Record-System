@@ -827,6 +827,7 @@ if ($method == 'load_defect_table_data') {
             echo '<td style="text-align:center;">' . $row['issue_no_tag'] . '</td>';
             echo '<td style="text-align:center;">' . $row['repairing_date'] . '</td>';
             echo '<td style="text-align:center;">' . $row['car_maker'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['car_model'] . '</td>';
             echo '<td style="text-align:center;">' . $row['product_name'] . '</td>';
             echo '<td style="text-align:center;">' . $row['lot_no'] . '</td>';
             echo '<td style="text-align:center;">' . $row['serial_no'] . '</td>';
@@ -1054,7 +1055,7 @@ if ($method == 'load_mancost_table_data') {
     $query = "
         SELECT 
             m.id, d.defect_id, 
-            d.car_maker, d.line_no, d.category, d.date_detected, d.issue_no_tag,
+            d.car_maker, d.car_model, d.line_no, d.category, d.date_detected, d.issue_no_tag,
             d.product_name, d.lot_no, d.serial_no, d.discovery_process, d.discovery_id_num,
             d.discovery_person, d.occurrence_process_dr, d.occurrence_shift, d.occurrence_id_num, d.occurrence_person,
             d.outflow_process, d.outflow_shift, d.outflow_id_num, d.outflow_person, d.defect_category_dr,
@@ -1098,6 +1099,7 @@ if ($method == 'load_mancost_table_data') {
                 escapeJs($row['id']) . '~!~' .
                 escapeJs($row['car_maker']) . '~!~' .
                 escapeJs($row['line_no']) . '~!~' .
+                escapeJs($row['car_model']) . '~!~' .
                 escapeJs($row['category']) . '~!~' .
                 escapeJs($row['date_detected']) . '~!~' .
                 escapeJs($row['issue_no_tag']) . '~!~' .
@@ -1276,6 +1278,7 @@ if ($method == 'go_to_mc_form') {
     $issue_tag = trim($_POST['issue_tag']);
     $repairing_date = trim($_POST['repairing_date']);
     $car_maker = trim($_POST['car_maker']);
+    $line_model = trim($_POST['line_model']);
     // $qr_scan = trim($_POST['qr_scan']);
     $product_name = trim($_POST['product_name']);
     $lot_no = trim($_POST['lot_no']);
@@ -1334,6 +1337,10 @@ if ($method == 'go_to_mc_form') {
         }
         case empty($car_maker): {
             $message = "Car Maker Empty";
+            break;
+        }
+        case empty($line_model): {
+            $message = "Line Model Empty";
             break;
         }
         case empty($discovery_process_dr): {
@@ -1644,6 +1651,7 @@ if ($method == 'add_defect_mancost_record') {
     $issue_tag = trim($_POST['issue_tag']);
     $repairing_date = trim($_POST['repairing_date']);
     $car_maker = trim($_POST['car_maker']);
+    $line_model = trim($_POST['line_model']);
     $product_name = trim($_POST['product_name']);
     $lot_no = trim($_POST['lot_no']);
     $serial_no = trim($_POST['serial_no']);
@@ -1709,7 +1717,7 @@ if ($method == 'add_defect_mancost_record') {
         // Insert into t_defect_record_f
         $query = "
              INSERT INTO t_defect_record_f (
-                defect_id, line_no, category, date_detected, issue_no_tag, repairing_date, car_maker, product_name, 
+                defect_id, line_no, category, date_detected, issue_no_tag, repairing_date, car_maker, car_model, product_name, 
                 lot_no, serial_no, discovery_process, discovery_id_num, discovery_person, occurrence_process_dr, 
                 occurrence_shift, occurrence_id_num, occurrence_person, outflow_process, outflow_shift, 
                 outflow_id_num, outflow_person, defect_category_dr, dc_foreign_mat_details, dc_foreign_mat_category,
@@ -1718,7 +1726,7 @@ if ($method == 'add_defect_mancost_record') {
                 ng_measurement, wire_type, wire_size, connector_cavity, qc_status, record_type
             ) VALUES (
                 :defect_id, :line_no, :category, :date_detected, :issue_no_tag, :repairing_date, 
-                :car_maker, :product_name, :lot_no, :serial_no, :discovery_process, :discovery_id_num, 
+                :car_maker, :car_model, :product_name, :lot_no, :serial_no, :discovery_process, :discovery_id_num, 
                 :discovery_person, :occurrence_process_dr, :occurrence_shift, :occurrence_id_num, 
                 :occurrence_person, :outflow_process, :outflow_shift, :outflow_id_num, :outflow_person, 
                 :defect_category_dr, :dc_foreign_mat_details, :dc_foreign_mat_category,
@@ -1735,6 +1743,7 @@ if ($method == 'add_defect_mancost_record') {
         $stmt->bindParam(':issue_no_tag', $issue_tag, PDO::PARAM_INT);
         $stmt->bindParam(':repairing_date', $repairing_date, PDO::PARAM_STR);
         $stmt->bindParam(':car_maker', $car_maker, PDO::PARAM_STR);
+        $stmt->bindParam(':car_model', $line_model, PDO::PARAM_STR);
         $stmt->bindParam(':product_name', $product_name, PDO::PARAM_STR);
         $stmt->bindParam(':lot_no', $lot_no, PDO::PARAM_STR);
         $stmt->bindParam(':serial_no', $serial_no, PDO::PARAM_STR);
@@ -2246,6 +2255,7 @@ if ($method == 'update_pd_record') {
     $mancost_id = $_POST['id'];
     $car_maker = $_POST['car_maker'];
     $line_no = $_POST['line_no'];
+    $line_model = $_POST['line_model'];
     $issue_no_tag = $_POST['issue_tag'];
     $serial_no = $_POST['serial_no'];
     $repair_person = $_POST['repair_person'];
@@ -2304,6 +2314,7 @@ if ($method == 'update_pd_record') {
         $query1 = "
             UPDATE t_defect_record_f
             SET line_no = :line_no,
+                car_model = :car_model,
                 issue_no_tag = :issue_no_tag,
                 serial_no = :serial_no,
                 good_measurement = :good_measurement,
@@ -2336,6 +2347,7 @@ if ($method == 'update_pd_record') {
 
         $stmt1 = $conn->prepare($query1, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
         $stmt1->bindParam(':line_no', $line_no);
+        $stmt1->bindParam(':car_model', $line_model);
         $stmt1->bindParam(':issue_no_tag', $issue_no_tag);
         $stmt1->bindParam(':serial_no', $serial_no);
         $stmt1->bindParam(':good_measurement', $good_measurement);
@@ -2582,7 +2594,7 @@ if ($method == 'get_car_maker') {
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
-            echo '<option value="" disabled selected>Select car model</option>';
+            echo '<option value="" disabled selected>Select setting</option>';
             foreach ($stmt->fetchAll() as $row) {
                 echo '<option>' . htmlspecialchars($row['car_model']) . '</option>';
             }
@@ -2590,7 +2602,7 @@ if ($method == 'get_car_maker') {
             echo '<option value="">No car models available</option>';
         }
     } else {
-        echo '<option value="">Select car model</option>';
+        echo '<option value="">Select setting</option>';
     }
 }
 
@@ -2618,6 +2630,22 @@ if ($method == 'fetch_qr_setting') {
         echo json_encode([]);
     }
 }
+
+if ($method == 'fetch_car_models_by_line_no') {
+    $line_no = $_POST['line_no'];
+    $query = "SELECT line_model FROM m_line_no WHERE line_no = ?";
+    $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+    $stmt->execute([$line_no]);
+    if ($stmt->rowCount() > 0) {
+        echo '<option value="N/A" selected>N/A</option>';
+        foreach ($stmt->fetchAll() as $row) {
+            echo '<option value="' . htmlspecialchars($row['line_model']) . '">' . htmlspecialchars($row['line_model']) . '</option>';
+        }
+    } else {
+        echo '<option value="">No car models available</option>';
+    }
+}
+
 
 
 $conn = NULL;

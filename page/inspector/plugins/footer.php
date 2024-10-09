@@ -1,7 +1,7 @@
 <footer class="main-footer" style="background:#313131; color:white; font-size: 14px;">
   Copyright &copy; 2023. Aly Maranan. All rights reserved.
   <div class="float-right d-none d-sm-inline-block">
-    Version 1.0.4
+    Version 1.0.5
   </div>
 </footer>
 <?php

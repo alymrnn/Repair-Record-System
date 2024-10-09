@@ -299,6 +299,7 @@ if ($method == 'load_defect_table_pdv_re') {
             $onclick_event = ($remarks_1_cc == 'GOOD' && $remarks_recrimp == 'GOOD') ? '' : 'onclick="get_update_defect_re_assy(\'' . implode('~!~', [
                 $row['id'],
                 $row['car_maker'],
+                $row['car_model'],
                 $row['line_no'],
                 $row['category'],
                 $row['date_detected'],
@@ -352,6 +353,7 @@ if ($method == 'load_defect_table_pdv_re') {
             echo '<td style="text-align:center;">' . $row['issue_no_tag'] . '</td>';
             echo '<td style="text-align:center;">' . $row['repairing_date'] . '</td>';
             echo '<td style="text-align:center;">' . $row['car_maker'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['car_model'] . '</td>';
             echo '<td style="text-align:center;">' . $row['product_name'] . '</td>';
             echo '<td style="text-align:center;">' . $row['lot_no'] . '</td>';
             echo '<td style="text-align:center;">' . $row['serial_no'] . '</td>';

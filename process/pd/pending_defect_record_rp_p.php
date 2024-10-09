@@ -317,6 +317,7 @@ if ($method == 'load_defect_table_data') {
             echo '<td style="text-align:center;">' . $row['issue_no_tag'] . '</td>';
             echo '<td style="text-align:center;">' . $row['repairing_date'] . '</td>';
             echo '<td style="text-align:center;">' . $row['car_maker'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['car_model'] . '</td>';
             echo '<td style="text-align:center;">' . $row['product_name'] . '</td>';
             echo '<td style="text-align:center;">' . $row['lot_no'] . '</td>';
             echo '<td style="text-align:center;">' . $row['serial_no'] . '</td>';
@@ -399,7 +400,7 @@ if ($method == 'load_mancost_table_data') {
     $query = "
         SELECT 
             m.id, d.defect_id, 
-            d.car_maker, d.line_no, d.category, d.date_detected, d.issue_no_tag,
+            d.car_maker, d.car_model, d.line_no, d.category, d.date_detected, d.issue_no_tag,
             d.product_name, d.lot_no, d.serial_no, d.discovery_process, d.discovery_id_num,
             d.discovery_person, d.occurrence_process_dr, d.occurrence_shift, d.occurrence_id_num, d.occurrence_person,
             d.outflow_process, d.outflow_shift, d.outflow_id_num, d.outflow_person, d.defect_category_dr,
@@ -444,6 +445,7 @@ if ($method == 'load_mancost_table_data') {
                 escapeJs($row['car_maker']) . '~!~' .
                 escapeJs($row['line_no']) . '~!~' .
                 escapeJs($row['category']) . '~!~' .
+                escapeJs($row['car_model']) . '~!~' .
                 escapeJs($row['date_detected']) . '~!~' .
                 escapeJs($row['issue_no_tag']) . '~!~' .
                 escapeJs($row['product_name']) . '~!~' .

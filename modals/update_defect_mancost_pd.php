@@ -79,14 +79,20 @@
                             style="font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"
                             class="pl-2 form-control" readonly>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
+                        <label style="font-weight: normal;color: #000;">Car Model</label>
+                        <label style="color:#EA9515">*</label>
+                        <input type="text" id="line_model_pd_update" class="form-control" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                    </div>
+                    <div class="col-sm-2">
                         <!-- product name -->
                         <label style="font-weight: normal;color: #000;">Product Name</label>
                         <input type="text" id="product_name_pd_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                         <br>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <!-- lot number -->
                         <label style="font-weight: normal;color: #000;">Lot No.</label>
                         <input type="text" id="lot_no_pd_update" class="form-control" autocomplete="off"
@@ -252,14 +258,14 @@
                     </div>
                     <div class="col-sm-2">
                         <!-- sequence number -->
-                        <label style="font-weight: normal;color: #000;">Sequence Number</label>
+                        <label style="font-weight: normal;color: #000;">Sequence No.</label>
                         <label style="color:#EA9515">*</label>
                         <input type="text" id="sequence_no_pd_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-2">
                         <!-- assy board number -->
-                        <label style="font-weight: normal;color: #000;">Assy Board Number</label>
+                        <label style="font-weight: normal;color: #000;">Assy Board No.</label>
                         <label style="color:#EA9515">*</label>
                         <input type="text" id="assy_board_no_pd_update" class="form-control pl-3" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"

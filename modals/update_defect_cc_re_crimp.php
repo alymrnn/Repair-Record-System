@@ -67,7 +67,13 @@
                             class="pl-2">
                         <datalist id="carMakerList"></datalist>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
+                        <!-- car model -->
+                        <label style="font-weight: normal;color: #000;">Car Model</label>
+                        <input type="text" id="car_model_pdv_cc_update" class="form-control" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                    </div>
+                    <div class="col-sm-3">
                         <!-- product name -->
                         <label style="font-weight: normal;color: #000;">Product Name</label>
                         <input type="text" id="product_name_pdv_cc_update" class="form-control" autocomplete="off"
@@ -80,7 +86,7 @@
                         <input type="text" id="lot_no_pdv_cc_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <!-- serial number -->
                         <label style="font-weight: normal;color: #000;">Serial No.</label>
                         <input type="text" id="serial_no_pdv_cc_update" class="form-control" autocomplete="off"
@@ -311,6 +317,7 @@
                     <!-- recrimp -->
                     <div class="col-sm-4">
                         <label style="font-weight: normal;color: #000;">Judgement</label>
+                        <label style="color:#CA3F3F;">*</label>
                         <!-- <input type="text" id="recrimp_remarks_re_cc_update" class="form-control pl-3"
                             autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;"> -->
@@ -325,12 +332,14 @@
                     </div>
                     <div class="col-sm-4">
                         <label style="font-weight: normal;color: #000;">ID No. PD (FSP)</label>
+                        <label style="color:#CA3F3F;">*</label>
                         <input type="text" id="recrimp_pd_id_no_re_cc_update" class="form-control pl-3"
                             autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-4">
                         <label style="font-weight: normal;color: #000;">Re-crimped by PD (FSP)</label>
+                        <label style="color:#CA3F3F;">*</label>
                         <input type="text" id="recrimp_pd_name_re_cc_update" class="form-control pl-3"
                             autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"
@@ -341,12 +350,14 @@
                     <div class="col-4"></div>
                     <div class="col-sm-4">
                         <label style="font-weight: normal;color: #000;">ID No. QA (FSP)</label>
+                        <label style="color:#CA3F3F;">*</label>
                         <input type="text" id="recrimp_qa_id_no_re_cc_update" class="form-control pl-3"
                             autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
                     <div class="col-sm-4">
                         <label style="font-weight: normal;color: #000;">Verified by QA (FSP)</label>
+                        <label style="color:#CA3F3F;">*</label>
                         <input type="text" id="recrimp_qa_name_re_cc_update" class="form-control pl-3"
                             autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #EEE;height:34px; width:100%;"

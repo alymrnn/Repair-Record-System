@@ -62,7 +62,8 @@
                         <!-- repairing date -->
                         <label style="font-weight: normal;color: #000;">Repairing Date</label>
                         <label style="color:#CA3F3F">*</label>
-                        <input type="datetime-local" id="repairing_date_insp_update" autocomplete="off" class="form-control pl-2"
+                        <input type="datetime-local" id="repairing_date_insp_update" autocomplete="off"
+                            class="form-control pl-2"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                     </div>
                 </div>
@@ -83,14 +84,20 @@
                             class="pl-2">
                         <datalist id="carMakerList"></datalist>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
+                        <label style="font-weight: normal;color: #000;">Car Model</label>
+                        <input type="text" id="line_model_insp_update" class="form-control" autocomplete="off"
+                            style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
+                    </div>
+
+                    <div class="col-sm-2">
                         <!-- product name -->
                         <label style="font-weight: normal;color: #000;">Product Name</label>
                         <input type="text" id="product_name_insp_update" class="form-control" autocomplete="off"
                             style="color: #525252;font-size: 15px;border-radius: .25rem;background: #FFF;height:34px; width:100%;">
                         <br>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <!-- lot number -->
                         <label style="font-weight: normal;color: #000;">Lot No.</label>
                         <input type="text" id="lot_no_insp_update" class="form-control" autocomplete="off"
@@ -580,7 +587,6 @@
                         </tbody>
                     </table>
                 </div>
-
                 <!-- /.row end -->
             </div>
             <div class="modal-footer" style="background:#e9e9e9;">

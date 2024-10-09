@@ -543,6 +543,7 @@ if ($method == 'load_qc_defect_table_data') {
             echo '<td style="text-align:center;">' . $row['issue_no_tag'] . '</td>';
             echo '<td style="text-align:center;">' . $row['repairing_date'] . '</td>';
             echo '<td style="text-align:center;">' . $row['car_maker'] . '</td>';
+            echo '<td style="text-align:center;">' . $row['car_model'] . '</td>';
             echo '<td style="text-align:center;">' . $row['product_name'] . '</td>';
             echo '<td style="text-align:center;">' . $row['lot_no'] . '</td>';
             echo '<td style="text-align:center;">' . $row['serial_no'] . '</td>';
@@ -745,7 +746,7 @@ if ($method == 'load_qc_mancost_table_data') {
     $c = $page_first_result;
 
     $query = "SELECT m.id, m.defect_id, d.defect_id, 
-        d.car_maker, d.line_no, d.category, d.date_detected, d.issue_no_tag,
+        d.car_maker, d.car_model, d.line_no, d.category, d.date_detected, d.issue_no_tag,
         d.product_name, d.lot_no, d.serial_no, d.discovery_process, d.discovery_id_num,
         d.discovery_person, d.occurrence_process_dr, d.occurrence_shift, d.occurrence_id_num, d.occurrence_person,
         d.outflow_process, d.outflow_shift, d.outflow_id_num, d.outflow_person, d.defect_category_dr,
@@ -810,6 +811,7 @@ if ($method == 'load_qc_mancost_table_data') {
                                    value="' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '"
                                    data-id="' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '"
                                    data-car_maker_mc="' . htmlspecialchars($row['car_maker'], ENT_QUOTES, 'UTF-8') . '"
+                                   data-car_model_mc="' . htmlspecialchars($row['car_model'], ENT_QUOTES, 'UTF-8') . '"
                                    data-line_no_mc="' . htmlspecialchars($row['line_no'], ENT_QUOTES, 'UTF-8') . '"
                                    data-line_category_mc="' . htmlspecialchars($row['category'], ENT_QUOTES, 'UTF-8') . '"
                                    data-date_detected_mc="' . htmlspecialchars($row['date_detected'], ENT_QUOTES, 'UTF-8') . '"
